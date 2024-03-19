@@ -1,1 +1,1 @@
-# python-graphlit-client
+# graphlit-client-python
