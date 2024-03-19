@@ -1,4 +1,4 @@
-# graphlit-client-python
+# Python Client for Graphlit Platform
 
 ## Overview
 
@@ -9,7 +9,7 @@ The Graphlit Client for Python enables easy interaction with the Graphlit API, a
 Before you begin, ensure you have the following:
 
 - Python 3.x installed on your system.
-- An active account on [graphlit.com](https://portal.graphlit.dev) with access to the API settings dashboard.
+- An active account on the [Graphlit Platform](https://portal.graphlit.dev) with access to the API settings dashboard.
 
 ## Installation
 
@@ -27,7 +27,7 @@ The Graphlit Client requires three environment variables to be set for authentic
 - `ORGANIZATION_ID`: Your organization ID.
 - `SECRET_KEY`: Your secret key for API access.
 
-You can find these values in the API settings dashboard on [graphlit.com](https://portal.graphlit.dev).
+You can find these values in the API settings dashboard on the [Graphlit Platform](https://portal.graphlit.dev).
 
 ### Setting Environment Variables
 
@@ -95,6 +95,6 @@ print(response)
 
 ## Support
 
-For issues and support with the Graphlit Client or API,  
-Please refer to the [documentation](https://docs.graphlit.dev/) and
-join our [Discord](https://discord.gg/ygFmfjy3Qx) community.
+Please refer to the [Graphlit API Documentation](https://docs.graphlit.dev/).
+For support with the Graphlit Client, please submit a [GitHub Issue](https://github.com/graphlit/graphlit-client-python/issues).  
+For further support with the Graphlit Platform, please join our [Discord](https://discord.gg/ygFmfjy3Qx) community.
