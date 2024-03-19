@@ -10,5 +10,5 @@ setup(
     author='Graphlit',
     author_email='questions@graphlit.com',
     description='A package for creating tokens for Graphlit services',
-    url='https://github.com/graphlit/python-graphlit-client',
+    url='https://github.com/graphlit/graphlit-client-python',
 )
