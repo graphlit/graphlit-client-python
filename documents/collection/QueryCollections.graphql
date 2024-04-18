@@ -1,0 +1,18 @@
+query QueryCollections($filter: CollectionFilter) {
+  collections(filter: $filter) {
+    results {
+      id
+      name
+      creationDate
+      owner {
+        id
+      }
+      state
+      type
+      contents {
+        id
+        name
+      }
+    }
+  }
+}

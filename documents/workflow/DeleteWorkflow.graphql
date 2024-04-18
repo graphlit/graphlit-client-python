@@ -1,0 +1,6 @@
+mutation DeleteWorkflow($id: ID!) {
+  deleteWorkflow(id: $id) {
+    id
+    state
+  }
+}

@@ -1,0 +1,6 @@
+mutation DeleteAllFeeds {
+  deleteAllFeeds {
+    id
+    state
+  }
+}

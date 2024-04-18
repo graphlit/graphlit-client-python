@@ -1,0 +1,28 @@
+query Project {
+  project {
+    id
+    name
+    creationDate
+    modifiedDate
+    state
+    environmentType
+    platform
+    region
+    workflow {
+      id
+      name
+    }
+    specification {
+      id
+      name
+    }
+    quota {
+      storage
+      contents
+      feeds
+      posts
+      conversations
+    }
+    callbackUri
+  }
+}

@@ -1,0 +1,78 @@
+query QuerySpecifications($filter: SpecificationFilter) {
+  specifications(filter: $filter) {
+    results {
+      id
+      name
+      creationDate
+      owner {
+        id
+      }
+      state
+      type
+      serviceType
+      systemPrompt
+      customGuidance
+      strategy {
+        type
+        messageLimit
+        embedCitations
+        enableFacets
+        messagesWeight
+        contentsWeight
+      }
+      promptStrategy {
+        type
+      }
+      retrievalStrategy {
+        type
+        contentLimit
+      }
+      rerankingStrategy {
+        serviceType
+      }
+      openAI {
+        tokenLimit
+        completionTokenLimit
+        model
+        key
+        modelName
+        temperature
+        probability
+      }
+      azureOpenAI {
+        tokenLimit
+        completionTokenLimit
+        model
+        key
+        endpoint
+        deploymentName
+        temperature
+        probability
+      }
+      anthropic {
+        tokenLimit
+        completionTokenLimit
+        model
+        key
+        modelName
+        temperature
+        probability
+      }
+      replicate {
+        tokenLimit
+        completionTokenLimit
+        model
+        key
+        modelName
+        temperature
+        probability
+      }
+      tools {
+        name
+        description
+        schema
+        uri
+      }
+    }
+  }
+}

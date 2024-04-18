@@ -1,0 +1,70 @@
+query QueryAlerts($filter: AlertFilter) {
+  alerts(filter: $filter) {
+    results {
+      id
+      name
+      creationDate
+      owner {
+        id
+      }
+      state
+      correlationId
+      type
+      summaryPrompt
+      publishPrompt
+      filter {
+        dateRange {
+          from
+          to
+        }
+        creationDateRange {
+          from
+          to
+        }
+        types
+        fileTypes
+        contents {
+          id
+        }
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+      integration {
+        type
+        uri
+        slack {
+          token
+          channel
+        }
+      }
+      publishing {
+        type
+        elevenLabs {
+          model
+          voice
+        }
+      }
+      summarySpecification {
+        id
+      }
+      publishSpecification {
+        id
+      }
+      lastAlertDate
+    }
+  }
+}

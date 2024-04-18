@@ -1,0 +1,6 @@
+mutation DeleteAllContents {
+  deleteAllContents {
+    id
+    state
+  }
+}

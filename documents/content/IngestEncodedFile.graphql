@@ -1,0 +1,11 @@
+mutation IngestEncodedFile($name: String!, $data: String!, $mimeType: String!, $id: ID, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $correlationId: String) {
+  ingestEncodedFile(name: $name, data: $data, mimeType: $mimeType, id: $id, isSynchronous: $isSynchronous, workflow: $workflow, correlationId: $correlationId) {
+    id
+    name
+    state
+    type
+    fileType
+    mimeType
+    uri
+  }
+}

@@ -1,0 +1,8 @@
+mutation CreateConversation($conversation: ConversationInput!, $correlationId: String) {
+  createConversation(conversation: $conversation, correlationId: $correlationId) {
+    id
+    name
+    state
+    type
+  }
+}

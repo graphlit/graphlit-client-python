@@ -1,0 +1,9 @@
+mutation CreateSpecification($specification: SpecificationInput!) {
+  createSpecification(specification: $specification) {
+    id
+    name
+    state
+    type
+    serviceType
+  }
+}

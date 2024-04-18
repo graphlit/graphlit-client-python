@@ -1,0 +1,8 @@
+mutation CloseConversation($id: ID!) {
+  closeConversation(id: $id) {
+    id
+    name
+    state
+    type
+  }
+}

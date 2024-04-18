@@ -1,0 +1,8 @@
+mutation CreateAlert($alert: AlertInput!, $correlationId: String) {
+  createAlert(alert: $alert, correlationId: $correlationId) {
+    id
+    name
+    state
+    type
+  }
+}

@@ -1,0 +1,6 @@
+mutation DeleteAllWorkflows {
+  deleteAllWorkflows {
+    id
+    state
+  }
+}

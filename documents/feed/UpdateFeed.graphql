@@ -1,0 +1,8 @@
+mutation UpdateFeed($feed: FeedUpdateInput!) {
+  updateFeed(feed: $feed) {
+    id
+    name
+    state
+    type
+  }
+}

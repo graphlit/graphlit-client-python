@@ -1,0 +1,16 @@
+query QueryContentFacets($filter: ContentFilter, $facets: [ContentFacetInput!]) {
+  contents(filter: $filter, facets: $facets) {
+    facets { 
+        facet 
+        type
+        observable {
+            type 
+            observable {
+                id
+                name 
+            } 
+        } 
+        count
+    }
+  }
+}

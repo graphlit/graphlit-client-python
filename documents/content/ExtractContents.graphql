@@ -1,0 +1,15 @@
+mutation ExtractContents($prompt: String!, $filter: ContentFilter, $specification: EntityReferenceInput!, $correlationId: String) {
+  extractContents(prompt: $prompt, filter: $filter, specification: $specification, correlationId: $correlationId) {
+    specification {
+      id
+    }
+    content {
+      id
+    }
+    value
+    startTime
+    endTime
+    pageNumber
+    error
+  }
+}

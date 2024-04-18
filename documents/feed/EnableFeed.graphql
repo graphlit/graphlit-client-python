@@ -1,0 +1,6 @@
+mutation EnableFeed($id: ID!) {
+  enableFeed(id: $id) {
+    id
+    state
+  }
+}

@@ -1,0 +1,72 @@
+query QueryConversations($filter: ConversationFilter) {
+  conversations(filter: $filter) {
+    results {
+      id
+      name
+      creationDate
+      owner {
+        id
+      }
+      state
+      correlationId
+      type
+      messages {
+        role
+        author
+        message
+        citations {
+          content {
+            id
+          }
+          index
+          text
+          startTime
+          endTime
+          pageNumber
+          frameNumber
+        }
+        tokens
+        throughput
+        completionTime
+        timestamp
+        modelService
+        model
+      }
+      specification {
+        id
+        name
+      }
+      filter {
+        dateRange {
+          from
+          to
+        }
+        creationDateRange {
+          from
+          to
+        }
+        types
+        fileTypes
+        contents {
+          id
+        }
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+    }
+  }
+}

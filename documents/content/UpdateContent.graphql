@@ -1,0 +1,11 @@
+mutation UpdateContent($content: ContentUpdateInput!) {
+  updateContent(content: $content) {
+    id
+    name
+    state
+    type
+    fileType
+    mimeType
+    uri
+  }
+}

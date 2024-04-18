@@ -1,0 +1,8 @@
+mutation CreateFeed($feed: FeedInput!, $correlationId: String) {
+  createFeed(feed: $feed, correlationId: $correlationId) {
+    id
+    name
+    state
+    type
+  }
+}

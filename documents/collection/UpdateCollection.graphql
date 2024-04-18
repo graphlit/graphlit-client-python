@@ -1,0 +1,8 @@
+mutation UpdateCollection($collection: CollectionUpdateInput!) {
+  updateCollection(collection: $collection) {
+    id
+    name
+    state
+    type
+  }
+}

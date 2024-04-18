@@ -1,0 +1,5 @@
+mutation SuggestConversation($id: ID!, $count: Int, $correlationId: String) {
+  suggestConversation(id: $id, count: $count, correlationId: $correlationId) {
+    prompts
+  }
+}

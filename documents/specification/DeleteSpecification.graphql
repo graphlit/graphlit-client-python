@@ -1,0 +1,6 @@
+mutation DeleteSpecification($id: ID!) {
+  deleteSpecification(id: $id) {
+    id
+    state
+  }
+}

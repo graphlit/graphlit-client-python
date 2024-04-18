@@ -1,0 +1,164 @@
+query QueryContents($filter: ContentFilter) {
+  contents(filter: $filter) {
+    results {
+      id
+      name
+      creationDate
+      owner {
+        id
+      }
+      state
+      originalDate
+      finishedDate
+      workflowDuration
+      uri
+      type
+      fileType
+      mimeType
+      fileName
+      fileSize
+      masterUri
+      imageUri
+      textUri
+      audioUri
+      transcriptUri
+      video {
+        width
+        height
+        duration
+        software
+        make
+        model
+      }
+      audio {
+        keywords
+        author
+        series
+        episode
+        episodeType
+        season
+        publisher
+        copyright
+        language
+        genre
+        title
+        bitrate
+        channels
+        sampleRate
+        bitsPerSample
+        duration
+      }
+      image {
+        width
+        height
+        description
+        software
+        identifier
+        make
+        model
+      }
+      document {
+        title
+        subject
+        author
+        software
+        publisher
+        description
+        summary
+        keywords
+        pageCount
+        worksheetCount
+        slideCount      
+        wordCount
+        lineCount
+        paragraphCount
+        characterCount
+        isEncrypted
+        hasDigitalSignature
+      }
+      email {
+        subject
+        identifier
+        sensitivity
+        priority
+        importance
+        labels
+        from {
+          name
+          familyName
+          givenName
+          email
+        }
+        to {
+          name
+          familyName
+          givenName
+          email
+        }
+        cc {
+          name
+          familyName
+          givenName
+          email
+        }
+        bcc {
+          name
+          familyName
+          givenName
+          email
+        }
+      }
+      issue {
+        title
+        project
+        team
+        status
+        priority
+        type
+        identifier
+        labels
+      }
+      observations {
+        type
+        observable {
+          id
+          name
+        }
+        occurrences {
+          type
+          confidence
+          boundingBox {
+            left
+            top
+            width
+            height
+          }
+          pageIndex
+          startTime
+          endTime
+        }
+      }
+      parent {
+        id
+      }
+      children {
+        id
+      }
+      collections {
+        id
+      }
+      feed {
+        id
+      }
+      workflow {
+        id
+      }
+      markdown
+      links {
+        uri
+        linkType
+      }
+      error
+    }
+  }
+}

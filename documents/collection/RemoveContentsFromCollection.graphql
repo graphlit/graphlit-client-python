@@ -1,0 +1,12 @@
+mutation RemoveContentsFromCollection($contents: [EntityReferenceInput!]!, $collection: EntityReferenceInput!) {
+  removeContentsFromCollection(contents: $contents, collection: $collection) {
+    id
+    name
+    state
+    type
+    contents {
+      id
+      name
+    }
+  }
+}

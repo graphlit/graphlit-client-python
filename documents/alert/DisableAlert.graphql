@@ -1,0 +1,6 @@
+mutation DisableAlert($id: ID!) {
+  disableAlert(id: $id) {
+    id
+    state
+  }
+}

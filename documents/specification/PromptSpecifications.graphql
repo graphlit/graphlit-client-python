@@ -1,0 +1,30 @@
+mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
+  promptSpecifications(prompt: $prompt, ids: $ids) {
+    specification {
+      id
+    }
+    messages {
+      role
+      author
+      message
+      citations {
+        content {
+          id
+        }
+        index
+        text
+        startTime
+        endTime
+        pageNumber
+        frameNumber
+      }
+      tokens
+      throughput
+      completionTime
+      timestamp
+      modelService
+      model
+    }
+    error
+  }
+}

@@ -1,0 +1,6 @@
+mutation EnableAlert($id: ID!) {
+  enableAlert(id: $id) {
+    id
+    state
+  }
+}

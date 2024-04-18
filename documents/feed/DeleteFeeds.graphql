@@ -1,0 +1,6 @@
+mutation DeleteFeeds($ids: [ID!]!) {
+  deleteFeeds(ids: $ids) {
+    id
+    state
+  }
+}

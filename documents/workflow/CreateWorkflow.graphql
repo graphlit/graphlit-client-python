@@ -1,0 +1,103 @@
+mutation CreateWorkflow($workflow: WorkflowInput!) {
+  createWorkflow(workflow: $workflow) {
+    id
+    name
+    state
+    ingestion {
+      if {
+        types
+        fileTypes
+      }
+      collections {
+        id
+      }
+    }
+    preparation {
+      disableSmartCapture
+      summarizations {
+        type
+        specification {
+          id
+        }
+        tokens
+        items
+      }
+      jobs {
+        connector {
+          type
+          fileTypes
+          azureDocument {
+            model
+          }
+          deepgram {
+            model
+            key
+            enableRedaction
+            enableSpeakerDiarization
+          }
+          document {
+            includeImages
+          }
+          email {
+            includeAttachments
+          }
+        }
+      }
+    }
+    extraction {
+      jobs {
+        connector {
+          type
+          contentTypes
+          fileTypes
+          extractedTypes
+          azureText {
+            confidenceThreshold
+            enablePII
+          }
+          azureImage {
+            confidenceThreshold
+          }
+          openAIImage {
+            confidenceThreshold
+            detailLevel
+          }
+          modelText {
+            specification {
+              id
+            }
+          }
+        }
+      }
+    }
+    enrichment {
+      link {
+        enableCrawling
+        allowedDomains
+        excludedDomains
+        allowedLinks
+        excludedLinks
+        allowedFiles
+        excludedFiles
+        allowContentDomain
+        maximumLinks
+      }
+      jobs {
+        connector {
+          type
+          enrichedTypes
+        }
+      }
+    }
+    actions {
+      connector {
+        type
+        uri
+        slack {
+          token
+          channel
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+mutation UpdateConversation($conversation: ConversationUpdateInput!) {
+  updateConversation(conversation: $conversation) {
+    id
+    name
+    state
+    type
+  }
+}

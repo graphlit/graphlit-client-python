@@ -1,0 +1,6 @@
+mutation DisableFeed($id: ID!) {
+  disableFeed(id: $id) {
+    id
+    state
+  }
+}

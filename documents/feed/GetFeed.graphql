@@ -1,0 +1,144 @@
+query GetFeed($id: ID!) {
+  feed(id: $id) {
+    id
+    name
+    creationDate
+    owner {
+      id
+    }
+    state
+    correlationId
+    type
+    site {
+      siteType
+      type
+      isRecursive
+      s3 {
+        accessKey
+        secretAccessKey
+        bucketName
+        prefix
+        region
+      }
+      azureBlob {
+        storageAccessKey
+        accountName
+        containerName
+        prefix
+      }
+      azureFile {
+        storageAccessKey
+        accountName
+        shareName
+        prefix
+      }
+      google {
+        credentials
+        containerName
+        prefix
+      }
+      sharePoint {
+        authenticationType
+        accountName
+        libraryId
+        tenantId
+        refreshToken
+      }
+      oneDrive {
+        folderId
+        refreshToken
+      }
+      googleDrive {
+        folderId
+        refreshToken
+      }
+    }
+    email {
+      type
+      includeAttachments
+      google {
+        type
+        refreshToken
+      }
+      microsoft {
+        type
+        tenantId
+        refreshToken
+      }
+    }
+    issue {
+      type
+      includeAttachments
+      jira {
+        uri
+        project
+        email
+        token
+      }
+      linear {
+        key
+        project
+      }
+      github {
+        uri
+        repositoryOwner
+        repositoryName
+        refreshToken
+        personalAccessToken
+      }
+    }
+    rss {
+      readLimit
+      uri
+    }
+    web {
+      readLimit
+      uri
+      includeFiles
+    }
+    reddit {
+      readLimit
+      subredditName
+    }
+    notion {
+      readLimit
+      token
+      identifiers
+      type
+    }
+    youtube {
+      readLimit
+      type
+      videoName
+      videoIdentifiers
+      channelIdentifier
+      playlistIdentifier
+    }
+    slack {
+      readLimit
+      type
+      token
+      channel
+      includeAttachments
+    }
+    discord {
+      readLimit
+      type
+      token
+      channel
+      includeAttachments
+    }
+    error
+    lastPostDate
+    lastReadDate
+    readCount
+    workflow {
+      id
+      name
+    }
+    schedulePolicy {
+      recurrenceType
+      repeatInterval
+    }
+  }
+}

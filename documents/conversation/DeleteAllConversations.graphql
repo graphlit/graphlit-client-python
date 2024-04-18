@@ -1,0 +1,6 @@
+mutation DeleteAllConversations {
+  deleteAllConversations {
+    id
+    state
+  }
+}

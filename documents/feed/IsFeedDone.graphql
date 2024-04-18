@@ -1,0 +1,5 @@
+query IsFeedDone($id: ID!) {
+  isFeedDone(id: $id) {
+    result
+  }
+}

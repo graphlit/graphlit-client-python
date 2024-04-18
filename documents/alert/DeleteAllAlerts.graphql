@@ -1,0 +1,6 @@
+mutation DeleteAllAlerts {
+  deleteAllAlerts {
+    id
+    state
+  }
+}

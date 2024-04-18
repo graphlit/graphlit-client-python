@@ -1,0 +1,17 @@
+mutation SummarizeContents($summarizations: [SummarizationStrategyInput!]!, $filter: ContentFilter, $correlationId: String) {
+  summarizeContents(summarizations: $summarizations, filter: $filter, correlationId: $correlationId) {
+    specification {
+      id
+    }
+    content {
+      id
+    }
+    type
+    items {
+      text
+      tokens
+      summarizationTime
+    }
+    error
+  }
+}

@@ -1,0 +1,14 @@
+mutation PublishConversation($id: ID!, $connector: ContentPublishingConnectorInput!, $name: String, $workflow: EntityReferenceInput, $correlationId: String) {
+  publishConversation(id: $id, connector: $connector, name: $name, workflow: $workflow, correlationId: $correlationId) {
+    id
+    name
+    state
+    type
+    fileType
+    mimeType
+    uri
+    textUri
+    audioUri
+    markdown
+  }
+}

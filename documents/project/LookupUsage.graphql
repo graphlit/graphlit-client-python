@@ -1,0 +1,31 @@
+query LookupUsage($correlationId: String!) {
+  lookupUsage(correlationId: $correlationId) {
+    correlationId
+    date
+    credits
+    name
+    metric
+    workflow
+    entityType
+    entityId
+    projectId
+    ownerId
+    uri
+    duration
+    throughput
+    contentType
+    fileType
+    modelService
+    modelName
+    processorName
+    prompt
+    promptTokens
+    completion
+    completionTokens
+    tokens
+    count
+    request
+    variables
+    response
+  }
+}

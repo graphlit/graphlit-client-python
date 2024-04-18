@@ -1,0 +1,9 @@
+mutation UpdateSpecification($specification: SpecificationUpdateInput!) {
+  updateSpecification(specification: $specification) {
+    id
+    name
+    state
+    type
+    serviceType
+  }
+}

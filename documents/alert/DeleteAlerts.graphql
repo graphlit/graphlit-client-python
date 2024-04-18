@@ -1,0 +1,6 @@
+mutation DeleteAlerts($ids: [ID!]!) {
+  deleteAlerts(ids: $ids) {
+    id
+    state
+  }
+}

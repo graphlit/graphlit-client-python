@@ -1,0 +1,8 @@
+[tool.ariadne-codegen]
+remote_schema_url = "https://data-scus-dev.graphlit.io/api/v1/graphql"
+queries_path = "./documents"
+target_package_name = "graphlit_api"
+client_name = "Client"
+client_file_name = "client"
+
+plugins = ["ariadne_codegen.contrib.extract_operations.ExtractOperationsPlugin"]

@@ -1,0 +1,8 @@
+mutation ClearConversation($id: ID!) {
+  clearConversation(id: $id) {
+    id
+    name
+    state
+    type
+  }
+}

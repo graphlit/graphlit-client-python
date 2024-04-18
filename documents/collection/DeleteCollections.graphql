@@ -1,0 +1,6 @@
+mutation DeleteCollections($ids: [ID!]!) {
+  deleteCollections(ids: $ids) {
+    id
+    state
+  }
+}

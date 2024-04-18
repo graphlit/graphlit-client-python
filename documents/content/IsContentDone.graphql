@@ -1,0 +1,5 @@
+query IsContentDone($id: ID!) {
+  isContentDone(id: $id) {
+    result
+  }
+}

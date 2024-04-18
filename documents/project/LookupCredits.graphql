@@ -1,0 +1,15 @@
+query LookupCredits($correlationId: String!) {
+  lookupCredits(correlationId: $correlationId) {
+    correlationId
+    ownerId
+    credits
+    storageRatio
+    computeRatio
+    preparationRatio
+    extractionRatio
+    enrichmentRatio
+    publishingRatio
+    searchRatio
+    conversationRatio
+  }
+}

@@ -1,0 +1,6 @@
+mutation DeleteContents($ids: [ID!]!) {
+  deleteContents(ids: $ids) {
+    id
+    state
+  }
+}

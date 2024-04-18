@@ -1,5 +1,4 @@
 # Python Client for Graphlit Platform
-
 ## Overview
 
 The Graphlit Client for Python enables easy interaction with the Graphlit API, allowing developers to execute queries and mutations against the Graphlit service. This document outlines the setup process and provides a basic example of using the client.
@@ -21,11 +20,13 @@ pip install graphlit-client
 
 ## Configuration
 
-The Graphlit Client requires three environment variables to be set for authentication and configuration:
+The Graphlit Client supports environment variables to be set for authentication and configuration:
 
-- `ENVIRONMENT_ID`: Your environment ID.
-- `ORGANIZATION_ID`: Your organization ID.
-- `SECRET_KEY`: Your secret key for API access.
+- `GRAPHLIT_ENVIRONMENT_ID`: Your environment ID.
+- `GRAPHLIT_ORGANIZATION_ID`: Your organization ID.
+- `GRAPHLIT_JWT_SECRET`: Your JWT secret for signing the JWT token.
+
+Alternately, you can pass these values with the constructor of the Graphlit client.
 
 You can find these values in the API settings dashboard on the [Graphlit Platform](https://portal.graphlit.dev).
 
@@ -36,61 +37,25 @@ To set these environment variables on your system, use the following commands, r
 For Unix/Linux/macOS:
 
 ```bash
-export ENVIRONMENT_ID=your_environment_id_value
-export ORGANIZATION_ID=your_organization_id_value
-export SECRET_KEY=your_secret_key_value
+export GRAPHLIT_ENVIRONMENT_ID=your_environment_id_value
+export GRAPHLIT_ORGANIZATION_ID=your_organization_id_value
+export GRAPHLIT_JWT_SECRET=your_secret_key_value
 ```
 
 For Windows Command Prompt (CMD):
 
 ```cmd
-set ENVIRONMENT_ID=your_environment_id_value
-set ORGANIZATION_ID=your_organization_id_value
-set SECRET_KEY=your_secret_key_value
+set GRAPHLIT_ENVIRONMENT_ID=your_environment_id_value
+set GRAPHLIT_ORGANIZATION_ID=your_organization_id_value
+set GRAPHLIT_JWT_SECRET=your_secret_key_value
 ```
 
 For Windows PowerShell:
 
 ```powershell
-$env:ENVIRONMENT_ID="your_environment_id_value"
-$env:ORGANIZATION_ID="your_organization_id_value"
-$env:SECRET_KEY="your_secret_key_value"
-```
-
-## Usage Example
-
-Here's a simple example of how to use the Graphlit Client to create a Feed.
-
-```python
-from graphlit_client import Graphlit
-
-# Initialize the client
-client = Graphlit()
-
-# Print the client token
-print(client.token)
-
-# Execute a query
-response = client.request(query="""
-mutation CreateFeed($feed: FeedInput!) {
-  createFeed(feed: $feed) {
-    id
-    name
-    state
-    type
-  }
-}""", variables={
-  "feed": {
-    "type": "WEB",
-    "web": {
-      "uri": "https://openai.com/blog"
-    },
-    "name": "OpenAI Blog"
-  }
-})
-
-# Print the response
-print(response)
+$env:GRAPHLIT_ENVIRONMENT_ID="your_environment_id_value"
+$env:GRAPHLIT_ORGANIZATION_ID="your_organization_id_value"
+$env:GRAPHLIT_JWT_SECRET="your_secret_key_value"
 ```
 
 ## Support
