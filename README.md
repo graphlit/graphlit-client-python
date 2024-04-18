@@ -1,4 +1,5 @@
 # Python Client for Graphlit Platform
+
 ## Overview
 
 The Graphlit Client for Python enables easy interaction with the Graphlit API, allowing developers to execute queries and mutations against the Graphlit service. This document outlines the setup process and provides a basic example of using the client.
