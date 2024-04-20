@@ -64,7 +64,7 @@ class QuerySpecificationsSpecificationsResultsOwner(BaseModel):
 
 
 class QuerySpecificationsSpecificationsResultsStrategy(BaseModel):
-    type: ConversationStrategyTypes
+    type: Optional[ConversationStrategyTypes]
     message_limit: Optional[int] = Field(alias="messageLimit")
     embed_citations: Optional[bool] = Field(alias="embedCitations")
     enable_facets: Optional[bool] = Field(alias="enableFacets")

@@ -3,8 +3,12 @@
 
 __all__ = [
     "ADD_CONTENTS_TO_COLLECTIONS_GQL",
+    "ALERT_GQL",
     "CLEAR_CONVERSATION_GQL",
     "CLOSE_CONVERSATION_GQL",
+    "COLLECTION_GQL",
+    "CONTENT_GQL",
+    "CONVERSATION_GQL",
     "CREATE_ALERT_GQL",
     "CREATE_COLLECTION_GQL",
     "CREATE_CONVERSATION_GQL",
@@ -35,13 +39,7 @@ __all__ = [
     "ENABLE_ALERT_GQL",
     "ENABLE_FEED_GQL",
     "EXTRACT_CONTENTS_GQL",
-    "GET_ALERT_GQL",
-    "GET_COLLECTION_GQL",
-    "GET_CONTENT_GQL",
-    "GET_CONVERSATION_GQL",
-    "GET_FEED_GQL",
-    "GET_SPECIFICATION_GQL",
-    "GET_WORKFLOW_GQL",
+    "FEED_GQL",
     "INGEST_ENCODED_FILE_GQL",
     "INGEST_TEXT_GQL",
     "INGEST_URI_GQL",
@@ -63,6 +61,7 @@ __all__ = [
     "QUERY_SPECIFICATIONS_GQL",
     "QUERY_WORKFLOWS_GQL",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
+    "SPECIFICATION_GQL",
     "SUGGEST_CONVERSATION_GQL",
     "SUMMARIZE_CONTENTS_GQL",
     "UPDATE_ALERT_GQL",
@@ -74,6 +73,7 @@ __all__ = [
     "UPDATE_SPECIFICATION_GQL",
     "UPDATE_WORKFLOW_GQL",
     "USAGE_GQL",
+    "WORKFLOW_GQL",
 ]
 
 CREATE_ALERT_GQL = """
@@ -132,8 +132,8 @@ mutation EnableAlert($id: ID!) {
 }
 """
 
-GET_ALERT_GQL = """
-query GetAlert($id: ID!) {
+ALERT_GQL = """
+query Alert($id: ID!) {
   alert(id: $id) {
     id
     name
@@ -331,8 +331,8 @@ mutation DeleteCollections($ids: [ID!]!) {
 }
 """
 
-GET_COLLECTION_GQL = """
-query GetCollection($id: ID!) {
+COLLECTION_GQL = """
+query Collection($id: ID!) {
   collection(id: $id) {
     id
     name
@@ -447,8 +447,8 @@ mutation ExtractContents($prompt: String!, $filter: ContentFilter, $specificatio
 }
 """
 
-GET_CONTENT_GQL = """
-query GetContent($id: ID!) {
+CONTENT_GQL = """
+query Content($id: ID!) {
   content(id: $id) {
     id
     name
@@ -997,8 +997,8 @@ mutation DeleteConversations($ids: [ID!]!) {
 }
 """
 
-GET_CONVERSATION_GQL = """
-query GetConversation($id: ID!) {
+CONVERSATION_GQL = """
+query Conversation($id: ID!) {
   conversation(id: $id) {
     id
     name
@@ -1296,8 +1296,8 @@ mutation EnableFeed($id: ID!) {
 }
 """
 
-GET_FEED_GQL = """
-query GetFeed($id: ID!) {
+FEED_GQL = """
+query Feed($id: ID!) {
   feed(id: $id) {
     id
     name
@@ -1776,8 +1776,8 @@ mutation DeleteSpecification($id: ID!) {
 }
 """
 
-GET_SPECIFICATION_GQL = """
-query GetSpecification($id: ID!) {
+SPECIFICATION_GQL = """
+query Specification($id: ID!) {
   specification(id: $id) {
     id
     name
@@ -2114,8 +2114,8 @@ mutation DeleteWorkflows($ids: [ID!]!) {
 }
 """
 
-GET_WORKFLOW_GQL = """
-query GetWorkflow($id: ID!) {
+WORKFLOW_GQL = """
+query Workflow($id: ID!) {
   workflow(id: $id) {
     id
     name

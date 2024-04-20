@@ -638,6 +638,7 @@ class SpecificationInput(BaseModel):
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
     system_prompt: Optional[str] = Field(alias="systemPrompt", default=None)
     custom_guidance: Optional[str] = Field(alias="customGuidance", default=None)
+    custom_instructions: Optional[str] = Field(alias="customInstructions", default=None)
     strategy: Optional["ConversationStrategyInput"] = None
     prompt_strategy: Optional["PromptStrategyInput"] = Field(
         alias="promptStrategy", default=None
@@ -879,6 +880,7 @@ class SpecificationUpdateInput(BaseModel):
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
     system_prompt: Optional[str] = Field(alias="systemPrompt", default=None)
     custom_guidance: Optional[str] = Field(alias="customGuidance", default=None)
+    custom_instructions: Optional[str] = Field(alias="customInstructions", default=None)
     strategy: Optional["ConversationStrategyUpdateInput"] = None
     prompt_strategy: Optional["PromptStrategyUpdateInput"] = Field(
         alias="promptStrategy", default=None

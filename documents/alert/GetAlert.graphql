@@ -1,4 +1,4 @@
-query GetAlert($id: ID!) {
+query Alert($id: ID!) {
   alert(id: $id) {
     id
     name

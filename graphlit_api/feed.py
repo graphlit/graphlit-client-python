@@ -20,56 +20,54 @@ from .enums import (
 )
 
 
-class GetFeed(BaseModel):
-    feed: Optional["GetFeedFeed"]
+class Feed(BaseModel):
+    feed: Optional["FeedFeed"]
 
 
-class GetFeedFeed(BaseModel):
+class FeedFeed(BaseModel):
     id: str
     name: str
     creation_date: Any = Field(alias="creationDate")
-    owner: "GetFeedFeedOwner"
+    owner: "FeedFeedOwner"
     state: EntityState
     correlation_id: Optional[str] = Field(alias="correlationId")
     type: FeedTypes
-    site: Optional["GetFeedFeedSite"]
-    email: Optional["GetFeedFeedEmail"]
-    issue: Optional["GetFeedFeedIssue"]
-    rss: Optional["GetFeedFeedRss"]
-    web: Optional["GetFeedFeedWeb"]
-    reddit: Optional["GetFeedFeedReddit"]
-    notion: Optional["GetFeedFeedNotion"]
-    youtube: Optional["GetFeedFeedYoutube"]
-    slack: Optional["GetFeedFeedSlack"]
-    discord: Optional["GetFeedFeedDiscord"]
+    site: Optional["FeedFeedSite"]
+    email: Optional["FeedFeedEmail"]
+    issue: Optional["FeedFeedIssue"]
+    rss: Optional["FeedFeedRss"]
+    web: Optional["FeedFeedWeb"]
+    reddit: Optional["FeedFeedReddit"]
+    notion: Optional["FeedFeedNotion"]
+    youtube: Optional["FeedFeedYoutube"]
+    slack: Optional["FeedFeedSlack"]
+    discord: Optional["FeedFeedDiscord"]
     error: Optional[str]
     last_post_date: Optional[Any] = Field(alias="lastPostDate")
     last_read_date: Optional[Any] = Field(alias="lastReadDate")
     read_count: Optional[int] = Field(alias="readCount")
-    workflow: Optional["GetFeedFeedWorkflow"]
-    schedule_policy: Optional["GetFeedFeedSchedulePolicy"] = Field(
-        alias="schedulePolicy"
-    )
+    workflow: Optional["FeedFeedWorkflow"]
+    schedule_policy: Optional["FeedFeedSchedulePolicy"] = Field(alias="schedulePolicy")
 
 
-class GetFeedFeedOwner(BaseModel):
+class FeedFeedOwner(BaseModel):
     id: str
 
 
-class GetFeedFeedSite(BaseModel):
+class FeedFeedSite(BaseModel):
     site_type: SiteTypes = Field(alias="siteType")
     type: FeedServiceTypes
     is_recursive: Optional[bool] = Field(alias="isRecursive")
-    s_3: Optional["GetFeedFeedSiteS3"] = Field(alias="s3")
-    azure_blob: Optional["GetFeedFeedSiteAzureBlob"] = Field(alias="azureBlob")
-    azure_file: Optional["GetFeedFeedSiteAzureFile"] = Field(alias="azureFile")
-    google: Optional["GetFeedFeedSiteGoogle"]
-    share_point: Optional["GetFeedFeedSiteSharePoint"] = Field(alias="sharePoint")
-    one_drive: Optional["GetFeedFeedSiteOneDrive"] = Field(alias="oneDrive")
-    google_drive: Optional["GetFeedFeedSiteGoogleDrive"] = Field(alias="googleDrive")
+    s_3: Optional["FeedFeedSiteS3"] = Field(alias="s3")
+    azure_blob: Optional["FeedFeedSiteAzureBlob"] = Field(alias="azureBlob")
+    azure_file: Optional["FeedFeedSiteAzureFile"] = Field(alias="azureFile")
+    google: Optional["FeedFeedSiteGoogle"]
+    share_point: Optional["FeedFeedSiteSharePoint"] = Field(alias="sharePoint")
+    one_drive: Optional["FeedFeedSiteOneDrive"] = Field(alias="oneDrive")
+    google_drive: Optional["FeedFeedSiteGoogleDrive"] = Field(alias="googleDrive")
 
 
-class GetFeedFeedSiteS3(BaseModel):
+class FeedFeedSiteS3(BaseModel):
     access_key: Optional[str] = Field(alias="accessKey")
     secret_access_key: Optional[str] = Field(alias="secretAccessKey")
     bucket_name: Optional[str] = Field(alias="bucketName")
@@ -77,27 +75,27 @@ class GetFeedFeedSiteS3(BaseModel):
     region: Optional[str]
 
 
-class GetFeedFeedSiteAzureBlob(BaseModel):
+class FeedFeedSiteAzureBlob(BaseModel):
     storage_access_key: Optional[str] = Field(alias="storageAccessKey")
     account_name: Optional[str] = Field(alias="accountName")
     container_name: Optional[str] = Field(alias="containerName")
     prefix: Optional[str]
 
 
-class GetFeedFeedSiteAzureFile(BaseModel):
+class FeedFeedSiteAzureFile(BaseModel):
     storage_access_key: Optional[str] = Field(alias="storageAccessKey")
     account_name: Optional[str] = Field(alias="accountName")
     share_name: Optional[str] = Field(alias="shareName")
     prefix: Optional[str]
 
 
-class GetFeedFeedSiteGoogle(BaseModel):
+class FeedFeedSiteGoogle(BaseModel):
     credentials: Optional[str]
     container_name: Optional[str] = Field(alias="containerName")
     prefix: Optional[str]
 
 
-class GetFeedFeedSiteSharePoint(BaseModel):
+class FeedFeedSiteSharePoint(BaseModel):
     authentication_type: Optional[SharePointAuthenticationTypes] = Field(
         alias="authenticationType"
     )
@@ -107,55 +105,55 @@ class GetFeedFeedSiteSharePoint(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
 
 
-class GetFeedFeedSiteOneDrive(BaseModel):
+class FeedFeedSiteOneDrive(BaseModel):
     folder_id: Optional[str] = Field(alias="folderId")
     refresh_token: str = Field(alias="refreshToken")
 
 
-class GetFeedFeedSiteGoogleDrive(BaseModel):
+class FeedFeedSiteGoogleDrive(BaseModel):
     folder_id: Optional[str] = Field(alias="folderId")
     refresh_token: str = Field(alias="refreshToken")
 
 
-class GetFeedFeedEmail(BaseModel):
+class FeedFeedEmail(BaseModel):
     type: FeedServiceTypes
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
-    google: Optional["GetFeedFeedEmailGoogle"]
-    microsoft: Optional["GetFeedFeedEmailMicrosoft"]
+    google: Optional["FeedFeedEmailGoogle"]
+    microsoft: Optional["FeedFeedEmailMicrosoft"]
 
 
-class GetFeedFeedEmailGoogle(BaseModel):
+class FeedFeedEmailGoogle(BaseModel):
     type: Optional[EmailListingTypes]
     refresh_token: Optional[str] = Field(alias="refreshToken")
 
 
-class GetFeedFeedEmailMicrosoft(BaseModel):
+class FeedFeedEmailMicrosoft(BaseModel):
     type: Optional[EmailListingTypes]
     tenant_id: Optional[str] = Field(alias="tenantId")
     refresh_token: Optional[str] = Field(alias="refreshToken")
 
 
-class GetFeedFeedIssue(BaseModel):
+class FeedFeedIssue(BaseModel):
     type: FeedServiceTypes
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
-    jira: Optional["GetFeedFeedIssueJira"]
-    linear: Optional["GetFeedFeedIssueLinear"]
-    github: Optional["GetFeedFeedIssueGithub"]
+    jira: Optional["FeedFeedIssueJira"]
+    linear: Optional["FeedFeedIssueLinear"]
+    github: Optional["FeedFeedIssueGithub"]
 
 
-class GetFeedFeedIssueJira(BaseModel):
+class FeedFeedIssueJira(BaseModel):
     uri: Any
     project: str
     email: str
     token: str
 
 
-class GetFeedFeedIssueLinear(BaseModel):
+class FeedFeedIssueLinear(BaseModel):
     key: str
     project: str
 
 
-class GetFeedFeedIssueGithub(BaseModel):
+class FeedFeedIssueGithub(BaseModel):
     uri: Optional[Any]
     repository_owner: str = Field(alias="repositoryOwner")
     repository_name: str = Field(alias="repositoryName")
@@ -163,30 +161,30 @@ class GetFeedFeedIssueGithub(BaseModel):
     personal_access_token: Optional[str] = Field(alias="personalAccessToken")
 
 
-class GetFeedFeedRss(BaseModel):
+class FeedFeedRss(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     uri: Any
 
 
-class GetFeedFeedWeb(BaseModel):
+class FeedFeedWeb(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     uri: Any
     include_files: Optional[bool] = Field(alias="includeFiles")
 
 
-class GetFeedFeedReddit(BaseModel):
+class FeedFeedReddit(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     subreddit_name: str = Field(alias="subredditName")
 
 
-class GetFeedFeedNotion(BaseModel):
+class FeedFeedNotion(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     token: str
     identifiers: List[str]
     type: NotionTypes
 
 
-class GetFeedFeedYoutube(BaseModel):
+class FeedFeedYoutube(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     type: YouTubeTypes
     video_name: Optional[str] = Field(alias="videoName")
@@ -195,7 +193,7 @@ class GetFeedFeedYoutube(BaseModel):
     playlist_identifier: Optional[str] = Field(alias="playlistIdentifier")
 
 
-class GetFeedFeedSlack(BaseModel):
+class FeedFeedSlack(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     type: Optional[FeedListingTypes]
     token: str
@@ -203,7 +201,7 @@ class GetFeedFeedSlack(BaseModel):
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
 
 
-class GetFeedFeedDiscord(BaseModel):
+class FeedFeedDiscord(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     type: Optional[FeedListingTypes]
     token: str
@@ -211,20 +209,20 @@ class GetFeedFeedDiscord(BaseModel):
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
 
 
-class GetFeedFeedWorkflow(BaseModel):
+class FeedFeedWorkflow(BaseModel):
     id: str
     name: str
 
 
-class GetFeedFeedSchedulePolicy(BaseModel):
+class FeedFeedSchedulePolicy(BaseModel):
     recurrence_type: Optional[TimedPolicyRecurrenceTypes] = Field(
         alias="recurrenceType"
     )
     repeat_interval: Optional[Any] = Field(alias="repeatInterval")
 
 
-GetFeed.model_rebuild()
-GetFeedFeed.model_rebuild()
-GetFeedFeedSite.model_rebuild()
-GetFeedFeedEmail.model_rebuild()
-GetFeedFeedIssue.model_rebuild()
+Feed.model_rebuild()
+FeedFeed.model_rebuild()
+FeedFeedSite.model_rebuild()
+FeedFeedEmail.model_rebuild()
+FeedFeedIssue.model_rebuild()

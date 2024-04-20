@@ -1,4 +1,4 @@
-query GetSpecification($id: ID!) {
+query Specification($id: ID!) {
   specification(id: $id) {
     id
     name

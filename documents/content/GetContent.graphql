@@ -1,4 +1,4 @@
-query GetContent($id: ID!) {
+query Content($id: ID!) {
   content(id: $id) {
     id
     name

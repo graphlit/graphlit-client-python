@@ -19,15 +19,15 @@ from .enums import (
 )
 
 
-class GetContent(BaseModel):
-    content: Optional["GetContentContent"]
+class Content(BaseModel):
+    content: Optional["ContentContent"]
 
 
-class GetContentContent(BaseModel):
+class ContentContent(BaseModel):
     id: str
     name: str
     creation_date: Any = Field(alias="creationDate")
-    owner: "GetContentContentOwner"
+    owner: "ContentContentOwner"
     state: EntityState
     original_date: Optional[Any] = Field(alias="originalDate")
     finished_date: Optional[Any] = Field(alias="finishedDate")
@@ -43,28 +43,28 @@ class GetContentContent(BaseModel):
     text_uri: Optional[Any] = Field(alias="textUri")
     audio_uri: Optional[Any] = Field(alias="audioUri")
     transcript_uri: Optional[Any] = Field(alias="transcriptUri")
-    video: Optional["GetContentContentVideo"]
-    audio: Optional["GetContentContentAudio"]
-    image: Optional["GetContentContentImage"]
-    document: Optional["GetContentContentDocument"]
-    email: Optional["GetContentContentEmail"]
-    issue: Optional["GetContentContentIssue"]
-    observations: Optional[List[Optional["GetContentContentObservations"]]]
-    parent: Optional["GetContentContentParent"]
-    children: Optional[List[Optional["GetContentContentChildren"]]]
-    collections: Optional[List[Optional["GetContentContentCollections"]]]
-    feed: Optional["GetContentContentFeed"]
-    workflow: Optional["GetContentContentWorkflow"]
+    video: Optional["ContentContentVideo"]
+    audio: Optional["ContentContentAudio"]
+    image: Optional["ContentContentImage"]
+    document: Optional["ContentContentDocument"]
+    email: Optional["ContentContentEmail"]
+    issue: Optional["ContentContentIssue"]
+    observations: Optional[List[Optional["ContentContentObservations"]]]
+    parent: Optional["ContentContentParent"]
+    children: Optional[List[Optional["ContentContentChildren"]]]
+    collections: Optional[List[Optional["ContentContentCollections"]]]
+    feed: Optional["ContentContentFeed"]
+    workflow: Optional["ContentContentWorkflow"]
     markdown: Optional[str]
-    links: Optional[List["GetContentContentLinks"]]
+    links: Optional[List["ContentContentLinks"]]
     error: Optional[str]
 
 
-class GetContentContentOwner(BaseModel):
+class ContentContentOwner(BaseModel):
     id: str
 
 
-class GetContentContentVideo(BaseModel):
+class ContentContentVideo(BaseModel):
     width: Optional[int]
     height: Optional[int]
     duration: Optional[str]
@@ -73,7 +73,7 @@ class GetContentContentVideo(BaseModel):
     model: Optional[str]
 
 
-class GetContentContentAudio(BaseModel):
+class ContentContentAudio(BaseModel):
     keywords: Optional[List[Optional[str]]]
     author: Optional[str]
     series: Optional[str]
@@ -92,7 +92,7 @@ class GetContentContentAudio(BaseModel):
     duration: Optional[str]
 
 
-class GetContentContentImage(BaseModel):
+class ContentContentImage(BaseModel):
     width: Optional[int]
     height: Optional[int]
     description: Optional[str]
@@ -102,7 +102,7 @@ class GetContentContentImage(BaseModel):
     model: Optional[str]
 
 
-class GetContentContentDocument(BaseModel):
+class ContentContentDocument(BaseModel):
     title: Optional[str]
     subject: Optional[str]
     author: Optional[str]
@@ -122,48 +122,48 @@ class GetContentContentDocument(BaseModel):
     has_digital_signature: Optional[bool] = Field(alias="hasDigitalSignature")
 
 
-class GetContentContentEmail(BaseModel):
+class ContentContentEmail(BaseModel):
     subject: Optional[str]
     identifier: Optional[str]
     sensitivity: Optional[MailSensitivity]
     priority: Optional[MailPriority]
     importance: Optional[MailImportance]
     labels: Optional[List[Optional[str]]]
-    from_: Optional[List[Optional["GetContentContentEmailFrom"]]] = Field(alias="from")
-    to: Optional[List[Optional["GetContentContentEmailTo"]]]
-    cc: Optional[List[Optional["GetContentContentEmailCc"]]]
-    bcc: Optional[List[Optional["GetContentContentEmailBcc"]]]
+    from_: Optional[List[Optional["ContentContentEmailFrom"]]] = Field(alias="from")
+    to: Optional[List[Optional["ContentContentEmailTo"]]]
+    cc: Optional[List[Optional["ContentContentEmailCc"]]]
+    bcc: Optional[List[Optional["ContentContentEmailBcc"]]]
 
 
-class GetContentContentEmailFrom(BaseModel):
+class ContentContentEmailFrom(BaseModel):
     name: Optional[str]
     family_name: Optional[str] = Field(alias="familyName")
     given_name: Optional[str] = Field(alias="givenName")
     email: Optional[str]
 
 
-class GetContentContentEmailTo(BaseModel):
+class ContentContentEmailTo(BaseModel):
     name: Optional[str]
     family_name: Optional[str] = Field(alias="familyName")
     given_name: Optional[str] = Field(alias="givenName")
     email: Optional[str]
 
 
-class GetContentContentEmailCc(BaseModel):
+class ContentContentEmailCc(BaseModel):
     name: Optional[str]
     family_name: Optional[str] = Field(alias="familyName")
     given_name: Optional[str] = Field(alias="givenName")
     email: Optional[str]
 
 
-class GetContentContentEmailBcc(BaseModel):
+class ContentContentEmailBcc(BaseModel):
     name: Optional[str]
     family_name: Optional[str] = Field(alias="familyName")
     given_name: Optional[str] = Field(alias="givenName")
     email: Optional[str]
 
 
-class GetContentContentIssue(BaseModel):
+class ContentContentIssue(BaseModel):
     title: Optional[str]
     project: Optional[str]
     team: Optional[str]
@@ -174,62 +174,62 @@ class GetContentContentIssue(BaseModel):
     labels: Optional[List[Optional[str]]]
 
 
-class GetContentContentObservations(BaseModel):
+class ContentContentObservations(BaseModel):
     type: ObservableTypes
-    observable: "GetContentContentObservationsObservable"
-    occurrences: Optional[List[Optional["GetContentContentObservationsOccurrences"]]]
+    observable: "ContentContentObservationsObservable"
+    occurrences: Optional[List[Optional["ContentContentObservationsOccurrences"]]]
 
 
-class GetContentContentObservationsObservable(BaseModel):
+class ContentContentObservationsObservable(BaseModel):
     id: str
     name: Optional[str]
 
 
-class GetContentContentObservationsOccurrences(BaseModel):
+class ContentContentObservationsOccurrences(BaseModel):
     type: Optional[OccurrenceTypes]
     confidence: Optional[float]
-    bounding_box: Optional["GetContentContentObservationsOccurrencesBoundingBox"] = (
-        Field(alias="boundingBox")
+    bounding_box: Optional["ContentContentObservationsOccurrencesBoundingBox"] = Field(
+        alias="boundingBox"
     )
     page_index: Optional[int] = Field(alias="pageIndex")
     start_time: Optional[Any] = Field(alias="startTime")
     end_time: Optional[Any] = Field(alias="endTime")
 
 
-class GetContentContentObservationsOccurrencesBoundingBox(BaseModel):
+class ContentContentObservationsOccurrencesBoundingBox(BaseModel):
     left: Optional[float]
     top: Optional[float]
     width: Optional[float]
     height: Optional[float]
 
 
-class GetContentContentParent(BaseModel):
+class ContentContentParent(BaseModel):
     id: str
 
 
-class GetContentContentChildren(BaseModel):
+class ContentContentChildren(BaseModel):
     id: str
 
 
-class GetContentContentCollections(BaseModel):
+class ContentContentCollections(BaseModel):
     id: str
 
 
-class GetContentContentFeed(BaseModel):
+class ContentContentFeed(BaseModel):
     id: str
 
 
-class GetContentContentWorkflow(BaseModel):
+class ContentContentWorkflow(BaseModel):
     id: str
 
 
-class GetContentContentLinks(BaseModel):
+class ContentContentLinks(BaseModel):
     uri: Optional[Any]
     link_type: Optional[LinkTypes] = Field(alias="linkType")
 
 
-GetContent.model_rebuild()
-GetContentContent.model_rebuild()
-GetContentContentEmail.model_rebuild()
-GetContentContentObservations.model_rebuild()
-GetContentContentObservationsOccurrences.model_rebuild()
+Content.model_rebuild()
+ContentContent.model_rebuild()
+ContentContentEmail.model_rebuild()
+ContentContentObservations.model_rebuild()
+ContentContentObservationsOccurrences.model_rebuild()
