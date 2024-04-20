@@ -477,6 +477,7 @@ class Client(AsyncBaseClient):
         mime_type: str,
         id: Union[Optional[str], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        collections: Union[Optional[List[EntityReferenceInput]], UnsetType] = UNSET,
         workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
@@ -487,6 +488,7 @@ class Client(AsyncBaseClient):
             "mimeType": mime_type,
             "id": id,
             "isSynchronous": is_synchronous,
+            "collections": collections,
             "workflow": workflow,
             "correlationId": correlation_id,
         }
@@ -507,6 +509,7 @@ class Client(AsyncBaseClient):
         uri: Union[Optional[Any], UnsetType] = UNSET,
         id: Union[Optional[str], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        collections: Union[Optional[List[EntityReferenceInput]], UnsetType] = UNSET,
         workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
@@ -518,6 +521,7 @@ class Client(AsyncBaseClient):
             "uri": uri,
             "id": id,
             "isSynchronous": is_synchronous,
+            "collections": collections,
             "workflow": workflow,
             "correlationId": correlation_id,
         }
@@ -536,6 +540,7 @@ class Client(AsyncBaseClient):
         name: Union[Optional[str], UnsetType] = UNSET,
         id: Union[Optional[str], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        collections: Union[Optional[List[EntityReferenceInput]], UnsetType] = UNSET,
         workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
@@ -545,6 +550,7 @@ class Client(AsyncBaseClient):
             "uri": uri,
             "id": id,
             "isSynchronous": is_synchronous,
+            "collections": collections,
             "workflow": workflow,
             "correlationId": correlation_id,
         }

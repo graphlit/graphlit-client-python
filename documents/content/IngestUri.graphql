@@ -1,5 +1,5 @@
-mutation IngestUri($name: String, $uri: URL!, $id: ID, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $correlationId: String) {
-  ingestUri(name: $name, uri: $uri, id: $id, workflow: $workflow, isSynchronous: $isSynchronous, correlationId: $correlationId) {
+mutation IngestUri($name: String, $uri: URL!, $id: ID, $isSynchronous: Boolean, $collections: [EntityReferenceInput!], $workflow: EntityReferenceInput, $correlationId: String) {
+  ingestUri(name: $name, uri: $uri, id: $id, collections: $collections, workflow: $workflow, isSynchronous: $isSynchronous, correlationId: $correlationId) {
     id
     name
     state

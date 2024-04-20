@@ -613,13 +613,14 @@ query GetContent($id: ID!) {
 """
 
 INGEST_ENCODED_FILE_GQL = """
-mutation IngestEncodedFile($name: String!, $data: String!, $mimeType: String!, $id: ID, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $correlationId: String) {
+mutation IngestEncodedFile($name: String!, $data: String!, $mimeType: String!, $id: ID, $isSynchronous: Boolean, $collections: [EntityReferenceInput!], $workflow: EntityReferenceInput, $correlationId: String) {
   ingestEncodedFile(
     name: $name
     data: $data
     mimeType: $mimeType
     id: $id
     isSynchronous: $isSynchronous
+    collections: $collections
     workflow: $workflow
     correlationId: $correlationId
   ) {
@@ -635,7 +636,7 @@ mutation IngestEncodedFile($name: String!, $data: String!, $mimeType: String!, $
 """
 
 INGEST_TEXT_GQL = """
-mutation IngestText($name: String!, $text: String!, $textType: TextTypes, $uri: URL, $id: ID, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $correlationId: String) {
+mutation IngestText($name: String!, $text: String!, $textType: TextTypes, $uri: URL, $id: ID, $isSynchronous: Boolean, $collections: [EntityReferenceInput!], $workflow: EntityReferenceInput, $correlationId: String) {
   ingestText(
     name: $name
     text: $text
@@ -643,6 +644,7 @@ mutation IngestText($name: String!, $text: String!, $textType: TextTypes, $uri: 
     uri: $uri
     id: $id
     isSynchronous: $isSynchronous
+    collections: $collections
     workflow: $workflow
     correlationId: $correlationId
   ) {
@@ -658,11 +660,12 @@ mutation IngestText($name: String!, $text: String!, $textType: TextTypes, $uri: 
 """
 
 INGEST_URI_GQL = """
-mutation IngestUri($name: String, $uri: URL!, $id: ID, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $correlationId: String) {
+mutation IngestUri($name: String, $uri: URL!, $id: ID, $isSynchronous: Boolean, $collections: [EntityReferenceInput!], $workflow: EntityReferenceInput, $correlationId: String) {
   ingestUri(
     name: $name
     uri: $uri
     id: $id
+    collections: $collections
     workflow: $workflow
     isSynchronous: $isSynchronous
     correlationId: $correlationId
