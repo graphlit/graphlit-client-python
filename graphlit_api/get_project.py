@@ -9,11 +9,11 @@ from .base_model import BaseModel
 from .enums import EntityState, EnvironmentTypes, ResourceConnectorTypes
 
 
-class Project(BaseModel):
-    project: Optional["ProjectProject"]
+class GetProject(BaseModel):
+    project: Optional["GetProjectProject"]
 
 
-class ProjectProject(BaseModel):
+class GetProjectProject(BaseModel):
     id: str
     name: str
     creation_date: Any = Field(alias="creationDate")
@@ -22,23 +22,23 @@ class ProjectProject(BaseModel):
     environment_type: Optional[EnvironmentTypes] = Field(alias="environmentType")
     platform: Optional[ResourceConnectorTypes]
     region: Optional[str]
-    workflow: Optional["ProjectProjectWorkflow"]
-    specification: Optional["ProjectProjectSpecification"]
-    quota: Optional["ProjectProjectQuota"]
+    workflow: Optional["GetProjectProjectWorkflow"]
+    specification: Optional["GetProjectProjectSpecification"]
+    quota: Optional["GetProjectProjectQuota"]
     callback_uri: Optional[Any] = Field(alias="callbackUri")
 
 
-class ProjectProjectWorkflow(BaseModel):
+class GetProjectProjectWorkflow(BaseModel):
     id: str
     name: str
 
 
-class ProjectProjectSpecification(BaseModel):
+class GetProjectProjectSpecification(BaseModel):
     id: str
     name: str
 
 
-class ProjectProjectQuota(BaseModel):
+class GetProjectProjectQuota(BaseModel):
     storage: Optional[int]
     contents: Optional[int]
     feeds: Optional[int]
@@ -46,5 +46,5 @@ class ProjectProjectQuota(BaseModel):
     conversations: Optional[int]
 
 
-Project.model_rebuild()
-ProjectProject.model_rebuild()
+GetProject.model_rebuild()
+GetProjectProject.model_rebuild()

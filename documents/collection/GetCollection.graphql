@@ -1,4 +1,4 @@
-query Collection($id: ID!) {
+query GetCollection($id: ID!) {
   collection(id: $id) {
     id
     name

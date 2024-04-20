@@ -1,4 +1,4 @@
-query Conversation($id: ID!) {
+query GetConversation($id: ID!) {
   conversation(id: $id) {
     id
     name

@@ -4,14 +4,10 @@
 from typing import Any, Dict, List, Optional, Union
 
 from .add_contents_to_collections import AddContentsToCollections
-from .alert import Alert
 from .async_base_client import AsyncBaseClient
 from .base_model import UNSET, UnsetType
 from .clear_conversation import ClearConversation
 from .close_conversation import CloseConversation
-from .collection import Collection
-from .content import Content
-from .conversation import Conversation
 from .create_alert import CreateAlert
 from .create_collection import CreateCollection
 from .create_conversation import CreateConversation
@@ -43,7 +39,14 @@ from .enable_alert import EnableAlert
 from .enable_feed import EnableFeed
 from .enums import TextTypes
 from .extract_contents import ExtractContents
-from .feed import Feed
+from .get_alert import GetAlert
+from .get_collection import GetCollection
+from .get_content import GetContent
+from .get_conversation import GetConversation
+from .get_feed import GetFeed
+from .get_project import GetProject
+from .get_specification import GetSpecification
+from .get_workflow import GetWorkflow
 from .ingest_encoded_file import IngestEncodedFile
 from .ingest_text import IngestText
 from .ingest_uri import IngestUri
@@ -80,12 +83,8 @@ from .lookup_credits import LookupCredits
 from .lookup_usage import LookupUsage
 from .operations import (
     ADD_CONTENTS_TO_COLLECTIONS_GQL,
-    ALERT_GQL,
     CLEAR_CONVERSATION_GQL,
     CLOSE_CONVERSATION_GQL,
-    COLLECTION_GQL,
-    CONTENT_GQL,
-    CONVERSATION_GQL,
     CREATE_ALERT_GQL,
     CREATE_COLLECTION_GQL,
     CREATE_CONVERSATION_GQL,
@@ -116,7 +115,14 @@ from .operations import (
     ENABLE_ALERT_GQL,
     ENABLE_FEED_GQL,
     EXTRACT_CONTENTS_GQL,
-    FEED_GQL,
+    GET_ALERT_GQL,
+    GET_COLLECTION_GQL,
+    GET_CONTENT_GQL,
+    GET_CONVERSATION_GQL,
+    GET_FEED_GQL,
+    GET_PROJECT_GQL,
+    GET_SPECIFICATION_GQL,
+    GET_WORKFLOW_GQL,
     INGEST_ENCODED_FILE_GQL,
     INGEST_TEXT_GQL,
     INGEST_URI_GQL,
@@ -124,7 +130,6 @@ from .operations import (
     IS_FEED_DONE_GQL,
     LOOKUP_CREDITS_GQL,
     LOOKUP_USAGE_GQL,
-    PROJECT_GQL,
     PROMPT_CONVERSATION_GQL,
     PROMPT_SPECIFICATIONS_GQL,
     PUBLISH_CONTENTS_GQL,
@@ -138,7 +143,6 @@ from .operations import (
     QUERY_SPECIFICATIONS_GQL,
     QUERY_WORKFLOWS_GQL,
     REMOVE_CONTENTS_FROM_COLLECTION_GQL,
-    SPECIFICATION_GQL,
     SUGGEST_CONVERSATION_GQL,
     SUMMARIZE_CONTENTS_GQL,
     UPDATE_ALERT_GQL,
@@ -150,9 +154,7 @@ from .operations import (
     UPDATE_SPECIFICATION_GQL,
     UPDATE_WORKFLOW_GQL,
     USAGE_GQL,
-    WORKFLOW_GQL,
 )
-from .project import Project
 from .prompt_conversation import PromptConversation
 from .prompt_specifications import PromptSpecifications
 from .publish_contents import PublishContents
@@ -166,7 +168,6 @@ from .query_feeds import QueryFeeds
 from .query_specifications import QuerySpecifications
 from .query_workflows import QueryWorkflows
 from .remove_contents_from_collection import RemoveContentsFromCollection
-from .specification import Specification
 from .suggest_conversation import SuggestConversation
 from .summarize_contents import SummarizeContents
 from .update_alert import UpdateAlert
@@ -178,7 +179,6 @@ from .update_project import UpdateProject
 from .update_specification import UpdateSpecification
 from .update_workflow import UpdateWorkflow
 from .usage import Usage
-from .workflow import Workflow
 
 
 def gql(q: str) -> str:
@@ -257,13 +257,16 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return EnableAlert.model_validate(data)
 
-    async def get_alert(self, id: str, **kwargs: Any) -> Alert:
+    async def get_alert(self, id: str, **kwargs: Any) -> GetAlert:
         variables: Dict[str, object] = {"id": id}
         response = await self.execute(
-            query=ALERT_GQL, operation_name="Alert", variables=variables, **kwargs
+            query=GET_ALERT_GQL,
+            operation_name="GetAlert",
+            variables=variables,
+            **kwargs
         )
         data = self.get_data(response)
-        return Alert.model_validate(data)
+        return GetAlert.model_validate(data)
 
     async def query_alerts(
         self, filter: Union[Optional[AlertFilter], UnsetType] = UNSET, **kwargs: Any
@@ -345,16 +348,16 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteCollections.model_validate(data)
 
-    async def get_collection(self, id: str, **kwargs: Any) -> Collection:
+    async def get_collection(self, id: str, **kwargs: Any) -> GetCollection:
         variables: Dict[str, object] = {"id": id}
         response = await self.execute(
-            query=COLLECTION_GQL,
-            operation_name="Collection",
+            query=GET_COLLECTION_GQL,
+            operation_name="GetCollection",
             variables=variables,
             **kwargs
         )
         data = self.get_data(response)
-        return Collection.model_validate(data)
+        return GetCollection.model_validate(data)
 
     async def query_collections(
         self,
@@ -456,13 +459,16 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return ExtractContents.model_validate(data)
 
-    async def get_content(self, id: str, **kwargs: Any) -> Content:
+    async def get_content(self, id: str, **kwargs: Any) -> GetContent:
         variables: Dict[str, object] = {"id": id}
         response = await self.execute(
-            query=CONTENT_GQL, operation_name="Content", variables=variables, **kwargs
+            query=GET_CONTENT_GQL,
+            operation_name="GetContent",
+            variables=variables,
+            **kwargs
         )
         data = self.get_data(response)
-        return Content.model_validate(data)
+        return GetContent.model_validate(data)
 
     async def ingest_encoded_file(
         self,
@@ -734,16 +740,16 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteConversations.model_validate(data)
 
-    async def get_conversation(self, id: str, **kwargs: Any) -> Conversation:
+    async def get_conversation(self, id: str, **kwargs: Any) -> GetConversation:
         variables: Dict[str, object] = {"id": id}
         response = await self.execute(
-            query=CONVERSATION_GQL,
-            operation_name="Conversation",
+            query=GET_CONVERSATION_GQL,
+            operation_name="GetConversation",
             variables=variables,
             **kwargs
         )
         data = self.get_data(response)
-        return Conversation.model_validate(data)
+        return GetConversation.model_validate(data)
 
     async def prompt_conversation(
         self,
@@ -911,13 +917,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return EnableFeed.model_validate(data)
 
-    async def get_feed(self, id: str, **kwargs: Any) -> Feed:
+    async def get_feed(self, id: str, **kwargs: Any) -> GetFeed:
         variables: Dict[str, object] = {"id": id}
         response = await self.execute(
-            query=FEED_GQL, operation_name="Feed", variables=variables, **kwargs
+            query=GET_FEED_GQL, operation_name="GetFeed", variables=variables, **kwargs
         )
         data = self.get_data(response)
-        return Feed.model_validate(data)
+        return GetFeed.model_validate(data)
 
     async def is_feed_done(self, id: str, **kwargs: Any) -> IsFeedDone:
         variables: Dict[str, object] = {"id": id}
@@ -962,6 +968,17 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return Credits.model_validate(data)
 
+    async def get_project(self, **kwargs: Any) -> GetProject:
+        variables: Dict[str, object] = {}
+        response = await self.execute(
+            query=GET_PROJECT_GQL,
+            operation_name="GetProject",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return GetProject.model_validate(data)
+
     async def lookup_credits(self, correlation_id: str, **kwargs: Any) -> LookupCredits:
         variables: Dict[str, object] = {"correlationId": correlation_id}
         response = await self.execute(
@@ -983,14 +1000,6 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return LookupUsage.model_validate(data)
-
-    async def get_project(self, **kwargs: Any) -> Project:
-        variables: Dict[str, object] = {}
-        response = await self.execute(
-            query=PROJECT_GQL, operation_name="Project", variables=variables, **kwargs
-        )
-        data = self.get_data(response)
-        return Project.model_validate(data)
 
     async def update_project(
         self, project: ProjectUpdateInput, **kwargs: Any
@@ -1037,16 +1046,16 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteSpecification.model_validate(data)
 
-    async def get_specification(self, id: str, **kwargs: Any) -> Specification:
+    async def get_specification(self, id: str, **kwargs: Any) -> GetSpecification:
         variables: Dict[str, object] = {"id": id}
         response = await self.execute(
-            query=SPECIFICATION_GQL,
-            operation_name="Specification",
+            query=GET_SPECIFICATION_GQL,
+            operation_name="GetSpecification",
             variables=variables,
             **kwargs
         )
         data = self.get_data(response)
-        return Specification.model_validate(data)
+        return GetSpecification.model_validate(data)
 
     async def prompt_specifications(
         self, prompt: str, ids: List[str], **kwargs: Any
@@ -1135,13 +1144,16 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteWorkflows.model_validate(data)
 
-    async def get_workflow(self, id: str, **kwargs: Any) -> Workflow:
+    async def get_workflow(self, id: str, **kwargs: Any) -> GetWorkflow:
         variables: Dict[str, object] = {"id": id}
         response = await self.execute(
-            query=WORKFLOW_GQL, operation_name="Workflow", variables=variables, **kwargs
+            query=GET_WORKFLOW_GQL,
+            operation_name="GetWorkflow",
+            variables=variables,
+            **kwargs
         )
         data = self.get_data(response)
-        return Workflow.model_validate(data)
+        return GetWorkflow.model_validate(data)
 
     async def query_workflows(
         self, filter: Union[Optional[WorkflowFilter], UnsetType] = UNSET, **kwargs: Any

@@ -1,4 +1,4 @@
-query Workflow($id: ID!) {
+query GetWorkflow($id: ID!) {
   workflow(id: $id) {
     id
     name

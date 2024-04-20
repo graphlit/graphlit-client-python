@@ -20,44 +20,44 @@ from .enums import (
 )
 
 
-class Specification(BaseModel):
-    specification: Optional["SpecificationSpecification"]
+class GetSpecification(BaseModel):
+    specification: Optional["GetSpecificationSpecification"]
 
 
-class SpecificationSpecification(BaseModel):
+class GetSpecificationSpecification(BaseModel):
     id: str
     name: str
     creation_date: Any = Field(alias="creationDate")
-    owner: "SpecificationSpecificationOwner"
+    owner: "GetSpecificationSpecificationOwner"
     state: EntityState
     type: Optional[SpecificationTypes]
     service_type: Optional[ModelServiceTypes] = Field(alias="serviceType")
     system_prompt: Optional[str] = Field(alias="systemPrompt")
     custom_guidance: Optional[str] = Field(alias="customGuidance")
-    strategy: Optional["SpecificationSpecificationStrategy"]
-    prompt_strategy: Optional["SpecificationSpecificationPromptStrategy"] = Field(
+    strategy: Optional["GetSpecificationSpecificationStrategy"]
+    prompt_strategy: Optional["GetSpecificationSpecificationPromptStrategy"] = Field(
         alias="promptStrategy"
     )
-    retrieval_strategy: Optional["SpecificationSpecificationRetrievalStrategy"] = Field(
-        alias="retrievalStrategy"
+    retrieval_strategy: Optional["GetSpecificationSpecificationRetrievalStrategy"] = (
+        Field(alias="retrievalStrategy")
     )
-    reranking_strategy: Optional["SpecificationSpecificationRerankingStrategy"] = Field(
-        alias="rerankingStrategy"
+    reranking_strategy: Optional["GetSpecificationSpecificationRerankingStrategy"] = (
+        Field(alias="rerankingStrategy")
     )
-    open_ai: Optional["SpecificationSpecificationOpenAi"] = Field(alias="openAI")
-    azure_open_ai: Optional["SpecificationSpecificationAzureOpenAi"] = Field(
+    open_ai: Optional["GetSpecificationSpecificationOpenAi"] = Field(alias="openAI")
+    azure_open_ai: Optional["GetSpecificationSpecificationAzureOpenAi"] = Field(
         alias="azureOpenAI"
     )
-    anthropic: Optional["SpecificationSpecificationAnthropic"]
-    replicate: Optional["SpecificationSpecificationReplicate"]
-    tools: Optional[List["SpecificationSpecificationTools"]]
+    anthropic: Optional["GetSpecificationSpecificationAnthropic"]
+    replicate: Optional["GetSpecificationSpecificationReplicate"]
+    tools: Optional[List["GetSpecificationSpecificationTools"]]
 
 
-class SpecificationSpecificationOwner(BaseModel):
+class GetSpecificationSpecificationOwner(BaseModel):
     id: str
 
 
-class SpecificationSpecificationStrategy(BaseModel):
+class GetSpecificationSpecificationStrategy(BaseModel):
     type: Optional[ConversationStrategyTypes]
     message_limit: Optional[int] = Field(alias="messageLimit")
     embed_citations: Optional[bool] = Field(alias="embedCitations")
@@ -66,20 +66,20 @@ class SpecificationSpecificationStrategy(BaseModel):
     contents_weight: Optional[float] = Field(alias="contentsWeight")
 
 
-class SpecificationSpecificationPromptStrategy(BaseModel):
+class GetSpecificationSpecificationPromptStrategy(BaseModel):
     type: PromptStrategyTypes
 
 
-class SpecificationSpecificationRetrievalStrategy(BaseModel):
+class GetSpecificationSpecificationRetrievalStrategy(BaseModel):
     type: RetrievalStrategyTypes
     content_limit: Optional[int] = Field(alias="contentLimit")
 
 
-class SpecificationSpecificationRerankingStrategy(BaseModel):
+class GetSpecificationSpecificationRerankingStrategy(BaseModel):
     service_type: ModelServiceTypes = Field(alias="serviceType")
 
 
-class SpecificationSpecificationOpenAi(BaseModel):
+class GetSpecificationSpecificationOpenAi(BaseModel):
     token_limit: Optional[int] = Field(alias="tokenLimit")
     completion_token_limit: Optional[int] = Field(alias="completionTokenLimit")
     model: OpenAIModels
@@ -89,7 +89,7 @@ class SpecificationSpecificationOpenAi(BaseModel):
     probability: Optional[float]
 
 
-class SpecificationSpecificationAzureOpenAi(BaseModel):
+class GetSpecificationSpecificationAzureOpenAi(BaseModel):
     token_limit: Optional[int] = Field(alias="tokenLimit")
     completion_token_limit: Optional[int] = Field(alias="completionTokenLimit")
     model: AzureOpenAIModels
@@ -100,7 +100,7 @@ class SpecificationSpecificationAzureOpenAi(BaseModel):
     probability: Optional[float]
 
 
-class SpecificationSpecificationAnthropic(BaseModel):
+class GetSpecificationSpecificationAnthropic(BaseModel):
     token_limit: Optional[int] = Field(alias="tokenLimit")
     completion_token_limit: Optional[int] = Field(alias="completionTokenLimit")
     model: AnthropicModels
@@ -110,7 +110,7 @@ class SpecificationSpecificationAnthropic(BaseModel):
     probability: Optional[float]
 
 
-class SpecificationSpecificationReplicate(BaseModel):
+class GetSpecificationSpecificationReplicate(BaseModel):
     token_limit: Optional[int] = Field(alias="tokenLimit")
     completion_token_limit: Optional[int] = Field(alias="completionTokenLimit")
     model: ReplicateModels
@@ -120,12 +120,12 @@ class SpecificationSpecificationReplicate(BaseModel):
     probability: Optional[float]
 
 
-class SpecificationSpecificationTools(BaseModel):
+class GetSpecificationSpecificationTools(BaseModel):
     name: str
     description: Optional[str]
     schema_: str = Field(alias="schema")
     uri: Optional[Any]
 
 
-Specification.model_rebuild()
-SpecificationSpecification.model_rebuild()
+GetSpecification.model_rebuild()
+GetSpecificationSpecification.model_rebuild()

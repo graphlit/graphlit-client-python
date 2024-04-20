@@ -3,12 +3,8 @@
 
 __all__ = [
     "ADD_CONTENTS_TO_COLLECTIONS_GQL",
-    "ALERT_GQL",
     "CLEAR_CONVERSATION_GQL",
     "CLOSE_CONVERSATION_GQL",
-    "COLLECTION_GQL",
-    "CONTENT_GQL",
-    "CONVERSATION_GQL",
     "CREATE_ALERT_GQL",
     "CREATE_COLLECTION_GQL",
     "CREATE_CONVERSATION_GQL",
@@ -39,7 +35,14 @@ __all__ = [
     "ENABLE_ALERT_GQL",
     "ENABLE_FEED_GQL",
     "EXTRACT_CONTENTS_GQL",
-    "FEED_GQL",
+    "GET_ALERT_GQL",
+    "GET_COLLECTION_GQL",
+    "GET_CONTENT_GQL",
+    "GET_CONVERSATION_GQL",
+    "GET_FEED_GQL",
+    "GET_PROJECT_GQL",
+    "GET_SPECIFICATION_GQL",
+    "GET_WORKFLOW_GQL",
     "INGEST_ENCODED_FILE_GQL",
     "INGEST_TEXT_GQL",
     "INGEST_URI_GQL",
@@ -47,7 +50,6 @@ __all__ = [
     "IS_FEED_DONE_GQL",
     "LOOKUP_CREDITS_GQL",
     "LOOKUP_USAGE_GQL",
-    "PROJECT_GQL",
     "PROMPT_CONVERSATION_GQL",
     "PROMPT_SPECIFICATIONS_GQL",
     "PUBLISH_CONTENTS_GQL",
@@ -61,7 +63,6 @@ __all__ = [
     "QUERY_SPECIFICATIONS_GQL",
     "QUERY_WORKFLOWS_GQL",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
-    "SPECIFICATION_GQL",
     "SUGGEST_CONVERSATION_GQL",
     "SUMMARIZE_CONTENTS_GQL",
     "UPDATE_ALERT_GQL",
@@ -73,7 +74,6 @@ __all__ = [
     "UPDATE_SPECIFICATION_GQL",
     "UPDATE_WORKFLOW_GQL",
     "USAGE_GQL",
-    "WORKFLOW_GQL",
 ]
 
 CREATE_ALERT_GQL = """
@@ -132,8 +132,8 @@ mutation EnableAlert($id: ID!) {
 }
 """
 
-ALERT_GQL = """
-query Alert($id: ID!) {
+GET_ALERT_GQL = """
+query GetAlert($id: ID!) {
   alert(id: $id) {
     id
     name
@@ -331,8 +331,8 @@ mutation DeleteCollections($ids: [ID!]!) {
 }
 """
 
-COLLECTION_GQL = """
-query Collection($id: ID!) {
+GET_COLLECTION_GQL = """
+query GetCollection($id: ID!) {
   collection(id: $id) {
     id
     name
@@ -447,8 +447,8 @@ mutation ExtractContents($prompt: String!, $filter: ContentFilter, $specificatio
 }
 """
 
-CONTENT_GQL = """
-query Content($id: ID!) {
+GET_CONTENT_GQL = """
+query GetContent($id: ID!) {
   content(id: $id) {
     id
     name
@@ -997,8 +997,8 @@ mutation DeleteConversations($ids: [ID!]!) {
 }
 """
 
-CONVERSATION_GQL = """
-query Conversation($id: ID!) {
+GET_CONVERSATION_GQL = """
+query GetConversation($id: ID!) {
   conversation(id: $id) {
     id
     name
@@ -1296,8 +1296,8 @@ mutation EnableFeed($id: ID!) {
 }
 """
 
-FEED_GQL = """
-query Feed($id: ID!) {
+GET_FEED_GQL = """
+query GetFeed($id: ID!) {
   feed(id: $id) {
     id
     name
@@ -1629,6 +1629,37 @@ query Credits($startDate: DateTime!, $duration: TimeSpan!) {
 }
 """
 
+GET_PROJECT_GQL = """
+query GetProject {
+  project {
+    id
+    name
+    creationDate
+    modifiedDate
+    state
+    environmentType
+    platform
+    region
+    workflow {
+      id
+      name
+    }
+    specification {
+      id
+      name
+    }
+    quota {
+      storage
+      contents
+      feeds
+      posts
+      conversations
+    }
+    callbackUri
+  }
+}
+"""
+
 LOOKUP_CREDITS_GQL = """
 query LookupCredits($correlationId: String!) {
   lookupCredits(correlationId: $correlationId) {
@@ -1677,37 +1708,6 @@ query LookupUsage($correlationId: String!) {
     request
     variables
     response
-  }
-}
-"""
-
-PROJECT_GQL = """
-query Project {
-  project {
-    id
-    name
-    creationDate
-    modifiedDate
-    state
-    environmentType
-    platform
-    region
-    workflow {
-      id
-      name
-    }
-    specification {
-      id
-      name
-    }
-    quota {
-      storage
-      contents
-      feeds
-      posts
-      conversations
-    }
-    callbackUri
   }
 }
 """
@@ -1776,8 +1776,8 @@ mutation DeleteSpecification($id: ID!) {
 }
 """
 
-SPECIFICATION_GQL = """
-query Specification($id: ID!) {
+GET_SPECIFICATION_GQL = """
+query GetSpecification($id: ID!) {
   specification(id: $id) {
     id
     name
@@ -2114,8 +2114,8 @@ mutation DeleteWorkflows($ids: [ID!]!) {
 }
 """
 
-WORKFLOW_GQL = """
-query Workflow($id: ID!) {
+GET_WORKFLOW_GQL = """
+query GetWorkflow($id: ID!) {
   workflow(id: $id) {
     id
     name

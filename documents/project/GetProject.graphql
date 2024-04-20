@@ -1,4 +1,4 @@
-query Project {
+query GetProject {
   project {
     id
     name

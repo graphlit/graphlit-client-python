@@ -1,4 +1,4 @@
-query Feed($id: ID!) {
+query GetFeed($id: ID!) {
   feed(id: $id) {
     id
     name
