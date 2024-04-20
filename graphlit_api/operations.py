@@ -1086,6 +1086,10 @@ mutation PromptConversation($prompt: String!, $id: ID, $correlationId: String) {
       citations {
         content {
           id
+          name
+          type
+          fileType
+          fileName
         }
         index
         text

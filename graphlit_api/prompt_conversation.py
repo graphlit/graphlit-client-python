@@ -8,8 +8,10 @@ from pydantic import Field
 from .base_model import BaseModel
 from .enums import (
     ContentFacetTypes,
+    ContentTypes,
     ConversationRoleTypes,
     FacetValueTypes,
+    FileTypes,
     ModelServiceTypes,
     ObservableTypes,
 )
@@ -59,6 +61,10 @@ class PromptConversationPromptConversationMessageCitations(BaseModel):
 
 class PromptConversationPromptConversationMessageCitationsContent(BaseModel):
     id: str
+    name: str
+    type: Optional[ContentTypes]
+    file_type: Optional[FileTypes] = Field(alias="fileType")
+    file_name: Optional[str] = Field(alias="fileName")
 
 
 class PromptConversationPromptConversationFacets(BaseModel):
