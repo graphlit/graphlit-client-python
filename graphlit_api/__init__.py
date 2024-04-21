@@ -56,6 +56,10 @@ from .credits import Credits, CreditsCredits
 from .delete_alert import DeleteAlert, DeleteAlertDeleteAlert
 from .delete_alerts import DeleteAlerts, DeleteAlertsDeleteAlerts
 from .delete_all_alerts import DeleteAllAlerts, DeleteAllAlertsDeleteAllAlerts
+from .delete_all_collections import (
+    DeleteAllCollections,
+    DeleteAllCollectionsDeleteAllCollections,
+)
 from .delete_all_contents import DeleteAllContents, DeleteAllContentsDeleteAllContents
 from .delete_all_conversations import (
     DeleteAllConversations,
@@ -537,6 +541,7 @@ from .operations import (
     DELETE_ALERT_GQL,
     DELETE_ALERTS_GQL,
     DELETE_ALL_ALERTS_GQL,
+    DELETE_ALL_COLLECTIONS_GQL,
     DELETE_ALL_CONTENTS_GQL,
     DELETE_ALL_CONVERSATIONS_GQL,
     DELETE_ALL_FEEDS_GQL,
@@ -964,6 +969,7 @@ __all__ = [
     "DELETE_ALERTS_GQL",
     "DELETE_ALERT_GQL",
     "DELETE_ALL_ALERTS_GQL",
+    "DELETE_ALL_COLLECTIONS_GQL",
     "DELETE_ALL_CONTENTS_GQL",
     "DELETE_ALL_CONVERSATIONS_GQL",
     "DELETE_ALL_FEEDS_GQL",
@@ -991,6 +997,8 @@ __all__ = [
     "DeleteAlertsDeleteAlerts",
     "DeleteAllAlerts",
     "DeleteAllAlertsDeleteAllAlerts",
+    "DeleteAllCollections",
+    "DeleteAllCollectionsDeleteAllCollections",
     "DeleteAllContents",
     "DeleteAllContentsDeleteAllContents",
     "DeleteAllConversations",

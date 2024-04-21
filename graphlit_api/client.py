@@ -18,6 +18,7 @@ from .credits import Credits
 from .delete_alert import DeleteAlert
 from .delete_alerts import DeleteAlerts
 from .delete_all_alerts import DeleteAllAlerts
+from .delete_all_collections import DeleteAllCollections
 from .delete_all_contents import DeleteAllContents
 from .delete_all_conversations import DeleteAllConversations
 from .delete_all_feeds import DeleteAllFeeds
@@ -95,6 +96,7 @@ from .operations import (
     DELETE_ALERT_GQL,
     DELETE_ALERTS_GQL,
     DELETE_ALL_ALERTS_GQL,
+    DELETE_ALL_COLLECTIONS_GQL,
     DELETE_ALL_CONTENTS_GQL,
     DELETE_ALL_CONVERSATIONS_GQL,
     DELETE_ALL_FEEDS_GQL,
@@ -323,6 +325,17 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return CreateCollection.model_validate(data)
+
+    async def delete_all_collections(self, **kwargs: Any) -> DeleteAllCollections:
+        variables: Dict[str, object] = {}
+        response = await self.execute(
+            query=DELETE_ALL_COLLECTIONS_GQL,
+            operation_name="DeleteAllCollections",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllCollections.model_validate(data)
 
     async def delete_collection(self, id: str, **kwargs: Any) -> DeleteCollection:
         variables: Dict[str, object] = {"id": id}

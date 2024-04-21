@@ -15,6 +15,7 @@ __all__ = [
     "DELETE_ALERTS_GQL",
     "DELETE_ALERT_GQL",
     "DELETE_ALL_ALERTS_GQL",
+    "DELETE_ALL_COLLECTIONS_GQL",
     "DELETE_ALL_CONTENTS_GQL",
     "DELETE_ALL_CONVERSATIONS_GQL",
     "DELETE_ALL_FEEDS_GQL",
@@ -309,6 +310,15 @@ mutation CreateCollection($collection: CollectionInput!) {
     name
     state
     type
+  }
+}
+"""
+
+DELETE_ALL_COLLECTIONS_GQL = """
+mutation DeleteAllCollections {
+  deleteAllCollections {
+    id
+    state
   }
 }
 """

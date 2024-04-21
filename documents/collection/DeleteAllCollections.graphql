@@ -1,0 +1,6 @@
+mutation DeleteAllCollections {
+  deleteAllCollections {
+    id
+    state
+  }
+}
