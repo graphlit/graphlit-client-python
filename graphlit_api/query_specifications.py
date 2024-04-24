@@ -15,6 +15,7 @@ from .enums import (
     OpenAIModels,
     PromptStrategyTypes,
     ReplicateModels,
+    RerankingModelServiceTypes,
     RetrievalStrategyTypes,
     SpecificationTypes,
 )
@@ -82,7 +83,7 @@ class QuerySpecificationsSpecificationsResultsRetrievalStrategy(BaseModel):
 
 
 class QuerySpecificationsSpecificationsResultsRerankingStrategy(BaseModel):
-    service_type: ModelServiceTypes = Field(alias="serviceType")
+    service_type: RerankingModelServiceTypes = Field(alias="serviceType")
 
 
 class QuerySpecificationsSpecificationsResultsOpenAi(BaseModel):
