@@ -55,6 +55,7 @@ __all__ = [
     "PROMPT_SPECIFICATIONS_GQL",
     "PUBLISH_CONTENTS_GQL",
     "PUBLISH_CONVERSATION_GQL",
+    "PUBLISH_TEXT_GQL",
     "QUERY_ALERTS_GQL",
     "QUERY_COLLECTIONS_GQL",
     "QUERY_CONTENTS_GQL",
@@ -700,7 +701,7 @@ query IsContentDone($id: ID!) {
 """
 
 PUBLISH_CONTENTS_GQL = """
-mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $connector: ContentPublishingConnectorInput!, $filter: ContentFilter, $correlationId: String, $name: String, $summarySpecification: EntityReferenceInput, $publishSpecification: EntityReferenceInput, $workflow: EntityReferenceInput) {
+mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $connector: ContentPublishingConnectorInput!, $filter: ContentFilter, $correlationId: String, $name: String, $summarySpecification: EntityReferenceInput, $publishSpecification: EntityReferenceInput, $workflow: EntityReferenceInput, $isSynchronous: Boolean!) {
   publishContents(
     summaryPrompt: $summaryPrompt
     publishPrompt: $publishPrompt
@@ -711,6 +712,32 @@ mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $conne
     summarySpecification: $summarySpecification
     publishSpecification: $publishSpecification
     workflow: $workflow
+    isSynchronous: $isSynchronous
+  ) {
+    id
+    name
+    state
+    type
+    fileType
+    mimeType
+    uri
+    textUri
+    audioUri
+    markdown
+  }
+}
+"""
+
+PUBLISH_TEXT_GQL = """
+mutation PublishText($text: String!, $textType: TextTypes, $connector: ContentPublishingConnectorInput!, $correlationId: String, $name: String, $workflow: EntityReferenceInput, $isSynchronous: Boolean!) {
+  publishText(
+    text: $text
+    textType: $textType
+    connector: $connector
+    correlationId: $correlationId
+    name: $name
+    workflow: $workflow
+    isSynchronous: $isSynchronous
   ) {
     id
     name

@@ -1,5 +1,5 @@
-mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $connector: ContentPublishingConnectorInput!, $filter: ContentFilter, $correlationId: String, $name: String, $summarySpecification: EntityReferenceInput, $publishSpecification: EntityReferenceInput, $workflow: EntityReferenceInput) {
-  publishContents(summaryPrompt: $summaryPrompt, publishPrompt: $publishPrompt, connector: $connector, filter: $filter, correlationId: $correlationId, name: $name, summarySpecification: $summarySpecification, publishSpecification: $publishSpecification, workflow: $workflow) {
+mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $connector: ContentPublishingConnectorInput!, $filter: ContentFilter, $correlationId: String, $name: String, $summarySpecification: EntityReferenceInput, $publishSpecification: EntityReferenceInput, $workflow: EntityReferenceInput, $isSynchronous: Boolean!) {
+  publishContents(summaryPrompt: $summaryPrompt, publishPrompt: $publishPrompt, connector: $connector, filter: $filter, correlationId: $correlationId, name: $name, summarySpecification: $summarySpecification, publishSpecification: $publishSpecification, workflow: $workflow, isSynchronous: $isSynchronous) {
     id
     name
     state

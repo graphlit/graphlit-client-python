@@ -585,6 +585,7 @@ from .operations import (
     PROMPT_SPECIFICATIONS_GQL,
     PUBLISH_CONTENTS_GQL,
     PUBLISH_CONVERSATION_GQL,
+    PUBLISH_TEXT_GQL,
     QUERY_ALERTS_GQL,
     QUERY_COLLECTIONS_GQL,
     QUERY_CONTENT_FACETS_GQL,
@@ -631,6 +632,7 @@ from .publish_conversation import (
     PublishConversation,
     PublishConversationPublishConversation,
 )
+from .publish_text import PublishText, PublishTextPublishText
 from .query_alerts import (
     QueryAlerts,
     QueryAlertsAlerts,
@@ -1336,6 +1338,7 @@ __all__ = [
     "PROMPT_SPECIFICATIONS_GQL",
     "PUBLISH_CONTENTS_GQL",
     "PUBLISH_CONVERSATION_GQL",
+    "PUBLISH_TEXT_GQL",
     "PersonFacetInput",
     "PersonFacetTypes",
     "PersonFilter",
@@ -1383,6 +1386,8 @@ __all__ = [
     "PublishContentsPublishContents",
     "PublishConversation",
     "PublishConversationPublishConversation",
+    "PublishText",
+    "PublishTextPublishText",
     "QUERY_ALERTS_GQL",
     "QUERY_COLLECTIONS_GQL",
     "QUERY_CONTENTS_GQL",

@@ -1824,6 +1824,7 @@ class OpenAIImageExtractionPropertiesInput(BaseModel):
     detail_level: Optional[OpenAIVisionDetailLevels] = Field(
         alias="detailLevel", default=None
     )
+    custom_instructions: Optional[str] = Field(alias="customInstructions", default=None)
     confidence_threshold: Optional[float] = Field(
         alias="confidenceThreshold", default=None
     )

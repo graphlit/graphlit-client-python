@@ -1,0 +1,14 @@
+mutation PublishText($text: String!, $textType: TextTypes, $connector: ContentPublishingConnectorInput!, $correlationId: String, $name: String, $workflow: EntityReferenceInput, $isSynchronous: Boolean!) {
+  publishText(text: $text, textType: $textType, connector: $connector, correlationId: $correlationId, name: $name, workflow: $workflow, isSynchronous: $isSynchronous) {
+    id
+    name
+    state
+    type
+    fileType
+    mimeType
+    uri
+    textUri
+    audioUri
+    markdown
+  }
+}

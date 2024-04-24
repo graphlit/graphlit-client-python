@@ -136,6 +136,7 @@ from .operations import (
     PROMPT_SPECIFICATIONS_GQL,
     PUBLISH_CONTENTS_GQL,
     PUBLISH_CONVERSATION_GQL,
+    PUBLISH_TEXT_GQL,
     QUERY_ALERTS_GQL,
     QUERY_COLLECTIONS_GQL,
     QUERY_CONTENT_FACETS_GQL,
@@ -161,6 +162,7 @@ from .prompt_conversation import PromptConversation
 from .prompt_specifications import PromptSpecifications
 from .publish_contents import PublishContents
 from .publish_conversation import PublishConversation
+from .publish_text import PublishText
 from .query_alerts import QueryAlerts
 from .query_collections import QueryCollections
 from .query_content_facets import QueryContentFacets
@@ -591,6 +593,7 @@ class Client(AsyncBaseClient):
         self,
         publish_prompt: str,
         connector: ContentPublishingConnectorInput,
+        is_synchronous: bool,
         summary_prompt: Union[Optional[str], UnsetType] = UNSET,
         filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
@@ -610,6 +613,7 @@ class Client(AsyncBaseClient):
             "summarySpecification": summary_specification,
             "publishSpecification": publish_specification,
             "workflow": workflow,
+            "isSynchronous": is_synchronous,
         }
         response = await self.execute(
             query=PUBLISH_CONTENTS_GQL,
@@ -619,6 +623,35 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return PublishContents.model_validate(data)
+
+    async def publish_text(
+        self,
+        text: str,
+        connector: ContentPublishingConnectorInput,
+        is_synchronous: bool,
+        text_type: Union[Optional[TextTypes], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        name: Union[Optional[str], UnsetType] = UNSET,
+        workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> PublishText:
+        variables: Dict[str, object] = {
+            "text": text,
+            "textType": text_type,
+            "connector": connector,
+            "correlationId": correlation_id,
+            "name": name,
+            "workflow": workflow,
+            "isSynchronous": is_synchronous,
+        }
+        response = await self.execute(
+            query=PUBLISH_TEXT_GQL,
+            operation_name="PublishText",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return PublishText.model_validate(data)
 
     async def query_content_facets(
         self,
