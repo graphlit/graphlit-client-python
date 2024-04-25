@@ -26,6 +26,7 @@ class GetContent(BaseModel):
 class GetContentContent(BaseModel):
     id: str
     name: str
+    description: Optional[str]
     creation_date: Any = Field(alias="creationDate")
     owner: "GetContentContentOwner"
     state: EntityState

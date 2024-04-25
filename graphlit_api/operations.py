@@ -463,6 +463,7 @@ query GetContent($id: ID!) {
   content(id: $id) {
     id
     name
+    description
     creationDate
     owner {
       id
