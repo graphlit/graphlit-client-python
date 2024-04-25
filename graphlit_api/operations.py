@@ -798,6 +798,25 @@ query QueryContents($filter: ContentFilter) {
       textUri
       audioUri
       transcriptUri
+      pages {
+        index
+        chunks {
+          index
+          pageIndex
+          rowIndex
+          columnIndex
+          confidence
+          text
+          role
+          relevance
+        }
+      }
+      segments {
+        startTime
+        endTime
+        text
+        relevance
+      }
       video {
         width
         height

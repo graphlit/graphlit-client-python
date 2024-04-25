@@ -16,6 +16,7 @@ from .enums import (
     MailSensitivity,
     ObservableTypes,
     OccurrenceTypes,
+    TextRoles,
 )
 
 
@@ -47,6 +48,8 @@ class QueryContentsContentsResults(BaseModel):
     text_uri: Optional[Any] = Field(alias="textUri")
     audio_uri: Optional[Any] = Field(alias="audioUri")
     transcript_uri: Optional[Any] = Field(alias="transcriptUri")
+    pages: Optional[List["QueryContentsContentsResultsPages"]]
+    segments: Optional[List["QueryContentsContentsResultsSegments"]]
     video: Optional["QueryContentsContentsResultsVideo"]
     audio: Optional["QueryContentsContentsResultsAudio"]
     image: Optional["QueryContentsContentsResultsImage"]
@@ -66,6 +69,29 @@ class QueryContentsContentsResults(BaseModel):
 
 class QueryContentsContentsResultsOwner(BaseModel):
     id: str
+
+
+class QueryContentsContentsResultsPages(BaseModel):
+    index: Optional[int]
+    chunks: Optional[List[Optional["QueryContentsContentsResultsPagesChunks"]]]
+
+
+class QueryContentsContentsResultsPagesChunks(BaseModel):
+    index: Optional[int]
+    page_index: Optional[int] = Field(alias="pageIndex")
+    row_index: Optional[int] = Field(alias="rowIndex")
+    column_index: Optional[int] = Field(alias="columnIndex")
+    confidence: Optional[float]
+    text: Optional[str]
+    role: Optional[TextRoles]
+    relevance: Optional[float]
+
+
+class QueryContentsContentsResultsSegments(BaseModel):
+    start_time: Optional[Any] = Field(alias="startTime")
+    end_time: Optional[Any] = Field(alias="endTime")
+    text: Optional[str]
+    relevance: Optional[float]
 
 
 class QueryContentsContentsResultsVideo(BaseModel):
@@ -239,6 +265,7 @@ class QueryContentsContentsResultsLinks(BaseModel):
 QueryContents.model_rebuild()
 QueryContentsContents.model_rebuild()
 QueryContentsContentsResults.model_rebuild()
+QueryContentsContentsResultsPages.model_rebuild()
 QueryContentsContentsResultsEmail.model_rebuild()
 QueryContentsContentsResultsObservations.model_rebuild()
 QueryContentsContentsResultsObservationsOccurrences.model_rebuild()
