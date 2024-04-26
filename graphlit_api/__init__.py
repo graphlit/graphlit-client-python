@@ -11,12 +11,25 @@ from .clear_conversation import ClearConversation, ClearConversationClearConvers
 from .client import Client
 from .close_conversation import CloseConversation, CloseConversationCloseConversation
 from .create_alert import CreateAlert, CreateAlertCreateAlert
+from .create_category import CreateCategory, CreateCategoryCreateCategory
 from .create_collection import CreateCollection, CreateCollectionCreateCollection
 from .create_conversation import (
     CreateConversation,
     CreateConversationCreateConversation,
 )
+from .create_event import CreateEvent, CreateEventCreateEvent
 from .create_feed import CreateFeed, CreateFeedCreateFeed
+from .create_label import CreateLabel, CreateLabelCreateLabel
+from .create_observation import CreateObservation, CreateObservationCreateObservation
+from .create_organization import (
+    CreateOrganization,
+    CreateOrganizationCreateOrganization,
+)
+from .create_person import CreatePerson, CreatePersonCreatePerson
+from .create_place import CreatePlace, CreatePlaceCreatePlace
+from .create_product import CreateProduct, CreateProductCreateProduct
+from .create_repo import CreateRepo, CreateRepoCreateRepo
+from .create_software import CreateSoftware, CreateSoftwareCreateSoftware
 from .create_specification import (
     CreateSpecification,
     CreateSpecificationCreateSpecification,
@@ -70,6 +83,8 @@ from .delete_all_workflows import (
     DeleteAllWorkflows,
     DeleteAllWorkflowsDeleteAllWorkflows,
 )
+from .delete_categories import DeleteCategories, DeleteCategoriesDeleteCategories
+from .delete_category import DeleteCategory, DeleteCategoryDeleteCategory
 from .delete_collection import DeleteCollection, DeleteCollectionDeleteCollection
 from .delete_collections import DeleteCollections, DeleteCollectionsDeleteCollections
 from .delete_content import DeleteContent, DeleteContentDeleteContent
@@ -82,8 +97,31 @@ from .delete_conversations import (
     DeleteConversations,
     DeleteConversationsDeleteConversations,
 )
+from .delete_event import DeleteEvent, DeleteEventDeleteEvent
+from .delete_events import DeleteEvents, DeleteEventsDeleteEvents
 from .delete_feed import DeleteFeed, DeleteFeedDeleteFeed
 from .delete_feeds import DeleteFeeds, DeleteFeedsDeleteFeeds
+from .delete_label import DeleteLabel, DeleteLabelDeleteLabel
+from .delete_labels import DeleteLabels, DeleteLabelsDeleteLabels
+from .delete_observation import DeleteObservation, DeleteObservationDeleteObservation
+from .delete_organization import (
+    DeleteOrganization,
+    DeleteOrganizationDeleteOrganization,
+)
+from .delete_organizations import (
+    DeleteOrganizations,
+    DeleteOrganizationsDeleteOrganizations,
+)
+from .delete_person import DeletePerson, DeletePersonDeletePerson
+from .delete_persons import DeletePersons, DeletePersonsDeletePersons
+from .delete_place import DeletePlace, DeletePlaceDeletePlace
+from .delete_places import DeletePlaces, DeletePlacesDeletePlaces
+from .delete_product import DeleteProduct, DeleteProductDeleteProduct
+from .delete_products import DeleteProducts, DeleteProductsDeleteProducts
+from .delete_repo import DeleteRepo, DeleteRepoDeleteRepo
+from .delete_repos import DeleteRepos, DeleteReposDeleteRepos
+from .delete_software import DeleteSoftware, DeleteSoftwareDeleteSoftware
+from .delete_softwares import DeleteSoftwares, DeleteSoftwaresDeleteSoftwares
 from .delete_specification import (
     DeleteSpecification,
     DeleteSpecificationDeleteSpecification,
@@ -208,6 +246,7 @@ from .get_alert import (
     GetAlertAlertPublishSpecification,
     GetAlertAlertSummarySpecification,
 )
+from .get_category import GetCategory, GetCategoryCategory
 from .get_collection import (
     GetCollection,
     GetCollectionCollection,
@@ -257,6 +296,7 @@ from .get_conversation import (
     GetConversationConversationOwner,
     GetConversationConversationSpecification,
 )
+from .get_event import GetEvent, GetEventEvent
 from .get_feed import (
     GetFeed,
     GetFeedFeed,
@@ -286,6 +326,11 @@ from .get_feed import (
     GetFeedFeedWorkflow,
     GetFeedFeedYoutube,
 )
+from .get_label import GetLabel, GetLabelLabel
+from .get_organization import GetOrganization, GetOrganizationOrganization
+from .get_person import GetPerson, GetPersonPerson
+from .get_place import GetPlace, GetPlacePlace
+from .get_product import GetProduct, GetProductProduct
 from .get_project import (
     GetProject,
     GetProjectProject,
@@ -293,6 +338,8 @@ from .get_project import (
     GetProjectProjectSpecification,
     GetProjectProjectWorkflow,
 )
+from .get_repo import GetRepo, GetRepoRepo
+from .get_software import GetSoftware, GetSoftwareSoftware
 from .get_specification import (
     GetSpecification,
     GetSpecificationSpecification,
@@ -536,9 +583,19 @@ from .operations import (
     CLEAR_CONVERSATION_GQL,
     CLOSE_CONVERSATION_GQL,
     CREATE_ALERT_GQL,
+    CREATE_CATEGORY_GQL,
     CREATE_COLLECTION_GQL,
     CREATE_CONVERSATION_GQL,
+    CREATE_EVENT_GQL,
     CREATE_FEED_GQL,
+    CREATE_LABEL_GQL,
+    CREATE_OBSERVATION_GQL,
+    CREATE_ORGANIZATION_GQL,
+    CREATE_PERSON_GQL,
+    CREATE_PLACE_GQL,
+    CREATE_PRODUCT_GQL,
+    CREATE_REPO_GQL,
+    CREATE_SOFTWARE_GQL,
     CREATE_SPECIFICATION_GQL,
     CREATE_WORKFLOW_GQL,
     CREDITS_GQL,
@@ -550,14 +607,33 @@ from .operations import (
     DELETE_ALL_CONVERSATIONS_GQL,
     DELETE_ALL_FEEDS_GQL,
     DELETE_ALL_WORKFLOWS_GQL,
+    DELETE_CATEGORIES_GQL,
+    DELETE_CATEGORY_GQL,
     DELETE_COLLECTION_GQL,
     DELETE_COLLECTIONS_GQL,
     DELETE_CONTENT_GQL,
     DELETE_CONTENTS_GQL,
     DELETE_CONVERSATION_GQL,
     DELETE_CONVERSATIONS_GQL,
+    DELETE_EVENT_GQL,
+    DELETE_EVENTS_GQL,
     DELETE_FEED_GQL,
     DELETE_FEEDS_GQL,
+    DELETE_LABEL_GQL,
+    DELETE_LABELS_GQL,
+    DELETE_OBSERVATION_GQL,
+    DELETE_ORGANIZATION_GQL,
+    DELETE_ORGANIZATIONS_GQL,
+    DELETE_PERSON_GQL,
+    DELETE_PERSONS_GQL,
+    DELETE_PLACE_GQL,
+    DELETE_PLACES_GQL,
+    DELETE_PRODUCT_GQL,
+    DELETE_PRODUCTS_GQL,
+    DELETE_REPO_GQL,
+    DELETE_REPOS_GQL,
+    DELETE_SOFTWARE_GQL,
+    DELETE_SOFTWARES_GQL,
     DELETE_SPECIFICATION_GQL,
     DELETE_WORKFLOW_GQL,
     DELETE_WORKFLOWS_GQL,
@@ -567,11 +643,20 @@ from .operations import (
     ENABLE_FEED_GQL,
     EXTRACT_CONTENTS_GQL,
     GET_ALERT_GQL,
+    GET_CATEGORY_GQL,
     GET_COLLECTION_GQL,
     GET_CONTENT_GQL,
     GET_CONVERSATION_GQL,
+    GET_EVENT_GQL,
     GET_FEED_GQL,
+    GET_LABEL_GQL,
+    GET_ORGANIZATION_GQL,
+    GET_PERSON_GQL,
+    GET_PLACE_GQL,
+    GET_PRODUCT_GQL,
     GET_PROJECT_GQL,
+    GET_REPO_GQL,
+    GET_SOFTWARE_GQL,
     GET_SPECIFICATION_GQL,
     GET_WORKFLOW_GQL,
     INGEST_ENCODED_FILE_GQL,
@@ -587,22 +672,41 @@ from .operations import (
     PUBLISH_CONVERSATION_GQL,
     PUBLISH_TEXT_GQL,
     QUERY_ALERTS_GQL,
+    QUERY_CATEGORIES_GQL,
     QUERY_COLLECTIONS_GQL,
     QUERY_CONTENT_FACETS_GQL,
     QUERY_CONTENTS_GQL,
     QUERY_CONVERSATIONS_GQL,
+    QUERY_EVENTS_GQL,
     QUERY_FEEDS_GQL,
+    QUERY_LABELS_GQL,
+    QUERY_ORGANIZATIONS_GQL,
+    QUERY_PERSONS_GQL,
+    QUERY_PLACES_GQL,
+    QUERY_PRODUCTS_GQL,
+    QUERY_REPOS_GQL,
+    QUERY_SOFTWARE_GQL,
     QUERY_SPECIFICATIONS_GQL,
     QUERY_WORKFLOWS_GQL,
     REMOVE_CONTENTS_FROM_COLLECTION_GQL,
     SUGGEST_CONVERSATION_GQL,
     SUMMARIZE_CONTENTS_GQL,
     UPDATE_ALERT_GQL,
+    UPDATE_CATEGORY_GQL,
     UPDATE_COLLECTION_GQL,
     UPDATE_CONTENT_GQL,
     UPDATE_CONVERSATION_GQL,
+    UPDATE_EVENT_GQL,
     UPDATE_FEED_GQL,
+    UPDATE_LABEL_GQL,
+    UPDATE_OBSERVATION_GQL,
+    UPDATE_ORGANIZATION_GQL,
+    UPDATE_PERSON_GQL,
+    UPDATE_PLACE_GQL,
+    UPDATE_PRODUCT_GQL,
     UPDATE_PROJECT_GQL,
+    UPDATE_REPO_GQL,
+    UPDATE_SOFTWARE_GQL,
     UPDATE_SPECIFICATION_GQL,
     UPDATE_WORKFLOW_GQL,
     USAGE_GQL,
@@ -653,6 +757,11 @@ from .query_alerts import (
     QueryAlertsAlertsResultsPublishingElevenLabs,
     QueryAlertsAlertsResultsPublishSpecification,
     QueryAlertsAlertsResultsSummarySpecification,
+)
+from .query_categories import (
+    QueryCategories,
+    QueryCategoriesCategories,
+    QueryCategoriesCategoriesResults,
 )
 from .query_collections import (
     QueryCollections,
@@ -716,6 +825,7 @@ from .query_conversations import (
     QueryConversationsConversationsResultsOwner,
     QueryConversationsConversationsResultsSpecification,
 )
+from .query_events import QueryEvents, QueryEventsEvents, QueryEventsEventsResults
 from .query_feeds import (
     QueryFeeds,
     QueryFeedsFeeds,
@@ -745,6 +855,25 @@ from .query_feeds import (
     QueryFeedsFeedsResultsWeb,
     QueryFeedsFeedsResultsWorkflow,
     QueryFeedsFeedsResultsYoutube,
+)
+from .query_labels import QueryLabels, QueryLabelsLabels, QueryLabelsLabelsResults
+from .query_organizations import (
+    QueryOrganizations,
+    QueryOrganizationsOrganizations,
+    QueryOrganizationsOrganizationsResults,
+)
+from .query_persons import QueryPersons, QueryPersonsPersons, QueryPersonsPersonsResults
+from .query_places import QueryPlaces, QueryPlacesPlaces, QueryPlacesPlacesResults
+from .query_products import (
+    QueryProducts,
+    QueryProductsProducts,
+    QueryProductsProductsResults,
+)
+from .query_repos import QueryRepos, QueryReposRepos, QueryReposReposResults
+from .query_software import (
+    QuerySoftware,
+    QuerySoftwareSoftwares,
+    QuerySoftwareSoftwaresResults,
 )
 from .query_specifications import (
     QuerySpecifications,
@@ -811,14 +940,27 @@ from .summarize_contents import (
     SummarizeContentsSummarizeContentsSpecification,
 )
 from .update_alert import UpdateAlert, UpdateAlertUpdateAlert
+from .update_category import UpdateCategory, UpdateCategoryUpdateCategory
 from .update_collection import UpdateCollection, UpdateCollectionUpdateCollection
 from .update_content import UpdateContent, UpdateContentUpdateContent
 from .update_conversation import (
     UpdateConversation,
     UpdateConversationUpdateConversation,
 )
+from .update_event import UpdateEvent, UpdateEventUpdateEvent
 from .update_feed import UpdateFeed, UpdateFeedUpdateFeed
+from .update_label import UpdateLabel, UpdateLabelUpdateLabel
+from .update_observation import UpdateObservation, UpdateObservationUpdateObservation
+from .update_organization import (
+    UpdateOrganization,
+    UpdateOrganizationUpdateOrganization,
+)
+from .update_person import UpdatePerson, UpdatePersonUpdatePerson
+from .update_place import UpdatePlace, UpdatePlaceUpdatePlace
+from .update_product import UpdateProduct, UpdateProductUpdateProduct
 from .update_project import UpdateProject, UpdateProjectUpdateProject
+from .update_repo import UpdateRepo, UpdateRepoUpdateRepo
+from .update_software import UpdateSoftware, UpdateSoftwareUpdateSoftware
 from .update_specification import (
     UpdateSpecification,
     UpdateSpecificationUpdateSpecification,
@@ -894,9 +1036,19 @@ __all__ = [
     "CLEAR_CONVERSATION_GQL",
     "CLOSE_CONVERSATION_GQL",
     "CREATE_ALERT_GQL",
+    "CREATE_CATEGORY_GQL",
     "CREATE_COLLECTION_GQL",
     "CREATE_CONVERSATION_GQL",
+    "CREATE_EVENT_GQL",
     "CREATE_FEED_GQL",
+    "CREATE_LABEL_GQL",
+    "CREATE_OBSERVATION_GQL",
+    "CREATE_ORGANIZATION_GQL",
+    "CREATE_PERSON_GQL",
+    "CREATE_PLACE_GQL",
+    "CREATE_PRODUCT_GQL",
+    "CREATE_REPO_GQL",
+    "CREATE_SOFTWARE_GQL",
     "CREATE_SPECIFICATION_GQL",
     "CREATE_WORKFLOW_GQL",
     "CREDITS_GQL",
@@ -939,12 +1091,32 @@ __all__ = [
     "ConversationUpdateInput",
     "CreateAlert",
     "CreateAlertCreateAlert",
+    "CreateCategory",
+    "CreateCategoryCreateCategory",
     "CreateCollection",
     "CreateCollectionCreateCollection",
     "CreateConversation",
     "CreateConversationCreateConversation",
+    "CreateEvent",
+    "CreateEventCreateEvent",
     "CreateFeed",
     "CreateFeedCreateFeed",
+    "CreateLabel",
+    "CreateLabelCreateLabel",
+    "CreateObservation",
+    "CreateObservationCreateObservation",
+    "CreateOrganization",
+    "CreateOrganizationCreateOrganization",
+    "CreatePerson",
+    "CreatePersonCreatePerson",
+    "CreatePlace",
+    "CreatePlaceCreatePlace",
+    "CreateProduct",
+    "CreateProductCreateProduct",
+    "CreateRepo",
+    "CreateRepoCreateRepo",
+    "CreateSoftware",
+    "CreateSoftwareCreateSoftware",
     "CreateSpecification",
     "CreateSpecificationCreateSpecification",
     "CreateWorkflow",
@@ -986,14 +1158,33 @@ __all__ = [
     "DELETE_ALL_CONVERSATIONS_GQL",
     "DELETE_ALL_FEEDS_GQL",
     "DELETE_ALL_WORKFLOWS_GQL",
+    "DELETE_CATEGORIES_GQL",
+    "DELETE_CATEGORY_GQL",
     "DELETE_COLLECTIONS_GQL",
     "DELETE_COLLECTION_GQL",
     "DELETE_CONTENTS_GQL",
     "DELETE_CONTENT_GQL",
     "DELETE_CONVERSATIONS_GQL",
     "DELETE_CONVERSATION_GQL",
+    "DELETE_EVENTS_GQL",
+    "DELETE_EVENT_GQL",
     "DELETE_FEEDS_GQL",
     "DELETE_FEED_GQL",
+    "DELETE_LABELS_GQL",
+    "DELETE_LABEL_GQL",
+    "DELETE_OBSERVATION_GQL",
+    "DELETE_ORGANIZATIONS_GQL",
+    "DELETE_ORGANIZATION_GQL",
+    "DELETE_PERSONS_GQL",
+    "DELETE_PERSON_GQL",
+    "DELETE_PLACES_GQL",
+    "DELETE_PLACE_GQL",
+    "DELETE_PRODUCTS_GQL",
+    "DELETE_PRODUCT_GQL",
+    "DELETE_REPOS_GQL",
+    "DELETE_REPO_GQL",
+    "DELETE_SOFTWARES_GQL",
+    "DELETE_SOFTWARE_GQL",
     "DELETE_SPECIFICATION_GQL",
     "DELETE_WORKFLOWS_GQL",
     "DELETE_WORKFLOW_GQL",
@@ -1019,6 +1210,10 @@ __all__ = [
     "DeleteAllFeedsDeleteAllFeeds",
     "DeleteAllWorkflows",
     "DeleteAllWorkflowsDeleteAllWorkflows",
+    "DeleteCategories",
+    "DeleteCategoriesDeleteCategories",
+    "DeleteCategory",
+    "DeleteCategoryDeleteCategory",
     "DeleteCollection",
     "DeleteCollectionDeleteCollection",
     "DeleteCollections",
@@ -1031,10 +1226,44 @@ __all__ = [
     "DeleteConversationDeleteConversation",
     "DeleteConversations",
     "DeleteConversationsDeleteConversations",
+    "DeleteEvent",
+    "DeleteEventDeleteEvent",
+    "DeleteEvents",
+    "DeleteEventsDeleteEvents",
     "DeleteFeed",
     "DeleteFeedDeleteFeed",
     "DeleteFeeds",
     "DeleteFeedsDeleteFeeds",
+    "DeleteLabel",
+    "DeleteLabelDeleteLabel",
+    "DeleteLabels",
+    "DeleteLabelsDeleteLabels",
+    "DeleteObservation",
+    "DeleteObservationDeleteObservation",
+    "DeleteOrganization",
+    "DeleteOrganizationDeleteOrganization",
+    "DeleteOrganizations",
+    "DeleteOrganizationsDeleteOrganizations",
+    "DeletePerson",
+    "DeletePersonDeletePerson",
+    "DeletePersons",
+    "DeletePersonsDeletePersons",
+    "DeletePlace",
+    "DeletePlaceDeletePlace",
+    "DeletePlaces",
+    "DeletePlacesDeletePlaces",
+    "DeleteProduct",
+    "DeleteProductDeleteProduct",
+    "DeleteProducts",
+    "DeleteProductsDeleteProducts",
+    "DeleteRepo",
+    "DeleteRepoDeleteRepo",
+    "DeleteRepos",
+    "DeleteReposDeleteRepos",
+    "DeleteSoftware",
+    "DeleteSoftwareDeleteSoftware",
+    "DeleteSoftwares",
+    "DeleteSoftwaresDeleteSoftwares",
     "DeleteSpecification",
     "DeleteSpecificationDeleteSpecification",
     "DeleteWorkflow",
@@ -1097,11 +1326,20 @@ __all__ = [
     "FilePreparationServiceTypes",
     "FileTypes",
     "GET_ALERT_GQL",
+    "GET_CATEGORY_GQL",
     "GET_COLLECTION_GQL",
     "GET_CONTENT_GQL",
     "GET_CONVERSATION_GQL",
+    "GET_EVENT_GQL",
     "GET_FEED_GQL",
+    "GET_LABEL_GQL",
+    "GET_ORGANIZATION_GQL",
+    "GET_PERSON_GQL",
+    "GET_PLACE_GQL",
+    "GET_PRODUCT_GQL",
     "GET_PROJECT_GQL",
+    "GET_REPO_GQL",
+    "GET_SOFTWARE_GQL",
     "GET_SPECIFICATION_GQL",
     "GET_WORKFLOW_GQL",
     "GetAlert",
@@ -1122,6 +1360,8 @@ __all__ = [
     "GetAlertAlertPublishing",
     "GetAlertAlertPublishingElevenLabs",
     "GetAlertAlertSummarySpecification",
+    "GetCategory",
+    "GetCategoryCategory",
     "GetCollection",
     "GetCollectionCollection",
     "GetCollectionCollectionContents",
@@ -1165,6 +1405,8 @@ __all__ = [
     "GetConversationConversationMessagesCitationsContent",
     "GetConversationConversationOwner",
     "GetConversationConversationSpecification",
+    "GetEvent",
+    "GetEventEvent",
     "GetFeed",
     "GetFeedFeed",
     "GetFeedFeedDiscord",
@@ -1192,11 +1434,25 @@ __all__ = [
     "GetFeedFeedWeb",
     "GetFeedFeedWorkflow",
     "GetFeedFeedYoutube",
+    "GetLabel",
+    "GetLabelLabel",
+    "GetOrganization",
+    "GetOrganizationOrganization",
+    "GetPerson",
+    "GetPersonPerson",
+    "GetPlace",
+    "GetPlacePlace",
+    "GetProduct",
+    "GetProductProduct",
     "GetProject",
     "GetProjectProject",
     "GetProjectProjectQuota",
     "GetProjectProjectSpecification",
     "GetProjectProjectWorkflow",
+    "GetRepo",
+    "GetRepoRepo",
+    "GetSoftware",
+    "GetSoftwareSoftware",
     "GetSpecification",
     "GetSpecificationSpecification",
     "GetSpecificationSpecificationAnthropic",
@@ -1392,11 +1648,20 @@ __all__ = [
     "PublishText",
     "PublishTextPublishText",
     "QUERY_ALERTS_GQL",
+    "QUERY_CATEGORIES_GQL",
     "QUERY_COLLECTIONS_GQL",
     "QUERY_CONTENTS_GQL",
     "QUERY_CONTENT_FACETS_GQL",
     "QUERY_CONVERSATIONS_GQL",
+    "QUERY_EVENTS_GQL",
     "QUERY_FEEDS_GQL",
+    "QUERY_LABELS_GQL",
+    "QUERY_ORGANIZATIONS_GQL",
+    "QUERY_PERSONS_GQL",
+    "QUERY_PLACES_GQL",
+    "QUERY_PRODUCTS_GQL",
+    "QUERY_REPOS_GQL",
+    "QUERY_SOFTWARE_GQL",
     "QUERY_SPECIFICATIONS_GQL",
     "QUERY_WORKFLOWS_GQL",
     "QueryAlerts",
@@ -1418,6 +1683,9 @@ __all__ = [
     "QueryAlertsAlertsResultsPublishing",
     "QueryAlertsAlertsResultsPublishingElevenLabs",
     "QueryAlertsAlertsResultsSummarySpecification",
+    "QueryCategories",
+    "QueryCategoriesCategories",
+    "QueryCategoriesCategoriesResults",
     "QueryCollections",
     "QueryCollectionsCollections",
     "QueryCollectionsCollectionsResults",
@@ -1472,6 +1740,9 @@ __all__ = [
     "QueryConversationsConversationsResultsMessagesCitationsContent",
     "QueryConversationsConversationsResultsOwner",
     "QueryConversationsConversationsResultsSpecification",
+    "QueryEvents",
+    "QueryEventsEvents",
+    "QueryEventsEventsResults",
     "QueryFeeds",
     "QueryFeedsFeeds",
     "QueryFeedsFeedsResults",
@@ -1500,6 +1771,27 @@ __all__ = [
     "QueryFeedsFeedsResultsWeb",
     "QueryFeedsFeedsResultsWorkflow",
     "QueryFeedsFeedsResultsYoutube",
+    "QueryLabels",
+    "QueryLabelsLabels",
+    "QueryLabelsLabelsResults",
+    "QueryOrganizations",
+    "QueryOrganizationsOrganizations",
+    "QueryOrganizationsOrganizationsResults",
+    "QueryPersons",
+    "QueryPersonsPersons",
+    "QueryPersonsPersonsResults",
+    "QueryPlaces",
+    "QueryPlacesPlaces",
+    "QueryPlacesPlacesResults",
+    "QueryProducts",
+    "QueryProductsProducts",
+    "QueryProductsProductsResults",
+    "QueryRepos",
+    "QueryReposRepos",
+    "QueryReposReposResults",
+    "QuerySoftware",
+    "QuerySoftwareSoftwares",
+    "QuerySoftwareSoftwaresResults",
     "QuerySpecifications",
     "QuerySpecificationsSpecifications",
     "QuerySpecificationsSpecificationsResults",
@@ -1607,27 +1899,57 @@ __all__ = [
     "ToolDefinitionInput",
     "ToolDefinitionUpdateInput",
     "UPDATE_ALERT_GQL",
+    "UPDATE_CATEGORY_GQL",
     "UPDATE_COLLECTION_GQL",
     "UPDATE_CONTENT_GQL",
     "UPDATE_CONVERSATION_GQL",
+    "UPDATE_EVENT_GQL",
     "UPDATE_FEED_GQL",
+    "UPDATE_LABEL_GQL",
+    "UPDATE_OBSERVATION_GQL",
+    "UPDATE_ORGANIZATION_GQL",
+    "UPDATE_PERSON_GQL",
+    "UPDATE_PLACE_GQL",
+    "UPDATE_PRODUCT_GQL",
     "UPDATE_PROJECT_GQL",
+    "UPDATE_REPO_GQL",
+    "UPDATE_SOFTWARE_GQL",
     "UPDATE_SPECIFICATION_GQL",
     "UPDATE_WORKFLOW_GQL",
     "USAGE_GQL",
     "UnitTypes",
     "UpdateAlert",
     "UpdateAlertUpdateAlert",
+    "UpdateCategory",
+    "UpdateCategoryUpdateCategory",
     "UpdateCollection",
     "UpdateCollectionUpdateCollection",
     "UpdateContent",
     "UpdateContentUpdateContent",
     "UpdateConversation",
     "UpdateConversationUpdateConversation",
+    "UpdateEvent",
+    "UpdateEventUpdateEvent",
     "UpdateFeed",
     "UpdateFeedUpdateFeed",
+    "UpdateLabel",
+    "UpdateLabelUpdateLabel",
+    "UpdateObservation",
+    "UpdateObservationUpdateObservation",
+    "UpdateOrganization",
+    "UpdateOrganizationUpdateOrganization",
+    "UpdatePerson",
+    "UpdatePersonUpdatePerson",
+    "UpdatePlace",
+    "UpdatePlaceUpdatePlace",
+    "UpdateProduct",
+    "UpdateProductUpdateProduct",
     "UpdateProject",
     "UpdateProjectUpdateProject",
+    "UpdateRepo",
+    "UpdateRepoUpdateRepo",
+    "UpdateSoftware",
+    "UpdateSoftwareUpdateSoftware",
     "UpdateSpecification",
     "UpdateSpecificationUpdateSpecification",
     "UpdateWorkflow",

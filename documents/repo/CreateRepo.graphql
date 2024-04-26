@@ -1,0 +1,6 @@
+mutation CreateRepo($repo: RepoInput!) {
+  createRepo(repo: $repo) {
+    id
+    name
+  }
+}

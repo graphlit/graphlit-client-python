@@ -1,0 +1,6 @@
+mutation UpdateSoftware($software: SoftwareUpdateInput!) {
+  updateSoftware(software: $software) {
+    id
+    name
+  }
+}

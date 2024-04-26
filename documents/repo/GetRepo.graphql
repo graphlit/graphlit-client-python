@@ -1,0 +1,8 @@
+query GetRepo($id: ID!) {
+  repo(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+  }
+}

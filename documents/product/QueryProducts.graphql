@@ -1,0 +1,17 @@
+query QueryProducts($filter: ProductFilter!) {
+  products(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      manufacturer
+      model
+      brand
+      upc
+      sku
+      releaseDate
+      productionDate
+    }
+  }
+}

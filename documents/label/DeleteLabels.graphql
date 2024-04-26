@@ -1,0 +1,6 @@
+mutation DeleteLabels($ids: [ID!]!) {
+  deleteLabels(ids: $ids) {
+    id
+    state
+  }
+}

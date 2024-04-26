@@ -1,0 +1,10 @@
+query QueryPlaces($filter: PlaceFilter!) {
+  places(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+    }
+  }
+}

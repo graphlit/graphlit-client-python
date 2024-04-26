@@ -1,0 +1,8 @@
+query QueryLabels($filter: LabelFilter!) {
+  labels(filter: $filter) {
+    results {
+      id
+      name
+    }
+  }
+}

@@ -1,0 +1,8 @@
+query GetPlace($id: ID!) {
+  place(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+  }
+}

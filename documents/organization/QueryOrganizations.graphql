@@ -1,0 +1,16 @@
+query QueryOrganizations($filter: OrganizationFilter!) {
+  organizations(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      foundingDate
+      industries
+      revenue
+      revenueCurrency
+      investment
+      investmentCurrency
+    }
+  }
+}

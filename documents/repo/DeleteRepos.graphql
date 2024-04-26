@@ -1,0 +1,6 @@
+mutation DeleteRepos($ids: [ID!]!) {
+  deleteRepos(ids: $ids) {
+    id
+    state
+  }
+}

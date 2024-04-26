@@ -1,0 +1,6 @@
+mutation DeleteRepo($id: ID!) {
+  deleteRepo(id: $id) {
+    id
+    state
+  }
+}

@@ -1,0 +1,6 @@
+mutation UpdatePlace($place: PlaceUpdateInput!) {
+  updatePlace(place: $place) {
+    id
+    name
+  }
+}

@@ -1,0 +1,6 @@
+mutation DeleteSoftware($id: ID!) {
+  deleteSoftware(id: $id) {
+    id
+    state
+  }
+}

@@ -1,0 +1,15 @@
+query GetProduct($id: ID!) {
+  product(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    manufacturer
+    model
+    brand
+    upc
+    sku
+    releaseDate
+    productionDate
+  }
+}

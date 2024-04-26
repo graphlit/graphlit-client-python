@@ -1,0 +1,6 @@
+mutation DeleteOrganization($id: ID!) {
+  deleteOrganization(id: $id) {
+    id
+    state
+  }
+}

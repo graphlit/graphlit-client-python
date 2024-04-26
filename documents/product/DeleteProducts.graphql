@@ -1,0 +1,6 @@
+mutation DeleteProducts($ids: [ID!]!) {
+  deleteProducts(ids: $ids) {
+    id
+    state
+  }
+}

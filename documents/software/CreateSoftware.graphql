@@ -1,0 +1,6 @@
+mutation CreateSoftware($software: SoftwareInput!) {
+  createSoftware(software: $software) {
+    id
+    name
+  }
+}

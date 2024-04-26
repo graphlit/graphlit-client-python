@@ -1,0 +1,6 @@
+mutation DeletePersons($ids: [ID!]!) {
+  deletePersons(ids: $ids) {
+    id
+    state
+  }
+}

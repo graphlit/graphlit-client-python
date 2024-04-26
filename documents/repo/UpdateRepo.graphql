@@ -1,0 +1,6 @@
+mutation UpdateRepo($repo: RepoUpdateInput!) {
+  updateRepo(repo: $repo) {
+    id
+    name
+  }
+}

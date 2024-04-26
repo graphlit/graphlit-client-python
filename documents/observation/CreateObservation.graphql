@@ -1,0 +1,6 @@
+mutation CreateObservation($observation: ObservationInput!) {
+  createObservation(observation: $observation) {
+    id
+    state
+  }
+}

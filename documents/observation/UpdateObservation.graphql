@@ -1,0 +1,6 @@
+mutation UpdateObservation($observation: ObservationUpdateInput!) {
+  updateObservation(observation: $observation) {
+    id
+    state
+  }
+}

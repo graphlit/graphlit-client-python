@@ -1,0 +1,6 @@
+mutation DeletePlace($id: ID!) {
+  deletePlace(id: $id) {
+    id
+    state
+  }
+}

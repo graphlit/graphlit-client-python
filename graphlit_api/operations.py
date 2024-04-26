@@ -6,9 +6,19 @@ __all__ = [
     "CLEAR_CONVERSATION_GQL",
     "CLOSE_CONVERSATION_GQL",
     "CREATE_ALERT_GQL",
+    "CREATE_CATEGORY_GQL",
     "CREATE_COLLECTION_GQL",
     "CREATE_CONVERSATION_GQL",
+    "CREATE_EVENT_GQL",
     "CREATE_FEED_GQL",
+    "CREATE_LABEL_GQL",
+    "CREATE_OBSERVATION_GQL",
+    "CREATE_ORGANIZATION_GQL",
+    "CREATE_PERSON_GQL",
+    "CREATE_PLACE_GQL",
+    "CREATE_PRODUCT_GQL",
+    "CREATE_REPO_GQL",
+    "CREATE_SOFTWARE_GQL",
     "CREATE_SPECIFICATION_GQL",
     "CREATE_WORKFLOW_GQL",
     "CREDITS_GQL",
@@ -20,14 +30,33 @@ __all__ = [
     "DELETE_ALL_CONVERSATIONS_GQL",
     "DELETE_ALL_FEEDS_GQL",
     "DELETE_ALL_WORKFLOWS_GQL",
+    "DELETE_CATEGORIES_GQL",
+    "DELETE_CATEGORY_GQL",
     "DELETE_COLLECTIONS_GQL",
     "DELETE_COLLECTION_GQL",
     "DELETE_CONTENTS_GQL",
     "DELETE_CONTENT_GQL",
     "DELETE_CONVERSATIONS_GQL",
     "DELETE_CONVERSATION_GQL",
+    "DELETE_EVENTS_GQL",
+    "DELETE_EVENT_GQL",
     "DELETE_FEEDS_GQL",
     "DELETE_FEED_GQL",
+    "DELETE_LABELS_GQL",
+    "DELETE_LABEL_GQL",
+    "DELETE_OBSERVATION_GQL",
+    "DELETE_ORGANIZATIONS_GQL",
+    "DELETE_ORGANIZATION_GQL",
+    "DELETE_PERSONS_GQL",
+    "DELETE_PERSON_GQL",
+    "DELETE_PLACES_GQL",
+    "DELETE_PLACE_GQL",
+    "DELETE_PRODUCTS_GQL",
+    "DELETE_PRODUCT_GQL",
+    "DELETE_REPOS_GQL",
+    "DELETE_REPO_GQL",
+    "DELETE_SOFTWARES_GQL",
+    "DELETE_SOFTWARE_GQL",
     "DELETE_SPECIFICATION_GQL",
     "DELETE_WORKFLOWS_GQL",
     "DELETE_WORKFLOW_GQL",
@@ -37,11 +66,20 @@ __all__ = [
     "ENABLE_FEED_GQL",
     "EXTRACT_CONTENTS_GQL",
     "GET_ALERT_GQL",
+    "GET_CATEGORY_GQL",
     "GET_COLLECTION_GQL",
     "GET_CONTENT_GQL",
     "GET_CONVERSATION_GQL",
+    "GET_EVENT_GQL",
     "GET_FEED_GQL",
+    "GET_LABEL_GQL",
+    "GET_ORGANIZATION_GQL",
+    "GET_PERSON_GQL",
+    "GET_PLACE_GQL",
+    "GET_PRODUCT_GQL",
     "GET_PROJECT_GQL",
+    "GET_REPO_GQL",
+    "GET_SOFTWARE_GQL",
     "GET_SPECIFICATION_GQL",
     "GET_WORKFLOW_GQL",
     "INGEST_ENCODED_FILE_GQL",
@@ -57,22 +95,41 @@ __all__ = [
     "PUBLISH_CONVERSATION_GQL",
     "PUBLISH_TEXT_GQL",
     "QUERY_ALERTS_GQL",
+    "QUERY_CATEGORIES_GQL",
     "QUERY_COLLECTIONS_GQL",
     "QUERY_CONTENTS_GQL",
     "QUERY_CONTENT_FACETS_GQL",
     "QUERY_CONVERSATIONS_GQL",
+    "QUERY_EVENTS_GQL",
     "QUERY_FEEDS_GQL",
+    "QUERY_LABELS_GQL",
+    "QUERY_ORGANIZATIONS_GQL",
+    "QUERY_PERSONS_GQL",
+    "QUERY_PLACES_GQL",
+    "QUERY_PRODUCTS_GQL",
+    "QUERY_REPOS_GQL",
+    "QUERY_SOFTWARE_GQL",
     "QUERY_SPECIFICATIONS_GQL",
     "QUERY_WORKFLOWS_GQL",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
     "SUGGEST_CONVERSATION_GQL",
     "SUMMARIZE_CONTENTS_GQL",
     "UPDATE_ALERT_GQL",
+    "UPDATE_CATEGORY_GQL",
     "UPDATE_COLLECTION_GQL",
     "UPDATE_CONTENT_GQL",
     "UPDATE_CONVERSATION_GQL",
+    "UPDATE_EVENT_GQL",
     "UPDATE_FEED_GQL",
+    "UPDATE_LABEL_GQL",
+    "UPDATE_OBSERVATION_GQL",
+    "UPDATE_ORGANIZATION_GQL",
+    "UPDATE_PERSON_GQL",
+    "UPDATE_PLACE_GQL",
+    "UPDATE_PRODUCT_GQL",
     "UPDATE_PROJECT_GQL",
+    "UPDATE_REPO_GQL",
+    "UPDATE_SOFTWARE_GQL",
     "UPDATE_SPECIFICATION_GQL",
     "UPDATE_WORKFLOW_GQL",
     "USAGE_GQL",
@@ -285,6 +342,62 @@ mutation UpdateAlert($alert: AlertUpdateInput!) {
     name
     state
     type
+  }
+}
+"""
+
+CREATE_CATEGORY_GQL = """
+mutation CreateCategory($category: CategoryInput!) {
+  createCategory(category: $category) {
+    id
+    name
+  }
+}
+"""
+
+DELETE_CATEGORIES_GQL = """
+mutation DeleteCategories($ids: [ID!]!) {
+  deleteCategories(ids: $ids) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_CATEGORY_GQL = """
+mutation DeleteCategory($id: ID!) {
+  deleteCategory(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+GET_CATEGORY_GQL = """
+query GetCategory($id: ID!) {
+  category(id: $id) {
+    id
+    name
+  }
+}
+"""
+
+QUERY_CATEGORIES_GQL = """
+query QueryCategories($filter: CategoryFilter!) {
+  categories(filter: $filter) {
+    results {
+      id
+      name
+    }
+  }
+}
+"""
+
+UPDATE_CATEGORY_GQL = """
+mutation UpdateCategory($category: CategoryUpdateInput!) {
+  updateCategory(category: $category) {
+    id
+    name
   }
 }
 """
@@ -1301,6 +1414,72 @@ mutation UpdateConversation($conversation: ConversationUpdateInput!) {
 }
 """
 
+CREATE_EVENT_GQL = """
+mutation CreateEvent($event: EventInput!) {
+  createEvent(event: $event) {
+    id
+    name
+  }
+}
+"""
+
+DELETE_EVENT_GQL = """
+mutation DeleteEvent($id: ID!) {
+  deleteEvent(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_EVENTS_GQL = """
+mutation DeleteEvents($ids: [ID!]!) {
+  deleteEvents(ids: $ids) {
+    id
+    state
+  }
+}
+"""
+
+GET_EVENT_GQL = """
+query GetEvent($id: ID!) {
+  event(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    startDate
+    endDate
+    price
+  }
+}
+"""
+
+QUERY_EVENTS_GQL = """
+query QueryEvents($filter: EventFilter!) {
+  events(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      startDate
+      endDate
+      price
+    }
+  }
+}
+"""
+
+UPDATE_EVENT_GQL = """
+mutation UpdateEvent($event: EventUpdateInput!) {
+  updateEvent(event: $event) {
+    id
+    name
+  }
+}
+"""
+
 CREATE_FEED_GQL = """
 mutation CreateFeed($feed: FeedInput!, $correlationId: String) {
   createFeed(feed: $feed, correlationId: $correlationId) {
@@ -1672,6 +1851,373 @@ mutation UpdateFeed($feed: FeedUpdateInput!) {
 }
 """
 
+CREATE_LABEL_GQL = """
+mutation CreateLabel($label: LabelInput!) {
+  createLabel(label: $label) {
+    id
+    name
+  }
+}
+"""
+
+DELETE_LABEL_GQL = """
+mutation DeleteLabel($id: ID!) {
+  deleteLabel(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_LABELS_GQL = """
+mutation DeleteLabels($ids: [ID!]!) {
+  deleteLabels(ids: $ids) {
+    id
+    state
+  }
+}
+"""
+
+GET_LABEL_GQL = """
+query GetLabel($id: ID!) {
+  label(id: $id) {
+    id
+    name
+  }
+}
+"""
+
+QUERY_LABELS_GQL = """
+query QueryLabels($filter: LabelFilter!) {
+  labels(filter: $filter) {
+    results {
+      id
+      name
+    }
+  }
+}
+"""
+
+UPDATE_LABEL_GQL = """
+mutation UpdateLabel($label: LabelUpdateInput!) {
+  updateLabel(label: $label) {
+    id
+    name
+  }
+}
+"""
+
+CREATE_OBSERVATION_GQL = """
+mutation CreateObservation($observation: ObservationInput!) {
+  createObservation(observation: $observation) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_OBSERVATION_GQL = """
+mutation DeleteObservation($id: ID!) {
+  deleteObservation(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+UPDATE_OBSERVATION_GQL = """
+mutation UpdateObservation($observation: ObservationUpdateInput!) {
+  updateObservation(observation: $observation) {
+    id
+    state
+  }
+}
+"""
+
+CREATE_ORGANIZATION_GQL = """
+mutation CreateOrganization($organization: OrganizationInput!) {
+  createOrganization(organization: $organization) {
+    id
+    name
+    foundingDate
+    industries
+    revenue
+    revenueCurrency
+    investment
+    investmentCurrency
+  }
+}
+"""
+
+DELETE_ORGANIZATION_GQL = """
+mutation DeleteOrganization($id: ID!) {
+  deleteOrganization(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_ORGANIZATIONS_GQL = """
+mutation DeleteOrganizations($ids: [ID!]!) {
+  deleteOrganizations(ids: $ids) {
+    id
+    state
+  }
+}
+"""
+
+GET_ORGANIZATION_GQL = """
+query GetOrganization($id: ID!) {
+  organization(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    foundingDate
+    industries
+    revenue
+    revenueCurrency
+    investment
+    investmentCurrency
+  }
+}
+"""
+
+QUERY_ORGANIZATIONS_GQL = """
+query QueryOrganizations($filter: OrganizationFilter!) {
+  organizations(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      foundingDate
+      industries
+      revenue
+      revenueCurrency
+      investment
+      investmentCurrency
+    }
+  }
+}
+"""
+
+UPDATE_ORGANIZATION_GQL = """
+mutation UpdateOrganization($organization: OrganizationUpdateInput!) {
+  updateOrganization(organization: $organization) {
+    id
+    name
+    foundingDate
+    industries
+    revenue
+    revenueCurrency
+    investment
+    investmentCurrency
+  }
+}
+"""
+
+CREATE_PERSON_GQL = """
+mutation CreatePerson($person: PersonInput!) {
+  createPerson(person: $person) {
+    id
+    name
+  }
+}
+"""
+
+DELETE_PERSON_GQL = """
+mutation DeletePerson($id: ID!) {
+  deletePerson(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_PERSONS_GQL = """
+mutation DeletePersons($ids: [ID!]!) {
+  deletePersons(ids: $ids) {
+    id
+    state
+  }
+}
+"""
+
+GET_PERSON_GQL = """
+query GetPerson($id: ID!) {
+  person(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    email
+    givenName
+    familyName
+  }
+}
+"""
+
+QUERY_PERSONS_GQL = """
+query QueryPersons($filter: PersonFilter!) {
+  persons(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      email
+      givenName
+      familyName
+    }
+  }
+}
+"""
+
+UPDATE_PERSON_GQL = """
+mutation UpdatePerson($person: PersonUpdateInput!) {
+  updatePerson(person: $person) {
+    id
+    name
+  }
+}
+"""
+
+CREATE_PLACE_GQL = """
+mutation CreatePlace($place: PlaceInput!) {
+  createPlace(place: $place) {
+    id
+    name
+  }
+}
+"""
+
+DELETE_PLACE_GQL = """
+mutation DeletePlace($id: ID!) {
+  deletePlace(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_PLACES_GQL = """
+mutation DeletePlaces($ids: [ID!]!) {
+  deletePlaces(ids: $ids) {
+    id
+    state
+  }
+}
+"""
+
+GET_PLACE_GQL = """
+query GetPlace($id: ID!) {
+  place(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+  }
+}
+"""
+
+QUERY_PLACES_GQL = """
+query QueryPlaces($filter: PlaceFilter!) {
+  places(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+    }
+  }
+}
+"""
+
+UPDATE_PLACE_GQL = """
+mutation UpdatePlace($place: PlaceUpdateInput!) {
+  updatePlace(place: $place) {
+    id
+    name
+  }
+}
+"""
+
+CREATE_PRODUCT_GQL = """
+mutation CreateProduct($product: ProductInput!) {
+  createProduct(product: $product) {
+    id
+    name
+  }
+}
+"""
+
+DELETE_PRODUCT_GQL = """
+mutation DeleteProduct($id: ID!) {
+  deleteProduct(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_PRODUCTS_GQL = """
+mutation DeleteProducts($ids: [ID!]!) {
+  deleteProducts(ids: $ids) {
+    id
+    state
+  }
+}
+"""
+
+GET_PRODUCT_GQL = """
+query GetProduct($id: ID!) {
+  product(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    manufacturer
+    model
+    brand
+    upc
+    sku
+    releaseDate
+    productionDate
+  }
+}
+"""
+
+QUERY_PRODUCTS_GQL = """
+query QueryProducts($filter: ProductFilter!) {
+  products(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      manufacturer
+      model
+      brand
+      upc
+      sku
+      releaseDate
+      productionDate
+    }
+  }
+}
+"""
+
+UPDATE_PRODUCT_GQL = """
+mutation UpdateProduct($product: ProductUpdateInput!) {
+  updateProduct(product: $product) {
+    id
+    name
+  }
+}
+"""
+
 CREDITS_GQL = """
 query Credits($startDate: DateTime!, $duration: TimeSpan!) {
   credits(startDate: $startDate, duration: $duration) {
@@ -1812,6 +2358,130 @@ query Usage($startDate: DateTime!, $duration: TimeSpan!) {
     request
     variables
     response
+  }
+}
+"""
+
+CREATE_REPO_GQL = """
+mutation CreateRepo($repo: RepoInput!) {
+  createRepo(repo: $repo) {
+    id
+    name
+  }
+}
+"""
+
+DELETE_REPO_GQL = """
+mutation DeleteRepo($id: ID!) {
+  deleteRepo(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_REPOS_GQL = """
+mutation DeleteRepos($ids: [ID!]!) {
+  deleteRepos(ids: $ids) {
+    id
+    state
+  }
+}
+"""
+
+GET_REPO_GQL = """
+query GetRepo($id: ID!) {
+  repo(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+  }
+}
+"""
+
+QUERY_REPOS_GQL = """
+query QueryRepos($filter: RepoFilter!) {
+  repos(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+    }
+  }
+}
+"""
+
+UPDATE_REPO_GQL = """
+mutation UpdateRepo($repo: RepoUpdateInput!) {
+  updateRepo(repo: $repo) {
+    id
+    name
+  }
+}
+"""
+
+CREATE_SOFTWARE_GQL = """
+mutation CreateSoftware($software: SoftwareInput!) {
+  createSoftware(software: $software) {
+    id
+    name
+  }
+}
+"""
+
+DELETE_SOFTWARE_GQL = """
+mutation DeleteSoftware($id: ID!) {
+  deleteSoftware(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_SOFTWARES_GQL = """
+mutation DeleteSoftwares($ids: [ID!]!) {
+  deleteSoftwares(ids: $ids) {
+    id
+    state
+  }
+}
+"""
+
+GET_SOFTWARE_GQL = """
+query GetSoftware($id: ID!) {
+  software(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    releaseDate
+    developer
+  }
+}
+"""
+
+QUERY_SOFTWARE_GQL = """
+query QuerySoftware($filter: SoftwareFilter!) {
+  softwares(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      releaseDate
+      developer
+    }
+  }
+}
+"""
+
+UPDATE_SOFTWARE_GQL = """
+mutation UpdateSoftware($software: SoftwareUpdateInput!) {
+  updateSoftware(software: $software) {
+    id
+    name
   }
 }
 """

@@ -1,0 +1,6 @@
+mutation DeleteObservation($id: ID!) {
+  deleteObservation(id: $id) {
+    id
+    state
+  }
+}

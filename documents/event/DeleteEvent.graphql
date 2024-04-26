@@ -1,0 +1,6 @@
+mutation DeleteEvent($id: ID!) {
+  deleteEvent(id: $id) {
+    id
+    state
+  }
+}

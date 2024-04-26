@@ -1,0 +1,6 @@
+query GetLabel($id: ID!) {
+  label(id: $id) {
+    id
+    name
+  }
+}

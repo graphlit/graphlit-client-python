@@ -1,0 +1,11 @@
+query GetEvent($id: ID!) {
+  event(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    startDate
+    endDate
+    price
+  }
+}

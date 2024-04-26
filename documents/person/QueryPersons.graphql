@@ -1,0 +1,13 @@
+query QueryPersons($filter: PersonFilter!) {
+  persons(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      email
+      givenName
+      familyName
+    }
+  }
+}
