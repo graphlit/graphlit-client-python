@@ -3,6 +3,8 @@ query QueryLabels($filter: LabelFilter!) {
     results {
       id
       name
+      description
+      creationDate
     }
   }
 }

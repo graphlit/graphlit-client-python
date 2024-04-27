@@ -4,8 +4,22 @@ query GetEvent($id: ID!) {
     name
     alternateNames
     creationDate
+    address {
+      streetAddress
+      city
+      region
+      country
+      postalCode
+    }
     startDate
     endDate
+    availabilityStartDate
+    availabilityEndDate
     price
+    minPrice
+    maxPrice
+    priceCurrency
+    isAccessibleForFree
+    typicalAgeRange
   }
 }

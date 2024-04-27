@@ -21,10 +21,25 @@ class QueryPersonsPersonsResults(BaseModel):
     name: str
     alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     creation_date: Any = Field(alias="creationDate")
+    address: Optional["QueryPersonsPersonsResultsAddress"]
     email: Optional[str]
     given_name: Optional[str] = Field(alias="givenName")
     family_name: Optional[str] = Field(alias="familyName")
+    phone_number: Optional[str] = Field(alias="phoneNumber")
+    birth_date: Optional[Any] = Field(alias="birthDate")
+    title: Optional[str]
+    occupation: Optional[str]
+    education: Optional[str]
+
+
+class QueryPersonsPersonsResultsAddress(BaseModel):
+    street_address: Optional[str] = Field(alias="streetAddress")
+    city: Optional[str]
+    region: Optional[str]
+    country: Optional[str]
+    postal_code: Optional[str] = Field(alias="postalCode")
 
 
 QueryPersons.model_rebuild()
 QueryPersonsPersons.model_rebuild()
+QueryPersonsPersonsResults.model_rebuild()

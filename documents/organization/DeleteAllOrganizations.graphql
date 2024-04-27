@@ -1,0 +1,6 @@
+mutation DeleteAllOrganizations($filter: OrganizationFilter!) {
+  deleteAllOrganizations(filter: $filter) {
+    id
+    state
+  }
+}

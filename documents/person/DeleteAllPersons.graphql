@@ -1,0 +1,6 @@
+mutation DeleteAllPersons($filter: PersonFilter!) {
+  deleteAllPersons(filter: $filter) {
+    id
+    state
+  }
+}

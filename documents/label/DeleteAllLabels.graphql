@@ -1,0 +1,6 @@
+mutation DeleteAllLabels($filter: LabelFilter!) {
+  deleteAllLabels(filter: $filter) {
+    id
+    state
+  }
+}

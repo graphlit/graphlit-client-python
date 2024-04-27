@@ -21,6 +21,7 @@ class QueryProductsProductsResults(BaseModel):
     name: str
     alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     creation_date: Any = Field(alias="creationDate")
+    address: Optional["QueryProductsProductsResultsAddress"]
     manufacturer: Optional[str]
     model: Optional[str]
     brand: Optional[str]
@@ -30,5 +31,14 @@ class QueryProductsProductsResults(BaseModel):
     production_date: Optional[Any] = Field(alias="productionDate")
 
 
+class QueryProductsProductsResultsAddress(BaseModel):
+    street_address: Optional[str] = Field(alias="streetAddress")
+    city: Optional[str]
+    region: Optional[str]
+    country: Optional[str]
+    postal_code: Optional[str] = Field(alias="postalCode")
+
+
 QueryProducts.model_rebuild()
 QueryProductsProducts.model_rebuild()
+QueryProductsProductsResults.model_rebuild()

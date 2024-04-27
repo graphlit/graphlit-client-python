@@ -4,5 +4,12 @@ query GetPlace($id: ID!) {
     name
     alternateNames
     creationDate
+    address {
+      streetAddress
+      city
+      region
+      country
+      postalCode
+    }
   }
 }

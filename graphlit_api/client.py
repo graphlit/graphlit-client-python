@@ -28,10 +28,19 @@ from .credits import Credits
 from .delete_alert import DeleteAlert
 from .delete_alerts import DeleteAlerts
 from .delete_all_alerts import DeleteAllAlerts
+from .delete_all_categories import DeleteAllCategories
 from .delete_all_collections import DeleteAllCollections
 from .delete_all_contents import DeleteAllContents
 from .delete_all_conversations import DeleteAllConversations
+from .delete_all_events import DeleteAllEvents
 from .delete_all_feeds import DeleteAllFeeds
+from .delete_all_labels import DeleteAllLabels
+from .delete_all_organizations import DeleteAllOrganizations
+from .delete_all_persons import DeleteAllPersons
+from .delete_all_places import DeleteAllPlaces
+from .delete_all_products import DeleteAllProducts
+from .delete_all_repos import DeleteAllRepos
+from .delete_all_softwares import DeleteAllSoftwares
 from .delete_all_workflows import DeleteAllWorkflows
 from .delete_categories import DeleteCategories
 from .delete_category import DeleteCategory
@@ -173,10 +182,19 @@ from .operations import (
     DELETE_ALERT_GQL,
     DELETE_ALERTS_GQL,
     DELETE_ALL_ALERTS_GQL,
+    DELETE_ALL_CATEGORIES_GQL,
     DELETE_ALL_COLLECTIONS_GQL,
     DELETE_ALL_CONTENTS_GQL,
     DELETE_ALL_CONVERSATIONS_GQL,
+    DELETE_ALL_EVENTS_GQL,
     DELETE_ALL_FEEDS_GQL,
+    DELETE_ALL_LABELS_GQL,
+    DELETE_ALL_ORGANIZATIONS_GQL,
+    DELETE_ALL_PERSONS_GQL,
+    DELETE_ALL_PLACES_GQL,
+    DELETE_ALL_PRODUCTS_GQL,
+    DELETE_ALL_REPOS_GQL,
+    DELETE_ALL_SOFTWARES_GQL,
     DELETE_ALL_WORKFLOWS_GQL,
     DELETE_CATEGORIES_GQL,
     DELETE_CATEGORY_GQL,
@@ -256,7 +274,7 @@ from .operations import (
     QUERY_PLACES_GQL,
     QUERY_PRODUCTS_GQL,
     QUERY_REPOS_GQL,
-    QUERY_SOFTWARE_GQL,
+    QUERY_SOFTWARES_GQL,
     QUERY_SPECIFICATIONS_GQL,
     QUERY_WORKFLOWS_GQL,
     REMOVE_CONTENTS_FROM_COLLECTION_GQL,
@@ -301,7 +319,7 @@ from .query_persons import QueryPersons
 from .query_places import QueryPlaces
 from .query_products import QueryProducts
 from .query_repos import QueryRepos
-from .query_software import QuerySoftware
+from .query_softwares import QuerySoftwares
 from .query_specifications import QuerySpecifications
 from .query_workflows import QueryWorkflows
 from .remove_contents_from_collection import RemoveContentsFromCollection
@@ -451,6 +469,19 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return CreateCategory.model_validate(data)
+
+    async def delete_all_categories(
+        self, filter: CategoryFilter, **kwargs: Any
+    ) -> DeleteAllCategories:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=DELETE_ALL_CATEGORIES_GQL,
+            operation_name="DeleteAllCategories",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllCategories.model_validate(data)
 
     async def delete_categories(
         self, ids: List[str], **kwargs: Any
@@ -1126,6 +1157,19 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return CreateEvent.model_validate(data)
 
+    async def delete_all_events(
+        self, filter: EventFilter, **kwargs: Any
+    ) -> DeleteAllEvents:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=DELETE_ALL_EVENTS_GQL,
+            operation_name="DeleteAllEvents",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllEvents.model_validate(data)
+
     async def delete_event(self, id: str, **kwargs: Any) -> DeleteEvent:
         variables: Dict[str, object] = {"id": id}
         response = await self.execute(
@@ -1306,6 +1350,19 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return CreateLabel.model_validate(data)
 
+    async def delete_all_labels(
+        self, filter: LabelFilter, **kwargs: Any
+    ) -> DeleteAllLabels:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=DELETE_ALL_LABELS_GQL,
+            operation_name="DeleteAllLabels",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllLabels.model_validate(data)
+
     async def delete_label(self, id: str, **kwargs: Any) -> DeleteLabel:
         variables: Dict[str, object] = {"id": id}
         response = await self.execute(
@@ -1411,6 +1468,19 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return CreateOrganization.model_validate(data)
 
+    async def delete_all_organizations(
+        self, filter: OrganizationFilter, **kwargs: Any
+    ) -> DeleteAllOrganizations:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=DELETE_ALL_ORGANIZATIONS_GQL,
+            operation_name="DeleteAllOrganizations",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllOrganizations.model_validate(data)
+
     async def delete_organization(self, id: str, **kwargs: Any) -> DeleteOrganization:
         variables: Dict[str, object] = {"id": id}
         response = await self.execute(
@@ -1483,6 +1553,19 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return CreatePerson.model_validate(data)
 
+    async def delete_all_persons(
+        self, filter: PersonFilter, **kwargs: Any
+    ) -> DeleteAllPersons:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=DELETE_ALL_PERSONS_GQL,
+            operation_name="DeleteAllPersons",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllPersons.model_validate(data)
+
     async def delete_person(self, id: str, **kwargs: Any) -> DeletePerson:
         variables: Dict[str, object] = {"id": id}
         response = await self.execute(
@@ -1551,6 +1634,19 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return CreatePlace.model_validate(data)
 
+    async def delete_all_places(
+        self, filter: PlaceFilter, **kwargs: Any
+    ) -> DeleteAllPlaces:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=DELETE_ALL_PLACES_GQL,
+            operation_name="DeleteAllPlaces",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllPlaces.model_validate(data)
+
     async def delete_place(self, id: str, **kwargs: Any) -> DeletePlace:
         variables: Dict[str, object] = {"id": id}
         response = await self.execute(
@@ -1618,6 +1714,19 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return CreateProduct.model_validate(data)
+
+    async def delete_all_products(
+        self, filter: ProductFilter, **kwargs: Any
+    ) -> DeleteAllProducts:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=DELETE_ALL_PRODUCTS_GQL,
+            operation_name="DeleteAllProducts",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllProducts.model_validate(data)
 
     async def delete_product(self, id: str, **kwargs: Any) -> DeleteProduct:
         variables: Dict[str, object] = {"id": id}
@@ -1751,6 +1860,19 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return CreateRepo.model_validate(data)
 
+    async def delete_all_repos(
+        self, filter: RepoFilter, **kwargs: Any
+    ) -> DeleteAllRepos:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=DELETE_ALL_REPOS_GQL,
+            operation_name="DeleteAllRepos",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllRepos.model_validate(data)
+
     async def delete_repo(self, id: str, **kwargs: Any) -> DeleteRepo:
         variables: Dict[str, object] = {"id": id}
         response = await self.execute(
@@ -1816,6 +1938,19 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return CreateSoftware.model_validate(data)
 
+    async def delete_all_softwares(
+        self, filter: SoftwareFilter, **kwargs: Any
+    ) -> DeleteAllSoftwares:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=DELETE_ALL_SOFTWARES_GQL,
+            operation_name="DeleteAllSoftwares",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllSoftwares.model_validate(data)
+
     async def delete_software(self, id: str, **kwargs: Any) -> DeleteSoftware:
         variables: Dict[str, object] = {"id": id}
         response = await self.execute(
@@ -1849,18 +1984,18 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return GetSoftware.model_validate(data)
 
-    async def query_software(
+    async def query_softwares(
         self, filter: SoftwareFilter, **kwargs: Any
-    ) -> QuerySoftware:
+    ) -> QuerySoftwares:
         variables: Dict[str, object] = {"filter": filter}
         response = await self.execute(
-            query=QUERY_SOFTWARE_GQL,
-            operation_name="QuerySoftware",
+            query=QUERY_SOFTWARES_GQL,
+            operation_name="QuerySoftwares",
             variables=variables,
             **kwargs
         )
         data = self.get_data(response)
-        return QuerySoftware.model_validate(data)
+        return QuerySoftwares.model_validate(data)
 
     async def update_software(
         self, software: SoftwareUpdateInput, **kwargs: Any

@@ -1,0 +1,6 @@
+mutation DeleteAllCategories($filter: CategoryFilter!) {
+  deleteAllCategories(filter: $filter) {
+    id
+    state
+  }
+}

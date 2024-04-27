@@ -1,0 +1,6 @@
+mutation DeleteAllProducts($filter: ProductFilter!) {
+  deleteAllProducts(filter: $filter) {
+    id
+    state
+  }
+}

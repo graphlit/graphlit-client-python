@@ -25,10 +25,19 @@ __all__ = [
     "DELETE_ALERTS_GQL",
     "DELETE_ALERT_GQL",
     "DELETE_ALL_ALERTS_GQL",
+    "DELETE_ALL_CATEGORIES_GQL",
     "DELETE_ALL_COLLECTIONS_GQL",
     "DELETE_ALL_CONTENTS_GQL",
     "DELETE_ALL_CONVERSATIONS_GQL",
+    "DELETE_ALL_EVENTS_GQL",
     "DELETE_ALL_FEEDS_GQL",
+    "DELETE_ALL_LABELS_GQL",
+    "DELETE_ALL_ORGANIZATIONS_GQL",
+    "DELETE_ALL_PERSONS_GQL",
+    "DELETE_ALL_PLACES_GQL",
+    "DELETE_ALL_PRODUCTS_GQL",
+    "DELETE_ALL_REPOS_GQL",
+    "DELETE_ALL_SOFTWARES_GQL",
     "DELETE_ALL_WORKFLOWS_GQL",
     "DELETE_CATEGORIES_GQL",
     "DELETE_CATEGORY_GQL",
@@ -108,7 +117,7 @@ __all__ = [
     "QUERY_PLACES_GQL",
     "QUERY_PRODUCTS_GQL",
     "QUERY_REPOS_GQL",
-    "QUERY_SOFTWARE_GQL",
+    "QUERY_SOFTWARES_GQL",
     "QUERY_SPECIFICATIONS_GQL",
     "QUERY_WORKFLOWS_GQL",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
@@ -355,6 +364,15 @@ mutation CreateCategory($category: CategoryInput!) {
 }
 """
 
+DELETE_ALL_CATEGORIES_GQL = """
+mutation DeleteAllCategories($filter: CategoryFilter!) {
+  deleteAllCategories(filter: $filter) {
+    id
+    state
+  }
+}
+"""
+
 DELETE_CATEGORIES_GQL = """
 mutation DeleteCategories($ids: [ID!]!) {
   deleteCategories(ids: $ids) {
@@ -378,6 +396,8 @@ query GetCategory($id: ID!) {
   category(id: $id) {
     id
     name
+    description
+    creationDate
   }
 }
 """
@@ -388,6 +408,8 @@ query QueryCategories($filter: CategoryFilter!) {
     results {
       id
       name
+      description
+      creationDate
     }
   }
 }
@@ -1423,6 +1445,15 @@ mutation CreateEvent($event: EventInput!) {
 }
 """
 
+DELETE_ALL_EVENTS_GQL = """
+mutation DeleteAllEvents($filter: EventFilter!) {
+  deleteAllEvents(filter: $filter) {
+    id
+    state
+  }
+}
+"""
+
 DELETE_EVENT_GQL = """
 mutation DeleteEvent($id: ID!) {
   deleteEvent(id: $id) {
@@ -1448,9 +1479,23 @@ query GetEvent($id: ID!) {
     name
     alternateNames
     creationDate
+    address {
+      streetAddress
+      city
+      region
+      country
+      postalCode
+    }
     startDate
     endDate
+    availabilityStartDate
+    availabilityEndDate
     price
+    minPrice
+    maxPrice
+    priceCurrency
+    isAccessibleForFree
+    typicalAgeRange
   }
 }
 """
@@ -1463,9 +1508,23 @@ query QueryEvents($filter: EventFilter!) {
       name
       alternateNames
       creationDate
+      address {
+        streetAddress
+        city
+        region
+        country
+        postalCode
+      }
       startDate
       endDate
+      availabilityStartDate
+      availabilityEndDate
       price
+      minPrice
+      maxPrice
+      priceCurrency
+      isAccessibleForFree
+      typicalAgeRange
     }
   }
 }
@@ -1860,6 +1919,15 @@ mutation CreateLabel($label: LabelInput!) {
 }
 """
 
+DELETE_ALL_LABELS_GQL = """
+mutation DeleteAllLabels($filter: LabelFilter!) {
+  deleteAllLabels(filter: $filter) {
+    id
+    state
+  }
+}
+"""
+
 DELETE_LABEL_GQL = """
 mutation DeleteLabel($id: ID!) {
   deleteLabel(id: $id) {
@@ -1883,6 +1951,8 @@ query GetLabel($id: ID!) {
   label(id: $id) {
     id
     name
+    description
+    creationDate
   }
 }
 """
@@ -1893,6 +1963,8 @@ query QueryLabels($filter: LabelFilter!) {
     results {
       id
       name
+      description
+      creationDate
     }
   }
 }
@@ -1939,12 +2011,15 @@ mutation CreateOrganization($organization: OrganizationInput!) {
   createOrganization(organization: $organization) {
     id
     name
-    foundingDate
-    industries
-    revenue
-    revenueCurrency
-    investment
-    investmentCurrency
+  }
+}
+"""
+
+DELETE_ALL_ORGANIZATIONS_GQL = """
+mutation DeleteAllOrganizations($filter: OrganizationFilter!) {
+  deleteAllOrganizations(filter: $filter) {
+    id
+    state
   }
 }
 """
@@ -1974,6 +2049,13 @@ query GetOrganization($id: ID!) {
     name
     alternateNames
     creationDate
+    address {
+      streetAddress
+      city
+      region
+      country
+      postalCode
+    }
     foundingDate
     industries
     revenue
@@ -1992,6 +2074,13 @@ query QueryOrganizations($filter: OrganizationFilter!) {
       name
       alternateNames
       creationDate
+      address {
+        streetAddress
+        city
+        region
+        country
+        postalCode
+      }
       foundingDate
       industries
       revenue
@@ -2008,12 +2097,6 @@ mutation UpdateOrganization($organization: OrganizationUpdateInput!) {
   updateOrganization(organization: $organization) {
     id
     name
-    foundingDate
-    industries
-    revenue
-    revenueCurrency
-    investment
-    investmentCurrency
   }
 }
 """
@@ -2023,6 +2106,15 @@ mutation CreatePerson($person: PersonInput!) {
   createPerson(person: $person) {
     id
     name
+  }
+}
+"""
+
+DELETE_ALL_PERSONS_GQL = """
+mutation DeleteAllPersons($filter: PersonFilter!) {
+  deleteAllPersons(filter: $filter) {
+    id
+    state
   }
 }
 """
@@ -2052,9 +2144,21 @@ query GetPerson($id: ID!) {
     name
     alternateNames
     creationDate
+    address {
+      streetAddress
+      city
+      region
+      country
+      postalCode
+    }
     email
     givenName
     familyName
+    phoneNumber
+    birthDate
+    title
+    occupation
+    education
   }
 }
 """
@@ -2067,9 +2171,21 @@ query QueryPersons($filter: PersonFilter!) {
       name
       alternateNames
       creationDate
+      address {
+        streetAddress
+        city
+        region
+        country
+        postalCode
+      }
       email
       givenName
       familyName
+      phoneNumber
+      birthDate
+      title
+      occupation
+      education
     }
   }
 }
@@ -2089,6 +2205,15 @@ mutation CreatePlace($place: PlaceInput!) {
   createPlace(place: $place) {
     id
     name
+  }
+}
+"""
+
+DELETE_ALL_PLACES_GQL = """
+mutation DeleteAllPlaces($filter: PlaceFilter!) {
+  deleteAllPlaces(filter: $filter) {
+    id
+    state
   }
 }
 """
@@ -2118,6 +2243,13 @@ query GetPlace($id: ID!) {
     name
     alternateNames
     creationDate
+    address {
+      streetAddress
+      city
+      region
+      country
+      postalCode
+    }
   }
 }
 """
@@ -2130,6 +2262,13 @@ query QueryPlaces($filter: PlaceFilter!) {
       name
       alternateNames
       creationDate
+      address {
+        streetAddress
+        city
+        region
+        country
+        postalCode
+      }
     }
   }
 }
@@ -2149,6 +2288,15 @@ mutation CreateProduct($product: ProductInput!) {
   createProduct(product: $product) {
     id
     name
+  }
+}
+"""
+
+DELETE_ALL_PRODUCTS_GQL = """
+mutation DeleteAllProducts($filter: ProductFilter!) {
+  deleteAllProducts(filter: $filter) {
+    id
+    state
   }
 }
 """
@@ -2178,6 +2326,13 @@ query GetProduct($id: ID!) {
     name
     alternateNames
     creationDate
+    address {
+      streetAddress
+      city
+      region
+      country
+      postalCode
+    }
     manufacturer
     model
     brand
@@ -2197,6 +2352,13 @@ query QueryProducts($filter: ProductFilter!) {
       name
       alternateNames
       creationDate
+      address {
+        streetAddress
+        city
+        region
+        country
+        postalCode
+      }
       manufacturer
       model
       brand
@@ -2371,6 +2533,15 @@ mutation CreateRepo($repo: RepoInput!) {
 }
 """
 
+DELETE_ALL_REPOS_GQL = """
+mutation DeleteAllRepos($filter: RepoFilter!) {
+  deleteAllRepos(filter: $filter) {
+    id
+    state
+  }
+}
+"""
+
 DELETE_REPO_GQL = """
 mutation DeleteRepo($id: ID!) {
   deleteRepo(id: $id) {
@@ -2431,6 +2602,15 @@ mutation CreateSoftware($software: SoftwareInput!) {
 }
 """
 
+DELETE_ALL_SOFTWARES_GQL = """
+mutation DeleteAllSoftwares($filter: SoftwareFilter!) {
+  deleteAllSoftwares(filter: $filter) {
+    id
+    state
+  }
+}
+"""
+
 DELETE_SOFTWARE_GQL = """
 mutation DeleteSoftware($id: ID!) {
   deleteSoftware(id: $id) {
@@ -2462,8 +2642,8 @@ query GetSoftware($id: ID!) {
 }
 """
 
-QUERY_SOFTWARE_GQL = """
-query QuerySoftware($filter: SoftwareFilter!) {
+QUERY_SOFTWARES_GQL = """
+query QuerySoftwares($filter: SoftwareFilter!) {
   softwares(filter: $filter) {
     results {
       id

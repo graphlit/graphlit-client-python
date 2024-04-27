@@ -5,6 +5,13 @@ query QueryOrganizations($filter: OrganizationFilter!) {
       name
       alternateNames
       creationDate
+      address {
+        streetAddress
+        city
+        region
+        country
+        postalCode
+      }
       foundingDate
       industries
       revenue

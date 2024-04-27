@@ -69,6 +69,10 @@ from .credits import Credits, CreditsCredits
 from .delete_alert import DeleteAlert, DeleteAlertDeleteAlert
 from .delete_alerts import DeleteAlerts, DeleteAlertsDeleteAlerts
 from .delete_all_alerts import DeleteAllAlerts, DeleteAllAlertsDeleteAllAlerts
+from .delete_all_categories import (
+    DeleteAllCategories,
+    DeleteAllCategoriesDeleteAllCategories,
+)
 from .delete_all_collections import (
     DeleteAllCollections,
     DeleteAllCollectionsDeleteAllCollections,
@@ -78,7 +82,21 @@ from .delete_all_conversations import (
     DeleteAllConversations,
     DeleteAllConversationsDeleteAllConversations,
 )
+from .delete_all_events import DeleteAllEvents, DeleteAllEventsDeleteAllEvents
 from .delete_all_feeds import DeleteAllFeeds, DeleteAllFeedsDeleteAllFeeds
+from .delete_all_labels import DeleteAllLabels, DeleteAllLabelsDeleteAllLabels
+from .delete_all_organizations import (
+    DeleteAllOrganizations,
+    DeleteAllOrganizationsDeleteAllOrganizations,
+)
+from .delete_all_persons import DeleteAllPersons, DeleteAllPersonsDeleteAllPersons
+from .delete_all_places import DeleteAllPlaces, DeleteAllPlacesDeleteAllPlaces
+from .delete_all_products import DeleteAllProducts, DeleteAllProductsDeleteAllProducts
+from .delete_all_repos import DeleteAllRepos, DeleteAllReposDeleteAllRepos
+from .delete_all_softwares import (
+    DeleteAllSoftwares,
+    DeleteAllSoftwaresDeleteAllSoftwares,
+)
 from .delete_all_workflows import (
     DeleteAllWorkflows,
     DeleteAllWorkflowsDeleteAllWorkflows,
@@ -296,7 +314,7 @@ from .get_conversation import (
     GetConversationConversationOwner,
     GetConversationConversationSpecification,
 )
-from .get_event import GetEvent, GetEventEvent
+from .get_event import GetEvent, GetEventEvent, GetEventEventAddress
 from .get_feed import (
     GetFeed,
     GetFeedFeed,
@@ -327,10 +345,14 @@ from .get_feed import (
     GetFeedFeedYoutube,
 )
 from .get_label import GetLabel, GetLabelLabel
-from .get_organization import GetOrganization, GetOrganizationOrganization
-from .get_person import GetPerson, GetPersonPerson
-from .get_place import GetPlace, GetPlacePlace
-from .get_product import GetProduct, GetProductProduct
+from .get_organization import (
+    GetOrganization,
+    GetOrganizationOrganization,
+    GetOrganizationOrganizationAddress,
+)
+from .get_person import GetPerson, GetPersonPerson, GetPersonPersonAddress
+from .get_place import GetPlace, GetPlacePlace, GetPlacePlaceAddress
+from .get_product import GetProduct, GetProductProduct, GetProductProductAddress
 from .get_project import (
     GetProject,
     GetProjectProject,
@@ -602,10 +624,19 @@ from .operations import (
     DELETE_ALERT_GQL,
     DELETE_ALERTS_GQL,
     DELETE_ALL_ALERTS_GQL,
+    DELETE_ALL_CATEGORIES_GQL,
     DELETE_ALL_COLLECTIONS_GQL,
     DELETE_ALL_CONTENTS_GQL,
     DELETE_ALL_CONVERSATIONS_GQL,
+    DELETE_ALL_EVENTS_GQL,
     DELETE_ALL_FEEDS_GQL,
+    DELETE_ALL_LABELS_GQL,
+    DELETE_ALL_ORGANIZATIONS_GQL,
+    DELETE_ALL_PERSONS_GQL,
+    DELETE_ALL_PLACES_GQL,
+    DELETE_ALL_PRODUCTS_GQL,
+    DELETE_ALL_REPOS_GQL,
+    DELETE_ALL_SOFTWARES_GQL,
     DELETE_ALL_WORKFLOWS_GQL,
     DELETE_CATEGORIES_GQL,
     DELETE_CATEGORY_GQL,
@@ -685,7 +716,7 @@ from .operations import (
     QUERY_PLACES_GQL,
     QUERY_PRODUCTS_GQL,
     QUERY_REPOS_GQL,
-    QUERY_SOFTWARE_GQL,
+    QUERY_SOFTWARES_GQL,
     QUERY_SPECIFICATIONS_GQL,
     QUERY_WORKFLOWS_GQL,
     REMOVE_CONTENTS_FROM_COLLECTION_GQL,
@@ -825,7 +856,12 @@ from .query_conversations import (
     QueryConversationsConversationsResultsOwner,
     QueryConversationsConversationsResultsSpecification,
 )
-from .query_events import QueryEvents, QueryEventsEvents, QueryEventsEventsResults
+from .query_events import (
+    QueryEvents,
+    QueryEventsEvents,
+    QueryEventsEventsResults,
+    QueryEventsEventsResultsAddress,
+)
 from .query_feeds import (
     QueryFeeds,
     QueryFeedsFeeds,
@@ -861,19 +897,31 @@ from .query_organizations import (
     QueryOrganizations,
     QueryOrganizationsOrganizations,
     QueryOrganizationsOrganizationsResults,
+    QueryOrganizationsOrganizationsResultsAddress,
 )
-from .query_persons import QueryPersons, QueryPersonsPersons, QueryPersonsPersonsResults
-from .query_places import QueryPlaces, QueryPlacesPlaces, QueryPlacesPlacesResults
+from .query_persons import (
+    QueryPersons,
+    QueryPersonsPersons,
+    QueryPersonsPersonsResults,
+    QueryPersonsPersonsResultsAddress,
+)
+from .query_places import (
+    QueryPlaces,
+    QueryPlacesPlaces,
+    QueryPlacesPlacesResults,
+    QueryPlacesPlacesResultsAddress,
+)
 from .query_products import (
     QueryProducts,
     QueryProductsProducts,
     QueryProductsProductsResults,
+    QueryProductsProductsResultsAddress,
 )
 from .query_repos import QueryRepos, QueryReposRepos, QueryReposReposResults
-from .query_software import (
-    QuerySoftware,
-    QuerySoftwareSoftwares,
-    QuerySoftwareSoftwaresResults,
+from .query_softwares import (
+    QuerySoftwares,
+    QuerySoftwaresSoftwares,
+    QuerySoftwaresSoftwaresResults,
 )
 from .query_specifications import (
     QuerySpecifications,
@@ -1153,10 +1201,19 @@ __all__ = [
     "DELETE_ALERTS_GQL",
     "DELETE_ALERT_GQL",
     "DELETE_ALL_ALERTS_GQL",
+    "DELETE_ALL_CATEGORIES_GQL",
     "DELETE_ALL_COLLECTIONS_GQL",
     "DELETE_ALL_CONTENTS_GQL",
     "DELETE_ALL_CONVERSATIONS_GQL",
+    "DELETE_ALL_EVENTS_GQL",
     "DELETE_ALL_FEEDS_GQL",
+    "DELETE_ALL_LABELS_GQL",
+    "DELETE_ALL_ORGANIZATIONS_GQL",
+    "DELETE_ALL_PERSONS_GQL",
+    "DELETE_ALL_PLACES_GQL",
+    "DELETE_ALL_PRODUCTS_GQL",
+    "DELETE_ALL_REPOS_GQL",
+    "DELETE_ALL_SOFTWARES_GQL",
     "DELETE_ALL_WORKFLOWS_GQL",
     "DELETE_CATEGORIES_GQL",
     "DELETE_CATEGORY_GQL",
@@ -1200,14 +1257,32 @@ __all__ = [
     "DeleteAlertsDeleteAlerts",
     "DeleteAllAlerts",
     "DeleteAllAlertsDeleteAllAlerts",
+    "DeleteAllCategories",
+    "DeleteAllCategoriesDeleteAllCategories",
     "DeleteAllCollections",
     "DeleteAllCollectionsDeleteAllCollections",
     "DeleteAllContents",
     "DeleteAllContentsDeleteAllContents",
     "DeleteAllConversations",
     "DeleteAllConversationsDeleteAllConversations",
+    "DeleteAllEvents",
+    "DeleteAllEventsDeleteAllEvents",
     "DeleteAllFeeds",
     "DeleteAllFeedsDeleteAllFeeds",
+    "DeleteAllLabels",
+    "DeleteAllLabelsDeleteAllLabels",
+    "DeleteAllOrganizations",
+    "DeleteAllOrganizationsDeleteAllOrganizations",
+    "DeleteAllPersons",
+    "DeleteAllPersonsDeleteAllPersons",
+    "DeleteAllPlaces",
+    "DeleteAllPlacesDeleteAllPlaces",
+    "DeleteAllProducts",
+    "DeleteAllProductsDeleteAllProducts",
+    "DeleteAllRepos",
+    "DeleteAllReposDeleteAllRepos",
+    "DeleteAllSoftwares",
+    "DeleteAllSoftwaresDeleteAllSoftwares",
     "DeleteAllWorkflows",
     "DeleteAllWorkflowsDeleteAllWorkflows",
     "DeleteCategories",
@@ -1407,6 +1482,7 @@ __all__ = [
     "GetConversationConversationSpecification",
     "GetEvent",
     "GetEventEvent",
+    "GetEventEventAddress",
     "GetFeed",
     "GetFeedFeed",
     "GetFeedFeedDiscord",
@@ -1438,12 +1514,16 @@ __all__ = [
     "GetLabelLabel",
     "GetOrganization",
     "GetOrganizationOrganization",
+    "GetOrganizationOrganizationAddress",
     "GetPerson",
     "GetPersonPerson",
+    "GetPersonPersonAddress",
     "GetPlace",
     "GetPlacePlace",
+    "GetPlacePlaceAddress",
     "GetProduct",
     "GetProductProduct",
+    "GetProductProductAddress",
     "GetProject",
     "GetProjectProject",
     "GetProjectProjectQuota",
@@ -1661,7 +1741,7 @@ __all__ = [
     "QUERY_PLACES_GQL",
     "QUERY_PRODUCTS_GQL",
     "QUERY_REPOS_GQL",
-    "QUERY_SOFTWARE_GQL",
+    "QUERY_SOFTWARES_GQL",
     "QUERY_SPECIFICATIONS_GQL",
     "QUERY_WORKFLOWS_GQL",
     "QueryAlerts",
@@ -1743,6 +1823,7 @@ __all__ = [
     "QueryEvents",
     "QueryEventsEvents",
     "QueryEventsEventsResults",
+    "QueryEventsEventsResultsAddress",
     "QueryFeeds",
     "QueryFeedsFeeds",
     "QueryFeedsFeedsResults",
@@ -1777,21 +1858,25 @@ __all__ = [
     "QueryOrganizations",
     "QueryOrganizationsOrganizations",
     "QueryOrganizationsOrganizationsResults",
+    "QueryOrganizationsOrganizationsResultsAddress",
     "QueryPersons",
     "QueryPersonsPersons",
     "QueryPersonsPersonsResults",
+    "QueryPersonsPersonsResultsAddress",
     "QueryPlaces",
     "QueryPlacesPlaces",
     "QueryPlacesPlacesResults",
+    "QueryPlacesPlacesResultsAddress",
     "QueryProducts",
     "QueryProductsProducts",
     "QueryProductsProductsResults",
+    "QueryProductsProductsResultsAddress",
     "QueryRepos",
     "QueryReposRepos",
     "QueryReposReposResults",
-    "QuerySoftware",
-    "QuerySoftwareSoftwares",
-    "QuerySoftwareSoftwaresResults",
+    "QuerySoftwares",
+    "QuerySoftwaresSoftwares",
+    "QuerySoftwaresSoftwaresResults",
     "QuerySpecifications",
     "QuerySpecificationsSpecifications",
     "QuerySpecificationsSpecificationsResults",

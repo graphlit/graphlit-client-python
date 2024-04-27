@@ -21,6 +21,7 @@ class QueryOrganizationsOrganizationsResults(BaseModel):
     name: str
     alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     creation_date: Any = Field(alias="creationDate")
+    address: Optional["QueryOrganizationsOrganizationsResultsAddress"]
     founding_date: Optional[Any] = Field(alias="foundingDate")
     industries: Optional[List[Optional[str]]]
     revenue: Optional[Any]
@@ -29,5 +30,14 @@ class QueryOrganizationsOrganizationsResults(BaseModel):
     investment_currency: Optional[str] = Field(alias="investmentCurrency")
 
 
+class QueryOrganizationsOrganizationsResultsAddress(BaseModel):
+    street_address: Optional[str] = Field(alias="streetAddress")
+    city: Optional[str]
+    region: Optional[str]
+    country: Optional[str]
+    postal_code: Optional[str] = Field(alias="postalCode")
+
+
 QueryOrganizations.model_rebuild()
 QueryOrganizationsOrganizations.model_rebuild()
+QueryOrganizationsOrganizationsResults.model_rebuild()

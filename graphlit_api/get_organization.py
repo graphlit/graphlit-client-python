@@ -17,6 +17,7 @@ class GetOrganizationOrganization(BaseModel):
     name: str
     alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     creation_date: Any = Field(alias="creationDate")
+    address: Optional["GetOrganizationOrganizationAddress"]
     founding_date: Optional[Any] = Field(alias="foundingDate")
     industries: Optional[List[Optional[str]]]
     revenue: Optional[Any]
@@ -25,4 +26,13 @@ class GetOrganizationOrganization(BaseModel):
     investment_currency: Optional[str] = Field(alias="investmentCurrency")
 
 
+class GetOrganizationOrganizationAddress(BaseModel):
+    street_address: Optional[str] = Field(alias="streetAddress")
+    city: Optional[str]
+    region: Optional[str]
+    country: Optional[str]
+    postal_code: Optional[str] = Field(alias="postalCode")
+
+
 GetOrganization.model_rebuild()
+GetOrganizationOrganization.model_rebuild()

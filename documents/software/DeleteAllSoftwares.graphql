@@ -1,0 +1,6 @@
+mutation DeleteAllSoftwares($filter: SoftwareFilter!) {
+  deleteAllSoftwares(filter: $filter) {
+    id
+    state
+  }
+}

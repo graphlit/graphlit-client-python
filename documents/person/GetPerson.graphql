@@ -4,8 +4,20 @@ query GetPerson($id: ID!) {
     name
     alternateNames
     creationDate
+    address {
+      streetAddress
+      city
+      region
+      country
+      postalCode
+    }
     email
     givenName
     familyName
+    phoneNumber
+    birthDate
+    title
+    occupation
+    education
   }
 }

@@ -1,0 +1,6 @@
+mutation DeleteAllRepos($filter: RepoFilter!) {
+  deleteAllRepos(filter: $filter) {
+    id
+    state
+  }
+}

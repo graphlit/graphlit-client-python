@@ -1,0 +1,6 @@
+mutation DeleteAllEvents($filter: EventFilter!) {
+  deleteAllEvents(filter: $filter) {
+    id
+    state
+  }
+}

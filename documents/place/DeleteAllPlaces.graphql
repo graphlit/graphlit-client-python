@@ -1,0 +1,6 @@
+mutation DeleteAllPlaces($filter: PlaceFilter!) {
+  deleteAllPlaces(filter: $filter) {
+    id
+    state
+  }
+}

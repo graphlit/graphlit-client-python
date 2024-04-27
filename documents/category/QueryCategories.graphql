@@ -3,6 +3,8 @@ query QueryCategories($filter: CategoryFilter!) {
     results {
       id
       name
+      description
+      creationDate
     }
   }
 }

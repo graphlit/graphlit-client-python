@@ -5,6 +5,13 @@ query QueryProducts($filter: ProductFilter!) {
       name
       alternateNames
       creationDate
+      address {
+        streetAddress
+        city
+        region
+        country
+        postalCode
+      }
       manufacturer
       model
       brand

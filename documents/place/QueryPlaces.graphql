@@ -5,6 +5,13 @@ query QueryPlaces($filter: PlaceFilter!) {
       name
       alternateNames
       creationDate
+      address {
+        streetAddress
+        city
+        region
+        country
+        postalCode
+      }
     }
   }
 }

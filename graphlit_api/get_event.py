@@ -17,9 +17,26 @@ class GetEventEvent(BaseModel):
     name: str
     alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     creation_date: Any = Field(alias="creationDate")
+    address: Optional["GetEventEventAddress"]
     start_date: Optional[Any] = Field(alias="startDate")
     end_date: Optional[Any] = Field(alias="endDate")
+    availability_start_date: Optional[Any] = Field(alias="availabilityStartDate")
+    availability_end_date: Optional[Any] = Field(alias="availabilityEndDate")
     price: Optional[Any]
+    min_price: Optional[Any] = Field(alias="minPrice")
+    max_price: Optional[Any] = Field(alias="maxPrice")
+    price_currency: Optional[str] = Field(alias="priceCurrency")
+    is_accessible_for_free: Optional[bool] = Field(alias="isAccessibleForFree")
+    typical_age_range: Optional[str] = Field(alias="typicalAgeRange")
+
+
+class GetEventEventAddress(BaseModel):
+    street_address: Optional[str] = Field(alias="streetAddress")
+    city: Optional[str]
+    region: Optional[str]
+    country: Optional[str]
+    postal_code: Optional[str] = Field(alias="postalCode")
 
 
 GetEvent.model_rebuild()
+GetEventEvent.model_rebuild()

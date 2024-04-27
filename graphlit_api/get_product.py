@@ -17,6 +17,7 @@ class GetProductProduct(BaseModel):
     name: str
     alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     creation_date: Any = Field(alias="creationDate")
+    address: Optional["GetProductProductAddress"]
     manufacturer: Optional[str]
     model: Optional[str]
     brand: Optional[str]
@@ -26,4 +27,13 @@ class GetProductProduct(BaseModel):
     production_date: Optional[Any] = Field(alias="productionDate")
 
 
+class GetProductProductAddress(BaseModel):
+    street_address: Optional[str] = Field(alias="streetAddress")
+    city: Optional[str]
+    region: Optional[str]
+    country: Optional[str]
+    postal_code: Optional[str] = Field(alias="postalCode")
+
+
 GetProduct.model_rebuild()
+GetProductProduct.model_rebuild()
