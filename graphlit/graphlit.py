@@ -54,6 +54,8 @@ class Graphlit:
             delay = self.retry_state["base_delay"] * (2 ** (self.retry_state["attempts"] - 1))
             delay += random.uniform(0, self.retry_state["base_delay"])
             
+            print(f'Graphlit API returned HTTP error {response.status_code}, retrying after {delay}.')
+
             await asyncio.sleep(delay)
 
             return await response.anext()
