@@ -5,6 +5,22 @@ __all__ = [
     "ADD_CONTENTS_TO_COLLECTIONS_GQL",
     "CLEAR_CONVERSATION_GQL",
     "CLOSE_CONVERSATION_GQL",
+    "COUNT_ALERTS_GQL",
+    "COUNT_CATEGORIES_GQL",
+    "COUNT_COLLECTIONS_GQL",
+    "COUNT_CONTENTS_GQL",
+    "COUNT_CONVERSATIONS_GQL",
+    "COUNT_EVENTS_GQL",
+    "COUNT_FEEDS_GQL",
+    "COUNT_LABELS_GQL",
+    "COUNT_ORGANIZATIONS_GQL",
+    "COUNT_PERSONS_GQL",
+    "COUNT_PLACES_GQL",
+    "COUNT_PRODUCTS_GQL",
+    "COUNT_REPOS_GQL",
+    "COUNT_SOFTWARES_GQL",
+    "COUNT_SPECIFICATIONS_GQL",
+    "COUNT_WORKFLOWS_GQL",
     "CREATE_ALERT_GQL",
     "CREATE_CATEGORY_GQL",
     "CREATE_COLLECTION_GQL",
@@ -21,7 +37,6 @@ __all__ = [
     "CREATE_SOFTWARE_GQL",
     "CREATE_SPECIFICATION_GQL",
     "CREATE_WORKFLOW_GQL",
-    "CREDITS_GQL",
     "DELETE_ALERTS_GQL",
     "DELETE_ALERT_GQL",
     "DELETE_ALL_ALERTS_GQL",
@@ -38,6 +53,7 @@ __all__ = [
     "DELETE_ALL_PRODUCTS_GQL",
     "DELETE_ALL_REPOS_GQL",
     "DELETE_ALL_SOFTWARES_GQL",
+    "DELETE_ALL_SPECIFICATIONS_GQL",
     "DELETE_ALL_WORKFLOWS_GQL",
     "DELETE_CATEGORIES_GQL",
     "DELETE_CATEGORY_GQL",
@@ -66,6 +82,7 @@ __all__ = [
     "DELETE_REPO_GQL",
     "DELETE_SOFTWARES_GQL",
     "DELETE_SOFTWARE_GQL",
+    "DELETE_SPECIFICATIONS_GQL",
     "DELETE_SPECIFICATION_GQL",
     "DELETE_WORKFLOWS_GQL",
     "DELETE_WORKFLOW_GQL",
@@ -106,9 +123,11 @@ __all__ = [
     "QUERY_ALERTS_GQL",
     "QUERY_CATEGORIES_GQL",
     "QUERY_COLLECTIONS_GQL",
+    "QUERY_CONTENTS_FACETS_GQL",
     "QUERY_CONTENTS_GQL",
-    "QUERY_CONTENT_FACETS_GQL",
+    "QUERY_CONTENTS_GRAPH_GQL",
     "QUERY_CONVERSATIONS_GQL",
+    "QUERY_CREDITS_GQL",
     "QUERY_EVENTS_GQL",
     "QUERY_FEEDS_GQL",
     "QUERY_LABELS_GQL",
@@ -119,6 +138,7 @@ __all__ = [
     "QUERY_REPOS_GQL",
     "QUERY_SOFTWARES_GQL",
     "QUERY_SPECIFICATIONS_GQL",
+    "QUERY_USAGE_GQL",
     "QUERY_WORKFLOWS_GQL",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
     "SUGGEST_CONVERSATION_GQL",
@@ -141,8 +161,15 @@ __all__ = [
     "UPDATE_SOFTWARE_GQL",
     "UPDATE_SPECIFICATION_GQL",
     "UPDATE_WORKFLOW_GQL",
-    "USAGE_GQL",
 ]
+
+COUNT_ALERTS_GQL = """
+query CountAlerts($filter: AlertFilter) {
+  countAlerts(filter: $filter) {
+    count
+  }
+}
+"""
 
 CREATE_ALERT_GQL = """
 mutation CreateAlert($alert: AlertInput!, $correlationId: String) {
@@ -165,8 +192,8 @@ mutation DeleteAlert($id: ID!) {
 """
 
 DELETE_ALERTS_GQL = """
-mutation DeleteAlerts($ids: [ID!]!) {
-  deleteAlerts(ids: $ids) {
+mutation DeleteAlerts($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteAlerts(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }
@@ -174,8 +201,12 @@ mutation DeleteAlerts($ids: [ID!]!) {
 """
 
 DELETE_ALL_ALERTS_GQL = """
-mutation DeleteAllAlerts {
-  deleteAllAlerts {
+mutation DeleteAllAlerts($filter: AlertFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllAlerts(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
     id
     state
   }
@@ -355,6 +386,14 @@ mutation UpdateAlert($alert: AlertUpdateInput!) {
 }
 """
 
+COUNT_CATEGORIES_GQL = """
+query CountCategories($filter: CategoryFilter) {
+  countCategories(filter: $filter) {
+    count
+  }
+}
+"""
+
 CREATE_CATEGORY_GQL = """
 mutation CreateCategory($category: CategoryInput!) {
   createCategory(category: $category) {
@@ -365,8 +404,12 @@ mutation CreateCategory($category: CategoryInput!) {
 """
 
 DELETE_ALL_CATEGORIES_GQL = """
-mutation DeleteAllCategories($filter: CategoryFilter!) {
-  deleteAllCategories(filter: $filter) {
+mutation DeleteAllCategories($filter: CategoryFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllCategories(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
     id
     state
   }
@@ -374,8 +417,8 @@ mutation DeleteAllCategories($filter: CategoryFilter!) {
 """
 
 DELETE_CATEGORIES_GQL = """
-mutation DeleteCategories($ids: [ID!]!) {
-  deleteCategories(ids: $ids) {
+mutation DeleteCategories($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteCategories(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }
@@ -403,7 +446,7 @@ query GetCategory($id: ID!) {
 """
 
 QUERY_CATEGORIES_GQL = """
-query QueryCategories($filter: CategoryFilter!) {
+query QueryCategories($filter: CategoryFilter) {
   categories(filter: $filter) {
     results {
       id
@@ -439,6 +482,14 @@ mutation AddContentsToCollections($contents: [EntityReferenceInput!]!, $collecti
 }
 """
 
+COUNT_COLLECTIONS_GQL = """
+query CountCollections($filter: CollectionFilter) {
+  countCollections(filter: $filter) {
+    count
+  }
+}
+"""
+
 CREATE_COLLECTION_GQL = """
 mutation CreateCollection($collection: CollectionInput!) {
   createCollection(collection: $collection) {
@@ -451,8 +502,12 @@ mutation CreateCollection($collection: CollectionInput!) {
 """
 
 DELETE_ALL_COLLECTIONS_GQL = """
-mutation DeleteAllCollections {
-  deleteAllCollections {
+mutation DeleteAllCollections($filter: CollectionFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllCollections(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
     id
     state
   }
@@ -469,8 +524,8 @@ mutation DeleteCollection($id: ID!) {
 """
 
 DELETE_COLLECTIONS_GQL = """
-mutation DeleteCollections($ids: [ID!]!) {
-  deleteCollections(ids: $ids) {
+mutation DeleteCollections($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteCollections(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }
@@ -543,9 +598,21 @@ mutation UpdateCollection($collection: CollectionUpdateInput!) {
 }
 """
 
+COUNT_CONTENTS_GQL = """
+query CountContents($filter: ContentFilter) {
+  countContents(filter: $filter) {
+    count
+  }
+}
+"""
+
 DELETE_ALL_CONTENTS_GQL = """
-mutation DeleteAllContents {
-  deleteAllContents {
+mutation DeleteAllContents($filter: ContentFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllContents(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
     id
     state
   }
@@ -562,8 +629,8 @@ mutation DeleteContent($id: ID!) {
 """
 
 DELETE_CONTENTS_GQL = """
-mutation DeleteContents($ids: [ID!]!) {
-  deleteContents(ids: $ids) {
+mutation DeleteContents($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteContents(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }
@@ -598,7 +665,6 @@ query GetContent($id: ID!) {
   content(id: $id) {
     id
     name
-    description
     creationDate
     owner {
       id
@@ -608,6 +674,19 @@ query GetContent($id: ID!) {
     finishedDate
     workflowDuration
     uri
+    description
+    markdown
+    address {
+      streetAddress
+      city
+      region
+      country
+      postalCode
+    }
+    location {
+      latitude
+      longitude
+    }
     type
     fileType
     mimeType
@@ -622,9 +701,13 @@ query GetContent($id: ID!) {
       width
       height
       duration
-      software
       make
       model
+      software
+      title
+      description
+      keywords
+      author
     }
     audio {
       keywords
@@ -638,6 +721,7 @@ query GetContent($id: ID!) {
       language
       genre
       title
+      description
       bitrate
       channels
       sampleRate
@@ -647,20 +731,31 @@ query GetContent($id: ID!) {
     image {
       width
       height
+      resolutionX
+      resolutionY
+      bitsPerComponent
+      components
+      projectionType
+      orientation
       description
-      software
-      identifier
       make
       model
+      software
+      lens
+      focalLength
+      exposureTime
+      fNumber
+      iso
+      heading
+      pitch
     }
     document {
       title
       subject
+      summary
       author
-      software
       publisher
       description
-      summary
       keywords
       pageCount
       worksheetCount
@@ -668,53 +763,78 @@ query GetContent($id: ID!) {
       wordCount
       lineCount
       paragraphCount
-      characterCount
       isEncrypted
       hasDigitalSignature
     }
     email {
-      subject
       identifier
+      subject
+      labels
       sensitivity
       priority
       importance
-      labels
       from {
         name
-        familyName
-        givenName
         email
+        givenName
+        familyName
       }
       to {
         name
-        familyName
-        givenName
         email
+        givenName
+        familyName
       }
       cc {
         name
-        familyName
-        givenName
         email
+        givenName
+        familyName
       }
       bcc {
         name
-        familyName
-        givenName
         email
+        givenName
+        familyName
       }
     }
     issue {
+      identifier
       title
       project
       team
       status
       priority
       type
-      identifier
       labels
     }
+    package {
+      fileCount
+      folderCount
+      isEncrypted
+    }
+    parent {
+      id
+      name
+    }
+    children {
+      id
+      name
+    }
+    feed {
+      id
+      name
+    }
+    collections {
+      id
+      name
+    }
+    links {
+      uri
+      linkType
+    }
     observations {
+      id
       type
       observable {
         id
@@ -723,36 +843,40 @@ query GetContent($id: ID!) {
       occurrences {
         type
         confidence
+        startTime
+        endTime
+        pageIndex
         boundingBox {
           left
           top
           width
           height
         }
-        pageIndex
-        startTime
-        endTime
       }
-    }
-    parent {
-      id
-    }
-    children {
-      id
-    }
-    collections {
-      id
-    }
-    feed {
-      id
+      state
     }
     workflow {
       id
+      name
     }
-    markdown
-    links {
-      uri
-      linkType
+    pages {
+      index
+      chunks {
+        index
+        pageIndex
+        rowIndex
+        columnIndex
+        confidence
+        text
+        role
+        relevance
+      }
+    }
+    segments {
+      startTime
+      endTime
+      text
+      relevance
     }
     error
   }
@@ -778,12 +902,16 @@ mutation IngestEncodedFile($name: String!, $data: String!, $mimeType: String!, $
     fileType
     mimeType
     uri
+    collections {
+      id
+      name
+    }
   }
 }
 """
 
 INGEST_TEXT_GQL = """
-mutation IngestText($name: String!, $text: String!, $textType: TextTypes, $uri: URL, $id: ID, $isSynchronous: Boolean, $collections: [EntityReferenceInput!], $workflow: EntityReferenceInput, $correlationId: String) {
+mutation IngestText($name: String!, $text: String!, $textType: TextTypes, $uri: URL, $id: ID, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $correlationId: String) {
   ingestText(
     name: $name
     text: $text
@@ -791,8 +919,8 @@ mutation IngestText($name: String!, $text: String!, $textType: TextTypes, $uri: 
     uri: $uri
     id: $id
     isSynchronous: $isSynchronous
-    collections: $collections
     workflow: $workflow
+    collections: $collections
     correlationId: $correlationId
   ) {
     id
@@ -802,18 +930,22 @@ mutation IngestText($name: String!, $text: String!, $textType: TextTypes, $uri: 
     fileType
     mimeType
     uri
+    collections {
+      id
+      name
+    }
   }
 }
 """
 
 INGEST_URI_GQL = """
-mutation IngestUri($name: String, $uri: URL!, $id: ID, $isSynchronous: Boolean, $collections: [EntityReferenceInput!], $workflow: EntityReferenceInput, $correlationId: String) {
+mutation IngestUri($name: String, $uri: URL!, $id: ID, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $correlationId: String) {
   ingestUri(
     name: $name
     uri: $uri
     id: $id
-    collections: $collections
     workflow: $workflow
+    collections: $collections
     isSynchronous: $isSynchronous
     correlationId: $correlationId
   ) {
@@ -824,6 +956,10 @@ mutation IngestUri($name: String, $uri: URL!, $id: ID, $isSynchronous: Boolean, 
     fileType
     mimeType
     uri
+    collections {
+      id
+      name
+    }
   }
 }
 """
@@ -837,18 +973,18 @@ query IsContentDone($id: ID!) {
 """
 
 PUBLISH_CONTENTS_GQL = """
-mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $connector: ContentPublishingConnectorInput!, $filter: ContentFilter, $correlationId: String, $name: String, $summarySpecification: EntityReferenceInput, $publishSpecification: EntityReferenceInput, $workflow: EntityReferenceInput, $isSynchronous: Boolean!) {
+mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $connector: ContentPublishingConnectorInput!, $filter: ContentFilter, $isSynchronous: Boolean, $correlationId: String, $name: String, $summarySpecification: EntityReferenceInput, $publishSpecification: EntityReferenceInput, $workflow: EntityReferenceInput) {
   publishContents(
     summaryPrompt: $summaryPrompt
     publishPrompt: $publishPrompt
     connector: $connector
     filter: $filter
+    isSynchronous: $isSynchronous
     correlationId: $correlationId
     name: $name
     summarySpecification: $summarySpecification
     publishSpecification: $publishSpecification
     workflow: $workflow
-    isSynchronous: $isSynchronous
   ) {
     id
     name
@@ -857,6 +993,10 @@ mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $conne
     fileType
     mimeType
     uri
+    collections {
+      id
+      name
+    }
     textUri
     audioUri
     markdown
@@ -865,15 +1005,15 @@ mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $conne
 """
 
 PUBLISH_TEXT_GQL = """
-mutation PublishText($text: String!, $textType: TextTypes, $connector: ContentPublishingConnectorInput!, $correlationId: String, $name: String, $workflow: EntityReferenceInput, $isSynchronous: Boolean!) {
+mutation PublishText($text: String!, $textType: TextTypes, $connector: ContentPublishingConnectorInput!, $isSynchronous: Boolean, $correlationId: String, $name: String, $workflow: EntityReferenceInput) {
   publishText(
     text: $text
     textType: $textType
     connector: $connector
+    isSynchronous: $isSynchronous
     correlationId: $correlationId
     name: $name
     workflow: $workflow
-    isSynchronous: $isSynchronous
   ) {
     id
     name
@@ -882,6 +1022,10 @@ mutation PublishText($text: String!, $textType: TextTypes, $connector: ContentPu
     fileType
     mimeType
     uri
+    collections {
+      id
+      name
+    }
     textUri
     audioUri
     markdown
@@ -889,27 +1033,8 @@ mutation PublishText($text: String!, $textType: TextTypes, $connector: ContentPu
 }
 """
 
-QUERY_CONTENT_FACETS_GQL = """
-query QueryContentFacets($filter: ContentFilter, $facets: [ContentFacetInput!]) {
-  contents(filter: $filter, facets: $facets) {
-    facets {
-      facet
-      type
-      observable {
-        type
-        observable {
-          id
-          name
-        }
-      }
-      count
-    }
-  }
-}
-"""
-
 QUERY_CONTENTS_GQL = """
-query QueryContents($filter: ContentFilter) {
+query QueryContents($filter: ContentFilter!) {
   contents(filter: $filter) {
     results {
       id
@@ -923,6 +1048,19 @@ query QueryContents($filter: ContentFilter) {
       finishedDate
       workflowDuration
       uri
+      description
+      markdown
+      address {
+        streetAddress
+        city
+        region
+        country
+        postalCode
+      }
+      location {
+        latitude
+        longitude
+      }
       type
       fileType
       mimeType
@@ -933,6 +1071,168 @@ query QueryContents($filter: ContentFilter) {
       textUri
       audioUri
       transcriptUri
+      video {
+        width
+        height
+        duration
+        make
+        model
+        software
+        title
+        description
+        keywords
+        author
+      }
+      audio {
+        keywords
+        author
+        series
+        episode
+        episodeType
+        season
+        publisher
+        copyright
+        language
+        genre
+        title
+        description
+        bitrate
+        channels
+        sampleRate
+        bitsPerSample
+        duration
+      }
+      image {
+        width
+        height
+        resolutionX
+        resolutionY
+        bitsPerComponent
+        components
+        projectionType
+        orientation
+        description
+        make
+        model
+        software
+        lens
+        focalLength
+        exposureTime
+        fNumber
+        iso
+        heading
+        pitch
+      }
+      document {
+        title
+        subject
+        summary
+        author
+        publisher
+        description
+        keywords
+        pageCount
+        worksheetCount
+        slideCount
+        wordCount
+        lineCount
+        paragraphCount
+        isEncrypted
+        hasDigitalSignature
+      }
+      email {
+        identifier
+        subject
+        labels
+        sensitivity
+        priority
+        importance
+        from {
+          name
+          email
+          givenName
+          familyName
+        }
+        to {
+          name
+          email
+          givenName
+          familyName
+        }
+        cc {
+          name
+          email
+          givenName
+          familyName
+        }
+        bcc {
+          name
+          email
+          givenName
+          familyName
+        }
+      }
+      issue {
+        identifier
+        title
+        project
+        team
+        status
+        priority
+        type
+        labels
+      }
+      package {
+        fileCount
+        folderCount
+        isEncrypted
+      }
+      parent {
+        id
+        name
+      }
+      children {
+        id
+        name
+      }
+      feed {
+        id
+        name
+      }
+      collections {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+      }
+      observations {
+        id
+        type
+        observable {
+          id
+          name
+        }
+        occurrences {
+          type
+          confidence
+          startTime
+          endTime
+          pageIndex
+          boundingBox {
+            left
+            top
+            width
+            height
+          }
+        }
+        state
+      }
+      workflow {
+        id
+        name
+      }
       pages {
         index
         chunks {
@@ -952,13 +1252,61 @@ query QueryContents($filter: ContentFilter) {
         text
         relevance
       }
+      error
+    }
+  }
+}
+"""
+
+QUERY_CONTENTS_FACETS_GQL = """
+query QueryContentsFacets($filter: ContentFilter!, $facets: [ContentFacetInput!]) {
+  contents(filter: $filter, facets: $facets) {
+    results {
+      id
+      name
+      creationDate
+      owner {
+        id
+      }
+      state
+      originalDate
+      finishedDate
+      workflowDuration
+      uri
+      description
+      markdown
+      address {
+        streetAddress
+        city
+        region
+        country
+        postalCode
+      }
+      location {
+        latitude
+        longitude
+      }
+      type
+      fileType
+      mimeType
+      fileName
+      fileSize
+      masterUri
+      imageUri
+      textUri
+      audioUri
+      transcriptUri
       video {
         width
         height
         duration
-        software
         make
         model
+        software
+        title
+        description
+        keywords
+        author
       }
       audio {
         keywords
@@ -972,6 +1320,7 @@ query QueryContents($filter: ContentFilter) {
         language
         genre
         title
+        description
         bitrate
         channels
         sampleRate
@@ -981,20 +1330,31 @@ query QueryContents($filter: ContentFilter) {
       image {
         width
         height
+        resolutionX
+        resolutionY
+        bitsPerComponent
+        components
+        projectionType
+        orientation
         description
-        software
-        identifier
         make
         model
+        software
+        lens
+        focalLength
+        exposureTime
+        fNumber
+        iso
+        heading
+        pitch
       }
       document {
         title
         subject
+        summary
         author
-        software
         publisher
         description
-        summary
         keywords
         pageCount
         worksheetCount
@@ -1002,53 +1362,78 @@ query QueryContents($filter: ContentFilter) {
         wordCount
         lineCount
         paragraphCount
-        characterCount
         isEncrypted
         hasDigitalSignature
       }
       email {
-        subject
         identifier
+        subject
+        labels
         sensitivity
         priority
         importance
-        labels
         from {
           name
-          familyName
-          givenName
           email
+          givenName
+          familyName
         }
         to {
           name
-          familyName
-          givenName
           email
+          givenName
+          familyName
         }
         cc {
           name
-          familyName
-          givenName
           email
+          givenName
+          familyName
         }
         bcc {
           name
-          familyName
-          givenName
           email
+          givenName
+          familyName
         }
       }
       issue {
+        identifier
         title
         project
         team
         status
         priority
         type
-        identifier
         labels
       }
+      package {
+        fileCount
+        folderCount
+        isEncrypted
+      }
+      parent {
+        id
+        name
+      }
+      children {
+        id
+        name
+      }
+      feed {
+        id
+        name
+      }
+      collections {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+      }
       observations {
+        id
         type
         observable {
           id
@@ -1057,38 +1442,78 @@ query QueryContents($filter: ContentFilter) {
         occurrences {
           type
           confidence
+          startTime
+          endTime
+          pageIndex
           boundingBox {
             left
             top
             width
             height
           }
-          pageIndex
-          startTime
-          endTime
         }
-      }
-      parent {
-        id
-      }
-      children {
-        id
-      }
-      collections {
-        id
-      }
-      feed {
-        id
+        state
       }
       workflow {
         id
+        name
       }
-      markdown
-      links {
-        uri
-        linkType
+      pages {
+        index
+        chunks {
+          index
+          pageIndex
+          rowIndex
+          columnIndex
+          confidence
+          text
+          role
+          relevance
+        }
+      }
+      segments {
+        startTime
+        endTime
+        text
+        relevance
       }
       error
+    }
+    facets {
+      facet
+      count
+      type
+      value
+      range {
+        from
+        to
+      }
+      observable {
+        type
+        observable {
+          id
+          name
+        }
+      }
+    }
+  }
+}
+"""
+
+QUERY_CONTENTS_GRAPH_GQL = """
+query QueryContentsGraph($filter: ContentFilter!, $graph: ContentGraphInput) {
+  contents(filter: $filter, graph: $graph) {
+    graph {
+      nodes {
+        id
+        name
+        type
+        metadata
+      }
+      edges {
+        from
+        to
+      }
     }
   }
 }
@@ -1128,6 +1553,10 @@ mutation UpdateContent($content: ContentUpdateInput!) {
     fileType
     mimeType
     uri
+    collections {
+      id
+      name
+    }
   }
 }
 """
@@ -1154,6 +1583,14 @@ mutation CloseConversation($id: ID!) {
 }
 """
 
+COUNT_CONVERSATIONS_GQL = """
+query CountConversations($filter: ConversationFilter) {
+  countConversations(filter: $filter) {
+    count
+  }
+}
+"""
+
 CREATE_CONVERSATION_GQL = """
 mutation CreateConversation($conversation: ConversationInput!, $correlationId: String) {
   createConversation(conversation: $conversation, correlationId: $correlationId) {
@@ -1166,8 +1603,12 @@ mutation CreateConversation($conversation: ConversationInput!, $correlationId: S
 """
 
 DELETE_ALL_CONVERSATIONS_GQL = """
-mutation DeleteAllConversations {
-  deleteAllConversations {
+mutation DeleteAllConversations($filter: ConversationFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllConversations(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
     id
     state
   }
@@ -1184,8 +1625,8 @@ mutation DeleteConversation($id: ID!) {
 """
 
 DELETE_CONVERSATIONS_GQL = """
-mutation DeleteConversations($ids: [ID!]!) {
-  deleteConversations(ids: $ids) {
+mutation DeleteConversations($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteConversations(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }
@@ -1211,6 +1652,13 @@ query GetConversation($id: ID!) {
       citations {
         content {
           id
+          name
+          state
+          type
+          fileType
+          fileName
+          originalDate
+          uri
         }
         index
         text
@@ -1279,9 +1727,12 @@ mutation PromptConversation($prompt: String!, $id: ID, $correlationId: String) {
         content {
           id
           name
+          state
           type
           fileType
           fileName
+          originalDate
+          uri
         }
         index
         text
@@ -1320,11 +1771,12 @@ mutation PromptConversation($prompt: String!, $id: ID, $correlationId: String) {
 """
 
 PUBLISH_CONVERSATION_GQL = """
-mutation PublishConversation($id: ID!, $connector: ContentPublishingConnectorInput!, $name: String, $workflow: EntityReferenceInput, $correlationId: String) {
+mutation PublishConversation($id: ID!, $connector: ContentPublishingConnectorInput!, $name: String, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $correlationId: String) {
   publishConversation(
     id: $id
     connector: $connector
     name: $name
+    isSynchronous: $isSynchronous
     workflow: $workflow
     correlationId: $correlationId
   ) {
@@ -1335,6 +1787,10 @@ mutation PublishConversation($id: ID!, $connector: ContentPublishingConnectorInp
     fileType
     mimeType
     uri
+    collections {
+      id
+      name
+    }
     textUri
     audioUri
     markdown
@@ -1362,6 +1818,13 @@ query QueryConversations($filter: ConversationFilter) {
         citations {
           content {
             id
+            name
+            state
+            type
+            fileType
+            fileName
+            originalDate
+            uri
           }
           index
           text
@@ -1436,6 +1899,14 @@ mutation UpdateConversation($conversation: ConversationUpdateInput!) {
 }
 """
 
+COUNT_EVENTS_GQL = """
+query CountEvents($filter: EventFilter) {
+  countEvents(filter: $filter) {
+    count
+  }
+}
+"""
+
 CREATE_EVENT_GQL = """
 mutation CreateEvent($event: EventInput!) {
   createEvent(event: $event) {
@@ -1446,8 +1917,12 @@ mutation CreateEvent($event: EventInput!) {
 """
 
 DELETE_ALL_EVENTS_GQL = """
-mutation DeleteAllEvents($filter: EventFilter!) {
-  deleteAllEvents(filter: $filter) {
+mutation DeleteAllEvents($filter: EventFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllEvents(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
     id
     state
   }
@@ -1464,8 +1939,8 @@ mutation DeleteEvent($id: ID!) {
 """
 
 DELETE_EVENTS_GQL = """
-mutation DeleteEvents($ids: [ID!]!) {
-  deleteEvents(ids: $ids) {
+mutation DeleteEvents($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteEvents(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }
@@ -1501,7 +1976,7 @@ query GetEvent($id: ID!) {
 """
 
 QUERY_EVENTS_GQL = """
-query QueryEvents($filter: EventFilter!) {
+query QueryEvents($filter: EventFilter) {
   events(filter: $filter) {
     results {
       id
@@ -1539,6 +2014,14 @@ mutation UpdateEvent($event: EventUpdateInput!) {
 }
 """
 
+COUNT_FEEDS_GQL = """
+query CountFeeds($filter: FeedFilter) {
+  countFeeds(filter: $filter) {
+    count
+  }
+}
+"""
+
 CREATE_FEED_GQL = """
 mutation CreateFeed($feed: FeedInput!, $correlationId: String) {
   createFeed(feed: $feed, correlationId: $correlationId) {
@@ -1551,8 +2034,12 @@ mutation CreateFeed($feed: FeedInput!, $correlationId: String) {
 """
 
 DELETE_ALL_FEEDS_GQL = """
-mutation DeleteAllFeeds {
-  deleteAllFeeds {
+mutation DeleteAllFeeds($filter: FeedFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllFeeds(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
     id
     state
   }
@@ -1569,8 +2056,8 @@ mutation DeleteFeed($id: ID!) {
 """
 
 DELETE_FEEDS_GQL = """
-mutation DeleteFeeds($ids: [ID!]!) {
-  deleteFeeds(ids: $ids) {
+mutation DeleteFeeds($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteFeeds(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }
@@ -1910,6 +2397,14 @@ mutation UpdateFeed($feed: FeedUpdateInput!) {
 }
 """
 
+COUNT_LABELS_GQL = """
+query CountLabels($filter: LabelFilter) {
+  countLabels(filter: $filter) {
+    count
+  }
+}
+"""
+
 CREATE_LABEL_GQL = """
 mutation CreateLabel($label: LabelInput!) {
   createLabel(label: $label) {
@@ -1920,8 +2415,12 @@ mutation CreateLabel($label: LabelInput!) {
 """
 
 DELETE_ALL_LABELS_GQL = """
-mutation DeleteAllLabels($filter: LabelFilter!) {
-  deleteAllLabels(filter: $filter) {
+mutation DeleteAllLabels($filter: LabelFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllLabels(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
     id
     state
   }
@@ -1938,8 +2437,8 @@ mutation DeleteLabel($id: ID!) {
 """
 
 DELETE_LABELS_GQL = """
-mutation DeleteLabels($ids: [ID!]!) {
-  deleteLabels(ids: $ids) {
+mutation DeleteLabels($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteLabels(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }
@@ -1958,7 +2457,7 @@ query GetLabel($id: ID!) {
 """
 
 QUERY_LABELS_GQL = """
-query QueryLabels($filter: LabelFilter!) {
+query QueryLabels($filter: LabelFilter) {
   labels(filter: $filter) {
     results {
       id
@@ -2006,6 +2505,14 @@ mutation UpdateObservation($observation: ObservationUpdateInput!) {
 }
 """
 
+COUNT_ORGANIZATIONS_GQL = """
+query CountOrganizations($filter: OrganizationFilter) {
+  countOrganizations(filter: $filter) {
+    count
+  }
+}
+"""
+
 CREATE_ORGANIZATION_GQL = """
 mutation CreateOrganization($organization: OrganizationInput!) {
   createOrganization(organization: $organization) {
@@ -2016,8 +2523,12 @@ mutation CreateOrganization($organization: OrganizationInput!) {
 """
 
 DELETE_ALL_ORGANIZATIONS_GQL = """
-mutation DeleteAllOrganizations($filter: OrganizationFilter!) {
-  deleteAllOrganizations(filter: $filter) {
+mutation DeleteAllOrganizations($filter: OrganizationFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllOrganizations(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
     id
     state
   }
@@ -2034,8 +2545,8 @@ mutation DeleteOrganization($id: ID!) {
 """
 
 DELETE_ORGANIZATIONS_GQL = """
-mutation DeleteOrganizations($ids: [ID!]!) {
-  deleteOrganizations(ids: $ids) {
+mutation DeleteOrganizations($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteOrganizations(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }
@@ -2067,7 +2578,7 @@ query GetOrganization($id: ID!) {
 """
 
 QUERY_ORGANIZATIONS_GQL = """
-query QueryOrganizations($filter: OrganizationFilter!) {
+query QueryOrganizations($filter: OrganizationFilter) {
   organizations(filter: $filter) {
     results {
       id
@@ -2101,6 +2612,14 @@ mutation UpdateOrganization($organization: OrganizationUpdateInput!) {
 }
 """
 
+COUNT_PERSONS_GQL = """
+query CountPersons($filter: PersonFilter) {
+  countPersons(filter: $filter) {
+    count
+  }
+}
+"""
+
 CREATE_PERSON_GQL = """
 mutation CreatePerson($person: PersonInput!) {
   createPerson(person: $person) {
@@ -2111,8 +2630,12 @@ mutation CreatePerson($person: PersonInput!) {
 """
 
 DELETE_ALL_PERSONS_GQL = """
-mutation DeleteAllPersons($filter: PersonFilter!) {
-  deleteAllPersons(filter: $filter) {
+mutation DeleteAllPersons($filter: PersonFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllPersons(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
     id
     state
   }
@@ -2129,8 +2652,8 @@ mutation DeletePerson($id: ID!) {
 """
 
 DELETE_PERSONS_GQL = """
-mutation DeletePersons($ids: [ID!]!) {
-  deletePersons(ids: $ids) {
+mutation DeletePersons($ids: [ID!]!, $isSynchronous: Boolean) {
+  deletePersons(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }
@@ -2164,7 +2687,7 @@ query GetPerson($id: ID!) {
 """
 
 QUERY_PERSONS_GQL = """
-query QueryPersons($filter: PersonFilter!) {
+query QueryPersons($filter: PersonFilter) {
   persons(filter: $filter) {
     results {
       id
@@ -2200,6 +2723,14 @@ mutation UpdatePerson($person: PersonUpdateInput!) {
 }
 """
 
+COUNT_PLACES_GQL = """
+query CountPlaces($filter: PlaceFilter) {
+  countPlaces(filter: $filter) {
+    count
+  }
+}
+"""
+
 CREATE_PLACE_GQL = """
 mutation CreatePlace($place: PlaceInput!) {
   createPlace(place: $place) {
@@ -2210,8 +2741,12 @@ mutation CreatePlace($place: PlaceInput!) {
 """
 
 DELETE_ALL_PLACES_GQL = """
-mutation DeleteAllPlaces($filter: PlaceFilter!) {
-  deleteAllPlaces(filter: $filter) {
+mutation DeleteAllPlaces($filter: PlaceFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllPlaces(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
     id
     state
   }
@@ -2228,8 +2763,8 @@ mutation DeletePlace($id: ID!) {
 """
 
 DELETE_PLACES_GQL = """
-mutation DeletePlaces($ids: [ID!]!) {
-  deletePlaces(ids: $ids) {
+mutation DeletePlaces($ids: [ID!]!, $isSynchronous: Boolean) {
+  deletePlaces(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }
@@ -2255,7 +2790,7 @@ query GetPlace($id: ID!) {
 """
 
 QUERY_PLACES_GQL = """
-query QueryPlaces($filter: PlaceFilter!) {
+query QueryPlaces($filter: PlaceFilter) {
   places(filter: $filter) {
     results {
       id
@@ -2283,6 +2818,14 @@ mutation UpdatePlace($place: PlaceUpdateInput!) {
 }
 """
 
+COUNT_PRODUCTS_GQL = """
+query CountProducts($filter: ProductFilter) {
+  countProducts(filter: $filter) {
+    count
+  }
+}
+"""
+
 CREATE_PRODUCT_GQL = """
 mutation CreateProduct($product: ProductInput!) {
   createProduct(product: $product) {
@@ -2293,8 +2836,12 @@ mutation CreateProduct($product: ProductInput!) {
 """
 
 DELETE_ALL_PRODUCTS_GQL = """
-mutation DeleteAllProducts($filter: ProductFilter!) {
-  deleteAllProducts(filter: $filter) {
+mutation DeleteAllProducts($filter: ProductFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllProducts(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
     id
     state
   }
@@ -2311,8 +2858,8 @@ mutation DeleteProduct($id: ID!) {
 """
 
 DELETE_PRODUCTS_GQL = """
-mutation DeleteProducts($ids: [ID!]!) {
-  deleteProducts(ids: $ids) {
+mutation DeleteProducts($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteProducts(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }
@@ -2345,7 +2892,7 @@ query GetProduct($id: ID!) {
 """
 
 QUERY_PRODUCTS_GQL = """
-query QueryProducts($filter: ProductFilter!) {
+query QueryProducts($filter: ProductFilter) {
   products(filter: $filter) {
     results {
       id
@@ -2376,24 +2923,6 @@ mutation UpdateProduct($product: ProductUpdateInput!) {
   updateProduct(product: $product) {
     id
     name
-  }
-}
-"""
-
-CREDITS_GQL = """
-query Credits($startDate: DateTime!, $duration: TimeSpan!) {
-  credits(startDate: $startDate, duration: $duration) {
-    correlationId
-    ownerId
-    credits
-    storageRatio
-    computeRatio
-    preparationRatio
-    extractionRatio
-    enrichmentRatio
-    publishingRatio
-    searchRatio
-    conversationRatio
   }
 }
 """
@@ -2481,17 +3010,26 @@ query LookupUsage($correlationId: String!) {
 }
 """
 
-UPDATE_PROJECT_GQL = """
-mutation UpdateProject($project: ProjectUpdateInput!) {
-  updateProject(project: $project) {
-    id
-    name
+QUERY_CREDITS_GQL = """
+query QueryCredits($startDate: DateTime!, $duration: TimeSpan!) {
+  credits(startDate: $startDate, duration: $duration) {
+    correlationId
+    ownerId
+    credits
+    storageRatio
+    computeRatio
+    preparationRatio
+    extractionRatio
+    enrichmentRatio
+    publishingRatio
+    searchRatio
+    conversationRatio
   }
 }
 """
 
-USAGE_GQL = """
-query Usage($startDate: DateTime!, $duration: TimeSpan!) {
+QUERY_USAGE_GQL = """
+query QueryUsage($startDate: DateTime!, $duration: TimeSpan!) {
   usage(startDate: $startDate, duration: $duration) {
     correlationId
     date
@@ -2524,6 +3062,23 @@ query Usage($startDate: DateTime!, $duration: TimeSpan!) {
 }
 """
 
+UPDATE_PROJECT_GQL = """
+mutation UpdateProject($project: ProjectUpdateInput!) {
+  updateProject(project: $project) {
+    id
+    name
+  }
+}
+"""
+
+COUNT_REPOS_GQL = """
+query CountRepos($filter: RepoFilter) {
+  countRepos(filter: $filter) {
+    count
+  }
+}
+"""
+
 CREATE_REPO_GQL = """
 mutation CreateRepo($repo: RepoInput!) {
   createRepo(repo: $repo) {
@@ -2534,8 +3089,12 @@ mutation CreateRepo($repo: RepoInput!) {
 """
 
 DELETE_ALL_REPOS_GQL = """
-mutation DeleteAllRepos($filter: RepoFilter!) {
-  deleteAllRepos(filter: $filter) {
+mutation DeleteAllRepos($filter: RepoFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllRepos(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
     id
     state
   }
@@ -2552,8 +3111,8 @@ mutation DeleteRepo($id: ID!) {
 """
 
 DELETE_REPOS_GQL = """
-mutation DeleteRepos($ids: [ID!]!) {
-  deleteRepos(ids: $ids) {
+mutation DeleteRepos($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteRepos(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }
@@ -2572,7 +3131,7 @@ query GetRepo($id: ID!) {
 """
 
 QUERY_REPOS_GQL = """
-query QueryRepos($filter: RepoFilter!) {
+query QueryRepos($filter: RepoFilter) {
   repos(filter: $filter) {
     results {
       id
@@ -2593,6 +3152,14 @@ mutation UpdateRepo($repo: RepoUpdateInput!) {
 }
 """
 
+COUNT_SOFTWARES_GQL = """
+query CountSoftwares($filter: SoftwareFilter) {
+  countSoftwares(filter: $filter) {
+    count
+  }
+}
+"""
+
 CREATE_SOFTWARE_GQL = """
 mutation CreateSoftware($software: SoftwareInput!) {
   createSoftware(software: $software) {
@@ -2603,8 +3170,12 @@ mutation CreateSoftware($software: SoftwareInput!) {
 """
 
 DELETE_ALL_SOFTWARES_GQL = """
-mutation DeleteAllSoftwares($filter: SoftwareFilter!) {
-  deleteAllSoftwares(filter: $filter) {
+mutation DeleteAllSoftwares($filter: SoftwareFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllSoftwares(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
     id
     state
   }
@@ -2621,8 +3192,8 @@ mutation DeleteSoftware($id: ID!) {
 """
 
 DELETE_SOFTWARES_GQL = """
-mutation DeleteSoftwares($ids: [ID!]!) {
-  deleteSoftwares(ids: $ids) {
+mutation DeleteSoftwares($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteSoftwares(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }
@@ -2643,7 +3214,7 @@ query GetSoftware($id: ID!) {
 """
 
 QUERY_SOFTWARES_GQL = """
-query QuerySoftwares($filter: SoftwareFilter!) {
+query QuerySoftwares($filter: SoftwareFilter) {
   softwares(filter: $filter) {
     results {
       id
@@ -2666,6 +3237,14 @@ mutation UpdateSoftware($software: SoftwareUpdateInput!) {
 }
 """
 
+COUNT_SPECIFICATIONS_GQL = """
+query CountSpecifications($filter: SpecificationFilter) {
+  countSpecifications(filter: $filter) {
+    count
+  }
+}
+"""
+
 CREATE_SPECIFICATION_GQL = """
 mutation CreateSpecification($specification: SpecificationInput!) {
   createSpecification(specification: $specification) {
@@ -2678,9 +3257,31 @@ mutation CreateSpecification($specification: SpecificationInput!) {
 }
 """
 
+DELETE_ALL_SPECIFICATIONS_GQL = """
+mutation DeleteAllSpecifications($filter: SpecificationFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllSpecifications(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
+    id
+    state
+  }
+}
+"""
+
 DELETE_SPECIFICATION_GQL = """
 mutation DeleteSpecification($id: ID!) {
   deleteSpecification(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_SPECIFICATIONS_GQL = """
+mutation DeleteSpecifications($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteSpecifications(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }
@@ -2701,6 +3302,9 @@ query GetSpecification($id: ID!) {
     serviceType
     systemPrompt
     customGuidance
+    customInstructions
+    searchType
+    numberSimilar
     strategy {
       type
       messageLimit
@@ -2735,6 +3339,15 @@ query GetSpecification($id: ID!) {
       key
       endpoint
       deploymentName
+      temperature
+      probability
+    }
+    cohere {
+      tokenLimit
+      completionTokenLimit
+      model
+      key
+      modelName
       temperature
       probability
     }
@@ -2779,6 +3392,13 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
       citations {
         content {
           id
+          name
+          state
+          type
+          fileType
+          fileName
+          originalDate
+          uri
         }
         index
         text
@@ -2814,6 +3434,9 @@ query QuerySpecifications($filter: SpecificationFilter) {
       serviceType
       systemPrompt
       customGuidance
+      customInstructions
+      searchType
+      numberSimilar
       strategy {
         type
         messageLimit
@@ -2848,6 +3471,15 @@ query QuerySpecifications($filter: SpecificationFilter) {
         key
         endpoint
         deploymentName
+        temperature
+        probability
+      }
+      cohere {
+        tokenLimit
+        completionTokenLimit
+        model
+        key
+        modelName
         temperature
         probability
       }
@@ -2888,6 +3520,14 @@ mutation UpdateSpecification($specification: SpecificationUpdateInput!) {
     state
     type
     serviceType
+  }
+}
+"""
+
+COUNT_WORKFLOWS_GQL = """
+query CountWorkflows($filter: WorkflowFilter) {
+  countWorkflows(filter: $filter) {
+    count
   }
 }
 """
@@ -2956,6 +3596,7 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
           openAIImage {
             confidenceThreshold
             detailLevel
+            customInstructions
           }
           modelText {
             specification {
@@ -2999,8 +3640,12 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
 """
 
 DELETE_ALL_WORKFLOWS_GQL = """
-mutation DeleteAllWorkflows {
-  deleteAllWorkflows {
+mutation DeleteAllWorkflows($filter: WorkflowFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllWorkflows(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
     id
     state
   }
@@ -3017,8 +3662,8 @@ mutation DeleteWorkflow($id: ID!) {
 """
 
 DELETE_WORKFLOWS_GQL = """
-mutation DeleteWorkflows($ids: [ID!]!) {
-  deleteWorkflows(ids: $ids) {
+mutation DeleteWorkflows($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteWorkflows(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }
@@ -3093,6 +3738,7 @@ query GetWorkflow($id: ID!) {
           openAIImage {
             confidenceThreshold
             detailLevel
+            customInstructions
           }
           modelText {
             specification {
@@ -3204,6 +3850,7 @@ query QueryWorkflows($filter: WorkflowFilter) {
             openAIImage {
               confidenceThreshold
               detailLevel
+              customInstructions
             }
             modelText {
               specification {
@@ -3311,6 +3958,7 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
           openAIImage {
             confidenceThreshold
             detailLevel
+            customInstructions
           }
           modelText {
             specification {

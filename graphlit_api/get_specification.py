@@ -9,6 +9,8 @@ from .base_model import BaseModel
 from .enums import (
     AnthropicModels,
     AzureOpenAIModels,
+    CohereModels,
+    ConversationSearchTypes,
     ConversationStrategyTypes,
     EntityState,
     ModelServiceTypes,
@@ -35,6 +37,9 @@ class GetSpecificationSpecification(BaseModel):
     service_type: Optional[ModelServiceTypes] = Field(alias="serviceType")
     system_prompt: Optional[str] = Field(alias="systemPrompt")
     custom_guidance: Optional[str] = Field(alias="customGuidance")
+    custom_instructions: Optional[str] = Field(alias="customInstructions")
+    search_type: Optional[ConversationSearchTypes] = Field(alias="searchType")
+    number_similar: Optional[int] = Field(alias="numberSimilar")
     strategy: Optional["GetSpecificationSpecificationStrategy"]
     prompt_strategy: Optional["GetSpecificationSpecificationPromptStrategy"] = Field(
         alias="promptStrategy"
@@ -49,6 +54,7 @@ class GetSpecificationSpecification(BaseModel):
     azure_open_ai: Optional["GetSpecificationSpecificationAzureOpenAi"] = Field(
         alias="azureOpenAI"
     )
+    cohere: Optional["GetSpecificationSpecificationCohere"]
     anthropic: Optional["GetSpecificationSpecificationAnthropic"]
     replicate: Optional["GetSpecificationSpecificationReplicate"]
     tools: Optional[List["GetSpecificationSpecificationTools"]]
@@ -97,6 +103,16 @@ class GetSpecificationSpecificationAzureOpenAi(BaseModel):
     key: Optional[str]
     endpoint: Optional[Any]
     deployment_name: Optional[str] = Field(alias="deploymentName")
+    temperature: Optional[float]
+    probability: Optional[float]
+
+
+class GetSpecificationSpecificationCohere(BaseModel):
+    token_limit: Optional[int] = Field(alias="tokenLimit")
+    completion_token_limit: Optional[int] = Field(alias="completionTokenLimit")
+    model: CohereModels
+    key: Optional[str]
+    model_name: Optional[str] = Field(alias="modelName")
     temperature: Optional[float]
     probability: Optional[float]
 

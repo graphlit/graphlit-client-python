@@ -66,6 +66,7 @@ query QueryWorkflows($filter: WorkflowFilter) {
             openAIImage {
               confidenceThreshold
               detailLevel
+              customInstructions
             }
             modelText {
               specification {

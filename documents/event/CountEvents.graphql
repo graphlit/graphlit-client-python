@@ -1,0 +1,5 @@
+query CountEvents($filter: EventFilter) {
+  countEvents(filter: $filter) {
+    count
+  }
+}

@@ -1,5 +1,5 @@
-mutation DeleteAllWorkflows {
-  deleteAllWorkflows {
+mutation DeleteAllWorkflows($filter: WorkflowFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllWorkflows(filter: $filter, isSynchronous: $isSynchronous, correlationId: $correlationId) {
     id
     state
   }

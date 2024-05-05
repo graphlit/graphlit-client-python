@@ -1,0 +1,5 @@
+query CountProducts($filter: ProductFilter) {
+  countProducts(filter: $filter) {
+    count
+  }
+}

@@ -1,4 +1,4 @@
-query QueryPersons($filter: PersonFilter!) {
+query QueryPersons($filter: PersonFilter) {
   persons(filter: $filter) {
     results {
       id

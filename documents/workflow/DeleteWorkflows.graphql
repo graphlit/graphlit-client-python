@@ -1,5 +1,5 @@
-mutation DeleteWorkflows($ids: [ID!]!) {
-  deleteWorkflows(ids: $ids) {
+mutation DeleteWorkflows($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteWorkflows(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }

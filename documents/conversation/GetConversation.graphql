@@ -16,6 +16,13 @@ query GetConversation($id: ID!) {
       citations {
         content {
           id
+          name
+          state
+          type
+          fileType
+          fileName
+          originalDate
+          uri
         }
         index
         text

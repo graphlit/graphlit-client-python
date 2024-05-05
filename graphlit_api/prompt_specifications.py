@@ -6,7 +6,13 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import ConversationRoleTypes, ModelServiceTypes
+from .enums import (
+    ContentTypes,
+    ConversationRoleTypes,
+    EntityState,
+    FileTypes,
+    ModelServiceTypes,
+)
 
 
 class PromptSpecifications(BaseModel):
@@ -56,6 +62,13 @@ class PromptSpecificationsPromptSpecificationsMessagesCitations(BaseModel):
 
 class PromptSpecificationsPromptSpecificationsMessagesCitationsContent(BaseModel):
     id: str
+    name: str
+    state: EntityState
+    type: Optional[ContentTypes]
+    file_type: Optional[FileTypes] = Field(alias="fileType")
+    file_name: Optional[str] = Field(alias="fileName")
+    original_date: Optional[Any] = Field(alias="originalDate")
+    uri: Optional[Any]
 
 
 PromptSpecifications.model_rebuild()

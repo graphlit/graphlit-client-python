@@ -1,0 +1,6 @@
+mutation DeleteSpecifications($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteSpecifications(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}

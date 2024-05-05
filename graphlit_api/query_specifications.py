@@ -9,6 +9,8 @@ from .base_model import BaseModel
 from .enums import (
     AnthropicModels,
     AzureOpenAIModels,
+    CohereModels,
+    ConversationSearchTypes,
     ConversationStrategyTypes,
     EntityState,
     ModelServiceTypes,
@@ -39,6 +41,9 @@ class QuerySpecificationsSpecificationsResults(BaseModel):
     service_type: Optional[ModelServiceTypes] = Field(alias="serviceType")
     system_prompt: Optional[str] = Field(alias="systemPrompt")
     custom_guidance: Optional[str] = Field(alias="customGuidance")
+    custom_instructions: Optional[str] = Field(alias="customInstructions")
+    search_type: Optional[ConversationSearchTypes] = Field(alias="searchType")
+    number_similar: Optional[int] = Field(alias="numberSimilar")
     strategy: Optional["QuerySpecificationsSpecificationsResultsStrategy"]
     prompt_strategy: Optional[
         "QuerySpecificationsSpecificationsResultsPromptStrategy"
@@ -55,6 +60,7 @@ class QuerySpecificationsSpecificationsResults(BaseModel):
     azure_open_ai: Optional["QuerySpecificationsSpecificationsResultsAzureOpenAi"] = (
         Field(alias="azureOpenAI")
     )
+    cohere: Optional["QuerySpecificationsSpecificationsResultsCohere"]
     anthropic: Optional["QuerySpecificationsSpecificationsResultsAnthropic"]
     replicate: Optional["QuerySpecificationsSpecificationsResultsReplicate"]
     tools: Optional[List["QuerySpecificationsSpecificationsResultsTools"]]
@@ -103,6 +109,16 @@ class QuerySpecificationsSpecificationsResultsAzureOpenAi(BaseModel):
     key: Optional[str]
     endpoint: Optional[Any]
     deployment_name: Optional[str] = Field(alias="deploymentName")
+    temperature: Optional[float]
+    probability: Optional[float]
+
+
+class QuerySpecificationsSpecificationsResultsCohere(BaseModel):
+    token_limit: Optional[int] = Field(alias="tokenLimit")
+    completion_token_limit: Optional[int] = Field(alias="completionTokenLimit")
+    model: CohereModels
+    key: Optional[str]
+    model_name: Optional[str] = Field(alias="modelName")
     temperature: Optional[float]
     probability: Optional[float]
 

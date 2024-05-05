@@ -1,5 +1,5 @@
-mutation DeleteEvents($ids: [ID!]!) {
-  deleteEvents(ids: $ids) {
+mutation DeleteEvents($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteEvents(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }

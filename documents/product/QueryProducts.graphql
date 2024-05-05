@@ -1,4 +1,4 @@
-query QueryProducts($filter: ProductFilter!) {
+query QueryProducts($filter: ProductFilter) {
   products(filter: $filter) {
     results {
       id

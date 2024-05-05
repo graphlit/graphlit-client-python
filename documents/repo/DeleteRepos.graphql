@@ -1,5 +1,5 @@
-mutation DeleteRepos($ids: [ID!]!) {
-  deleteRepos(ids: $ids) {
+mutation DeleteRepos($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteRepos(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }

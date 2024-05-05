@@ -8,6 +8,22 @@ from .async_base_client import AsyncBaseClient
 from .base_model import UNSET, UnsetType
 from .clear_conversation import ClearConversation
 from .close_conversation import CloseConversation
+from .count_alerts import CountAlerts
+from .count_categories import CountCategories
+from .count_collections import CountCollections
+from .count_contents import CountContents
+from .count_conversations import CountConversations
+from .count_events import CountEvents
+from .count_feeds import CountFeeds
+from .count_labels import CountLabels
+from .count_organizations import CountOrganizations
+from .count_persons import CountPersons
+from .count_places import CountPlaces
+from .count_products import CountProducts
+from .count_repos import CountRepos
+from .count_softwares import CountSoftwares
+from .count_specifications import CountSpecifications
+from .count_workflows import CountWorkflows
 from .create_alert import CreateAlert
 from .create_category import CreateCategory
 from .create_collection import CreateCollection
@@ -24,7 +40,6 @@ from .create_repo import CreateRepo
 from .create_software import CreateSoftware
 from .create_specification import CreateSpecification
 from .create_workflow import CreateWorkflow
-from .credits import Credits
 from .delete_alert import DeleteAlert
 from .delete_alerts import DeleteAlerts
 from .delete_all_alerts import DeleteAllAlerts
@@ -41,6 +56,7 @@ from .delete_all_places import DeleteAllPlaces
 from .delete_all_products import DeleteAllProducts
 from .delete_all_repos import DeleteAllRepos
 from .delete_all_softwares import DeleteAllSoftwares
+from .delete_all_specifications import DeleteAllSpecifications
 from .delete_all_workflows import DeleteAllWorkflows
 from .delete_categories import DeleteCategories
 from .delete_category import DeleteCategory
@@ -70,6 +86,7 @@ from .delete_repos import DeleteRepos
 from .delete_software import DeleteSoftware
 from .delete_softwares import DeleteSoftwares
 from .delete_specification import DeleteSpecification
+from .delete_specifications import DeleteSpecifications
 from .delete_workflow import DeleteWorkflow
 from .delete_workflows import DeleteWorkflows
 from .disable_alert import DisableAlert
@@ -110,6 +127,7 @@ from .input_types import (
     CollectionUpdateInput,
     ContentFacetInput,
     ContentFilter,
+    ContentGraphInput,
     ContentPublishingConnectorInput,
     ContentUpdateInput,
     ConversationFilter,
@@ -162,6 +180,22 @@ from .operations import (
     ADD_CONTENTS_TO_COLLECTIONS_GQL,
     CLEAR_CONVERSATION_GQL,
     CLOSE_CONVERSATION_GQL,
+    COUNT_ALERTS_GQL,
+    COUNT_CATEGORIES_GQL,
+    COUNT_COLLECTIONS_GQL,
+    COUNT_CONTENTS_GQL,
+    COUNT_CONVERSATIONS_GQL,
+    COUNT_EVENTS_GQL,
+    COUNT_FEEDS_GQL,
+    COUNT_LABELS_GQL,
+    COUNT_ORGANIZATIONS_GQL,
+    COUNT_PERSONS_GQL,
+    COUNT_PLACES_GQL,
+    COUNT_PRODUCTS_GQL,
+    COUNT_REPOS_GQL,
+    COUNT_SOFTWARES_GQL,
+    COUNT_SPECIFICATIONS_GQL,
+    COUNT_WORKFLOWS_GQL,
     CREATE_ALERT_GQL,
     CREATE_CATEGORY_GQL,
     CREATE_COLLECTION_GQL,
@@ -178,7 +212,6 @@ from .operations import (
     CREATE_SOFTWARE_GQL,
     CREATE_SPECIFICATION_GQL,
     CREATE_WORKFLOW_GQL,
-    CREDITS_GQL,
     DELETE_ALERT_GQL,
     DELETE_ALERTS_GQL,
     DELETE_ALL_ALERTS_GQL,
@@ -195,6 +228,7 @@ from .operations import (
     DELETE_ALL_PRODUCTS_GQL,
     DELETE_ALL_REPOS_GQL,
     DELETE_ALL_SOFTWARES_GQL,
+    DELETE_ALL_SPECIFICATIONS_GQL,
     DELETE_ALL_WORKFLOWS_GQL,
     DELETE_CATEGORIES_GQL,
     DELETE_CATEGORY_GQL,
@@ -224,6 +258,7 @@ from .operations import (
     DELETE_SOFTWARE_GQL,
     DELETE_SOFTWARES_GQL,
     DELETE_SPECIFICATION_GQL,
+    DELETE_SPECIFICATIONS_GQL,
     DELETE_WORKFLOW_GQL,
     DELETE_WORKFLOWS_GQL,
     DISABLE_ALERT_GQL,
@@ -263,9 +298,11 @@ from .operations import (
     QUERY_ALERTS_GQL,
     QUERY_CATEGORIES_GQL,
     QUERY_COLLECTIONS_GQL,
-    QUERY_CONTENT_FACETS_GQL,
+    QUERY_CONTENTS_FACETS_GQL,
     QUERY_CONTENTS_GQL,
+    QUERY_CONTENTS_GRAPH_GQL,
     QUERY_CONVERSATIONS_GQL,
+    QUERY_CREDITS_GQL,
     QUERY_EVENTS_GQL,
     QUERY_FEEDS_GQL,
     QUERY_LABELS_GQL,
@@ -276,6 +313,7 @@ from .operations import (
     QUERY_REPOS_GQL,
     QUERY_SOFTWARES_GQL,
     QUERY_SPECIFICATIONS_GQL,
+    QUERY_USAGE_GQL,
     QUERY_WORKFLOWS_GQL,
     REMOVE_CONTENTS_FROM_COLLECTION_GQL,
     SUGGEST_CONVERSATION_GQL,
@@ -298,7 +336,6 @@ from .operations import (
     UPDATE_SOFTWARE_GQL,
     UPDATE_SPECIFICATION_GQL,
     UPDATE_WORKFLOW_GQL,
-    USAGE_GQL,
 )
 from .prompt_conversation import PromptConversation
 from .prompt_specifications import PromptSpecifications
@@ -308,9 +345,11 @@ from .publish_text import PublishText
 from .query_alerts import QueryAlerts
 from .query_categories import QueryCategories
 from .query_collections import QueryCollections
-from .query_content_facets import QueryContentFacets
 from .query_contents import QueryContents
+from .query_contents_facets import QueryContentsFacets
+from .query_contents_graph import QueryContentsGraph
 from .query_conversations import QueryConversations
+from .query_credits import QueryCredits
 from .query_events import QueryEvents
 from .query_feeds import QueryFeeds
 from .query_labels import QueryLabels
@@ -321,6 +360,7 @@ from .query_products import QueryProducts
 from .query_repos import QueryRepos
 from .query_softwares import QuerySoftwares
 from .query_specifications import QuerySpecifications
+from .query_usage import QueryUsage
 from .query_workflows import QueryWorkflows
 from .remove_contents_from_collection import RemoveContentsFromCollection
 from .suggest_conversation import SuggestConversation
@@ -343,7 +383,6 @@ from .update_repo import UpdateRepo
 from .update_software import UpdateSoftware
 from .update_specification import UpdateSpecification
 from .update_workflow import UpdateWorkflow
-from .usage import Usage
 
 
 def gql(q: str) -> str:
@@ -351,6 +390,19 @@ def gql(q: str) -> str:
 
 
 class Client(AsyncBaseClient):
+    async def count_alerts(
+        self, filter: Union[Optional[AlertFilter], UnsetType] = UNSET, **kwargs: Any
+    ) -> CountAlerts:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_ALERTS_GQL,
+            operation_name="CountAlerts",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountAlerts.model_validate(data)
+
     async def create_alert(
         self,
         alert: AlertInput,
@@ -378,8 +430,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteAlert.model_validate(data)
 
-    async def delete_alerts(self, ids: List[str], **kwargs: Any) -> DeleteAlerts:
-        variables: Dict[str, object] = {"ids": ids}
+    async def delete_alerts(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAlerts:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_ALERTS_GQL,
             operation_name="DeleteAlerts",
@@ -389,8 +446,18 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteAlerts.model_validate(data)
 
-    async def delete_all_alerts(self, **kwargs: Any) -> DeleteAllAlerts:
-        variables: Dict[str, object] = {}
+    async def delete_all_alerts(
+        self,
+        filter: Union[Optional[AlertFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllAlerts:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=DELETE_ALL_ALERTS_GQL,
             operation_name="DeleteAllAlerts",
@@ -457,6 +524,19 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return UpdateAlert.model_validate(data)
 
+    async def count_categories(
+        self, filter: Union[Optional[CategoryFilter], UnsetType] = UNSET, **kwargs: Any
+    ) -> CountCategories:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_CATEGORIES_GQL,
+            operation_name="CountCategories",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountCategories.model_validate(data)
+
     async def create_category(
         self, category: CategoryInput, **kwargs: Any
     ) -> CreateCategory:
@@ -471,9 +551,17 @@ class Client(AsyncBaseClient):
         return CreateCategory.model_validate(data)
 
     async def delete_all_categories(
-        self, filter: CategoryFilter, **kwargs: Any
+        self,
+        filter: Union[Optional[CategoryFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> DeleteAllCategories:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=DELETE_ALL_CATEGORIES_GQL,
             operation_name="DeleteAllCategories",
@@ -484,9 +572,12 @@ class Client(AsyncBaseClient):
         return DeleteAllCategories.model_validate(data)
 
     async def delete_categories(
-        self, ids: List[str], **kwargs: Any
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> DeleteCategories:
-        variables: Dict[str, object] = {"ids": ids}
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_CATEGORIES_GQL,
             operation_name="DeleteCategories",
@@ -519,7 +610,7 @@ class Client(AsyncBaseClient):
         return GetCategory.model_validate(data)
 
     async def query_categories(
-        self, filter: CategoryFilter, **kwargs: Any
+        self, filter: Union[Optional[CategoryFilter], UnsetType] = UNSET, **kwargs: Any
     ) -> QueryCategories:
         variables: Dict[str, object] = {"filter": filter}
         response = await self.execute(
@@ -563,6 +654,21 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return AddContentsToCollections.model_validate(data)
 
+    async def count_collections(
+        self,
+        filter: Union[Optional[CollectionFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountCollections:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_COLLECTIONS_GQL,
+            operation_name="CountCollections",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountCollections.model_validate(data)
+
     async def create_collection(
         self, collection: CollectionInput, **kwargs: Any
     ) -> CreateCollection:
@@ -576,8 +682,18 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return CreateCollection.model_validate(data)
 
-    async def delete_all_collections(self, **kwargs: Any) -> DeleteAllCollections:
-        variables: Dict[str, object] = {}
+    async def delete_all_collections(
+        self,
+        filter: Union[Optional[CollectionFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllCollections:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=DELETE_ALL_COLLECTIONS_GQL,
             operation_name="DeleteAllCollections",
@@ -599,9 +715,12 @@ class Client(AsyncBaseClient):
         return DeleteCollection.model_validate(data)
 
     async def delete_collections(
-        self, ids: List[str], **kwargs: Any
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> DeleteCollections:
-        variables: Dict[str, object] = {"ids": ids}
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_COLLECTIONS_GQL,
             operation_name="DeleteCollections",
@@ -666,8 +785,31 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return UpdateCollection.model_validate(data)
 
-    async def delete_all_contents(self, **kwargs: Any) -> DeleteAllContents:
-        variables: Dict[str, object] = {}
+    async def count_contents(
+        self, filter: Union[Optional[ContentFilter], UnsetType] = UNSET, **kwargs: Any
+    ) -> CountContents:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_CONTENTS_GQL,
+            operation_name="CountContents",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountContents.model_validate(data)
+
+    async def delete_all_contents(
+        self,
+        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllContents:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=DELETE_ALL_CONTENTS_GQL,
             operation_name="DeleteAllContents",
@@ -688,8 +830,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteContent.model_validate(data)
 
-    async def delete_contents(self, ids: List[str], **kwargs: Any) -> DeleteContents:
-        variables: Dict[str, object] = {"ids": ids}
+    async def delete_contents(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteContents:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_CONTENTS_GQL,
             operation_name="DeleteContents",
@@ -772,8 +919,8 @@ class Client(AsyncBaseClient):
         uri: Union[Optional[Any], UnsetType] = UNSET,
         id: Union[Optional[str], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        collections: Union[Optional[List[EntityReferenceInput]], UnsetType] = UNSET,
         workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        collections: Union[Optional[List[EntityReferenceInput]], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> IngestText:
@@ -784,8 +931,8 @@ class Client(AsyncBaseClient):
             "uri": uri,
             "id": id,
             "isSynchronous": is_synchronous,
-            "collections": collections,
             "workflow": workflow,
+            "collections": collections,
             "correlationId": correlation_id,
         }
         response = await self.execute(
@@ -803,8 +950,8 @@ class Client(AsyncBaseClient):
         name: Union[Optional[str], UnsetType] = UNSET,
         id: Union[Optional[str], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        collections: Union[Optional[List[EntityReferenceInput]], UnsetType] = UNSET,
         workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        collections: Union[Optional[List[EntityReferenceInput]], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> IngestUri:
@@ -813,8 +960,8 @@ class Client(AsyncBaseClient):
             "uri": uri,
             "id": id,
             "isSynchronous": is_synchronous,
-            "collections": collections,
             "workflow": workflow,
+            "collections": collections,
             "correlationId": correlation_id,
         }
         response = await self.execute(
@@ -841,9 +988,9 @@ class Client(AsyncBaseClient):
         self,
         publish_prompt: str,
         connector: ContentPublishingConnectorInput,
-        is_synchronous: bool,
         summary_prompt: Union[Optional[str], UnsetType] = UNSET,
         filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         name: Union[Optional[str], UnsetType] = UNSET,
         summary_specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
@@ -856,12 +1003,12 @@ class Client(AsyncBaseClient):
             "publishPrompt": publish_prompt,
             "connector": connector,
             "filter": filter,
+            "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
             "name": name,
             "summarySpecification": summary_specification,
             "publishSpecification": publish_specification,
             "workflow": workflow,
-            "isSynchronous": is_synchronous,
         }
         response = await self.execute(
             query=PUBLISH_CONTENTS_GQL,
@@ -876,8 +1023,8 @@ class Client(AsyncBaseClient):
         self,
         text: str,
         connector: ContentPublishingConnectorInput,
-        is_synchronous: bool,
         text_type: Union[Optional[TextTypes], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         name: Union[Optional[str], UnsetType] = UNSET,
         workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
@@ -887,10 +1034,10 @@ class Client(AsyncBaseClient):
             "text": text,
             "textType": text_type,
             "connector": connector,
+            "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
             "name": name,
             "workflow": workflow,
-            "isSynchronous": is_synchronous,
         }
         response = await self.execute(
             query=PUBLISH_TEXT_GQL,
@@ -901,24 +1048,8 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return PublishText.model_validate(data)
 
-    async def query_content_facets(
-        self,
-        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
-        facets: Union[Optional[List[ContentFacetInput]], UnsetType] = UNSET,
-        **kwargs: Any
-    ) -> QueryContentFacets:
-        variables: Dict[str, object] = {"filter": filter, "facets": facets}
-        response = await self.execute(
-            query=QUERY_CONTENT_FACETS_GQL,
-            operation_name="QueryContentFacets",
-            variables=variables,
-            **kwargs
-        )
-        data = self.get_data(response)
-        return QueryContentFacets.model_validate(data)
-
     async def query_contents(
-        self, filter: Union[Optional[ContentFilter], UnsetType] = UNSET, **kwargs: Any
+        self, filter: ContentFilter, **kwargs: Any
     ) -> QueryContents:
         variables: Dict[str, object] = {"filter": filter}
         response = await self.execute(
@@ -929,6 +1060,38 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryContents.model_validate(data)
+
+    async def query_contents_facets(
+        self,
+        filter: ContentFilter,
+        facets: Union[Optional[List[ContentFacetInput]], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryContentsFacets:
+        variables: Dict[str, object] = {"filter": filter, "facets": facets}
+        response = await self.execute(
+            query=QUERY_CONTENTS_FACETS_GQL,
+            operation_name="QueryContentsFacets",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryContentsFacets.model_validate(data)
+
+    async def query_contents_graph(
+        self,
+        filter: ContentFilter,
+        graph: Union[Optional[ContentGraphInput], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryContentsGraph:
+        variables: Dict[str, object] = {"filter": filter, "graph": graph}
+        response = await self.execute(
+            query=QUERY_CONTENTS_GRAPH_GQL,
+            operation_name="QueryContentsGraph",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryContentsGraph.model_validate(data)
 
     async def summarize_contents(
         self,
@@ -986,6 +1149,21 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return CloseConversation.model_validate(data)
 
+    async def count_conversations(
+        self,
+        filter: Union[Optional[ConversationFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountConversations:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_CONVERSATIONS_GQL,
+            operation_name="CountConversations",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountConversations.model_validate(data)
+
     async def create_conversation(
         self,
         conversation: ConversationInput,
@@ -1005,8 +1183,18 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return CreateConversation.model_validate(data)
 
-    async def delete_all_conversations(self, **kwargs: Any) -> DeleteAllConversations:
-        variables: Dict[str, object] = {}
+    async def delete_all_conversations(
+        self,
+        filter: Union[Optional[ConversationFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllConversations:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=DELETE_ALL_CONVERSATIONS_GQL,
             operation_name="DeleteAllConversations",
@@ -1028,9 +1216,12 @@ class Client(AsyncBaseClient):
         return DeleteConversation.model_validate(data)
 
     async def delete_conversations(
-        self, ids: List[str], **kwargs: Any
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> DeleteConversations:
-        variables: Dict[str, object] = {"ids": ids}
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_CONVERSATIONS_GQL,
             operation_name="DeleteConversations",
@@ -1077,6 +1268,7 @@ class Client(AsyncBaseClient):
         id: str,
         connector: ContentPublishingConnectorInput,
         name: Union[Optional[str], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
@@ -1085,6 +1277,7 @@ class Client(AsyncBaseClient):
             "id": id,
             "connector": connector,
             "name": name,
+            "isSynchronous": is_synchronous,
             "workflow": workflow,
             "correlationId": correlation_id,
         }
@@ -1146,6 +1339,19 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return UpdateConversation.model_validate(data)
 
+    async def count_events(
+        self, filter: Union[Optional[EventFilter], UnsetType] = UNSET, **kwargs: Any
+    ) -> CountEvents:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_EVENTS_GQL,
+            operation_name="CountEvents",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountEvents.model_validate(data)
+
     async def create_event(self, event: EventInput, **kwargs: Any) -> CreateEvent:
         variables: Dict[str, object] = {"event": event}
         response = await self.execute(
@@ -1158,9 +1364,17 @@ class Client(AsyncBaseClient):
         return CreateEvent.model_validate(data)
 
     async def delete_all_events(
-        self, filter: EventFilter, **kwargs: Any
+        self,
+        filter: Union[Optional[EventFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> DeleteAllEvents:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=DELETE_ALL_EVENTS_GQL,
             operation_name="DeleteAllEvents",
@@ -1181,8 +1395,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteEvent.model_validate(data)
 
-    async def delete_events(self, ids: List[str], **kwargs: Any) -> DeleteEvents:
-        variables: Dict[str, object] = {"ids": ids}
+    async def delete_events(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteEvents:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_EVENTS_GQL,
             operation_name="DeleteEvents",
@@ -1203,7 +1422,9 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return GetEvent.model_validate(data)
 
-    async def query_events(self, filter: EventFilter, **kwargs: Any) -> QueryEvents:
+    async def query_events(
+        self, filter: Union[Optional[EventFilter], UnsetType] = UNSET, **kwargs: Any
+    ) -> QueryEvents:
         variables: Dict[str, object] = {"filter": filter}
         response = await self.execute(
             query=QUERY_EVENTS_GQL,
@@ -1225,6 +1446,19 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return UpdateEvent.model_validate(data)
 
+    async def count_feeds(
+        self, filter: Union[Optional[FeedFilter], UnsetType] = UNSET, **kwargs: Any
+    ) -> CountFeeds:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_FEEDS_GQL,
+            operation_name="CountFeeds",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountFeeds.model_validate(data)
+
     async def create_feed(
         self,
         feed: FeedInput,
@@ -1241,8 +1475,18 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return CreateFeed.model_validate(data)
 
-    async def delete_all_feeds(self, **kwargs: Any) -> DeleteAllFeeds:
-        variables: Dict[str, object] = {}
+    async def delete_all_feeds(
+        self,
+        filter: Union[Optional[FeedFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllFeeds:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=DELETE_ALL_FEEDS_GQL,
             operation_name="DeleteAllFeeds",
@@ -1263,8 +1507,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteFeed.model_validate(data)
 
-    async def delete_feeds(self, ids: List[str], **kwargs: Any) -> DeleteFeeds:
-        variables: Dict[str, object] = {"ids": ids}
+    async def delete_feeds(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteFeeds:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_FEEDS_GQL,
             operation_name="DeleteFeeds",
@@ -1339,6 +1588,19 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return UpdateFeed.model_validate(data)
 
+    async def count_labels(
+        self, filter: Union[Optional[LabelFilter], UnsetType] = UNSET, **kwargs: Any
+    ) -> CountLabels:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_LABELS_GQL,
+            operation_name="CountLabels",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountLabels.model_validate(data)
+
     async def create_label(self, label: LabelInput, **kwargs: Any) -> CreateLabel:
         variables: Dict[str, object] = {"label": label}
         response = await self.execute(
@@ -1351,9 +1613,17 @@ class Client(AsyncBaseClient):
         return CreateLabel.model_validate(data)
 
     async def delete_all_labels(
-        self, filter: LabelFilter, **kwargs: Any
+        self,
+        filter: Union[Optional[LabelFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> DeleteAllLabels:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=DELETE_ALL_LABELS_GQL,
             operation_name="DeleteAllLabels",
@@ -1374,8 +1644,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteLabel.model_validate(data)
 
-    async def delete_labels(self, ids: List[str], **kwargs: Any) -> DeleteLabels:
-        variables: Dict[str, object] = {"ids": ids}
+    async def delete_labels(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteLabels:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_LABELS_GQL,
             operation_name="DeleteLabels",
@@ -1396,7 +1671,9 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return GetLabel.model_validate(data)
 
-    async def query_labels(self, filter: LabelFilter, **kwargs: Any) -> QueryLabels:
+    async def query_labels(
+        self, filter: Union[Optional[LabelFilter], UnsetType] = UNSET, **kwargs: Any
+    ) -> QueryLabels:
         variables: Dict[str, object] = {"filter": filter}
         response = await self.execute(
             query=QUERY_LABELS_GQL,
@@ -1455,6 +1732,21 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return UpdateObservation.model_validate(data)
 
+    async def count_organizations(
+        self,
+        filter: Union[Optional[OrganizationFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountOrganizations:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_ORGANIZATIONS_GQL,
+            operation_name="CountOrganizations",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountOrganizations.model_validate(data)
+
     async def create_organization(
         self, organization: OrganizationInput, **kwargs: Any
     ) -> CreateOrganization:
@@ -1469,9 +1761,17 @@ class Client(AsyncBaseClient):
         return CreateOrganization.model_validate(data)
 
     async def delete_all_organizations(
-        self, filter: OrganizationFilter, **kwargs: Any
+        self,
+        filter: Union[Optional[OrganizationFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> DeleteAllOrganizations:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=DELETE_ALL_ORGANIZATIONS_GQL,
             operation_name="DeleteAllOrganizations",
@@ -1493,9 +1793,12 @@ class Client(AsyncBaseClient):
         return DeleteOrganization.model_validate(data)
 
     async def delete_organizations(
-        self, ids: List[str], **kwargs: Any
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> DeleteOrganizations:
-        variables: Dict[str, object] = {"ids": ids}
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_ORGANIZATIONS_GQL,
             operation_name="DeleteOrganizations",
@@ -1517,7 +1820,9 @@ class Client(AsyncBaseClient):
         return GetOrganization.model_validate(data)
 
     async def query_organizations(
-        self, filter: OrganizationFilter, **kwargs: Any
+        self,
+        filter: Union[Optional[OrganizationFilter], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> QueryOrganizations:
         variables: Dict[str, object] = {"filter": filter}
         response = await self.execute(
@@ -1542,6 +1847,19 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return UpdateOrganization.model_validate(data)
 
+    async def count_persons(
+        self, filter: Union[Optional[PersonFilter], UnsetType] = UNSET, **kwargs: Any
+    ) -> CountPersons:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_PERSONS_GQL,
+            operation_name="CountPersons",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountPersons.model_validate(data)
+
     async def create_person(self, person: PersonInput, **kwargs: Any) -> CreatePerson:
         variables: Dict[str, object] = {"person": person}
         response = await self.execute(
@@ -1554,9 +1872,17 @@ class Client(AsyncBaseClient):
         return CreatePerson.model_validate(data)
 
     async def delete_all_persons(
-        self, filter: PersonFilter, **kwargs: Any
+        self,
+        filter: Union[Optional[PersonFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> DeleteAllPersons:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=DELETE_ALL_PERSONS_GQL,
             operation_name="DeleteAllPersons",
@@ -1577,8 +1903,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeletePerson.model_validate(data)
 
-    async def delete_persons(self, ids: List[str], **kwargs: Any) -> DeletePersons:
-        variables: Dict[str, object] = {"ids": ids}
+    async def delete_persons(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeletePersons:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_PERSONS_GQL,
             operation_name="DeletePersons",
@@ -1599,7 +1930,9 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return GetPerson.model_validate(data)
 
-    async def query_persons(self, filter: PersonFilter, **kwargs: Any) -> QueryPersons:
+    async def query_persons(
+        self, filter: Union[Optional[PersonFilter], UnsetType] = UNSET, **kwargs: Any
+    ) -> QueryPersons:
         variables: Dict[str, object] = {"filter": filter}
         response = await self.execute(
             query=QUERY_PERSONS_GQL,
@@ -1623,6 +1956,19 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return UpdatePerson.model_validate(data)
 
+    async def count_places(
+        self, filter: Union[Optional[PlaceFilter], UnsetType] = UNSET, **kwargs: Any
+    ) -> CountPlaces:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_PLACES_GQL,
+            operation_name="CountPlaces",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountPlaces.model_validate(data)
+
     async def create_place(self, place: PlaceInput, **kwargs: Any) -> CreatePlace:
         variables: Dict[str, object] = {"place": place}
         response = await self.execute(
@@ -1635,9 +1981,17 @@ class Client(AsyncBaseClient):
         return CreatePlace.model_validate(data)
 
     async def delete_all_places(
-        self, filter: PlaceFilter, **kwargs: Any
+        self,
+        filter: Union[Optional[PlaceFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> DeleteAllPlaces:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=DELETE_ALL_PLACES_GQL,
             operation_name="DeleteAllPlaces",
@@ -1658,8 +2012,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeletePlace.model_validate(data)
 
-    async def delete_places(self, ids: List[str], **kwargs: Any) -> DeletePlaces:
-        variables: Dict[str, object] = {"ids": ids}
+    async def delete_places(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeletePlaces:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_PLACES_GQL,
             operation_name="DeletePlaces",
@@ -1680,7 +2039,9 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return GetPlace.model_validate(data)
 
-    async def query_places(self, filter: PlaceFilter, **kwargs: Any) -> QueryPlaces:
+    async def query_places(
+        self, filter: Union[Optional[PlaceFilter], UnsetType] = UNSET, **kwargs: Any
+    ) -> QueryPlaces:
         variables: Dict[str, object] = {"filter": filter}
         response = await self.execute(
             query=QUERY_PLACES_GQL,
@@ -1702,6 +2063,19 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return UpdatePlace.model_validate(data)
 
+    async def count_products(
+        self, filter: Union[Optional[ProductFilter], UnsetType] = UNSET, **kwargs: Any
+    ) -> CountProducts:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_PRODUCTS_GQL,
+            operation_name="CountProducts",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountProducts.model_validate(data)
+
     async def create_product(
         self, product: ProductInput, **kwargs: Any
     ) -> CreateProduct:
@@ -1716,9 +2090,17 @@ class Client(AsyncBaseClient):
         return CreateProduct.model_validate(data)
 
     async def delete_all_products(
-        self, filter: ProductFilter, **kwargs: Any
+        self,
+        filter: Union[Optional[ProductFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> DeleteAllProducts:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=DELETE_ALL_PRODUCTS_GQL,
             operation_name="DeleteAllProducts",
@@ -1739,8 +2121,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteProduct.model_validate(data)
 
-    async def delete_products(self, ids: List[str], **kwargs: Any) -> DeleteProducts:
-        variables: Dict[str, object] = {"ids": ids}
+    async def delete_products(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteProducts:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_PRODUCTS_GQL,
             operation_name="DeleteProducts",
@@ -1762,7 +2149,7 @@ class Client(AsyncBaseClient):
         return GetProduct.model_validate(data)
 
     async def query_products(
-        self, filter: ProductFilter, **kwargs: Any
+        self, filter: Union[Optional[ProductFilter], UnsetType] = UNSET, **kwargs: Any
     ) -> QueryProducts:
         variables: Dict[str, object] = {"filter": filter}
         response = await self.execute(
@@ -1786,14 +2173,6 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdateProduct.model_validate(data)
-
-    async def credits(self, start_date: Any, duration: Any, **kwargs: Any) -> Credits:
-        variables: Dict[str, object] = {"startDate": start_date, "duration": duration}
-        response = await self.execute(
-            query=CREDITS_GQL, operation_name="Credits", variables=variables, **kwargs
-        )
-        data = self.get_data(response)
-        return Credits.model_validate(data)
 
     async def get_project(self, **kwargs: Any) -> GetProject:
         variables: Dict[str, object] = {}
@@ -1828,6 +2207,32 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return LookupUsage.model_validate(data)
 
+    async def query_credits(
+        self, start_date: Any, duration: Any, **kwargs: Any
+    ) -> QueryCredits:
+        variables: Dict[str, object] = {"startDate": start_date, "duration": duration}
+        response = await self.execute(
+            query=QUERY_CREDITS_GQL,
+            operation_name="QueryCredits",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryCredits.model_validate(data)
+
+    async def query_usage(
+        self, start_date: Any, duration: Any, **kwargs: Any
+    ) -> QueryUsage:
+        variables: Dict[str, object] = {"startDate": start_date, "duration": duration}
+        response = await self.execute(
+            query=QUERY_USAGE_GQL,
+            operation_name="QueryUsage",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryUsage.model_validate(data)
+
     async def update_project(
         self, project: ProjectUpdateInput, **kwargs: Any
     ) -> UpdateProject:
@@ -1841,13 +2246,18 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return UpdateProject.model_validate(data)
 
-    async def usage(self, start_date: Any, duration: Any, **kwargs: Any) -> Usage:
-        variables: Dict[str, object] = {"startDate": start_date, "duration": duration}
+    async def count_repos(
+        self, filter: Union[Optional[RepoFilter], UnsetType] = UNSET, **kwargs: Any
+    ) -> CountRepos:
+        variables: Dict[str, object] = {"filter": filter}
         response = await self.execute(
-            query=USAGE_GQL, operation_name="Usage", variables=variables, **kwargs
+            query=COUNT_REPOS_GQL,
+            operation_name="CountRepos",
+            variables=variables,
+            **kwargs
         )
         data = self.get_data(response)
-        return Usage.model_validate(data)
+        return CountRepos.model_validate(data)
 
     async def create_repo(self, repo: RepoInput, **kwargs: Any) -> CreateRepo:
         variables: Dict[str, object] = {"repo": repo}
@@ -1861,9 +2271,17 @@ class Client(AsyncBaseClient):
         return CreateRepo.model_validate(data)
 
     async def delete_all_repos(
-        self, filter: RepoFilter, **kwargs: Any
+        self,
+        filter: Union[Optional[RepoFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> DeleteAllRepos:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=DELETE_ALL_REPOS_GQL,
             operation_name="DeleteAllRepos",
@@ -1884,8 +2302,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteRepo.model_validate(data)
 
-    async def delete_repos(self, ids: List[str], **kwargs: Any) -> DeleteRepos:
-        variables: Dict[str, object] = {"ids": ids}
+    async def delete_repos(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteRepos:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_REPOS_GQL,
             operation_name="DeleteRepos",
@@ -1903,7 +2326,9 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return GetRepo.model_validate(data)
 
-    async def query_repos(self, filter: RepoFilter, **kwargs: Any) -> QueryRepos:
+    async def query_repos(
+        self, filter: Union[Optional[RepoFilter], UnsetType] = UNSET, **kwargs: Any
+    ) -> QueryRepos:
         variables: Dict[str, object] = {"filter": filter}
         response = await self.execute(
             query=QUERY_REPOS_GQL,
@@ -1925,6 +2350,19 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return UpdateRepo.model_validate(data)
 
+    async def count_softwares(
+        self, filter: Union[Optional[SoftwareFilter], UnsetType] = UNSET, **kwargs: Any
+    ) -> CountSoftwares:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_SOFTWARES_GQL,
+            operation_name="CountSoftwares",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountSoftwares.model_validate(data)
+
     async def create_software(
         self, software: SoftwareInput, **kwargs: Any
     ) -> CreateSoftware:
@@ -1939,9 +2377,17 @@ class Client(AsyncBaseClient):
         return CreateSoftware.model_validate(data)
 
     async def delete_all_softwares(
-        self, filter: SoftwareFilter, **kwargs: Any
+        self,
+        filter: Union[Optional[SoftwareFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> DeleteAllSoftwares:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=DELETE_ALL_SOFTWARES_GQL,
             operation_name="DeleteAllSoftwares",
@@ -1962,8 +2408,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteSoftware.model_validate(data)
 
-    async def delete_softwares(self, ids: List[str], **kwargs: Any) -> DeleteSoftwares:
-        variables: Dict[str, object] = {"ids": ids}
+    async def delete_softwares(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteSoftwares:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_SOFTWARES_GQL,
             operation_name="DeleteSoftwares",
@@ -1985,7 +2436,7 @@ class Client(AsyncBaseClient):
         return GetSoftware.model_validate(data)
 
     async def query_softwares(
-        self, filter: SoftwareFilter, **kwargs: Any
+        self, filter: Union[Optional[SoftwareFilter], UnsetType] = UNSET, **kwargs: Any
     ) -> QuerySoftwares:
         variables: Dict[str, object] = {"filter": filter}
         response = await self.execute(
@@ -2010,6 +2461,21 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return UpdateSoftware.model_validate(data)
 
+    async def count_specifications(
+        self,
+        filter: Union[Optional[SpecificationFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountSpecifications:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_SPECIFICATIONS_GQL,
+            operation_name="CountSpecifications",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountSpecifications.model_validate(data)
+
     async def create_specification(
         self, specification: SpecificationInput, **kwargs: Any
     ) -> CreateSpecification:
@@ -2023,6 +2489,27 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return CreateSpecification.model_validate(data)
 
+    async def delete_all_specifications(
+        self,
+        filter: Union[Optional[SpecificationFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllSpecifications:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DELETE_ALL_SPECIFICATIONS_GQL,
+            operation_name="DeleteAllSpecifications",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllSpecifications.model_validate(data)
+
     async def delete_specification(self, id: str, **kwargs: Any) -> DeleteSpecification:
         variables: Dict[str, object] = {"id": id}
         response = await self.execute(
@@ -2033,6 +2520,22 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return DeleteSpecification.model_validate(data)
+
+    async def delete_specifications(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteSpecifications:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
+        response = await self.execute(
+            query=DELETE_SPECIFICATIONS_GQL,
+            operation_name="DeleteSpecifications",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteSpecifications.model_validate(data)
 
     async def get_specification(self, id: str, **kwargs: Any) -> GetSpecification:
         variables: Dict[str, object] = {"id": id}
@@ -2086,6 +2589,19 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return UpdateSpecification.model_validate(data)
 
+    async def count_workflows(
+        self, filter: Union[Optional[WorkflowFilter], UnsetType] = UNSET, **kwargs: Any
+    ) -> CountWorkflows:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_WORKFLOWS_GQL,
+            operation_name="CountWorkflows",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountWorkflows.model_validate(data)
+
     async def create_workflow(
         self, workflow: WorkflowInput, **kwargs: Any
     ) -> CreateWorkflow:
@@ -2099,8 +2615,18 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return CreateWorkflow.model_validate(data)
 
-    async def delete_all_workflows(self, **kwargs: Any) -> DeleteAllWorkflows:
-        variables: Dict[str, object] = {}
+    async def delete_all_workflows(
+        self,
+        filter: Union[Optional[WorkflowFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllWorkflows:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=DELETE_ALL_WORKFLOWS_GQL,
             operation_name="DeleteAllWorkflows",
@@ -2121,8 +2647,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteWorkflow.model_validate(data)
 
-    async def delete_workflows(self, ids: List[str], **kwargs: Any) -> DeleteWorkflows:
-        variables: Dict[str, object] = {"ids": ids}
+    async def delete_workflows(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteWorkflows:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_WORKFLOWS_GQL,
             operation_name="DeleteWorkflows",

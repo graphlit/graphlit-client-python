@@ -1,5 +1,5 @@
-mutation DeleteConversations($ids: [ID!]!) {
-  deleteConversations(ids: $ids) {
+mutation DeleteConversations($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteConversations(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }

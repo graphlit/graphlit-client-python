@@ -1,4 +1,4 @@
-query Credits($startDate: DateTime!, $duration: TimeSpan!) {
+query QueryCredits($startDate: DateTime!, $duration: TimeSpan!) {
   credits(startDate: $startDate, duration: $duration) {
     correlationId
     ownerId

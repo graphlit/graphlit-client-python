@@ -7,5 +7,9 @@ mutation UpdateContent($content: ContentUpdateInput!) {
     fileType
     mimeType
     uri
+    collections {
+      id
+      name
+    }
   }
 }

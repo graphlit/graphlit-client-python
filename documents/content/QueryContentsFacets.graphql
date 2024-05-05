@@ -1,0 +1,239 @@
+query QueryContentsFacets($filter: ContentFilter!, $facets: [ContentFacetInput!]) {
+  contents(filter: $filter, facets: $facets) {
+    results {
+      id
+      name
+      creationDate
+      owner {
+        id
+      }
+      state
+      originalDate
+      finishedDate
+      workflowDuration
+      uri
+      description
+      markdown
+      address {
+        streetAddress
+        city
+        region
+        country
+        postalCode
+      }
+      location {
+        latitude
+        longitude
+      }
+      type
+      fileType
+      mimeType
+      fileName
+      fileSize
+      masterUri
+      imageUri
+      textUri
+      audioUri
+      transcriptUri
+      video {
+        width
+        height
+        duration
+        make
+        model
+        software
+        title
+        description
+        keywords
+        author
+      }
+      audio {
+        keywords
+        author
+        series
+        episode
+        episodeType
+        season
+        publisher
+        copyright
+        language
+        genre
+        title
+        description
+        bitrate
+        channels
+        sampleRate
+        bitsPerSample
+        duration
+      }
+      image {
+        width
+        height
+        resolutionX
+        resolutionY
+        bitsPerComponent
+        components
+        projectionType
+        orientation
+        description
+        make
+        model
+        software
+        lens
+        focalLength
+        exposureTime
+        fNumber
+        iso
+        heading
+        pitch
+      }
+      document {
+        title
+        subject
+        summary
+        author
+        publisher
+        description
+        keywords
+        pageCount
+        worksheetCount
+        slideCount
+        wordCount
+        lineCount
+        paragraphCount
+        isEncrypted
+        hasDigitalSignature
+      }
+      email {
+        identifier
+        subject
+        labels
+        sensitivity
+        priority
+        importance
+        from {
+          name
+          email
+          givenName
+          familyName
+        }
+        to {
+          name
+          email
+          givenName
+          familyName
+        }
+        cc {
+          name
+          email
+          givenName
+          familyName
+        }
+        bcc {
+          name
+          email
+          givenName
+          familyName
+        }
+      }
+      issue {
+        identifier
+        title
+        project
+        team
+        status
+        priority
+        type
+        labels
+      }
+      package {
+        fileCount
+        folderCount
+        isEncrypted
+      }
+      parent {
+        id
+        name
+      }
+      children {
+        id
+        name
+      }
+      feed {
+        id
+        name
+      }
+      collections {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+      }
+      observations {
+        id
+        type
+        observable {
+          id
+          name
+        }
+        occurrences {
+          type
+          confidence
+          startTime
+          endTime
+          pageIndex
+          boundingBox {
+            left
+            top
+            width
+            height
+          }
+        }
+        state
+      }
+      workflow {
+        id
+        name
+      }
+      pages {
+        index
+        chunks {
+          index
+          pageIndex
+          rowIndex
+          columnIndex
+          confidence
+          text
+          role
+          relevance
+        }
+      }
+      segments {
+        startTime
+        endTime
+        text
+        relevance
+      }
+      error
+    }
+    facets {
+      facet
+      count
+      type
+      value
+      range {
+        from
+        to
+      }
+      observable {
+        type
+        observable {
+          id
+          name
+        }
+      }
+    }
+  }
+}

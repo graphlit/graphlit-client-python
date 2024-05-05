@@ -1,4 +1,4 @@
-query QueryPlaces($filter: PlaceFilter!) {
+query QueryPlaces($filter: PlaceFilter) {
   places(filter: $filter) {
     results {
       id

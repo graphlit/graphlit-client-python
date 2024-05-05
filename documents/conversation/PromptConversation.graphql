@@ -11,9 +11,12 @@ mutation PromptConversation($prompt: String!, $id: ID, $correlationId: String) {
         content {
           id
           name
+          state
           type
           fileType
           fileName
+          originalDate
+          uri
         }
         index
         text

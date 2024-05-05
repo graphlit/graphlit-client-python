@@ -12,6 +12,9 @@ query QuerySpecifications($filter: SpecificationFilter) {
       serviceType
       systemPrompt
       customGuidance
+      customInstructions
+      searchType
+      numberSimilar
       strategy {
         type
         messageLimit
@@ -46,6 +49,15 @@ query QuerySpecifications($filter: SpecificationFilter) {
         key
         endpoint
         deploymentName
+        temperature
+        probability
+      }
+      cohere {
+        tokenLimit
+        completionTokenLimit
+        model
+        key
+        modelName
         temperature
         probability
       }

@@ -1,4 +1,4 @@
-query QueryRepos($filter: RepoFilter!) {
+query QueryRepos($filter: RepoFilter) {
   repos(filter: $filter) {
     results {
       id

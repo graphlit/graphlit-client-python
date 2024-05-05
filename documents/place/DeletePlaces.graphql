@@ -1,5 +1,5 @@
-mutation DeletePlaces($ids: [ID!]!) {
-  deletePlaces(ids: $ids) {
+mutation DeletePlaces($ids: [ID!]!, $isSynchronous: Boolean) {
+  deletePlaces(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }

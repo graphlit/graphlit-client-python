@@ -1,4 +1,4 @@
-query QueryOrganizations($filter: OrganizationFilter!) {
+query QueryOrganizations($filter: OrganizationFilter) {
   organizations(filter: $filter) {
     results {
       id

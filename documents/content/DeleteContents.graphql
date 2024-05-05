@@ -1,5 +1,5 @@
-mutation DeleteContents($ids: [ID!]!) {
-  deleteContents(ids: $ids) {
+mutation DeleteContents($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteContents(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }

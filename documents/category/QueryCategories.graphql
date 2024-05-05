@@ -1,4 +1,4 @@
-query QueryCategories($filter: CategoryFilter!) {
+query QueryCategories($filter: CategoryFilter) {
   categories(filter: $filter) {
     results {
       id

@@ -69,6 +69,13 @@ class QueryConversationsConversationsResultsMessagesCitations(BaseModel):
 
 class QueryConversationsConversationsResultsMessagesCitationsContent(BaseModel):
     id: str
+    name: str
+    state: EntityState
+    type: Optional[ContentTypes]
+    file_type: Optional[FileTypes] = Field(alias="fileType")
+    file_name: Optional[str] = Field(alias="fileName")
+    original_date: Optional[Any] = Field(alias="originalDate")
+    uri: Optional[Any]
 
 
 class QueryConversationsConversationsResultsSpecification(BaseModel):

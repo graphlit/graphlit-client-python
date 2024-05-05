@@ -1,0 +1,6 @@
+mutation DeleteAllSpecifications($filter: SpecificationFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllSpecifications(filter: $filter, isSynchronous: $isSynchronous, correlationId: $correlationId) {
+    id
+    state
+  }
+}

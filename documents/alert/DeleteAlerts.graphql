@@ -1,5 +1,5 @@
-mutation DeleteAlerts($ids: [ID!]!) {
-  deleteAlerts(ids: $ids) {
+mutation DeleteAlerts($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteAlerts(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }

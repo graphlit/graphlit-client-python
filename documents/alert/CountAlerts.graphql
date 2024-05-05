@@ -1,0 +1,5 @@
+query CountAlerts($filter: AlertFilter) {
+  countAlerts(filter: $filter) {
+    count
+  }
+}

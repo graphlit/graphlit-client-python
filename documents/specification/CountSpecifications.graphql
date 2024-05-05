@@ -1,0 +1,5 @@
+query CountSpecifications($filter: SpecificationFilter) {
+  countSpecifications(filter: $filter) {
+    count
+  }
+}

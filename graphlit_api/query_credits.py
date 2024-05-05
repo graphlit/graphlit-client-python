@@ -8,11 +8,11 @@ from pydantic import Field
 from .base_model import BaseModel
 
 
-class Credits(BaseModel):
-    credits: Optional[List[Optional["CreditsCredits"]]]
+class QueryCredits(BaseModel):
+    credits: Optional[List[Optional["QueryCreditsCredits"]]]
 
 
-class CreditsCredits(BaseModel):
+class QueryCreditsCredits(BaseModel):
     correlation_id: Optional[str] = Field(alias="correlationId")
     owner_id: Optional[str] = Field(alias="ownerId")
     credits: Optional[Any]
@@ -26,4 +26,4 @@ class CreditsCredits(BaseModel):
     conversation_ratio: Optional[Any] = Field(alias="conversationRatio")
 
 
-Credits.model_rebuild()
+QueryCredits.model_rebuild()

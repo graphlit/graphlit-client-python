@@ -1,5 +1,5 @@
-mutation DeleteLabels($ids: [ID!]!) {
-  deleteLabels(ids: $ids) {
+mutation DeleteLabels($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteLabels(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }

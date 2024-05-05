@@ -1,4 +1,4 @@
-query QueryContents($filter: ContentFilter) {
+query QueryContents($filter: ContentFilter!) {
   contents(filter: $filter) {
     results {
       id
@@ -12,6 +12,19 @@ query QueryContents($filter: ContentFilter) {
       finishedDate
       workflowDuration
       uri
+      description
+      markdown
+      address {
+        streetAddress
+        city
+        region
+        country
+        postalCode
+      }
+      location {
+        latitude
+        longitude
+      }
       type
       fileType
       mimeType
@@ -22,6 +35,168 @@ query QueryContents($filter: ContentFilter) {
       textUri
       audioUri
       transcriptUri
+      video {
+        width
+        height
+        duration
+        make
+        model
+        software
+        title
+        description
+        keywords
+        author
+      }
+      audio {
+        keywords
+        author
+        series
+        episode
+        episodeType
+        season
+        publisher
+        copyright
+        language
+        genre
+        title
+        description
+        bitrate
+        channels
+        sampleRate
+        bitsPerSample
+        duration
+      }
+      image {
+        width
+        height
+        resolutionX
+        resolutionY
+        bitsPerComponent
+        components
+        projectionType
+        orientation
+        description
+        make
+        model
+        software
+        lens
+        focalLength
+        exposureTime
+        fNumber
+        iso
+        heading
+        pitch
+      }
+      document {
+        title
+        subject
+        summary
+        author
+        publisher
+        description
+        keywords
+        pageCount
+        worksheetCount
+        slideCount
+        wordCount
+        lineCount
+        paragraphCount
+        isEncrypted
+        hasDigitalSignature
+      }
+      email {
+        identifier
+        subject
+        labels
+        sensitivity
+        priority
+        importance
+        from {
+          name
+          email
+          givenName
+          familyName
+        }
+        to {
+          name
+          email
+          givenName
+          familyName
+        }
+        cc {
+          name
+          email
+          givenName
+          familyName
+        }
+        bcc {
+          name
+          email
+          givenName
+          familyName
+        }
+      }
+      issue {
+        identifier
+        title
+        project
+        team
+        status
+        priority
+        type
+        labels
+      }
+      package {
+        fileCount
+        folderCount
+        isEncrypted
+      }
+      parent {
+        id
+        name
+      }
+      children {
+        id
+        name
+      }
+      feed {
+        id
+        name
+      }
+      collections {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+      }
+      observations {
+        id
+        type
+        observable {
+          id
+          name
+        }
+        occurrences {
+          type
+          confidence
+          startTime
+          endTime
+          pageIndex
+          boundingBox {
+            left
+            top
+            width
+            height
+          }
+        }
+        state
+      }
+      workflow {
+        id
+        name
+      }
       pages {
         index
         chunks {
@@ -40,142 +215,6 @@ query QueryContents($filter: ContentFilter) {
         endTime
         text
         relevance
-      }      
-      video {
-        width
-        height
-        duration
-        software
-        make
-        model
-      }
-      audio {
-        keywords
-        author
-        series
-        episode
-        episodeType
-        season
-        publisher
-        copyright
-        language
-        genre
-        title
-        bitrate
-        channels
-        sampleRate
-        bitsPerSample
-        duration
-      }
-      image {
-        width
-        height
-        description
-        software
-        identifier
-        make
-        model
-      }
-      document {
-        title
-        subject
-        author
-        software
-        publisher
-        description
-        summary
-        keywords
-        pageCount
-        worksheetCount
-        slideCount      
-        wordCount
-        lineCount
-        paragraphCount
-        characterCount
-        isEncrypted
-        hasDigitalSignature
-      }
-      email {
-        subject
-        identifier
-        sensitivity
-        priority
-        importance
-        labels
-        from {
-          name
-          familyName
-          givenName
-          email
-        }
-        to {
-          name
-          familyName
-          givenName
-          email
-        }
-        cc {
-          name
-          familyName
-          givenName
-          email
-        }
-        bcc {
-          name
-          familyName
-          givenName
-          email
-        }
-      }
-      issue {
-        title
-        project
-        team
-        status
-        priority
-        type
-        identifier
-        labels
-      }
-      observations {
-        type
-        observable {
-          id
-          name
-        }
-        occurrences {
-          type
-          confidence
-          boundingBox {
-            left
-            top
-            width
-            height
-          }
-          pageIndex
-          startTime
-          endTime
-        }
-      }
-      parent {
-        id
-      }
-      children {
-        id
-      }
-      collections {
-        id
-      }
-      feed {
-        id
-      }
-      workflow {
-        id
-      }
-      markdown
-      links {
-        uri
-        linkType
       }
       error
     }

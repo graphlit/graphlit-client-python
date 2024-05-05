@@ -1,0 +1,5 @@
+query CountRepos($filter: RepoFilter) {
+  countRepos(filter: $filter) {
+    count
+  }
+}

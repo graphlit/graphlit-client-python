@@ -1,5 +1,5 @@
-mutation DeleteAllEvents($filter: EventFilter!) {
-  deleteAllEvents(filter: $filter) {
+mutation DeleteAllEvents($filter: EventFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllEvents(filter: $filter, isSynchronous: $isSynchronous, correlationId: $correlationId) {
     id
     state
   }

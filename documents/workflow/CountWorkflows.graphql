@@ -1,0 +1,5 @@
+query CountWorkflows($filter: WorkflowFilter) {
+  countWorkflows(filter: $filter) {
+    count
+  }
+}

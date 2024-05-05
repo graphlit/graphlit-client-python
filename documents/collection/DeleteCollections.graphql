@@ -1,5 +1,5 @@
-mutation DeleteCollections($ids: [ID!]!) {
-  deleteCollections(ids: $ids) {
+mutation DeleteCollections($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteCollections(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }

@@ -1,5 +1,5 @@
-mutation PublishConversation($id: ID!, $connector: ContentPublishingConnectorInput!, $name: String, $workflow: EntityReferenceInput, $correlationId: String) {
-  publishConversation(id: $id, connector: $connector, name: $name, workflow: $workflow, correlationId: $correlationId) {
+mutation PublishConversation($id: ID!, $connector: ContentPublishingConnectorInput!, $name: String, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $correlationId: String) {
+  publishConversation(id: $id, connector: $connector, name: $name, isSynchronous: $isSynchronous, workflow: $workflow, correlationId: $correlationId) {
     id
     name
     state
@@ -7,6 +7,10 @@ mutation PublishConversation($id: ID!, $connector: ContentPublishingConnectorInp
     fileType
     mimeType
     uri
+    collections {
+      id
+      name
+    }
     textUri
     audioUri
     markdown

@@ -1,0 +1,5 @@
+query CountLabels($filter: LabelFilter) {
+  countLabels(filter: $filter) {
+    count
+  }
+}

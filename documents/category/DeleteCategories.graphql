@@ -1,5 +1,5 @@
-mutation DeleteCategories($ids: [ID!]!) {
-  deleteCategories(ids: $ids) {
+mutation DeleteCategories($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteCategories(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }

@@ -1,0 +1,5 @@
+query CountCategories($filter: CategoryFilter) {
+  countCategories(filter: $filter) {
+    count
+  }
+}

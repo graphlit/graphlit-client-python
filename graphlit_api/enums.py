@@ -161,6 +161,7 @@ class ConversationTypes(str, Enum):
 class FeedTypes(str, Enum):
     NOTION = "NOTION"
     SLACK = "SLACK"
+    MICROSOFT_TEAMS = "MICROSOFT_TEAMS"
     DISCORD = "DISCORD"
     REDDIT = "REDDIT"
     WEB = "WEB"
@@ -288,6 +289,7 @@ class PolicyTimeTypes(str, Enum):
 class LinkTypes(str, Enum):
     TYPE_FORM = "TYPE_FORM"
     AIRTABLE = "AIRTABLE"
+    MICROSOFT_TEAMS = "MICROSOFT_TEAMS"
     DISCORD = "DISCORD"
     APPLE = "APPLE"
     SLACK = "SLACK"
@@ -463,6 +465,7 @@ class ConversationStrategyTypes(str, Enum):
 class PromptStrategyTypes(str, Enum):
     OPTIMIZE_SEARCH = "OPTIMIZE_SEARCH"
     REWRITE = "REWRITE"
+    REWRITE_QUESTION = "REWRITE_QUESTION"
     REWRITE_MULTIPLE = "REWRITE_MULTIPLE"
     NONE = "NONE"
 
@@ -476,6 +479,7 @@ class RetrievalStrategyTypes(str, Enum):
 class RerankingModelServiceTypes(str, Enum):
     COHERE = "COHERE"
     JINA = "JINA"
+    PONGO = "PONGO"
 
 
 class OpenAIModels(str, Enum):

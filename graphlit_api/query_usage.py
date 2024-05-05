@@ -9,11 +9,11 @@ from .base_model import BaseModel
 from .enums import BillableMetrics, ContentTypes, EntityTypes, FileTypes
 
 
-class Usage(BaseModel):
-    usage: Optional[List[Optional["UsageUsage"]]]
+class QueryUsage(BaseModel):
+    usage: Optional[List[Optional["QueryUsageUsage"]]]
 
 
-class UsageUsage(BaseModel):
+class QueryUsageUsage(BaseModel):
     correlation_id: Optional[str] = Field(alias="correlationId")
     date: Any
     credits: Optional[Any]
@@ -43,4 +43,4 @@ class UsageUsage(BaseModel):
     response: Optional[str]
 
 
-Usage.model_rebuild()
+QueryUsage.model_rebuild()

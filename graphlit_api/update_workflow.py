@@ -150,6 +150,7 @@ class UpdateWorkflowUpdateWorkflowExtractionJobsConnectorAzureImage(BaseModel):
 class UpdateWorkflowUpdateWorkflowExtractionJobsConnectorOpenAiImage(BaseModel):
     confidence_threshold: Optional[float] = Field(alias="confidenceThreshold")
     detail_level: Optional[OpenAIVisionDetailLevels] = Field(alias="detailLevel")
+    custom_instructions: Optional[str] = Field(alias="customInstructions")
 
 
 class UpdateWorkflowUpdateWorkflowExtractionJobsConnectorModelText(BaseModel):

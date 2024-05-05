@@ -1,4 +1,4 @@
-query QueryEvents($filter: EventFilter!) {
+query QueryEvents($filter: EventFilter) {
   events(filter: $filter) {
     results {
       id

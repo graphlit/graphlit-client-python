@@ -1,4 +1,4 @@
-query QuerySoftwares($filter: SoftwareFilter!) {
+query QuerySoftwares($filter: SoftwareFilter) {
   softwares(filter: $filter) {
     results {
       id

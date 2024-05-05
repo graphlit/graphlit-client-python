@@ -1,5 +1,5 @@
-mutation DeleteAllSoftwares($filter: SoftwareFilter!) {
-  deleteAllSoftwares(filter: $filter) {
+mutation DeleteAllSoftwares($filter: SoftwareFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllSoftwares(filter: $filter, isSynchronous: $isSynchronous, correlationId: $correlationId) {
     id
     state
   }

@@ -7,5 +7,9 @@ mutation IngestEncodedFile($name: String!, $data: String!, $mimeType: String!, $
     fileType
     mimeType
     uri
+    collections {
+      id
+      name
+    }
   }
 }

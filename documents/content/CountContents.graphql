@@ -1,0 +1,5 @@
+query CountContents($filter: ContentFilter) {
+  countContents(filter: $filter) {
+    count
+  }
+}

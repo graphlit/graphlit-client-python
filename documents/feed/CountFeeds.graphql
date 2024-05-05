@@ -1,0 +1,5 @@
+query CountFeeds($filter: FeedFilter) {
+  countFeeds(filter: $filter) {
+    count
+  }
+}

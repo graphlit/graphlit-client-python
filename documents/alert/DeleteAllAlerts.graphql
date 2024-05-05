@@ -1,5 +1,5 @@
-mutation DeleteAllAlerts {
-  deleteAllAlerts {
+mutation DeleteAllAlerts($filter: AlertFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllAlerts(filter: $filter, isSynchronous: $isSynchronous, correlationId: $correlationId) {
     id
     state
   }

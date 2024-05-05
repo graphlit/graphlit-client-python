@@ -1,4 +1,4 @@
-query QueryLabels($filter: LabelFilter!) {
+query QueryLabels($filter: LabelFilter) {
   labels(filter: $filter) {
     results {
       id

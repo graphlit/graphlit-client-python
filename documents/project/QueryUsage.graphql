@@ -1,4 +1,4 @@
-query Usage($startDate: DateTime!, $duration: TimeSpan!) {
+query QueryUsage($startDate: DateTime!, $duration: TimeSpan!) {
   usage(startDate: $startDate, duration: $duration) {
     correlationId
     date

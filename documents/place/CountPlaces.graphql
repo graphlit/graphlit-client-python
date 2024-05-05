@@ -1,0 +1,5 @@
+query CountPlaces($filter: PlaceFilter) {
+  countPlaces(filter: $filter) {
+    count
+  }
+}

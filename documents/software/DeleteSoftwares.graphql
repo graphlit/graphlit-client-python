@@ -1,5 +1,5 @@
-mutation DeleteSoftwares($ids: [ID!]!) {
-  deleteSoftwares(ids: $ids) {
+mutation DeleteSoftwares($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteSoftwares(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }

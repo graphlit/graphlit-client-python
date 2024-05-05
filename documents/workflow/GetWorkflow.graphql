@@ -65,6 +65,7 @@ query GetWorkflow($id: ID!) {
           openAIImage {
             confidenceThreshold
             detailLevel
+            customInstructions
           }
           modelText {
             specification {

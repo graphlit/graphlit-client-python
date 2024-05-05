@@ -17,6 +17,13 @@ query QueryConversations($filter: ConversationFilter) {
         citations {
           content {
             id
+            name
+            state
+            type
+            fileType
+            fileName
+            originalDate
+            uri
           }
           index
           text

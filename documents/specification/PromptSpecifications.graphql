@@ -10,6 +10,13 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
       citations {
         content {
           id
+          name
+          state
+          type
+          fileType
+          fileName
+          originalDate
+          uri
         }
         index
         text

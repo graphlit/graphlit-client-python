@@ -10,6 +10,7 @@ from .enums import (
     ContentFacetTypes,
     ContentTypes,
     ConversationRoleTypes,
+    EntityState,
     FacetValueTypes,
     FileTypes,
     ModelServiceTypes,
@@ -62,9 +63,12 @@ class PromptConversationPromptConversationMessageCitations(BaseModel):
 class PromptConversationPromptConversationMessageCitationsContent(BaseModel):
     id: str
     name: str
+    state: EntityState
     type: Optional[ContentTypes]
     file_type: Optional[FileTypes] = Field(alias="fileType")
     file_name: Optional[str] = Field(alias="fileName")
+    original_date: Optional[Any] = Field(alias="originalDate")
+    uri: Optional[Any]
 
 
 class PromptConversationPromptConversationFacets(BaseModel):

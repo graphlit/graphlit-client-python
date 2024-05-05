@@ -2,8 +2,6 @@ import os
 import jwt
 import datetime
 import httpx
-import asyncio
-import random
 from graphlit_api.client import Client
 
 class Graphlit:
@@ -14,22 +12,19 @@ class Graphlit:
         self.secret_key = jwt_secret if jwt_secret is not None else os.getenv("GRAPHLIT_JWT_SECRET")
         self.api_uri = api_uri if api_uri is not None else "https://data-scus.graphlit.io/api/v1/graphql/"
         
-        self.token = self.generate_jwt()
-
-        headers = {"Authorization": f"Bearer {self.token}"}
+        self.refresh_client()
         
+    def refresh_client(self):
+        self.client = None
+        self._generate_token()
+        
+        headers = {"Authorization": f"Bearer {self.token}"}
+
         self.client = Client(url=self.api_uri, headers=headers)
         self.client.http_client.timeout = httpx.Timeout(timeout=600.0)
-        self.client.event_hooks = {'response': [self.exponential_backoff]}
-        
-        self.retry_state = {
-            "attempts": 0,
-            "max_attempts": 7,
-            "base_delay": 1  # Base delay in seconds
-        }
 
-    def generate_jwt(self):
-        expiration = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=1)
+    def _generate_token(self):
+        expiration = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=1)
         
         payload = {
             "https://graphlit.io/jwt/claims": {
@@ -45,17 +40,4 @@ class Graphlit:
         if self.owner_id is not None:
             payload["https://graphlit.io/jwt/claims"]["x-graphlit-owner-id"] = self.owner_id
         
-        return jwt.encode(payload, self.secret_key, algorithm="HS256")
-
-    async def exponential_backoff(self, request: httpx.Request, response: httpx.Response):
-        if response.status_code >= 500 and self.retry_state["attempts"] < self.retry_state["max_attempts"]:
-            self.retry_state["attempts"] += 1
-            
-            delay = self.retry_state["base_delay"] * (2 ** (self.retry_state["attempts"] - 1))
-            delay += random.uniform(0, self.retry_state["base_delay"])
-            
-            print(f'Graphlit API returned HTTP error {response.status_code}, retrying after {delay}.')
-
-            await asyncio.sleep(delay)
-
-            return await response.anext()
+        self.token = jwt.encode(payload, self.secret_key, algorithm="HS256")

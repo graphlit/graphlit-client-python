@@ -36,9 +36,13 @@ from .enums import (
     FileTypes,
     GroqModels,
     H3ResolutionTypes,
+    ImageProjectionTypes,
     IntegrationServiceTypes,
     LabelFacetTypes,
     LinkTypes,
+    MailImportance,
+    MailPriority,
+    MailSensitivity,
     MetadataTypes,
     MistralModels,
     ModelServiceTypes,
@@ -50,6 +54,7 @@ from .enums import (
     OrderByTypes,
     OrderDirectionTypes,
     OrganizationFacetTypes,
+    OrientationTypes,
     PersonFacetTypes,
     PlaceFacetTypes,
     PolicyTimeTypes,
@@ -68,6 +73,7 @@ from .enums import (
     SummarizationTypes,
     TimedPolicyRecurrenceTypes,
     TimeIntervalTypes,
+    UnitTypes,
     YouTubeTypes,
 )
 
@@ -517,6 +523,9 @@ class FeedInput(BaseModel):
     youtube: Optional["YouTubeFeedPropertiesInput"] = None
     notion: Optional["NotionFeedPropertiesInput"] = None
     slack: Optional["SlackFeedPropertiesInput"] = None
+    microsoft_teams: Optional["MicrosoftTeamsFeedPropertiesInput"] = Field(
+        alias="microsoftTeams", default=None
+    )
     discord: Optional["DiscordFeedPropertiesInput"] = None
     schedule_policy: Optional["FeedSchedulePolicyInput"] = Field(
         alias="schedulePolicy", default=None
@@ -755,6 +764,9 @@ class FeedUpdateInput(BaseModel):
     youtube: Optional["YouTubeFeedPropertiesUpdateInput"] = None
     notion: Optional["NotionFeedPropertiesUpdateInput"] = None
     slack: Optional["SlackFeedPropertiesUpdateInput"] = None
+    microsoft_teams: Optional["MicrosoftTeamsFeedPropertiesUpdateInput"] = Field(
+        alias="microsoftTeams", default=None
+    )
     discord: Optional["DiscordFeedPropertiesUpdateInput"] = None
     schedule_policy: Optional["FeedSchedulePolicyInput"] = Field(
         alias="schedulePolicy", default=None
@@ -1097,6 +1109,15 @@ class SlackFeedPropertiesInput(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
+class MicrosoftTeamsFeedPropertiesInput(BaseModel):
+    type: Optional[FeedListingTypes] = None
+    tenant_id: str = Field(alias="tenantId")
+    refresh_token: str = Field(alias="refreshToken")
+    team: str
+    channel: str
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
 class DiscordFeedPropertiesInput(BaseModel):
     type: Optional[FeedListingTypes] = None
     token: str
@@ -1372,6 +1393,15 @@ class SlackFeedPropertiesUpdateInput(BaseModel):
     include_attachments: Optional[bool] = Field(
         alias="includeAttachments", default=None
     )
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class MicrosoftTeamsFeedPropertiesUpdateInput(BaseModel):
+    type: Optional[FeedListingTypes] = None
+    tenant_id: Optional[str] = Field(alias="tenantId", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    team: str
+    channel: str
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -1850,6 +1880,10 @@ class ContentFacetInput(BaseModel):
     facet: Optional[ContentFacetTypes] = None
 
 
+class ContentGraphInput(BaseModel):
+    types: Optional[List[Optional[ObservableTypes]]] = None
+
+
 class EventFacetInput(BaseModel):
     time_interval: Optional[TimeIntervalTypes] = Field(
         alias="timeInterval", default=None
@@ -1926,3 +1960,183 @@ class ContentUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
     description: Optional[str] = None
+    video: Optional["VideoMetadataInput"] = None
+    audio: Optional["AudioMetadataInput"] = None
+    image: Optional["ImageMetadataInput"] = None
+    document: Optional["DocumentMetadataInput"] = None
+    email: Optional["EmailMetadataInput"] = None
+    issue: Optional["IssueMetadataInput"] = None
+    drawing: Optional["DrawingMetadataInput"] = None
+    shape: Optional["ShapeMetadataInput"] = None
+    geometry: Optional["GeometryMetadataInput"] = None
+    point_cloud: Optional["PointCloudMetadataInput"] = Field(
+        alias="pointCloud", default=None
+    )
+    package: Optional["PackageMetadataInput"] = None
+
+
+class VideoMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    width: Optional[int] = None
+    height: Optional[int] = None
+    duration: Optional[str] = None
+    software: Optional[str] = None
+    make: Optional[str] = None
+    model: Optional[str] = None
+
+
+class AudioMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    keywords: Optional[List[Optional[str]]] = None
+    author: Optional[str] = None
+    series: Optional[str] = None
+    episode: Optional[str] = None
+    episode_type: Optional[str] = Field(alias="episodeType", default=None)
+    season: Optional[str] = None
+    publisher: Optional[str] = None
+    copyright: Optional[str] = None
+    language: Optional[str] = None
+    genre: Optional[str] = None
+    title: Optional[str] = None
+    bitrate: Optional[int] = None
+    channels: Optional[int] = None
+    sample_rate: Optional[int] = Field(alias="sampleRate", default=None)
+    bits_per_sample: Optional[int] = Field(alias="bitsPerSample", default=None)
+    duration: Optional[str] = None
+
+
+class ImageMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    width: Optional[int] = None
+    height: Optional[int] = None
+    bits_per_component: Optional[int] = Field(alias="bitsPerComponent", default=None)
+    components: Optional[int] = None
+    projection_type: Optional[ImageProjectionTypes] = Field(
+        alias="projectionType", default=None
+    )
+    orientation: Optional[OrientationTypes] = None
+    resolution_x: Optional[int] = Field(alias="resolutionX", default=None)
+    resolution_y: Optional[int] = Field(alias="resolutionY", default=None)
+    description: Optional[str] = None
+    software: Optional[str] = None
+    identifier: Optional[str] = None
+    make: Optional[str] = None
+    model: Optional[str] = None
+    lens: Optional[str] = None
+    lens_specification: Optional[str] = Field(alias="lensSpecification", default=None)
+    focal_length: Optional[float] = Field(alias="focalLength", default=None)
+    exposure_time: Optional[str] = Field(alias="exposureTime", default=None)
+    f_number: Optional[str] = Field(alias="fNumber", default=None)
+    iso: Optional[str] = None
+    color_space: Optional[str] = Field(alias="colorSpace", default=None)
+    heading: Optional[float] = None
+    pitch: Optional[float] = None
+
+
+class DocumentMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    title: Optional[str] = None
+    subject: Optional[str] = None
+    author: Optional[str] = None
+    software: Optional[str] = None
+    publisher: Optional[str] = None
+    description: Optional[str] = None
+    summary: Optional[str] = None
+    comments: Optional[str] = None
+    identifier: Optional[str] = None
+    keywords: Optional[List[Optional[str]]] = None
+    links: Optional[List[Optional[Any]]] = None
+    page_count: Optional[int] = Field(alias="pageCount", default=None)
+    worksheet_count: Optional[int] = Field(alias="worksheetCount", default=None)
+    slide_count: Optional[int] = Field(alias="slideCount", default=None)
+    word_count: Optional[int] = Field(alias="wordCount", default=None)
+    line_count: Optional[int] = Field(alias="lineCount", default=None)
+    paragraph_count: Optional[int] = Field(alias="paragraphCount", default=None)
+    character_count: Optional[int] = Field(alias="characterCount", default=None)
+    total_editing_time: Optional[str] = Field(alias="totalEditingTime", default=None)
+    is_encrypted: Optional[bool] = Field(alias="isEncrypted", default=None)
+    has_digital_signature: Optional[bool] = Field(
+        alias="hasDigitalSignature", default=None
+    )
+
+
+class EmailMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    subject: Optional[str] = None
+    identifier: Optional[str] = None
+    sensitivity: Optional[MailSensitivity] = None
+    priority: Optional[MailPriority] = None
+    importance: Optional[MailImportance] = None
+    labels: Optional[List[Optional[str]]] = None
+    links: Optional[List[Optional[Any]]] = None
+
+
+class IssueMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    title: Optional[str] = None
+    project: Optional[str] = None
+    team: Optional[str] = None
+    status: Optional[str] = None
+    priority: Optional[str] = None
+    type: Optional[str] = None
+    identifier: Optional[str] = None
+    labels: Optional[List[Optional[str]]] = None
+    links: Optional[List[Optional[Any]]] = None
+
+
+class DrawingMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    x: Optional[float] = None
+    y: Optional[float] = None
+    width: Optional[float] = None
+    height: Optional[float] = None
+    depth: Optional[float] = None
+    unit_type: Optional[UnitTypes] = Field(alias="unitType", default=None)
+
+
+class ShapeMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    feature_count: Optional[int] = Field(alias="featureCount", default=None)
+    attribute_count: Optional[int] = Field(alias="attributeCount", default=None)
+
+
+class GeometryMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    triangle_count: Optional[Any] = Field(alias="triangleCount", default=None)
+    vertex_count: Optional[Any] = Field(alias="vertexCount", default=None)
+
+
+class PointCloudMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    software: Optional[str] = None
+    description: Optional[str] = None
+    identifier: Optional[str] = None
+    point_count: Optional[Any] = Field(alias="pointCount", default=None)
+
+
+class PackageMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    file_count: Optional[int] = Field(alias="fileCount", default=None)
+    folder_count: Optional[int] = Field(alias="folderCount", default=None)

@@ -1,0 +1,5 @@
+query CountConversations($filter: ConversationFilter) {
+  countConversations(filter: $filter) {
+    count
+  }
+}

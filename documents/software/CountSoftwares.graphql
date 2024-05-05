@@ -1,0 +1,5 @@
+query CountSoftwares($filter: SoftwareFilter) {
+  countSoftwares(filter: $filter) {
+    count
+  }
+}

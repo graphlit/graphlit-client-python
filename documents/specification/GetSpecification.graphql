@@ -11,6 +11,9 @@ query GetSpecification($id: ID!) {
     serviceType
     systemPrompt
     customGuidance
+    customInstructions
+    searchType
+    numberSimilar
     strategy {
       type
       messageLimit
@@ -45,6 +48,15 @@ query GetSpecification($id: ID!) {
       key
       endpoint
       deploymentName
+      temperature
+      probability
+    }
+    cohere {
+      tokenLimit
+      completionTokenLimit
+      model
+      key
+      modelName
       temperature
       probability
     }
