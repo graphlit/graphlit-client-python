@@ -1615,7 +1615,7 @@ class GoogleEmailFeedPropertiesInput(BaseModel):
 class MicrosoftEmailFeedPropertiesInput(BaseModel):
     type: Optional[EmailListingTypes] = None
     tenant_id: Optional[str] = Field(alias="tenantId", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    refresh_token: str = Field(alias="refreshToken")
 
 
 class AtlassianJiraFeedPropertiesInput(BaseModel):
