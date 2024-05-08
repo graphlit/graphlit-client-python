@@ -1,0 +1,8 @@
+query QueryMicrosoftTeamsChannels($properties: MicrosoftTeamsChannelsInput!, $teamId: ID!) {
+  microsoftTeamsChannels(properties: $properties, teamId: $teamId) {
+    results {
+      channelName
+      channelId
+    }
+  }
+}

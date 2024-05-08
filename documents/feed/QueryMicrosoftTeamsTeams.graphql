@@ -1,0 +1,8 @@
+query QueryMicrosoftTeamsTeams($properties: MicrosoftTeamsTeamsInput!) {
+  microsoftTeamsTeams(properties: $properties) {
+    results {
+      teamName
+      teamId
+    }
+  }
+}

@@ -42,6 +42,7 @@ query QueryFeeds($filter: FeedFilter) {
           authenticationType
           accountName
           libraryId
+          folderId
           tenantId
           refreshToken
         }

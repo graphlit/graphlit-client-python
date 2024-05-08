@@ -1,0 +1,8 @@
+query QueryOneDriveFolders($properties: OneDriveFoldersInput!, $folderId: ID) {
+  oneDriveFolders(properties: $properties, folderId: $folderId) {
+    results {
+      folderName
+      folderId
+    }
+  }
+}

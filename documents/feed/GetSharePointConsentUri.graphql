@@ -1,0 +1,5 @@
+query GetSharePointConsentUri($tenantId: ID!) {
+  sharePointConsentUri(tenantId: $tenantId) {
+    uri
+  }
+}

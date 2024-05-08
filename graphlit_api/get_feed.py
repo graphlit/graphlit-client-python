@@ -98,11 +98,12 @@ class GetFeedFeedSiteGoogle(BaseModel):
 
 
 class GetFeedFeedSiteSharePoint(BaseModel):
-    authentication_type: Optional[SharePointAuthenticationTypes] = Field(
+    authentication_type: SharePointAuthenticationTypes = Field(
         alias="authenticationType"
     )
-    account_name: Optional[str] = Field(alias="accountName")
-    library_id: Optional[str] = Field(alias="libraryId")
+    account_name: str = Field(alias="accountName")
+    library_id: str = Field(alias="libraryId")
+    folder_id: Optional[str] = Field(alias="folderId")
     tenant_id: Optional[str] = Field(alias="tenantId")
     refresh_token: Optional[str] = Field(alias="refreshToken")
 

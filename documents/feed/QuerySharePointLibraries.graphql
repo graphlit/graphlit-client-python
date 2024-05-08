@@ -1,0 +1,11 @@
+query QuerySharePointLibraries($properties: SharePointLibrariesInput!) {
+  sharePointLibraries(properties: $properties) {
+    accountName
+    results {
+      libraryName
+      libraryId
+      siteName
+      siteId
+    }
+  }
+}

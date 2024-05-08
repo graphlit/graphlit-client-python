@@ -1,0 +1,9 @@
+query QuerySharePointFolders($properties: SharePointFoldersInput!, $driveId: ID!, $folderId: ID) {
+  sharePointFolders(properties: $properties, driveId: $driveId, folderId: $folderId) {
+    accountName
+    results {
+      folderName
+      folderId
+    }
+  }
+}

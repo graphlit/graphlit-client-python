@@ -1113,8 +1113,8 @@ class MicrosoftTeamsFeedPropertiesInput(BaseModel):
     type: Optional[FeedListingTypes] = None
     tenant_id: str = Field(alias="tenantId")
     refresh_token: str = Field(alias="refreshToken")
-    team: str
-    channel: str
+    team_id: str = Field(alias="teamId")
+    channel_id: str = Field(alias="channelId")
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -1400,8 +1400,8 @@ class MicrosoftTeamsFeedPropertiesUpdateInput(BaseModel):
     type: Optional[FeedListingTypes] = None
     tenant_id: Optional[str] = Field(alias="tenantId", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    team: str
-    channel: str
+    team_id: str = Field(alias="teamId")
+    channel_id: str = Field(alias="channelId")
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -1591,10 +1591,11 @@ class SharePointFeedPropertiesInput(BaseModel):
     authentication_type: SharePointAuthenticationTypes = Field(
         alias="authenticationType"
     )
-    account_name: str = Field(alias="accountName")
-    library_id: str = Field(alias="libraryId")
     tenant_id: Optional[str] = Field(alias="tenantId", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    account_name: str = Field(alias="accountName")
+    library_id: str = Field(alias="libraryId")
+    folder_id: Optional[str] = Field(alias="folderId", default=None)
 
 
 class OneDriveFeedPropertiesInput(BaseModel):
@@ -1724,10 +1725,11 @@ class SharePointFeedPropertiesUpdateInput(BaseModel):
     authentication_type: Optional[SharePointAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
-    account_name: Optional[str] = Field(alias="accountName", default=None)
-    library_id: Optional[str] = Field(alias="libraryId", default=None)
     tenant_id: Optional[str] = Field(alias="tenantId", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    account_name: Optional[str] = Field(alias="accountName", default=None)
+    library_id: Optional[str] = Field(alias="libraryId", default=None)
+    folder_id: Optional[str] = Field(alias="folderId", default=None)
 
 
 class OneDriveFeedPropertiesUpdateInput(BaseModel):
@@ -1898,6 +1900,28 @@ class SharePointLibrariesInput(BaseModel):
     )
     tenant_id: Optional[str] = Field(alias="tenantId", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+
+
+class SharePointFoldersInput(BaseModel):
+    authentication_type: SharePointAuthenticationTypes = Field(
+        alias="authenticationType"
+    )
+    tenant_id: Optional[str] = Field(alias="tenantId", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+
+
+class OneDriveFoldersInput(BaseModel):
+    refresh_token: str = Field(alias="refreshToken")
+
+
+class MicrosoftTeamsTeamsInput(BaseModel):
+    tenant_id: str = Field(alias="tenantId")
+    refresh_token: str = Field(alias="refreshToken")
+
+
+class MicrosoftTeamsChannelsInput(BaseModel):
+    tenant_id: str = Field(alias="tenantId")
+    refresh_token: str = Field(alias="refreshToken")
 
 
 class LabelFacetInput(BaseModel):

@@ -41,6 +41,7 @@ query GetFeed($id: ID!) {
         authenticationType
         accountName
         libraryId
+        folderId
         tenantId
         refreshToken
       }

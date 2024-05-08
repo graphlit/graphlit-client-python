@@ -109,6 +109,7 @@ from .get_place import GetPlace
 from .get_product import GetProduct
 from .get_project import GetProject
 from .get_repo import GetRepo
+from .get_share_point_consent_uri import GetSharePointConsentUri
 from .get_software import GetSoftware
 from .get_specification import GetSpecification
 from .get_workflow import GetWorkflow
@@ -143,8 +144,11 @@ from .input_types import (
     LabelFilter,
     LabelInput,
     LabelUpdateInput,
+    MicrosoftTeamsChannelsInput,
+    MicrosoftTeamsTeamsInput,
     ObservationInput,
     ObservationUpdateInput,
+    OneDriveFoldersInput,
     OrganizationFilter,
     OrganizationInput,
     OrganizationUpdateInput,
@@ -161,6 +165,8 @@ from .input_types import (
     RepoFilter,
     RepoInput,
     RepoUpdateInput,
+    SharePointFoldersInput,
+    SharePointLibrariesInput,
     SoftwareFilter,
     SoftwareInput,
     SoftwareUpdateInput,
@@ -280,6 +286,7 @@ from .operations import (
     GET_PRODUCT_GQL,
     GET_PROJECT_GQL,
     GET_REPO_GQL,
+    GET_SHARE_POINT_CONSENT_URI_GQL,
     GET_SOFTWARE_GQL,
     GET_SPECIFICATION_GQL,
     GET_WORKFLOW_GQL,
@@ -306,11 +313,16 @@ from .operations import (
     QUERY_EVENTS_GQL,
     QUERY_FEEDS_GQL,
     QUERY_LABELS_GQL,
+    QUERY_MICROSOFT_TEAMS_CHANNELS_GQL,
+    QUERY_MICROSOFT_TEAMS_TEAMS_GQL,
+    QUERY_ONE_DRIVE_FOLDERS_GQL,
     QUERY_ORGANIZATIONS_GQL,
     QUERY_PERSONS_GQL,
     QUERY_PLACES_GQL,
     QUERY_PRODUCTS_GQL,
     QUERY_REPOS_GQL,
+    QUERY_SHARE_POINT_FOLDERS_GQL,
+    QUERY_SHARE_POINT_LIBRARIES_GQL,
     QUERY_SOFTWARES_GQL,
     QUERY_SPECIFICATIONS_GQL,
     QUERY_USAGE_GQL,
@@ -353,11 +365,16 @@ from .query_credits import QueryCredits
 from .query_events import QueryEvents
 from .query_feeds import QueryFeeds
 from .query_labels import QueryLabels
+from .query_microsoft_teams_channels import QueryMicrosoftTeamsChannels
+from .query_microsoft_teams_teams import QueryMicrosoftTeamsTeams
+from .query_one_drive_folders import QueryOneDriveFolders
 from .query_organizations import QueryOrganizations
 from .query_persons import QueryPersons
 from .query_places import QueryPlaces
 from .query_products import QueryProducts
 from .query_repos import QueryRepos
+from .query_share_point_folders import QuerySharePointFolders
+from .query_share_point_libraries import QuerySharePointLibraries
 from .query_softwares import QuerySoftwares
 from .query_specifications import QuerySpecifications
 from .query_usage import QueryUsage
@@ -1553,6 +1570,19 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return GetFeed.model_validate(data)
 
+    async def get_share_point_consent_uri(
+        self, tenant_id: str, **kwargs: Any
+    ) -> GetSharePointConsentUri:
+        variables: Dict[str, object] = {"tenantId": tenant_id}
+        response = await self.execute(
+            query=GET_SHARE_POINT_CONSENT_URI_GQL,
+            operation_name="GetSharePointConsentUri",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return GetSharePointConsentUri.model_validate(data)
+
     async def is_feed_done(self, id: str, **kwargs: Any) -> IsFeedDone:
         variables: Dict[str, object] = {"id": id}
         response = await self.execute(
@@ -1576,6 +1606,82 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryFeeds.model_validate(data)
+
+    async def query_microsoft_teams_channels(
+        self, properties: MicrosoftTeamsChannelsInput, team_id: str, **kwargs: Any
+    ) -> QueryMicrosoftTeamsChannels:
+        variables: Dict[str, object] = {"properties": properties, "teamId": team_id}
+        response = await self.execute(
+            query=QUERY_MICROSOFT_TEAMS_CHANNELS_GQL,
+            operation_name="QueryMicrosoftTeamsChannels",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMicrosoftTeamsChannels.model_validate(data)
+
+    async def query_microsoft_teams_teams(
+        self, properties: MicrosoftTeamsTeamsInput, **kwargs: Any
+    ) -> QueryMicrosoftTeamsTeams:
+        variables: Dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_MICROSOFT_TEAMS_TEAMS_GQL,
+            operation_name="QueryMicrosoftTeamsTeams",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMicrosoftTeamsTeams.model_validate(data)
+
+    async def query_one_drive_folders(
+        self,
+        properties: OneDriveFoldersInput,
+        folder_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryOneDriveFolders:
+        variables: Dict[str, object] = {"properties": properties, "folderId": folder_id}
+        response = await self.execute(
+            query=QUERY_ONE_DRIVE_FOLDERS_GQL,
+            operation_name="QueryOneDriveFolders",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryOneDriveFolders.model_validate(data)
+
+    async def query_share_point_folders(
+        self,
+        properties: SharePointFoldersInput,
+        drive_id: str,
+        folder_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QuerySharePointFolders:
+        variables: Dict[str, object] = {
+            "properties": properties,
+            "driveId": drive_id,
+            "folderId": folder_id,
+        }
+        response = await self.execute(
+            query=QUERY_SHARE_POINT_FOLDERS_GQL,
+            operation_name="QuerySharePointFolders",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QuerySharePointFolders.model_validate(data)
+
+    async def query_share_point_libraries(
+        self, properties: SharePointLibrariesInput, **kwargs: Any
+    ) -> QuerySharePointLibraries:
+        variables: Dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_SHARE_POINT_LIBRARIES_GQL,
+            operation_name="QuerySharePointLibraries",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QuerySharePointLibraries.model_validate(data)
 
     async def update_feed(self, feed: FeedUpdateInput, **kwargs: Any) -> UpdateFeed:
         variables: Dict[str, object] = {"feed": feed}

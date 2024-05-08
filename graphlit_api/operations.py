@@ -105,6 +105,7 @@ __all__ = [
     "GET_PRODUCT_GQL",
     "GET_PROJECT_GQL",
     "GET_REPO_GQL",
+    "GET_SHARE_POINT_CONSENT_URI_GQL",
     "GET_SOFTWARE_GQL",
     "GET_SPECIFICATION_GQL",
     "GET_WORKFLOW_GQL",
@@ -131,11 +132,16 @@ __all__ = [
     "QUERY_EVENTS_GQL",
     "QUERY_FEEDS_GQL",
     "QUERY_LABELS_GQL",
+    "QUERY_MICROSOFT_TEAMS_CHANNELS_GQL",
+    "QUERY_MICROSOFT_TEAMS_TEAMS_GQL",
+    "QUERY_ONE_DRIVE_FOLDERS_GQL",
     "QUERY_ORGANIZATIONS_GQL",
     "QUERY_PERSONS_GQL",
     "QUERY_PLACES_GQL",
     "QUERY_PRODUCTS_GQL",
     "QUERY_REPOS_GQL",
+    "QUERY_SHARE_POINT_FOLDERS_GQL",
+    "QUERY_SHARE_POINT_LIBRARIES_GQL",
     "QUERY_SOFTWARES_GQL",
     "QUERY_SPECIFICATIONS_GQL",
     "QUERY_USAGE_GQL",
@@ -2126,6 +2132,7 @@ query GetFeed($id: ID!) {
         authenticationType
         accountName
         libraryId
+        folderId
         tenantId
         refreshToken
       }
@@ -2229,6 +2236,14 @@ query GetFeed($id: ID!) {
 }
 """
 
+GET_SHARE_POINT_CONSENT_URI_GQL = """
+query GetSharePointConsentUri($tenantId: ID!) {
+  sharePointConsentUri(tenantId: $tenantId) {
+    uri
+  }
+}
+"""
+
 IS_FEED_DONE_GQL = """
 query IsFeedDone($id: ID!) {
   isFeedDone(id: $id) {
@@ -2282,6 +2297,7 @@ query QueryFeeds($filter: FeedFilter) {
           authenticationType
           accountName
           libraryId
+          folderId
           tenantId
           refreshToken
         }
@@ -2381,6 +2397,69 @@ query QueryFeeds($filter: FeedFilter) {
         recurrenceType
         repeatInterval
       }
+    }
+  }
+}
+"""
+
+QUERY_MICROSOFT_TEAMS_CHANNELS_GQL = """
+query QueryMicrosoftTeamsChannels($properties: MicrosoftTeamsChannelsInput!, $teamId: ID!) {
+  microsoftTeamsChannels(properties: $properties, teamId: $teamId) {
+    results {
+      channelName
+      channelId
+    }
+  }
+}
+"""
+
+QUERY_MICROSOFT_TEAMS_TEAMS_GQL = """
+query QueryMicrosoftTeamsTeams($properties: MicrosoftTeamsTeamsInput!) {
+  microsoftTeamsTeams(properties: $properties) {
+    results {
+      teamName
+      teamId
+    }
+  }
+}
+"""
+
+QUERY_ONE_DRIVE_FOLDERS_GQL = """
+query QueryOneDriveFolders($properties: OneDriveFoldersInput!, $folderId: ID) {
+  oneDriveFolders(properties: $properties, folderId: $folderId) {
+    results {
+      folderName
+      folderId
+    }
+  }
+}
+"""
+
+QUERY_SHARE_POINT_FOLDERS_GQL = """
+query QuerySharePointFolders($properties: SharePointFoldersInput!, $driveId: ID!, $folderId: ID) {
+  sharePointFolders(
+    properties: $properties
+    driveId: $driveId
+    folderId: $folderId
+  ) {
+    accountName
+    results {
+      folderName
+      folderId
+    }
+  }
+}
+"""
+
+QUERY_SHARE_POINT_LIBRARIES_GQL = """
+query QuerySharePointLibraries($properties: SharePointLibrariesInput!) {
+  sharePointLibraries(properties: $properties) {
+    accountName
+    results {
+      libraryName
+      libraryId
+      siteName
+      siteId
     }
   }
 }

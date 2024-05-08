@@ -399,6 +399,10 @@ from .get_project import (
     GetProjectProjectWorkflow,
 )
 from .get_repo import GetRepo, GetRepoRepo
+from .get_share_point_consent_uri import (
+    GetSharePointConsentUri,
+    GetSharePointConsentUriSharePointConsentUri,
+)
 from .get_software import GetSoftware, GetSoftwareSoftware
 from .get_specification import (
     GetSpecification,
@@ -568,8 +572,10 @@ from .input_types import (
     MetadataUpdateInput,
     MicrosoftEmailFeedPropertiesInput,
     MicrosoftEmailFeedPropertiesUpdateInput,
+    MicrosoftTeamsChannelsInput,
     MicrosoftTeamsFeedPropertiesInput,
     MicrosoftTeamsFeedPropertiesUpdateInput,
+    MicrosoftTeamsTeamsInput,
     MistralModelPropertiesInput,
     MistralModelPropertiesUpdateInput,
     ModelTextExtractionPropertiesInput,
@@ -583,6 +589,7 @@ from .input_types import (
     ObservationUpdateInput,
     OneDriveFeedPropertiesInput,
     OneDriveFeedPropertiesUpdateInput,
+    OneDriveFoldersInput,
     OpenAIImageExtractionPropertiesInput,
     OpenAIModelPropertiesInput,
     OpenAIModelPropertiesUpdateInput,
@@ -631,6 +638,7 @@ from .input_types import (
     ShapeMetadataInput,
     SharePointFeedPropertiesInput,
     SharePointFeedPropertiesUpdateInput,
+    SharePointFoldersInput,
     SharePointLibrariesInput,
     SiteFeedPropertiesInput,
     SiteFeedPropertiesUpdateInput,
@@ -765,6 +773,7 @@ from .operations import (
     GET_PRODUCT_GQL,
     GET_PROJECT_GQL,
     GET_REPO_GQL,
+    GET_SHARE_POINT_CONSENT_URI_GQL,
     GET_SOFTWARE_GQL,
     GET_SPECIFICATION_GQL,
     GET_WORKFLOW_GQL,
@@ -791,11 +800,16 @@ from .operations import (
     QUERY_EVENTS_GQL,
     QUERY_FEEDS_GQL,
     QUERY_LABELS_GQL,
+    QUERY_MICROSOFT_TEAMS_CHANNELS_GQL,
+    QUERY_MICROSOFT_TEAMS_TEAMS_GQL,
+    QUERY_ONE_DRIVE_FOLDERS_GQL,
     QUERY_ORGANIZATIONS_GQL,
     QUERY_PERSONS_GQL,
     QUERY_PLACES_GQL,
     QUERY_PRODUCTS_GQL,
     QUERY_REPOS_GQL,
+    QUERY_SHARE_POINT_FOLDERS_GQL,
+    QUERY_SHARE_POINT_LIBRARIES_GQL,
     QUERY_SOFTWARES_GQL,
     QUERY_SPECIFICATIONS_GQL,
     QUERY_USAGE_GQL,
@@ -1022,6 +1036,21 @@ from .query_feeds import (
     QueryFeedsFeedsResultsYoutube,
 )
 from .query_labels import QueryLabels, QueryLabelsLabels, QueryLabelsLabelsResults
+from .query_microsoft_teams_channels import (
+    QueryMicrosoftTeamsChannels,
+    QueryMicrosoftTeamsChannelsMicrosoftTeamsChannels,
+    QueryMicrosoftTeamsChannelsMicrosoftTeamsChannelsResults,
+)
+from .query_microsoft_teams_teams import (
+    QueryMicrosoftTeamsTeams,
+    QueryMicrosoftTeamsTeamsMicrosoftTeamsTeams,
+    QueryMicrosoftTeamsTeamsMicrosoftTeamsTeamsResults,
+)
+from .query_one_drive_folders import (
+    QueryOneDriveFolders,
+    QueryOneDriveFoldersOneDriveFolders,
+    QueryOneDriveFoldersOneDriveFoldersResults,
+)
 from .query_organizations import (
     QueryOrganizations,
     QueryOrganizationsOrganizations,
@@ -1047,6 +1076,16 @@ from .query_products import (
     QueryProductsProductsResultsAddress,
 )
 from .query_repos import QueryRepos, QueryReposRepos, QueryReposReposResults
+from .query_share_point_folders import (
+    QuerySharePointFolders,
+    QuerySharePointFoldersSharePointFolders,
+    QuerySharePointFoldersSharePointFoldersResults,
+)
+from .query_share_point_libraries import (
+    QuerySharePointLibraries,
+    QuerySharePointLibrariesSharePointLibraries,
+    QuerySharePointLibrariesSharePointLibrariesResults,
+)
 from .query_softwares import (
     QuerySoftwares,
     QuerySoftwaresSoftwares,
@@ -1604,6 +1643,7 @@ __all__ = [
     "GET_PRODUCT_GQL",
     "GET_PROJECT_GQL",
     "GET_REPO_GQL",
+    "GET_SHARE_POINT_CONSENT_URI_GQL",
     "GET_SOFTWARE_GQL",
     "GET_SPECIFICATION_GQL",
     "GET_WORKFLOW_GQL",
@@ -1728,6 +1768,8 @@ __all__ = [
     "GetProjectProjectWorkflow",
     "GetRepo",
     "GetRepoRepo",
+    "GetSharePointConsentUri",
+    "GetSharePointConsentUriSharePointConsentUri",
     "GetSoftware",
     "GetSoftwareSoftware",
     "GetSpecification",
@@ -1845,8 +1887,10 @@ __all__ = [
     "MetadataUpdateInput",
     "MicrosoftEmailFeedPropertiesInput",
     "MicrosoftEmailFeedPropertiesUpdateInput",
+    "MicrosoftTeamsChannelsInput",
     "MicrosoftTeamsFeedPropertiesInput",
     "MicrosoftTeamsFeedPropertiesUpdateInput",
+    "MicrosoftTeamsTeamsInput",
     "MistralModelPropertiesInput",
     "MistralModelPropertiesUpdateInput",
     "MistralModels",
@@ -1865,6 +1909,7 @@ __all__ = [
     "OccurrenceTypes",
     "OneDriveFeedPropertiesInput",
     "OneDriveFeedPropertiesUpdateInput",
+    "OneDriveFoldersInput",
     "OpenAIImageExtractionPropertiesInput",
     "OpenAIModelPropertiesInput",
     "OpenAIModelPropertiesUpdateInput",
@@ -1948,11 +1993,16 @@ __all__ = [
     "QUERY_EVENTS_GQL",
     "QUERY_FEEDS_GQL",
     "QUERY_LABELS_GQL",
+    "QUERY_MICROSOFT_TEAMS_CHANNELS_GQL",
+    "QUERY_MICROSOFT_TEAMS_TEAMS_GQL",
+    "QUERY_ONE_DRIVE_FOLDERS_GQL",
     "QUERY_ORGANIZATIONS_GQL",
     "QUERY_PERSONS_GQL",
     "QUERY_PLACES_GQL",
     "QUERY_PRODUCTS_GQL",
     "QUERY_REPOS_GQL",
+    "QUERY_SHARE_POINT_FOLDERS_GQL",
+    "QUERY_SHARE_POINT_LIBRARIES_GQL",
     "QUERY_SOFTWARES_GQL",
     "QUERY_SPECIFICATIONS_GQL",
     "QUERY_USAGE_GQL",
@@ -2107,6 +2157,15 @@ __all__ = [
     "QueryLabels",
     "QueryLabelsLabels",
     "QueryLabelsLabelsResults",
+    "QueryMicrosoftTeamsChannels",
+    "QueryMicrosoftTeamsChannelsMicrosoftTeamsChannels",
+    "QueryMicrosoftTeamsChannelsMicrosoftTeamsChannelsResults",
+    "QueryMicrosoftTeamsTeams",
+    "QueryMicrosoftTeamsTeamsMicrosoftTeamsTeams",
+    "QueryMicrosoftTeamsTeamsMicrosoftTeamsTeamsResults",
+    "QueryOneDriveFolders",
+    "QueryOneDriveFoldersOneDriveFolders",
+    "QueryOneDriveFoldersOneDriveFoldersResults",
     "QueryOrganizations",
     "QueryOrganizationsOrganizations",
     "QueryOrganizationsOrganizationsResults",
@@ -2126,6 +2185,12 @@ __all__ = [
     "QueryRepos",
     "QueryReposRepos",
     "QueryReposReposResults",
+    "QuerySharePointFolders",
+    "QuerySharePointFoldersSharePointFolders",
+    "QuerySharePointFoldersSharePointFoldersResults",
+    "QuerySharePointLibraries",
+    "QuerySharePointLibrariesSharePointLibraries",
+    "QuerySharePointLibrariesSharePointLibrariesResults",
     "QuerySoftwares",
     "QuerySoftwaresSoftwares",
     "QuerySoftwaresSoftwaresResults",
@@ -2208,6 +2273,7 @@ __all__ = [
     "SharePointAuthenticationTypes",
     "SharePointFeedPropertiesInput",
     "SharePointFeedPropertiesUpdateInput",
+    "SharePointFoldersInput",
     "SharePointLibrariesInput",
     "SiteFeedPropertiesInput",
     "SiteFeedPropertiesUpdateInput",
