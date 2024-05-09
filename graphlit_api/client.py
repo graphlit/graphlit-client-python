@@ -1066,7 +1066,7 @@ class Client(AsyncBaseClient):
         return PublishText.model_validate(data)
 
     async def query_contents(
-        self, filter: ContentFilter, **kwargs: Any
+        self, filter: Union[Optional[ContentFilter], UnsetType] = UNSET, **kwargs: Any
     ) -> QueryContents:
         variables: Dict[str, object] = {"filter": filter}
         response = await self.execute(
@@ -1080,7 +1080,7 @@ class Client(AsyncBaseClient):
 
     async def query_contents_facets(
         self,
-        filter: ContentFilter,
+        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
         facets: Union[Optional[List[ContentFacetInput]], UnsetType] = UNSET,
         **kwargs: Any
     ) -> QueryContentsFacets:
@@ -1096,7 +1096,7 @@ class Client(AsyncBaseClient):
 
     async def query_contents_graph(
         self,
-        filter: ContentFilter,
+        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
         graph: Union[Optional[ContentGraphInput], UnsetType] = UNSET,
         **kwargs: Any
     ) -> QueryContentsGraph:

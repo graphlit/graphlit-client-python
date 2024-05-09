@@ -1,4 +1,4 @@
-query QueryContents($filter: ContentFilter!) {
+query QueryContents($filter: ContentFilter) {
   contents(filter: $filter) {
     results {
       id

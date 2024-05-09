@@ -1,4 +1,4 @@
-query QueryContentsFacets($filter: ContentFilter!, $facets: [ContentFacetInput!]) {
+query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!]) {
   contents(filter: $filter, facets: $facets) {
     results {
       id

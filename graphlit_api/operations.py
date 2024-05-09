@@ -1040,7 +1040,7 @@ mutation PublishText($text: String!, $textType: TextTypes, $connector: ContentPu
 """
 
 QUERY_CONTENTS_GQL = """
-query QueryContents($filter: ContentFilter!) {
+query QueryContents($filter: ContentFilter) {
   contents(filter: $filter) {
     results {
       id
@@ -1265,7 +1265,7 @@ query QueryContents($filter: ContentFilter!) {
 """
 
 QUERY_CONTENTS_FACETS_GQL = """
-query QueryContentsFacets($filter: ContentFilter!, $facets: [ContentFacetInput!]) {
+query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!]) {
   contents(filter: $filter, facets: $facets) {
     results {
       id
@@ -1507,7 +1507,7 @@ query QueryContentsFacets($filter: ContentFilter!, $facets: [ContentFacetInput!]
 """
 
 QUERY_CONTENTS_GRAPH_GQL = """
-query QueryContentsGraph($filter: ContentFilter!, $graph: ContentGraphInput) {
+query QueryContentsGraph($filter: ContentFilter, $graph: ContentGraphInput) {
   contents(filter: $filter, graph: $graph) {
     graph {
       nodes {

@@ -1,4 +1,4 @@
-query QueryContentsGraph($filter: ContentFilter!, $graph: ContentGraphInput) {
+query QueryContentsGraph($filter: ContentFilter, $graph: ContentGraphInput) {
   contents(filter: $filter, graph: $graph) {
     graph {
       nodes {
