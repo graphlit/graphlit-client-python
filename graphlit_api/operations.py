@@ -2182,7 +2182,6 @@ query GetFeed($id: ID!) {
       }
       microsoft {
         type
-        tenantId
         refreshToken
       }
     }
@@ -2347,7 +2346,6 @@ query QueryFeeds($filter: FeedFilter) {
         }
         microsoft {
           type
-          tenantId
           refreshToken
         }
       }

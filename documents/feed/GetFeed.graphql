@@ -63,7 +63,6 @@ query GetFeed($id: ID!) {
       }
       microsoft {
         type
-        tenantId
         refreshToken
       }
     }

@@ -144,7 +144,6 @@ class QueryFeedsFeedsResultsEmailGoogle(BaseModel):
 
 class QueryFeedsFeedsResultsEmailMicrosoft(BaseModel):
     type: Optional[EmailListingTypes]
-    tenant_id: Optional[str] = Field(alias="tenantId")
     refresh_token: str = Field(alias="refreshToken")
 
 

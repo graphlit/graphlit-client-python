@@ -1129,7 +1129,6 @@ class SlackFeedPropertiesInput(BaseModel):
 
 class MicrosoftTeamsFeedPropertiesInput(BaseModel):
     type: Optional[FeedListingTypes] = None
-    tenant_id: str = Field(alias="tenantId")
     refresh_token: str = Field(alias="refreshToken")
     team_id: str = Field(alias="teamId")
     channel_id: str = Field(alias="channelId")
@@ -1426,7 +1425,6 @@ class SlackFeedPropertiesUpdateInput(BaseModel):
 
 class MicrosoftTeamsFeedPropertiesUpdateInput(BaseModel):
     type: Optional[FeedListingTypes] = None
-    tenant_id: Optional[str] = Field(alias="tenantId", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     team_id: str = Field(alias="teamId")
     channel_id: str = Field(alias="channelId")
@@ -1653,7 +1651,6 @@ class GoogleEmailFeedPropertiesInput(BaseModel):
 
 class MicrosoftEmailFeedPropertiesInput(BaseModel):
     type: Optional[EmailListingTypes] = None
-    tenant_id: Optional[str] = Field(alias="tenantId", default=None)
     refresh_token: str = Field(alias="refreshToken")
 
 
@@ -1787,7 +1784,6 @@ class GoogleEmailFeedPropertiesUpdateInput(BaseModel):
 
 class MicrosoftEmailFeedPropertiesUpdateInput(BaseModel):
     type: Optional[EmailListingTypes] = None
-    tenant_id: Optional[str] = Field(alias="tenantId", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
 
 
@@ -1954,12 +1950,10 @@ class OneDriveFoldersInput(BaseModel):
 
 
 class MicrosoftTeamsTeamsInput(BaseModel):
-    tenant_id: str = Field(alias="tenantId")
     refresh_token: str = Field(alias="refreshToken")
 
 
 class MicrosoftTeamsChannelsInput(BaseModel):
-    tenant_id: str = Field(alias="tenantId")
     refresh_token: str = Field(alias="refreshToken")
 
 

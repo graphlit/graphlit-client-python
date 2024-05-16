@@ -132,7 +132,6 @@ class GetFeedFeedEmailGoogle(BaseModel):
 
 class GetFeedFeedEmailMicrosoft(BaseModel):
     type: Optional[EmailListingTypes]
-    tenant_id: Optional[str] = Field(alias="tenantId")
     refresh_token: str = Field(alias="refreshToken")
 
 
