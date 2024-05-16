@@ -1534,6 +1534,7 @@ query QueryContentsGraph($filter: ContentFilter, $graph: ContentGraphInput) {
       edges {
         from
         to
+        relation
       }
     }
   }

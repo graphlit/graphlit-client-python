@@ -32,6 +32,7 @@ class QueryContentsGraphContentsGraphNodes(BaseModel):
 class QueryContentsGraphContentsGraphEdges(BaseModel):
     from_: str = Field(alias="from")
     to: str
+    relation: Optional[str]
 
 
 QueryContentsGraph.model_rebuild()
