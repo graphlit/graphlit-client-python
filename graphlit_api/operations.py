@@ -846,6 +846,11 @@ query GetContent($id: ID!) {
         id
         name
       }
+      related {
+        id
+        name
+      }
+      relation
       occurrences {
         type
         confidence
@@ -1220,6 +1225,11 @@ query QueryContents($filter: ContentFilter) {
           id
           name
         }
+        related {
+          id
+          name
+        }
+        relation
         occurrences {
           type
           confidence
@@ -1445,6 +1455,11 @@ query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!])
           id
           name
         }
+        related {
+          id
+          name
+        }
+        relation
         occurrences {
           type
           confidence
@@ -1770,6 +1785,18 @@ mutation PromptConversation($prompt: String!, $id: ID, $correlationId: String) {
           id
           name
         }
+      }
+    }
+    graph {
+      nodes {
+        id
+        type
+        metadata
+      }
+      edges {
+        from
+        to
+        relation
       }
     }
   }
@@ -3058,6 +3085,7 @@ query LookupCredits($correlationId: String!) {
 LOOKUP_USAGE_GQL = """
 query LookupUsage($correlationId: String!) {
   lookupUsage(correlationId: $correlationId) {
+    id
     correlationId
     date
     credits
@@ -3082,6 +3110,8 @@ query LookupUsage($correlationId: String!) {
     completionTokens
     tokens
     count
+    operation
+    operationType
     request
     variables
     response
@@ -3110,6 +3140,7 @@ query QueryCredits($startDate: DateTime!, $duration: TimeSpan!) {
 QUERY_USAGE_GQL = """
 query QueryUsage($startDate: DateTime!, $duration: TimeSpan!) {
   usage(startDate: $startDate, duration: $duration) {
+    id
     correlationId
     date
     credits
@@ -3134,6 +3165,8 @@ query QueryUsage($startDate: DateTime!, $duration: TimeSpan!) {
     completionTokens
     tokens
     count
+    operation
+    operationType
     request
     variables
     response
@@ -3402,6 +3435,14 @@ query GetSpecification($id: ID!) {
     rerankingStrategy {
       serviceType
     }
+    graphStrategy {
+      type
+    }
+    revisionStrategy {
+      type
+      customRevision
+      count
+    }
     openAI {
       tokenLimit
       completionTokenLimit
@@ -3534,6 +3575,14 @@ query QuerySpecifications($filter: SpecificationFilter) {
       rerankingStrategy {
         serviceType
       }
+      graphStrategy {
+        type
+      }
+      revisionStrategy {
+        type
+        customRevision
+        count
+      }
       openAI {
         tokenLimit
         completionTokenLimit
@@ -3665,6 +3714,7 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
           contentTypes
           fileTypes
           extractedTypes
+          extractedCount
           azureText {
             confidenceThreshold
             enablePII
@@ -3807,6 +3857,7 @@ query GetWorkflow($id: ID!) {
           contentTypes
           fileTypes
           extractedTypes
+          extractedCount
           azureText {
             confidenceThreshold
             enablePII
@@ -3919,6 +3970,7 @@ query QueryWorkflows($filter: WorkflowFilter) {
             contentTypes
             fileTypes
             extractedTypes
+            extractedCount
             azureText {
               confidenceThreshold
               enablePII
@@ -4027,6 +4079,7 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
           contentTypes
           fileTypes
           extractedTypes
+          extractedCount
           azureText {
             confidenceThreshold
             enablePII

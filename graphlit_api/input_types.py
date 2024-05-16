@@ -34,6 +34,7 @@ from .enums import (
     FeedTypes,
     FilePreparationServiceTypes,
     FileTypes,
+    GraphStrategyTypes,
     GroqModels,
     H3ResolutionTypes,
     ImageProjectionTypes,
@@ -65,6 +66,7 @@ from .enums import (
     RerankingModelServiceTypes,
     ResourceConnectorTypes,
     RetrievalStrategyTypes,
+    RevisionStrategyTypes,
     SearchQueryTypes,
     SearchTypes,
     SharePointAuthenticationTypes,
@@ -549,6 +551,8 @@ class ObservationInput(BaseModel):
     content: "EntityReferenceInput"
     type: ObservableTypes
     observable: "NamedEntityReferenceInput"
+    related: Optional["NamedEntityReferenceInput"] = None
+    relation: Optional[str] = None
     occurrences: List["ObservationOccurrenceInput"]
 
 
@@ -659,6 +663,12 @@ class SpecificationInput(BaseModel):
     )
     reranking_strategy: Optional["RerankingStrategyInput"] = Field(
         alias="rerankingStrategy", default=None
+    )
+    graph_strategy: Optional["GraphStrategyInput"] = Field(
+        alias="graphStrategy", default=None
+    )
+    revision_strategy: Optional["RevisionStrategyInput"] = Field(
+        alias="revisionStrategy", default=None
     )
     tools: Optional[List["ToolDefinitionInput"]] = None
     open_ai: Optional["OpenAIModelPropertiesInput"] = Field(
@@ -792,6 +802,8 @@ class ObservationUpdateInput(BaseModel):
     id: str
     type: Optional[ObservableTypes] = None
     observable: Optional["NamedEntityReferenceInput"] = None
+    related: Optional["NamedEntityReferenceInput"] = None
+    relation: Optional[str] = None
     occurrences: Optional[List["ObservationOccurrenceInput"]] = None
 
 
@@ -905,6 +917,12 @@ class SpecificationUpdateInput(BaseModel):
     )
     reranking_strategy: Optional["RerankingStrategyUpdateInput"] = Field(
         alias="rerankingStrategy", default=None
+    )
+    graph_strategy: Optional["GraphStrategyUpdateInput"] = Field(
+        alias="graphStrategy", default=None
+    )
+    revision_strategy: Optional["RevisionStrategyUpdateInput"] = Field(
+        alias="revisionStrategy", default=None
     )
     tools: Optional[List["ToolDefinitionUpdateInput"]] = None
     open_ai: Optional["OpenAIModelPropertiesUpdateInput"] = Field(
@@ -1179,6 +1197,16 @@ class RerankingStrategyInput(BaseModel):
     service_type: RerankingModelServiceTypes = Field(alias="serviceType")
 
 
+class GraphStrategyInput(BaseModel):
+    type: Optional[GraphStrategyTypes] = None
+
+
+class RevisionStrategyInput(BaseModel):
+    type: Optional[RevisionStrategyTypes] = None
+    custom_revision: Optional[str] = Field(alias="customRevision", default=None)
+    count: Optional[int] = None
+
+
 class ToolDefinitionInput(BaseModel):
     name: str
     description: Optional[str] = None
@@ -1437,6 +1465,16 @@ class RerankingStrategyUpdateInput(BaseModel):
     service_type: Optional[RerankingModelServiceTypes] = Field(
         alias="serviceType", default=None
     )
+
+
+class GraphStrategyUpdateInput(BaseModel):
+    type: Optional[GraphStrategyTypes] = None
+
+
+class RevisionStrategyUpdateInput(BaseModel):
+    type: Optional[RevisionStrategyTypes] = None
+    custom_revision: Optional[str] = Field(alias="customRevision", default=None)
+    count: Optional[int] = None
 
 
 class ToolDefinitionUpdateInput(BaseModel):
@@ -1795,6 +1833,7 @@ class EntityExtractionConnectorInput(BaseModel):
     extracted_types: Optional[List[ObservableTypes]] = Field(
         alias="extractedTypes", default=None
     )
+    extracted_count: Optional[int] = Field(alias="extractedCount", default=None)
     azure_text: Optional["AzureTextExtractionPropertiesInput"] = Field(
         alias="azureText", default=None
     )

@@ -11,6 +11,7 @@ from .enums import (
     ContentTypes,
     ConversationRoleTypes,
     EntityState,
+    EntityTypes,
     FacetValueTypes,
     FileTypes,
     ModelServiceTypes,
@@ -29,6 +30,7 @@ class PromptConversationPromptConversation(BaseModel):
     message: Optional["PromptConversationPromptConversationMessage"]
     message_count: Optional[int] = Field(alias="messageCount")
     facets: Optional[List[Optional["PromptConversationPromptConversationFacets"]]]
+    graph: Optional["PromptConversationPromptConversationGraph"]
 
 
 class PromptConversationPromptConversationConversation(BaseModel):
@@ -97,9 +99,27 @@ class PromptConversationPromptConversationFacetsObservableObservable(BaseModel):
     name: Optional[str]
 
 
+class PromptConversationPromptConversationGraph(BaseModel):
+    nodes: Optional[List[Optional["PromptConversationPromptConversationGraphNodes"]]]
+    edges: Optional[List[Optional["PromptConversationPromptConversationGraphEdges"]]]
+
+
+class PromptConversationPromptConversationGraphNodes(BaseModel):
+    id: str
+    type: EntityTypes
+    metadata: Optional[str]
+
+
+class PromptConversationPromptConversationGraphEdges(BaseModel):
+    from_: str = Field(alias="from")
+    to: str
+    relation: Optional[str]
+
+
 PromptConversation.model_rebuild()
 PromptConversationPromptConversation.model_rebuild()
 PromptConversationPromptConversationMessage.model_rebuild()
 PromptConversationPromptConversationMessageCitations.model_rebuild()
 PromptConversationPromptConversationFacets.model_rebuild()
 PromptConversationPromptConversationFacetsObservable.model_rebuild()
+PromptConversationPromptConversationGraph.model_rebuild()

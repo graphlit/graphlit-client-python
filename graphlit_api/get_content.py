@@ -246,11 +246,18 @@ class GetContentContentObservations(BaseModel):
     id: str
     type: ObservableTypes
     observable: "GetContentContentObservationsObservable"
+    related: Optional["GetContentContentObservationsRelated"]
+    relation: Optional[str]
     occurrences: Optional[List[Optional["GetContentContentObservationsOccurrences"]]]
     state: EntityState
 
 
 class GetContentContentObservationsObservable(BaseModel):
+    id: str
+    name: Optional[str]
+
+
+class GetContentContentObservationsRelated(BaseModel):
     id: str
     name: Optional[str]
 

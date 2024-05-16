@@ -55,6 +55,7 @@ query GetWorkflow($id: ID!) {
           contentTypes
           fileTypes
           extractedTypes
+          extractedCount
           azureText {
             confidenceThreshold
             enablePII

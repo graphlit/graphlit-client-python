@@ -259,6 +259,8 @@ class QueryContentsFacetsContentsResultsObservations(BaseModel):
     id: str
     type: ObservableTypes
     observable: "QueryContentsFacetsContentsResultsObservationsObservable"
+    related: Optional["QueryContentsFacetsContentsResultsObservationsRelated"]
+    relation: Optional[str]
     occurrences: Optional[
         List[Optional["QueryContentsFacetsContentsResultsObservationsOccurrences"]]
     ]
@@ -266,6 +268,11 @@ class QueryContentsFacetsContentsResultsObservations(BaseModel):
 
 
 class QueryContentsFacetsContentsResultsObservationsObservable(BaseModel):
+    id: str
+    name: Optional[str]
+
+
+class QueryContentsFacetsContentsResultsObservationsRelated(BaseModel):
     id: str
     name: Optional[str]
 

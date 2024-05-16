@@ -177,6 +177,11 @@ query GetContent($id: ID!) {
         id
         name
       }
+      related {
+        id
+        name
+      }
+      relation
       occurrences {
         type
         confidence

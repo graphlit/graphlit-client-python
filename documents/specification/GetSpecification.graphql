@@ -32,6 +32,14 @@ query GetSpecification($id: ID!) {
     rerankingStrategy {
       serviceType
     }
+    graphStrategy {
+      type
+    }
+    revisionStrategy {
+      type
+      customRevision
+      count
+    }
     openAI {
       tokenLimit
       completionTokenLimit

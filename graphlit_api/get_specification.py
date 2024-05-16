@@ -13,12 +13,14 @@ from .enums import (
     ConversationSearchTypes,
     ConversationStrategyTypes,
     EntityState,
+    GraphStrategyTypes,
     ModelServiceTypes,
     OpenAIModels,
     PromptStrategyTypes,
     ReplicateModels,
     RerankingModelServiceTypes,
     RetrievalStrategyTypes,
+    RevisionStrategyTypes,
     SpecificationTypes,
 )
 
@@ -49,6 +51,12 @@ class GetSpecificationSpecification(BaseModel):
     )
     reranking_strategy: Optional["GetSpecificationSpecificationRerankingStrategy"] = (
         Field(alias="rerankingStrategy")
+    )
+    graph_strategy: Optional["GetSpecificationSpecificationGraphStrategy"] = Field(
+        alias="graphStrategy"
+    )
+    revision_strategy: Optional["GetSpecificationSpecificationRevisionStrategy"] = (
+        Field(alias="revisionStrategy")
     )
     open_ai: Optional["GetSpecificationSpecificationOpenAi"] = Field(alias="openAI")
     azure_open_ai: Optional["GetSpecificationSpecificationAzureOpenAi"] = Field(
@@ -84,6 +92,16 @@ class GetSpecificationSpecificationRetrievalStrategy(BaseModel):
 
 class GetSpecificationSpecificationRerankingStrategy(BaseModel):
     service_type: RerankingModelServiceTypes = Field(alias="serviceType")
+
+
+class GetSpecificationSpecificationGraphStrategy(BaseModel):
+    type: GraphStrategyTypes
+
+
+class GetSpecificationSpecificationRevisionStrategy(BaseModel):
+    type: RevisionStrategyTypes
+    custom_revision: Optional[str] = Field(alias="customRevision")
+    count: Optional[int]
 
 
 class GetSpecificationSpecificationOpenAi(BaseModel):

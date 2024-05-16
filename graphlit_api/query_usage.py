@@ -6,7 +6,7 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import BillableMetrics, ContentTypes, EntityTypes, FileTypes
+from .enums import BillableMetrics, ContentTypes, EntityTypes, FileTypes, OperationTypes
 
 
 class QueryUsage(BaseModel):
@@ -14,6 +14,7 @@ class QueryUsage(BaseModel):
 
 
 class QueryUsageUsage(BaseModel):
+    id: Optional[str]
     correlation_id: Optional[str] = Field(alias="correlationId")
     date: Any
     credits: Optional[Any]
@@ -38,6 +39,8 @@ class QueryUsageUsage(BaseModel):
     completion_tokens: Optional[int] = Field(alias="completionTokens")
     tokens: Optional[int]
     count: Optional[int]
+    operation: Optional[str]
+    operation_type: Optional[OperationTypes] = Field(alias="operationType")
     request: Optional[str]
     variables: Optional[str]
     response: Optional[str]

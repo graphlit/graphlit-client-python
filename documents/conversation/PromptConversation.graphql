@@ -50,5 +50,17 @@ mutation PromptConversation($prompt: String!, $id: ID, $correlationId: String) {
         }
       }
     }
+    graph {
+      nodes {
+        id
+        type
+        metadata
+      }
+      edges {
+        from
+        to
+        relation
+      }
+    }
   }
 }

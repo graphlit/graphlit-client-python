@@ -482,6 +482,18 @@ class RerankingModelServiceTypes(str, Enum):
     PONGO = "PONGO"
 
 
+class GraphStrategyTypes(str, Enum):
+    EXTRACT_ENTITIES_FILTER = "EXTRACT_ENTITIES_FILTER"
+    EXTRACT_ENTITIES_GRAPH = "EXTRACT_ENTITIES_GRAPH"
+    NONE = "NONE"
+
+
+class RevisionStrategyTypes(str, Enum):
+    REVISE = "REVISE"
+    CUSTOM = "CUSTOM"
+    NONE = "NONE"
+
+
 class OpenAIModels(str, Enum):
     GPT35_TURBO = "GPT35_TURBO"
     GPT35_TURBO_0613 = "GPT35_TURBO_0613"
@@ -499,6 +511,8 @@ class OpenAIModels(str, Enum):
     GPT4_TURBO_VISION_128K_1106 = "GPT4_TURBO_VISION_128K_1106"
     GPT4_32K = "GPT4_32K"
     GPT4_32K_0613 = "GPT4_32K_0613"
+    GPT4O_128K_20240513 = "GPT4O_128K_20240513"
+    GPT4O_128K = "GPT4O_128K"
     CUSTOM = "CUSTOM"
 
 
@@ -729,6 +743,11 @@ class EntityTypes(str, Enum):
     SOFTWARE = "SOFTWARE"
     SPECIFICATION = "SPECIFICATION"
     WORKFLOW = "WORKFLOW"
+
+
+class OperationTypes(str, Enum):
+    QUERY = "QUERY"
+    MUTATION = "MUTATION"
 
 
 class RepoFacetTypes(str, Enum):

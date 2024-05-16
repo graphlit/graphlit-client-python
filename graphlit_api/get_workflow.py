@@ -124,6 +124,7 @@ class GetWorkflowWorkflowExtractionJobsConnector(BaseModel):
     content_types: Optional[List[ContentTypes]] = Field(alias="contentTypes")
     file_types: Optional[List[FileTypes]] = Field(alias="fileTypes")
     extracted_types: Optional[List[ObservableTypes]] = Field(alias="extractedTypes")
+    extracted_count: Optional[int] = Field(alias="extractedCount")
     azure_text: Optional["GetWorkflowWorkflowExtractionJobsConnectorAzureText"] = Field(
         alias="azureText"
     )

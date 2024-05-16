@@ -33,6 +33,14 @@ query QuerySpecifications($filter: SpecificationFilter) {
       rerankingStrategy {
         serviceType
       }
+      graphStrategy {
+        type
+      }
+      revisionStrategy {
+        type
+        customRevision
+        count
+      }
       openAI {
         tokenLimit
         completionTokenLimit

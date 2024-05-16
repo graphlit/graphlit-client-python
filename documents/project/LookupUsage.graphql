@@ -1,5 +1,6 @@
 query LookupUsage($correlationId: String!) {
   lookupUsage(correlationId: $correlationId) {
+    id
     correlationId
     date
     credits
@@ -24,6 +25,8 @@ query LookupUsage($correlationId: String!) {
     completionTokens
     tokens
     count
+    operation
+    operationType
     request
     variables
     response

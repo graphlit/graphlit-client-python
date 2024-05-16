@@ -13,12 +13,14 @@ from .enums import (
     ConversationSearchTypes,
     ConversationStrategyTypes,
     EntityState,
+    GraphStrategyTypes,
     ModelServiceTypes,
     OpenAIModels,
     PromptStrategyTypes,
     ReplicateModels,
     RerankingModelServiceTypes,
     RetrievalStrategyTypes,
+    RevisionStrategyTypes,
     SpecificationTypes,
 )
 
@@ -54,6 +56,12 @@ class QuerySpecificationsSpecificationsResults(BaseModel):
     reranking_strategy: Optional[
         "QuerySpecificationsSpecificationsResultsRerankingStrategy"
     ] = Field(alias="rerankingStrategy")
+    graph_strategy: Optional[
+        "QuerySpecificationsSpecificationsResultsGraphStrategy"
+    ] = Field(alias="graphStrategy")
+    revision_strategy: Optional[
+        "QuerySpecificationsSpecificationsResultsRevisionStrategy"
+    ] = Field(alias="revisionStrategy")
     open_ai: Optional["QuerySpecificationsSpecificationsResultsOpenAi"] = Field(
         alias="openAI"
     )
@@ -90,6 +98,16 @@ class QuerySpecificationsSpecificationsResultsRetrievalStrategy(BaseModel):
 
 class QuerySpecificationsSpecificationsResultsRerankingStrategy(BaseModel):
     service_type: RerankingModelServiceTypes = Field(alias="serviceType")
+
+
+class QuerySpecificationsSpecificationsResultsGraphStrategy(BaseModel):
+    type: GraphStrategyTypes
+
+
+class QuerySpecificationsSpecificationsResultsRevisionStrategy(BaseModel):
+    type: RevisionStrategyTypes
+    custom_revision: Optional[str] = Field(alias="customRevision")
+    count: Optional[int]
 
 
 class QuerySpecificationsSpecificationsResultsOpenAi(BaseModel):

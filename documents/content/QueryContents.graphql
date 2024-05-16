@@ -178,6 +178,11 @@ query QueryContents($filter: ContentFilter) {
           id
           name
         }
+        related {
+          id
+          name
+        }
+        relation
         occurrences {
           type
           confidence

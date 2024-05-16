@@ -51,6 +51,7 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
           contentTypes
           fileTypes
           extractedTypes
+          extractedCount
           azureText {
             confidenceThreshold
             enablePII
