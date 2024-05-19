@@ -182,6 +182,7 @@ query QueryContents($filter: ContentFilter) {
           id
           name
         }
+        relatedType
         relation
         occurrences {
           type

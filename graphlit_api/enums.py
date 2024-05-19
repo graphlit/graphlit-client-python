@@ -319,6 +319,7 @@ class LinkTypes(str, Enum):
     TIK_TOK = "TIK_TOK"
     YOU_TUBE = "YOU_TUBE"
     TWITTER = "TWITTER"
+    X = "X"
     MEDIUM = "MEDIUM"
     NOTION = "NOTION"
     LINEAR = "LINEAR"

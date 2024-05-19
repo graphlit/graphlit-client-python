@@ -158,6 +158,12 @@ class ContentFilter(BaseModel):
     file_size_range: Optional["Int64RangeFilter"] = Field(
         alias="fileSizeRange", default=None
     )
+    or_: Optional[List[Optional["ContentFilterLevel"]]] = Field(
+        alias="or", default=None
+    )
+    and_: Optional[List[Optional["ContentFilterLevel"]]] = Field(
+        alias="and", default=None
+    )
 
 
 class ConversationFilter(BaseModel):
@@ -552,6 +558,7 @@ class ObservationInput(BaseModel):
     type: ObservableTypes
     observable: "NamedEntityReferenceInput"
     related: Optional["NamedEntityReferenceInput"] = None
+    related_type: Optional[ObservableTypes] = Field(alias="relatedType", default=None)
     relation: Optional[str] = None
     occurrences: List["ObservationOccurrenceInput"]
 
@@ -803,6 +810,7 @@ class ObservationUpdateInput(BaseModel):
     type: Optional[ObservableTypes] = None
     observable: Optional["NamedEntityReferenceInput"] = None
     related: Optional["NamedEntityReferenceInput"] = None
+    related_type: Optional[ObservableTypes] = Field(alias="relatedType", default=None)
     relation: Optional[str] = None
     occurrences: Optional[List["ObservationOccurrenceInput"]] = None
 
@@ -970,6 +978,13 @@ class EntityReferenceFilter(BaseModel):
 class Int64RangeFilter(BaseModel):
     from_: Optional[Any] = Field(alias="from", default=None)
     to: Optional[Any] = None
+
+
+class ContentFilterLevel(BaseModel):
+    feeds: Optional[List["EntityReferenceFilter"]] = None
+    workflows: Optional[List["EntityReferenceFilter"]] = None
+    collections: Optional[List["EntityReferenceFilter"]] = None
+    observations: Optional[List["ObservationReferenceFilter"]] = None
 
 
 class AddressFilter(BaseModel):

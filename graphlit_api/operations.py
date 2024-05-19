@@ -850,6 +850,7 @@ query GetContent($id: ID!) {
         id
         name
       }
+      relatedType
       relation
       occurrences {
         type
@@ -1229,6 +1230,7 @@ query QueryContents($filter: ContentFilter) {
           id
           name
         }
+        relatedType
         relation
         occurrences {
           type
@@ -1459,6 +1461,7 @@ query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!])
           id
           name
         }
+        relatedType
         relation
         occurrences {
           type
@@ -1791,6 +1794,7 @@ mutation PromptConversation($prompt: String!, $id: ID, $correlationId: String) {
     graph {
       nodes {
         id
+        name
         type
         metadata
       }

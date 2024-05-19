@@ -260,6 +260,7 @@ class QueryContentsFacetsContentsResultsObservations(BaseModel):
     type: ObservableTypes
     observable: "QueryContentsFacetsContentsResultsObservationsObservable"
     related: Optional["QueryContentsFacetsContentsResultsObservationsRelated"]
+    related_type: Optional[ObservableTypes] = Field(alias="relatedType")
     relation: Optional[str]
     occurrences: Optional[
         List[Optional["QueryContentsFacetsContentsResultsObservationsOccurrences"]]

@@ -53,6 +53,7 @@ mutation PromptConversation($prompt: String!, $id: ID, $correlationId: String) {
     graph {
       nodes {
         id
+        name
         type
         metadata
       }

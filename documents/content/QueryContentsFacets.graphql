@@ -182,6 +182,7 @@ query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!])
           id
           name
         }
+        relatedType
         relation
         occurrences {
           type

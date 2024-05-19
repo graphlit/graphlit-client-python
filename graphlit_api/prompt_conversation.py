@@ -106,6 +106,7 @@ class PromptConversationPromptConversationGraph(BaseModel):
 
 class PromptConversationPromptConversationGraphNodes(BaseModel):
     id: str
+    name: str
     type: EntityTypes
     metadata: Optional[str]
 

@@ -181,6 +181,7 @@ query GetContent($id: ID!) {
         id
         name
       }
+      relatedType
       relation
       occurrences {
         type
