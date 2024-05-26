@@ -146,10 +146,6 @@ class ContentFilter(BaseModel):
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
     boundaries: Optional[List[Optional[Any]]] = None
     contents: Optional[List["EntityReferenceFilter"]] = None
-    feeds: Optional[List["EntityReferenceFilter"]] = None
-    workflows: Optional[List["EntityReferenceFilter"]] = None
-    collections: Optional[List["EntityReferenceFilter"]] = None
-    observations: Optional[List["ObservationReferenceFilter"]] = None
     original_date_range: Optional["DateRangeFilter"] = Field(
         alias="originalDateRange", default=None
     )
@@ -158,6 +154,10 @@ class ContentFilter(BaseModel):
     file_size_range: Optional["Int64RangeFilter"] = Field(
         alias="fileSizeRange", default=None
     )
+    feeds: Optional[List["EntityReferenceFilter"]] = None
+    workflows: Optional[List["EntityReferenceFilter"]] = None
+    collections: Optional[List["EntityReferenceFilter"]] = None
+    observations: Optional[List["ObservationReferenceFilter"]] = None
     or_: Optional[List[Optional["ContentFilterLevel"]]] = Field(
         alias="or", default=None
     )
@@ -1007,6 +1007,8 @@ class ContentCriteriaInput(BaseModel):
     workflows: Optional[List["EntityReferenceInput"]] = None
     collections: Optional[List["EntityReferenceInput"]] = None
     observations: Optional[List["ObservationCriteriaInput"]] = None
+    or_: Optional[List["ContentCriteriaLevelInput"]] = Field(alias="or", default=None)
+    and_: Optional[List["ContentCriteriaLevelInput"]] = Field(alias="and", default=None)
 
 
 class ContentPublishingConnectorInput(BaseModel):
@@ -1104,6 +1106,8 @@ class RSSFeedPropertiesInput(BaseModel):
 
 class WebFeedPropertiesInput(BaseModel):
     uri: Any
+    allowed_paths: Optional[List[str]] = Field(alias="allowedPaths", default=None)
+    excluded_paths: Optional[List[str]] = Field(alias="excludedPaths", default=None)
     include_files: Optional[bool] = Field(alias="includeFiles", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
@@ -1401,6 +1405,8 @@ class RSSFeedPropertiesUpdateInput(BaseModel):
 
 class WebFeedPropertiesUpdateInput(BaseModel):
     uri: Optional[Any] = None
+    allowed_paths: Optional[List[str]] = Field(alias="allowedPaths", default=None)
+    excluded_paths: Optional[List[str]] = Field(alias="excludedPaths", default=None)
     include_files: Optional[bool] = Field(alias="includeFiles", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
@@ -1600,6 +1606,13 @@ class ObservationCriteriaInput(BaseModel):
     states: Optional[List[Optional[EntityState]]] = None
 
 
+class ContentCriteriaLevelInput(BaseModel):
+    feeds: Optional[List["EntityReferenceInput"]] = None
+    workflows: Optional[List["EntityReferenceInput"]] = None
+    collections: Optional[List["EntityReferenceInput"]] = None
+    observations: Optional[List["ObservationCriteriaInput"]] = None
+
+
 class ElevenLabsPublishingPropertiesInput(BaseModel):
     model: Optional[ElevenLabsModels] = None
     voice: Optional[str] = None
@@ -1699,10 +1712,10 @@ class BoundingBoxInput(BaseModel):
 
 
 class IngestionContentFilterInput(BaseModel):
-    types: Optional[List[Optional[ContentTypes]]] = None
-    file_types: Optional[List[Optional[FileTypes]]] = Field(
-        alias="fileTypes", default=None
-    )
+    types: Optional[List[ContentTypes]] = None
+    file_types: Optional[List[FileTypes]] = Field(alias="fileTypes", default=None)
+    allowed_paths: Optional[List[str]] = Field(alias="allowedPaths", default=None)
+    excluded_paths: Optional[List[str]] = Field(alias="excludedPaths", default=None)
 
 
 class SummarizationStrategyInput(BaseModel):
@@ -1723,6 +1736,8 @@ class ExtractionWorkflowJobInput(BaseModel):
 
 class LinkStrategyInput(BaseModel):
     enable_crawling: Optional[bool] = Field(alias="enableCrawling", default=None)
+    allowed_paths: Optional[List[str]] = Field(alias="allowedPaths", default=None)
+    excluded_paths: Optional[List[str]] = Field(alias="excludedPaths", default=None)
     allowed_domains: Optional[List[str]] = Field(alias="allowedDomains", default=None)
     excluded_domains: Optional[List[str]] = Field(alias="excludedDomains", default=None)
     allow_content_domain: Optional[bool] = Field(

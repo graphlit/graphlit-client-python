@@ -48,8 +48,8 @@ class CreateWorkflowCreateWorkflowIngestion(BaseModel):
 
 
 class CreateWorkflowCreateWorkflowIngestionIf(BaseModel):
-    types: Optional[List[Optional[ContentTypes]]]
-    file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
+    types: Optional[List[ContentTypes]]
+    file_types: Optional[List[FileTypes]] = Field(alias="fileTypes")
 
 
 class CreateWorkflowCreateWorkflowIngestionCollections(BaseModel):
