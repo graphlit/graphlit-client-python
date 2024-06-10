@@ -34,6 +34,8 @@ query GetSpecification($id: ID!) {
     }
     graphStrategy {
       type
+      generateGraph
+      observableLimit
     }
     revisionStrategy {
       type

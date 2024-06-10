@@ -5,6 +5,7 @@ query QuerySoftwares($filter: SoftwareFilter) {
       name
       alternateNames
       creationDate
+      thing
       releaseDate
       developer
     }

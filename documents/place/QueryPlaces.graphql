@@ -5,6 +5,7 @@ query QueryPlaces($filter: PlaceFilter) {
       name
       alternateNames
       creationDate
+      thing
       address {
         streetAddress
         city

@@ -227,8 +227,8 @@ class ModelServiceTypes(str, Enum):
     REPLICATE = "REPLICATE"
     GROQ = "GROQ"
     MISTRAL = "MISTRAL"
-    TOGETHER_AI = "TOGETHER_AI"
     COHERE = "COHERE"
+    DEEPSEEK = "DEEPSEEK"
 
 
 class ConversationSearchTypes(str, Enum):
@@ -466,8 +466,6 @@ class ConversationStrategyTypes(str, Enum):
 class PromptStrategyTypes(str, Enum):
     OPTIMIZE_SEARCH = "OPTIMIZE_SEARCH"
     REWRITE = "REWRITE"
-    REWRITE_QUESTION = "REWRITE_QUESTION"
-    REWRITE_MULTIPLE = "REWRITE_MULTIPLE"
     NONE = "NONE"
 
 
@@ -568,6 +566,12 @@ class GroqModels(str, Enum):
     MIXTRAL_8X7B_INSTRUCT = "MIXTRAL_8X7B_INSTRUCT"
     LLAMA_3_70B = "LLAMA_3_70B"
     LLAMA_3_8B = "LLAMA_3_8B"
+    CUSTOM = "CUSTOM"
+
+
+class DeepseekModels(str, Enum):
+    CHAT = "CHAT"
+    CODER = "CODER"
     CUSTOM = "CUSTOM"
 
 

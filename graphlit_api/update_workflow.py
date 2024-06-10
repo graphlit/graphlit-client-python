@@ -50,6 +50,8 @@ class UpdateWorkflowUpdateWorkflowIngestion(BaseModel):
 class UpdateWorkflowUpdateWorkflowIngestionIf(BaseModel):
     types: Optional[List[ContentTypes]]
     file_types: Optional[List[FileTypes]] = Field(alias="fileTypes")
+    allowed_paths: Optional[List[str]] = Field(alias="allowedPaths")
+    excluded_paths: Optional[List[str]] = Field(alias="excludedPaths")
 
 
 class UpdateWorkflowUpdateWorkflowIngestionCollections(BaseModel):
@@ -175,6 +177,8 @@ class UpdateWorkflowUpdateWorkflowEnrichmentLink(BaseModel):
     enable_crawling: Optional[bool] = Field(alias="enableCrawling")
     allowed_domains: Optional[List[str]] = Field(alias="allowedDomains")
     excluded_domains: Optional[List[str]] = Field(alias="excludedDomains")
+    allowed_paths: Optional[List[str]] = Field(alias="allowedPaths")
+    excluded_paths: Optional[List[str]] = Field(alias="excludedPaths")
     allowed_links: Optional[List[LinkTypes]] = Field(alias="allowedLinks")
     excluded_links: Optional[List[LinkTypes]] = Field(alias="excludedLinks")
     allowed_files: Optional[List[FileTypes]] = Field(alias="allowedFiles")

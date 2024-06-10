@@ -21,6 +21,7 @@ class QueryOrganizationsOrganizationsResults(BaseModel):
     name: str
     alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     creation_date: Any = Field(alias="creationDate")
+    thing: Optional[str]
     address: Optional["QueryOrganizationsOrganizationsResultsAddress"]
     founding_date: Optional[Any] = Field(alias="foundingDate")
     industries: Optional[List[Optional[str]]]

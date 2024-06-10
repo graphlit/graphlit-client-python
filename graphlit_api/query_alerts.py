@@ -66,6 +66,8 @@ class QueryAlertsAlertsResultsFilter(BaseModel):
     workflows: Optional[List["QueryAlertsAlertsResultsFilterWorkflows"]]
     collections: Optional[List["QueryAlertsAlertsResultsFilterCollections"]]
     observations: Optional[List["QueryAlertsAlertsResultsFilterObservations"]]
+    or_: Optional[List["QueryAlertsAlertsResultsFilterOr"]] = Field(alias="or")
+    and_: Optional[List["QueryAlertsAlertsResultsFilterAnd"]] = Field(alias="and")
 
 
 class QueryAlertsAlertsResultsFilterDateRange(BaseModel):
@@ -101,6 +103,64 @@ class QueryAlertsAlertsResultsFilterObservations(BaseModel):
 
 
 class QueryAlertsAlertsResultsFilterObservationsObservable(BaseModel):
+    id: str
+
+
+class QueryAlertsAlertsResultsFilterOr(BaseModel):
+    feeds: Optional[List["QueryAlertsAlertsResultsFilterOrFeeds"]]
+    workflows: Optional[List["QueryAlertsAlertsResultsFilterOrWorkflows"]]
+    collections: Optional[List["QueryAlertsAlertsResultsFilterOrCollections"]]
+    observations: Optional[List["QueryAlertsAlertsResultsFilterOrObservations"]]
+
+
+class QueryAlertsAlertsResultsFilterOrFeeds(BaseModel):
+    id: str
+
+
+class QueryAlertsAlertsResultsFilterOrWorkflows(BaseModel):
+    id: str
+
+
+class QueryAlertsAlertsResultsFilterOrCollections(BaseModel):
+    id: str
+
+
+class QueryAlertsAlertsResultsFilterOrObservations(BaseModel):
+    type: ObservableTypes
+    observable: "QueryAlertsAlertsResultsFilterOrObservationsObservable"
+    states: Optional[List[Optional[EntityState]]]
+
+
+class QueryAlertsAlertsResultsFilterOrObservationsObservable(BaseModel):
+    id: str
+
+
+class QueryAlertsAlertsResultsFilterAnd(BaseModel):
+    feeds: Optional[List["QueryAlertsAlertsResultsFilterAndFeeds"]]
+    workflows: Optional[List["QueryAlertsAlertsResultsFilterAndWorkflows"]]
+    collections: Optional[List["QueryAlertsAlertsResultsFilterAndCollections"]]
+    observations: Optional[List["QueryAlertsAlertsResultsFilterAndObservations"]]
+
+
+class QueryAlertsAlertsResultsFilterAndFeeds(BaseModel):
+    id: str
+
+
+class QueryAlertsAlertsResultsFilterAndWorkflows(BaseModel):
+    id: str
+
+
+class QueryAlertsAlertsResultsFilterAndCollections(BaseModel):
+    id: str
+
+
+class QueryAlertsAlertsResultsFilterAndObservations(BaseModel):
+    type: ObservableTypes
+    observable: "QueryAlertsAlertsResultsFilterAndObservationsObservable"
+    states: Optional[List[Optional[EntityState]]]
+
+
+class QueryAlertsAlertsResultsFilterAndObservationsObservable(BaseModel):
     id: str
 
 
@@ -140,5 +200,9 @@ QueryAlertsAlerts.model_rebuild()
 QueryAlertsAlertsResults.model_rebuild()
 QueryAlertsAlertsResultsFilter.model_rebuild()
 QueryAlertsAlertsResultsFilterObservations.model_rebuild()
+QueryAlertsAlertsResultsFilterOr.model_rebuild()
+QueryAlertsAlertsResultsFilterOrObservations.model_rebuild()
+QueryAlertsAlertsResultsFilterAnd.model_rebuild()
+QueryAlertsAlertsResultsFilterAndObservations.model_rebuild()
 QueryAlertsAlertsResultsIntegration.model_rebuild()
 QueryAlertsAlertsResultsPublishing.model_rebuild()

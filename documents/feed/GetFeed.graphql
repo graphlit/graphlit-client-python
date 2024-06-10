@@ -95,6 +95,8 @@ query GetFeed($id: ID!) {
       readLimit
       uri
       includeFiles
+      allowedPaths
+      excludedPaths
     }
     reddit {
       readLimit

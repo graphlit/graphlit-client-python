@@ -22,6 +22,7 @@ from .enums import (
     ConversationStrategyTypes,
     ConversationTypes,
     DeepgramModels,
+    DeepseekModels,
     ElevenLabsModels,
     EmailListingTypes,
     EntityEnrichmentServiceTypes,
@@ -144,7 +145,7 @@ class ContentFilter(BaseModel):
     uri: Optional[Any] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[Any]]] = None
+    boundaries: Optional[List[Optional[str]]] = None
     contents: Optional[List["EntityReferenceFilter"]] = None
     original_date_range: Optional["DateRangeFilter"] = Field(
         alias="originalDateRange", default=None
@@ -200,7 +201,7 @@ class EventFilter(BaseModel):
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[Any]]] = None
+    boundaries: Optional[List[Optional[str]]] = None
     start_date_range: Optional["DateRangeFilter"] = Field(
         alias="startDateRange", default=None
     )
@@ -291,7 +292,7 @@ class OrganizationFilter(BaseModel):
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[Any]]] = None
+    boundaries: Optional[List[Optional[str]]] = None
 
 
 class PersonFilter(BaseModel):
@@ -309,7 +310,7 @@ class PersonFilter(BaseModel):
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[Any]]] = None
+    boundaries: Optional[List[Optional[str]]] = None
     given_name: Optional[str] = Field(alias="givenName", default=None)
     family_name: Optional[str] = Field(alias="familyName", default=None)
     phone_number: Optional[str] = Field(alias="phoneNumber", default=None)
@@ -331,7 +332,7 @@ class PlaceFilter(BaseModel):
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[Any]]] = None
+    boundaries: Optional[List[Optional[str]]] = None
 
 
 class ProductFilter(BaseModel):
@@ -349,7 +350,7 @@ class ProductFilter(BaseModel):
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[Any]]] = None
+    boundaries: Optional[List[Optional[str]]] = None
     production_date_range: Optional["DateRangeFilter"] = Field(
         alias="productionDateRange", default=None
     )
@@ -392,7 +393,7 @@ class RepoFilter(BaseModel):
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[Any]]] = None
+    boundaries: Optional[List[Optional[str]]] = None
 
 
 class SoftwareFilter(BaseModel):
@@ -410,7 +411,7 @@ class SoftwareFilter(BaseModel):
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[Any]]] = None
+    boundaries: Optional[List[Optional[str]]] = None
 
 
 class SpecificationFilter(BaseModel):
@@ -498,7 +499,7 @@ class EventInput(BaseModel):
     identifier: Optional[str] = None
     description: Optional[str] = None
     location: Optional["PointInput"] = None
-    boundary: Optional[Any] = None
+    boundary: Optional[str] = None
     address: Optional["AddressInput"] = None
     start_date: Optional[Any] = Field(alias="startDate", default=None)
     end_date: Optional[Any] = Field(alias="endDate", default=None)
@@ -569,7 +570,7 @@ class OrganizationInput(BaseModel):
     identifier: Optional[str] = None
     description: Optional[str] = None
     location: Optional["PointInput"] = None
-    boundary: Optional[Any] = None
+    boundary: Optional[str] = None
     address: Optional["AddressInput"] = None
     founding_date: Optional[Any] = Field(alias="foundingDate", default=None)
     industries: Optional[List[Optional[str]]] = None
@@ -585,7 +586,7 @@ class PersonInput(BaseModel):
     identifier: Optional[str] = None
     description: Optional[str] = None
     location: Optional["PointInput"] = None
-    boundary: Optional[Any] = None
+    boundary: Optional[str] = None
     address: Optional["AddressInput"] = None
     given_name: Optional[str] = Field(alias="givenName", default=None)
     family_name: Optional[str] = Field(alias="familyName", default=None)
@@ -603,7 +604,7 @@ class PlaceInput(BaseModel):
     identifier: Optional[str] = None
     description: Optional[str] = None
     location: Optional["PointInput"] = None
-    boundary: Optional[Any] = None
+    boundary: Optional[str] = None
     address: Optional["AddressInput"] = None
 
 
@@ -613,7 +614,7 @@ class ProductInput(BaseModel):
     identifier: Optional[str] = None
     description: Optional[str] = None
     location: Optional["PointInput"] = None
-    boundary: Optional[Any] = None
+    boundary: Optional[str] = None
     address: Optional["AddressInput"] = None
     production_date: Optional[Any] = Field(alias="productionDate", default=None)
     release_date: Optional[Any] = Field(alias="releaseDate", default=None)
@@ -689,6 +690,7 @@ class SpecificationInput(BaseModel):
     replicate: Optional["ReplicateModelPropertiesInput"] = None
     mistral: Optional["MistralModelPropertiesInput"] = None
     groq: Optional["GroqModelPropertiesInput"] = None
+    deepseek: Optional["DeepseekModelPropertiesInput"] = None
 
 
 class WorkflowInput(BaseModel):
@@ -747,7 +749,7 @@ class EventUpdateInput(BaseModel):
     identifier: Optional[str] = None
     description: Optional[str] = None
     location: Optional["PointInput"] = None
-    boundary: Optional[Any] = None
+    boundary: Optional[str] = None
     address: Optional["AddressInput"] = None
     start_date: Optional[Any] = Field(alias="startDate", default=None)
     end_date: Optional[Any] = Field(alias="endDate", default=None)
@@ -822,7 +824,7 @@ class OrganizationUpdateInput(BaseModel):
     identifier: Optional[str] = None
     description: Optional[str] = None
     location: Optional["PointInput"] = None
-    boundary: Optional[Any] = None
+    boundary: Optional[str] = None
     address: Optional["AddressInput"] = None
     founding_date: Optional[Any] = Field(alias="foundingDate", default=None)
     industries: Optional[List[Optional[str]]] = None
@@ -839,7 +841,7 @@ class PersonUpdateInput(BaseModel):
     identifier: Optional[str] = None
     description: Optional[str] = None
     location: Optional["PointInput"] = None
-    boundary: Optional[Any] = None
+    boundary: Optional[str] = None
     address: Optional["AddressInput"] = None
     given_name: Optional[str] = Field(alias="givenName", default=None)
     family_name: Optional[str] = Field(alias="familyName", default=None)
@@ -858,7 +860,7 @@ class PlaceUpdateInput(BaseModel):
     identifier: Optional[str] = None
     description: Optional[str] = None
     location: Optional["PointInput"] = None
-    boundary: Optional[Any] = None
+    boundary: Optional[str] = None
     address: Optional["AddressInput"] = None
 
 
@@ -869,7 +871,7 @@ class ProductUpdateInput(BaseModel):
     identifier: Optional[str] = None
     description: Optional[str] = None
     location: Optional["PointInput"] = None
-    boundary: Optional[Any] = None
+    boundary: Optional[str] = None
     address: Optional["AddressInput"] = None
     production_date: Optional[Any] = Field(alias="productionDate", default=None)
     release_date: Optional[Any] = Field(alias="releaseDate", default=None)
@@ -944,6 +946,7 @@ class SpecificationUpdateInput(BaseModel):
     replicate: Optional["ReplicateModelPropertiesUpdateInput"] = None
     mistral: Optional["MistralModelPropertiesUpdateInput"] = None
     groq: Optional["GroqModelPropertiesUpdateInput"] = None
+    deepseek: Optional["DeepseekModelPropertiesUpdateInput"] = None
 
 
 class WorkflowUpdateInput(BaseModel):
@@ -1217,6 +1220,8 @@ class RerankingStrategyInput(BaseModel):
 
 class GraphStrategyInput(BaseModel):
     type: Optional[GraphStrategyTypes] = None
+    generate_graph: Optional[bool] = Field(alias="generateGraph", default=None)
+    observable_limit: Optional[int] = Field(alias="observableLimit", default=None)
 
 
 class RevisionStrategyInput(BaseModel):
@@ -1311,6 +1316,18 @@ class GroqModelPropertiesInput(BaseModel):
     model_name: Optional[str] = Field(alias="modelName", default=None)
     key: Optional[str] = None
     endpoint: Optional[Any] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+
+
+class DeepseekModelPropertiesInput(BaseModel):
+    model: DeepseekModels
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
     temperature: Optional[float] = None
     probability: Optional[float] = None
     token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
@@ -1488,6 +1505,8 @@ class RerankingStrategyUpdateInput(BaseModel):
 
 class GraphStrategyUpdateInput(BaseModel):
     type: Optional[GraphStrategyTypes] = None
+    generate_graph: Optional[bool] = Field(alias="generateGraph", default=None)
+    observable_limit: Optional[int] = Field(alias="observableLimit", default=None)
 
 
 class RevisionStrategyUpdateInput(BaseModel):
@@ -1582,6 +1601,18 @@ class GroqModelPropertiesUpdateInput(BaseModel):
     model_name: Optional[str] = Field(alias="modelName", default=None)
     key: Optional[str] = None
     endpoint: Optional[Any] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+
+
+class DeepseekModelPropertiesUpdateInput(BaseModel):
+    model: DeepseekModels
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
     temperature: Optional[float] = None
     probability: Optional[float] = None
     token_limit: Optional[int] = Field(alias="tokenLimit", default=None)

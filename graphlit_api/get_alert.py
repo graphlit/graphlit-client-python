@@ -60,6 +60,8 @@ class GetAlertAlertFilter(BaseModel):
     workflows: Optional[List["GetAlertAlertFilterWorkflows"]]
     collections: Optional[List["GetAlertAlertFilterCollections"]]
     observations: Optional[List["GetAlertAlertFilterObservations"]]
+    or_: Optional[List["GetAlertAlertFilterOr"]] = Field(alias="or")
+    and_: Optional[List["GetAlertAlertFilterAnd"]] = Field(alias="and")
 
 
 class GetAlertAlertFilterDateRange(BaseModel):
@@ -98,6 +100,64 @@ class GetAlertAlertFilterObservationsObservable(BaseModel):
     id: str
 
 
+class GetAlertAlertFilterOr(BaseModel):
+    feeds: Optional[List["GetAlertAlertFilterOrFeeds"]]
+    workflows: Optional[List["GetAlertAlertFilterOrWorkflows"]]
+    collections: Optional[List["GetAlertAlertFilterOrCollections"]]
+    observations: Optional[List["GetAlertAlertFilterOrObservations"]]
+
+
+class GetAlertAlertFilterOrFeeds(BaseModel):
+    id: str
+
+
+class GetAlertAlertFilterOrWorkflows(BaseModel):
+    id: str
+
+
+class GetAlertAlertFilterOrCollections(BaseModel):
+    id: str
+
+
+class GetAlertAlertFilterOrObservations(BaseModel):
+    type: ObservableTypes
+    observable: "GetAlertAlertFilterOrObservationsObservable"
+    states: Optional[List[Optional[EntityState]]]
+
+
+class GetAlertAlertFilterOrObservationsObservable(BaseModel):
+    id: str
+
+
+class GetAlertAlertFilterAnd(BaseModel):
+    feeds: Optional[List["GetAlertAlertFilterAndFeeds"]]
+    workflows: Optional[List["GetAlertAlertFilterAndWorkflows"]]
+    collections: Optional[List["GetAlertAlertFilterAndCollections"]]
+    observations: Optional[List["GetAlertAlertFilterAndObservations"]]
+
+
+class GetAlertAlertFilterAndFeeds(BaseModel):
+    id: str
+
+
+class GetAlertAlertFilterAndWorkflows(BaseModel):
+    id: str
+
+
+class GetAlertAlertFilterAndCollections(BaseModel):
+    id: str
+
+
+class GetAlertAlertFilterAndObservations(BaseModel):
+    type: ObservableTypes
+    observable: "GetAlertAlertFilterAndObservationsObservable"
+    states: Optional[List[Optional[EntityState]]]
+
+
+class GetAlertAlertFilterAndObservationsObservable(BaseModel):
+    id: str
+
+
 class GetAlertAlertIntegration(BaseModel):
     type: IntegrationServiceTypes
     uri: Optional[str]
@@ -133,5 +193,9 @@ GetAlert.model_rebuild()
 GetAlertAlert.model_rebuild()
 GetAlertAlertFilter.model_rebuild()
 GetAlertAlertFilterObservations.model_rebuild()
+GetAlertAlertFilterOr.model_rebuild()
+GetAlertAlertFilterOrObservations.model_rebuild()
+GetAlertAlertFilterAnd.model_rebuild()
+GetAlertAlertFilterAndObservations.model_rebuild()
 GetAlertAlertIntegration.model_rebuild()
 GetAlertAlertPublishing.model_rebuild()

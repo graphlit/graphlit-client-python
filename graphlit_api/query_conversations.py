@@ -101,6 +101,12 @@ class QueryConversationsConversationsResultsFilter(BaseModel):
     observations: Optional[
         List["QueryConversationsConversationsResultsFilterObservations"]
     ]
+    or_: Optional[List["QueryConversationsConversationsResultsFilterOr"]] = Field(
+        alias="or"
+    )
+    and_: Optional[List["QueryConversationsConversationsResultsFilterAnd"]] = Field(
+        alias="and"
+    )
 
 
 class QueryConversationsConversationsResultsFilterDateRange(BaseModel):
@@ -139,6 +145,74 @@ class QueryConversationsConversationsResultsFilterObservationsObservable(BaseMod
     id: str
 
 
+class QueryConversationsConversationsResultsFilterOr(BaseModel):
+    feeds: Optional[List["QueryConversationsConversationsResultsFilterOrFeeds"]]
+    workflows: Optional[List["QueryConversationsConversationsResultsFilterOrWorkflows"]]
+    collections: Optional[
+        List["QueryConversationsConversationsResultsFilterOrCollections"]
+    ]
+    observations: Optional[
+        List["QueryConversationsConversationsResultsFilterOrObservations"]
+    ]
+
+
+class QueryConversationsConversationsResultsFilterOrFeeds(BaseModel):
+    id: str
+
+
+class QueryConversationsConversationsResultsFilterOrWorkflows(BaseModel):
+    id: str
+
+
+class QueryConversationsConversationsResultsFilterOrCollections(BaseModel):
+    id: str
+
+
+class QueryConversationsConversationsResultsFilterOrObservations(BaseModel):
+    type: ObservableTypes
+    observable: "QueryConversationsConversationsResultsFilterOrObservationsObservable"
+    states: Optional[List[Optional[EntityState]]]
+
+
+class QueryConversationsConversationsResultsFilterOrObservationsObservable(BaseModel):
+    id: str
+
+
+class QueryConversationsConversationsResultsFilterAnd(BaseModel):
+    feeds: Optional[List["QueryConversationsConversationsResultsFilterAndFeeds"]]
+    workflows: Optional[
+        List["QueryConversationsConversationsResultsFilterAndWorkflows"]
+    ]
+    collections: Optional[
+        List["QueryConversationsConversationsResultsFilterAndCollections"]
+    ]
+    observations: Optional[
+        List["QueryConversationsConversationsResultsFilterAndObservations"]
+    ]
+
+
+class QueryConversationsConversationsResultsFilterAndFeeds(BaseModel):
+    id: str
+
+
+class QueryConversationsConversationsResultsFilterAndWorkflows(BaseModel):
+    id: str
+
+
+class QueryConversationsConversationsResultsFilterAndCollections(BaseModel):
+    id: str
+
+
+class QueryConversationsConversationsResultsFilterAndObservations(BaseModel):
+    type: ObservableTypes
+    observable: "QueryConversationsConversationsResultsFilterAndObservationsObservable"
+    states: Optional[List[Optional[EntityState]]]
+
+
+class QueryConversationsConversationsResultsFilterAndObservationsObservable(BaseModel):
+    id: str
+
+
 QueryConversations.model_rebuild()
 QueryConversationsConversations.model_rebuild()
 QueryConversationsConversationsResults.model_rebuild()
@@ -146,3 +220,7 @@ QueryConversationsConversationsResultsMessages.model_rebuild()
 QueryConversationsConversationsResultsMessagesCitations.model_rebuild()
 QueryConversationsConversationsResultsFilter.model_rebuild()
 QueryConversationsConversationsResultsFilterObservations.model_rebuild()
+QueryConversationsConversationsResultsFilterOr.model_rebuild()
+QueryConversationsConversationsResultsFilterOrObservations.model_rebuild()
+QueryConversationsConversationsResultsFilterAnd.model_rebuild()
+QueryConversationsConversationsResultsFilterAndObservations.model_rebuild()

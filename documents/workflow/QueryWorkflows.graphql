@@ -12,6 +12,8 @@ query QueryWorkflows($filter: WorkflowFilter) {
         if {
           types
           fileTypes
+          allowedPaths
+          excludedPaths
         }
         collections {
           id
@@ -82,6 +84,8 @@ query QueryWorkflows($filter: WorkflowFilter) {
           enableCrawling
           allowedDomains
           excludedDomains
+          allowedPaths
+          excludedPaths
           allowedLinks
           excludedLinks
           allowedFiles

@@ -4,6 +4,7 @@ query GetSoftware($id: ID!) {
     name
     alternateNames
     creationDate
+    thing
     releaseDate
     developer
   }

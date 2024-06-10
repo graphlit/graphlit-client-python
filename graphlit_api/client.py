@@ -1326,12 +1326,14 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         count: Union[Optional[int], UnsetType] = UNSET,
+        prompt: Union[Optional[str], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> SuggestConversation:
         variables: Dict[str, object] = {
             "id": id,
             "count": count,
+            "prompt": prompt,
             "correlationId": correlation_id,
         }
         response = await self.execute(

@@ -184,6 +184,8 @@ class QueryFeedsFeedsResultsWeb(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     uri: Any
     include_files: Optional[bool] = Field(alias="includeFiles")
+    allowed_paths: Optional[List[str]] = Field(alias="allowedPaths")
+    excluded_paths: Optional[List[str]] = Field(alias="excludedPaths")
 
 
 class QueryFeedsFeedsResultsReddit(BaseModel):

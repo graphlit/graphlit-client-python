@@ -281,6 +281,42 @@ query GetAlert($id: ID!) {
         }
         states
       }
+      or {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+      and {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
     }
     integration {
       type
@@ -352,6 +388,42 @@ query QueryAlerts($filter: AlertFilter) {
             id
           }
           states
+        }
+        or {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        and {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
         }
       }
       integration {
@@ -1733,6 +1805,42 @@ query GetConversation($id: ID!) {
         }
         states
       }
+      or {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+      and {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
     }
   }
 }
@@ -1912,6 +2020,42 @@ query QueryConversations($filter: ConversationFilter) {
           }
           states
         }
+        or {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        and {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
       }
     }
   }
@@ -1919,8 +2063,13 @@ query QueryConversations($filter: ConversationFilter) {
 """
 
 SUGGEST_CONVERSATION_GQL = """
-mutation SuggestConversation($id: ID!, $count: Int, $correlationId: String) {
-  suggestConversation(id: $id, count: $count, correlationId: $correlationId) {
+mutation SuggestConversation($id: ID!, $count: Int, $prompt: String, $correlationId: String) {
+  suggestConversation(
+    id: $id
+    count: $count
+    prompt: $prompt
+    correlationId: $correlationId
+  ) {
     prompts
   }
 }
@@ -1992,6 +2141,7 @@ query GetEvent($id: ID!) {
     name
     alternateNames
     creationDate
+    thing
     address {
       streetAddress
       city
@@ -2021,6 +2171,7 @@ query QueryEvents($filter: EventFilter) {
       name
       alternateNames
       creationDate
+      thing
       address {
         streetAddress
         city
@@ -2218,6 +2369,8 @@ query GetFeed($id: ID!) {
       readLimit
       uri
       includeFiles
+      allowedPaths
+      excludedPaths
     }
     reddit {
       readLimit
@@ -2382,6 +2535,8 @@ query QueryFeeds($filter: FeedFilter) {
         readLimit
         uri
         includeFiles
+        allowedPaths
+        excludedPaths
       }
       reddit {
         readLimit
@@ -2669,6 +2824,7 @@ query GetOrganization($id: ID!) {
     name
     alternateNames
     creationDate
+    thing
     address {
       streetAddress
       city
@@ -2694,6 +2850,7 @@ query QueryOrganizations($filter: OrganizationFilter) {
       name
       alternateNames
       creationDate
+      thing
       address {
         streetAddress
         city
@@ -2776,6 +2933,7 @@ query GetPerson($id: ID!) {
     name
     alternateNames
     creationDate
+    thing
     address {
       streetAddress
       city
@@ -2803,6 +2961,7 @@ query QueryPersons($filter: PersonFilter) {
       name
       alternateNames
       creationDate
+      thing
       address {
         streetAddress
         city
@@ -2887,6 +3046,7 @@ query GetPlace($id: ID!) {
     name
     alternateNames
     creationDate
+    thing
     address {
       streetAddress
       city
@@ -2906,6 +3066,7 @@ query QueryPlaces($filter: PlaceFilter) {
       name
       alternateNames
       creationDate
+      thing
       address {
         streetAddress
         city
@@ -2982,6 +3143,7 @@ query GetProduct($id: ID!) {
     name
     alternateNames
     creationDate
+    thing
     address {
       streetAddress
       city
@@ -3008,6 +3170,7 @@ query QueryProducts($filter: ProductFilter) {
       name
       alternateNames
       creationDate
+      thing
       address {
         streetAddress
         city
@@ -3241,6 +3404,7 @@ query GetRepo($id: ID!) {
     name
     alternateNames
     creationDate
+    thing
   }
 }
 """
@@ -3253,6 +3417,7 @@ query QueryRepos($filter: RepoFilter) {
       name
       alternateNames
       creationDate
+      thing
     }
   }
 }
@@ -3322,6 +3487,7 @@ query GetSoftware($id: ID!) {
     name
     alternateNames
     creationDate
+    thing
     releaseDate
     developer
   }
@@ -3336,6 +3502,7 @@ query QuerySoftwares($filter: SoftwareFilter) {
       name
       alternateNames
       creationDate
+      thing
       releaseDate
       developer
     }
@@ -3440,6 +3607,8 @@ query GetSpecification($id: ID!) {
     }
     graphStrategy {
       type
+      generateGraph
+      observableLimit
     }
     revisionStrategy {
       type
@@ -3580,6 +3749,8 @@ query QuerySpecifications($filter: SpecificationFilter) {
       }
       graphStrategy {
         type
+        generateGraph
+        observableLimit
       }
       revisionStrategy {
         type
@@ -3673,6 +3844,8 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
       if {
         types
         fileTypes
+        allowedPaths
+        excludedPaths
       }
       collections {
         id
@@ -3743,6 +3916,8 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
         enableCrawling
         allowedDomains
         excludedDomains
+        allowedPaths
+        excludedPaths
         allowedLinks
         excludedLinks
         allowedFiles
@@ -3816,6 +3991,8 @@ query GetWorkflow($id: ID!) {
       if {
         types
         fileTypes
+        allowedPaths
+        excludedPaths
       }
       collections {
         id
@@ -3886,6 +4063,8 @@ query GetWorkflow($id: ID!) {
         enableCrawling
         allowedDomains
         excludedDomains
+        allowedPaths
+        excludedPaths
         allowedLinks
         excludedLinks
         allowedFiles
@@ -3929,6 +4108,8 @@ query QueryWorkflows($filter: WorkflowFilter) {
         if {
           types
           fileTypes
+          allowedPaths
+          excludedPaths
         }
         collections {
           id
@@ -3999,6 +4180,8 @@ query QueryWorkflows($filter: WorkflowFilter) {
           enableCrawling
           allowedDomains
           excludedDomains
+          allowedPaths
+          excludedPaths
           allowedLinks
           excludedLinks
           allowedFiles
@@ -4038,6 +4221,8 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
       if {
         types
         fileTypes
+        allowedPaths
+        excludedPaths
       }
       collections {
         id
@@ -4108,6 +4293,8 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
         enableCrawling
         allowedDomains
         excludedDomains
+        allowedPaths
+        excludedPaths
         allowedLinks
         excludedLinks
         allowedFiles

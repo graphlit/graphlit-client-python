@@ -7,6 +7,8 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
       if {
         types
         fileTypes
+        allowedPaths
+        excludedPaths
       }
       collections {
         id
@@ -77,6 +79,8 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
         enableCrawling
         allowedDomains
         excludedDomains
+        allowedPaths
+        excludedPaths
         allowedLinks
         excludedLinks
         allowedFiles

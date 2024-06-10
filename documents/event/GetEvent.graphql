@@ -4,6 +4,7 @@ query GetEvent($id: ID!) {
     name
     alternateNames
     creationDate
+    thing
     address {
       streetAddress
       city

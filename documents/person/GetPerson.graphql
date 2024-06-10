@@ -4,6 +4,7 @@ query GetPerson($id: ID!) {
     name
     alternateNames
     creationDate
+    thing
     address {
       streetAddress
       city

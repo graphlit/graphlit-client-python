@@ -91,6 +91,8 @@ class GetConversationConversationFilter(BaseModel):
     workflows: Optional[List["GetConversationConversationFilterWorkflows"]]
     collections: Optional[List["GetConversationConversationFilterCollections"]]
     observations: Optional[List["GetConversationConversationFilterObservations"]]
+    or_: Optional[List["GetConversationConversationFilterOr"]] = Field(alias="or")
+    and_: Optional[List["GetConversationConversationFilterAnd"]] = Field(alias="and")
 
 
 class GetConversationConversationFilterDateRange(BaseModel):
@@ -129,9 +131,71 @@ class GetConversationConversationFilterObservationsObservable(BaseModel):
     id: str
 
 
+class GetConversationConversationFilterOr(BaseModel):
+    feeds: Optional[List["GetConversationConversationFilterOrFeeds"]]
+    workflows: Optional[List["GetConversationConversationFilterOrWorkflows"]]
+    collections: Optional[List["GetConversationConversationFilterOrCollections"]]
+    observations: Optional[List["GetConversationConversationFilterOrObservations"]]
+
+
+class GetConversationConversationFilterOrFeeds(BaseModel):
+    id: str
+
+
+class GetConversationConversationFilterOrWorkflows(BaseModel):
+    id: str
+
+
+class GetConversationConversationFilterOrCollections(BaseModel):
+    id: str
+
+
+class GetConversationConversationFilterOrObservations(BaseModel):
+    type: ObservableTypes
+    observable: "GetConversationConversationFilterOrObservationsObservable"
+    states: Optional[List[Optional[EntityState]]]
+
+
+class GetConversationConversationFilterOrObservationsObservable(BaseModel):
+    id: str
+
+
+class GetConversationConversationFilterAnd(BaseModel):
+    feeds: Optional[List["GetConversationConversationFilterAndFeeds"]]
+    workflows: Optional[List["GetConversationConversationFilterAndWorkflows"]]
+    collections: Optional[List["GetConversationConversationFilterAndCollections"]]
+    observations: Optional[List["GetConversationConversationFilterAndObservations"]]
+
+
+class GetConversationConversationFilterAndFeeds(BaseModel):
+    id: str
+
+
+class GetConversationConversationFilterAndWorkflows(BaseModel):
+    id: str
+
+
+class GetConversationConversationFilterAndCollections(BaseModel):
+    id: str
+
+
+class GetConversationConversationFilterAndObservations(BaseModel):
+    type: ObservableTypes
+    observable: "GetConversationConversationFilterAndObservationsObservable"
+    states: Optional[List[Optional[EntityState]]]
+
+
+class GetConversationConversationFilterAndObservationsObservable(BaseModel):
+    id: str
+
+
 GetConversation.model_rebuild()
 GetConversationConversation.model_rebuild()
 GetConversationConversationMessages.model_rebuild()
 GetConversationConversationMessagesCitations.model_rebuild()
 GetConversationConversationFilter.model_rebuild()
 GetConversationConversationFilterObservations.model_rebuild()
+GetConversationConversationFilterOr.model_rebuild()
+GetConversationConversationFilterOrObservations.model_rebuild()
+GetConversationConversationFilterAnd.model_rebuild()
+GetConversationConversationFilterAndObservations.model_rebuild()

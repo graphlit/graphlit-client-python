@@ -5,6 +5,7 @@ query QueryRepos($filter: RepoFilter) {
       name
       alternateNames
       creationDate
+      thing
     }
   }
 }

@@ -5,6 +5,7 @@ query QueryPersons($filter: PersonFilter) {
       name
       alternateNames
       creationDate
+      thing
       address {
         streetAddress
         city

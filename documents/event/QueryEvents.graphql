@@ -5,6 +5,7 @@ query QueryEvents($filter: EventFilter) {
       name
       alternateNames
       creationDate
+      thing
       address {
         streetAddress
         city

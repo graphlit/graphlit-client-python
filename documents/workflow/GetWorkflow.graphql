@@ -11,6 +11,8 @@ query GetWorkflow($id: ID!) {
       if {
         types
         fileTypes
+        allowedPaths
+        excludedPaths
       }
       collections {
         id
@@ -81,6 +83,8 @@ query GetWorkflow($id: ID!) {
         enableCrawling
         allowedDomains
         excludedDomains
+        allowedPaths
+        excludedPaths
         allowedLinks
         excludedLinks
         allowedFiles

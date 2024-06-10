@@ -96,6 +96,8 @@ class GetSpecificationSpecificationRerankingStrategy(BaseModel):
 
 class GetSpecificationSpecificationGraphStrategy(BaseModel):
     type: GraphStrategyTypes
+    generate_graph: Optional[bool] = Field(alias="generateGraph")
+    observable_limit: Optional[int] = Field(alias="observableLimit")
 
 
 class GetSpecificationSpecificationRevisionStrategy(BaseModel):
