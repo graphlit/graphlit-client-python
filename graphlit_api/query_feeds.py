@@ -128,6 +128,8 @@ class QueryFeedsFeedsResultsSiteOneDrive(BaseModel):
 class QueryFeedsFeedsResultsSiteGoogleDrive(BaseModel):
     folder_id: Optional[str] = Field(alias="folderId")
     refresh_token: str = Field(alias="refreshToken")
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
 
 
 class QueryFeedsFeedsResultsEmail(BaseModel):
@@ -140,6 +142,8 @@ class QueryFeedsFeedsResultsEmail(BaseModel):
 class QueryFeedsFeedsResultsEmailGoogle(BaseModel):
     type: Optional[EmailListingTypes]
     refresh_token: Optional[str] = Field(alias="refreshToken")
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
 
 
 class QueryFeedsFeedsResultsEmailMicrosoft(BaseModel):

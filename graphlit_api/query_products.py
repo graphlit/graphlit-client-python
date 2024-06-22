@@ -22,6 +22,7 @@ class QueryProductsProductsResults(BaseModel):
     alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     creation_date: Any = Field(alias="creationDate")
     thing: Optional[str]
+    relevance: Optional[float]
     address: Optional["QueryProductsProductsResultsAddress"]
     manufacturer: Optional[str]
     model: Optional[str]

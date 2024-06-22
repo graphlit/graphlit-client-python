@@ -37,6 +37,7 @@ class CreateWorkflowCreateWorkflow(BaseModel):
     preparation: Optional["CreateWorkflowCreateWorkflowPreparation"]
     extraction: Optional["CreateWorkflowCreateWorkflowExtraction"]
     enrichment: Optional["CreateWorkflowCreateWorkflowEnrichment"]
+    storage: Optional["CreateWorkflowCreateWorkflowStorage"]
     actions: Optional[List[Optional["CreateWorkflowCreateWorkflowActions"]]]
 
 
@@ -198,6 +199,14 @@ class CreateWorkflowCreateWorkflowEnrichmentJobsConnector(BaseModel):
     )
 
 
+class CreateWorkflowCreateWorkflowStorage(BaseModel):
+    embeddings: Optional["CreateWorkflowCreateWorkflowStorageEmbeddings"]
+
+
+class CreateWorkflowCreateWorkflowStorageEmbeddings(BaseModel):
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit")
+
+
 class CreateWorkflowCreateWorkflowActions(BaseModel):
     connector: Optional["CreateWorkflowCreateWorkflowActionsConnector"]
 
@@ -226,5 +235,6 @@ CreateWorkflowCreateWorkflowExtractionJobsConnector.model_rebuild()
 CreateWorkflowCreateWorkflowExtractionJobsConnectorModelText.model_rebuild()
 CreateWorkflowCreateWorkflowEnrichment.model_rebuild()
 CreateWorkflowCreateWorkflowEnrichmentJobs.model_rebuild()
+CreateWorkflowCreateWorkflowStorage.model_rebuild()
 CreateWorkflowCreateWorkflowActions.model_rebuild()
 CreateWorkflowCreateWorkflowActionsConnector.model_rebuild()

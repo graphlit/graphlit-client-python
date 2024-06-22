@@ -22,6 +22,8 @@ class GetProjectProject(BaseModel):
     environment_type: Optional[EnvironmentTypes] = Field(alias="environmentType")
     platform: Optional[ResourceConnectorTypes]
     region: Optional[str]
+    credits: Optional[Any]
+    last_credits_date: Optional[Any] = Field(alias="lastCreditsDate")
     workflow: Optional["GetProjectProjectWorkflow"]
     specification: Optional["GetProjectProjectSpecification"]
     quota: Optional["GetProjectProjectQuota"]
@@ -41,6 +43,7 @@ class GetProjectProjectSpecification(BaseModel):
 class GetProjectProjectQuota(BaseModel):
     storage: Optional[int]
     contents: Optional[int]
+    credits: Optional[int]
     feeds: Optional[int]
     posts: Optional[int]
     conversations: Optional[int]

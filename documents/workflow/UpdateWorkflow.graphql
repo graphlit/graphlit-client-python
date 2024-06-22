@@ -95,6 +95,11 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
         }
       }
     }
+    storage {
+      embeddings {
+        chunkTokenLimit
+      }
+    }
     actions {
       connector {
         type

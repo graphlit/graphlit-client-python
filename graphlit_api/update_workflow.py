@@ -37,6 +37,7 @@ class UpdateWorkflowUpdateWorkflow(BaseModel):
     preparation: Optional["UpdateWorkflowUpdateWorkflowPreparation"]
     extraction: Optional["UpdateWorkflowUpdateWorkflowExtraction"]
     enrichment: Optional["UpdateWorkflowUpdateWorkflowEnrichment"]
+    storage: Optional["UpdateWorkflowUpdateWorkflowStorage"]
     actions: Optional[List[Optional["UpdateWorkflowUpdateWorkflowActions"]]]
 
 
@@ -198,6 +199,14 @@ class UpdateWorkflowUpdateWorkflowEnrichmentJobsConnector(BaseModel):
     )
 
 
+class UpdateWorkflowUpdateWorkflowStorage(BaseModel):
+    embeddings: Optional["UpdateWorkflowUpdateWorkflowStorageEmbeddings"]
+
+
+class UpdateWorkflowUpdateWorkflowStorageEmbeddings(BaseModel):
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit")
+
+
 class UpdateWorkflowUpdateWorkflowActions(BaseModel):
     connector: Optional["UpdateWorkflowUpdateWorkflowActionsConnector"]
 
@@ -226,5 +235,6 @@ UpdateWorkflowUpdateWorkflowExtractionJobsConnector.model_rebuild()
 UpdateWorkflowUpdateWorkflowExtractionJobsConnectorModelText.model_rebuild()
 UpdateWorkflowUpdateWorkflowEnrichment.model_rebuild()
 UpdateWorkflowUpdateWorkflowEnrichmentJobs.model_rebuild()
+UpdateWorkflowUpdateWorkflowStorage.model_rebuild()
 UpdateWorkflowUpdateWorkflowActions.model_rebuild()
 UpdateWorkflowUpdateWorkflowActionsConnector.model_rebuild()

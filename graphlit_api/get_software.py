@@ -18,6 +18,7 @@ class GetSoftwareSoftware(BaseModel):
     alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     creation_date: Any = Field(alias="creationDate")
     thing: Optional[str]
+    relevance: Optional[float]
     release_date: Optional[Any] = Field(alias="releaseDate")
     developer: Optional[str]
 

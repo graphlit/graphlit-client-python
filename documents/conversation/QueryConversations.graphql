@@ -19,11 +19,90 @@ query QueryConversations($filter: ConversationFilter) {
             id
             name
             state
-            type
-            fileType
-            fileName
             originalDate
             uri
+            type
+            fileType
+            mimeType
+            format
+            formatName
+            fileExtension
+            fileName
+            fileSize
+            masterUri
+            imageUri
+            textUri
+            audioUri
+            transcriptUri
+            video {
+              width
+              height
+              duration
+              make
+              model
+              software
+              title
+              description
+              keywords
+              author
+            }
+            audio {
+              keywords
+              author
+              series
+              episode
+              episodeType
+              season
+              publisher
+              copyright
+              language
+              genre
+              title
+              description
+              bitrate
+              channels
+              sampleRate
+              bitsPerSample
+              duration
+            }
+            image {
+              width
+              height
+              resolutionX
+              resolutionY
+              bitsPerComponent
+              components
+              projectionType
+              orientation
+              description
+              make
+              model
+              software
+              lens
+              focalLength
+              exposureTime
+              fNumber
+              iso
+              heading
+              pitch
+            }
+            document {
+              title
+              subject
+              summary
+              author
+              publisher
+              description
+              keywords
+              pageCount
+              worksheetCount
+              slideCount
+              wordCount
+              lineCount
+              paragraphCount
+              isEncrypted
+              hasDigitalSignature
+            }
           }
           index
           text

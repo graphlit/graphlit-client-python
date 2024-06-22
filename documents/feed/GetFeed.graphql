@@ -52,6 +52,8 @@ query GetFeed($id: ID!) {
       googleDrive {
         folderId
         refreshToken
+        clientId
+        clientSecret
       }
     }
     email {
@@ -60,6 +62,8 @@ query GetFeed($id: ID!) {
       google {
         type
         refreshToken
+        clientId
+        clientSecret
       }
       microsoft {
         type

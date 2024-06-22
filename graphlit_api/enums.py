@@ -178,8 +178,8 @@ class MetadataTypes(str, Enum):
 
 class ObservableTypes(str, Enum):
     CATEGORY = "CATEGORY"
-    EVENT = "EVENT"
     LABEL = "LABEL"
+    EVENT = "EVENT"
     ORGANIZATION = "ORGANIZATION"
     PERSON = "PERSON"
     PLACE = "PLACE"
@@ -523,8 +523,6 @@ class AzureOpenAIModels(str, Enum):
 
 
 class CohereModels(str, Enum):
-    EMBED_ENGLISH_3_0 = "EMBED_ENGLISH_3_0"
-    EMBED_MULTILINGUAL_3_0 = "EMBED_MULTILINGUAL_3_0"
     COMMAND_R = "COMMAND_R"
     COMMAND_R_PLUS = "COMMAND_R_PLUS"
     CUSTOM = "CUSTOM"
@@ -539,6 +537,7 @@ class AnthropicModels(str, Enum):
     CLAUDE_3_OPUS = "CLAUDE_3_OPUS"
     CLAUDE_3_SONNET = "CLAUDE_3_SONNET"
     CLAUDE_3_HAIKU = "CLAUDE_3_HAIKU"
+    CLAUDE_3_5_SONNET = "CLAUDE_3_5_SONNET"
     CUSTOM = "CUSTOM"
 
 

@@ -6,6 +6,7 @@ query QueryProducts($filter: ProductFilter) {
       alternateNames
       creationDate
       thing
+      relevance
       address {
         streetAddress
         city

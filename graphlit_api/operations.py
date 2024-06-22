@@ -1751,11 +1751,90 @@ query GetConversation($id: ID!) {
           id
           name
           state
-          type
-          fileType
-          fileName
           originalDate
           uri
+          type
+          fileType
+          mimeType
+          format
+          formatName
+          fileExtension
+          fileName
+          fileSize
+          masterUri
+          imageUri
+          textUri
+          audioUri
+          transcriptUri
+          video {
+            width
+            height
+            duration
+            make
+            model
+            software
+            title
+            description
+            keywords
+            author
+          }
+          audio {
+            keywords
+            author
+            series
+            episode
+            episodeType
+            season
+            publisher
+            copyright
+            language
+            genre
+            title
+            description
+            bitrate
+            channels
+            sampleRate
+            bitsPerSample
+            duration
+          }
+          image {
+            width
+            height
+            resolutionX
+            resolutionY
+            bitsPerComponent
+            components
+            projectionType
+            orientation
+            description
+            make
+            model
+            software
+            lens
+            focalLength
+            exposureTime
+            fNumber
+            iso
+            heading
+            pitch
+          }
+          document {
+            title
+            subject
+            summary
+            author
+            publisher
+            description
+            keywords
+            pageCount
+            worksheetCount
+            slideCount
+            wordCount
+            lineCount
+            paragraphCount
+            isEncrypted
+            hasDigitalSignature
+          }
         }
         index
         text
@@ -1861,11 +1940,90 @@ mutation PromptConversation($prompt: String!, $id: ID, $correlationId: String) {
           id
           name
           state
-          type
-          fileType
-          fileName
           originalDate
           uri
+          type
+          fileType
+          mimeType
+          format
+          formatName
+          fileExtension
+          fileName
+          fileSize
+          masterUri
+          imageUri
+          textUri
+          audioUri
+          transcriptUri
+          video {
+            width
+            height
+            duration
+            make
+            model
+            software
+            title
+            description
+            keywords
+            author
+          }
+          audio {
+            keywords
+            author
+            series
+            episode
+            episodeType
+            season
+            publisher
+            copyright
+            language
+            genre
+            title
+            description
+            bitrate
+            channels
+            sampleRate
+            bitsPerSample
+            duration
+          }
+          image {
+            width
+            height
+            resolutionX
+            resolutionY
+            bitsPerComponent
+            components
+            projectionType
+            orientation
+            description
+            make
+            model
+            software
+            lens
+            focalLength
+            exposureTime
+            fNumber
+            iso
+            heading
+            pitch
+          }
+          document {
+            title
+            subject
+            summary
+            author
+            publisher
+            description
+            keywords
+            pageCount
+            worksheetCount
+            slideCount
+            wordCount
+            lineCount
+            paragraphCount
+            isEncrypted
+            hasDigitalSignature
+          }
         }
         index
         text
@@ -1966,11 +2124,90 @@ query QueryConversations($filter: ConversationFilter) {
             id
             name
             state
-            type
-            fileType
-            fileName
             originalDate
             uri
+            type
+            fileType
+            mimeType
+            format
+            formatName
+            fileExtension
+            fileName
+            fileSize
+            masterUri
+            imageUri
+            textUri
+            audioUri
+            transcriptUri
+            video {
+              width
+              height
+              duration
+              make
+              model
+              software
+              title
+              description
+              keywords
+              author
+            }
+            audio {
+              keywords
+              author
+              series
+              episode
+              episodeType
+              season
+              publisher
+              copyright
+              language
+              genre
+              title
+              description
+              bitrate
+              channels
+              sampleRate
+              bitsPerSample
+              duration
+            }
+            image {
+              width
+              height
+              resolutionX
+              resolutionY
+              bitsPerComponent
+              components
+              projectionType
+              orientation
+              description
+              make
+              model
+              software
+              lens
+              focalLength
+              exposureTime
+              fNumber
+              iso
+              heading
+              pitch
+            }
+            document {
+              title
+              subject
+              summary
+              author
+              publisher
+              description
+              keywords
+              pageCount
+              worksheetCount
+              slideCount
+              wordCount
+              lineCount
+              paragraphCount
+              isEncrypted
+              hasDigitalSignature
+            }
           }
           index
           text
@@ -2142,6 +2379,7 @@ query GetEvent($id: ID!) {
     alternateNames
     creationDate
     thing
+    relevance
     address {
       streetAddress
       city
@@ -2172,6 +2410,7 @@ query QueryEvents($filter: EventFilter) {
       alternateNames
       creationDate
       thing
+      relevance
       address {
         streetAddress
         city
@@ -2326,6 +2565,8 @@ query GetFeed($id: ID!) {
       googleDrive {
         folderId
         refreshToken
+        clientId
+        clientSecret
       }
     }
     email {
@@ -2334,6 +2575,8 @@ query GetFeed($id: ID!) {
       google {
         type
         refreshToken
+        clientId
+        clientSecret
       }
       microsoft {
         type
@@ -2492,6 +2735,8 @@ query QueryFeeds($filter: FeedFilter) {
         googleDrive {
           folderId
           refreshToken
+          clientId
+          clientSecret
         }
       }
       email {
@@ -2500,6 +2745,8 @@ query QueryFeeds($filter: FeedFilter) {
         google {
           type
           refreshToken
+          clientId
+          clientSecret
         }
         microsoft {
           type
@@ -2825,6 +3072,7 @@ query GetOrganization($id: ID!) {
     alternateNames
     creationDate
     thing
+    relevance
     address {
       streetAddress
       city
@@ -2851,6 +3099,7 @@ query QueryOrganizations($filter: OrganizationFilter) {
       alternateNames
       creationDate
       thing
+      relevance
       address {
         streetAddress
         city
@@ -2934,6 +3183,7 @@ query GetPerson($id: ID!) {
     alternateNames
     creationDate
     thing
+    relevance
     address {
       streetAddress
       city
@@ -2962,6 +3212,7 @@ query QueryPersons($filter: PersonFilter) {
       alternateNames
       creationDate
       thing
+      relevance
       address {
         streetAddress
         city
@@ -3047,6 +3298,7 @@ query GetPlace($id: ID!) {
     alternateNames
     creationDate
     thing
+    relevance
     address {
       streetAddress
       city
@@ -3067,6 +3319,7 @@ query QueryPlaces($filter: PlaceFilter) {
       alternateNames
       creationDate
       thing
+      relevance
       address {
         streetAddress
         city
@@ -3144,6 +3397,7 @@ query GetProduct($id: ID!) {
     alternateNames
     creationDate
     thing
+    relevance
     address {
       streetAddress
       city
@@ -3171,6 +3425,7 @@ query QueryProducts($filter: ProductFilter) {
       alternateNames
       creationDate
       thing
+      relevance
       address {
         streetAddress
         city
@@ -3210,6 +3465,8 @@ query GetProject {
     environmentType
     platform
     region
+    credits
+    lastCreditsDate
     workflow {
       id
       name
@@ -3221,6 +3478,7 @@ query GetProject {
     quota {
       storage
       contents
+      credits
       feeds
       posts
       conversations
@@ -3405,6 +3663,7 @@ query GetRepo($id: ID!) {
     alternateNames
     creationDate
     thing
+    relevance
   }
 }
 """
@@ -3418,6 +3677,7 @@ query QueryRepos($filter: RepoFilter) {
       alternateNames
       creationDate
       thing
+      relevance
     }
   }
 }
@@ -3488,6 +3748,7 @@ query GetSoftware($id: ID!) {
     alternateNames
     creationDate
     thing
+    relevance
     releaseDate
     developer
   }
@@ -3503,6 +3764,7 @@ query QuerySoftwares($filter: SoftwareFilter) {
       alternateNames
       creationDate
       thing
+      relevance
       releaseDate
       developer
     }
@@ -3686,11 +3948,90 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
           id
           name
           state
-          type
-          fileType
-          fileName
           originalDate
           uri
+          type
+          fileType
+          mimeType
+          format
+          formatName
+          fileExtension
+          fileName
+          fileSize
+          masterUri
+          imageUri
+          textUri
+          audioUri
+          transcriptUri
+          video {
+            width
+            height
+            duration
+            make
+            model
+            software
+            title
+            description
+            keywords
+            author
+          }
+          audio {
+            keywords
+            author
+            series
+            episode
+            episodeType
+            season
+            publisher
+            copyright
+            language
+            genre
+            title
+            description
+            bitrate
+            channels
+            sampleRate
+            bitsPerSample
+            duration
+          }
+          image {
+            width
+            height
+            resolutionX
+            resolutionY
+            bitsPerComponent
+            components
+            projectionType
+            orientation
+            description
+            make
+            model
+            software
+            lens
+            focalLength
+            exposureTime
+            fNumber
+            iso
+            heading
+            pitch
+          }
+          document {
+            title
+            subject
+            summary
+            author
+            publisher
+            description
+            keywords
+            pageCount
+            worksheetCount
+            slideCount
+            wordCount
+            lineCount
+            paragraphCount
+            isEncrypted
+            hasDigitalSignature
+          }
         }
         index
         text
@@ -3932,6 +4273,11 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
         }
       }
     }
+    storage {
+      embeddings {
+        chunkTokenLimit
+      }
+    }
     actions {
       connector {
         type
@@ -4079,6 +4425,11 @@ query GetWorkflow($id: ID!) {
         }
       }
     }
+    storage {
+      embeddings {
+        chunkTokenLimit
+      }
+    }
     actions {
       connector {
         type
@@ -4196,6 +4547,11 @@ query QueryWorkflows($filter: WorkflowFilter) {
           }
         }
       }
+      storage {
+        embeddings {
+          chunkTokenLimit
+        }
+      }
       actions {
         connector {
           type
@@ -4307,6 +4663,11 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
           type
           enrichedTypes
         }
+      }
+    }
+    storage {
+      embeddings {
+        chunkTokenLimit
       }
     }
     actions {

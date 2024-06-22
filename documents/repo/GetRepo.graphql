@@ -5,5 +5,6 @@ query GetRepo($id: ID!) {
     alternateNames
     creationDate
     thing
+    relevance
   }
 }

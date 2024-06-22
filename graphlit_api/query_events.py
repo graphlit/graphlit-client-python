@@ -22,6 +22,7 @@ class QueryEventsEventsResults(BaseModel):
     alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     creation_date: Any = Field(alias="creationDate")
     thing: Optional[str]
+    relevance: Optional[float]
     address: Optional["QueryEventsEventsResultsAddress"]
     start_date: Optional[Any] = Field(alias="startDate")
     end_date: Optional[Any] = Field(alias="endDate")

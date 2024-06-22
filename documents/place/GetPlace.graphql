@@ -5,6 +5,7 @@ query GetPlace($id: ID!) {
     alternateNames
     creationDate
     thing
+    relevance
     address {
       streetAddress
       city

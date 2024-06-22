@@ -202,6 +202,9 @@ class EventFilter(BaseModel):
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
     boundaries: Optional[List[Optional[str]]] = None
+    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
+    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
+    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
     start_date_range: Optional["DateRangeFilter"] = Field(
         alias="startDateRange", default=None
     )
@@ -222,6 +225,7 @@ class EventFilter(BaseModel):
         alias="isAccessibleForFree", default=None
     )
     typical_age_range: Optional[str] = Field(alias="typicalAgeRange", default=None)
+    events: Optional[List["EntityReferenceFilter"]] = None
 
 
 class FeedFilter(BaseModel):
@@ -293,6 +297,10 @@ class OrganizationFilter(BaseModel):
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
     boundaries: Optional[List[Optional[str]]] = None
+    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
+    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
+    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
+    organizations: Optional[List["EntityReferenceFilter"]] = None
 
 
 class PersonFilter(BaseModel):
@@ -311,10 +319,14 @@ class PersonFilter(BaseModel):
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
     boundaries: Optional[List[Optional[str]]] = None
+    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
+    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
+    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
     given_name: Optional[str] = Field(alias="givenName", default=None)
     family_name: Optional[str] = Field(alias="familyName", default=None)
     phone_number: Optional[str] = Field(alias="phoneNumber", default=None)
     email: Optional[str] = None
+    persons: Optional[List["EntityReferenceFilter"]] = None
 
 
 class PlaceFilter(BaseModel):
@@ -333,6 +345,10 @@ class PlaceFilter(BaseModel):
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
     boundaries: Optional[List[Optional[str]]] = None
+    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
+    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
+    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
+    places: Optional[List["EntityReferenceFilter"]] = None
 
 
 class ProductFilter(BaseModel):
@@ -351,6 +367,9 @@ class ProductFilter(BaseModel):
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
     boundaries: Optional[List[Optional[str]]] = None
+    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
+    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
+    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
     production_date_range: Optional["DateRangeFilter"] = Field(
         alias="productionDateRange", default=None
     )
@@ -362,6 +381,7 @@ class ProductFilter(BaseModel):
     manufacturer: Optional[str] = None
     brand: Optional[str] = None
     model: Optional[str] = None
+    products: Optional[List["EntityReferenceFilter"]] = None
 
 
 class ProjectFilter(BaseModel):
@@ -394,6 +414,10 @@ class RepoFilter(BaseModel):
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
     boundaries: Optional[List[Optional[str]]] = None
+    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
+    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
+    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
+    repos: Optional[List["EntityReferenceFilter"]] = None
 
 
 class SoftwareFilter(BaseModel):
@@ -412,6 +436,10 @@ class SoftwareFilter(BaseModel):
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
     boundaries: Optional[List[Optional[str]]] = None
+    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
+    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
+    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
+    softwares: Optional[List["EntityReferenceFilter"]] = None
 
 
 class SpecificationFilter(BaseModel):
@@ -699,6 +727,7 @@ class WorkflowInput(BaseModel):
     preparation: Optional["PreparationWorkflowStageInput"] = None
     extraction: Optional["ExtractionWorkflowStageInput"] = None
     enrichment: Optional["EnrichmentWorkflowStageInput"] = None
+    storage: Optional["StorageWorkflowStageInput"] = None
     actions: Optional[List[Optional["WorkflowActionInput"]]] = None
 
 
@@ -956,6 +985,7 @@ class WorkflowUpdateInput(BaseModel):
     preparation: Optional["PreparationWorkflowStageInput"] = None
     extraction: Optional["ExtractionWorkflowStageInput"] = None
     enrichment: Optional["EnrichmentWorkflowStageInput"] = None
+    storage: Optional["StorageWorkflowStageInput"] = None
     actions: Optional[List[Optional["WorkflowActionInput"]]] = None
 
 
@@ -1358,6 +1388,10 @@ class EnrichmentWorkflowStageInput(BaseModel):
     jobs: Optional[List[Optional["EnrichmentWorkflowJobInput"]]] = None
 
 
+class StorageWorkflowStageInput(BaseModel):
+    embeddings: Optional["EmbeddingsStrategyInput"] = None
+
+
 class WorkflowActionInput(BaseModel):
     connector: Optional["IntegrationConnectorInput"] = None
 
@@ -1701,11 +1735,15 @@ class OneDriveFeedPropertiesInput(BaseModel):
 class GoogleDriveFeedPropertiesInput(BaseModel):
     folder_id: Optional[str] = Field(alias="folderId", default=None)
     refresh_token: str = Field(alias="refreshToken")
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
 
 
 class GoogleEmailFeedPropertiesInput(BaseModel):
     type: Optional[EmailListingTypes] = None
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    refresh_token: str = Field(alias="refreshToken")
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
 
 
 class MicrosoftEmailFeedPropertiesInput(BaseModel):
@@ -1789,6 +1827,10 @@ class EnrichmentWorkflowJobInput(BaseModel):
     connector: Optional["EntityEnrichmentConnectorInput"] = None
 
 
+class EmbeddingsStrategyInput(BaseModel):
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+
+
 class AmazonFeedPropertiesUpdateInput(BaseModel):
     access_key: Optional[str] = Field(alias="accessKey", default=None)
     secret_access_key: Optional[str] = Field(alias="secretAccessKey", default=None)
@@ -1836,11 +1878,15 @@ class OneDriveFeedPropertiesUpdateInput(BaseModel):
 class GoogleDriveFeedPropertiesUpdateInput(BaseModel):
     folder_id: Optional[str] = Field(alias="folderId", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
 
 
 class GoogleEmailFeedPropertiesUpdateInput(BaseModel):
     type: Optional[EmailListingTypes] = None
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
 
 
 class MicrosoftEmailFeedPropertiesUpdateInput(BaseModel):

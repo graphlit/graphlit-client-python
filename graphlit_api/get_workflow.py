@@ -37,6 +37,7 @@ class GetWorkflowWorkflow(BaseModel):
     preparation: Optional["GetWorkflowWorkflowPreparation"]
     extraction: Optional["GetWorkflowWorkflowExtraction"]
     enrichment: Optional["GetWorkflowWorkflowEnrichment"]
+    storage: Optional["GetWorkflowWorkflowStorage"]
     actions: Optional[List[Optional["GetWorkflowWorkflowActions"]]]
 
 
@@ -196,6 +197,14 @@ class GetWorkflowWorkflowEnrichmentJobsConnector(BaseModel):
     )
 
 
+class GetWorkflowWorkflowStorage(BaseModel):
+    embeddings: Optional["GetWorkflowWorkflowStorageEmbeddings"]
+
+
+class GetWorkflowWorkflowStorageEmbeddings(BaseModel):
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit")
+
+
 class GetWorkflowWorkflowActions(BaseModel):
     connector: Optional["GetWorkflowWorkflowActionsConnector"]
 
@@ -224,5 +233,6 @@ GetWorkflowWorkflowExtractionJobsConnector.model_rebuild()
 GetWorkflowWorkflowExtractionJobsConnectorModelText.model_rebuild()
 GetWorkflowWorkflowEnrichment.model_rebuild()
 GetWorkflowWorkflowEnrichmentJobs.model_rebuild()
+GetWorkflowWorkflowStorage.model_rebuild()
 GetWorkflowWorkflowActions.model_rebuild()
 GetWorkflowWorkflowActionsConnector.model_rebuild()

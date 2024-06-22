@@ -8,6 +8,8 @@ query GetProject {
     environmentType
     platform
     region
+    credits
+    lastCreditsDate
     workflow {
       id
       name
@@ -19,6 +21,7 @@ query GetProject {
     quota {
       storage
       contents
+      credits
       feeds
       posts
       conversations

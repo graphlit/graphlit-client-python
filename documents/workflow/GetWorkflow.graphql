@@ -99,6 +99,11 @@ query GetWorkflow($id: ID!) {
         }
       }
     }
+    storage {
+      embeddings {
+        chunkTokenLimit
+      }
+    }
     actions {
       connector {
         type
