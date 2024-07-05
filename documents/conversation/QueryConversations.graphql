@@ -34,6 +34,14 @@ query QueryConversations($filter: ConversationFilter) {
             textUri
             audioUri
             transcriptUri
+            summary
+            customSummary
+            keywords
+            bullets
+            headlines
+            posts
+            chapters
+            questions
             video {
               width
               height

@@ -2329,9 +2329,21 @@ class Client(AsyncBaseClient):
         return QueryCredits.model_validate(data)
 
     async def query_usage(
-        self, start_date: Any, duration: Any, **kwargs: Any
+        self,
+        start_date: Any,
+        duration: Any,
+        names: Union[Optional[List[str]], UnsetType] = UNSET,
+        offset: Union[Optional[int], UnsetType] = UNSET,
+        limit: Union[Optional[int], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> QueryUsage:
-        variables: Dict[str, object] = {"startDate": start_date, "duration": duration}
+        variables: Dict[str, object] = {
+            "startDate": start_date,
+            "duration": duration,
+            "names": names,
+            "offset": offset,
+            "limit": limit,
+        }
         response = await self.execute(
             query=QUERY_USAGE_GQL,
             operation_name="QueryUsage",

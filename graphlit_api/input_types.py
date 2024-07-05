@@ -2036,6 +2036,10 @@ class EventFacetInput(BaseModel):
     facet: Optional[EventFacetTypes] = None
 
 
+class SlackChannelsInput(BaseModel):
+    token: str
+
+
 class SharePointLibrariesInput(BaseModel):
     authentication_type: SharePointAuthenticationTypes = Field(
         alias="authenticationType"

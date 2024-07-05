@@ -775,6 +775,14 @@ query GetContent($id: ID!) {
     textUri
     audioUri
     transcriptUri
+    summary
+    customSummary
+    keywords
+    bullets
+    headlines
+    posts
+    chapters
+    questions
     video {
       width
       height
@@ -1155,6 +1163,14 @@ query QueryContents($filter: ContentFilter) {
       textUri
       audioUri
       transcriptUri
+      summary
+      customSummary
+      keywords
+      bullets
+      headlines
+      posts
+      chapters
+      questions
       video {
         width
         height
@@ -1386,6 +1402,14 @@ query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!])
       textUri
       audioUri
       transcriptUri
+      summary
+      customSummary
+      keywords
+      bullets
+      headlines
+      posts
+      chapters
+      questions
       video {
         width
         height
@@ -1766,6 +1790,14 @@ query GetConversation($id: ID!) {
           textUri
           audioUri
           transcriptUri
+          summary
+          customSummary
+          keywords
+          bullets
+          headlines
+          posts
+          chapters
+          questions
           video {
             width
             height
@@ -1955,6 +1987,14 @@ mutation PromptConversation($prompt: String!, $id: ID, $correlationId: String) {
           textUri
           audioUri
           transcriptUri
+          summary
+          customSummary
+          keywords
+          bullets
+          headlines
+          posts
+          chapters
+          questions
           video {
             width
             height
@@ -2139,6 +2179,14 @@ query QueryConversations($filter: ConversationFilter) {
             textUri
             audioUri
             transcriptUri
+            summary
+            customSummary
+            keywords
+            bullets
+            headlines
+            posts
+            chapters
+            questions
             video {
               width
               height
@@ -3562,8 +3610,14 @@ query QueryCredits($startDate: DateTime!, $duration: TimeSpan!) {
 """
 
 QUERY_USAGE_GQL = """
-query QueryUsage($startDate: DateTime!, $duration: TimeSpan!) {
-  usage(startDate: $startDate, duration: $duration) {
+query QueryUsage($startDate: DateTime!, $duration: TimeSpan!, $names: [String!], $offset: Int, $limit: Int) {
+  usage(
+    startDate: $startDate
+    duration: $duration
+    names: $names
+    offset: $offset
+    limit: $limit
+  ) {
     id
     correlationId
     date
@@ -3963,6 +4017,14 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
           textUri
           audioUri
           transcriptUri
+          summary
+          customSummary
+          keywords
+          bullets
+          headlines
+          posts
+          chapters
+          questions
           video {
             width
             height

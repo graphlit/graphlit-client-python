@@ -27,6 +27,14 @@ mutation PromptConversation($prompt: String!, $id: ID, $correlationId: String) {
           textUri
           audioUri
           transcriptUri
+          summary
+          customSummary
+          keywords
+          bullets
+          headlines
+          posts
+          chapters
+          questions
           video {
             width
             height

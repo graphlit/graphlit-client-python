@@ -82,6 +82,14 @@ class GetConversationConversationMessagesCitationsContent(BaseModel):
     text_uri: Optional[Any] = Field(alias="textUri")
     audio_uri: Optional[Any] = Field(alias="audioUri")
     transcript_uri: Optional[Any] = Field(alias="transcriptUri")
+    summary: Optional[str]
+    custom_summary: Optional[str] = Field(alias="customSummary")
+    keywords: Optional[List[str]]
+    bullets: Optional[List[str]]
+    headlines: Optional[List[str]]
+    posts: Optional[List[str]]
+    chapters: Optional[List[str]]
+    questions: Optional[List[str]]
     video: Optional["GetConversationConversationMessagesCitationsContentVideo"]
     audio: Optional["GetConversationConversationMessagesCitationsContentAudio"]
     image: Optional["GetConversationConversationMessagesCitationsContentImage"]

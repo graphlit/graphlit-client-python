@@ -618,6 +618,7 @@ class EmailListingTypes(str, Enum):
 
 class SummarizationTypes(str, Enum):
     SUMMARY = "SUMMARY"
+    KEYWORDS = "KEYWORDS"
     BULLETS = "BULLETS"
     HEADLINES = "HEADLINES"
     POSTS = "POSTS"

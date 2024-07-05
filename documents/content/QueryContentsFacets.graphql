@@ -35,6 +35,14 @@ query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!])
       textUri
       audioUri
       transcriptUri
+      summary
+      customSummary
+      keywords
+      bullets
+      headlines
+      posts
+      chapters
+      questions
       video {
         width
         height
