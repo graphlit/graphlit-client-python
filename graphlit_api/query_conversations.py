@@ -38,6 +38,7 @@ class QueryConversationsConversationsResults(BaseModel):
     messages: Optional[List[Optional["QueryConversationsConversationsResultsMessages"]]]
     specification: Optional["QueryConversationsConversationsResultsSpecification"]
     filter: Optional["QueryConversationsConversationsResultsFilter"]
+    relevance: Optional[float]
 
 
 class QueryConversationsConversationsResultsOwner(BaseModel):

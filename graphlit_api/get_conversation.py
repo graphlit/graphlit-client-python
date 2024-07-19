@@ -34,6 +34,7 @@ class GetConversationConversation(BaseModel):
     messages: Optional[List[Optional["GetConversationConversationMessages"]]]
     specification: Optional["GetConversationConversationSpecification"]
     filter: Optional["GetConversationConversationFilter"]
+    relevance: Optional[float]
 
 
 class GetConversationConversationOwner(BaseModel):

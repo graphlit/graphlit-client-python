@@ -67,6 +67,7 @@ class GetFeedFeedSite(BaseModel):
     share_point: Optional["GetFeedFeedSiteSharePoint"] = Field(alias="sharePoint")
     one_drive: Optional["GetFeedFeedSiteOneDrive"] = Field(alias="oneDrive")
     google_drive: Optional["GetFeedFeedSiteGoogleDrive"] = Field(alias="googleDrive")
+    read_limit: Optional[int] = Field(alias="readLimit")
 
 
 class GetFeedFeedSiteS3(BaseModel):
@@ -125,6 +126,7 @@ class GetFeedFeedEmail(BaseModel):
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
     google: Optional["GetFeedFeedEmailGoogle"]
     microsoft: Optional["GetFeedFeedEmailMicrosoft"]
+    read_limit: Optional[int] = Field(alias="readLimit")
 
 
 class GetFeedFeedEmailGoogle(BaseModel):
@@ -145,6 +147,7 @@ class GetFeedFeedIssue(BaseModel):
     jira: Optional["GetFeedFeedIssueJira"]
     linear: Optional["GetFeedFeedIssueLinear"]
     github: Optional["GetFeedFeedIssueGithub"]
+    read_limit: Optional[int] = Field(alias="readLimit")
 
 
 class GetFeedFeedIssueJira(BaseModel):
@@ -152,6 +155,7 @@ class GetFeedFeedIssueJira(BaseModel):
     project: str
     email: str
     token: str
+    offset: Optional[Any]
 
 
 class GetFeedFeedIssueLinear(BaseModel):

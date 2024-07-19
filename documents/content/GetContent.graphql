@@ -12,6 +12,7 @@ query GetContent($id: ID!) {
     workflowDuration
     uri
     description
+    relevance
     markdown
     address {
       streetAddress

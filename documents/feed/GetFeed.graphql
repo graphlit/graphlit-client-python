@@ -55,6 +55,7 @@ query GetFeed($id: ID!) {
         clientId
         clientSecret
       }
+      readLimit
     }
     email {
       type
@@ -69,6 +70,7 @@ query GetFeed($id: ID!) {
         type
         refreshToken
       }
+      readLimit
     }
     issue {
       type
@@ -78,6 +80,7 @@ query GetFeed($id: ID!) {
         project
         email
         token
+        offset
       }
       linear {
         key
@@ -90,6 +93,7 @@ query GetFeed($id: ID!) {
         refreshToken
         personalAccessToken
       }
+      readLimit
     }
     rss {
       readLimit

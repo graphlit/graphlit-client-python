@@ -13,6 +13,7 @@ query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!])
       workflowDuration
       uri
       description
+      relevance
       markdown
       address {
         streetAddress

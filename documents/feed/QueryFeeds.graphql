@@ -56,6 +56,7 @@ query QueryFeeds($filter: FeedFilter) {
           clientId
           clientSecret
         }
+        readLimit
       }
       email {
         type
@@ -70,6 +71,7 @@ query QueryFeeds($filter: FeedFilter) {
           type
           refreshToken
         }
+        readLimit
       }
       issue {
         type
@@ -79,6 +81,7 @@ query QueryFeeds($filter: FeedFilter) {
           project
           email
           token
+          offset
         }
         linear {
           key
@@ -91,6 +94,7 @@ query QueryFeeds($filter: FeedFilter) {
           refreshToken
           personalAccessToken
         }
+        readLimit
       }
       rss {
         readLimit

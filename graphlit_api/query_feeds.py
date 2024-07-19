@@ -79,6 +79,7 @@ class QueryFeedsFeedsResultsSite(BaseModel):
     google_drive: Optional["QueryFeedsFeedsResultsSiteGoogleDrive"] = Field(
         alias="googleDrive"
     )
+    read_limit: Optional[int] = Field(alias="readLimit")
 
 
 class QueryFeedsFeedsResultsSiteS3(BaseModel):
@@ -137,6 +138,7 @@ class QueryFeedsFeedsResultsEmail(BaseModel):
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
     google: Optional["QueryFeedsFeedsResultsEmailGoogle"]
     microsoft: Optional["QueryFeedsFeedsResultsEmailMicrosoft"]
+    read_limit: Optional[int] = Field(alias="readLimit")
 
 
 class QueryFeedsFeedsResultsEmailGoogle(BaseModel):
@@ -157,6 +159,7 @@ class QueryFeedsFeedsResultsIssue(BaseModel):
     jira: Optional["QueryFeedsFeedsResultsIssueJira"]
     linear: Optional["QueryFeedsFeedsResultsIssueLinear"]
     github: Optional["QueryFeedsFeedsResultsIssueGithub"]
+    read_limit: Optional[int] = Field(alias="readLimit")
 
 
 class QueryFeedsFeedsResultsIssueJira(BaseModel):
@@ -164,6 +167,7 @@ class QueryFeedsFeedsResultsIssueJira(BaseModel):
     project: str
     email: str
     token: str
+    offset: Optional[Any]
 
 
 class QueryFeedsFeedsResultsIssueLinear(BaseModel):

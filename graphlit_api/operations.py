@@ -753,6 +753,7 @@ query GetContent($id: ID!) {
     workflowDuration
     uri
     description
+    relevance
     markdown
     address {
       streetAddress
@@ -1141,6 +1142,7 @@ query QueryContents($filter: ContentFilter) {
       workflowDuration
       uri
       description
+      relevance
       markdown
       address {
         streetAddress
@@ -1380,6 +1382,7 @@ query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!])
       workflowDuration
       uri
       description
+      relevance
       markdown
       address {
         streetAddress
@@ -1953,6 +1956,7 @@ query GetConversation($id: ID!) {
         }
       }
     }
+    relevance
   }
 }
 """
@@ -2342,6 +2346,7 @@ query QueryConversations($filter: ConversationFilter) {
           }
         }
       }
+      relevance
     }
   }
 }
@@ -2616,6 +2621,7 @@ query GetFeed($id: ID!) {
         clientId
         clientSecret
       }
+      readLimit
     }
     email {
       type
@@ -2630,6 +2636,7 @@ query GetFeed($id: ID!) {
         type
         refreshToken
       }
+      readLimit
     }
     issue {
       type
@@ -2639,6 +2646,7 @@ query GetFeed($id: ID!) {
         project
         email
         token
+        offset
       }
       linear {
         key
@@ -2651,6 +2659,7 @@ query GetFeed($id: ID!) {
         refreshToken
         personalAccessToken
       }
+      readLimit
     }
     rss {
       readLimit
@@ -2786,6 +2795,7 @@ query QueryFeeds($filter: FeedFilter) {
           clientId
           clientSecret
         }
+        readLimit
       }
       email {
         type
@@ -2800,6 +2810,7 @@ query QueryFeeds($filter: FeedFilter) {
           type
           refreshToken
         }
+        readLimit
       }
       issue {
         type
@@ -2809,6 +2820,7 @@ query QueryFeeds($filter: FeedFilter) {
           project
           email
           token
+          offset
         }
         linear {
           key
@@ -2821,6 +2833,7 @@ query QueryFeeds($filter: FeedFilter) {
           refreshToken
           personalAccessToken
         }
+        readLimit
       }
       rss {
         readLimit
@@ -4270,6 +4283,8 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
           fileTypes
           azureDocument {
             model
+            endpoint
+            key
           }
           deepgram {
             model
@@ -4422,6 +4437,8 @@ query GetWorkflow($id: ID!) {
           fileTypes
           azureDocument {
             model
+            endpoint
+            key
           }
           deepgram {
             model
@@ -4544,6 +4561,8 @@ query QueryWorkflows($filter: WorkflowFilter) {
             fileTypes
             azureDocument {
               model
+              endpoint
+              key
             }
             deepgram {
               model
@@ -4662,6 +4681,8 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
           fileTypes
           azureDocument {
             model
+            endpoint
+            key
           }
           deepgram {
             model

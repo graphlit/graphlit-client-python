@@ -1756,6 +1756,7 @@ class AtlassianJiraFeedPropertiesInput(BaseModel):
     project: str
     email: str
     token: str
+    offset: Optional[Any] = None
 
 
 class LinearFeedPropertiesInput(BaseModel):
@@ -1899,6 +1900,7 @@ class AtlassianJiraFeedPropertiesUpdateInput(BaseModel):
     project: Optional[str] = None
     email: Optional[str] = None
     token: Optional[str] = None
+    offset: Optional[Any] = None
 
 
 class LinearFeedPropertiesUpdateInput(BaseModel):
@@ -1970,6 +1972,8 @@ class EmailPreparationPropertiesInput(BaseModel):
 
 class AzureDocumentPreparationPropertiesInput(BaseModel):
     model: Optional[AzureDocumentIntelligenceModels] = None
+    endpoint: Optional[Any] = None
+    key: Optional[str] = None
 
 
 class DeepgramAudioPreparationPropertiesInput(BaseModel):
@@ -2128,6 +2132,14 @@ class ContentUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
     description: Optional[str] = None
+    summary: Optional[str] = None
+    custom_summary: Optional[str] = Field(alias="customSummary", default=None)
+    keywords: Optional[List[str]] = None
+    bullets: Optional[List[str]] = None
+    headlines: Optional[List[str]] = None
+    posts: Optional[List[str]] = None
+    chapters: Optional[List[str]] = None
+    questions: Optional[List[str]] = None
     video: Optional["VideoMetadataInput"] = None
     audio: Optional["AudioMetadataInput"] = None
     image: Optional["ImageMetadataInput"] = None

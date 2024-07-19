@@ -35,6 +35,8 @@ query QueryWorkflows($filter: WorkflowFilter) {
             fileTypes
             azureDocument {
               model
+              endpoint
+              key
             }
             deepgram {
               model

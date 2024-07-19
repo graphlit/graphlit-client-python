@@ -105,6 +105,8 @@ class QueryWorkflowsWorkflowsResultsPreparationJobsConnector(BaseModel):
 
 class QueryWorkflowsWorkflowsResultsPreparationJobsConnectorAzureDocument(BaseModel):
     model: Optional[AzureDocumentIntelligenceModels]
+    endpoint: Optional[Any]
+    key: Optional[str]
 
 
 class QueryWorkflowsWorkflowsResultsPreparationJobsConnectorDeepgram(BaseModel):

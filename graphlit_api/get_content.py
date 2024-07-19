@@ -37,6 +37,7 @@ class GetContentContent(BaseModel):
     workflow_duration: Optional[Any] = Field(alias="workflowDuration")
     uri: Optional[Any]
     description: Optional[str]
+    relevance: Optional[float]
     markdown: Optional[str]
     address: Optional["GetContentContentAddress"]
     location: Optional["GetContentContentLocation"]

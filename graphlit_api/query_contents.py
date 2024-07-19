@@ -41,6 +41,7 @@ class QueryContentsContentsResults(BaseModel):
     workflow_duration: Optional[Any] = Field(alias="workflowDuration")
     uri: Optional[Any]
     description: Optional[str]
+    relevance: Optional[float]
     markdown: Optional[str]
     address: Optional["QueryContentsContentsResultsAddress"]
     location: Optional["QueryContentsContentsResultsLocation"]

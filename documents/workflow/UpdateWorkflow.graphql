@@ -30,6 +30,8 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
           fileTypes
           azureDocument {
             model
+            endpoint
+            key
           }
           deepgram {
             model

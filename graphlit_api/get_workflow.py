@@ -97,6 +97,8 @@ class GetWorkflowWorkflowPreparationJobsConnector(BaseModel):
 
 class GetWorkflowWorkflowPreparationJobsConnectorAzureDocument(BaseModel):
     model: Optional[AzureDocumentIntelligenceModels]
+    endpoint: Optional[Any]
+    key: Optional[str]
 
 
 class GetWorkflowWorkflowPreparationJobsConnectorDeepgram(BaseModel):
