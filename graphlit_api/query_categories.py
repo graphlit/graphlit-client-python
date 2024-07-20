@@ -21,6 +21,7 @@ class QueryCategoriesCategoriesResults(BaseModel):
     name: str
     description: Optional[str]
     creation_date: Any = Field(alias="creationDate")
+    relevance: Optional[float]
 
 
 QueryCategories.model_rebuild()

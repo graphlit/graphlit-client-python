@@ -35,6 +35,7 @@ class QueryWorkflowsWorkflowsResults(BaseModel):
     id: str
     name: str
     creation_date: Any = Field(alias="creationDate")
+    relevance: Optional[float]
     owner: "QueryWorkflowsWorkflowsResultsOwner"
     state: EntityState
     ingestion: Optional["QueryWorkflowsWorkflowsResultsIngestion"]

@@ -5,6 +5,7 @@ query QueryLabels($filter: LabelFilter) {
       name
       description
       creationDate
+      relevance
     }
   }
 }

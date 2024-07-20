@@ -31,6 +31,7 @@ class QueryConversationsConversationsResults(BaseModel):
     id: str
     name: str
     creation_date: Any = Field(alias="creationDate")
+    relevance: Optional[float]
     owner: "QueryConversationsConversationsResultsOwner"
     state: EntityState
     correlation_id: Optional[str] = Field(alias="correlationId")
@@ -38,7 +39,6 @@ class QueryConversationsConversationsResults(BaseModel):
     messages: Optional[List[Optional["QueryConversationsConversationsResultsMessages"]]]
     specification: Optional["QueryConversationsConversationsResultsSpecification"]
     filter: Optional["QueryConversationsConversationsResultsFilter"]
-    relevance: Optional[float]
 
 
 class QueryConversationsConversationsResultsOwner(BaseModel):

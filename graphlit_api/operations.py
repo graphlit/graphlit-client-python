@@ -243,6 +243,7 @@ query GetAlert($id: ID!) {
     id
     name
     creationDate
+    relevance
     owner {
       id
     }
@@ -351,6 +352,7 @@ query QueryAlerts($filter: AlertFilter) {
       id
       name
       creationDate
+      relevance
       owner {
         id
       }
@@ -519,6 +521,7 @@ query GetCategory($id: ID!) {
     name
     description
     creationDate
+    relevance
   }
 }
 """
@@ -531,6 +534,7 @@ query QueryCategories($filter: CategoryFilter) {
       name
       description
       creationDate
+      relevance
     }
   }
 }
@@ -616,6 +620,7 @@ query GetCollection($id: ID!) {
     id
     name
     creationDate
+    relevance
     owner {
       id
     }
@@ -636,6 +641,7 @@ query QueryCollections($filter: CollectionFilter) {
       id
       name
       creationDate
+      relevance
       owner {
         id
       }
@@ -744,6 +750,7 @@ query GetContent($id: ID!) {
     id
     name
     creationDate
+    relevance
     owner {
       id
     }
@@ -753,7 +760,6 @@ query GetContent($id: ID!) {
     workflowDuration
     uri
     description
-    relevance
     markdown
     address {
       streetAddress
@@ -1133,6 +1139,7 @@ query QueryContents($filter: ContentFilter) {
       id
       name
       creationDate
+      relevance
       owner {
         id
       }
@@ -1142,7 +1149,6 @@ query QueryContents($filter: ContentFilter) {
       workflowDuration
       uri
       description
-      relevance
       markdown
       address {
         streetAddress
@@ -1373,6 +1379,7 @@ query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!])
       id
       name
       creationDate
+      relevance
       owner {
         id
       }
@@ -1382,7 +1389,6 @@ query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!])
       workflowDuration
       uri
       description
-      relevance
       markdown
       address {
         streetAddress
@@ -1763,6 +1769,7 @@ query GetConversation($id: ID!) {
     id
     name
     creationDate
+    relevance
     owner {
       id
     }
@@ -1956,7 +1963,6 @@ query GetConversation($id: ID!) {
         }
       }
     }
-    relevance
   }
 }
 """
@@ -2153,6 +2159,7 @@ query QueryConversations($filter: ConversationFilter) {
       id
       name
       creationDate
+      relevance
       owner {
         id
       }
@@ -2346,7 +2353,6 @@ query QueryConversations($filter: ConversationFilter) {
           }
         }
       }
-      relevance
     }
   }
 }
@@ -2569,6 +2575,7 @@ query GetFeed($id: ID!) {
     id
     name
     creationDate
+    relevance
     owner {
       id
     }
@@ -2743,6 +2750,7 @@ query QueryFeeds($filter: FeedFilter) {
       id
       name
       creationDate
+      relevance
       owner {
         id
       }
@@ -3024,6 +3032,7 @@ query GetLabel($id: ID!) {
     name
     description
     creationDate
+    relevance
   }
 }
 """
@@ -3036,6 +3045,7 @@ query QueryLabels($filter: LabelFilter) {
       name
       description
       creationDate
+      relevance
     }
   }
 }
@@ -3905,6 +3915,7 @@ query GetSpecification($id: ID!) {
     id
     name
     creationDate
+    relevance
     owner {
       id
     }
@@ -4134,6 +4145,7 @@ query QuerySpecifications($filter: SpecificationFilter) {
       id
       name
       creationDate
+      relevance
       owner {
         id
       }
@@ -4406,6 +4418,7 @@ query GetWorkflow($id: ID!) {
     id
     name
     creationDate
+    relevance
     owner {
       id
     }
@@ -4530,6 +4543,7 @@ query QueryWorkflows($filter: WorkflowFilter) {
       id
       name
       creationDate
+      relevance
       owner {
         id
       }

@@ -4,6 +4,7 @@ query QueryWorkflows($filter: WorkflowFilter) {
       id
       name
       creationDate
+      relevance
       owner {
         id
       }

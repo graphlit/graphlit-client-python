@@ -4,5 +4,6 @@ query GetCategory($id: ID!) {
     name
     description
     creationDate
+    relevance
   }
 }

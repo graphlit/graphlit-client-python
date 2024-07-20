@@ -30,6 +30,7 @@ class QueryAlertsAlertsResults(BaseModel):
     id: str
     name: str
     creation_date: Any = Field(alias="creationDate")
+    relevance: Optional[float]
     owner: "QueryAlertsAlertsResultsOwner"
     state: EntityState
     correlation_id: Optional[str] = Field(alias="correlationId")

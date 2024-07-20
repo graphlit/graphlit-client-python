@@ -4,6 +4,7 @@ query QueryConversations($filter: ConversationFilter) {
       id
       name
       creationDate
+      relevance
       owner {
         id
       }
@@ -197,7 +198,6 @@ query QueryConversations($filter: ConversationFilter) {
           }
         }
       }
-      relevance
     }
   }
 }

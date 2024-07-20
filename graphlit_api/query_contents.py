@@ -34,6 +34,7 @@ class QueryContentsContentsResults(BaseModel):
     id: str
     name: str
     creation_date: Any = Field(alias="creationDate")
+    relevance: Optional[float]
     owner: "QueryContentsContentsResultsOwner"
     state: EntityState
     original_date: Optional[Any] = Field(alias="originalDate")
@@ -41,7 +42,6 @@ class QueryContentsContentsResults(BaseModel):
     workflow_duration: Optional[Any] = Field(alias="workflowDuration")
     uri: Optional[Any]
     description: Optional[str]
-    relevance: Optional[float]
     markdown: Optional[str]
     address: Optional["QueryContentsContentsResultsAddress"]
     location: Optional["QueryContentsContentsResultsLocation"]

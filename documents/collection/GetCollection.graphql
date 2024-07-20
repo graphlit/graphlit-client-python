@@ -3,6 +3,7 @@ query GetCollection($id: ID!) {
     id
     name
     creationDate
+    relevance
     owner {
       id
     }

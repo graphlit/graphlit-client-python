@@ -4,6 +4,7 @@ query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!])
       id
       name
       creationDate
+      relevance
       owner {
         id
       }
@@ -13,7 +14,6 @@ query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!])
       workflowDuration
       uri
       description
-      relevance
       markdown
       address {
         streetAddress

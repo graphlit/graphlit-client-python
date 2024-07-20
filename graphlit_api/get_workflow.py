@@ -31,6 +31,7 @@ class GetWorkflowWorkflow(BaseModel):
     id: str
     name: str
     creation_date: Any = Field(alias="creationDate")
+    relevance: Optional[float]
     owner: "GetWorkflowWorkflowOwner"
     state: EntityState
     ingestion: Optional["GetWorkflowWorkflowIngestion"]

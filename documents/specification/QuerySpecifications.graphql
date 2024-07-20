@@ -4,6 +4,7 @@ query QuerySpecifications($filter: SpecificationFilter) {
       id
       name
       creationDate
+      relevance
       owner {
         id
       }

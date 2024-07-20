@@ -4,5 +4,6 @@ query GetLabel($id: ID!) {
     name
     description
     creationDate
+    relevance
   }
 }

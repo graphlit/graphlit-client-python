@@ -4,6 +4,7 @@ query QueryFeeds($filter: FeedFilter) {
       id
       name
       creationDate
+      relevance
       owner {
         id
       }

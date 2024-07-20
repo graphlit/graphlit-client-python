@@ -5,6 +5,7 @@ query QueryCategories($filter: CategoryFilter) {
       name
       description
       creationDate
+      relevance
     }
   }
 }

@@ -4,6 +4,7 @@ query QueryContents($filter: ContentFilter) {
       id
       name
       creationDate
+      relevance
       owner {
         id
       }
@@ -13,7 +14,6 @@ query QueryContents($filter: ContentFilter) {
       workflowDuration
       uri
       description
-      relevance
       markdown
       address {
         streetAddress

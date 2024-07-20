@@ -37,6 +37,7 @@ class QuerySpecificationsSpecificationsResults(BaseModel):
     id: str
     name: str
     creation_date: Any = Field(alias="creationDate")
+    relevance: Optional[float]
     owner: "QuerySpecificationsSpecificationsResultsOwner"
     state: EntityState
     type: Optional[SpecificationTypes]

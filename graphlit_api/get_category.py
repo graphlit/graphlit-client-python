@@ -17,6 +17,7 @@ class GetCategoryCategory(BaseModel):
     name: str
     description: Optional[str]
     creation_date: Any = Field(alias="creationDate")
+    relevance: Optional[float]
 
 
 GetCategory.model_rebuild()

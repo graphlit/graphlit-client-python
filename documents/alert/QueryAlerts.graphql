@@ -4,6 +4,7 @@ query QueryAlerts($filter: AlertFilter) {
       id
       name
       creationDate
+      relevance
       owner {
         id
       }
