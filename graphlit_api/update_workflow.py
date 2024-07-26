@@ -8,6 +8,7 @@ from pydantic import Field
 from .base_model import BaseModel
 from .enums import (
     AzureDocumentIntelligenceModels,
+    AzureDocumentIntelligenceVersions,
     ContentTypes,
     DeepgramModels,
     EntityEnrichmentServiceTypes,
@@ -74,6 +75,7 @@ class UpdateWorkflowUpdateWorkflowPreparationSummarizations(BaseModel):
     ]
     tokens: Optional[int]
     items: Optional[int]
+    prompt: Optional[str]
 
 
 class UpdateWorkflowUpdateWorkflowPreparationSummarizationsSpecification(BaseModel):
@@ -96,6 +98,7 @@ class UpdateWorkflowUpdateWorkflowPreparationJobsConnector(BaseModel):
 
 
 class UpdateWorkflowUpdateWorkflowPreparationJobsConnectorAzureDocument(BaseModel):
+    version: Optional[AzureDocumentIntelligenceVersions]
     model: Optional[AzureDocumentIntelligenceModels]
     endpoint: Optional[Any]
     key: Optional[str]

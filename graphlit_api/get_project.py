@@ -41,7 +41,7 @@ class GetProjectProjectSpecification(BaseModel):
 
 
 class GetProjectProjectQuota(BaseModel):
-    storage: Optional[int]
+    storage: Optional[Any]
     contents: Optional[int]
     credits: Optional[int]
     feeds: Optional[int]

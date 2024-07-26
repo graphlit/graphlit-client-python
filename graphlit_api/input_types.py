@@ -10,6 +10,7 @@ from .enums import (
     AlertTypes,
     AnthropicModels,
     AzureDocumentIntelligenceModels,
+    AzureDocumentIntelligenceVersions,
     AzureOpenAIModels,
     CategoryFacetTypes,
     CohereModels,
@@ -1219,7 +1220,7 @@ class ObservationOccurrenceInput(BaseModel):
 
 
 class ProjectQuotaInput(BaseModel):
-    storage: Optional[int] = None
+    storage: Optional[Any] = None
     contents: Optional[int] = None
     feeds: Optional[int] = None
     posts: Optional[int] = None
@@ -1974,6 +1975,7 @@ class AzureDocumentPreparationPropertiesInput(BaseModel):
     model: Optional[AzureDocumentIntelligenceModels] = None
     endpoint: Optional[Any] = None
     key: Optional[str] = None
+    version: Optional[AzureDocumentIntelligenceVersions] = None
 
 
 class DeepgramAudioPreparationPropertiesInput(BaseModel):

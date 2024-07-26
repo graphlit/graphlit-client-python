@@ -557,6 +557,7 @@ class ReplicateModels(str, Enum):
 
 class MistralModels(str, Enum):
     MIXTRAL_8X7B_INSTRUCT = "MIXTRAL_8X7B_INSTRUCT"
+    MISTRAL_NEMO = "MISTRAL_NEMO"
     MISTRAL_SMALL = "MISTRAL_SMALL"
     MISTRAL_MEDIUM = "MISTRAL_MEDIUM"
     MISTRAL_LARGE = "MISTRAL_LARGE"
@@ -565,6 +566,9 @@ class MistralModels(str, Enum):
 
 class GroqModels(str, Enum):
     MIXTRAL_8X7B_INSTRUCT = "MIXTRAL_8X7B_INSTRUCT"
+    LLAMA_3_1_405B = "LLAMA_3_1_405B"
+    LLAMA_3_1_70B = "LLAMA_3_1_70B"
+    LLAMA_3_1_8B = "LLAMA_3_1_8B"
     LLAMA_3_70B = "LLAMA_3_70B"
     LLAMA_3_8B = "LLAMA_3_8B"
     CUSTOM = "CUSTOM"
@@ -667,6 +671,11 @@ class AzureDocumentIntelligenceModels(str, Enum):
     US_MORTGAGE1008 = "US_MORTGAGE1008"
     US_MORTGAGE_DISCLOSURE = "US_MORTGAGE_DISCLOSURE"
     CREDIT_CARD = "CREDIT_CARD"
+
+
+class AzureDocumentIntelligenceVersions(str, Enum):
+    V2023_07_31 = "V2023_07_31"
+    V2024_02_29_PREVIEW = "V2024_02_29_PREVIEW"
 
 
 class DeepgramModels(str, Enum):

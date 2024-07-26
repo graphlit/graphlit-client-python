@@ -4288,12 +4288,14 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
         }
         tokens
         items
+        prompt
       }
       jobs {
         connector {
           type
           fileTypes
           azureDocument {
+            version
             model
             endpoint
             key
@@ -4443,12 +4445,14 @@ query GetWorkflow($id: ID!) {
         }
         tokens
         items
+        prompt
       }
       jobs {
         connector {
           type
           fileTypes
           azureDocument {
+            version
             model
             endpoint
             key
@@ -4568,12 +4572,14 @@ query QueryWorkflows($filter: WorkflowFilter) {
           }
           tokens
           items
+          prompt
         }
         jobs {
           connector {
             type
             fileTypes
             azureDocument {
+              version
               model
               endpoint
               key
@@ -4688,12 +4694,14 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
         }
         tokens
         items
+        prompt
       }
       jobs {
         connector {
           type
           fileTypes
           azureDocument {
+            version
             model
             endpoint
             key

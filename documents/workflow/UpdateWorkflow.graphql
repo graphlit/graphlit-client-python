@@ -23,12 +23,14 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
         }
         tokens
         items
+        prompt
       }
       jobs {
         connector {
           type
           fileTypes
           azureDocument {
+            version
             model
             endpoint
             key
