@@ -63,7 +63,6 @@ query GetConversation($id: ID!) {
             season
             publisher
             copyright
-            language
             genre
             title
             description

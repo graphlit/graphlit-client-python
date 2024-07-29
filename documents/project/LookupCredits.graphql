@@ -5,6 +5,7 @@ query LookupCredits($correlationId: String!) {
     credits
     storageRatio
     computeRatio
+    indexingRatio
     preparationRatio
     extractionRatio
     enrichmentRatio

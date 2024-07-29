@@ -19,6 +19,15 @@ query GetWorkflow($id: ID!) {
         id
       }
     }
+    indexing {
+      jobs {
+        connector {
+          type
+          contentType
+          fileType
+        }
+      }
+    }
     preparation {
       disableSmartCapture
       summarizations {
@@ -74,6 +83,11 @@ query GetWorkflow($id: ID!) {
             confidenceThreshold
             detailLevel
             customInstructions
+          }
+          modelImage {
+            specification {
+              id
+            }
           }
           modelText {
             specification {

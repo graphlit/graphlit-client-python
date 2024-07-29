@@ -66,6 +66,7 @@ class GetContentContent(BaseModel):
     email: Optional["GetContentContentEmail"]
     issue: Optional["GetContentContentIssue"]
     package: Optional["GetContentContentPackage"]
+    language: Optional["GetContentContentLanguage"]
     parent: Optional["GetContentContentParent"]
     children: Optional[List[Optional["GetContentContentChildren"]]]
     feed: Optional["GetContentContentFeed"]
@@ -117,7 +118,6 @@ class GetContentContentAudio(BaseModel):
     season: Optional[str]
     publisher: Optional[str]
     copyright: Optional[str]
-    language: Optional[str]
     genre: Optional[str]
     title: Optional[str]
     description: Optional[str]
@@ -224,6 +224,10 @@ class GetContentContentPackage(BaseModel):
     file_count: Optional[int] = Field(alias="fileCount")
     folder_count: Optional[int] = Field(alias="folderCount")
     is_encrypted: Optional[bool] = Field(alias="isEncrypted")
+
+
+class GetContentContentLanguage(BaseModel):
+    languages: Optional[List[Optional[str]]]
 
 
 class GetContentContentParent(BaseModel):

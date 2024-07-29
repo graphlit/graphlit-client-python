@@ -9,6 +9,7 @@ from .base_model import BaseModel
 from .enums import (
     AzureDocumentIntelligenceModels,
     AzureDocumentIntelligenceVersions,
+    ContentIndexingServiceTypes,
     ContentTypes,
     DeepgramModels,
     EntityEnrichmentServiceTypes,
@@ -35,6 +36,7 @@ class CreateWorkflowCreateWorkflow(BaseModel):
     name: str
     state: EntityState
     ingestion: Optional["CreateWorkflowCreateWorkflowIngestion"]
+    indexing: Optional["CreateWorkflowCreateWorkflowIndexing"]
     preparation: Optional["CreateWorkflowCreateWorkflowPreparation"]
     extraction: Optional["CreateWorkflowCreateWorkflowExtraction"]
     enrichment: Optional["CreateWorkflowCreateWorkflowEnrichment"]
@@ -58,6 +60,20 @@ class CreateWorkflowCreateWorkflowIngestionIf(BaseModel):
 
 class CreateWorkflowCreateWorkflowIngestionCollections(BaseModel):
     id: str
+
+
+class CreateWorkflowCreateWorkflowIndexing(BaseModel):
+    jobs: Optional[List[Optional["CreateWorkflowCreateWorkflowIndexingJobs"]]]
+
+
+class CreateWorkflowCreateWorkflowIndexingJobs(BaseModel):
+    connector: Optional["CreateWorkflowCreateWorkflowIndexingJobsConnector"]
+
+
+class CreateWorkflowCreateWorkflowIndexingJobsConnector(BaseModel):
+    type: Optional[ContentIndexingServiceTypes]
+    content_type: Optional[ContentTypes] = Field(alias="contentType")
+    file_type: Optional[FileTypes] = Field(alias="fileType")
 
 
 class CreateWorkflowCreateWorkflowPreparation(BaseModel):
@@ -142,6 +158,9 @@ class CreateWorkflowCreateWorkflowExtractionJobsConnector(BaseModel):
     open_ai_image: Optional[
         "CreateWorkflowCreateWorkflowExtractionJobsConnectorOpenAiImage"
     ] = Field(alias="openAIImage")
+    model_image: Optional[
+        "CreateWorkflowCreateWorkflowExtractionJobsConnectorModelImage"
+    ] = Field(alias="modelImage")
     model_text: Optional[
         "CreateWorkflowCreateWorkflowExtractionJobsConnectorModelText"
     ] = Field(alias="modelText")
@@ -160,6 +179,18 @@ class CreateWorkflowCreateWorkflowExtractionJobsConnectorOpenAiImage(BaseModel):
     confidence_threshold: Optional[float] = Field(alias="confidenceThreshold")
     detail_level: Optional[OpenAIVisionDetailLevels] = Field(alias="detailLevel")
     custom_instructions: Optional[str] = Field(alias="customInstructions")
+
+
+class CreateWorkflowCreateWorkflowExtractionJobsConnectorModelImage(BaseModel):
+    specification: Optional[
+        "CreateWorkflowCreateWorkflowExtractionJobsConnectorModelImageSpecification"
+    ]
+
+
+class CreateWorkflowCreateWorkflowExtractionJobsConnectorModelImageSpecification(
+    BaseModel
+):
+    id: str
 
 
 class CreateWorkflowCreateWorkflowExtractionJobsConnectorModelText(BaseModel):
@@ -230,6 +261,8 @@ class CreateWorkflowCreateWorkflowActionsConnectorSlack(BaseModel):
 CreateWorkflow.model_rebuild()
 CreateWorkflowCreateWorkflow.model_rebuild()
 CreateWorkflowCreateWorkflowIngestion.model_rebuild()
+CreateWorkflowCreateWorkflowIndexing.model_rebuild()
+CreateWorkflowCreateWorkflowIndexingJobs.model_rebuild()
 CreateWorkflowCreateWorkflowPreparation.model_rebuild()
 CreateWorkflowCreateWorkflowPreparationSummarizations.model_rebuild()
 CreateWorkflowCreateWorkflowPreparationJobs.model_rebuild()
@@ -237,6 +270,7 @@ CreateWorkflowCreateWorkflowPreparationJobsConnector.model_rebuild()
 CreateWorkflowCreateWorkflowExtraction.model_rebuild()
 CreateWorkflowCreateWorkflowExtractionJobs.model_rebuild()
 CreateWorkflowCreateWorkflowExtractionJobsConnector.model_rebuild()
+CreateWorkflowCreateWorkflowExtractionJobsConnectorModelImage.model_rebuild()
 CreateWorkflowCreateWorkflowExtractionJobsConnectorModelText.model_rebuild()
 CreateWorkflowCreateWorkflowEnrichment.model_rebuild()
 CreateWorkflowCreateWorkflowEnrichmentJobs.model_rebuild()

@@ -517,6 +517,11 @@ class OpenAIModels(str, Enum):
     CUSTOM = "CUSTOM"
 
 
+class OpenAIVisionDetailLevels(str, Enum):
+    HIGH = "HIGH"
+    LOW = "LOW"
+
+
 class AzureOpenAIModels(str, Enum):
     GPT35_TURBO_16K = "GPT35_TURBO_16K"
     GPT4 = "GPT4"
@@ -633,6 +638,10 @@ class SummarizationTypes(str, Enum):
     CUSTOM = "CUSTOM"
 
 
+class ContentIndexingServiceTypes(str, Enum):
+    AZURE_AI_LANGUAGE = "AZURE_AI_LANGUAGE"
+
+
 class FilePreparationServiceTypes(str, Enum):
     AZURE_DOCUMENT_INTELLIGENCE = "AZURE_DOCUMENT_INTELLIGENCE"
     DEEPGRAM = "DEEPGRAM"
@@ -644,6 +653,7 @@ class EntityExtractionServiceTypes(str, Enum):
     ROBOFLOW_IMAGE = "ROBOFLOW_IMAGE"
     MODEL_TEXT = "MODEL_TEXT"
     OPEN_AI_IMAGE = "OPEN_AI_IMAGE"
+    MODEL_IMAGE = "MODEL_IMAGE"
     AZURE_COGNITIVE_SERVICES_IMAGE = "AZURE_COGNITIVE_SERVICES_IMAGE"
     AZURE_COGNITIVE_SERVICES_TEXT = "AZURE_COGNITIVE_SERVICES_TEXT"
 
@@ -694,11 +704,6 @@ class DeepgramModels(str, Enum):
     WHISPER_BASE = "WHISPER_BASE"
     WHISPER_MEDIUM = "WHISPER_MEDIUM"
     WHISPER_LARGE = "WHISPER_LARGE"
-
-
-class OpenAIVisionDetailLevels(str, Enum):
-    HIGH = "HIGH"
-    LOW = "LOW"
 
 
 class TextTypes(str, Enum):

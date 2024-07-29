@@ -121,7 +121,6 @@ class PromptConversationPromptConversationMessageCitationsContentAudio(BaseModel
     season: Optional[str]
     publisher: Optional[str]
     copyright: Optional[str]
-    language: Optional[str]
     genre: Optional[str]
     title: Optional[str]
     description: Optional[str]

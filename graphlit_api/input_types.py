@@ -16,6 +16,7 @@ from .enums import (
     CohereModels,
     CollectionTypes,
     ContentFacetTypes,
+    ContentIndexingServiceTypes,
     ContentPublishingFormats,
     ContentPublishingServiceTypes,
     ContentTypes,
@@ -725,6 +726,7 @@ class SpecificationInput(BaseModel):
 class WorkflowInput(BaseModel):
     name: str
     ingestion: Optional["IngestionWorkflowStageInput"] = None
+    indexing: Optional["IndexingWorkflowStageInput"] = None
     preparation: Optional["PreparationWorkflowStageInput"] = None
     extraction: Optional["ExtractionWorkflowStageInput"] = None
     enrichment: Optional["EnrichmentWorkflowStageInput"] = None
@@ -983,6 +985,7 @@ class WorkflowUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
     ingestion: Optional["IngestionWorkflowStageInput"] = None
+    indexing: Optional["IndexingWorkflowStageInput"] = None
     preparation: Optional["PreparationWorkflowStageInput"] = None
     extraction: Optional["ExtractionWorkflowStageInput"] = None
     enrichment: Optional["EnrichmentWorkflowStageInput"] = None
@@ -1278,6 +1281,9 @@ class OpenAIModelPropertiesInput(BaseModel):
     completion_token_limit: Optional[int] = Field(
         alias="completionTokenLimit", default=None
     )
+    detail_level: Optional[OpenAIVisionDetailLevels] = Field(
+        alias="detailLevel", default=None
+    )
 
 
 class AzureOpenAIModelPropertiesInput(BaseModel):
@@ -1370,6 +1376,10 @@ class DeepseekModelPropertiesInput(BaseModel):
 class IngestionWorkflowStageInput(BaseModel):
     if_: Optional["IngestionContentFilterInput"] = Field(alias="if", default=None)
     collections: Optional[List[Optional["EntityReferenceInput"]]] = None
+
+
+class IndexingWorkflowStageInput(BaseModel):
+    jobs: Optional[List[Optional["IndexingWorkflowJobInput"]]] = None
 
 
 class PreparationWorkflowStageInput(BaseModel):
@@ -1566,6 +1576,9 @@ class OpenAIModelPropertiesUpdateInput(BaseModel):
     token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
     completion_token_limit: Optional[int] = Field(
         alias="completionTokenLimit", default=None
+    )
+    detail_level: Optional[OpenAIVisionDetailLevels] = Field(
+        alias="detailLevel", default=None
     )
 
 
@@ -1789,6 +1802,10 @@ class IngestionContentFilterInput(BaseModel):
     excluded_paths: Optional[List[str]] = Field(alias="excludedPaths", default=None)
 
 
+class IndexingWorkflowJobInput(BaseModel):
+    connector: Optional["ContentIndexingConnectorInput"] = None
+
+
 class SummarizationStrategyInput(BaseModel):
     type: SummarizationTypes
     specification: Optional["EntityReferenceInput"] = None
@@ -1919,6 +1936,12 @@ class GitHubIssuesFeedPropertiesUpdateInput(BaseModel):
     )
 
 
+class ContentIndexingConnectorInput(BaseModel):
+    type: Optional[ContentIndexingServiceTypes] = None
+    content_type: Optional[ContentTypes] = Field(alias="contentType", default=None)
+    file_type: Optional[FileTypes] = Field(alias="fileType", default=None)
+
+
 class FilePreparationConnectorInput(BaseModel):
     type: FilePreparationServiceTypes
     file_types: Optional[List[FileTypes]] = Field(alias="fileTypes", default=None)
@@ -1946,11 +1969,11 @@ class EntityExtractionConnectorInput(BaseModel):
     azure_image: Optional["AzureImageExtractionPropertiesInput"] = Field(
         alias="azureImage", default=None
     )
-    open_ai_image: Optional["OpenAIImageExtractionPropertiesInput"] = Field(
-        alias="openAIImage", default=None
-    )
     model_text: Optional["ModelTextExtractionPropertiesInput"] = Field(
         alias="modelText", default=None
+    )
+    model_image: Optional["ModelImageExtractionPropertiesInput"] = Field(
+        alias="modelImage", default=None
     )
 
 
@@ -2011,6 +2034,10 @@ class OpenAIImageExtractionPropertiesInput(BaseModel):
 
 
 class ModelTextExtractionPropertiesInput(BaseModel):
+    specification: Optional["EntityReferenceInput"] = None
+
+
+class ModelImageExtractionPropertiesInput(BaseModel):
     specification: Optional["EntityReferenceInput"] = None
 
 
@@ -2155,6 +2182,7 @@ class ContentUpdateInput(BaseModel):
         alias="pointCloud", default=None
     )
     package: Optional["PackageMetadataInput"] = None
+    language: Optional["LanguageMetadataInput"] = None
 
 
 class VideoMetadataInput(BaseModel):
@@ -2181,7 +2209,6 @@ class AudioMetadataInput(BaseModel):
     season: Optional[str] = None
     publisher: Optional[str] = None
     copyright: Optional[str] = None
-    language: Optional[str] = None
     genre: Optional[str] = None
     title: Optional[str] = None
     bitrate: Optional[int] = None
@@ -2322,3 +2349,7 @@ class PackageMetadataInput(BaseModel):
     location: Optional["PointInput"] = None
     file_count: Optional[int] = Field(alias="fileCount", default=None)
     folder_count: Optional[int] = Field(alias="folderCount", default=None)
+
+
+class LanguageMetadataInput(BaseModel):
+    languages: Optional[List[Optional[str]]] = None

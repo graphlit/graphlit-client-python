@@ -811,7 +811,6 @@ query GetContent($id: ID!) {
       season
       publisher
       copyright
-      language
       genre
       title
       description
@@ -905,6 +904,9 @@ query GetContent($id: ID!) {
       fileCount
       folderCount
       isEncrypted
+    }
+    language {
+      languages
     }
     parent {
       id
@@ -1200,7 +1202,6 @@ query QueryContents($filter: ContentFilter) {
         season
         publisher
         copyright
-        language
         genre
         title
         description
@@ -1294,6 +1295,9 @@ query QueryContents($filter: ContentFilter) {
         fileCount
         folderCount
         isEncrypted
+      }
+      language {
+        languages
       }
       parent {
         id
@@ -1440,7 +1444,6 @@ query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!])
         season
         publisher
         copyright
-        language
         genre
         title
         description
@@ -1534,6 +1537,9 @@ query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!])
         fileCount
         folderCount
         isEncrypted
+      }
+      language {
+        languages
       }
       parent {
         id
@@ -1829,7 +1835,6 @@ query GetConversation($id: ID!) {
             season
             publisher
             copyright
-            language
             genre
             title
             description
@@ -2026,7 +2031,6 @@ mutation PromptConversation($prompt: String!, $id: ID, $correlationId: String) {
             season
             publisher
             copyright
-            language
             genre
             title
             description
@@ -2219,7 +2223,6 @@ query QueryConversations($filter: ConversationFilter) {
               season
               publisher
               copyright
-              language
               genre
               title
               description
@@ -3567,6 +3570,7 @@ query LookupCredits($correlationId: String!) {
     credits
     storageRatio
     computeRatio
+    indexingRatio
     preparationRatio
     extractionRatio
     enrichmentRatio
@@ -3622,6 +3626,7 @@ query QueryCredits($startDate: DateTime!, $duration: TimeSpan!) {
     credits
     storageRatio
     computeRatio
+    indexingRatio
     preparationRatio
     extractionRatio
     enrichmentRatio
@@ -4070,7 +4075,6 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
             season
             publisher
             copyright
-            language
             genre
             title
             description
@@ -4279,6 +4283,15 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
         id
       }
     }
+    indexing {
+      jobs {
+        connector {
+          type
+          contentType
+          fileType
+        }
+      }
+    }
     preparation {
       disableSmartCapture
       summarizations {
@@ -4334,6 +4347,11 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
             confidenceThreshold
             detailLevel
             customInstructions
+          }
+          modelImage {
+            specification {
+              id
+            }
           }
           modelText {
             specification {
@@ -4436,6 +4454,15 @@ query GetWorkflow($id: ID!) {
         id
       }
     }
+    indexing {
+      jobs {
+        connector {
+          type
+          contentType
+          fileType
+        }
+      }
+    }
     preparation {
       disableSmartCapture
       summarizations {
@@ -4491,6 +4518,11 @@ query GetWorkflow($id: ID!) {
             confidenceThreshold
             detailLevel
             customInstructions
+          }
+          modelImage {
+            specification {
+              id
+            }
           }
           modelText {
             specification {
@@ -4563,6 +4595,15 @@ query QueryWorkflows($filter: WorkflowFilter) {
           id
         }
       }
+      indexing {
+        jobs {
+          connector {
+            type
+            contentType
+            fileType
+          }
+        }
+      }
       preparation {
         disableSmartCapture
         summarizations {
@@ -4618,6 +4659,11 @@ query QueryWorkflows($filter: WorkflowFilter) {
               confidenceThreshold
               detailLevel
               customInstructions
+            }
+            modelImage {
+              specification {
+                id
+              }
             }
             modelText {
               specification {
@@ -4685,6 +4731,15 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
         id
       }
     }
+    indexing {
+      jobs {
+        connector {
+          type
+          contentType
+          fileType
+        }
+      }
+    }
     preparation {
       disableSmartCapture
       summarizations {
@@ -4740,6 +4795,11 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
             confidenceThreshold
             detailLevel
             customInstructions
+          }
+          modelImage {
+            specification {
+              id
+            }
           }
           modelText {
             specification {

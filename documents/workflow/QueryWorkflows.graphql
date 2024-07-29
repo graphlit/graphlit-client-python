@@ -20,6 +20,15 @@ query QueryWorkflows($filter: WorkflowFilter) {
           id
         }
       }
+      indexing {
+        jobs {
+          connector {
+            type
+            contentType
+            fileType
+          }
+        }
+      }
       preparation {
         disableSmartCapture
         summarizations {
@@ -75,6 +84,11 @@ query QueryWorkflows($filter: WorkflowFilter) {
               confidenceThreshold
               detailLevel
               customInstructions
+            }
+            modelImage {
+              specification {
+                id
+              }
             }
             modelText {
               specification {

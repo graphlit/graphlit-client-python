@@ -56,7 +56,6 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
             season
             publisher
             copyright
-            language
             genre
             title
             description

@@ -65,7 +65,6 @@ query QueryContents($filter: ContentFilter) {
         season
         publisher
         copyright
-        language
         genre
         title
         description
@@ -159,6 +158,9 @@ query QueryContents($filter: ContentFilter) {
         fileCount
         folderCount
         isEncrypted
+      }
+      language {
+        languages
       }
       parent {
         id

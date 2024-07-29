@@ -9,6 +9,7 @@ from .base_model import BaseModel
 from .enums import (
     AzureDocumentIntelligenceModels,
     AzureDocumentIntelligenceVersions,
+    ContentIndexingServiceTypes,
     ContentTypes,
     DeepgramModels,
     EntityEnrichmentServiceTypes,
@@ -40,6 +41,7 @@ class QueryWorkflowsWorkflowsResults(BaseModel):
     owner: "QueryWorkflowsWorkflowsResultsOwner"
     state: EntityState
     ingestion: Optional["QueryWorkflowsWorkflowsResultsIngestion"]
+    indexing: Optional["QueryWorkflowsWorkflowsResultsIndexing"]
     preparation: Optional["QueryWorkflowsWorkflowsResultsPreparation"]
     extraction: Optional["QueryWorkflowsWorkflowsResultsExtraction"]
     enrichment: Optional["QueryWorkflowsWorkflowsResultsEnrichment"]
@@ -67,6 +69,20 @@ class QueryWorkflowsWorkflowsResultsIngestionIf(BaseModel):
 
 class QueryWorkflowsWorkflowsResultsIngestionCollections(BaseModel):
     id: str
+
+
+class QueryWorkflowsWorkflowsResultsIndexing(BaseModel):
+    jobs: Optional[List[Optional["QueryWorkflowsWorkflowsResultsIndexingJobs"]]]
+
+
+class QueryWorkflowsWorkflowsResultsIndexingJobs(BaseModel):
+    connector: Optional["QueryWorkflowsWorkflowsResultsIndexingJobsConnector"]
+
+
+class QueryWorkflowsWorkflowsResultsIndexingJobsConnector(BaseModel):
+    type: Optional[ContentIndexingServiceTypes]
+    content_type: Optional[ContentTypes] = Field(alias="contentType")
+    file_type: Optional[FileTypes] = Field(alias="fileType")
 
 
 class QueryWorkflowsWorkflowsResultsPreparation(BaseModel):
@@ -151,6 +167,9 @@ class QueryWorkflowsWorkflowsResultsExtractionJobsConnector(BaseModel):
     open_ai_image: Optional[
         "QueryWorkflowsWorkflowsResultsExtractionJobsConnectorOpenAiImage"
     ] = Field(alias="openAIImage")
+    model_image: Optional[
+        "QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelImage"
+    ] = Field(alias="modelImage")
     model_text: Optional[
         "QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelText"
     ] = Field(alias="modelText")
@@ -169,6 +188,18 @@ class QueryWorkflowsWorkflowsResultsExtractionJobsConnectorOpenAiImage(BaseModel
     confidence_threshold: Optional[float] = Field(alias="confidenceThreshold")
     detail_level: Optional[OpenAIVisionDetailLevels] = Field(alias="detailLevel")
     custom_instructions: Optional[str] = Field(alias="customInstructions")
+
+
+class QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelImage(BaseModel):
+    specification: Optional[
+        "QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelImageSpecification"
+    ]
+
+
+class QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelImageSpecification(
+    BaseModel
+):
+    id: str
 
 
 class QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelText(BaseModel):
@@ -240,6 +271,8 @@ QueryWorkflows.model_rebuild()
 QueryWorkflowsWorkflows.model_rebuild()
 QueryWorkflowsWorkflowsResults.model_rebuild()
 QueryWorkflowsWorkflowsResultsIngestion.model_rebuild()
+QueryWorkflowsWorkflowsResultsIndexing.model_rebuild()
+QueryWorkflowsWorkflowsResultsIndexingJobs.model_rebuild()
 QueryWorkflowsWorkflowsResultsPreparation.model_rebuild()
 QueryWorkflowsWorkflowsResultsPreparationSummarizations.model_rebuild()
 QueryWorkflowsWorkflowsResultsPreparationJobs.model_rebuild()
@@ -247,6 +280,7 @@ QueryWorkflowsWorkflowsResultsPreparationJobsConnector.model_rebuild()
 QueryWorkflowsWorkflowsResultsExtraction.model_rebuild()
 QueryWorkflowsWorkflowsResultsExtractionJobs.model_rebuild()
 QueryWorkflowsWorkflowsResultsExtractionJobsConnector.model_rebuild()
+QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelImage.model_rebuild()
 QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelText.model_rebuild()
 QueryWorkflowsWorkflowsResultsEnrichment.model_rebuild()
 QueryWorkflowsWorkflowsResultsEnrichmentJobs.model_rebuild()

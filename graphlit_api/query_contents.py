@@ -70,6 +70,7 @@ class QueryContentsContentsResults(BaseModel):
     email: Optional["QueryContentsContentsResultsEmail"]
     issue: Optional["QueryContentsContentsResultsIssue"]
     package: Optional["QueryContentsContentsResultsPackage"]
+    language: Optional["QueryContentsContentsResultsLanguage"]
     parent: Optional["QueryContentsContentsResultsParent"]
     children: Optional[List[Optional["QueryContentsContentsResultsChildren"]]]
     feed: Optional["QueryContentsContentsResultsFeed"]
@@ -121,7 +122,6 @@ class QueryContentsContentsResultsAudio(BaseModel):
     season: Optional[str]
     publisher: Optional[str]
     copyright: Optional[str]
-    language: Optional[str]
     genre: Optional[str]
     title: Optional[str]
     description: Optional[str]
@@ -230,6 +230,10 @@ class QueryContentsContentsResultsPackage(BaseModel):
     file_count: Optional[int] = Field(alias="fileCount")
     folder_count: Optional[int] = Field(alias="folderCount")
     is_encrypted: Optional[bool] = Field(alias="isEncrypted")
+
+
+class QueryContentsContentsResultsLanguage(BaseModel):
+    languages: Optional[List[Optional[str]]]
 
 
 class QueryContentsContentsResultsParent(BaseModel):

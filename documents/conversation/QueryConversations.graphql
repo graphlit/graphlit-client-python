@@ -64,7 +64,6 @@ query QueryConversations($filter: ConversationFilter) {
               season
               publisher
               copyright
-              language
               genre
               title
               description

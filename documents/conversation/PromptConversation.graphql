@@ -56,7 +56,6 @@ mutation PromptConversation($prompt: String!, $id: ID, $correlationId: String) {
             season
             publisher
             copyright
-            language
             genre
             title
             description

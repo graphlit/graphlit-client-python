@@ -14,6 +14,15 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
         id
       }
     }
+    indexing {
+      jobs {
+        connector {
+          type
+          contentType
+          fileType
+        }
+      }
+    }
     preparation {
       disableSmartCapture
       summarizations {
@@ -69,6 +78,11 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
             confidenceThreshold
             detailLevel
             customInstructions
+          }
+          modelImage {
+            specification {
+              id
+            }
           }
           modelText {
             specification {

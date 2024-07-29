@@ -64,7 +64,6 @@ query GetContent($id: ID!) {
       season
       publisher
       copyright
-      language
       genre
       title
       description
@@ -158,6 +157,9 @@ query GetContent($id: ID!) {
       fileCount
       folderCount
       isEncrypted
+    }
+    language {
+      languages
     }
     parent {
       id
