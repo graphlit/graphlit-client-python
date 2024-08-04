@@ -4006,6 +4006,35 @@ query GetSpecification($id: ID!) {
       temperature
       probability
     }
+    mistral {
+      tokenLimit
+      completionTokenLimit
+      model
+      key
+      modelName
+      endpoint
+      temperature
+      probability
+    }
+    groq {
+      tokenLimit
+      completionTokenLimit
+      model
+      key
+      modelName
+      endpoint
+      temperature
+      probability
+    }
+    deepseek {
+      tokenLimit
+      completionTokenLimit
+      model
+      key
+      modelName
+      temperature
+      probability
+    }
     tools {
       name
       description
@@ -4227,6 +4256,35 @@ query QuerySpecifications($filter: SpecificationFilter) {
         probability
       }
       replicate {
+        tokenLimit
+        completionTokenLimit
+        model
+        key
+        modelName
+        temperature
+        probability
+      }
+      mistral {
+        tokenLimit
+        completionTokenLimit
+        model
+        key
+        modelName
+        endpoint
+        temperature
+        probability
+      }
+      groq {
+        tokenLimit
+        completionTokenLimit
+        model
+        key
+        modelName
+        endpoint
+        temperature
+        probability
+      }
+      deepseek {
         tokenLimit
         completionTokenLimit
         model

@@ -12,8 +12,11 @@ from .enums import (
     CohereModels,
     ConversationSearchTypes,
     ConversationStrategyTypes,
+    DeepseekModels,
     EntityState,
     GraphStrategyTypes,
+    GroqModels,
+    MistralModels,
     ModelServiceTypes,
     OpenAIModels,
     PromptStrategyTypes,
@@ -66,6 +69,9 @@ class GetSpecificationSpecification(BaseModel):
     cohere: Optional["GetSpecificationSpecificationCohere"]
     anthropic: Optional["GetSpecificationSpecificationAnthropic"]
     replicate: Optional["GetSpecificationSpecificationReplicate"]
+    mistral: Optional["GetSpecificationSpecificationMistral"]
+    groq: Optional["GetSpecificationSpecificationGroq"]
+    deepseek: Optional["GetSpecificationSpecificationDeepseek"]
     tools: Optional[List["GetSpecificationSpecificationTools"]]
 
 
@@ -152,6 +158,38 @@ class GetSpecificationSpecificationReplicate(BaseModel):
     token_limit: Optional[int] = Field(alias="tokenLimit")
     completion_token_limit: Optional[int] = Field(alias="completionTokenLimit")
     model: ReplicateModels
+    key: Optional[str]
+    model_name: Optional[str] = Field(alias="modelName")
+    temperature: Optional[float]
+    probability: Optional[float]
+
+
+class GetSpecificationSpecificationMistral(BaseModel):
+    token_limit: Optional[int] = Field(alias="tokenLimit")
+    completion_token_limit: Optional[int] = Field(alias="completionTokenLimit")
+    model: MistralModels
+    key: Optional[str]
+    model_name: Optional[str] = Field(alias="modelName")
+    endpoint: Optional[Any]
+    temperature: Optional[float]
+    probability: Optional[float]
+
+
+class GetSpecificationSpecificationGroq(BaseModel):
+    token_limit: Optional[int] = Field(alias="tokenLimit")
+    completion_token_limit: Optional[int] = Field(alias="completionTokenLimit")
+    model: GroqModels
+    key: Optional[str]
+    model_name: Optional[str] = Field(alias="modelName")
+    endpoint: Optional[Any]
+    temperature: Optional[float]
+    probability: Optional[float]
+
+
+class GetSpecificationSpecificationDeepseek(BaseModel):
+    token_limit: Optional[int] = Field(alias="tokenLimit")
+    completion_token_limit: Optional[int] = Field(alias="completionTokenLimit")
+    model: DeepseekModels
     key: Optional[str]
     model_name: Optional[str] = Field(alias="modelName")
     temperature: Optional[float]
