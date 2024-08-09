@@ -13,6 +13,7 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
           name
           state
           originalDate
+          identifier
           uri
           type
           fileType

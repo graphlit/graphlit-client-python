@@ -61,6 +61,11 @@ query GetWorkflow($id: ID!) {
           email {
             includeAttachments
           }
+          modelDocument {
+            specification {
+              id
+            }
+          }
         }
       }
     }

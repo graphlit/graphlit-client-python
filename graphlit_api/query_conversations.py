@@ -39,6 +39,9 @@ class QueryConversationsConversationsResults(BaseModel):
     messages: Optional[List[Optional["QueryConversationsConversationsResultsMessages"]]]
     specification: Optional["QueryConversationsConversationsResultsSpecification"]
     filter: Optional["QueryConversationsConversationsResultsFilter"]
+    augmented_filter: Optional[
+        "QueryConversationsConversationsResultsAugmentedFilter"
+    ] = Field(alias="augmentedFilter")
 
 
 class QueryConversationsConversationsResultsOwner(BaseModel):
@@ -75,6 +78,7 @@ class QueryConversationsConversationsResultsMessagesCitationsContent(BaseModel):
     name: str
     state: EntityState
     original_date: Optional[Any] = Field(alias="originalDate")
+    identifier: Optional[str]
     uri: Optional[Any]
     type: Optional[ContentTypes]
     file_type: Optional[FileTypes] = Field(alias="fileType")
@@ -114,7 +118,7 @@ class QueryConversationsConversationsResultsMessagesCitationsContent(BaseModel):
 class QueryConversationsConversationsResultsMessagesCitationsContentVideo(BaseModel):
     width: Optional[int]
     height: Optional[int]
-    duration: Optional[str]
+    duration: Optional[Any]
     make: Optional[str]
     model: Optional[str]
     software: Optional[str]
@@ -140,7 +144,7 @@ class QueryConversationsConversationsResultsMessagesCitationsContentAudio(BaseMo
     channels: Optional[int]
     sample_rate: Optional[int] = Field(alias="sampleRate")
     bits_per_sample: Optional[int] = Field(alias="bitsPerSample")
-    duration: Optional[str]
+    duration: Optional[Any]
 
 
 class QueryConversationsConversationsResultsMessagesCitationsContentImage(BaseModel):
@@ -318,6 +322,158 @@ class QueryConversationsConversationsResultsFilterAndObservationsObservable(Base
     id: str
 
 
+class QueryConversationsConversationsResultsAugmentedFilter(BaseModel):
+    date_range: Optional[
+        "QueryConversationsConversationsResultsAugmentedFilterDateRange"
+    ] = Field(alias="dateRange")
+    creation_date_range: Optional[
+        "QueryConversationsConversationsResultsAugmentedFilterCreationDateRange"
+    ] = Field(alias="creationDateRange")
+    types: Optional[List[ContentTypes]]
+    file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
+    contents: Optional[
+        List["QueryConversationsConversationsResultsAugmentedFilterContents"]
+    ]
+    feeds: Optional[List["QueryConversationsConversationsResultsAugmentedFilterFeeds"]]
+    workflows: Optional[
+        List["QueryConversationsConversationsResultsAugmentedFilterWorkflows"]
+    ]
+    collections: Optional[
+        List["QueryConversationsConversationsResultsAugmentedFilterCollections"]
+    ]
+    observations: Optional[
+        List["QueryConversationsConversationsResultsAugmentedFilterObservations"]
+    ]
+    or_: Optional[List["QueryConversationsConversationsResultsAugmentedFilterOr"]] = (
+        Field(alias="or")
+    )
+    and_: Optional[List["QueryConversationsConversationsResultsAugmentedFilterAnd"]] = (
+        Field(alias="and")
+    )
+
+
+class QueryConversationsConversationsResultsAugmentedFilterDateRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class QueryConversationsConversationsResultsAugmentedFilterCreationDateRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class QueryConversationsConversationsResultsAugmentedFilterContents(BaseModel):
+    id: str
+
+
+class QueryConversationsConversationsResultsAugmentedFilterFeeds(BaseModel):
+    id: str
+
+
+class QueryConversationsConversationsResultsAugmentedFilterWorkflows(BaseModel):
+    id: str
+
+
+class QueryConversationsConversationsResultsAugmentedFilterCollections(BaseModel):
+    id: str
+
+
+class QueryConversationsConversationsResultsAugmentedFilterObservations(BaseModel):
+    type: ObservableTypes
+    observable: (
+        "QueryConversationsConversationsResultsAugmentedFilterObservationsObservable"
+    )
+    states: Optional[List[Optional[EntityState]]]
+
+
+class QueryConversationsConversationsResultsAugmentedFilterObservationsObservable(
+    BaseModel
+):
+    id: str
+
+
+class QueryConversationsConversationsResultsAugmentedFilterOr(BaseModel):
+    feeds: Optional[
+        List["QueryConversationsConversationsResultsAugmentedFilterOrFeeds"]
+    ]
+    workflows: Optional[
+        List["QueryConversationsConversationsResultsAugmentedFilterOrWorkflows"]
+    ]
+    collections: Optional[
+        List["QueryConversationsConversationsResultsAugmentedFilterOrCollections"]
+    ]
+    observations: Optional[
+        List["QueryConversationsConversationsResultsAugmentedFilterOrObservations"]
+    ]
+
+
+class QueryConversationsConversationsResultsAugmentedFilterOrFeeds(BaseModel):
+    id: str
+
+
+class QueryConversationsConversationsResultsAugmentedFilterOrWorkflows(BaseModel):
+    id: str
+
+
+class QueryConversationsConversationsResultsAugmentedFilterOrCollections(BaseModel):
+    id: str
+
+
+class QueryConversationsConversationsResultsAugmentedFilterOrObservations(BaseModel):
+    type: ObservableTypes
+    observable: (
+        "QueryConversationsConversationsResultsAugmentedFilterOrObservationsObservable"
+    )
+    states: Optional[List[Optional[EntityState]]]
+
+
+class QueryConversationsConversationsResultsAugmentedFilterOrObservationsObservable(
+    BaseModel
+):
+    id: str
+
+
+class QueryConversationsConversationsResultsAugmentedFilterAnd(BaseModel):
+    feeds: Optional[
+        List["QueryConversationsConversationsResultsAugmentedFilterAndFeeds"]
+    ]
+    workflows: Optional[
+        List["QueryConversationsConversationsResultsAugmentedFilterAndWorkflows"]
+    ]
+    collections: Optional[
+        List["QueryConversationsConversationsResultsAugmentedFilterAndCollections"]
+    ]
+    observations: Optional[
+        List["QueryConversationsConversationsResultsAugmentedFilterAndObservations"]
+    ]
+
+
+class QueryConversationsConversationsResultsAugmentedFilterAndFeeds(BaseModel):
+    id: str
+
+
+class QueryConversationsConversationsResultsAugmentedFilterAndWorkflows(BaseModel):
+    id: str
+
+
+class QueryConversationsConversationsResultsAugmentedFilterAndCollections(BaseModel):
+    id: str
+
+
+class QueryConversationsConversationsResultsAugmentedFilterAndObservations(BaseModel):
+    type: ObservableTypes
+    observable: (
+        "QueryConversationsConversationsResultsAugmentedFilterAndObservationsObservable"
+    )
+    states: Optional[List[Optional[EntityState]]]
+
+
+class QueryConversationsConversationsResultsAugmentedFilterAndObservationsObservable(
+    BaseModel
+):
+    id: str
+
+
 QueryConversations.model_rebuild()
 QueryConversationsConversations.model_rebuild()
 QueryConversationsConversationsResults.model_rebuild()
@@ -330,3 +486,9 @@ QueryConversationsConversationsResultsFilterOr.model_rebuild()
 QueryConversationsConversationsResultsFilterOrObservations.model_rebuild()
 QueryConversationsConversationsResultsFilterAnd.model_rebuild()
 QueryConversationsConversationsResultsFilterAndObservations.model_rebuild()
+QueryConversationsConversationsResultsAugmentedFilter.model_rebuild()
+QueryConversationsConversationsResultsAugmentedFilterObservations.model_rebuild()
+QueryConversationsConversationsResultsAugmentedFilterOr.model_rebuild()
+QueryConversationsConversationsResultsAugmentedFilterOrObservations.model_rebuild()
+QueryConversationsConversationsResultsAugmentedFilterAnd.model_rebuild()
+QueryConversationsConversationsResultsAugmentedFilterAndObservations.model_rebuild()

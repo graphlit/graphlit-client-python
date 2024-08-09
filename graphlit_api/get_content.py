@@ -38,6 +38,7 @@ class GetContentContent(BaseModel):
     workflow_duration: Optional[Any] = Field(alias="workflowDuration")
     uri: Optional[Any]
     description: Optional[str]
+    identifier: Optional[str]
     markdown: Optional[str]
     address: Optional["GetContentContentAddress"]
     location: Optional["GetContentContentLocation"]
@@ -99,7 +100,7 @@ class GetContentContentLocation(BaseModel):
 class GetContentContentVideo(BaseModel):
     width: Optional[int]
     height: Optional[int]
-    duration: Optional[str]
+    duration: Optional[Any]
     make: Optional[str]
     model: Optional[str]
     software: Optional[str]
@@ -125,7 +126,7 @@ class GetContentContentAudio(BaseModel):
     channels: Optional[int]
     sample_rate: Optional[int] = Field(alias="sampleRate")
     bits_per_sample: Optional[int] = Field(alias="bitsPerSample")
-    duration: Optional[str]
+    duration: Optional[Any]
 
 
 class GetContentContentImage(BaseModel):

@@ -69,6 +69,7 @@ class PromptConversationPromptConversationMessageCitationsContent(BaseModel):
     name: str
     state: EntityState
     original_date: Optional[Any] = Field(alias="originalDate")
+    identifier: Optional[str]
     uri: Optional[Any]
     type: Optional[ContentTypes]
     file_type: Optional[FileTypes] = Field(alias="fileType")
@@ -102,7 +103,7 @@ class PromptConversationPromptConversationMessageCitationsContent(BaseModel):
 class PromptConversationPromptConversationMessageCitationsContentVideo(BaseModel):
     width: Optional[int]
     height: Optional[int]
-    duration: Optional[str]
+    duration: Optional[Any]
     make: Optional[str]
     model: Optional[str]
     software: Optional[str]
@@ -128,7 +129,7 @@ class PromptConversationPromptConversationMessageCitationsContentAudio(BaseModel
     channels: Optional[int]
     sample_rate: Optional[int] = Field(alias="sampleRate")
     bits_per_sample: Optional[int] = Field(alias="bitsPerSample")
-    duration: Optional[str]
+    duration: Optional[Any]
 
 
 class PromptConversationPromptConversationMessageCitationsContentImage(BaseModel):

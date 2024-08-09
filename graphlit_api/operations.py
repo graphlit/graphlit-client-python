@@ -760,6 +760,7 @@ query GetContent($id: ID!) {
     workflowDuration
     uri
     description
+    identifier
     markdown
     address {
       streetAddress
@@ -1151,6 +1152,7 @@ query QueryContents($filter: ContentFilter) {
       workflowDuration
       uri
       description
+      identifier
       markdown
       address {
         streetAddress
@@ -1393,6 +1395,7 @@ query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!])
       workflowDuration
       uri
       description
+      identifier
       markdown
       address {
         streetAddress
@@ -1792,6 +1795,7 @@ query GetConversation($id: ID!) {
           name
           state
           originalDate
+          identifier
           uri
           type
           fileType
@@ -1968,6 +1972,73 @@ query GetConversation($id: ID!) {
         }
       }
     }
+    augmentedFilter {
+      dateRange {
+        from
+        to
+      }
+      creationDateRange {
+        from
+        to
+      }
+      types
+      fileTypes
+      contents {
+        id
+      }
+      feeds {
+        id
+      }
+      workflows {
+        id
+      }
+      collections {
+        id
+      }
+      observations {
+        type
+        observable {
+          id
+        }
+        states
+      }
+      or {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+      and {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+    }
   }
 }
 """
@@ -1988,6 +2059,7 @@ mutation PromptConversation($prompt: String!, $id: ID, $correlationId: String) {
           name
           state
           originalDate
+          identifier
           uri
           type
           fileType
@@ -2180,6 +2252,7 @@ query QueryConversations($filter: ConversationFilter) {
             name
             state
             originalDate
+            identifier
             uri
             type
             fileType
@@ -2290,6 +2363,73 @@ query QueryConversations($filter: ConversationFilter) {
         name
       }
       filter {
+        dateRange {
+          from
+          to
+        }
+        creationDateRange {
+          from
+          to
+        }
+        types
+        fileTypes
+        contents {
+          id
+        }
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+        or {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        and {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+      }
+      augmentedFilter {
         dateRange {
           from
           to
@@ -4061,6 +4201,7 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
           name
           state
           originalDate
+          identifier
           uri
           type
           fileType
@@ -4383,6 +4524,11 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
           email {
             includeAttachments
           }
+          modelDocument {
+            specification {
+              id
+            }
+          }
         }
       }
     }
@@ -4554,6 +4700,11 @@ query GetWorkflow($id: ID!) {
           email {
             includeAttachments
           }
+          modelDocument {
+            specification {
+              id
+            }
+          }
         }
       }
     }
@@ -4695,6 +4846,11 @@ query QueryWorkflows($filter: WorkflowFilter) {
             email {
               includeAttachments
             }
+            modelDocument {
+              specification {
+                id
+              }
+            }
           }
         }
       }
@@ -4830,6 +4986,11 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
           }
           email {
             includeAttachments
+          }
+          modelDocument {
+            specification {
+              id
+            }
           }
         }
       }

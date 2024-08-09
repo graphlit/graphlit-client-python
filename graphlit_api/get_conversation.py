@@ -35,6 +35,9 @@ class GetConversationConversation(BaseModel):
     messages: Optional[List[Optional["GetConversationConversationMessages"]]]
     specification: Optional["GetConversationConversationSpecification"]
     filter: Optional["GetConversationConversationFilter"]
+    augmented_filter: Optional["GetConversationConversationAugmentedFilter"] = Field(
+        alias="augmentedFilter"
+    )
 
 
 class GetConversationConversationOwner(BaseModel):
@@ -69,6 +72,7 @@ class GetConversationConversationMessagesCitationsContent(BaseModel):
     name: str
     state: EntityState
     original_date: Optional[Any] = Field(alias="originalDate")
+    identifier: Optional[str]
     uri: Optional[Any]
     type: Optional[ContentTypes]
     file_type: Optional[FileTypes] = Field(alias="fileType")
@@ -100,7 +104,7 @@ class GetConversationConversationMessagesCitationsContent(BaseModel):
 class GetConversationConversationMessagesCitationsContentVideo(BaseModel):
     width: Optional[int]
     height: Optional[int]
-    duration: Optional[str]
+    duration: Optional[Any]
     make: Optional[str]
     model: Optional[str]
     software: Optional[str]
@@ -126,7 +130,7 @@ class GetConversationConversationMessagesCitationsContentAudio(BaseModel):
     channels: Optional[int]
     sample_rate: Optional[int] = Field(alias="sampleRate")
     bits_per_sample: Optional[int] = Field(alias="bitsPerSample")
-    duration: Optional[str]
+    duration: Optional[Any]
 
 
 class GetConversationConversationMessagesCitationsContentImage(BaseModel):
@@ -286,6 +290,132 @@ class GetConversationConversationFilterAndObservationsObservable(BaseModel):
     id: str
 
 
+class GetConversationConversationAugmentedFilter(BaseModel):
+    date_range: Optional["GetConversationConversationAugmentedFilterDateRange"] = Field(
+        alias="dateRange"
+    )
+    creation_date_range: Optional[
+        "GetConversationConversationAugmentedFilterCreationDateRange"
+    ] = Field(alias="creationDateRange")
+    types: Optional[List[ContentTypes]]
+    file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
+    contents: Optional[List["GetConversationConversationAugmentedFilterContents"]]
+    feeds: Optional[List["GetConversationConversationAugmentedFilterFeeds"]]
+    workflows: Optional[List["GetConversationConversationAugmentedFilterWorkflows"]]
+    collections: Optional[List["GetConversationConversationAugmentedFilterCollections"]]
+    observations: Optional[
+        List["GetConversationConversationAugmentedFilterObservations"]
+    ]
+    or_: Optional[List["GetConversationConversationAugmentedFilterOr"]] = Field(
+        alias="or"
+    )
+    and_: Optional[List["GetConversationConversationAugmentedFilterAnd"]] = Field(
+        alias="and"
+    )
+
+
+class GetConversationConversationAugmentedFilterDateRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class GetConversationConversationAugmentedFilterCreationDateRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class GetConversationConversationAugmentedFilterContents(BaseModel):
+    id: str
+
+
+class GetConversationConversationAugmentedFilterFeeds(BaseModel):
+    id: str
+
+
+class GetConversationConversationAugmentedFilterWorkflows(BaseModel):
+    id: str
+
+
+class GetConversationConversationAugmentedFilterCollections(BaseModel):
+    id: str
+
+
+class GetConversationConversationAugmentedFilterObservations(BaseModel):
+    type: ObservableTypes
+    observable: "GetConversationConversationAugmentedFilterObservationsObservable"
+    states: Optional[List[Optional[EntityState]]]
+
+
+class GetConversationConversationAugmentedFilterObservationsObservable(BaseModel):
+    id: str
+
+
+class GetConversationConversationAugmentedFilterOr(BaseModel):
+    feeds: Optional[List["GetConversationConversationAugmentedFilterOrFeeds"]]
+    workflows: Optional[List["GetConversationConversationAugmentedFilterOrWorkflows"]]
+    collections: Optional[
+        List["GetConversationConversationAugmentedFilterOrCollections"]
+    ]
+    observations: Optional[
+        List["GetConversationConversationAugmentedFilterOrObservations"]
+    ]
+
+
+class GetConversationConversationAugmentedFilterOrFeeds(BaseModel):
+    id: str
+
+
+class GetConversationConversationAugmentedFilterOrWorkflows(BaseModel):
+    id: str
+
+
+class GetConversationConversationAugmentedFilterOrCollections(BaseModel):
+    id: str
+
+
+class GetConversationConversationAugmentedFilterOrObservations(BaseModel):
+    type: ObservableTypes
+    observable: "GetConversationConversationAugmentedFilterOrObservationsObservable"
+    states: Optional[List[Optional[EntityState]]]
+
+
+class GetConversationConversationAugmentedFilterOrObservationsObservable(BaseModel):
+    id: str
+
+
+class GetConversationConversationAugmentedFilterAnd(BaseModel):
+    feeds: Optional[List["GetConversationConversationAugmentedFilterAndFeeds"]]
+    workflows: Optional[List["GetConversationConversationAugmentedFilterAndWorkflows"]]
+    collections: Optional[
+        List["GetConversationConversationAugmentedFilterAndCollections"]
+    ]
+    observations: Optional[
+        List["GetConversationConversationAugmentedFilterAndObservations"]
+    ]
+
+
+class GetConversationConversationAugmentedFilterAndFeeds(BaseModel):
+    id: str
+
+
+class GetConversationConversationAugmentedFilterAndWorkflows(BaseModel):
+    id: str
+
+
+class GetConversationConversationAugmentedFilterAndCollections(BaseModel):
+    id: str
+
+
+class GetConversationConversationAugmentedFilterAndObservations(BaseModel):
+    type: ObservableTypes
+    observable: "GetConversationConversationAugmentedFilterAndObservationsObservable"
+    states: Optional[List[Optional[EntityState]]]
+
+
+class GetConversationConversationAugmentedFilterAndObservationsObservable(BaseModel):
+    id: str
+
+
 GetConversation.model_rebuild()
 GetConversationConversation.model_rebuild()
 GetConversationConversationMessages.model_rebuild()
@@ -297,3 +427,9 @@ GetConversationConversationFilterOr.model_rebuild()
 GetConversationConversationFilterOrObservations.model_rebuild()
 GetConversationConversationFilterAnd.model_rebuild()
 GetConversationConversationFilterAndObservations.model_rebuild()
+GetConversationConversationAugmentedFilter.model_rebuild()
+GetConversationConversationAugmentedFilterObservations.model_rebuild()
+GetConversationConversationAugmentedFilterOr.model_rebuild()
+GetConversationConversationAugmentedFilterOrObservations.model_rebuild()
+GetConversationConversationAugmentedFilterAnd.model_rebuild()
+GetConversationConversationAugmentedFilterAndObservations.model_rebuild()

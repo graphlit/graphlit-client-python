@@ -20,6 +20,7 @@ query GetConversation($id: ID!) {
           name
           state
           originalDate
+          identifier
           uri
           type
           fileType
@@ -130,6 +131,73 @@ query GetConversation($id: ID!) {
       name
     }
     filter {
+      dateRange {
+        from
+        to
+      }
+      creationDateRange {
+        from
+        to
+      }
+      types
+      fileTypes
+      contents {
+        id
+      }
+      feeds {
+        id
+      }
+      workflows {
+        id
+      }
+      collections {
+        id
+      }
+      observations {
+        type
+        observable {
+          id
+        }
+        states
+      }
+      or {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+      and {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+    }
+    augmentedFilter {
       dateRange {
         from
         to

@@ -120,6 +120,9 @@ class QueryWorkflowsWorkflowsResultsPreparationJobsConnector(BaseModel):
     deepgram: Optional["QueryWorkflowsWorkflowsResultsPreparationJobsConnectorDeepgram"]
     document: Optional["QueryWorkflowsWorkflowsResultsPreparationJobsConnectorDocument"]
     email: Optional["QueryWorkflowsWorkflowsResultsPreparationJobsConnectorEmail"]
+    model_document: Optional[
+        "QueryWorkflowsWorkflowsResultsPreparationJobsConnectorModelDocument"
+    ] = Field(alias="modelDocument")
 
 
 class QueryWorkflowsWorkflowsResultsPreparationJobsConnectorAzureDocument(BaseModel):
@@ -142,6 +145,18 @@ class QueryWorkflowsWorkflowsResultsPreparationJobsConnectorDocument(BaseModel):
 
 class QueryWorkflowsWorkflowsResultsPreparationJobsConnectorEmail(BaseModel):
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
+
+
+class QueryWorkflowsWorkflowsResultsPreparationJobsConnectorModelDocument(BaseModel):
+    specification: Optional[
+        "QueryWorkflowsWorkflowsResultsPreparationJobsConnectorModelDocumentSpecification"
+    ]
+
+
+class QueryWorkflowsWorkflowsResultsPreparationJobsConnectorModelDocumentSpecification(
+    BaseModel
+):
+    id: str
 
 
 class QueryWorkflowsWorkflowsResultsExtraction(BaseModel):
@@ -277,6 +292,7 @@ QueryWorkflowsWorkflowsResultsPreparation.model_rebuild()
 QueryWorkflowsWorkflowsResultsPreparationSummarizations.model_rebuild()
 QueryWorkflowsWorkflowsResultsPreparationJobs.model_rebuild()
 QueryWorkflowsWorkflowsResultsPreparationJobsConnector.model_rebuild()
+QueryWorkflowsWorkflowsResultsPreparationJobsConnectorModelDocument.model_rebuild()
 QueryWorkflowsWorkflowsResultsExtraction.model_rebuild()
 QueryWorkflowsWorkflowsResultsExtractionJobs.model_rebuild()
 QueryWorkflowsWorkflowsResultsExtractionJobsConnector.model_rebuild()

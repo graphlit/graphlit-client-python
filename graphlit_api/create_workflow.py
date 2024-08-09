@@ -111,6 +111,9 @@ class CreateWorkflowCreateWorkflowPreparationJobsConnector(BaseModel):
     deepgram: Optional["CreateWorkflowCreateWorkflowPreparationJobsConnectorDeepgram"]
     document: Optional["CreateWorkflowCreateWorkflowPreparationJobsConnectorDocument"]
     email: Optional["CreateWorkflowCreateWorkflowPreparationJobsConnectorEmail"]
+    model_document: Optional[
+        "CreateWorkflowCreateWorkflowPreparationJobsConnectorModelDocument"
+    ] = Field(alias="modelDocument")
 
 
 class CreateWorkflowCreateWorkflowPreparationJobsConnectorAzureDocument(BaseModel):
@@ -133,6 +136,18 @@ class CreateWorkflowCreateWorkflowPreparationJobsConnectorDocument(BaseModel):
 
 class CreateWorkflowCreateWorkflowPreparationJobsConnectorEmail(BaseModel):
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
+
+
+class CreateWorkflowCreateWorkflowPreparationJobsConnectorModelDocument(BaseModel):
+    specification: Optional[
+        "CreateWorkflowCreateWorkflowPreparationJobsConnectorModelDocumentSpecification"
+    ]
+
+
+class CreateWorkflowCreateWorkflowPreparationJobsConnectorModelDocumentSpecification(
+    BaseModel
+):
+    id: str
 
 
 class CreateWorkflowCreateWorkflowExtraction(BaseModel):
@@ -267,6 +282,7 @@ CreateWorkflowCreateWorkflowPreparation.model_rebuild()
 CreateWorkflowCreateWorkflowPreparationSummarizations.model_rebuild()
 CreateWorkflowCreateWorkflowPreparationJobs.model_rebuild()
 CreateWorkflowCreateWorkflowPreparationJobsConnector.model_rebuild()
+CreateWorkflowCreateWorkflowPreparationJobsConnectorModelDocument.model_rebuild()
 CreateWorkflowCreateWorkflowExtraction.model_rebuild()
 CreateWorkflowCreateWorkflowExtractionJobs.model_rebuild()
 CreateWorkflowCreateWorkflowExtractionJobsConnector.model_rebuild()

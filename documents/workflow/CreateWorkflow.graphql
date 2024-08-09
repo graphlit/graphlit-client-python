@@ -56,6 +56,11 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
           email {
             includeAttachments
           }
+          modelDocument {
+            specification {
+              id
+            }
+          }
         }
       }
     }

@@ -112,6 +112,9 @@ class GetWorkflowWorkflowPreparationJobsConnector(BaseModel):
     deepgram: Optional["GetWorkflowWorkflowPreparationJobsConnectorDeepgram"]
     document: Optional["GetWorkflowWorkflowPreparationJobsConnectorDocument"]
     email: Optional["GetWorkflowWorkflowPreparationJobsConnectorEmail"]
+    model_document: Optional[
+        "GetWorkflowWorkflowPreparationJobsConnectorModelDocument"
+    ] = Field(alias="modelDocument")
 
 
 class GetWorkflowWorkflowPreparationJobsConnectorAzureDocument(BaseModel):
@@ -134,6 +137,16 @@ class GetWorkflowWorkflowPreparationJobsConnectorDocument(BaseModel):
 
 class GetWorkflowWorkflowPreparationJobsConnectorEmail(BaseModel):
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
+
+
+class GetWorkflowWorkflowPreparationJobsConnectorModelDocument(BaseModel):
+    specification: Optional[
+        "GetWorkflowWorkflowPreparationJobsConnectorModelDocumentSpecification"
+    ]
+
+
+class GetWorkflowWorkflowPreparationJobsConnectorModelDocumentSpecification(BaseModel):
+    id: str
 
 
 class GetWorkflowWorkflowExtraction(BaseModel):
@@ -264,6 +277,7 @@ GetWorkflowWorkflowPreparation.model_rebuild()
 GetWorkflowWorkflowPreparationSummarizations.model_rebuild()
 GetWorkflowWorkflowPreparationJobs.model_rebuild()
 GetWorkflowWorkflowPreparationJobsConnector.model_rebuild()
+GetWorkflowWorkflowPreparationJobsConnectorModelDocument.model_rebuild()
 GetWorkflowWorkflowExtraction.model_rebuild()
 GetWorkflowWorkflowExtractionJobs.model_rebuild()
 GetWorkflowWorkflowExtractionJobsConnector.model_rebuild()

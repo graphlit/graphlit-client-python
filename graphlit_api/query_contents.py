@@ -42,6 +42,7 @@ class QueryContentsContentsResults(BaseModel):
     workflow_duration: Optional[Any] = Field(alias="workflowDuration")
     uri: Optional[Any]
     description: Optional[str]
+    identifier: Optional[str]
     markdown: Optional[str]
     address: Optional["QueryContentsContentsResultsAddress"]
     location: Optional["QueryContentsContentsResultsLocation"]
@@ -103,7 +104,7 @@ class QueryContentsContentsResultsLocation(BaseModel):
 class QueryContentsContentsResultsVideo(BaseModel):
     width: Optional[int]
     height: Optional[int]
-    duration: Optional[str]
+    duration: Optional[Any]
     make: Optional[str]
     model: Optional[str]
     software: Optional[str]
@@ -129,7 +130,7 @@ class QueryContentsContentsResultsAudio(BaseModel):
     channels: Optional[int]
     sample_rate: Optional[int] = Field(alias="sampleRate")
     bits_per_sample: Optional[int] = Field(alias="bitsPerSample")
-    duration: Optional[str]
+    duration: Optional[Any]
 
 
 class QueryContentsContentsResultsImage(BaseModel):

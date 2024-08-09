@@ -145,6 +145,7 @@ class ContentFilter(BaseModel):
     types: Optional[List[ContentTypes]] = None
     file_types: Optional[List[FileTypes]] = Field(alias="fileTypes", default=None)
     uri: Optional[Any] = None
+    identifier: Optional[str] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
     boundaries: Optional[List[Optional[str]]] = None
@@ -513,6 +514,7 @@ class ContentInput(BaseModel):
     uri: Optional[Any] = None
     description: Optional[str] = None
     text: Optional[str] = None
+    identifier: Optional[str] = None
     workflow: Optional["EntityReferenceInput"] = None
 
 
@@ -521,6 +523,9 @@ class ConversationInput(BaseModel):
     type: Optional[ConversationTypes] = None
     specification: Optional["EntityReferenceInput"] = None
     filter: Optional["ContentCriteriaInput"] = None
+    augmented_filter: Optional["ContentCriteriaInput"] = Field(
+        alias="augmentedFilter", default=None
+    )
 
 
 class EventInput(BaseModel):
@@ -772,6 +777,9 @@ class ConversationUpdateInput(BaseModel):
     name: Optional[str] = None
     specification: Optional["EntityReferenceInput"] = None
     filter: Optional["ContentCriteriaInput"] = None
+    augmented_filter: Optional["ContentCriteriaInput"] = Field(
+        alias="augmentedFilter", default=None
+    )
 
 
 class EventUpdateInput(BaseModel):
@@ -1951,6 +1959,9 @@ class FilePreparationConnectorInput(BaseModel):
         alias="azureDocument", default=None
     )
     deepgram: Optional["DeepgramAudioPreparationPropertiesInput"] = None
+    model_document: Optional["ModelDocumentPreparationInputProperties"] = Field(
+        alias="modelDocument", default=None
+    )
 
 
 class EntityExtractionConnectorInput(BaseModel):
@@ -2008,6 +2019,10 @@ class DeepgramAudioPreparationPropertiesInput(BaseModel):
     enable_speaker_diarization: Optional[bool] = Field(
         alias="enableSpeakerDiarization", default=None
     )
+
+
+class ModelDocumentPreparationInputProperties(BaseModel):
+    specification: Optional["EntityReferenceInput"] = None
 
 
 class AzureTextExtractionPropertiesInput(BaseModel):
@@ -2161,6 +2176,7 @@ class ContentUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
     description: Optional[str] = None
+    identifier: Optional[str] = None
     summary: Optional[str] = None
     custom_summary: Optional[str] = Field(alias="customSummary", default=None)
     keywords: Optional[List[str]] = None
