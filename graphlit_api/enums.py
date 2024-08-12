@@ -218,6 +218,7 @@ class RenditionTypes(str, Enum):
 class SpecificationTypes(str, Enum):
     COMPLETION = "COMPLETION"
     EXTRACTION = "EXTRACTION"
+    PREPARATION = "PREPARATION"
 
 
 class ModelServiceTypes(str, Enum):
