@@ -1,0 +1,6 @@
+mutation DeleteMedicalDevice($id: ID!) {
+  deleteMedicalDevice(id: $id) {
+    id
+    state
+  }
+}

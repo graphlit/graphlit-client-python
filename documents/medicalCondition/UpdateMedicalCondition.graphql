@@ -1,0 +1,6 @@
+mutation UpdateMedicalCondition($medicalCondition: MedicalConditionUpdateInput!) {
+  updateMedicalCondition(medicalCondition: $medicalCondition) {
+    id
+    name
+  }
+}

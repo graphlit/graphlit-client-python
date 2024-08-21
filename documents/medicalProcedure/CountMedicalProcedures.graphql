@@ -1,0 +1,5 @@
+query CountMedicalProcedures($filter: MedicalProcedureFilter) {
+  countMedicalProcedures(filter: $filter) {
+    count
+  }
+}

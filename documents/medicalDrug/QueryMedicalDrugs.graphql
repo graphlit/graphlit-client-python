@@ -1,0 +1,12 @@
+query QueryMedicalDrugs($filter: MedicalDrugFilter) {
+  medicalDrugs(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      thing
+      relevance
+    }
+  }
+}

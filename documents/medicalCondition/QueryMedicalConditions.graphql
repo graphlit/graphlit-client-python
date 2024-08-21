@@ -1,0 +1,12 @@
+query QueryMedicalConditions($filter: MedicalConditionFilter) {
+  medicalConditions(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      thing
+      relevance
+    }
+  }
+}

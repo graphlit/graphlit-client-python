@@ -1,0 +1,10 @@
+query GetMedicalProcedure($id: ID!) {
+  medicalProcedure(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    thing
+    relevance
+  }
+}

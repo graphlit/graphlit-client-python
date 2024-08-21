@@ -1,0 +1,10 @@
+query GetMedicalDrugClass($id: ID!) {
+  medicalDrugClass(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    thing
+    relevance
+  }
+}

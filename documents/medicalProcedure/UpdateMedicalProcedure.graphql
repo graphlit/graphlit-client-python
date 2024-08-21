@@ -1,0 +1,6 @@
+mutation UpdateMedicalProcedure($medicalProcedure: MedicalProcedureUpdateInput!) {
+  updateMedicalProcedure(medicalProcedure: $medicalProcedure) {
+    id
+    name
+  }
+}

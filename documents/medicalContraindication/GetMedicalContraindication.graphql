@@ -1,0 +1,10 @@
+query GetMedicalContraindication($id: ID!) {
+  medicalContraindication(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    thing
+    relevance
+  }
+}

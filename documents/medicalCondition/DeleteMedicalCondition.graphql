@@ -1,0 +1,6 @@
+mutation DeleteMedicalCondition($id: ID!) {
+  deleteMedicalCondition(id: $id) {
+    id
+    state
+  }
+}

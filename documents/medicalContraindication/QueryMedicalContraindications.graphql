@@ -1,0 +1,12 @@
+query QueryMedicalContraindications($filter: MedicalContraindicationFilter) {
+  medicalContraindications(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      thing
+      relevance
+    }
+  }
+}

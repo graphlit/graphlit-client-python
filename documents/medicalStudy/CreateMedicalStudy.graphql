@@ -1,0 +1,6 @@
+mutation CreateMedicalStudy($medicalStudy: MedicalStudyInput!) {
+  createMedicalStudy(medicalStudy: $medicalStudy) {
+    id
+    name
+  }
+}

@@ -1,0 +1,5 @@
+query CountMedicalDevices($filter: MedicalDeviceFilter) {
+  countMedicalDevices(filter: $filter) {
+    count
+  }
+}

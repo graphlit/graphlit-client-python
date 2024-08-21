@@ -1,0 +1,6 @@
+mutation UpdateMedicalContraindication($medicalContraindication: MedicalContraindicationUpdateInput!) {
+  updateMedicalContraindication(medicalContraindication: $medicalContraindication) {
+    id
+    name
+  }
+}

@@ -1,0 +1,6 @@
+mutation CreateMedicalGuideline($medicalGuideline: MedicalGuidelineInput!) {
+  createMedicalGuideline(medicalGuideline: $medicalGuideline) {
+    id
+    name
+  }
+}

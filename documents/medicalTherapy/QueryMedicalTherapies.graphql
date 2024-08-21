@@ -1,0 +1,12 @@
+query QueryMedicalTherapies($filter: MedicalTherapyFilter) {
+  medicalTherapies(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      thing
+      relevance
+    }
+  }
+}

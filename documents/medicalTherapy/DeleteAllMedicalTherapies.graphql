@@ -1,0 +1,6 @@
+mutation DeleteAllMedicalTherapies($filter: MedicalTherapyFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllMedicalTherapies(filter: $filter, isSynchronous: $isSynchronous, correlationId: $correlationId) {
+    id
+    state
+  }
+}

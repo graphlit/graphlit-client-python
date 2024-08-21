@@ -1,0 +1,12 @@
+query QueryMedicalIndications($filter: MedicalIndicationFilter) {
+  medicalIndications(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      thing
+      relevance
+    }
+  }
+}

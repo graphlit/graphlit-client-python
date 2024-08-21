@@ -1,0 +1,6 @@
+mutation UpdateMedicalTherapy($medicalTherapy: MedicalTherapyUpdateInput!) {
+  updateMedicalTherapy(medicalTherapy: $medicalTherapy) {
+    id
+    name
+  }
+}

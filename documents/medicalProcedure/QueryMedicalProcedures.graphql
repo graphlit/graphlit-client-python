@@ -1,0 +1,12 @@
+query QueryMedicalProcedures($filter: MedicalProcedureFilter) {
+  medicalProcedures(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      thing
+      relevance
+    }
+  }
+}

@@ -1,0 +1,17 @@
+query GetMedicalStudy($id: ID!) {
+  medicalStudy(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    thing
+    relevance
+    address {
+      streetAddress
+      city
+      region
+      country
+      postalCode
+    }
+  }
+}

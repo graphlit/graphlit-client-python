@@ -1,0 +1,12 @@
+query QueryMedicalTests($filter: MedicalTestFilter) {
+  medicalTests(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      thing
+      relevance
+    }
+  }
+}

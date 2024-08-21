@@ -16,6 +16,17 @@ from .count_conversations import CountConversations
 from .count_events import CountEvents
 from .count_feeds import CountFeeds
 from .count_labels import CountLabels
+from .count_medical_conditions import CountMedicalConditions
+from .count_medical_contraindications import CountMedicalContraindications
+from .count_medical_devices import CountMedicalDevices
+from .count_medical_drug_classes import CountMedicalDrugClasses
+from .count_medical_drugs import CountMedicalDrugs
+from .count_medical_guidelines import CountMedicalGuidelines
+from .count_medical_indications import CountMedicalIndications
+from .count_medical_procedures import CountMedicalProcedures
+from .count_medical_studies import CountMedicalStudies
+from .count_medical_tests import CountMedicalTests
+from .count_medical_therapies import CountMedicalTherapies
 from .count_organizations import CountOrganizations
 from .count_persons import CountPersons
 from .count_places import CountPlaces
@@ -31,6 +42,17 @@ from .create_conversation import CreateConversation
 from .create_event import CreateEvent
 from .create_feed import CreateFeed
 from .create_label import CreateLabel
+from .create_medical_condition import CreateMedicalCondition
+from .create_medical_contraindication import CreateMedicalContraindication
+from .create_medical_device import CreateMedicalDevice
+from .create_medical_drug import CreateMedicalDrug
+from .create_medical_drug_class import CreateMedicalDrugClass
+from .create_medical_guideline import CreateMedicalGuideline
+from .create_medical_indication import CreateMedicalIndication
+from .create_medical_procedure import CreateMedicalProcedure
+from .create_medical_study import CreateMedicalStudy
+from .create_medical_test import CreateMedicalTest
+from .create_medical_therapy import CreateMedicalTherapy
 from .create_observation import CreateObservation
 from .create_organization import CreateOrganization
 from .create_person import CreatePerson
@@ -50,6 +72,17 @@ from .delete_all_conversations import DeleteAllConversations
 from .delete_all_events import DeleteAllEvents
 from .delete_all_feeds import DeleteAllFeeds
 from .delete_all_labels import DeleteAllLabels
+from .delete_all_medical_conditions import DeleteAllMedicalConditions
+from .delete_all_medical_contraindications import DeleteAllMedicalContraindications
+from .delete_all_medical_devices import DeleteAllMedicalDevices
+from .delete_all_medical_drug_classes import DeleteAllMedicalDrugClasses
+from .delete_all_medical_drugs import DeleteAllMedicalDrugs
+from .delete_all_medical_guidelines import DeleteAllMedicalGuidelines
+from .delete_all_medical_indications import DeleteAllMedicalIndications
+from .delete_all_medical_procedures import DeleteAllMedicalProcedures
+from .delete_all_medical_studies import DeleteAllMedicalStudies
+from .delete_all_medical_tests import DeleteAllMedicalTests
+from .delete_all_medical_therapies import DeleteAllMedicalTherapies
 from .delete_all_organizations import DeleteAllOrganizations
 from .delete_all_persons import DeleteAllPersons
 from .delete_all_places import DeleteAllPlaces
@@ -72,6 +105,28 @@ from .delete_feed import DeleteFeed
 from .delete_feeds import DeleteFeeds
 from .delete_label import DeleteLabel
 from .delete_labels import DeleteLabels
+from .delete_medical_condition import DeleteMedicalCondition
+from .delete_medical_conditions import DeleteMedicalConditions
+from .delete_medical_contraindication import DeleteMedicalContraindication
+from .delete_medical_contraindications import DeleteMedicalContraindications
+from .delete_medical_device import DeleteMedicalDevice
+from .delete_medical_devices import DeleteMedicalDevices
+from .delete_medical_drug import DeleteMedicalDrug
+from .delete_medical_drug_class import DeleteMedicalDrugClass
+from .delete_medical_drug_classes import DeleteMedicalDrugClasses
+from .delete_medical_drugs import DeleteMedicalDrugs
+from .delete_medical_guideline import DeleteMedicalGuideline
+from .delete_medical_guidelines import DeleteMedicalGuidelines
+from .delete_medical_indication import DeleteMedicalIndication
+from .delete_medical_indications import DeleteMedicalIndications
+from .delete_medical_procedure import DeleteMedicalProcedure
+from .delete_medical_procedures import DeleteMedicalProcedures
+from .delete_medical_studies import DeleteMedicalStudies
+from .delete_medical_study import DeleteMedicalStudy
+from .delete_medical_test import DeleteMedicalTest
+from .delete_medical_tests import DeleteMedicalTests
+from .delete_medical_therapies import DeleteMedicalTherapies
+from .delete_medical_therapy import DeleteMedicalTherapy
 from .delete_observation import DeleteObservation
 from .delete_organization import DeleteOrganization
 from .delete_organizations import DeleteOrganizations
@@ -103,6 +158,17 @@ from .get_conversation import GetConversation
 from .get_event import GetEvent
 from .get_feed import GetFeed
 from .get_label import GetLabel
+from .get_medical_condition import GetMedicalCondition
+from .get_medical_contraindication import GetMedicalContraindication
+from .get_medical_device import GetMedicalDevice
+from .get_medical_drug import GetMedicalDrug
+from .get_medical_drug_class import GetMedicalDrugClass
+from .get_medical_guideline import GetMedicalGuideline
+from .get_medical_indication import GetMedicalIndication
+from .get_medical_procedure import GetMedicalProcedure
+from .get_medical_study import GetMedicalStudy
+from .get_medical_test import GetMedicalTest
+from .get_medical_therapy import GetMedicalTherapy
 from .get_organization import GetOrganization
 from .get_person import GetPerson
 from .get_place import GetPlace
@@ -144,6 +210,39 @@ from .input_types import (
     LabelFilter,
     LabelInput,
     LabelUpdateInput,
+    MedicalConditionFilter,
+    MedicalConditionInput,
+    MedicalConditionUpdateInput,
+    MedicalContraindicationFilter,
+    MedicalContraindicationInput,
+    MedicalContraindicationUpdateInput,
+    MedicalDeviceFilter,
+    MedicalDeviceInput,
+    MedicalDeviceUpdateInput,
+    MedicalDrugClassFilter,
+    MedicalDrugClassInput,
+    MedicalDrugClassUpdateInput,
+    MedicalDrugFilter,
+    MedicalDrugInput,
+    MedicalDrugUpdateInput,
+    MedicalGuidelineFilter,
+    MedicalGuidelineInput,
+    MedicalGuidelineUpdateInput,
+    MedicalIndicationFilter,
+    MedicalIndicationInput,
+    MedicalIndicationUpdateInput,
+    MedicalProcedureFilter,
+    MedicalProcedureInput,
+    MedicalProcedureUpdateInput,
+    MedicalStudyFilter,
+    MedicalStudyInput,
+    MedicalStudyUpdateInput,
+    MedicalTestFilter,
+    MedicalTestInput,
+    MedicalTestUpdateInput,
+    MedicalTherapyFilter,
+    MedicalTherapyInput,
+    MedicalTherapyUpdateInput,
     MicrosoftTeamsChannelsInput,
     MicrosoftTeamsTeamsInput,
     ObservationInput,
@@ -194,6 +293,17 @@ from .operations import (
     COUNT_EVENTS_GQL,
     COUNT_FEEDS_GQL,
     COUNT_LABELS_GQL,
+    COUNT_MEDICAL_CONDITIONS_GQL,
+    COUNT_MEDICAL_CONTRAINDICATIONS_GQL,
+    COUNT_MEDICAL_DEVICES_GQL,
+    COUNT_MEDICAL_DRUG_CLASSES_GQL,
+    COUNT_MEDICAL_DRUGS_GQL,
+    COUNT_MEDICAL_GUIDELINES_GQL,
+    COUNT_MEDICAL_INDICATIONS_GQL,
+    COUNT_MEDICAL_PROCEDURES_GQL,
+    COUNT_MEDICAL_STUDIES_GQL,
+    COUNT_MEDICAL_TESTS_GQL,
+    COUNT_MEDICAL_THERAPIES_GQL,
     COUNT_ORGANIZATIONS_GQL,
     COUNT_PERSONS_GQL,
     COUNT_PLACES_GQL,
@@ -209,6 +319,17 @@ from .operations import (
     CREATE_EVENT_GQL,
     CREATE_FEED_GQL,
     CREATE_LABEL_GQL,
+    CREATE_MEDICAL_CONDITION_GQL,
+    CREATE_MEDICAL_CONTRAINDICATION_GQL,
+    CREATE_MEDICAL_DEVICE_GQL,
+    CREATE_MEDICAL_DRUG_CLASS_GQL,
+    CREATE_MEDICAL_DRUG_GQL,
+    CREATE_MEDICAL_GUIDELINE_GQL,
+    CREATE_MEDICAL_INDICATION_GQL,
+    CREATE_MEDICAL_PROCEDURE_GQL,
+    CREATE_MEDICAL_STUDY_GQL,
+    CREATE_MEDICAL_TEST_GQL,
+    CREATE_MEDICAL_THERAPY_GQL,
     CREATE_OBSERVATION_GQL,
     CREATE_ORGANIZATION_GQL,
     CREATE_PERSON_GQL,
@@ -228,6 +349,17 @@ from .operations import (
     DELETE_ALL_EVENTS_GQL,
     DELETE_ALL_FEEDS_GQL,
     DELETE_ALL_LABELS_GQL,
+    DELETE_ALL_MEDICAL_CONDITIONS_GQL,
+    DELETE_ALL_MEDICAL_CONTRAINDICATIONS_GQL,
+    DELETE_ALL_MEDICAL_DEVICES_GQL,
+    DELETE_ALL_MEDICAL_DRUG_CLASSES_GQL,
+    DELETE_ALL_MEDICAL_DRUGS_GQL,
+    DELETE_ALL_MEDICAL_GUIDELINES_GQL,
+    DELETE_ALL_MEDICAL_INDICATIONS_GQL,
+    DELETE_ALL_MEDICAL_PROCEDURES_GQL,
+    DELETE_ALL_MEDICAL_STUDIES_GQL,
+    DELETE_ALL_MEDICAL_TESTS_GQL,
+    DELETE_ALL_MEDICAL_THERAPIES_GQL,
     DELETE_ALL_ORGANIZATIONS_GQL,
     DELETE_ALL_PERSONS_GQL,
     DELETE_ALL_PLACES_GQL,
@@ -250,6 +382,28 @@ from .operations import (
     DELETE_FEEDS_GQL,
     DELETE_LABEL_GQL,
     DELETE_LABELS_GQL,
+    DELETE_MEDICAL_CONDITION_GQL,
+    DELETE_MEDICAL_CONDITIONS_GQL,
+    DELETE_MEDICAL_CONTRAINDICATION_GQL,
+    DELETE_MEDICAL_CONTRAINDICATIONS_GQL,
+    DELETE_MEDICAL_DEVICE_GQL,
+    DELETE_MEDICAL_DEVICES_GQL,
+    DELETE_MEDICAL_DRUG_CLASS_GQL,
+    DELETE_MEDICAL_DRUG_CLASSES_GQL,
+    DELETE_MEDICAL_DRUG_GQL,
+    DELETE_MEDICAL_DRUGS_GQL,
+    DELETE_MEDICAL_GUIDELINE_GQL,
+    DELETE_MEDICAL_GUIDELINES_GQL,
+    DELETE_MEDICAL_INDICATION_GQL,
+    DELETE_MEDICAL_INDICATIONS_GQL,
+    DELETE_MEDICAL_PROCEDURE_GQL,
+    DELETE_MEDICAL_PROCEDURES_GQL,
+    DELETE_MEDICAL_STUDIES_GQL,
+    DELETE_MEDICAL_STUDY_GQL,
+    DELETE_MEDICAL_TEST_GQL,
+    DELETE_MEDICAL_TESTS_GQL,
+    DELETE_MEDICAL_THERAPIES_GQL,
+    DELETE_MEDICAL_THERAPY_GQL,
     DELETE_OBSERVATION_GQL,
     DELETE_ORGANIZATION_GQL,
     DELETE_ORGANIZATIONS_GQL,
@@ -280,6 +434,17 @@ from .operations import (
     GET_EVENT_GQL,
     GET_FEED_GQL,
     GET_LABEL_GQL,
+    GET_MEDICAL_CONDITION_GQL,
+    GET_MEDICAL_CONTRAINDICATION_GQL,
+    GET_MEDICAL_DEVICE_GQL,
+    GET_MEDICAL_DRUG_CLASS_GQL,
+    GET_MEDICAL_DRUG_GQL,
+    GET_MEDICAL_GUIDELINE_GQL,
+    GET_MEDICAL_INDICATION_GQL,
+    GET_MEDICAL_PROCEDURE_GQL,
+    GET_MEDICAL_STUDY_GQL,
+    GET_MEDICAL_TEST_GQL,
+    GET_MEDICAL_THERAPY_GQL,
     GET_ORGANIZATION_GQL,
     GET_PERSON_GQL,
     GET_PLACE_GQL,
@@ -313,6 +478,17 @@ from .operations import (
     QUERY_EVENTS_GQL,
     QUERY_FEEDS_GQL,
     QUERY_LABELS_GQL,
+    QUERY_MEDICAL_CONDITIONS_GQL,
+    QUERY_MEDICAL_CONTRAINDICATIONS_GQL,
+    QUERY_MEDICAL_DEVICES_GQL,
+    QUERY_MEDICAL_DRUG_CLASSES_GQL,
+    QUERY_MEDICAL_DRUGS_GQL,
+    QUERY_MEDICAL_GUIDELINES_GQL,
+    QUERY_MEDICAL_INDICATIONS_GQL,
+    QUERY_MEDICAL_PROCEDURES_GQL,
+    QUERY_MEDICAL_STUDIES_GQL,
+    QUERY_MEDICAL_TESTS_GQL,
+    QUERY_MEDICAL_THERAPIES_GQL,
     QUERY_MICROSOFT_TEAMS_CHANNELS_GQL,
     QUERY_MICROSOFT_TEAMS_TEAMS_GQL,
     QUERY_ONE_DRIVE_FOLDERS_GQL,
@@ -338,6 +514,17 @@ from .operations import (
     UPDATE_EVENT_GQL,
     UPDATE_FEED_GQL,
     UPDATE_LABEL_GQL,
+    UPDATE_MEDICAL_CONDITION_GQL,
+    UPDATE_MEDICAL_CONTRAINDICATION_GQL,
+    UPDATE_MEDICAL_DEVICE_GQL,
+    UPDATE_MEDICAL_DRUG_CLASS_GQL,
+    UPDATE_MEDICAL_DRUG_GQL,
+    UPDATE_MEDICAL_GUIDELINE_GQL,
+    UPDATE_MEDICAL_INDICATION_GQL,
+    UPDATE_MEDICAL_PROCEDURE_GQL,
+    UPDATE_MEDICAL_STUDY_GQL,
+    UPDATE_MEDICAL_TEST_GQL,
+    UPDATE_MEDICAL_THERAPY_GQL,
     UPDATE_OBSERVATION_GQL,
     UPDATE_ORGANIZATION_GQL,
     UPDATE_PERSON_GQL,
@@ -365,6 +552,17 @@ from .query_credits import QueryCredits
 from .query_events import QueryEvents
 from .query_feeds import QueryFeeds
 from .query_labels import QueryLabels
+from .query_medical_conditions import QueryMedicalConditions
+from .query_medical_contraindications import QueryMedicalContraindications
+from .query_medical_devices import QueryMedicalDevices
+from .query_medical_drug_classes import QueryMedicalDrugClasses
+from .query_medical_drugs import QueryMedicalDrugs
+from .query_medical_guidelines import QueryMedicalGuidelines
+from .query_medical_indications import QueryMedicalIndications
+from .query_medical_procedures import QueryMedicalProcedures
+from .query_medical_studies import QueryMedicalStudies
+from .query_medical_tests import QueryMedicalTests
+from .query_medical_therapies import QueryMedicalTherapies
 from .query_microsoft_teams_channels import QueryMicrosoftTeamsChannels
 from .query_microsoft_teams_teams import QueryMicrosoftTeamsTeams
 from .query_one_drive_folders import QueryOneDriveFolders
@@ -390,6 +588,17 @@ from .update_conversation import UpdateConversation
 from .update_event import UpdateEvent
 from .update_feed import UpdateFeed
 from .update_label import UpdateLabel
+from .update_medical_condition import UpdateMedicalCondition
+from .update_medical_contraindication import UpdateMedicalContraindication
+from .update_medical_device import UpdateMedicalDevice
+from .update_medical_drug import UpdateMedicalDrug
+from .update_medical_drug_class import UpdateMedicalDrugClass
+from .update_medical_guideline import UpdateMedicalGuideline
+from .update_medical_indication import UpdateMedicalIndication
+from .update_medical_procedure import UpdateMedicalProcedure
+from .update_medical_study import UpdateMedicalStudy
+from .update_medical_test import UpdateMedicalTest
+from .update_medical_therapy import UpdateMedicalTherapy
 from .update_observation import UpdateObservation
 from .update_organization import UpdateOrganization
 from .update_person import UpdatePerson
@@ -1802,6 +2011,1305 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdateLabel.model_validate(data)
+
+    async def count_medical_conditions(
+        self,
+        filter: Union[Optional[MedicalConditionFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountMedicalConditions:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_MEDICAL_CONDITIONS_GQL,
+            operation_name="CountMedicalConditions",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountMedicalConditions.model_validate(data)
+
+    async def create_medical_condition(
+        self, medical_condition: MedicalConditionInput, **kwargs: Any
+    ) -> CreateMedicalCondition:
+        variables: Dict[str, object] = {"medicalCondition": medical_condition}
+        response = await self.execute(
+            query=CREATE_MEDICAL_CONDITION_GQL,
+            operation_name="CreateMedicalCondition",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CreateMedicalCondition.model_validate(data)
+
+    async def delete_all_medical_conditions(
+        self,
+        filter: Union[Optional[MedicalConditionFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllMedicalConditions:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DELETE_ALL_MEDICAL_CONDITIONS_GQL,
+            operation_name="DeleteAllMedicalConditions",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllMedicalConditions.model_validate(data)
+
+    async def delete_medical_condition(
+        self, id: str, **kwargs: Any
+    ) -> DeleteMedicalCondition:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DELETE_MEDICAL_CONDITION_GQL,
+            operation_name="DeleteMedicalCondition",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteMedicalCondition.model_validate(data)
+
+    async def delete_medical_conditions(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteMedicalConditions:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
+        response = await self.execute(
+            query=DELETE_MEDICAL_CONDITIONS_GQL,
+            operation_name="DeleteMedicalConditions",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteMedicalConditions.model_validate(data)
+
+    async def get_medical_condition(
+        self, id: str, **kwargs: Any
+    ) -> GetMedicalCondition:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=GET_MEDICAL_CONDITION_GQL,
+            operation_name="GetMedicalCondition",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return GetMedicalCondition.model_validate(data)
+
+    async def query_medical_conditions(
+        self,
+        filter: Union[Optional[MedicalConditionFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryMedicalConditions:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=QUERY_MEDICAL_CONDITIONS_GQL,
+            operation_name="QueryMedicalConditions",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMedicalConditions.model_validate(data)
+
+    async def update_medical_condition(
+        self, medical_condition: MedicalConditionUpdateInput, **kwargs: Any
+    ) -> UpdateMedicalCondition:
+        variables: Dict[str, object] = {"medicalCondition": medical_condition}
+        response = await self.execute(
+            query=UPDATE_MEDICAL_CONDITION_GQL,
+            operation_name="UpdateMedicalCondition",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateMedicalCondition.model_validate(data)
+
+    async def count_medical_contraindications(
+        self,
+        filter: Union[Optional[MedicalContraindicationFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountMedicalContraindications:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_MEDICAL_CONTRAINDICATIONS_GQL,
+            operation_name="CountMedicalContraindications",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountMedicalContraindications.model_validate(data)
+
+    async def create_medical_contraindication(
+        self, medical_contraindication: MedicalContraindicationInput, **kwargs: Any
+    ) -> CreateMedicalContraindication:
+        variables: Dict[str, object] = {
+            "medicalContraindication": medical_contraindication
+        }
+        response = await self.execute(
+            query=CREATE_MEDICAL_CONTRAINDICATION_GQL,
+            operation_name="CreateMedicalContraindication",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CreateMedicalContraindication.model_validate(data)
+
+    async def delete_all_medical_contraindications(
+        self,
+        filter: Union[Optional[MedicalContraindicationFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllMedicalContraindications:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DELETE_ALL_MEDICAL_CONTRAINDICATIONS_GQL,
+            operation_name="DeleteAllMedicalContraindications",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllMedicalContraindications.model_validate(data)
+
+    async def delete_medical_contraindication(
+        self, id: str, **kwargs: Any
+    ) -> DeleteMedicalContraindication:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DELETE_MEDICAL_CONTRAINDICATION_GQL,
+            operation_name="DeleteMedicalContraindication",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteMedicalContraindication.model_validate(data)
+
+    async def delete_medical_contraindications(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteMedicalContraindications:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
+        response = await self.execute(
+            query=DELETE_MEDICAL_CONTRAINDICATIONS_GQL,
+            operation_name="DeleteMedicalContraindications",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteMedicalContraindications.model_validate(data)
+
+    async def get_medical_contraindication(
+        self, id: str, **kwargs: Any
+    ) -> GetMedicalContraindication:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=GET_MEDICAL_CONTRAINDICATION_GQL,
+            operation_name="GetMedicalContraindication",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return GetMedicalContraindication.model_validate(data)
+
+    async def query_medical_contraindications(
+        self,
+        filter: Union[Optional[MedicalContraindicationFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryMedicalContraindications:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=QUERY_MEDICAL_CONTRAINDICATIONS_GQL,
+            operation_name="QueryMedicalContraindications",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMedicalContraindications.model_validate(data)
+
+    async def update_medical_contraindication(
+        self,
+        medical_contraindication: MedicalContraindicationUpdateInput,
+        **kwargs: Any
+    ) -> UpdateMedicalContraindication:
+        variables: Dict[str, object] = {
+            "medicalContraindication": medical_contraindication
+        }
+        response = await self.execute(
+            query=UPDATE_MEDICAL_CONTRAINDICATION_GQL,
+            operation_name="UpdateMedicalContraindication",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateMedicalContraindication.model_validate(data)
+
+    async def count_medical_devices(
+        self,
+        filter: Union[Optional[MedicalDeviceFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountMedicalDevices:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_MEDICAL_DEVICES_GQL,
+            operation_name="CountMedicalDevices",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountMedicalDevices.model_validate(data)
+
+    async def create_medical_device(
+        self, medical_device: MedicalDeviceInput, **kwargs: Any
+    ) -> CreateMedicalDevice:
+        variables: Dict[str, object] = {"medicalDevice": medical_device}
+        response = await self.execute(
+            query=CREATE_MEDICAL_DEVICE_GQL,
+            operation_name="CreateMedicalDevice",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CreateMedicalDevice.model_validate(data)
+
+    async def delete_all_medical_devices(
+        self,
+        filter: Union[Optional[MedicalDeviceFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllMedicalDevices:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DELETE_ALL_MEDICAL_DEVICES_GQL,
+            operation_name="DeleteAllMedicalDevices",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllMedicalDevices.model_validate(data)
+
+    async def delete_medical_device(
+        self, id: str, **kwargs: Any
+    ) -> DeleteMedicalDevice:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DELETE_MEDICAL_DEVICE_GQL,
+            operation_name="DeleteMedicalDevice",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteMedicalDevice.model_validate(data)
+
+    async def delete_medical_devices(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteMedicalDevices:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
+        response = await self.execute(
+            query=DELETE_MEDICAL_DEVICES_GQL,
+            operation_name="DeleteMedicalDevices",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteMedicalDevices.model_validate(data)
+
+    async def get_medical_device(self, id: str, **kwargs: Any) -> GetMedicalDevice:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=GET_MEDICAL_DEVICE_GQL,
+            operation_name="GetMedicalDevice",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return GetMedicalDevice.model_validate(data)
+
+    async def query_medical_devices(
+        self,
+        filter: Union[Optional[MedicalDeviceFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryMedicalDevices:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=QUERY_MEDICAL_DEVICES_GQL,
+            operation_name="QueryMedicalDevices",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMedicalDevices.model_validate(data)
+
+    async def update_medical_device(
+        self, medical_device: MedicalDeviceUpdateInput, **kwargs: Any
+    ) -> UpdateMedicalDevice:
+        variables: Dict[str, object] = {"medicalDevice": medical_device}
+        response = await self.execute(
+            query=UPDATE_MEDICAL_DEVICE_GQL,
+            operation_name="UpdateMedicalDevice",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateMedicalDevice.model_validate(data)
+
+    async def count_medical_drugs(
+        self,
+        filter: Union[Optional[MedicalDrugFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountMedicalDrugs:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_MEDICAL_DRUGS_GQL,
+            operation_name="CountMedicalDrugs",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountMedicalDrugs.model_validate(data)
+
+    async def create_medical_drug(
+        self, medical_drug: MedicalDrugInput, **kwargs: Any
+    ) -> CreateMedicalDrug:
+        variables: Dict[str, object] = {"medicalDrug": medical_drug}
+        response = await self.execute(
+            query=CREATE_MEDICAL_DRUG_GQL,
+            operation_name="CreateMedicalDrug",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CreateMedicalDrug.model_validate(data)
+
+    async def delete_all_medical_drugs(
+        self,
+        filter: Union[Optional[MedicalDrugFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllMedicalDrugs:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DELETE_ALL_MEDICAL_DRUGS_GQL,
+            operation_name="DeleteAllMedicalDrugs",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllMedicalDrugs.model_validate(data)
+
+    async def delete_medical_drug(self, id: str, **kwargs: Any) -> DeleteMedicalDrug:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DELETE_MEDICAL_DRUG_GQL,
+            operation_name="DeleteMedicalDrug",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteMedicalDrug.model_validate(data)
+
+    async def delete_medical_drugs(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteMedicalDrugs:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
+        response = await self.execute(
+            query=DELETE_MEDICAL_DRUGS_GQL,
+            operation_name="DeleteMedicalDrugs",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteMedicalDrugs.model_validate(data)
+
+    async def get_medical_drug(self, id: str, **kwargs: Any) -> GetMedicalDrug:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=GET_MEDICAL_DRUG_GQL,
+            operation_name="GetMedicalDrug",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return GetMedicalDrug.model_validate(data)
+
+    async def query_medical_drugs(
+        self,
+        filter: Union[Optional[MedicalDrugFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryMedicalDrugs:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=QUERY_MEDICAL_DRUGS_GQL,
+            operation_name="QueryMedicalDrugs",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMedicalDrugs.model_validate(data)
+
+    async def update_medical_drug(
+        self, medical_drug: MedicalDrugUpdateInput, **kwargs: Any
+    ) -> UpdateMedicalDrug:
+        variables: Dict[str, object] = {"medicalDrug": medical_drug}
+        response = await self.execute(
+            query=UPDATE_MEDICAL_DRUG_GQL,
+            operation_name="UpdateMedicalDrug",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateMedicalDrug.model_validate(data)
+
+    async def count_medical_drug_classes(
+        self,
+        filter: Union[Optional[MedicalDrugClassFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountMedicalDrugClasses:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_MEDICAL_DRUG_CLASSES_GQL,
+            operation_name="CountMedicalDrugClasses",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountMedicalDrugClasses.model_validate(data)
+
+    async def create_medical_drug_class(
+        self, medical_drug_class: MedicalDrugClassInput, **kwargs: Any
+    ) -> CreateMedicalDrugClass:
+        variables: Dict[str, object] = {"medicalDrugClass": medical_drug_class}
+        response = await self.execute(
+            query=CREATE_MEDICAL_DRUG_CLASS_GQL,
+            operation_name="CreateMedicalDrugClass",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CreateMedicalDrugClass.model_validate(data)
+
+    async def delete_all_medical_drug_classes(
+        self,
+        filter: Union[Optional[MedicalDrugClassFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllMedicalDrugClasses:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DELETE_ALL_MEDICAL_DRUG_CLASSES_GQL,
+            operation_name="DeleteAllMedicalDrugClasses",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllMedicalDrugClasses.model_validate(data)
+
+    async def delete_medical_drug_class(
+        self, id: str, **kwargs: Any
+    ) -> DeleteMedicalDrugClass:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DELETE_MEDICAL_DRUG_CLASS_GQL,
+            operation_name="DeleteMedicalDrugClass",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteMedicalDrugClass.model_validate(data)
+
+    async def delete_medical_drug_classes(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteMedicalDrugClasses:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
+        response = await self.execute(
+            query=DELETE_MEDICAL_DRUG_CLASSES_GQL,
+            operation_name="DeleteMedicalDrugClasses",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteMedicalDrugClasses.model_validate(data)
+
+    async def get_medical_drug_class(
+        self, id: str, **kwargs: Any
+    ) -> GetMedicalDrugClass:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=GET_MEDICAL_DRUG_CLASS_GQL,
+            operation_name="GetMedicalDrugClass",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return GetMedicalDrugClass.model_validate(data)
+
+    async def query_medical_drug_classes(
+        self,
+        filter: Union[Optional[MedicalDrugClassFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryMedicalDrugClasses:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=QUERY_MEDICAL_DRUG_CLASSES_GQL,
+            operation_name="QueryMedicalDrugClasses",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMedicalDrugClasses.model_validate(data)
+
+    async def update_medical_drug_class(
+        self, medical_drug_class: MedicalDrugClassUpdateInput, **kwargs: Any
+    ) -> UpdateMedicalDrugClass:
+        variables: Dict[str, object] = {"medicalDrugClass": medical_drug_class}
+        response = await self.execute(
+            query=UPDATE_MEDICAL_DRUG_CLASS_GQL,
+            operation_name="UpdateMedicalDrugClass",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateMedicalDrugClass.model_validate(data)
+
+    async def count_medical_guidelines(
+        self,
+        filter: Union[Optional[MedicalGuidelineFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountMedicalGuidelines:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_MEDICAL_GUIDELINES_GQL,
+            operation_name="CountMedicalGuidelines",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountMedicalGuidelines.model_validate(data)
+
+    async def create_medical_guideline(
+        self, medical_guideline: MedicalGuidelineInput, **kwargs: Any
+    ) -> CreateMedicalGuideline:
+        variables: Dict[str, object] = {"medicalGuideline": medical_guideline}
+        response = await self.execute(
+            query=CREATE_MEDICAL_GUIDELINE_GQL,
+            operation_name="CreateMedicalGuideline",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CreateMedicalGuideline.model_validate(data)
+
+    async def delete_all_medical_guidelines(
+        self,
+        filter: Union[Optional[MedicalGuidelineFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllMedicalGuidelines:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DELETE_ALL_MEDICAL_GUIDELINES_GQL,
+            operation_name="DeleteAllMedicalGuidelines",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllMedicalGuidelines.model_validate(data)
+
+    async def delete_medical_guideline(
+        self, id: str, **kwargs: Any
+    ) -> DeleteMedicalGuideline:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DELETE_MEDICAL_GUIDELINE_GQL,
+            operation_name="DeleteMedicalGuideline",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteMedicalGuideline.model_validate(data)
+
+    async def delete_medical_guidelines(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteMedicalGuidelines:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
+        response = await self.execute(
+            query=DELETE_MEDICAL_GUIDELINES_GQL,
+            operation_name="DeleteMedicalGuidelines",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteMedicalGuidelines.model_validate(data)
+
+    async def get_medical_guideline(
+        self, id: str, **kwargs: Any
+    ) -> GetMedicalGuideline:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=GET_MEDICAL_GUIDELINE_GQL,
+            operation_name="GetMedicalGuideline",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return GetMedicalGuideline.model_validate(data)
+
+    async def query_medical_guidelines(
+        self,
+        filter: Union[Optional[MedicalGuidelineFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryMedicalGuidelines:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=QUERY_MEDICAL_GUIDELINES_GQL,
+            operation_name="QueryMedicalGuidelines",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMedicalGuidelines.model_validate(data)
+
+    async def update_medical_guideline(
+        self, medical_guideline: MedicalGuidelineUpdateInput, **kwargs: Any
+    ) -> UpdateMedicalGuideline:
+        variables: Dict[str, object] = {"medicalGuideline": medical_guideline}
+        response = await self.execute(
+            query=UPDATE_MEDICAL_GUIDELINE_GQL,
+            operation_name="UpdateMedicalGuideline",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateMedicalGuideline.model_validate(data)
+
+    async def count_medical_indications(
+        self,
+        filter: Union[Optional[MedicalIndicationFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountMedicalIndications:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_MEDICAL_INDICATIONS_GQL,
+            operation_name="CountMedicalIndications",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountMedicalIndications.model_validate(data)
+
+    async def create_medical_indication(
+        self, medical_indication: MedicalIndicationInput, **kwargs: Any
+    ) -> CreateMedicalIndication:
+        variables: Dict[str, object] = {"medicalIndication": medical_indication}
+        response = await self.execute(
+            query=CREATE_MEDICAL_INDICATION_GQL,
+            operation_name="CreateMedicalIndication",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CreateMedicalIndication.model_validate(data)
+
+    async def delete_all_medical_indications(
+        self,
+        filter: Union[Optional[MedicalIndicationFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllMedicalIndications:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DELETE_ALL_MEDICAL_INDICATIONS_GQL,
+            operation_name="DeleteAllMedicalIndications",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllMedicalIndications.model_validate(data)
+
+    async def delete_medical_indication(
+        self, id: str, **kwargs: Any
+    ) -> DeleteMedicalIndication:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DELETE_MEDICAL_INDICATION_GQL,
+            operation_name="DeleteMedicalIndication",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteMedicalIndication.model_validate(data)
+
+    async def delete_medical_indications(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteMedicalIndications:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
+        response = await self.execute(
+            query=DELETE_MEDICAL_INDICATIONS_GQL,
+            operation_name="DeleteMedicalIndications",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteMedicalIndications.model_validate(data)
+
+    async def get_medical_indication(
+        self, id: str, **kwargs: Any
+    ) -> GetMedicalIndication:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=GET_MEDICAL_INDICATION_GQL,
+            operation_name="GetMedicalIndication",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return GetMedicalIndication.model_validate(data)
+
+    async def query_medical_indications(
+        self,
+        filter: Union[Optional[MedicalIndicationFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryMedicalIndications:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=QUERY_MEDICAL_INDICATIONS_GQL,
+            operation_name="QueryMedicalIndications",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMedicalIndications.model_validate(data)
+
+    async def update_medical_indication(
+        self, medical_indication: MedicalIndicationUpdateInput, **kwargs: Any
+    ) -> UpdateMedicalIndication:
+        variables: Dict[str, object] = {"medicalIndication": medical_indication}
+        response = await self.execute(
+            query=UPDATE_MEDICAL_INDICATION_GQL,
+            operation_name="UpdateMedicalIndication",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateMedicalIndication.model_validate(data)
+
+    async def count_medical_procedures(
+        self,
+        filter: Union[Optional[MedicalProcedureFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountMedicalProcedures:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_MEDICAL_PROCEDURES_GQL,
+            operation_name="CountMedicalProcedures",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountMedicalProcedures.model_validate(data)
+
+    async def create_medical_procedure(
+        self, medical_procedure: MedicalProcedureInput, **kwargs: Any
+    ) -> CreateMedicalProcedure:
+        variables: Dict[str, object] = {"medicalProcedure": medical_procedure}
+        response = await self.execute(
+            query=CREATE_MEDICAL_PROCEDURE_GQL,
+            operation_name="CreateMedicalProcedure",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CreateMedicalProcedure.model_validate(data)
+
+    async def delete_all_medical_procedures(
+        self,
+        filter: Union[Optional[MedicalProcedureFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllMedicalProcedures:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DELETE_ALL_MEDICAL_PROCEDURES_GQL,
+            operation_name="DeleteAllMedicalProcedures",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllMedicalProcedures.model_validate(data)
+
+    async def delete_medical_procedure(
+        self, id: str, **kwargs: Any
+    ) -> DeleteMedicalProcedure:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DELETE_MEDICAL_PROCEDURE_GQL,
+            operation_name="DeleteMedicalProcedure",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteMedicalProcedure.model_validate(data)
+
+    async def delete_medical_procedures(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteMedicalProcedures:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
+        response = await self.execute(
+            query=DELETE_MEDICAL_PROCEDURES_GQL,
+            operation_name="DeleteMedicalProcedures",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteMedicalProcedures.model_validate(data)
+
+    async def get_medical_procedure(
+        self, id: str, **kwargs: Any
+    ) -> GetMedicalProcedure:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=GET_MEDICAL_PROCEDURE_GQL,
+            operation_name="GetMedicalProcedure",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return GetMedicalProcedure.model_validate(data)
+
+    async def query_medical_procedures(
+        self,
+        filter: Union[Optional[MedicalProcedureFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryMedicalProcedures:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=QUERY_MEDICAL_PROCEDURES_GQL,
+            operation_name="QueryMedicalProcedures",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMedicalProcedures.model_validate(data)
+
+    async def update_medical_procedure(
+        self, medical_procedure: MedicalProcedureUpdateInput, **kwargs: Any
+    ) -> UpdateMedicalProcedure:
+        variables: Dict[str, object] = {"medicalProcedure": medical_procedure}
+        response = await self.execute(
+            query=UPDATE_MEDICAL_PROCEDURE_GQL,
+            operation_name="UpdateMedicalProcedure",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateMedicalProcedure.model_validate(data)
+
+    async def count_medical_studies(
+        self,
+        filter: Union[Optional[MedicalStudyFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountMedicalStudies:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_MEDICAL_STUDIES_GQL,
+            operation_name="CountMedicalStudies",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountMedicalStudies.model_validate(data)
+
+    async def create_medical_study(
+        self, medical_study: MedicalStudyInput, **kwargs: Any
+    ) -> CreateMedicalStudy:
+        variables: Dict[str, object] = {"medicalStudy": medical_study}
+        response = await self.execute(
+            query=CREATE_MEDICAL_STUDY_GQL,
+            operation_name="CreateMedicalStudy",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CreateMedicalStudy.model_validate(data)
+
+    async def delete_all_medical_studies(
+        self,
+        filter: Union[Optional[MedicalStudyFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllMedicalStudies:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DELETE_ALL_MEDICAL_STUDIES_GQL,
+            operation_name="DeleteAllMedicalStudies",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllMedicalStudies.model_validate(data)
+
+    async def delete_medical_studies(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteMedicalStudies:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
+        response = await self.execute(
+            query=DELETE_MEDICAL_STUDIES_GQL,
+            operation_name="DeleteMedicalStudies",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteMedicalStudies.model_validate(data)
+
+    async def delete_medical_study(self, id: str, **kwargs: Any) -> DeleteMedicalStudy:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DELETE_MEDICAL_STUDY_GQL,
+            operation_name="DeleteMedicalStudy",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteMedicalStudy.model_validate(data)
+
+    async def get_medical_study(self, id: str, **kwargs: Any) -> GetMedicalStudy:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=GET_MEDICAL_STUDY_GQL,
+            operation_name="GetMedicalStudy",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return GetMedicalStudy.model_validate(data)
+
+    async def query_medical_studies(
+        self,
+        filter: Union[Optional[MedicalStudyFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryMedicalStudies:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=QUERY_MEDICAL_STUDIES_GQL,
+            operation_name="QueryMedicalStudies",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMedicalStudies.model_validate(data)
+
+    async def update_medical_study(
+        self, medical_study: MedicalStudyUpdateInput, **kwargs: Any
+    ) -> UpdateMedicalStudy:
+        variables: Dict[str, object] = {"medicalStudy": medical_study}
+        response = await self.execute(
+            query=UPDATE_MEDICAL_STUDY_GQL,
+            operation_name="UpdateMedicalStudy",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateMedicalStudy.model_validate(data)
+
+    async def count_medical_tests(
+        self,
+        filter: Union[Optional[MedicalTestFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountMedicalTests:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_MEDICAL_TESTS_GQL,
+            operation_name="CountMedicalTests",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountMedicalTests.model_validate(data)
+
+    async def create_medical_test(
+        self, medical_test: MedicalTestInput, **kwargs: Any
+    ) -> CreateMedicalTest:
+        variables: Dict[str, object] = {"medicalTest": medical_test}
+        response = await self.execute(
+            query=CREATE_MEDICAL_TEST_GQL,
+            operation_name="CreateMedicalTest",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CreateMedicalTest.model_validate(data)
+
+    async def delete_all_medical_tests(
+        self,
+        filter: Union[Optional[MedicalTestFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllMedicalTests:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DELETE_ALL_MEDICAL_TESTS_GQL,
+            operation_name="DeleteAllMedicalTests",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllMedicalTests.model_validate(data)
+
+    async def delete_medical_test(self, id: str, **kwargs: Any) -> DeleteMedicalTest:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DELETE_MEDICAL_TEST_GQL,
+            operation_name="DeleteMedicalTest",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteMedicalTest.model_validate(data)
+
+    async def delete_medical_tests(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteMedicalTests:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
+        response = await self.execute(
+            query=DELETE_MEDICAL_TESTS_GQL,
+            operation_name="DeleteMedicalTests",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteMedicalTests.model_validate(data)
+
+    async def get_medical_test(self, id: str, **kwargs: Any) -> GetMedicalTest:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=GET_MEDICAL_TEST_GQL,
+            operation_name="GetMedicalTest",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return GetMedicalTest.model_validate(data)
+
+    async def query_medical_tests(
+        self,
+        filter: Union[Optional[MedicalTestFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryMedicalTests:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=QUERY_MEDICAL_TESTS_GQL,
+            operation_name="QueryMedicalTests",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMedicalTests.model_validate(data)
+
+    async def update_medical_test(
+        self, medical_test: MedicalTestUpdateInput, **kwargs: Any
+    ) -> UpdateMedicalTest:
+        variables: Dict[str, object] = {"medicalTest": medical_test}
+        response = await self.execute(
+            query=UPDATE_MEDICAL_TEST_GQL,
+            operation_name="UpdateMedicalTest",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateMedicalTest.model_validate(data)
+
+    async def count_medical_therapies(
+        self,
+        filter: Union[Optional[MedicalTherapyFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountMedicalTherapies:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_MEDICAL_THERAPIES_GQL,
+            operation_name="CountMedicalTherapies",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountMedicalTherapies.model_validate(data)
+
+    async def create_medical_therapy(
+        self, medical_therapy: MedicalTherapyInput, **kwargs: Any
+    ) -> CreateMedicalTherapy:
+        variables: Dict[str, object] = {"medicalTherapy": medical_therapy}
+        response = await self.execute(
+            query=CREATE_MEDICAL_THERAPY_GQL,
+            operation_name="CreateMedicalTherapy",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CreateMedicalTherapy.model_validate(data)
+
+    async def delete_all_medical_therapies(
+        self,
+        filter: Union[Optional[MedicalTherapyFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllMedicalTherapies:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DELETE_ALL_MEDICAL_THERAPIES_GQL,
+            operation_name="DeleteAllMedicalTherapies",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllMedicalTherapies.model_validate(data)
+
+    async def delete_medical_therapies(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteMedicalTherapies:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
+        response = await self.execute(
+            query=DELETE_MEDICAL_THERAPIES_GQL,
+            operation_name="DeleteMedicalTherapies",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteMedicalTherapies.model_validate(data)
+
+    async def delete_medical_therapy(
+        self, id: str, **kwargs: Any
+    ) -> DeleteMedicalTherapy:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DELETE_MEDICAL_THERAPY_GQL,
+            operation_name="DeleteMedicalTherapy",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteMedicalTherapy.model_validate(data)
+
+    async def get_medical_therapy(self, id: str, **kwargs: Any) -> GetMedicalTherapy:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=GET_MEDICAL_THERAPY_GQL,
+            operation_name="GetMedicalTherapy",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return GetMedicalTherapy.model_validate(data)
+
+    async def query_medical_therapies(
+        self,
+        filter: Union[Optional[MedicalTherapyFilter], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryMedicalTherapies:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=QUERY_MEDICAL_THERAPIES_GQL,
+            operation_name="QueryMedicalTherapies",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMedicalTherapies.model_validate(data)
+
+    async def update_medical_therapy(
+        self, medical_therapy: MedicalTherapyUpdateInput, **kwargs: Any
+    ) -> UpdateMedicalTherapy:
+        variables: Dict[str, object] = {"medicalTherapy": medical_therapy}
+        response = await self.execute(
+            query=UPDATE_MEDICAL_THERAPY_GQL,
+            operation_name="UpdateMedicalTherapy",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateMedicalTherapy.model_validate(data)
 
     async def create_observation(
         self, observation: ObservationInput, **kwargs: Any

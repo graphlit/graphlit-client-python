@@ -1,0 +1,10 @@
+query GetMedicalTest($id: ID!) {
+  medicalTest(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    thing
+    relevance
+  }
+}

@@ -13,6 +13,17 @@ __all__ = [
     "COUNT_EVENTS_GQL",
     "COUNT_FEEDS_GQL",
     "COUNT_LABELS_GQL",
+    "COUNT_MEDICAL_CONDITIONS_GQL",
+    "COUNT_MEDICAL_CONTRAINDICATIONS_GQL",
+    "COUNT_MEDICAL_DEVICES_GQL",
+    "COUNT_MEDICAL_DRUGS_GQL",
+    "COUNT_MEDICAL_DRUG_CLASSES_GQL",
+    "COUNT_MEDICAL_GUIDELINES_GQL",
+    "COUNT_MEDICAL_INDICATIONS_GQL",
+    "COUNT_MEDICAL_PROCEDURES_GQL",
+    "COUNT_MEDICAL_STUDIES_GQL",
+    "COUNT_MEDICAL_TESTS_GQL",
+    "COUNT_MEDICAL_THERAPIES_GQL",
     "COUNT_ORGANIZATIONS_GQL",
     "COUNT_PERSONS_GQL",
     "COUNT_PLACES_GQL",
@@ -28,6 +39,17 @@ __all__ = [
     "CREATE_EVENT_GQL",
     "CREATE_FEED_GQL",
     "CREATE_LABEL_GQL",
+    "CREATE_MEDICAL_CONDITION_GQL",
+    "CREATE_MEDICAL_CONTRAINDICATION_GQL",
+    "CREATE_MEDICAL_DEVICE_GQL",
+    "CREATE_MEDICAL_DRUG_CLASS_GQL",
+    "CREATE_MEDICAL_DRUG_GQL",
+    "CREATE_MEDICAL_GUIDELINE_GQL",
+    "CREATE_MEDICAL_INDICATION_GQL",
+    "CREATE_MEDICAL_PROCEDURE_GQL",
+    "CREATE_MEDICAL_STUDY_GQL",
+    "CREATE_MEDICAL_TEST_GQL",
+    "CREATE_MEDICAL_THERAPY_GQL",
     "CREATE_OBSERVATION_GQL",
     "CREATE_ORGANIZATION_GQL",
     "CREATE_PERSON_GQL",
@@ -47,6 +69,17 @@ __all__ = [
     "DELETE_ALL_EVENTS_GQL",
     "DELETE_ALL_FEEDS_GQL",
     "DELETE_ALL_LABELS_GQL",
+    "DELETE_ALL_MEDICAL_CONDITIONS_GQL",
+    "DELETE_ALL_MEDICAL_CONTRAINDICATIONS_GQL",
+    "DELETE_ALL_MEDICAL_DEVICES_GQL",
+    "DELETE_ALL_MEDICAL_DRUGS_GQL",
+    "DELETE_ALL_MEDICAL_DRUG_CLASSES_GQL",
+    "DELETE_ALL_MEDICAL_GUIDELINES_GQL",
+    "DELETE_ALL_MEDICAL_INDICATIONS_GQL",
+    "DELETE_ALL_MEDICAL_PROCEDURES_GQL",
+    "DELETE_ALL_MEDICAL_STUDIES_GQL",
+    "DELETE_ALL_MEDICAL_TESTS_GQL",
+    "DELETE_ALL_MEDICAL_THERAPIES_GQL",
     "DELETE_ALL_ORGANIZATIONS_GQL",
     "DELETE_ALL_PERSONS_GQL",
     "DELETE_ALL_PLACES_GQL",
@@ -69,6 +102,28 @@ __all__ = [
     "DELETE_FEED_GQL",
     "DELETE_LABELS_GQL",
     "DELETE_LABEL_GQL",
+    "DELETE_MEDICAL_CONDITIONS_GQL",
+    "DELETE_MEDICAL_CONDITION_GQL",
+    "DELETE_MEDICAL_CONTRAINDICATIONS_GQL",
+    "DELETE_MEDICAL_CONTRAINDICATION_GQL",
+    "DELETE_MEDICAL_DEVICES_GQL",
+    "DELETE_MEDICAL_DEVICE_GQL",
+    "DELETE_MEDICAL_DRUGS_GQL",
+    "DELETE_MEDICAL_DRUG_CLASSES_GQL",
+    "DELETE_MEDICAL_DRUG_CLASS_GQL",
+    "DELETE_MEDICAL_DRUG_GQL",
+    "DELETE_MEDICAL_GUIDELINES_GQL",
+    "DELETE_MEDICAL_GUIDELINE_GQL",
+    "DELETE_MEDICAL_INDICATIONS_GQL",
+    "DELETE_MEDICAL_INDICATION_GQL",
+    "DELETE_MEDICAL_PROCEDURES_GQL",
+    "DELETE_MEDICAL_PROCEDURE_GQL",
+    "DELETE_MEDICAL_STUDIES_GQL",
+    "DELETE_MEDICAL_STUDY_GQL",
+    "DELETE_MEDICAL_TESTS_GQL",
+    "DELETE_MEDICAL_TEST_GQL",
+    "DELETE_MEDICAL_THERAPIES_GQL",
+    "DELETE_MEDICAL_THERAPY_GQL",
     "DELETE_OBSERVATION_GQL",
     "DELETE_ORGANIZATIONS_GQL",
     "DELETE_ORGANIZATION_GQL",
@@ -99,6 +154,17 @@ __all__ = [
     "GET_EVENT_GQL",
     "GET_FEED_GQL",
     "GET_LABEL_GQL",
+    "GET_MEDICAL_CONDITION_GQL",
+    "GET_MEDICAL_CONTRAINDICATION_GQL",
+    "GET_MEDICAL_DEVICE_GQL",
+    "GET_MEDICAL_DRUG_CLASS_GQL",
+    "GET_MEDICAL_DRUG_GQL",
+    "GET_MEDICAL_GUIDELINE_GQL",
+    "GET_MEDICAL_INDICATION_GQL",
+    "GET_MEDICAL_PROCEDURE_GQL",
+    "GET_MEDICAL_STUDY_GQL",
+    "GET_MEDICAL_TEST_GQL",
+    "GET_MEDICAL_THERAPY_GQL",
     "GET_ORGANIZATION_GQL",
     "GET_PERSON_GQL",
     "GET_PLACE_GQL",
@@ -132,6 +198,17 @@ __all__ = [
     "QUERY_EVENTS_GQL",
     "QUERY_FEEDS_GQL",
     "QUERY_LABELS_GQL",
+    "QUERY_MEDICAL_CONDITIONS_GQL",
+    "QUERY_MEDICAL_CONTRAINDICATIONS_GQL",
+    "QUERY_MEDICAL_DEVICES_GQL",
+    "QUERY_MEDICAL_DRUGS_GQL",
+    "QUERY_MEDICAL_DRUG_CLASSES_GQL",
+    "QUERY_MEDICAL_GUIDELINES_GQL",
+    "QUERY_MEDICAL_INDICATIONS_GQL",
+    "QUERY_MEDICAL_PROCEDURES_GQL",
+    "QUERY_MEDICAL_STUDIES_GQL",
+    "QUERY_MEDICAL_TESTS_GQL",
+    "QUERY_MEDICAL_THERAPIES_GQL",
     "QUERY_MICROSOFT_TEAMS_CHANNELS_GQL",
     "QUERY_MICROSOFT_TEAMS_TEAMS_GQL",
     "QUERY_ONE_DRIVE_FOLDERS_GQL",
@@ -157,6 +234,17 @@ __all__ = [
     "UPDATE_EVENT_GQL",
     "UPDATE_FEED_GQL",
     "UPDATE_LABEL_GQL",
+    "UPDATE_MEDICAL_CONDITION_GQL",
+    "UPDATE_MEDICAL_CONTRAINDICATION_GQL",
+    "UPDATE_MEDICAL_DEVICE_GQL",
+    "UPDATE_MEDICAL_DRUG_CLASS_GQL",
+    "UPDATE_MEDICAL_DRUG_GQL",
+    "UPDATE_MEDICAL_GUIDELINE_GQL",
+    "UPDATE_MEDICAL_INDICATION_GQL",
+    "UPDATE_MEDICAL_PROCEDURE_GQL",
+    "UPDATE_MEDICAL_STUDY_GQL",
+    "UPDATE_MEDICAL_TEST_GQL",
+    "UPDATE_MEDICAL_THERAPY_GQL",
     "UPDATE_OBSERVATION_GQL",
     "UPDATE_ORGANIZATION_GQL",
     "UPDATE_PERSON_GQL",
@@ -3197,6 +3285,955 @@ query QueryLabels($filter: LabelFilter) {
 UPDATE_LABEL_GQL = """
 mutation UpdateLabel($label: LabelUpdateInput!) {
   updateLabel(label: $label) {
+    id
+    name
+  }
+}
+"""
+
+COUNT_MEDICAL_CONDITIONS_GQL = """
+query CountMedicalConditions($filter: MedicalConditionFilter) {
+  countMedicalConditions(filter: $filter) {
+    count
+  }
+}
+"""
+
+CREATE_MEDICAL_CONDITION_GQL = """
+mutation CreateMedicalCondition($medicalCondition: MedicalConditionInput!) {
+  createMedicalCondition(medicalCondition: $medicalCondition) {
+    id
+    name
+  }
+}
+"""
+
+DELETE_ALL_MEDICAL_CONDITIONS_GQL = """
+mutation DeleteAllMedicalConditions($filter: MedicalConditionFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllMedicalConditions(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_MEDICAL_CONDITION_GQL = """
+mutation DeleteMedicalCondition($id: ID!) {
+  deleteMedicalCondition(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_MEDICAL_CONDITIONS_GQL = """
+mutation DeleteMedicalConditions($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteMedicalConditions(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}
+"""
+
+GET_MEDICAL_CONDITION_GQL = """
+query GetMedicalCondition($id: ID!) {
+  medicalCondition(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    thing
+    relevance
+  }
+}
+"""
+
+QUERY_MEDICAL_CONDITIONS_GQL = """
+query QueryMedicalConditions($filter: MedicalConditionFilter) {
+  medicalConditions(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      thing
+      relevance
+    }
+  }
+}
+"""
+
+UPDATE_MEDICAL_CONDITION_GQL = """
+mutation UpdateMedicalCondition($medicalCondition: MedicalConditionUpdateInput!) {
+  updateMedicalCondition(medicalCondition: $medicalCondition) {
+    id
+    name
+  }
+}
+"""
+
+COUNT_MEDICAL_CONTRAINDICATIONS_GQL = """
+query CountMedicalContraindications($filter: MedicalContraindicationFilter) {
+  countMedicalContraindications(filter: $filter) {
+    count
+  }
+}
+"""
+
+CREATE_MEDICAL_CONTRAINDICATION_GQL = """
+mutation CreateMedicalContraindication($medicalContraindication: MedicalContraindicationInput!) {
+  createMedicalContraindication(medicalContraindication: $medicalContraindication) {
+    id
+    name
+  }
+}
+"""
+
+DELETE_ALL_MEDICAL_CONTRAINDICATIONS_GQL = """
+mutation DeleteAllMedicalContraindications($filter: MedicalContraindicationFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllMedicalContraindications(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_MEDICAL_CONTRAINDICATION_GQL = """
+mutation DeleteMedicalContraindication($id: ID!) {
+  deleteMedicalContraindication(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_MEDICAL_CONTRAINDICATIONS_GQL = """
+mutation DeleteMedicalContraindications($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteMedicalContraindications(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}
+"""
+
+GET_MEDICAL_CONTRAINDICATION_GQL = """
+query GetMedicalContraindication($id: ID!) {
+  medicalContraindication(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    thing
+    relevance
+  }
+}
+"""
+
+QUERY_MEDICAL_CONTRAINDICATIONS_GQL = """
+query QueryMedicalContraindications($filter: MedicalContraindicationFilter) {
+  medicalContraindications(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      thing
+      relevance
+    }
+  }
+}
+"""
+
+UPDATE_MEDICAL_CONTRAINDICATION_GQL = """
+mutation UpdateMedicalContraindication($medicalContraindication: MedicalContraindicationUpdateInput!) {
+  updateMedicalContraindication(medicalContraindication: $medicalContraindication) {
+    id
+    name
+  }
+}
+"""
+
+COUNT_MEDICAL_DEVICES_GQL = """
+query CountMedicalDevices($filter: MedicalDeviceFilter) {
+  countMedicalDevices(filter: $filter) {
+    count
+  }
+}
+"""
+
+CREATE_MEDICAL_DEVICE_GQL = """
+mutation CreateMedicalDevice($medicalDevice: MedicalDeviceInput!) {
+  createMedicalDevice(medicalDevice: $medicalDevice) {
+    id
+    name
+  }
+}
+"""
+
+DELETE_ALL_MEDICAL_DEVICES_GQL = """
+mutation DeleteAllMedicalDevices($filter: MedicalDeviceFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllMedicalDevices(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_MEDICAL_DEVICE_GQL = """
+mutation DeleteMedicalDevice($id: ID!) {
+  deleteMedicalDevice(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_MEDICAL_DEVICES_GQL = """
+mutation DeleteMedicalDevices($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteMedicalDevices(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}
+"""
+
+GET_MEDICAL_DEVICE_GQL = """
+query GetMedicalDevice($id: ID!) {
+  medicalDevice(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    thing
+    relevance
+  }
+}
+"""
+
+QUERY_MEDICAL_DEVICES_GQL = """
+query QueryMedicalDevices($filter: MedicalDeviceFilter) {
+  medicalDevices(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      thing
+      relevance
+    }
+  }
+}
+"""
+
+UPDATE_MEDICAL_DEVICE_GQL = """
+mutation UpdateMedicalDevice($medicalDevice: MedicalDeviceUpdateInput!) {
+  updateMedicalDevice(medicalDevice: $medicalDevice) {
+    id
+    name
+  }
+}
+"""
+
+COUNT_MEDICAL_DRUGS_GQL = """
+query CountMedicalDrugs($filter: MedicalDrugFilter) {
+  countMedicalDrugs(filter: $filter) {
+    count
+  }
+}
+"""
+
+CREATE_MEDICAL_DRUG_GQL = """
+mutation CreateMedicalDrug($medicalDrug: MedicalDrugInput!) {
+  createMedicalDrug(medicalDrug: $medicalDrug) {
+    id
+    name
+  }
+}
+"""
+
+DELETE_ALL_MEDICAL_DRUGS_GQL = """
+mutation DeleteAllMedicalDrugs($filter: MedicalDrugFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllMedicalDrugs(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_MEDICAL_DRUG_GQL = """
+mutation DeleteMedicalDrug($id: ID!) {
+  deleteMedicalDrug(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_MEDICAL_DRUGS_GQL = """
+mutation DeleteMedicalDrugs($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteMedicalDrugs(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}
+"""
+
+GET_MEDICAL_DRUG_GQL = """
+query GetMedicalDrug($id: ID!) {
+  medicalDrug(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    thing
+    relevance
+  }
+}
+"""
+
+QUERY_MEDICAL_DRUGS_GQL = """
+query QueryMedicalDrugs($filter: MedicalDrugFilter) {
+  medicalDrugs(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      thing
+      relevance
+    }
+  }
+}
+"""
+
+UPDATE_MEDICAL_DRUG_GQL = """
+mutation UpdateMedicalDrug($medicalDrug: MedicalDrugUpdateInput!) {
+  updateMedicalDrug(medicalDrug: $medicalDrug) {
+    id
+    name
+  }
+}
+"""
+
+COUNT_MEDICAL_DRUG_CLASSES_GQL = """
+query CountMedicalDrugClasses($filter: MedicalDrugClassFilter) {
+  countMedicalDrugClasses(filter: $filter) {
+    count
+  }
+}
+"""
+
+CREATE_MEDICAL_DRUG_CLASS_GQL = """
+mutation CreateMedicalDrugClass($medicalDrugClass: MedicalDrugClassInput!) {
+  createMedicalDrugClass(medicalDrugClass: $medicalDrugClass) {
+    id
+    name
+  }
+}
+"""
+
+DELETE_ALL_MEDICAL_DRUG_CLASSES_GQL = """
+mutation DeleteAllMedicalDrugClasses($filter: MedicalDrugClassFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllMedicalDrugClasses(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_MEDICAL_DRUG_CLASS_GQL = """
+mutation DeleteMedicalDrugClass($id: ID!) {
+  deleteMedicalDrugClass(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_MEDICAL_DRUG_CLASSES_GQL = """
+mutation DeleteMedicalDrugClasses($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteMedicalDrugClasses(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}
+"""
+
+GET_MEDICAL_DRUG_CLASS_GQL = """
+query GetMedicalDrugClass($id: ID!) {
+  medicalDrugClass(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    thing
+    relevance
+  }
+}
+"""
+
+QUERY_MEDICAL_DRUG_CLASSES_GQL = """
+query QueryMedicalDrugClasses($filter: MedicalDrugClassFilter) {
+  medicalDrugClasses(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      thing
+      relevance
+    }
+  }
+}
+"""
+
+UPDATE_MEDICAL_DRUG_CLASS_GQL = """
+mutation UpdateMedicalDrugClass($medicalDrugClass: MedicalDrugClassUpdateInput!) {
+  updateMedicalDrugClass(medicalDrugClass: $medicalDrugClass) {
+    id
+    name
+  }
+}
+"""
+
+COUNT_MEDICAL_GUIDELINES_GQL = """
+query CountMedicalGuidelines($filter: MedicalGuidelineFilter) {
+  countMedicalGuidelines(filter: $filter) {
+    count
+  }
+}
+"""
+
+CREATE_MEDICAL_GUIDELINE_GQL = """
+mutation CreateMedicalGuideline($medicalGuideline: MedicalGuidelineInput!) {
+  createMedicalGuideline(medicalGuideline: $medicalGuideline) {
+    id
+    name
+  }
+}
+"""
+
+DELETE_ALL_MEDICAL_GUIDELINES_GQL = """
+mutation DeleteAllMedicalGuidelines($filter: MedicalGuidelineFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllMedicalGuidelines(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_MEDICAL_GUIDELINE_GQL = """
+mutation DeleteMedicalGuideline($id: ID!) {
+  deleteMedicalGuideline(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_MEDICAL_GUIDELINES_GQL = """
+mutation DeleteMedicalGuidelines($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteMedicalGuidelines(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}
+"""
+
+GET_MEDICAL_GUIDELINE_GQL = """
+query GetMedicalGuideline($id: ID!) {
+  medicalGuideline(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    thing
+    relevance
+  }
+}
+"""
+
+QUERY_MEDICAL_GUIDELINES_GQL = """
+query QueryMedicalGuidelines($filter: MedicalGuidelineFilter) {
+  medicalGuidelines(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      thing
+      relevance
+    }
+  }
+}
+"""
+
+UPDATE_MEDICAL_GUIDELINE_GQL = """
+mutation UpdateMedicalGuideline($medicalGuideline: MedicalGuidelineUpdateInput!) {
+  updateMedicalGuideline(medicalGuideline: $medicalGuideline) {
+    id
+    name
+  }
+}
+"""
+
+COUNT_MEDICAL_INDICATIONS_GQL = """
+query CountMedicalIndications($filter: MedicalIndicationFilter) {
+  countMedicalIndications(filter: $filter) {
+    count
+  }
+}
+"""
+
+CREATE_MEDICAL_INDICATION_GQL = """
+mutation CreateMedicalIndication($medicalIndication: MedicalIndicationInput!) {
+  createMedicalIndication(medicalIndication: $medicalIndication) {
+    id
+    name
+  }
+}
+"""
+
+DELETE_ALL_MEDICAL_INDICATIONS_GQL = """
+mutation DeleteAllMedicalIndications($filter: MedicalIndicationFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllMedicalIndications(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_MEDICAL_INDICATION_GQL = """
+mutation DeleteMedicalIndication($id: ID!) {
+  deleteMedicalIndication(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_MEDICAL_INDICATIONS_GQL = """
+mutation DeleteMedicalIndications($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteMedicalIndications(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}
+"""
+
+GET_MEDICAL_INDICATION_GQL = """
+query GetMedicalIndication($id: ID!) {
+  medicalIndication(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    thing
+    relevance
+  }
+}
+"""
+
+QUERY_MEDICAL_INDICATIONS_GQL = """
+query QueryMedicalIndications($filter: MedicalIndicationFilter) {
+  medicalIndications(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      thing
+      relevance
+    }
+  }
+}
+"""
+
+UPDATE_MEDICAL_INDICATION_GQL = """
+mutation UpdateMedicalIndication($medicalIndication: MedicalIndicationUpdateInput!) {
+  updateMedicalIndication(medicalIndication: $medicalIndication) {
+    id
+    name
+  }
+}
+"""
+
+COUNT_MEDICAL_PROCEDURES_GQL = """
+query CountMedicalProcedures($filter: MedicalProcedureFilter) {
+  countMedicalProcedures(filter: $filter) {
+    count
+  }
+}
+"""
+
+CREATE_MEDICAL_PROCEDURE_GQL = """
+mutation CreateMedicalProcedure($medicalProcedure: MedicalProcedureInput!) {
+  createMedicalProcedure(medicalProcedure: $medicalProcedure) {
+    id
+    name
+  }
+}
+"""
+
+DELETE_ALL_MEDICAL_PROCEDURES_GQL = """
+mutation DeleteAllMedicalProcedures($filter: MedicalProcedureFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllMedicalProcedures(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_MEDICAL_PROCEDURE_GQL = """
+mutation DeleteMedicalProcedure($id: ID!) {
+  deleteMedicalProcedure(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_MEDICAL_PROCEDURES_GQL = """
+mutation DeleteMedicalProcedures($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteMedicalProcedures(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}
+"""
+
+GET_MEDICAL_PROCEDURE_GQL = """
+query GetMedicalProcedure($id: ID!) {
+  medicalProcedure(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    thing
+    relevance
+  }
+}
+"""
+
+QUERY_MEDICAL_PROCEDURES_GQL = """
+query QueryMedicalProcedures($filter: MedicalProcedureFilter) {
+  medicalProcedures(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      thing
+      relevance
+    }
+  }
+}
+"""
+
+UPDATE_MEDICAL_PROCEDURE_GQL = """
+mutation UpdateMedicalProcedure($medicalProcedure: MedicalProcedureUpdateInput!) {
+  updateMedicalProcedure(medicalProcedure: $medicalProcedure) {
+    id
+    name
+  }
+}
+"""
+
+COUNT_MEDICAL_STUDIES_GQL = """
+query CountMedicalStudies($filter: MedicalStudyFilter) {
+  countMedicalStudies(filter: $filter) {
+    count
+  }
+}
+"""
+
+CREATE_MEDICAL_STUDY_GQL = """
+mutation CreateMedicalStudy($medicalStudy: MedicalStudyInput!) {
+  createMedicalStudy(medicalStudy: $medicalStudy) {
+    id
+    name
+  }
+}
+"""
+
+DELETE_ALL_MEDICAL_STUDIES_GQL = """
+mutation DeleteAllMedicalStudies($filter: MedicalStudyFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllMedicalStudies(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_MEDICAL_STUDIES_GQL = """
+mutation DeleteMedicalStudies($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteMedicalStudies(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_MEDICAL_STUDY_GQL = """
+mutation DeleteMedicalStudy($id: ID!) {
+  deleteMedicalStudy(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+GET_MEDICAL_STUDY_GQL = """
+query GetMedicalStudy($id: ID!) {
+  medicalStudy(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    thing
+    relevance
+    address {
+      streetAddress
+      city
+      region
+      country
+      postalCode
+    }
+  }
+}
+"""
+
+QUERY_MEDICAL_STUDIES_GQL = """
+query QueryMedicalStudies($filter: MedicalStudyFilter) {
+  medicalStudies(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      thing
+      relevance
+      address {
+        streetAddress
+        city
+        region
+        country
+        postalCode
+      }
+    }
+  }
+}
+"""
+
+UPDATE_MEDICAL_STUDY_GQL = """
+mutation UpdateMedicalStudy($medicalStudy: MedicalStudyUpdateInput!) {
+  updateMedicalStudy(medicalStudy: $medicalStudy) {
+    id
+    name
+  }
+}
+"""
+
+COUNT_MEDICAL_TESTS_GQL = """
+query CountMedicalTests($filter: MedicalTestFilter) {
+  countMedicalTests(filter: $filter) {
+    count
+  }
+}
+"""
+
+CREATE_MEDICAL_TEST_GQL = """
+mutation CreateMedicalTest($medicalTest: MedicalTestInput!) {
+  createMedicalTest(medicalTest: $medicalTest) {
+    id
+    name
+  }
+}
+"""
+
+DELETE_ALL_MEDICAL_TESTS_GQL = """
+mutation DeleteAllMedicalTests($filter: MedicalTestFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllMedicalTests(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_MEDICAL_TEST_GQL = """
+mutation DeleteMedicalTest($id: ID!) {
+  deleteMedicalTest(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_MEDICAL_TESTS_GQL = """
+mutation DeleteMedicalTests($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteMedicalTests(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}
+"""
+
+GET_MEDICAL_TEST_GQL = """
+query GetMedicalTest($id: ID!) {
+  medicalTest(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    thing
+    relevance
+  }
+}
+"""
+
+QUERY_MEDICAL_TESTS_GQL = """
+query QueryMedicalTests($filter: MedicalTestFilter) {
+  medicalTests(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      thing
+      relevance
+    }
+  }
+}
+"""
+
+UPDATE_MEDICAL_TEST_GQL = """
+mutation UpdateMedicalTest($medicalTest: MedicalTestUpdateInput!) {
+  updateMedicalTest(medicalTest: $medicalTest) {
+    id
+    name
+  }
+}
+"""
+
+COUNT_MEDICAL_THERAPIES_GQL = """
+query CountMedicalTherapies($filter: MedicalTherapyFilter) {
+  countMedicalTherapies(filter: $filter) {
+    count
+  }
+}
+"""
+
+CREATE_MEDICAL_THERAPY_GQL = """
+mutation CreateMedicalTherapy($medicalTherapy: MedicalTherapyInput!) {
+  createMedicalTherapy(medicalTherapy: $medicalTherapy) {
+    id
+    name
+  }
+}
+"""
+
+DELETE_ALL_MEDICAL_THERAPIES_GQL = """
+mutation DeleteAllMedicalTherapies($filter: MedicalTherapyFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllMedicalTherapies(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_MEDICAL_THERAPIES_GQL = """
+mutation DeleteMedicalTherapies($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteMedicalTherapies(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_MEDICAL_THERAPY_GQL = """
+mutation DeleteMedicalTherapy($id: ID!) {
+  deleteMedicalTherapy(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+GET_MEDICAL_THERAPY_GQL = """
+query GetMedicalTherapy($id: ID!) {
+  medicalTherapy(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    thing
+    relevance
+  }
+}
+"""
+
+QUERY_MEDICAL_THERAPIES_GQL = """
+query QueryMedicalTherapies($filter: MedicalTherapyFilter) {
+  medicalTherapies(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      thing
+      relevance
+    }
+  }
+}
+"""
+
+UPDATE_MEDICAL_THERAPY_GQL = """
+mutation UpdateMedicalTherapy($medicalTherapy: MedicalTherapyUpdateInput!) {
+  updateMedicalTherapy(medicalTherapy: $medicalTherapy) {
     id
     name
   }

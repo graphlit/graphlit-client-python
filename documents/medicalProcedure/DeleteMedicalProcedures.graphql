@@ -1,0 +1,6 @@
+mutation DeleteMedicalProcedures($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteMedicalProcedures(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}

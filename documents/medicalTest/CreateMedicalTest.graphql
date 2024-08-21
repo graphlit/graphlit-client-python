@@ -1,0 +1,6 @@
+mutation CreateMedicalTest($medicalTest: MedicalTestInput!) {
+  createMedicalTest(medicalTest: $medicalTest) {
+    id
+    name
+  }
+}

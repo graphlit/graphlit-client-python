@@ -1,0 +1,5 @@
+query CountMedicalIndications($filter: MedicalIndicationFilter) {
+  countMedicalIndications(filter: $filter) {
+    count
+  }
+}

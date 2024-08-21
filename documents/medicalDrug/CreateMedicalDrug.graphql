@@ -1,0 +1,6 @@
+mutation CreateMedicalDrug($medicalDrug: MedicalDrugInput!) {
+  createMedicalDrug(medicalDrug: $medicalDrug) {
+    id
+    name
+  }
+}

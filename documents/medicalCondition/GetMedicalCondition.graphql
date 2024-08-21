@@ -1,0 +1,10 @@
+query GetMedicalCondition($id: ID!) {
+  medicalCondition(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    thing
+    relevance
+  }
+}

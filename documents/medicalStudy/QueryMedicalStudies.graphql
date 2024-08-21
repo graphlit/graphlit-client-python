@@ -1,0 +1,19 @@
+query QueryMedicalStudies($filter: MedicalStudyFilter) {
+  medicalStudies(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      thing
+      relevance
+      address {
+        streetAddress
+        city
+        region
+        country
+        postalCode
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+mutation CreateMedicalTherapy($medicalTherapy: MedicalTherapyInput!) {
+  createMedicalTherapy(medicalTherapy: $medicalTherapy) {
+    id
+    name
+  }
+}

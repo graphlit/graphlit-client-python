@@ -1,0 +1,6 @@
+mutation CreateMedicalCondition($medicalCondition: MedicalConditionInput!) {
+  createMedicalCondition(medicalCondition: $medicalCondition) {
+    id
+    name
+  }
+}

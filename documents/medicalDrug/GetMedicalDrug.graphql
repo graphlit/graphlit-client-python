@@ -1,0 +1,10 @@
+query GetMedicalDrug($id: ID!) {
+  medicalDrug(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    thing
+    relevance
+  }
+}

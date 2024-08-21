@@ -186,6 +186,17 @@ class ObservableTypes(str, Enum):
     PRODUCT = "PRODUCT"
     REPO = "REPO"
     SOFTWARE = "SOFTWARE"
+    MEDICAL_STUDY = "MEDICAL_STUDY"
+    MEDICAL_CONDITION = "MEDICAL_CONDITION"
+    MEDICAL_GUIDELINE = "MEDICAL_GUIDELINE"
+    MEDICAL_DRUG = "MEDICAL_DRUG"
+    MEDICAL_DRUG_CLASS = "MEDICAL_DRUG_CLASS"
+    MEDICAL_INDICATION = "MEDICAL_INDICATION"
+    MEDICAL_CONTRAINDICATION = "MEDICAL_CONTRAINDICATION"
+    MEDICAL_TEST = "MEDICAL_TEST"
+    MEDICAL_DEVICE = "MEDICAL_DEVICE"
+    MEDICAL_THERAPY = "MEDICAL_THERAPY"
+    MEDICAL_PROCEDURE = "MEDICAL_PROCEDURE"
 
 
 class OrganizationFacetTypes(str, Enum):
@@ -516,6 +527,7 @@ class OpenAIModels(str, Enum):
     GPT4O_128K = "GPT4O_128K"
     GPT4O_MINI_128K_20240718 = "GPT4O_MINI_128K_20240718"
     GPT4O_MINI_128K = "GPT4O_MINI_128K"
+    GPT4O_CHAT_128K = "GPT4O_CHAT_128K"
     CUSTOM = "CUSTOM"
 
 
@@ -616,6 +628,7 @@ class TextRoles(str, Enum):
     TABLE = "TABLE"
     FIGURE = "FIGURE"
     DIAGRAM = "DIAGRAM"
+    WATERMARK = "WATERMARK"
     EQUATION = "EQUATION"
     PARAGRAPH = "PARAGRAPH"
     CHECKBOX = "CHECKBOX"
@@ -733,6 +746,50 @@ class LabelFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
 
+class MedicalStudyFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
+class MedicalConditionFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
+class MedicalGuidelineFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
+class MedicalDrugFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
+class MedicalDrugClassFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
+class MedicalContraindicationFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
+class MedicalIndicationFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
+class MedicalProcedureFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
+class MedicalDeviceFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
+class MedicalTherapyFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
+class MedicalTestFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
 class ProductFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
@@ -761,6 +818,17 @@ class EntityTypes(str, Enum):
     JOB = "JOB"
     LABEL = "LABEL"
     METADATA = "METADATA"
+    MEDICAL_STUDY = "MEDICAL_STUDY"
+    MEDICAL_CONDITION = "MEDICAL_CONDITION"
+    MEDICAL_GUIDELINE = "MEDICAL_GUIDELINE"
+    MEDICAL_DRUG = "MEDICAL_DRUG"
+    MEDICAL_DRUG_CLASS = "MEDICAL_DRUG_CLASS"
+    MEDICAL_INDICATION = "MEDICAL_INDICATION"
+    MEDICAL_CONTRAINDICATION = "MEDICAL_CONTRAINDICATION"
+    MEDICAL_TEST = "MEDICAL_TEST"
+    MEDICAL_DEVICE = "MEDICAL_DEVICE"
+    MEDICAL_THERAPY = "MEDICAL_THERAPY"
+    MEDICAL_PROCEDURE = "MEDICAL_PROCEDURE"
     OBSERVATION = "OBSERVATION"
     ORGANIZATION = "ORGANIZATION"
     PERSON = "PERSON"

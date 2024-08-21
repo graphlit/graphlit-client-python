@@ -1,0 +1,6 @@
+mutation CreateMedicalContraindication($medicalContraindication: MedicalContraindicationInput!) {
+  createMedicalContraindication(medicalContraindication: $medicalContraindication) {
+    id
+    name
+  }
+}

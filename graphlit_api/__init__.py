@@ -21,6 +21,44 @@ from .count_conversations import (
 from .count_events import CountEvents, CountEventsCountEvents
 from .count_feeds import CountFeeds, CountFeedsCountFeeds
 from .count_labels import CountLabels, CountLabelsCountLabels
+from .count_medical_conditions import (
+    CountMedicalConditions,
+    CountMedicalConditionsCountMedicalConditions,
+)
+from .count_medical_contraindications import (
+    CountMedicalContraindications,
+    CountMedicalContraindicationsCountMedicalContraindications,
+)
+from .count_medical_devices import (
+    CountMedicalDevices,
+    CountMedicalDevicesCountMedicalDevices,
+)
+from .count_medical_drug_classes import (
+    CountMedicalDrugClasses,
+    CountMedicalDrugClassesCountMedicalDrugClasses,
+)
+from .count_medical_drugs import CountMedicalDrugs, CountMedicalDrugsCountMedicalDrugs
+from .count_medical_guidelines import (
+    CountMedicalGuidelines,
+    CountMedicalGuidelinesCountMedicalGuidelines,
+)
+from .count_medical_indications import (
+    CountMedicalIndications,
+    CountMedicalIndicationsCountMedicalIndications,
+)
+from .count_medical_procedures import (
+    CountMedicalProcedures,
+    CountMedicalProceduresCountMedicalProcedures,
+)
+from .count_medical_studies import (
+    CountMedicalStudies,
+    CountMedicalStudiesCountMedicalStudies,
+)
+from .count_medical_tests import CountMedicalTests, CountMedicalTestsCountMedicalTests
+from .count_medical_therapies import (
+    CountMedicalTherapies,
+    CountMedicalTherapiesCountMedicalTherapies,
+)
 from .count_organizations import (
     CountOrganizations,
     CountOrganizationsCountOrganizations,
@@ -45,6 +83,44 @@ from .create_conversation import (
 from .create_event import CreateEvent, CreateEventCreateEvent
 from .create_feed import CreateFeed, CreateFeedCreateFeed
 from .create_label import CreateLabel, CreateLabelCreateLabel
+from .create_medical_condition import (
+    CreateMedicalCondition,
+    CreateMedicalConditionCreateMedicalCondition,
+)
+from .create_medical_contraindication import (
+    CreateMedicalContraindication,
+    CreateMedicalContraindicationCreateMedicalContraindication,
+)
+from .create_medical_device import (
+    CreateMedicalDevice,
+    CreateMedicalDeviceCreateMedicalDevice,
+)
+from .create_medical_drug import CreateMedicalDrug, CreateMedicalDrugCreateMedicalDrug
+from .create_medical_drug_class import (
+    CreateMedicalDrugClass,
+    CreateMedicalDrugClassCreateMedicalDrugClass,
+)
+from .create_medical_guideline import (
+    CreateMedicalGuideline,
+    CreateMedicalGuidelineCreateMedicalGuideline,
+)
+from .create_medical_indication import (
+    CreateMedicalIndication,
+    CreateMedicalIndicationCreateMedicalIndication,
+)
+from .create_medical_procedure import (
+    CreateMedicalProcedure,
+    CreateMedicalProcedureCreateMedicalProcedure,
+)
+from .create_medical_study import (
+    CreateMedicalStudy,
+    CreateMedicalStudyCreateMedicalStudy,
+)
+from .create_medical_test import CreateMedicalTest, CreateMedicalTestCreateMedicalTest
+from .create_medical_therapy import (
+    CreateMedicalTherapy,
+    CreateMedicalTherapyCreateMedicalTherapy,
+)
 from .create_observation import CreateObservation, CreateObservationCreateObservation
 from .create_organization import (
     CreateOrganization,
@@ -118,6 +194,50 @@ from .delete_all_conversations import (
 from .delete_all_events import DeleteAllEvents, DeleteAllEventsDeleteAllEvents
 from .delete_all_feeds import DeleteAllFeeds, DeleteAllFeedsDeleteAllFeeds
 from .delete_all_labels import DeleteAllLabels, DeleteAllLabelsDeleteAllLabels
+from .delete_all_medical_conditions import (
+    DeleteAllMedicalConditions,
+    DeleteAllMedicalConditionsDeleteAllMedicalConditions,
+)
+from .delete_all_medical_contraindications import (
+    DeleteAllMedicalContraindications,
+    DeleteAllMedicalContraindicationsDeleteAllMedicalContraindications,
+)
+from .delete_all_medical_devices import (
+    DeleteAllMedicalDevices,
+    DeleteAllMedicalDevicesDeleteAllMedicalDevices,
+)
+from .delete_all_medical_drug_classes import (
+    DeleteAllMedicalDrugClasses,
+    DeleteAllMedicalDrugClassesDeleteAllMedicalDrugClasses,
+)
+from .delete_all_medical_drugs import (
+    DeleteAllMedicalDrugs,
+    DeleteAllMedicalDrugsDeleteAllMedicalDrugs,
+)
+from .delete_all_medical_guidelines import (
+    DeleteAllMedicalGuidelines,
+    DeleteAllMedicalGuidelinesDeleteAllMedicalGuidelines,
+)
+from .delete_all_medical_indications import (
+    DeleteAllMedicalIndications,
+    DeleteAllMedicalIndicationsDeleteAllMedicalIndications,
+)
+from .delete_all_medical_procedures import (
+    DeleteAllMedicalProcedures,
+    DeleteAllMedicalProceduresDeleteAllMedicalProcedures,
+)
+from .delete_all_medical_studies import (
+    DeleteAllMedicalStudies,
+    DeleteAllMedicalStudiesDeleteAllMedicalStudies,
+)
+from .delete_all_medical_tests import (
+    DeleteAllMedicalTests,
+    DeleteAllMedicalTestsDeleteAllMedicalTests,
+)
+from .delete_all_medical_therapies import (
+    DeleteAllMedicalTherapies,
+    DeleteAllMedicalTherapiesDeleteAllMedicalTherapies,
+)
 from .delete_all_organizations import (
     DeleteAllOrganizations,
     DeleteAllOrganizationsDeleteAllOrganizations,
@@ -158,6 +278,88 @@ from .delete_feed import DeleteFeed, DeleteFeedDeleteFeed
 from .delete_feeds import DeleteFeeds, DeleteFeedsDeleteFeeds
 from .delete_label import DeleteLabel, DeleteLabelDeleteLabel
 from .delete_labels import DeleteLabels, DeleteLabelsDeleteLabels
+from .delete_medical_condition import (
+    DeleteMedicalCondition,
+    DeleteMedicalConditionDeleteMedicalCondition,
+)
+from .delete_medical_conditions import (
+    DeleteMedicalConditions,
+    DeleteMedicalConditionsDeleteMedicalConditions,
+)
+from .delete_medical_contraindication import (
+    DeleteMedicalContraindication,
+    DeleteMedicalContraindicationDeleteMedicalContraindication,
+)
+from .delete_medical_contraindications import (
+    DeleteMedicalContraindications,
+    DeleteMedicalContraindicationsDeleteMedicalContraindications,
+)
+from .delete_medical_device import (
+    DeleteMedicalDevice,
+    DeleteMedicalDeviceDeleteMedicalDevice,
+)
+from .delete_medical_devices import (
+    DeleteMedicalDevices,
+    DeleteMedicalDevicesDeleteMedicalDevices,
+)
+from .delete_medical_drug import DeleteMedicalDrug, DeleteMedicalDrugDeleteMedicalDrug
+from .delete_medical_drug_class import (
+    DeleteMedicalDrugClass,
+    DeleteMedicalDrugClassDeleteMedicalDrugClass,
+)
+from .delete_medical_drug_classes import (
+    DeleteMedicalDrugClasses,
+    DeleteMedicalDrugClassesDeleteMedicalDrugClasses,
+)
+from .delete_medical_drugs import (
+    DeleteMedicalDrugs,
+    DeleteMedicalDrugsDeleteMedicalDrugs,
+)
+from .delete_medical_guideline import (
+    DeleteMedicalGuideline,
+    DeleteMedicalGuidelineDeleteMedicalGuideline,
+)
+from .delete_medical_guidelines import (
+    DeleteMedicalGuidelines,
+    DeleteMedicalGuidelinesDeleteMedicalGuidelines,
+)
+from .delete_medical_indication import (
+    DeleteMedicalIndication,
+    DeleteMedicalIndicationDeleteMedicalIndication,
+)
+from .delete_medical_indications import (
+    DeleteMedicalIndications,
+    DeleteMedicalIndicationsDeleteMedicalIndications,
+)
+from .delete_medical_procedure import (
+    DeleteMedicalProcedure,
+    DeleteMedicalProcedureDeleteMedicalProcedure,
+)
+from .delete_medical_procedures import (
+    DeleteMedicalProcedures,
+    DeleteMedicalProceduresDeleteMedicalProcedures,
+)
+from .delete_medical_studies import (
+    DeleteMedicalStudies,
+    DeleteMedicalStudiesDeleteMedicalStudies,
+)
+from .delete_medical_study import (
+    DeleteMedicalStudy,
+    DeleteMedicalStudyDeleteMedicalStudy,
+)
+from .delete_medical_test import DeleteMedicalTest, DeleteMedicalTestDeleteMedicalTest
+from .delete_medical_tests import (
+    DeleteMedicalTests,
+    DeleteMedicalTestsDeleteMedicalTests,
+)
+from .delete_medical_therapies import (
+    DeleteMedicalTherapies,
+    DeleteMedicalTherapiesDeleteMedicalTherapies,
+)
+from .delete_medical_therapy import (
+    DeleteMedicalTherapy,
+    DeleteMedicalTherapyDeleteMedicalTherapy,
+)
 from .delete_observation import DeleteObservation, DeleteObservationDeleteObservation
 from .delete_organization import (
     DeleteOrganization,
@@ -239,6 +441,17 @@ from .enums import (
     MailImportance,
     MailPriority,
     MailSensitivity,
+    MedicalConditionFacetTypes,
+    MedicalContraindicationFacetTypes,
+    MedicalDeviceFacetTypes,
+    MedicalDrugClassFacetTypes,
+    MedicalDrugFacetTypes,
+    MedicalGuidelineFacetTypes,
+    MedicalIndicationFacetTypes,
+    MedicalProcedureFacetTypes,
+    MedicalStudyFacetTypes,
+    MedicalTestFacetTypes,
+    MedicalTherapyFacetTypes,
     MetadataTypes,
     MistralModels,
     ModelServiceTypes,
@@ -449,6 +662,39 @@ from .get_feed import (
     GetFeedFeedYoutube,
 )
 from .get_label import GetLabel, GetLabelLabel
+from .get_medical_condition import (
+    GetMedicalCondition,
+    GetMedicalConditionMedicalCondition,
+)
+from .get_medical_contraindication import (
+    GetMedicalContraindication,
+    GetMedicalContraindicationMedicalContraindication,
+)
+from .get_medical_device import GetMedicalDevice, GetMedicalDeviceMedicalDevice
+from .get_medical_drug import GetMedicalDrug, GetMedicalDrugMedicalDrug
+from .get_medical_drug_class import (
+    GetMedicalDrugClass,
+    GetMedicalDrugClassMedicalDrugClass,
+)
+from .get_medical_guideline import (
+    GetMedicalGuideline,
+    GetMedicalGuidelineMedicalGuideline,
+)
+from .get_medical_indication import (
+    GetMedicalIndication,
+    GetMedicalIndicationMedicalIndication,
+)
+from .get_medical_procedure import (
+    GetMedicalProcedure,
+    GetMedicalProcedureMedicalProcedure,
+)
+from .get_medical_study import (
+    GetMedicalStudy,
+    GetMedicalStudyMedicalStudy,
+    GetMedicalStudyMedicalStudyAddress,
+)
+from .get_medical_test import GetMedicalTest, GetMedicalTestMedicalTest
+from .get_medical_therapy import GetMedicalTherapy, GetMedicalTherapyMedicalTherapy
 from .get_organization import (
     GetOrganization,
     GetOrganizationOrganization,
@@ -658,6 +904,50 @@ from .input_types import (
     LinearFeedPropertiesInput,
     LinearFeedPropertiesUpdateInput,
     LinkStrategyInput,
+    MedicalConditionFacetInput,
+    MedicalConditionFilter,
+    MedicalConditionInput,
+    MedicalConditionUpdateInput,
+    MedicalContraindicationFacetInput,
+    MedicalContraindicationFilter,
+    MedicalContraindicationInput,
+    MedicalContraindicationUpdateInput,
+    MedicalDeviceFacetInput,
+    MedicalDeviceFilter,
+    MedicalDeviceInput,
+    MedicalDeviceUpdateInput,
+    MedicalDrugClassFacetInput,
+    MedicalDrugClassFilter,
+    MedicalDrugClassInput,
+    MedicalDrugClassUpdateInput,
+    MedicalDrugFacetInput,
+    MedicalDrugFilter,
+    MedicalDrugInput,
+    MedicalDrugUpdateInput,
+    MedicalGuidelineFacetInput,
+    MedicalGuidelineFilter,
+    MedicalGuidelineInput,
+    MedicalGuidelineUpdateInput,
+    MedicalIndicationFacetInput,
+    MedicalIndicationFilter,
+    MedicalIndicationInput,
+    MedicalIndicationUpdateInput,
+    MedicalProcedureFacetInput,
+    MedicalProcedureFilter,
+    MedicalProcedureInput,
+    MedicalProcedureUpdateInput,
+    MedicalStudyFacetInput,
+    MedicalStudyFilter,
+    MedicalStudyInput,
+    MedicalStudyUpdateInput,
+    MedicalTestFacetInput,
+    MedicalTestFilter,
+    MedicalTestInput,
+    MedicalTestUpdateInput,
+    MedicalTherapyFacetInput,
+    MedicalTherapyFilter,
+    MedicalTherapyInput,
+    MedicalTherapyUpdateInput,
     MetadataFilter,
     MetadataInput,
     MetadataUpdateInput,
@@ -778,6 +1068,17 @@ from .operations import (
     COUNT_EVENTS_GQL,
     COUNT_FEEDS_GQL,
     COUNT_LABELS_GQL,
+    COUNT_MEDICAL_CONDITIONS_GQL,
+    COUNT_MEDICAL_CONTRAINDICATIONS_GQL,
+    COUNT_MEDICAL_DEVICES_GQL,
+    COUNT_MEDICAL_DRUG_CLASSES_GQL,
+    COUNT_MEDICAL_DRUGS_GQL,
+    COUNT_MEDICAL_GUIDELINES_GQL,
+    COUNT_MEDICAL_INDICATIONS_GQL,
+    COUNT_MEDICAL_PROCEDURES_GQL,
+    COUNT_MEDICAL_STUDIES_GQL,
+    COUNT_MEDICAL_TESTS_GQL,
+    COUNT_MEDICAL_THERAPIES_GQL,
     COUNT_ORGANIZATIONS_GQL,
     COUNT_PERSONS_GQL,
     COUNT_PLACES_GQL,
@@ -793,6 +1094,17 @@ from .operations import (
     CREATE_EVENT_GQL,
     CREATE_FEED_GQL,
     CREATE_LABEL_GQL,
+    CREATE_MEDICAL_CONDITION_GQL,
+    CREATE_MEDICAL_CONTRAINDICATION_GQL,
+    CREATE_MEDICAL_DEVICE_GQL,
+    CREATE_MEDICAL_DRUG_CLASS_GQL,
+    CREATE_MEDICAL_DRUG_GQL,
+    CREATE_MEDICAL_GUIDELINE_GQL,
+    CREATE_MEDICAL_INDICATION_GQL,
+    CREATE_MEDICAL_PROCEDURE_GQL,
+    CREATE_MEDICAL_STUDY_GQL,
+    CREATE_MEDICAL_TEST_GQL,
+    CREATE_MEDICAL_THERAPY_GQL,
     CREATE_OBSERVATION_GQL,
     CREATE_ORGANIZATION_GQL,
     CREATE_PERSON_GQL,
@@ -812,6 +1124,17 @@ from .operations import (
     DELETE_ALL_EVENTS_GQL,
     DELETE_ALL_FEEDS_GQL,
     DELETE_ALL_LABELS_GQL,
+    DELETE_ALL_MEDICAL_CONDITIONS_GQL,
+    DELETE_ALL_MEDICAL_CONTRAINDICATIONS_GQL,
+    DELETE_ALL_MEDICAL_DEVICES_GQL,
+    DELETE_ALL_MEDICAL_DRUG_CLASSES_GQL,
+    DELETE_ALL_MEDICAL_DRUGS_GQL,
+    DELETE_ALL_MEDICAL_GUIDELINES_GQL,
+    DELETE_ALL_MEDICAL_INDICATIONS_GQL,
+    DELETE_ALL_MEDICAL_PROCEDURES_GQL,
+    DELETE_ALL_MEDICAL_STUDIES_GQL,
+    DELETE_ALL_MEDICAL_TESTS_GQL,
+    DELETE_ALL_MEDICAL_THERAPIES_GQL,
     DELETE_ALL_ORGANIZATIONS_GQL,
     DELETE_ALL_PERSONS_GQL,
     DELETE_ALL_PLACES_GQL,
@@ -834,6 +1157,28 @@ from .operations import (
     DELETE_FEEDS_GQL,
     DELETE_LABEL_GQL,
     DELETE_LABELS_GQL,
+    DELETE_MEDICAL_CONDITION_GQL,
+    DELETE_MEDICAL_CONDITIONS_GQL,
+    DELETE_MEDICAL_CONTRAINDICATION_GQL,
+    DELETE_MEDICAL_CONTRAINDICATIONS_GQL,
+    DELETE_MEDICAL_DEVICE_GQL,
+    DELETE_MEDICAL_DEVICES_GQL,
+    DELETE_MEDICAL_DRUG_CLASS_GQL,
+    DELETE_MEDICAL_DRUG_CLASSES_GQL,
+    DELETE_MEDICAL_DRUG_GQL,
+    DELETE_MEDICAL_DRUGS_GQL,
+    DELETE_MEDICAL_GUIDELINE_GQL,
+    DELETE_MEDICAL_GUIDELINES_GQL,
+    DELETE_MEDICAL_INDICATION_GQL,
+    DELETE_MEDICAL_INDICATIONS_GQL,
+    DELETE_MEDICAL_PROCEDURE_GQL,
+    DELETE_MEDICAL_PROCEDURES_GQL,
+    DELETE_MEDICAL_STUDIES_GQL,
+    DELETE_MEDICAL_STUDY_GQL,
+    DELETE_MEDICAL_TEST_GQL,
+    DELETE_MEDICAL_TESTS_GQL,
+    DELETE_MEDICAL_THERAPIES_GQL,
+    DELETE_MEDICAL_THERAPY_GQL,
     DELETE_OBSERVATION_GQL,
     DELETE_ORGANIZATION_GQL,
     DELETE_ORGANIZATIONS_GQL,
@@ -864,6 +1209,17 @@ from .operations import (
     GET_EVENT_GQL,
     GET_FEED_GQL,
     GET_LABEL_GQL,
+    GET_MEDICAL_CONDITION_GQL,
+    GET_MEDICAL_CONTRAINDICATION_GQL,
+    GET_MEDICAL_DEVICE_GQL,
+    GET_MEDICAL_DRUG_CLASS_GQL,
+    GET_MEDICAL_DRUG_GQL,
+    GET_MEDICAL_GUIDELINE_GQL,
+    GET_MEDICAL_INDICATION_GQL,
+    GET_MEDICAL_PROCEDURE_GQL,
+    GET_MEDICAL_STUDY_GQL,
+    GET_MEDICAL_TEST_GQL,
+    GET_MEDICAL_THERAPY_GQL,
     GET_ORGANIZATION_GQL,
     GET_PERSON_GQL,
     GET_PLACE_GQL,
@@ -897,6 +1253,17 @@ from .operations import (
     QUERY_EVENTS_GQL,
     QUERY_FEEDS_GQL,
     QUERY_LABELS_GQL,
+    QUERY_MEDICAL_CONDITIONS_GQL,
+    QUERY_MEDICAL_CONTRAINDICATIONS_GQL,
+    QUERY_MEDICAL_DEVICES_GQL,
+    QUERY_MEDICAL_DRUG_CLASSES_GQL,
+    QUERY_MEDICAL_DRUGS_GQL,
+    QUERY_MEDICAL_GUIDELINES_GQL,
+    QUERY_MEDICAL_INDICATIONS_GQL,
+    QUERY_MEDICAL_PROCEDURES_GQL,
+    QUERY_MEDICAL_STUDIES_GQL,
+    QUERY_MEDICAL_TESTS_GQL,
+    QUERY_MEDICAL_THERAPIES_GQL,
     QUERY_MICROSOFT_TEAMS_CHANNELS_GQL,
     QUERY_MICROSOFT_TEAMS_TEAMS_GQL,
     QUERY_ONE_DRIVE_FOLDERS_GQL,
@@ -922,6 +1289,17 @@ from .operations import (
     UPDATE_EVENT_GQL,
     UPDATE_FEED_GQL,
     UPDATE_LABEL_GQL,
+    UPDATE_MEDICAL_CONDITION_GQL,
+    UPDATE_MEDICAL_CONTRAINDICATION_GQL,
+    UPDATE_MEDICAL_DEVICE_GQL,
+    UPDATE_MEDICAL_DRUG_CLASS_GQL,
+    UPDATE_MEDICAL_DRUG_GQL,
+    UPDATE_MEDICAL_GUIDELINE_GQL,
+    UPDATE_MEDICAL_INDICATION_GQL,
+    UPDATE_MEDICAL_PROCEDURE_GQL,
+    UPDATE_MEDICAL_STUDY_GQL,
+    UPDATE_MEDICAL_TEST_GQL,
+    UPDATE_MEDICAL_THERAPY_GQL,
     UPDATE_OBSERVATION_GQL,
     UPDATE_ORGANIZATION_GQL,
     UPDATE_PERSON_GQL,
@@ -1197,6 +1575,62 @@ from .query_feeds import (
     QueryFeedsFeedsResultsYoutube,
 )
 from .query_labels import QueryLabels, QueryLabelsLabels, QueryLabelsLabelsResults
+from .query_medical_conditions import (
+    QueryMedicalConditions,
+    QueryMedicalConditionsMedicalConditions,
+    QueryMedicalConditionsMedicalConditionsResults,
+)
+from .query_medical_contraindications import (
+    QueryMedicalContraindications,
+    QueryMedicalContraindicationsMedicalContraindications,
+    QueryMedicalContraindicationsMedicalContraindicationsResults,
+)
+from .query_medical_devices import (
+    QueryMedicalDevices,
+    QueryMedicalDevicesMedicalDevices,
+    QueryMedicalDevicesMedicalDevicesResults,
+)
+from .query_medical_drug_classes import (
+    QueryMedicalDrugClasses,
+    QueryMedicalDrugClassesMedicalDrugClasses,
+    QueryMedicalDrugClassesMedicalDrugClassesResults,
+)
+from .query_medical_drugs import (
+    QueryMedicalDrugs,
+    QueryMedicalDrugsMedicalDrugs,
+    QueryMedicalDrugsMedicalDrugsResults,
+)
+from .query_medical_guidelines import (
+    QueryMedicalGuidelines,
+    QueryMedicalGuidelinesMedicalGuidelines,
+    QueryMedicalGuidelinesMedicalGuidelinesResults,
+)
+from .query_medical_indications import (
+    QueryMedicalIndications,
+    QueryMedicalIndicationsMedicalIndications,
+    QueryMedicalIndicationsMedicalIndicationsResults,
+)
+from .query_medical_procedures import (
+    QueryMedicalProcedures,
+    QueryMedicalProceduresMedicalProcedures,
+    QueryMedicalProceduresMedicalProceduresResults,
+)
+from .query_medical_studies import (
+    QueryMedicalStudies,
+    QueryMedicalStudiesMedicalStudies,
+    QueryMedicalStudiesMedicalStudiesResults,
+    QueryMedicalStudiesMedicalStudiesResultsAddress,
+)
+from .query_medical_tests import (
+    QueryMedicalTests,
+    QueryMedicalTestsMedicalTests,
+    QueryMedicalTestsMedicalTestsResults,
+)
+from .query_medical_therapies import (
+    QueryMedicalTherapies,
+    QueryMedicalTherapiesMedicalTherapies,
+    QueryMedicalTherapiesMedicalTherapiesResults,
+)
 from .query_microsoft_teams_channels import (
     QueryMicrosoftTeamsChannels,
     QueryMicrosoftTeamsChannelsMicrosoftTeamsChannels,
@@ -1347,6 +1781,44 @@ from .update_conversation import (
 from .update_event import UpdateEvent, UpdateEventUpdateEvent
 from .update_feed import UpdateFeed, UpdateFeedUpdateFeed
 from .update_label import UpdateLabel, UpdateLabelUpdateLabel
+from .update_medical_condition import (
+    UpdateMedicalCondition,
+    UpdateMedicalConditionUpdateMedicalCondition,
+)
+from .update_medical_contraindication import (
+    UpdateMedicalContraindication,
+    UpdateMedicalContraindicationUpdateMedicalContraindication,
+)
+from .update_medical_device import (
+    UpdateMedicalDevice,
+    UpdateMedicalDeviceUpdateMedicalDevice,
+)
+from .update_medical_drug import UpdateMedicalDrug, UpdateMedicalDrugUpdateMedicalDrug
+from .update_medical_drug_class import (
+    UpdateMedicalDrugClass,
+    UpdateMedicalDrugClassUpdateMedicalDrugClass,
+)
+from .update_medical_guideline import (
+    UpdateMedicalGuideline,
+    UpdateMedicalGuidelineUpdateMedicalGuideline,
+)
+from .update_medical_indication import (
+    UpdateMedicalIndication,
+    UpdateMedicalIndicationUpdateMedicalIndication,
+)
+from .update_medical_procedure import (
+    UpdateMedicalProcedure,
+    UpdateMedicalProcedureUpdateMedicalProcedure,
+)
+from .update_medical_study import (
+    UpdateMedicalStudy,
+    UpdateMedicalStudyUpdateMedicalStudy,
+)
+from .update_medical_test import UpdateMedicalTest, UpdateMedicalTestUpdateMedicalTest
+from .update_medical_therapy import (
+    UpdateMedicalTherapy,
+    UpdateMedicalTherapyUpdateMedicalTherapy,
+)
 from .update_observation import UpdateObservation, UpdateObservationUpdateObservation
 from .update_organization import (
     UpdateOrganization,
@@ -1450,6 +1922,17 @@ __all__ = [
     "COUNT_EVENTS_GQL",
     "COUNT_FEEDS_GQL",
     "COUNT_LABELS_GQL",
+    "COUNT_MEDICAL_CONDITIONS_GQL",
+    "COUNT_MEDICAL_CONTRAINDICATIONS_GQL",
+    "COUNT_MEDICAL_DEVICES_GQL",
+    "COUNT_MEDICAL_DRUGS_GQL",
+    "COUNT_MEDICAL_DRUG_CLASSES_GQL",
+    "COUNT_MEDICAL_GUIDELINES_GQL",
+    "COUNT_MEDICAL_INDICATIONS_GQL",
+    "COUNT_MEDICAL_PROCEDURES_GQL",
+    "COUNT_MEDICAL_STUDIES_GQL",
+    "COUNT_MEDICAL_TESTS_GQL",
+    "COUNT_MEDICAL_THERAPIES_GQL",
     "COUNT_ORGANIZATIONS_GQL",
     "COUNT_PERSONS_GQL",
     "COUNT_PLACES_GQL",
@@ -1465,6 +1948,17 @@ __all__ = [
     "CREATE_EVENT_GQL",
     "CREATE_FEED_GQL",
     "CREATE_LABEL_GQL",
+    "CREATE_MEDICAL_CONDITION_GQL",
+    "CREATE_MEDICAL_CONTRAINDICATION_GQL",
+    "CREATE_MEDICAL_DEVICE_GQL",
+    "CREATE_MEDICAL_DRUG_CLASS_GQL",
+    "CREATE_MEDICAL_DRUG_GQL",
+    "CREATE_MEDICAL_GUIDELINE_GQL",
+    "CREATE_MEDICAL_INDICATION_GQL",
+    "CREATE_MEDICAL_PROCEDURE_GQL",
+    "CREATE_MEDICAL_STUDY_GQL",
+    "CREATE_MEDICAL_TEST_GQL",
+    "CREATE_MEDICAL_THERAPY_GQL",
     "CREATE_OBSERVATION_GQL",
     "CREATE_ORGANIZATION_GQL",
     "CREATE_PERSON_GQL",
@@ -1532,6 +2026,28 @@ __all__ = [
     "CountFeedsCountFeeds",
     "CountLabels",
     "CountLabelsCountLabels",
+    "CountMedicalConditions",
+    "CountMedicalConditionsCountMedicalConditions",
+    "CountMedicalContraindications",
+    "CountMedicalContraindicationsCountMedicalContraindications",
+    "CountMedicalDevices",
+    "CountMedicalDevicesCountMedicalDevices",
+    "CountMedicalDrugClasses",
+    "CountMedicalDrugClassesCountMedicalDrugClasses",
+    "CountMedicalDrugs",
+    "CountMedicalDrugsCountMedicalDrugs",
+    "CountMedicalGuidelines",
+    "CountMedicalGuidelinesCountMedicalGuidelines",
+    "CountMedicalIndications",
+    "CountMedicalIndicationsCountMedicalIndications",
+    "CountMedicalProcedures",
+    "CountMedicalProceduresCountMedicalProcedures",
+    "CountMedicalStudies",
+    "CountMedicalStudiesCountMedicalStudies",
+    "CountMedicalTests",
+    "CountMedicalTestsCountMedicalTests",
+    "CountMedicalTherapies",
+    "CountMedicalTherapiesCountMedicalTherapies",
     "CountOrganizations",
     "CountOrganizationsCountOrganizations",
     "CountPersons",
@@ -1562,6 +2078,28 @@ __all__ = [
     "CreateFeedCreateFeed",
     "CreateLabel",
     "CreateLabelCreateLabel",
+    "CreateMedicalCondition",
+    "CreateMedicalConditionCreateMedicalCondition",
+    "CreateMedicalContraindication",
+    "CreateMedicalContraindicationCreateMedicalContraindication",
+    "CreateMedicalDevice",
+    "CreateMedicalDeviceCreateMedicalDevice",
+    "CreateMedicalDrug",
+    "CreateMedicalDrugClass",
+    "CreateMedicalDrugClassCreateMedicalDrugClass",
+    "CreateMedicalDrugCreateMedicalDrug",
+    "CreateMedicalGuideline",
+    "CreateMedicalGuidelineCreateMedicalGuideline",
+    "CreateMedicalIndication",
+    "CreateMedicalIndicationCreateMedicalIndication",
+    "CreateMedicalProcedure",
+    "CreateMedicalProcedureCreateMedicalProcedure",
+    "CreateMedicalStudy",
+    "CreateMedicalStudyCreateMedicalStudy",
+    "CreateMedicalTest",
+    "CreateMedicalTestCreateMedicalTest",
+    "CreateMedicalTherapy",
+    "CreateMedicalTherapyCreateMedicalTherapy",
     "CreateObservation",
     "CreateObservationCreateObservation",
     "CreateOrganization",
@@ -1626,6 +2164,17 @@ __all__ = [
     "DELETE_ALL_EVENTS_GQL",
     "DELETE_ALL_FEEDS_GQL",
     "DELETE_ALL_LABELS_GQL",
+    "DELETE_ALL_MEDICAL_CONDITIONS_GQL",
+    "DELETE_ALL_MEDICAL_CONTRAINDICATIONS_GQL",
+    "DELETE_ALL_MEDICAL_DEVICES_GQL",
+    "DELETE_ALL_MEDICAL_DRUGS_GQL",
+    "DELETE_ALL_MEDICAL_DRUG_CLASSES_GQL",
+    "DELETE_ALL_MEDICAL_GUIDELINES_GQL",
+    "DELETE_ALL_MEDICAL_INDICATIONS_GQL",
+    "DELETE_ALL_MEDICAL_PROCEDURES_GQL",
+    "DELETE_ALL_MEDICAL_STUDIES_GQL",
+    "DELETE_ALL_MEDICAL_TESTS_GQL",
+    "DELETE_ALL_MEDICAL_THERAPIES_GQL",
     "DELETE_ALL_ORGANIZATIONS_GQL",
     "DELETE_ALL_PERSONS_GQL",
     "DELETE_ALL_PLACES_GQL",
@@ -1648,6 +2197,28 @@ __all__ = [
     "DELETE_FEED_GQL",
     "DELETE_LABELS_GQL",
     "DELETE_LABEL_GQL",
+    "DELETE_MEDICAL_CONDITIONS_GQL",
+    "DELETE_MEDICAL_CONDITION_GQL",
+    "DELETE_MEDICAL_CONTRAINDICATIONS_GQL",
+    "DELETE_MEDICAL_CONTRAINDICATION_GQL",
+    "DELETE_MEDICAL_DEVICES_GQL",
+    "DELETE_MEDICAL_DEVICE_GQL",
+    "DELETE_MEDICAL_DRUGS_GQL",
+    "DELETE_MEDICAL_DRUG_CLASSES_GQL",
+    "DELETE_MEDICAL_DRUG_CLASS_GQL",
+    "DELETE_MEDICAL_DRUG_GQL",
+    "DELETE_MEDICAL_GUIDELINES_GQL",
+    "DELETE_MEDICAL_GUIDELINE_GQL",
+    "DELETE_MEDICAL_INDICATIONS_GQL",
+    "DELETE_MEDICAL_INDICATION_GQL",
+    "DELETE_MEDICAL_PROCEDURES_GQL",
+    "DELETE_MEDICAL_PROCEDURE_GQL",
+    "DELETE_MEDICAL_STUDIES_GQL",
+    "DELETE_MEDICAL_STUDY_GQL",
+    "DELETE_MEDICAL_TESTS_GQL",
+    "DELETE_MEDICAL_TEST_GQL",
+    "DELETE_MEDICAL_THERAPIES_GQL",
+    "DELETE_MEDICAL_THERAPY_GQL",
     "DELETE_OBSERVATION_GQL",
     "DELETE_ORGANIZATIONS_GQL",
     "DELETE_ORGANIZATION_GQL",
@@ -1694,6 +2265,28 @@ __all__ = [
     "DeleteAllFeedsDeleteAllFeeds",
     "DeleteAllLabels",
     "DeleteAllLabelsDeleteAllLabels",
+    "DeleteAllMedicalConditions",
+    "DeleteAllMedicalConditionsDeleteAllMedicalConditions",
+    "DeleteAllMedicalContraindications",
+    "DeleteAllMedicalContraindicationsDeleteAllMedicalContraindications",
+    "DeleteAllMedicalDevices",
+    "DeleteAllMedicalDevicesDeleteAllMedicalDevices",
+    "DeleteAllMedicalDrugClasses",
+    "DeleteAllMedicalDrugClassesDeleteAllMedicalDrugClasses",
+    "DeleteAllMedicalDrugs",
+    "DeleteAllMedicalDrugsDeleteAllMedicalDrugs",
+    "DeleteAllMedicalGuidelines",
+    "DeleteAllMedicalGuidelinesDeleteAllMedicalGuidelines",
+    "DeleteAllMedicalIndications",
+    "DeleteAllMedicalIndicationsDeleteAllMedicalIndications",
+    "DeleteAllMedicalProcedures",
+    "DeleteAllMedicalProceduresDeleteAllMedicalProcedures",
+    "DeleteAllMedicalStudies",
+    "DeleteAllMedicalStudiesDeleteAllMedicalStudies",
+    "DeleteAllMedicalTests",
+    "DeleteAllMedicalTestsDeleteAllMedicalTests",
+    "DeleteAllMedicalTherapies",
+    "DeleteAllMedicalTherapiesDeleteAllMedicalTherapies",
     "DeleteAllOrganizations",
     "DeleteAllOrganizationsDeleteAllOrganizations",
     "DeleteAllPersons",
@@ -1738,6 +2331,50 @@ __all__ = [
     "DeleteLabelDeleteLabel",
     "DeleteLabels",
     "DeleteLabelsDeleteLabels",
+    "DeleteMedicalCondition",
+    "DeleteMedicalConditionDeleteMedicalCondition",
+    "DeleteMedicalConditions",
+    "DeleteMedicalConditionsDeleteMedicalConditions",
+    "DeleteMedicalContraindication",
+    "DeleteMedicalContraindicationDeleteMedicalContraindication",
+    "DeleteMedicalContraindications",
+    "DeleteMedicalContraindicationsDeleteMedicalContraindications",
+    "DeleteMedicalDevice",
+    "DeleteMedicalDeviceDeleteMedicalDevice",
+    "DeleteMedicalDevices",
+    "DeleteMedicalDevicesDeleteMedicalDevices",
+    "DeleteMedicalDrug",
+    "DeleteMedicalDrugClass",
+    "DeleteMedicalDrugClassDeleteMedicalDrugClass",
+    "DeleteMedicalDrugClasses",
+    "DeleteMedicalDrugClassesDeleteMedicalDrugClasses",
+    "DeleteMedicalDrugDeleteMedicalDrug",
+    "DeleteMedicalDrugs",
+    "DeleteMedicalDrugsDeleteMedicalDrugs",
+    "DeleteMedicalGuideline",
+    "DeleteMedicalGuidelineDeleteMedicalGuideline",
+    "DeleteMedicalGuidelines",
+    "DeleteMedicalGuidelinesDeleteMedicalGuidelines",
+    "DeleteMedicalIndication",
+    "DeleteMedicalIndicationDeleteMedicalIndication",
+    "DeleteMedicalIndications",
+    "DeleteMedicalIndicationsDeleteMedicalIndications",
+    "DeleteMedicalProcedure",
+    "DeleteMedicalProcedureDeleteMedicalProcedure",
+    "DeleteMedicalProcedures",
+    "DeleteMedicalProceduresDeleteMedicalProcedures",
+    "DeleteMedicalStudies",
+    "DeleteMedicalStudiesDeleteMedicalStudies",
+    "DeleteMedicalStudy",
+    "DeleteMedicalStudyDeleteMedicalStudy",
+    "DeleteMedicalTest",
+    "DeleteMedicalTestDeleteMedicalTest",
+    "DeleteMedicalTests",
+    "DeleteMedicalTestsDeleteMedicalTests",
+    "DeleteMedicalTherapies",
+    "DeleteMedicalTherapiesDeleteMedicalTherapies",
+    "DeleteMedicalTherapy",
+    "DeleteMedicalTherapyDeleteMedicalTherapy",
     "DeleteObservation",
     "DeleteObservationDeleteObservation",
     "DeleteOrganization",
@@ -1839,6 +2476,17 @@ __all__ = [
     "GET_EVENT_GQL",
     "GET_FEED_GQL",
     "GET_LABEL_GQL",
+    "GET_MEDICAL_CONDITION_GQL",
+    "GET_MEDICAL_CONTRAINDICATION_GQL",
+    "GET_MEDICAL_DEVICE_GQL",
+    "GET_MEDICAL_DRUG_CLASS_GQL",
+    "GET_MEDICAL_DRUG_GQL",
+    "GET_MEDICAL_GUIDELINE_GQL",
+    "GET_MEDICAL_INDICATION_GQL",
+    "GET_MEDICAL_PROCEDURE_GQL",
+    "GET_MEDICAL_STUDY_GQL",
+    "GET_MEDICAL_TEST_GQL",
+    "GET_MEDICAL_THERAPY_GQL",
     "GET_ORGANIZATION_GQL",
     "GET_PERSON_GQL",
     "GET_PLACE_GQL",
@@ -2002,6 +2650,29 @@ __all__ = [
     "GetFeedFeedYoutube",
     "GetLabel",
     "GetLabelLabel",
+    "GetMedicalCondition",
+    "GetMedicalConditionMedicalCondition",
+    "GetMedicalContraindication",
+    "GetMedicalContraindicationMedicalContraindication",
+    "GetMedicalDevice",
+    "GetMedicalDeviceMedicalDevice",
+    "GetMedicalDrug",
+    "GetMedicalDrugClass",
+    "GetMedicalDrugClassMedicalDrugClass",
+    "GetMedicalDrugMedicalDrug",
+    "GetMedicalGuideline",
+    "GetMedicalGuidelineMedicalGuideline",
+    "GetMedicalIndication",
+    "GetMedicalIndicationMedicalIndication",
+    "GetMedicalProcedure",
+    "GetMedicalProcedureMedicalProcedure",
+    "GetMedicalStudy",
+    "GetMedicalStudyMedicalStudy",
+    "GetMedicalStudyMedicalStudyAddress",
+    "GetMedicalTest",
+    "GetMedicalTestMedicalTest",
+    "GetMedicalTherapy",
+    "GetMedicalTherapyMedicalTherapy",
     "GetOrganization",
     "GetOrganizationOrganization",
     "GetOrganizationOrganizationAddress",
@@ -2154,6 +2825,61 @@ __all__ = [
     "MailImportance",
     "MailPriority",
     "MailSensitivity",
+    "MedicalConditionFacetInput",
+    "MedicalConditionFacetTypes",
+    "MedicalConditionFilter",
+    "MedicalConditionInput",
+    "MedicalConditionUpdateInput",
+    "MedicalContraindicationFacetInput",
+    "MedicalContraindicationFacetTypes",
+    "MedicalContraindicationFilter",
+    "MedicalContraindicationInput",
+    "MedicalContraindicationUpdateInput",
+    "MedicalDeviceFacetInput",
+    "MedicalDeviceFacetTypes",
+    "MedicalDeviceFilter",
+    "MedicalDeviceInput",
+    "MedicalDeviceUpdateInput",
+    "MedicalDrugClassFacetInput",
+    "MedicalDrugClassFacetTypes",
+    "MedicalDrugClassFilter",
+    "MedicalDrugClassInput",
+    "MedicalDrugClassUpdateInput",
+    "MedicalDrugFacetInput",
+    "MedicalDrugFacetTypes",
+    "MedicalDrugFilter",
+    "MedicalDrugInput",
+    "MedicalDrugUpdateInput",
+    "MedicalGuidelineFacetInput",
+    "MedicalGuidelineFacetTypes",
+    "MedicalGuidelineFilter",
+    "MedicalGuidelineInput",
+    "MedicalGuidelineUpdateInput",
+    "MedicalIndicationFacetInput",
+    "MedicalIndicationFacetTypes",
+    "MedicalIndicationFilter",
+    "MedicalIndicationInput",
+    "MedicalIndicationUpdateInput",
+    "MedicalProcedureFacetInput",
+    "MedicalProcedureFacetTypes",
+    "MedicalProcedureFilter",
+    "MedicalProcedureInput",
+    "MedicalProcedureUpdateInput",
+    "MedicalStudyFacetInput",
+    "MedicalStudyFacetTypes",
+    "MedicalStudyFilter",
+    "MedicalStudyInput",
+    "MedicalStudyUpdateInput",
+    "MedicalTestFacetInput",
+    "MedicalTestFacetTypes",
+    "MedicalTestFilter",
+    "MedicalTestInput",
+    "MedicalTestUpdateInput",
+    "MedicalTherapyFacetInput",
+    "MedicalTherapyFacetTypes",
+    "MedicalTherapyFilter",
+    "MedicalTherapyInput",
+    "MedicalTherapyUpdateInput",
     "MetadataFilter",
     "MetadataInput",
     "MetadataTypes",
@@ -2280,6 +3006,17 @@ __all__ = [
     "QUERY_EVENTS_GQL",
     "QUERY_FEEDS_GQL",
     "QUERY_LABELS_GQL",
+    "QUERY_MEDICAL_CONDITIONS_GQL",
+    "QUERY_MEDICAL_CONTRAINDICATIONS_GQL",
+    "QUERY_MEDICAL_DEVICES_GQL",
+    "QUERY_MEDICAL_DRUGS_GQL",
+    "QUERY_MEDICAL_DRUG_CLASSES_GQL",
+    "QUERY_MEDICAL_GUIDELINES_GQL",
+    "QUERY_MEDICAL_INDICATIONS_GQL",
+    "QUERY_MEDICAL_PROCEDURES_GQL",
+    "QUERY_MEDICAL_STUDIES_GQL",
+    "QUERY_MEDICAL_TESTS_GQL",
+    "QUERY_MEDICAL_THERAPIES_GQL",
     "QUERY_MICROSOFT_TEAMS_CHANNELS_GQL",
     "QUERY_MICROSOFT_TEAMS_TEAMS_GQL",
     "QUERY_ONE_DRIVE_FOLDERS_GQL",
@@ -2497,6 +3234,40 @@ __all__ = [
     "QueryLabels",
     "QueryLabelsLabels",
     "QueryLabelsLabelsResults",
+    "QueryMedicalConditions",
+    "QueryMedicalConditionsMedicalConditions",
+    "QueryMedicalConditionsMedicalConditionsResults",
+    "QueryMedicalContraindications",
+    "QueryMedicalContraindicationsMedicalContraindications",
+    "QueryMedicalContraindicationsMedicalContraindicationsResults",
+    "QueryMedicalDevices",
+    "QueryMedicalDevicesMedicalDevices",
+    "QueryMedicalDevicesMedicalDevicesResults",
+    "QueryMedicalDrugClasses",
+    "QueryMedicalDrugClassesMedicalDrugClasses",
+    "QueryMedicalDrugClassesMedicalDrugClassesResults",
+    "QueryMedicalDrugs",
+    "QueryMedicalDrugsMedicalDrugs",
+    "QueryMedicalDrugsMedicalDrugsResults",
+    "QueryMedicalGuidelines",
+    "QueryMedicalGuidelinesMedicalGuidelines",
+    "QueryMedicalGuidelinesMedicalGuidelinesResults",
+    "QueryMedicalIndications",
+    "QueryMedicalIndicationsMedicalIndications",
+    "QueryMedicalIndicationsMedicalIndicationsResults",
+    "QueryMedicalProcedures",
+    "QueryMedicalProceduresMedicalProcedures",
+    "QueryMedicalProceduresMedicalProceduresResults",
+    "QueryMedicalStudies",
+    "QueryMedicalStudiesMedicalStudies",
+    "QueryMedicalStudiesMedicalStudiesResults",
+    "QueryMedicalStudiesMedicalStudiesResultsAddress",
+    "QueryMedicalTests",
+    "QueryMedicalTestsMedicalTests",
+    "QueryMedicalTestsMedicalTestsResults",
+    "QueryMedicalTherapies",
+    "QueryMedicalTherapiesMedicalTherapies",
+    "QueryMedicalTherapiesMedicalTherapiesResults",
     "QueryMicrosoftTeamsChannels",
     "QueryMicrosoftTeamsChannelsMicrosoftTeamsChannels",
     "QueryMicrosoftTeamsChannelsMicrosoftTeamsChannelsResults",
@@ -2672,6 +3443,17 @@ __all__ = [
     "UPDATE_EVENT_GQL",
     "UPDATE_FEED_GQL",
     "UPDATE_LABEL_GQL",
+    "UPDATE_MEDICAL_CONDITION_GQL",
+    "UPDATE_MEDICAL_CONTRAINDICATION_GQL",
+    "UPDATE_MEDICAL_DEVICE_GQL",
+    "UPDATE_MEDICAL_DRUG_CLASS_GQL",
+    "UPDATE_MEDICAL_DRUG_GQL",
+    "UPDATE_MEDICAL_GUIDELINE_GQL",
+    "UPDATE_MEDICAL_INDICATION_GQL",
+    "UPDATE_MEDICAL_PROCEDURE_GQL",
+    "UPDATE_MEDICAL_STUDY_GQL",
+    "UPDATE_MEDICAL_TEST_GQL",
+    "UPDATE_MEDICAL_THERAPY_GQL",
     "UPDATE_OBSERVATION_GQL",
     "UPDATE_ORGANIZATION_GQL",
     "UPDATE_PERSON_GQL",
@@ -2700,6 +3482,28 @@ __all__ = [
     "UpdateFeedUpdateFeed",
     "UpdateLabel",
     "UpdateLabelUpdateLabel",
+    "UpdateMedicalCondition",
+    "UpdateMedicalConditionUpdateMedicalCondition",
+    "UpdateMedicalContraindication",
+    "UpdateMedicalContraindicationUpdateMedicalContraindication",
+    "UpdateMedicalDevice",
+    "UpdateMedicalDeviceUpdateMedicalDevice",
+    "UpdateMedicalDrug",
+    "UpdateMedicalDrugClass",
+    "UpdateMedicalDrugClassUpdateMedicalDrugClass",
+    "UpdateMedicalDrugUpdateMedicalDrug",
+    "UpdateMedicalGuideline",
+    "UpdateMedicalGuidelineUpdateMedicalGuideline",
+    "UpdateMedicalIndication",
+    "UpdateMedicalIndicationUpdateMedicalIndication",
+    "UpdateMedicalProcedure",
+    "UpdateMedicalProcedureUpdateMedicalProcedure",
+    "UpdateMedicalStudy",
+    "UpdateMedicalStudyUpdateMedicalStudy",
+    "UpdateMedicalTest",
+    "UpdateMedicalTestUpdateMedicalTest",
+    "UpdateMedicalTherapy",
+    "UpdateMedicalTherapyUpdateMedicalTherapy",
     "UpdateObservation",
     "UpdateObservationUpdateObservation",
     "UpdateOrganization",

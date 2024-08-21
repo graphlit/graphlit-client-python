@@ -1,0 +1,6 @@
+mutation CreateMedicalIndication($medicalIndication: MedicalIndicationInput!) {
+  createMedicalIndication(medicalIndication: $medicalIndication) {
+    id
+    name
+  }
+}

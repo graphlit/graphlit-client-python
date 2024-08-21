@@ -1,0 +1,6 @@
+mutation CreateMedicalDevice($medicalDevice: MedicalDeviceInput!) {
+  createMedicalDevice(medicalDevice: $medicalDevice) {
+    id
+    name
+  }
+}

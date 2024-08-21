@@ -1,0 +1,10 @@
+query GetMedicalGuideline($id: ID!) {
+  medicalGuideline(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    thing
+    relevance
+  }
+}

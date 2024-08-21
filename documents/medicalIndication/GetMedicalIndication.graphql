@@ -1,0 +1,10 @@
+query GetMedicalIndication($id: ID!) {
+  medicalIndication(id: $id) {
+    id
+    name
+    alternateNames
+    creationDate
+    thing
+    relevance
+  }
+}

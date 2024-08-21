@@ -1,0 +1,12 @@
+query QueryMedicalGuidelines($filter: MedicalGuidelineFilter) {
+  medicalGuidelines(filter: $filter) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      thing
+      relevance
+    }
+  }
+}
