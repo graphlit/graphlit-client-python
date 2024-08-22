@@ -20,8 +20,10 @@ class Graphlit:
         
         headers = {"Authorization": f"Bearer {self.token}"}
 
+        timeout = httpx.Timeout(connect=10.0, read=600.0, write=10.0, pool=60.0)
+        
         self.client = Client(url=self.api_uri, headers=headers)
-        self.client.http_client.timeout = httpx.Timeout(timeout=600.0)
+        self.client.http_client.timeout = timeout
 
     def _generate_token(self):
         expiration = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=1)
