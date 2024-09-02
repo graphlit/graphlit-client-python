@@ -545,7 +545,11 @@ class AzureOpenAIModels(str, Enum):
 
 class CohereModels(str, Enum):
     COMMAND_R = "COMMAND_R"
+    COMMAND_R_202403 = "COMMAND_R_202403"
+    COMMAND_R_202408 = "COMMAND_R_202408"
     COMMAND_R_PLUS = "COMMAND_R_PLUS"
+    COMMAND_R_PLUS_202404 = "COMMAND_R_PLUS_202404"
+    COMMAND_R_PLUS_202408 = "COMMAND_R_PLUS_202408"
     CUSTOM = "CUSTOM"
 
 
@@ -684,6 +688,7 @@ class EntityEnrichmentServiceTypes(str, Enum):
     DIFFBOT = "DIFFBOT"
     WIKIPEDIA = "WIKIPEDIA"
     CRUNCHBASE = "CRUNCHBASE"
+    FHIR = "FHIR"
 
 
 class AzureDocumentIntelligenceModels(str, Enum):
@@ -708,6 +713,7 @@ class AzureDocumentIntelligenceModels(str, Enum):
 class AzureDocumentIntelligenceVersions(str, Enum):
     V2023_07_31 = "V2023_07_31"
     V2024_02_29_PREVIEW = "V2024_02_29_PREVIEW"
+    V2024_07_31_PREVIEW = "V2024_07_31_PREVIEW"
 
 
 class DeepgramModels(str, Enum):

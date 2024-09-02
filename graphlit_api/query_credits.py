@@ -18,6 +18,8 @@ class QueryCreditsCredits(BaseModel):
     credits: Optional[Any]
     storage_ratio: Optional[Any] = Field(alias="storageRatio")
     compute_ratio: Optional[Any] = Field(alias="computeRatio")
+    embedding_ratio: Optional[Any] = Field(alias="embeddingRatio")
+    completion_ratio: Optional[Any] = Field(alias="completionRatio")
     indexing_ratio: Optional[Any] = Field(alias="indexingRatio")
     preparation_ratio: Optional[Any] = Field(alias="preparationRatio")
     extraction_ratio: Optional[Any] = Field(alias="extractionRatio")

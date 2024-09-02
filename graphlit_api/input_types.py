@@ -2457,6 +2457,7 @@ class EntityEnrichmentConnectorInput(BaseModel):
     enriched_types: Optional[List[Optional[ObservableTypes]]] = Field(
         alias="enrichedTypes", default=None
     )
+    fhir: Optional["FHIREnrichmentPropertiesInput"] = None
 
 
 class DocumentPreparationPropertiesInput(BaseModel):
@@ -2518,6 +2519,10 @@ class ModelTextExtractionPropertiesInput(BaseModel):
 
 class ModelImageExtractionPropertiesInput(BaseModel):
     specification: Optional["EntityReferenceInput"] = None
+
+
+class FHIREnrichmentPropertiesInput(BaseModel):
+    endpoint: Optional[Any] = None
 
 
 class CategoryFacetInput(BaseModel):

@@ -115,6 +115,9 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
         connector {
           type
           enrichedTypes
+          fhir {
+            endpoint
+          }
         }
       }
     }

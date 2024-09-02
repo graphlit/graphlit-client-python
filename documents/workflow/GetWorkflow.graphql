@@ -120,6 +120,9 @@ query GetWorkflow($id: ID!) {
         connector {
           type
           enrichedTypes
+          fhir {
+            endpoint
+          }
         }
       }
     }

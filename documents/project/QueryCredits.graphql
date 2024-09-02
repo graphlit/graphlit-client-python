@@ -5,6 +5,8 @@ query QueryCredits($startDate: DateTime!, $duration: TimeSpan!) {
     credits
     storageRatio
     computeRatio
+    embeddingRatio
+    completionRatio
     indexingRatio
     preparationRatio
     extractionRatio

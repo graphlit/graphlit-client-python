@@ -243,6 +243,11 @@ class GetWorkflowWorkflowEnrichmentJobsConnector(BaseModel):
     enriched_types: Optional[List[Optional[ObservableTypes]]] = Field(
         alias="enrichedTypes"
     )
+    fhir: Optional["GetWorkflowWorkflowEnrichmentJobsConnectorFhir"]
+
+
+class GetWorkflowWorkflowEnrichmentJobsConnectorFhir(BaseModel):
+    endpoint: Optional[Any]
 
 
 class GetWorkflowWorkflowStorage(BaseModel):
@@ -285,6 +290,7 @@ GetWorkflowWorkflowExtractionJobsConnectorModelImage.model_rebuild()
 GetWorkflowWorkflowExtractionJobsConnectorModelText.model_rebuild()
 GetWorkflowWorkflowEnrichment.model_rebuild()
 GetWorkflowWorkflowEnrichmentJobs.model_rebuild()
+GetWorkflowWorkflowEnrichmentJobsConnector.model_rebuild()
 GetWorkflowWorkflowStorage.model_rebuild()
 GetWorkflowWorkflowActions.model_rebuild()
 GetWorkflowWorkflowActionsConnector.model_rebuild()

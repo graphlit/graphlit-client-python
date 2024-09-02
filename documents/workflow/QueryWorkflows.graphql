@@ -121,6 +121,9 @@ query QueryWorkflows($filter: WorkflowFilter) {
           connector {
             type
             enrichedTypes
+            fhir {
+              endpoint
+            }
           }
         }
       }

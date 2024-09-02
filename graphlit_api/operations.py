@@ -4747,6 +4747,8 @@ query LookupCredits($correlationId: String!) {
     credits
     storageRatio
     computeRatio
+    embeddingRatio
+    completionRatio
     indexingRatio
     preparationRatio
     extractionRatio
@@ -4803,6 +4805,8 @@ query QueryCredits($startDate: DateTime!, $duration: TimeSpan!) {
     credits
     storageRatio
     computeRatio
+    embeddingRatio
+    completionRatio
     indexingRatio
     preparationRatio
     extractionRatio
@@ -5620,6 +5624,9 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
         connector {
           type
           enrichedTypes
+          fhir {
+            endpoint
+          }
         }
       }
     }
@@ -5796,6 +5803,9 @@ query GetWorkflow($id: ID!) {
         connector {
           type
           enrichedTypes
+          fhir {
+            endpoint
+          }
         }
       }
     }
@@ -5942,6 +5952,9 @@ query QueryWorkflows($filter: WorkflowFilter) {
           connector {
             type
             enrichedTypes
+            fhir {
+              endpoint
+            }
           }
         }
       }
@@ -6083,6 +6096,9 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
         connector {
           type
           enrichedTypes
+          fhir {
+            endpoint
+          }
         }
       }
     }

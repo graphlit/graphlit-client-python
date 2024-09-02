@@ -257,6 +257,11 @@ class QueryWorkflowsWorkflowsResultsEnrichmentJobsConnector(BaseModel):
     enriched_types: Optional[List[Optional[ObservableTypes]]] = Field(
         alias="enrichedTypes"
     )
+    fhir: Optional["QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorFhir"]
+
+
+class QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorFhir(BaseModel):
+    endpoint: Optional[Any]
 
 
 class QueryWorkflowsWorkflowsResultsStorage(BaseModel):
@@ -300,6 +305,7 @@ QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelImage.model_rebuild()
 QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelText.model_rebuild()
 QueryWorkflowsWorkflowsResultsEnrichment.model_rebuild()
 QueryWorkflowsWorkflowsResultsEnrichmentJobs.model_rebuild()
+QueryWorkflowsWorkflowsResultsEnrichmentJobsConnector.model_rebuild()
 QueryWorkflowsWorkflowsResultsStorage.model_rebuild()
 QueryWorkflowsWorkflowsResultsActions.model_rebuild()
 QueryWorkflowsWorkflowsResultsActionsConnector.model_rebuild()
