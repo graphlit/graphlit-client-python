@@ -108,6 +108,11 @@ query QueryFeeds($filter: FeedFilter) {
         allowedPaths
         excludedPaths
       }
+      search {
+        readLimit
+        type
+        text
+      }
       reddit {
         readLimit
         subredditName

@@ -107,6 +107,11 @@ query GetFeed($id: ID!) {
       allowedPaths
       excludedPaths
     }
+    search {
+      readLimit
+      type
+      text
+    }
     reddit {
       readLimit
       subredditName

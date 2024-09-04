@@ -82,6 +82,7 @@ from .enums import (
     RetrievalStrategyTypes,
     RevisionStrategyTypes,
     SearchQueryTypes,
+    SearchServiceTypes,
     SearchTypes,
     SharePointAuthenticationTypes,
     SoftwareFacetTypes,
@@ -816,6 +817,7 @@ class FeedInput(BaseModel):
     issue: Optional["IssueFeedPropertiesInput"] = None
     rss: Optional["RSSFeedPropertiesInput"] = None
     web: Optional["WebFeedPropertiesInput"] = None
+    search: Optional["SearchFeedPropertiesInput"] = None
     reddit: Optional["RedditFeedPropertiesInput"] = None
     youtube: Optional["YouTubeFeedPropertiesInput"] = None
     notion: Optional["NotionFeedPropertiesInput"] = None
@@ -1172,6 +1174,7 @@ class FeedUpdateInput(BaseModel):
     issue: Optional["IssueFeedPropertiesUpdateInput"] = None
     rss: Optional["RSSFeedPropertiesUpdateInput"] = None
     web: Optional["WebFeedPropertiesUpdateInput"] = None
+    search: Optional["SearchFeedPropertiesUpdateInput"] = None
     reddit: Optional["RedditFeedPropertiesUpdateInput"] = None
     youtube: Optional["YouTubeFeedPropertiesUpdateInput"] = None
     notion: Optional["NotionFeedPropertiesUpdateInput"] = None
@@ -1621,6 +1624,12 @@ class WebFeedPropertiesInput(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
+class SearchFeedPropertiesInput(BaseModel):
+    type: Optional[SearchServiceTypes] = None
+    text: str
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
 class RedditFeedPropertiesInput(BaseModel):
     subreddit_name: str = Field(alias="subredditName")
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
@@ -1942,6 +1951,12 @@ class WebFeedPropertiesUpdateInput(BaseModel):
     allowed_paths: Optional[List[str]] = Field(alias="allowedPaths", default=None)
     excluded_paths: Optional[List[str]] = Field(alias="excludedPaths", default=None)
     include_files: Optional[bool] = Field(alias="includeFiles", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class SearchFeedPropertiesUpdateInput(BaseModel):
+    type: Optional[SearchServiceTypes] = None
+    text: Optional[str] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 

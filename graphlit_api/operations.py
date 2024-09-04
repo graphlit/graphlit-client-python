@@ -2910,6 +2910,11 @@ query GetFeed($id: ID!) {
       allowedPaths
       excludedPaths
     }
+    search {
+      readLimit
+      type
+      text
+    }
     reddit {
       readLimit
       subredditName
@@ -3084,6 +3089,11 @@ query QueryFeeds($filter: FeedFilter) {
         includeFiles
         allowedPaths
         excludedPaths
+      }
+      search {
+        readLimit
+        type
+        text
       }
       reddit {
         readLimit
@@ -4749,6 +4759,7 @@ query LookupCredits($correlationId: String!) {
     computeRatio
     embeddingRatio
     completionRatio
+    ingestionRatio
     indexingRatio
     preparationRatio
     extractionRatio
@@ -4807,6 +4818,7 @@ query QueryCredits($startDate: DateTime!, $duration: TimeSpan!) {
     computeRatio
     embeddingRatio
     completionRatio
+    ingestionRatio
     indexingRatio
     preparationRatio
     extractionRatio

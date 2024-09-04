@@ -13,6 +13,7 @@ from .enums import (
     FeedServiceTypes,
     FeedTypes,
     NotionTypes,
+    SearchServiceTypes,
     SharePointAuthenticationTypes,
     SiteTypes,
     TimedPolicyRecurrenceTypes,
@@ -38,6 +39,7 @@ class GetFeedFeed(BaseModel):
     issue: Optional["GetFeedFeedIssue"]
     rss: Optional["GetFeedFeedRss"]
     web: Optional["GetFeedFeedWeb"]
+    search: Optional["GetFeedFeedSearch"]
     reddit: Optional["GetFeedFeedReddit"]
     notion: Optional["GetFeedFeedNotion"]
     youtube: Optional["GetFeedFeedYoutube"]
@@ -183,6 +185,12 @@ class GetFeedFeedWeb(BaseModel):
     include_files: Optional[bool] = Field(alias="includeFiles")
     allowed_paths: Optional[List[str]] = Field(alias="allowedPaths")
     excluded_paths: Optional[List[str]] = Field(alias="excludedPaths")
+
+
+class GetFeedFeedSearch(BaseModel):
+    read_limit: Optional[int] = Field(alias="readLimit")
+    type: Optional[SearchServiceTypes]
+    text: str
 
 
 class GetFeedFeedReddit(BaseModel):
