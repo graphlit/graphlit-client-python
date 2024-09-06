@@ -594,6 +594,7 @@ class MistralModels(str, Enum):
 
 
 class GroqModels(str, Enum):
+    LLAVA_1_5_7B = "LLAVA_1_5_7B"
     MIXTRAL_8X7B_INSTRUCT = "MIXTRAL_8X7B_INSTRUCT"
     LLAMA_3_1_405B = "LLAMA_3_1_405B"
     LLAMA_3_1_70B = "LLAMA_3_1_70B"
