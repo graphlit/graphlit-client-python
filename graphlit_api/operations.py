@@ -5142,6 +5142,7 @@ query GetSpecification($id: ID!) {
     }
     rerankingStrategy {
       serviceType
+      threshold
     }
     graphStrategy {
       type
@@ -5401,6 +5402,7 @@ query QuerySpecifications($filter: SpecificationFilter) {
       }
       rerankingStrategy {
         serviceType
+        threshold
       }
       graphStrategy {
         type

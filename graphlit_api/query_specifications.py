@@ -105,6 +105,7 @@ class QuerySpecificationsSpecificationsResultsRetrievalStrategy(BaseModel):
 
 class QuerySpecificationsSpecificationsResultsRerankingStrategy(BaseModel):
     service_type: RerankingModelServiceTypes = Field(alias="serviceType")
+    threshold: Optional[float]
 
 
 class QuerySpecificationsSpecificationsResultsGraphStrategy(BaseModel):

@@ -32,6 +32,7 @@ query GetSpecification($id: ID!) {
     }
     rerankingStrategy {
       serviceType
+      threshold
     }
     graphStrategy {
       type

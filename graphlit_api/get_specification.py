@@ -99,6 +99,7 @@ class GetSpecificationSpecificationRetrievalStrategy(BaseModel):
 
 class GetSpecificationSpecificationRerankingStrategy(BaseModel):
     service_type: RerankingModelServiceTypes = Field(alias="serviceType")
+    threshold: Optional[float]
 
 
 class GetSpecificationSpecificationGraphStrategy(BaseModel):

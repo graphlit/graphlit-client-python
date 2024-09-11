@@ -615,6 +615,7 @@ class ElevenLabsModels(str, Enum):
     MULTILINGUAL_V2 = "MULTILINGUAL_V2"
     ENGLISH_V1 = "ENGLISH_V1"
     TURBO_V2 = "TURBO_V2"
+    TURBO_V2_5 = "TURBO_V2_5"
 
 
 class TextRoles(str, Enum):

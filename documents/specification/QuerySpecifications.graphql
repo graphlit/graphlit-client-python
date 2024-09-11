@@ -33,6 +33,7 @@ query QuerySpecifications($filter: SpecificationFilter) {
       }
       rerankingStrategy {
         serviceType
+        threshold
       }
       graphStrategy {
         type

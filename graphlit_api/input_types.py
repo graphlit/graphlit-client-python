@@ -1731,6 +1731,7 @@ class RetrievalStrategyInput(BaseModel):
 
 class RerankingStrategyInput(BaseModel):
     service_type: RerankingModelServiceTypes = Field(alias="serviceType")
+    threshold: Optional[float] = None
 
 
 class GraphStrategyInput(BaseModel):
@@ -2033,6 +2034,7 @@ class RerankingStrategyUpdateInput(BaseModel):
     service_type: Optional[RerankingModelServiceTypes] = Field(
         alias="serviceType", default=None
     )
+    threshold: Optional[float] = None
 
 
 class GraphStrategyUpdateInput(BaseModel):
