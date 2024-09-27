@@ -1472,12 +1472,14 @@ class Client(AsyncBaseClient):
         self,
         prompt: str,
         id: Union[Optional[str], UnsetType] = UNSET,
+        specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> PromptConversation:
         variables: Dict[str, object] = {
             "prompt": prompt,
             "id": id,
+            "specification": specification,
             "correlationId": correlation_id,
         }
         response = await self.execute(

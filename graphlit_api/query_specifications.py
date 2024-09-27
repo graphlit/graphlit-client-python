@@ -9,11 +9,13 @@ from .base_model import BaseModel
 from .enums import (
     AnthropicModels,
     AzureOpenAIModels,
+    CerebrasModels,
     CohereModels,
     ConversationSearchTypes,
     ConversationStrategyTypes,
     DeepseekModels,
     EntityState,
+    GoogleModels,
     GraphStrategyTypes,
     GroqModels,
     MistralModels,
@@ -74,9 +76,11 @@ class QuerySpecificationsSpecificationsResults(BaseModel):
     )
     cohere: Optional["QuerySpecificationsSpecificationsResultsCohere"]
     anthropic: Optional["QuerySpecificationsSpecificationsResultsAnthropic"]
+    google: Optional["QuerySpecificationsSpecificationsResultsGoogle"]
     replicate: Optional["QuerySpecificationsSpecificationsResultsReplicate"]
     mistral: Optional["QuerySpecificationsSpecificationsResultsMistral"]
     groq: Optional["QuerySpecificationsSpecificationsResultsGroq"]
+    cerebras: Optional["QuerySpecificationsSpecificationsResultsCerebras"]
     deepseek: Optional["QuerySpecificationsSpecificationsResultsDeepseek"]
     tools: Optional[List["QuerySpecificationsSpecificationsResultsTools"]]
 
@@ -161,6 +165,16 @@ class QuerySpecificationsSpecificationsResultsAnthropic(BaseModel):
     probability: Optional[float]
 
 
+class QuerySpecificationsSpecificationsResultsGoogle(BaseModel):
+    token_limit: Optional[int] = Field(alias="tokenLimit")
+    completion_token_limit: Optional[int] = Field(alias="completionTokenLimit")
+    model: GoogleModels
+    key: Optional[str]
+    model_name: Optional[str] = Field(alias="modelName")
+    temperature: Optional[float]
+    probability: Optional[float]
+
+
 class QuerySpecificationsSpecificationsResultsReplicate(BaseModel):
     token_limit: Optional[int] = Field(alias="tokenLimit")
     completion_token_limit: Optional[int] = Field(alias="completionTokenLimit")
@@ -186,6 +200,17 @@ class QuerySpecificationsSpecificationsResultsGroq(BaseModel):
     token_limit: Optional[int] = Field(alias="tokenLimit")
     completion_token_limit: Optional[int] = Field(alias="completionTokenLimit")
     model: GroqModels
+    key: Optional[str]
+    model_name: Optional[str] = Field(alias="modelName")
+    endpoint: Optional[Any]
+    temperature: Optional[float]
+    probability: Optional[float]
+
+
+class QuerySpecificationsSpecificationsResultsCerebras(BaseModel):
+    token_limit: Optional[int] = Field(alias="tokenLimit")
+    completion_token_limit: Optional[int] = Field(alias="completionTokenLimit")
+    model: CerebrasModels
     key: Optional[str]
     model_name: Optional[str] = Field(alias="modelName")
     endpoint: Optional[Any]

@@ -1051,6 +1051,7 @@ query GetContent($id: ID!) {
     }
     pages {
       index
+      relevance
       chunks {
         index
         pageIndex
@@ -1443,6 +1444,7 @@ query QueryContents($filter: ContentFilter) {
       }
       pages {
         index
+        relevance
         chunks {
           index
           pageIndex
@@ -1686,6 +1688,7 @@ query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!])
       }
       pages {
         index
+        relevance
         chunks {
           index
           pageIndex
@@ -2132,8 +2135,13 @@ query GetConversation($id: ID!) {
 """
 
 PROMPT_CONVERSATION_GQL = """
-mutation PromptConversation($prompt: String!, $id: ID, $correlationId: String) {
-  promptConversation(prompt: $prompt, id: $id, correlationId: $correlationId) {
+mutation PromptConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $correlationId: String) {
+  promptConversation(
+    prompt: $prompt
+    id: $id
+    specification: $specification
+    correlationId: $correlationId
+  ) {
     conversation {
       id
     }
@@ -5191,6 +5199,15 @@ query GetSpecification($id: ID!) {
       temperature
       probability
     }
+    google {
+      tokenLimit
+      completionTokenLimit
+      model
+      key
+      modelName
+      temperature
+      probability
+    }
     replicate {
       tokenLimit
       completionTokenLimit
@@ -5211,6 +5228,16 @@ query GetSpecification($id: ID!) {
       probability
     }
     groq {
+      tokenLimit
+      completionTokenLimit
+      model
+      key
+      modelName
+      endpoint
+      temperature
+      probability
+    }
+    cerebras {
       tokenLimit
       completionTokenLimit
       model
@@ -5451,6 +5478,15 @@ query QuerySpecifications($filter: SpecificationFilter) {
         temperature
         probability
       }
+      google {
+        tokenLimit
+        completionTokenLimit
+        model
+        key
+        modelName
+        temperature
+        probability
+      }
       replicate {
         tokenLimit
         completionTokenLimit
@@ -5471,6 +5507,16 @@ query QuerySpecifications($filter: SpecificationFilter) {
         probability
       }
       groq {
+        tokenLimit
+        completionTokenLimit
+        model
+        key
+        modelName
+        endpoint
+        temperature
+        probability
+      }
+      cerebras {
         tokenLimit
         completionTokenLimit
         model

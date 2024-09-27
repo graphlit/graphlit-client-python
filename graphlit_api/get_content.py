@@ -302,6 +302,7 @@ class GetContentContentWorkflow(BaseModel):
 
 class GetContentContentPages(BaseModel):
     index: Optional[int]
+    relevance: Optional[float]
     chunks: Optional[List[Optional["GetContentContentPagesChunks"]]]
 
 

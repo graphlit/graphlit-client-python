@@ -217,6 +217,7 @@ query QueryContents($filter: ContentFilter) {
       }
       pages {
         index
+        relevance
         chunks {
           index
           pageIndex

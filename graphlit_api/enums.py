@@ -234,11 +234,13 @@ class SpecificationTypes(str, Enum):
 
 
 class ModelServiceTypes(str, Enum):
+    GOOGLE = "GOOGLE"
     ANTHROPIC = "ANTHROPIC"
     AZURE_OPEN_AI = "AZURE_OPEN_AI"
     OPEN_AI = "OPEN_AI"
     REPLICATE = "REPLICATE"
     GROQ = "GROQ"
+    CEREBRAS = "CEREBRAS"
     MISTRAL = "MISTRAL"
     COHERE = "COHERE"
     DEEPSEEK = "DEEPSEEK"
@@ -576,6 +578,12 @@ class AnthropicModels(str, Enum):
     CUSTOM = "CUSTOM"
 
 
+class GoogleModels(str, Enum):
+    GEMINI_1_5_FLASH = "GEMINI_1_5_FLASH"
+    GEMINI_1_5_PRO = "GEMINI_1_5_PRO"
+    CUSTOM = "CUSTOM"
+
+
 class ReplicateModels(str, Enum):
     MISTRAL_7B = "MISTRAL_7B"
     MISTRAL_7B_INSTRUCT = "MISTRAL_7B_INSTRUCT"
@@ -598,13 +606,23 @@ class MistralModels(str, Enum):
 
 
 class GroqModels(str, Enum):
-    LLAVA_1_5_7B = "LLAVA_1_5_7B"
+    LLAVA_1_5_7B_PREVIEW = "LLAVA_1_5_7B_PREVIEW"
     MIXTRAL_8X7B_INSTRUCT = "MIXTRAL_8X7B_INSTRUCT"
+    LLAMA_3_2_90B_TEXT_PREVIEW = "LLAMA_3_2_90B_TEXT_PREVIEW"
+    LLAMA_3_2_11B_TEXT_PREVIEW = "LLAMA_3_2_11B_TEXT_PREVIEW"
+    LLAMA_3_2_3B_PREVIEW = "LLAMA_3_2_3B_PREVIEW"
+    LLAMA_3_2_1B_PREVIEW = "LLAMA_3_2_1B_PREVIEW"
     LLAMA_3_1_405B = "LLAMA_3_1_405B"
     LLAMA_3_1_70B = "LLAMA_3_1_70B"
     LLAMA_3_1_8B = "LLAMA_3_1_8B"
     LLAMA_3_70B = "LLAMA_3_70B"
     LLAMA_3_8B = "LLAMA_3_8B"
+    CUSTOM = "CUSTOM"
+
+
+class CerebrasModels(str, Enum):
+    LLAMA_3_1_70B = "LLAMA_3_1_70B"
+    LLAMA_3_1_8B = "LLAMA_3_1_8B"
     CUSTOM = "CUSTOM"
 
 

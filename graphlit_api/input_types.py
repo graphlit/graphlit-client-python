@@ -13,6 +13,7 @@ from .enums import (
     AzureDocumentIntelligenceVersions,
     AzureOpenAIModels,
     CategoryFacetTypes,
+    CerebrasModels,
     CohereModels,
     CollectionTypes,
     ContentFacetTypes,
@@ -37,6 +38,7 @@ from .enums import (
     FeedTypes,
     FilePreparationServiceTypes,
     FileTypes,
+    GoogleModels,
     GraphStrategyTypes,
     GroqModels,
     H3ResolutionTypes,
@@ -1077,9 +1079,11 @@ class SpecificationInput(BaseModel):
     )
     cohere: Optional["CohereModelPropertiesInput"] = None
     anthropic: Optional["AnthropicModelPropertiesInput"] = None
+    google: Optional["GoogleModelPropertiesInput"] = None
     replicate: Optional["ReplicateModelPropertiesInput"] = None
     mistral: Optional["MistralModelPropertiesInput"] = None
     groq: Optional["GroqModelPropertiesInput"] = None
+    cerebras: Optional["CerebrasModelPropertiesInput"] = None
     deepseek: Optional["DeepseekModelPropertiesInput"] = None
 
 
@@ -1450,9 +1454,11 @@ class SpecificationUpdateInput(BaseModel):
     )
     cohere: Optional["CohereModelPropertiesUpdateInput"] = None
     anthropic: Optional["AnthropicModelPropertiesUpdateInput"] = None
+    google: Optional["GoogleModelPropertiesUpdateInput"] = None
     replicate: Optional["ReplicateModelPropertiesUpdateInput"] = None
     mistral: Optional["MistralModelPropertiesUpdateInput"] = None
     groq: Optional["GroqModelPropertiesUpdateInput"] = None
+    cerebras: Optional["CerebrasModelPropertiesUpdateInput"] = None
     deepseek: Optional["DeepseekModelPropertiesUpdateInput"] = None
 
 
@@ -1805,6 +1811,18 @@ class AnthropicModelPropertiesInput(BaseModel):
     )
 
 
+class GoogleModelPropertiesInput(BaseModel):
+    model: GoogleModels
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+
+
 class ReplicateModelPropertiesInput(BaseModel):
     model: ReplicateModels
     model_name: Optional[str] = Field(alias="modelName", default=None)
@@ -1832,6 +1850,19 @@ class MistralModelPropertiesInput(BaseModel):
 
 class GroqModelPropertiesInput(BaseModel):
     model: GroqModels
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    endpoint: Optional[Any] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+
+
+class CerebrasModelPropertiesInput(BaseModel):
+    model: CerebrasModels
     model_name: Optional[str] = Field(alias="modelName", default=None)
     key: Optional[str] = None
     endpoint: Optional[Any] = None
@@ -2108,6 +2139,18 @@ class AnthropicModelPropertiesUpdateInput(BaseModel):
     )
 
 
+class GoogleModelPropertiesUpdateInput(BaseModel):
+    model: GoogleModels
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+
+
 class ReplicateModelPropertiesUpdateInput(BaseModel):
     model: ReplicateModels
     model_name: Optional[str] = Field(alias="modelName", default=None)
@@ -2135,6 +2178,19 @@ class MistralModelPropertiesUpdateInput(BaseModel):
 
 class GroqModelPropertiesUpdateInput(BaseModel):
     model: GroqModels
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    endpoint: Optional[Any] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+
+
+class CerebrasModelPropertiesUpdateInput(BaseModel):
+    model: CerebrasModels
     model_name: Optional[str] = Field(alias="modelName", default=None)
     key: Optional[str] = None
     endpoint: Optional[Any] = None

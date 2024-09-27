@@ -81,6 +81,15 @@ query GetSpecification($id: ID!) {
       temperature
       probability
     }
+    google {
+      tokenLimit
+      completionTokenLimit
+      model
+      key
+      modelName
+      temperature
+      probability
+    }
     replicate {
       tokenLimit
       completionTokenLimit
@@ -101,6 +110,16 @@ query GetSpecification($id: ID!) {
       probability
     }
     groq {
+      tokenLimit
+      completionTokenLimit
+      model
+      key
+      modelName
+      endpoint
+      temperature
+      probability
+    }
+    cerebras {
       tokenLimit
       completionTokenLimit
       model

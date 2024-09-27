@@ -9,11 +9,13 @@ from .base_model import BaseModel
 from .enums import (
     AnthropicModels,
     AzureOpenAIModels,
+    CerebrasModels,
     CohereModels,
     ConversationSearchTypes,
     ConversationStrategyTypes,
     DeepseekModels,
     EntityState,
+    GoogleModels,
     GraphStrategyTypes,
     GroqModels,
     MistralModels,
@@ -68,9 +70,11 @@ class GetSpecificationSpecification(BaseModel):
     )
     cohere: Optional["GetSpecificationSpecificationCohere"]
     anthropic: Optional["GetSpecificationSpecificationAnthropic"]
+    google: Optional["GetSpecificationSpecificationGoogle"]
     replicate: Optional["GetSpecificationSpecificationReplicate"]
     mistral: Optional["GetSpecificationSpecificationMistral"]
     groq: Optional["GetSpecificationSpecificationGroq"]
+    cerebras: Optional["GetSpecificationSpecificationCerebras"]
     deepseek: Optional["GetSpecificationSpecificationDeepseek"]
     tools: Optional[List["GetSpecificationSpecificationTools"]]
 
@@ -155,6 +159,16 @@ class GetSpecificationSpecificationAnthropic(BaseModel):
     probability: Optional[float]
 
 
+class GetSpecificationSpecificationGoogle(BaseModel):
+    token_limit: Optional[int] = Field(alias="tokenLimit")
+    completion_token_limit: Optional[int] = Field(alias="completionTokenLimit")
+    model: GoogleModels
+    key: Optional[str]
+    model_name: Optional[str] = Field(alias="modelName")
+    temperature: Optional[float]
+    probability: Optional[float]
+
+
 class GetSpecificationSpecificationReplicate(BaseModel):
     token_limit: Optional[int] = Field(alias="tokenLimit")
     completion_token_limit: Optional[int] = Field(alias="completionTokenLimit")
@@ -180,6 +194,17 @@ class GetSpecificationSpecificationGroq(BaseModel):
     token_limit: Optional[int] = Field(alias="tokenLimit")
     completion_token_limit: Optional[int] = Field(alias="completionTokenLimit")
     model: GroqModels
+    key: Optional[str]
+    model_name: Optional[str] = Field(alias="modelName")
+    endpoint: Optional[Any]
+    temperature: Optional[float]
+    probability: Optional[float]
+
+
+class GetSpecificationSpecificationCerebras(BaseModel):
+    token_limit: Optional[int] = Field(alias="tokenLimit")
+    completion_token_limit: Optional[int] = Field(alias="completionTokenLimit")
+    model: CerebrasModels
     key: Optional[str]
     model_name: Optional[str] = Field(alias="modelName")
     endpoint: Optional[Any]

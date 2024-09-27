@@ -317,6 +317,7 @@ class QueryContentsFacetsContentsResultsWorkflow(BaseModel):
 
 class QueryContentsFacetsContentsResultsPages(BaseModel):
     index: Optional[int]
+    relevance: Optional[float]
     chunks: Optional[List[Optional["QueryContentsFacetsContentsResultsPagesChunks"]]]
 
 
