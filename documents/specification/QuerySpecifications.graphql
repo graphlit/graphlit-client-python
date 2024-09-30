@@ -45,6 +45,14 @@ query QuerySpecifications($filter: SpecificationFilter) {
         customRevision
         count
       }
+      azureAI {
+        tokenLimit
+        completionTokenLimit
+        key
+        endpoint
+        temperature
+        probability
+      }
       openAI {
         tokenLimit
         completionTokenLimit
