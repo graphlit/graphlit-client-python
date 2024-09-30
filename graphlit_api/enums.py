@@ -236,6 +236,7 @@ class SpecificationTypes(str, Enum):
 class ModelServiceTypes(str, Enum):
     GOOGLE = "GOOGLE"
     ANTHROPIC = "ANTHROPIC"
+    AZURE_AI = "AZURE_AI"
     AZURE_OPEN_AI = "AZURE_OPEN_AI"
     OPEN_AI = "OPEN_AI"
     REPLICATE = "REPLICATE"

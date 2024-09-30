@@ -1071,6 +1071,9 @@ class SpecificationInput(BaseModel):
         alias="revisionStrategy", default=None
     )
     tools: Optional[List["ToolDefinitionInput"]] = None
+    azure_ai: Optional["AzureAIModelPropertiesInput"] = Field(
+        alias="azureAI", default=None
+    )
     open_ai: Optional["OpenAIModelPropertiesInput"] = Field(
         alias="openAI", default=None
     )
@@ -1446,6 +1449,9 @@ class SpecificationUpdateInput(BaseModel):
         alias="revisionStrategy", default=None
     )
     tools: Optional[List["ToolDefinitionUpdateInput"]] = None
+    azure_ai: Optional["AzureAIModelPropertiesUpdateInput"] = Field(
+        alias="azureAI", default=None
+    )
     open_ai: Optional["OpenAIModelPropertiesUpdateInput"] = Field(
         alias="openAI", default=None
     )
@@ -1757,6 +1763,17 @@ class ToolDefinitionInput(BaseModel):
     description: Optional[str] = None
     schema_: str = Field(alias="schema")
     uri: Optional[Any] = None
+
+
+class AzureAIModelPropertiesInput(BaseModel):
+    key: str
+    endpoint: Any
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: int = Field(alias="tokenLimit")
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
 
 
 class OpenAIModelPropertiesInput(BaseModel):
@@ -2085,6 +2102,17 @@ class ToolDefinitionUpdateInput(BaseModel):
     description: Optional[str] = None
     schema_: Optional[str] = Field(alias="schema", default=None)
     uri: Optional[Any] = None
+
+
+class AzureAIModelPropertiesUpdateInput(BaseModel):
+    key: Optional[str] = None
+    endpoint: Optional[Any] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
 
 
 class OpenAIModelPropertiesUpdateInput(BaseModel):
