@@ -68,6 +68,9 @@ class QuerySpecificationsSpecificationsResults(BaseModel):
     revision_strategy: Optional[
         "QuerySpecificationsSpecificationsResultsRevisionStrategy"
     ] = Field(alias="revisionStrategy")
+    azure_ai: Optional["QuerySpecificationsSpecificationsResultsAzureAi"] = Field(
+        alias="azureAI"
+    )
     open_ai: Optional["QuerySpecificationsSpecificationsResultsOpenAi"] = Field(
         alias="openAI"
     )
@@ -122,6 +125,15 @@ class QuerySpecificationsSpecificationsResultsRevisionStrategy(BaseModel):
     type: RevisionStrategyTypes
     custom_revision: Optional[str] = Field(alias="customRevision")
     count: Optional[int]
+
+
+class QuerySpecificationsSpecificationsResultsAzureAi(BaseModel):
+    token_limit: int = Field(alias="tokenLimit")
+    completion_token_limit: Optional[int] = Field(alias="completionTokenLimit")
+    key: str
+    endpoint: Any
+    temperature: Optional[float]
+    probability: Optional[float]
 
 
 class QuerySpecificationsSpecificationsResultsOpenAi(BaseModel):

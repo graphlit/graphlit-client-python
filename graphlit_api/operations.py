@@ -5162,6 +5162,14 @@ query GetSpecification($id: ID!) {
       customRevision
       count
     }
+    azureAI {
+      tokenLimit
+      completionTokenLimit
+      key
+      endpoint
+      temperature
+      probability
+    }
     openAI {
       tokenLimit
       completionTokenLimit
@@ -5440,6 +5448,14 @@ query QuerySpecifications($filter: SpecificationFilter) {
         type
         customRevision
         count
+      }
+      azureAI {
+        tokenLimit
+        completionTokenLimit
+        key
+        endpoint
+        temperature
+        probability
       }
       openAI {
         tokenLimit

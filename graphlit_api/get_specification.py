@@ -64,6 +64,7 @@ class GetSpecificationSpecification(BaseModel):
     revision_strategy: Optional["GetSpecificationSpecificationRevisionStrategy"] = (
         Field(alias="revisionStrategy")
     )
+    azure_ai: Optional["GetSpecificationSpecificationAzureAi"] = Field(alias="azureAI")
     open_ai: Optional["GetSpecificationSpecificationOpenAi"] = Field(alias="openAI")
     azure_open_ai: Optional["GetSpecificationSpecificationAzureOpenAi"] = Field(
         alias="azureOpenAI"
@@ -116,6 +117,15 @@ class GetSpecificationSpecificationRevisionStrategy(BaseModel):
     type: RevisionStrategyTypes
     custom_revision: Optional[str] = Field(alias="customRevision")
     count: Optional[int]
+
+
+class GetSpecificationSpecificationAzureAi(BaseModel):
+    token_limit: int = Field(alias="tokenLimit")
+    completion_token_limit: Optional[int] = Field(alias="completionTokenLimit")
+    key: str
+    endpoint: Any
+    temperature: Optional[float]
+    probability: Optional[float]
 
 
 class GetSpecificationSpecificationOpenAi(BaseModel):
