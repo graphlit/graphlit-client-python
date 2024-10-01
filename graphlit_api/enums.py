@@ -582,6 +582,10 @@ class AnthropicModels(str, Enum):
 class GoogleModels(str, Enum):
     GEMINI_1_5_FLASH = "GEMINI_1_5_FLASH"
     GEMINI_1_5_PRO = "GEMINI_1_5_PRO"
+    GEMINI_1_5_FLASH_001 = "GEMINI_1_5_FLASH_001"
+    GEMINI_1_5_PRO_001 = "GEMINI_1_5_PRO_001"
+    GEMINI_1_5_FLASH_002 = "GEMINI_1_5_FLASH_002"
+    GEMINI_1_5_PRO_002 = "GEMINI_1_5_PRO_002"
     CUSTOM = "CUSTOM"
 
 
