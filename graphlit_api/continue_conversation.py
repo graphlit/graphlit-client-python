@@ -21,33 +21,33 @@ from .enums import (
 )
 
 
-class PromptConversation(BaseModel):
-    prompt_conversation: Optional["PromptConversationPromptConversation"] = Field(
-        alias="promptConversation"
+class ContinueConversation(BaseModel):
+    continue_conversation: Optional["ContinueConversationContinueConversation"] = Field(
+        alias="continueConversation"
     )
 
 
-class PromptConversationPromptConversation(BaseModel):
-    conversation: Optional["PromptConversationPromptConversationConversation"]
-    message: Optional["PromptConversationPromptConversationMessage"]
+class ContinueConversationContinueConversation(BaseModel):
+    conversation: Optional["ContinueConversationContinueConversationConversation"]
+    message: Optional["ContinueConversationContinueConversationMessage"]
     message_count: Optional[int] = Field(alias="messageCount")
-    facets: Optional[List[Optional["PromptConversationPromptConversationFacets"]]]
-    graph: Optional["PromptConversationPromptConversationGraph"]
+    facets: Optional[List[Optional["ContinueConversationContinueConversationFacets"]]]
+    graph: Optional["ContinueConversationContinueConversationGraph"]
 
 
-class PromptConversationPromptConversationConversation(BaseModel):
+class ContinueConversationContinueConversationConversation(BaseModel):
     id: str
 
 
-class PromptConversationPromptConversationMessage(BaseModel):
+class ContinueConversationContinueConversationMessage(BaseModel):
     role: ConversationRoleTypes
     author: Optional[str]
     message: Optional[str]
     citations: Optional[
-        List[Optional["PromptConversationPromptConversationMessageCitations"]]
+        List[Optional["ContinueConversationContinueConversationMessageCitations"]]
     ]
     tool_calls: Optional[
-        List[Optional["PromptConversationPromptConversationMessageToolCalls"]]
+        List[Optional["ContinueConversationContinueConversationMessageToolCalls"]]
     ] = Field(alias="toolCalls")
     tokens: Optional[int]
     throughput: Optional[float]
@@ -57,8 +57,8 @@ class PromptConversationPromptConversationMessage(BaseModel):
     model: Optional[str]
 
 
-class PromptConversationPromptConversationMessageCitations(BaseModel):
-    content: Optional["PromptConversationPromptConversationMessageCitationsContent"]
+class ContinueConversationContinueConversationMessageCitations(BaseModel):
+    content: Optional["ContinueConversationContinueConversationMessageCitationsContent"]
     index: Optional[int]
     text: str
     start_time: Optional[Any] = Field(alias="startTime")
@@ -67,7 +67,7 @@ class PromptConversationPromptConversationMessageCitations(BaseModel):
     frame_number: Optional[int] = Field(alias="frameNumber")
 
 
-class PromptConversationPromptConversationMessageCitationsContent(BaseModel):
+class ContinueConversationContinueConversationMessageCitationsContent(BaseModel):
     id: str
     name: str
     state: EntityState
@@ -95,15 +95,21 @@ class PromptConversationPromptConversationMessageCitationsContent(BaseModel):
     posts: Optional[List[str]]
     chapters: Optional[List[str]]
     questions: Optional[List[str]]
-    video: Optional["PromptConversationPromptConversationMessageCitationsContentVideo"]
-    audio: Optional["PromptConversationPromptConversationMessageCitationsContentAudio"]
-    image: Optional["PromptConversationPromptConversationMessageCitationsContentImage"]
+    video: Optional[
+        "ContinueConversationContinueConversationMessageCitationsContentVideo"
+    ]
+    audio: Optional[
+        "ContinueConversationContinueConversationMessageCitationsContentAudio"
+    ]
+    image: Optional[
+        "ContinueConversationContinueConversationMessageCitationsContentImage"
+    ]
     document: Optional[
-        "PromptConversationPromptConversationMessageCitationsContentDocument"
+        "ContinueConversationContinueConversationMessageCitationsContentDocument"
     ]
 
 
-class PromptConversationPromptConversationMessageCitationsContentVideo(BaseModel):
+class ContinueConversationContinueConversationMessageCitationsContentVideo(BaseModel):
     width: Optional[int]
     height: Optional[int]
     duration: Optional[Any]
@@ -116,7 +122,7 @@ class PromptConversationPromptConversationMessageCitationsContentVideo(BaseModel
     author: Optional[str]
 
 
-class PromptConversationPromptConversationMessageCitationsContentAudio(BaseModel):
+class ContinueConversationContinueConversationMessageCitationsContentAudio(BaseModel):
     keywords: Optional[List[Optional[str]]]
     author: Optional[str]
     series: Optional[str]
@@ -135,7 +141,7 @@ class PromptConversationPromptConversationMessageCitationsContentAudio(BaseModel
     duration: Optional[Any]
 
 
-class PromptConversationPromptConversationMessageCitationsContentImage(BaseModel):
+class ContinueConversationContinueConversationMessageCitationsContentImage(BaseModel):
     width: Optional[int]
     height: Optional[int]
     resolution_x: Optional[int] = Field(alias="resolutionX")
@@ -157,7 +163,9 @@ class PromptConversationPromptConversationMessageCitationsContentImage(BaseModel
     pitch: Optional[float]
 
 
-class PromptConversationPromptConversationMessageCitationsContentDocument(BaseModel):
+class ContinueConversationContinueConversationMessageCitationsContentDocument(
+    BaseModel
+):
     title: Optional[str]
     subject: Optional[str]
     summary: Optional[str]
@@ -175,61 +183,65 @@ class PromptConversationPromptConversationMessageCitationsContentDocument(BaseMo
     has_digital_signature: Optional[bool] = Field(alias="hasDigitalSignature")
 
 
-class PromptConversationPromptConversationMessageToolCalls(BaseModel):
+class ContinueConversationContinueConversationMessageToolCalls(BaseModel):
     id: Optional[str]
     name: str
     arguments: str
 
 
-class PromptConversationPromptConversationFacets(BaseModel):
+class ContinueConversationContinueConversationFacets(BaseModel):
     type: Optional[FacetValueTypes]
     value: Optional[str]
-    range: Optional["PromptConversationPromptConversationFacetsRange"]
+    range: Optional["ContinueConversationContinueConversationFacetsRange"]
     count: Optional[Any]
     facet: Optional[ContentFacetTypes]
-    observable: Optional["PromptConversationPromptConversationFacetsObservable"]
+    observable: Optional["ContinueConversationContinueConversationFacetsObservable"]
 
 
-class PromptConversationPromptConversationFacetsRange(BaseModel):
+class ContinueConversationContinueConversationFacetsRange(BaseModel):
     from_: Optional[str] = Field(alias="from")
     to: Optional[str]
 
 
-class PromptConversationPromptConversationFacetsObservable(BaseModel):
+class ContinueConversationContinueConversationFacetsObservable(BaseModel):
     type: Optional[ObservableTypes]
     observable: Optional[
-        "PromptConversationPromptConversationFacetsObservableObservable"
+        "ContinueConversationContinueConversationFacetsObservableObservable"
     ]
 
 
-class PromptConversationPromptConversationFacetsObservableObservable(BaseModel):
+class ContinueConversationContinueConversationFacetsObservableObservable(BaseModel):
     id: str
     name: Optional[str]
 
 
-class PromptConversationPromptConversationGraph(BaseModel):
-    nodes: Optional[List[Optional["PromptConversationPromptConversationGraphNodes"]]]
-    edges: Optional[List[Optional["PromptConversationPromptConversationGraphEdges"]]]
+class ContinueConversationContinueConversationGraph(BaseModel):
+    nodes: Optional[
+        List[Optional["ContinueConversationContinueConversationGraphNodes"]]
+    ]
+    edges: Optional[
+        List[Optional["ContinueConversationContinueConversationGraphEdges"]]
+    ]
 
 
-class PromptConversationPromptConversationGraphNodes(BaseModel):
+class ContinueConversationContinueConversationGraphNodes(BaseModel):
     id: str
     name: str
     type: EntityTypes
     metadata: Optional[str]
 
 
-class PromptConversationPromptConversationGraphEdges(BaseModel):
+class ContinueConversationContinueConversationGraphEdges(BaseModel):
     from_: str = Field(alias="from")
     to: str
     relation: Optional[str]
 
 
-PromptConversation.model_rebuild()
-PromptConversationPromptConversation.model_rebuild()
-PromptConversationPromptConversationMessage.model_rebuild()
-PromptConversationPromptConversationMessageCitations.model_rebuild()
-PromptConversationPromptConversationMessageCitationsContent.model_rebuild()
-PromptConversationPromptConversationFacets.model_rebuild()
-PromptConversationPromptConversationFacetsObservable.model_rebuild()
-PromptConversationPromptConversationGraph.model_rebuild()
+ContinueConversation.model_rebuild()
+ContinueConversationContinueConversation.model_rebuild()
+ContinueConversationContinueConversationMessage.model_rebuild()
+ContinueConversationContinueConversationMessageCitations.model_rebuild()
+ContinueConversationContinueConversationMessageCitationsContent.model_rebuild()
+ContinueConversationContinueConversationFacets.model_rebuild()
+ContinueConversationContinueConversationFacetsObservable.model_rebuild()
+ContinueConversationContinueConversationGraph.model_rebuild()

@@ -120,6 +120,11 @@ query QueryConversations($filter: ConversationFilter) {
           pageNumber
           frameNumber
         }
+        toolCalls {
+          id
+          name
+          arguments
+        }
         tokens
         throughput
         completionTime

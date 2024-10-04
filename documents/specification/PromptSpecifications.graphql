@@ -112,6 +112,11 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
         pageNumber
         frameNumber
       }
+      toolCalls {
+        id
+        name
+        arguments
+      }
       tokens
       throughput
       completionTime

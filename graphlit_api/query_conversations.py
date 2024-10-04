@@ -51,14 +51,17 @@ class QueryConversationsConversationsResultsOwner(BaseModel):
 class QueryConversationsConversationsResultsMessages(BaseModel):
     role: ConversationRoleTypes
     author: Optional[str]
-    message: str
+    message: Optional[str]
     citations: Optional[
         List[Optional["QueryConversationsConversationsResultsMessagesCitations"]]
     ]
-    tokens: int
+    tool_calls: Optional[
+        List[Optional["QueryConversationsConversationsResultsMessagesToolCalls"]]
+    ] = Field(alias="toolCalls")
+    tokens: Optional[int]
     throughput: Optional[float]
     completion_time: Optional[Any] = Field(alias="completionTime")
-    timestamp: Any
+    timestamp: Optional[Any]
     model_service: Optional[ModelServiceTypes] = Field(alias="modelService")
     model: Optional[str]
 
@@ -66,7 +69,7 @@ class QueryConversationsConversationsResultsMessages(BaseModel):
 class QueryConversationsConversationsResultsMessagesCitations(BaseModel):
     content: Optional["QueryConversationsConversationsResultsMessagesCitationsContent"]
     index: Optional[int]
-    text: Optional[str]
+    text: str
     start_time: Optional[Any] = Field(alias="startTime")
     end_time: Optional[Any] = Field(alias="endTime")
     page_number: Optional[int] = Field(alias="pageNumber")
@@ -185,6 +188,12 @@ class QueryConversationsConversationsResultsMessagesCitationsContentDocument(Bas
     paragraph_count: Optional[int] = Field(alias="paragraphCount")
     is_encrypted: Optional[bool] = Field(alias="isEncrypted")
     has_digital_signature: Optional[bool] = Field(alias="hasDigitalSignature")
+
+
+class QueryConversationsConversationsResultsMessagesToolCalls(BaseModel):
+    id: Optional[str]
+    name: str
+    arguments: str
 
 
 class QueryConversationsConversationsResultsSpecification(BaseModel):

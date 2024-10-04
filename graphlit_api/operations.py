@@ -5,6 +5,7 @@ __all__ = [
     "ADD_CONTENTS_TO_COLLECTIONS_GQL",
     "CLEAR_CONVERSATION_GQL",
     "CLOSE_CONVERSATION_GQL",
+    "CONTINUE_CONVERSATION_GQL",
     "COUNT_ALERTS_GQL",
     "COUNT_CATEGORIES_GQL",
     "COUNT_COLLECTIONS_GQL",
@@ -175,6 +176,7 @@ __all__ = [
     "GET_SOFTWARE_GQL",
     "GET_SPECIFICATION_GQL",
     "GET_WORKFLOW_GQL",
+    "INGEST_BATCH_GQL",
     "INGEST_ENCODED_FILE_GQL",
     "INGEST_TEXT_GQL",
     "INGEST_URI_GQL",
@@ -810,11 +812,12 @@ mutation DeleteContents($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 EXTRACT_CONTENTS_GQL = """
-mutation ExtractContents($prompt: String!, $filter: ContentFilter, $specification: EntityReferenceInput!, $correlationId: String) {
+mutation ExtractContents($prompt: String!, $filter: ContentFilter, $specification: EntityReferenceInput!, $tools: [ToolDefinitionInput!]!, $correlationId: String) {
   extractContents(
     prompt: $prompt
     filter: $filter
     specification: $specification
+    tools: $tools
     correlationId: $correlationId
   ) {
     specification {
@@ -1070,6 +1073,29 @@ query GetContent($id: ID!) {
       relevance
     }
     error
+  }
+}
+"""
+
+INGEST_BATCH_GQL = """
+mutation IngestBatch($uris: [URL!]!, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $correlationId: String) {
+  ingestBatch(
+    uris: $uris
+    workflow: $workflow
+    collections: $collections
+    correlationId: $correlationId
+  ) {
+    id
+    name
+    state
+    type
+    fileType
+    mimeType
+    uri
+    collections {
+      id
+      name
+    }
   }
 }
 """
@@ -1813,6 +1839,172 @@ mutation CloseConversation($id: ID!) {
 }
 """
 
+CONTINUE_CONVERSATION_GQL = """
+mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInput!]!, $correlationId: String) {
+  continueConversation(
+    id: $id
+    responses: $responses
+    correlationId: $correlationId
+  ) {
+    conversation {
+      id
+    }
+    message {
+      role
+      author
+      message
+      citations {
+        content {
+          id
+          name
+          state
+          originalDate
+          identifier
+          uri
+          type
+          fileType
+          mimeType
+          format
+          formatName
+          fileExtension
+          fileName
+          fileSize
+          masterUri
+          imageUri
+          textUri
+          audioUri
+          transcriptUri
+          summary
+          customSummary
+          keywords
+          bullets
+          headlines
+          posts
+          chapters
+          questions
+          video {
+            width
+            height
+            duration
+            make
+            model
+            software
+            title
+            description
+            keywords
+            author
+          }
+          audio {
+            keywords
+            author
+            series
+            episode
+            episodeType
+            season
+            publisher
+            copyright
+            genre
+            title
+            description
+            bitrate
+            channels
+            sampleRate
+            bitsPerSample
+            duration
+          }
+          image {
+            width
+            height
+            resolutionX
+            resolutionY
+            bitsPerComponent
+            components
+            projectionType
+            orientation
+            description
+            make
+            model
+            software
+            lens
+            focalLength
+            exposureTime
+            fNumber
+            iso
+            heading
+            pitch
+          }
+          document {
+            title
+            subject
+            summary
+            author
+            publisher
+            description
+            keywords
+            pageCount
+            worksheetCount
+            slideCount
+            wordCount
+            lineCount
+            paragraphCount
+            isEncrypted
+            hasDigitalSignature
+          }
+        }
+        index
+        text
+        startTime
+        endTime
+        pageNumber
+        frameNumber
+      }
+      toolCalls {
+        id
+        name
+        arguments
+      }
+      tokens
+      throughput
+      completionTime
+      timestamp
+      modelService
+      model
+    }
+    messageCount
+    facets {
+      type
+      value
+      range {
+        from
+        to
+      }
+      count
+      facet
+      observable {
+        type
+        observable {
+          id
+          name
+        }
+      }
+    }
+    graph {
+      nodes {
+        id
+        name
+        type
+        metadata
+      }
+      edges {
+        from
+        to
+        relation
+      }
+    }
+  }
+}
+"""
+
 COUNT_CONVERSATIONS_GQL = """
 query CountConversations($filter: ConversationFilter) {
   countConversations(filter: $filter) {
@@ -1985,6 +2177,11 @@ query GetConversation($id: ID!) {
         pageNumber
         frameNumber
       }
+      toolCalls {
+        id
+        name
+        arguments
+      }
       tokens
       throughput
       completionTime
@@ -2135,11 +2332,12 @@ query GetConversation($id: ID!) {
 """
 
 PROMPT_CONVERSATION_GQL = """
-mutation PromptConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $correlationId: String) {
+mutation PromptConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $tools: [ToolDefinitionInput!], $correlationId: String) {
   promptConversation(
     prompt: $prompt
     id: $id
     specification: $specification
+    tools: $tools
     correlationId: $correlationId
   ) {
     conversation {
@@ -2253,6 +2451,11 @@ mutation PromptConversation($prompt: String!, $id: ID, $specification: EntityRef
         endTime
         pageNumber
         frameNumber
+      }
+      toolCalls {
+        id
+        name
+        arguments
       }
       tokens
       throughput
@@ -2446,6 +2649,11 @@ query QueryConversations($filter: ConversationFilter) {
           endTime
           pageNumber
           frameNumber
+        }
+        toolCalls {
+          id
+          name
+          arguments
         }
         tokens
         throughput
@@ -5388,6 +5596,11 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
         endTime
         pageNumber
         frameNumber
+      }
+      toolCalls {
+        id
+        name
+        arguments
       }
       tokens
       throughput

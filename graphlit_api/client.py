@@ -8,6 +8,7 @@ from .async_base_client import AsyncBaseClient
 from .base_model import UNSET, UnsetType
 from .clear_conversation import ClearConversation
 from .close_conversation import CloseConversation
+from .continue_conversation import ContinueConversation
 from .count_alerts import CountAlerts
 from .count_categories import CountCategories
 from .count_collections import CountCollections
@@ -179,6 +180,7 @@ from .get_share_point_consent_uri import GetSharePointConsentUri
 from .get_software import GetSoftware
 from .get_specification import GetSpecification
 from .get_workflow import GetWorkflow
+from .ingest_batch import IngestBatch
 from .ingest_encoded_file import IngestEncodedFile
 from .ingest_text import IngestText
 from .ingest_uri import IngestUri
@@ -199,6 +201,7 @@ from .input_types import (
     ContentUpdateInput,
     ConversationFilter,
     ConversationInput,
+    ConversationToolResponseInput,
     ConversationUpdateInput,
     EntityReferenceInput,
     EventFilter,
@@ -273,6 +276,7 @@ from .input_types import (
     SpecificationInput,
     SpecificationUpdateInput,
     SummarizationStrategyInput,
+    ToolDefinitionInput,
     WorkflowFilter,
     WorkflowInput,
     WorkflowUpdateInput,
@@ -285,6 +289,7 @@ from .operations import (
     ADD_CONTENTS_TO_COLLECTIONS_GQL,
     CLEAR_CONVERSATION_GQL,
     CLOSE_CONVERSATION_GQL,
+    CONTINUE_CONVERSATION_GQL,
     COUNT_ALERTS_GQL,
     COUNT_CATEGORIES_GQL,
     COUNT_COLLECTIONS_GQL,
@@ -455,6 +460,7 @@ from .operations import (
     GET_SOFTWARE_GQL,
     GET_SPECIFICATION_GQL,
     GET_WORKFLOW_GQL,
+    INGEST_BATCH_GQL,
     INGEST_ENCODED_FILE_GQL,
     INGEST_TEXT_GQL,
     INGEST_URI_GQL,
@@ -1076,6 +1082,7 @@ class Client(AsyncBaseClient):
         self,
         prompt: str,
         specification: EntityReferenceInput,
+        tools: List[ToolDefinitionInput],
         filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
@@ -1084,6 +1091,7 @@ class Client(AsyncBaseClient):
             "prompt": prompt,
             "filter": filter,
             "specification": specification,
+            "tools": tools,
             "correlationId": correlation_id,
         }
         response = await self.execute(
@@ -1105,6 +1113,29 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return GetContent.model_validate(data)
+
+    async def ingest_batch(
+        self,
+        uris: List[Any],
+        workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        collections: Union[Optional[List[EntityReferenceInput]], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> IngestBatch:
+        variables: Dict[str, object] = {
+            "uris": uris,
+            "workflow": workflow,
+            "collections": collections,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=INGEST_BATCH_GQL,
+            operation_name="IngestBatch",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return IngestBatch.model_validate(data)
 
     async def ingest_encoded_file(
         self,
@@ -1375,6 +1406,27 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return CloseConversation.model_validate(data)
 
+    async def continue_conversation(
+        self,
+        id: str,
+        responses: List[ConversationToolResponseInput],
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> ContinueConversation:
+        variables: Dict[str, object] = {
+            "id": id,
+            "responses": responses,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=CONTINUE_CONVERSATION_GQL,
+            operation_name="ContinueConversation",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return ContinueConversation.model_validate(data)
+
     async def count_conversations(
         self,
         filter: Union[Optional[ConversationFilter], UnsetType] = UNSET,
@@ -1473,6 +1525,7 @@ class Client(AsyncBaseClient):
         prompt: str,
         id: Union[Optional[str], UnsetType] = UNSET,
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        tools: Union[Optional[List[ToolDefinitionInput]], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> PromptConversation:
@@ -1480,6 +1533,7 @@ class Client(AsyncBaseClient):
             "prompt": prompt,
             "id": id,
             "specification": specification,
+            "tools": tools,
             "correlationId": correlation_id,
         }
         response = await self.execute(

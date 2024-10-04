@@ -21,6 +21,7 @@ from .enums import (
     ContentPublishingFormats,
     ContentPublishingServiceTypes,
     ContentTypes,
+    ConversationRoleTypes,
     ConversationSearchTypes,
     ConversationStrategyTypes,
     ConversationTypes,
@@ -777,6 +778,7 @@ class ContentInput(BaseModel):
 class ConversationInput(BaseModel):
     name: str
     type: Optional[ConversationTypes] = None
+    messages: Optional[List[Optional["ConversationMessageInput"]]] = None
     specification: Optional["EntityReferenceInput"] = None
     filter: Optional["ContentCriteriaInput"] = None
     augmented_filter: Optional["ContentCriteriaInput"] = Field(
@@ -1070,7 +1072,6 @@ class SpecificationInput(BaseModel):
     revision_strategy: Optional["RevisionStrategyInput"] = Field(
         alias="revisionStrategy", default=None
     )
-    tools: Optional[List["ToolDefinitionInput"]] = None
     azure_ai: Optional["AzureAIModelPropertiesInput"] = Field(
         alias="azureAI", default=None
     )
@@ -1448,7 +1449,6 @@ class SpecificationUpdateInput(BaseModel):
     revision_strategy: Optional["RevisionStrategyUpdateInput"] = Field(
         alias="revisionStrategy", default=None
     )
-    tools: Optional[List["ToolDefinitionUpdateInput"]] = None
     azure_ai: Optional["AzureAIModelPropertiesUpdateInput"] = Field(
         alias="azureAI", default=None
     )
@@ -1563,6 +1563,12 @@ class AlertSchedulePolicyInput(BaseModel):
     time_type: Optional[PolicyTimeTypes] = Field(alias="timeType", default=None)
     absolute_time: Optional[Any] = Field(alias="absoluteTime", default=None)
     relative_time: Optional[Any] = Field(alias="relativeTime", default=None)
+
+
+class ConversationMessageInput(BaseModel):
+    role: ConversationRoleTypes
+    author: Optional[str] = None
+    message: str
 
 
 class PointInput(BaseModel):
@@ -2116,7 +2122,7 @@ class AzureAIModelPropertiesUpdateInput(BaseModel):
 
 
 class OpenAIModelPropertiesUpdateInput(BaseModel):
-    model: OpenAIModels
+    model: Optional[OpenAIModels] = None
     model_name: Optional[str] = Field(alias="modelName", default=None)
     key: Optional[str] = None
     temperature: Optional[float] = None
@@ -2131,7 +2137,7 @@ class OpenAIModelPropertiesUpdateInput(BaseModel):
 
 
 class AzureOpenAIModelPropertiesUpdateInput(BaseModel):
-    model: AzureOpenAIModels
+    model: Optional[AzureOpenAIModels] = None
     deployment_name: Optional[str] = Field(alias="deploymentName", default=None)
     key: Optional[str] = None
     endpoint: Optional[Any] = None
@@ -2144,7 +2150,7 @@ class AzureOpenAIModelPropertiesUpdateInput(BaseModel):
 
 
 class CohereModelPropertiesUpdateInput(BaseModel):
-    model: CohereModels
+    model: Optional[CohereModels] = None
     model_name: Optional[str] = Field(alias="modelName", default=None)
     key: Optional[str] = None
     temperature: Optional[float] = None
@@ -2156,7 +2162,7 @@ class CohereModelPropertiesUpdateInput(BaseModel):
 
 
 class AnthropicModelPropertiesUpdateInput(BaseModel):
-    model: AnthropicModels
+    model: Optional[AnthropicModels] = None
     model_name: Optional[str] = Field(alias="modelName", default=None)
     key: Optional[str] = None
     temperature: Optional[float] = None
@@ -2168,7 +2174,7 @@ class AnthropicModelPropertiesUpdateInput(BaseModel):
 
 
 class GoogleModelPropertiesUpdateInput(BaseModel):
-    model: GoogleModels
+    model: Optional[GoogleModels] = None
     model_name: Optional[str] = Field(alias="modelName", default=None)
     key: Optional[str] = None
     temperature: Optional[float] = None
@@ -2180,7 +2186,7 @@ class GoogleModelPropertiesUpdateInput(BaseModel):
 
 
 class ReplicateModelPropertiesUpdateInput(BaseModel):
-    model: ReplicateModels
+    model: Optional[ReplicateModels] = None
     model_name: Optional[str] = Field(alias="modelName", default=None)
     key: Optional[str] = None
     temperature: Optional[float] = None
@@ -2192,7 +2198,7 @@ class ReplicateModelPropertiesUpdateInput(BaseModel):
 
 
 class MistralModelPropertiesUpdateInput(BaseModel):
-    model: MistralModels
+    model: Optional[MistralModels] = None
     model_name: Optional[str] = Field(alias="modelName", default=None)
     key: Optional[str] = None
     endpoint: Optional[Any] = None
@@ -2205,7 +2211,7 @@ class MistralModelPropertiesUpdateInput(BaseModel):
 
 
 class GroqModelPropertiesUpdateInput(BaseModel):
-    model: GroqModels
+    model: Optional[GroqModels] = None
     model_name: Optional[str] = Field(alias="modelName", default=None)
     key: Optional[str] = None
     endpoint: Optional[Any] = None
@@ -2218,7 +2224,7 @@ class GroqModelPropertiesUpdateInput(BaseModel):
 
 
 class CerebrasModelPropertiesUpdateInput(BaseModel):
-    model: CerebrasModels
+    model: Optional[CerebrasModels] = None
     model_name: Optional[str] = Field(alias="modelName", default=None)
     key: Optional[str] = None
     endpoint: Optional[Any] = None
@@ -2231,7 +2237,7 @@ class CerebrasModelPropertiesUpdateInput(BaseModel):
 
 
 class DeepseekModelPropertiesUpdateInput(BaseModel):
-    model: DeepseekModels
+    model: Optional[DeepseekModels] = None
     model_name: Optional[str] = Field(alias="modelName", default=None)
     key: Optional[str] = None
     temperature: Optional[float] = None
@@ -2857,6 +2863,11 @@ class ContentUpdateInput(BaseModel):
     )
     package: Optional["PackageMetadataInput"] = None
     language: Optional["LanguageMetadataInput"] = None
+
+
+class ConversationToolResponseInput(BaseModel):
+    id: str
+    content: str
 
 
 class VideoMetadataInput(BaseModel):

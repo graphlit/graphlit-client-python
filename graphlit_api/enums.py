@@ -413,7 +413,6 @@ class ConversationRoleTypes(str, Enum):
     SYSTEM = "SYSTEM"
     ASSISTANT = "ASSISTANT"
     USER = "USER"
-    FUNCTION = "FUNCTION"
 
 
 class SiteTypes(str, Enum):
@@ -580,6 +579,8 @@ class AnthropicModels(str, Enum):
 
 
 class GoogleModels(str, Enum):
+    GEMINI_1_5_FLASH_8B = "GEMINI_1_5_FLASH_8B"
+    GEMINI_1_5_FLASH_8B_001 = "GEMINI_1_5_FLASH_8B_001"
     GEMINI_1_5_FLASH = "GEMINI_1_5_FLASH"
     GEMINI_1_5_PRO = "GEMINI_1_5_PRO"
     GEMINI_1_5_FLASH_001 = "GEMINI_1_5_FLASH_001"

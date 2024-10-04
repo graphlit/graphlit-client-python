@@ -1,5 +1,5 @@
-mutation ExtractContents($prompt: String!, $filter: ContentFilter, $specification: EntityReferenceInput!, $correlationId: String) {
-  extractContents(prompt: $prompt, filter: $filter, specification: $specification, correlationId: $correlationId) {
+mutation ExtractContents($prompt: String!, $filter: ContentFilter, $specification: EntityReferenceInput!, $tools: [ToolDefinitionInput!]!, $correlationId: String) {
+  extractContents(prompt: $prompt, filter: $filter, specification: $specification, tools: $tools, correlationId: $correlationId) {
     specification {
       id
     }
