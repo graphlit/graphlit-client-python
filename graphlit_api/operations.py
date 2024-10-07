@@ -5476,7 +5476,6 @@ query GetSpecification($id: ID!) {
       name
       description
       schema
-      uri
     }
   }
 }
@@ -5768,7 +5767,6 @@ query QuerySpecifications($filter: SpecificationFilter) {
         name
         description
         schema
-        uri
       }
     }
   }

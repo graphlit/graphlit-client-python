@@ -244,7 +244,6 @@ class QuerySpecificationsSpecificationsResultsTools(BaseModel):
     name: str
     description: Optional[str]
     schema_: str = Field(alias="schema")
-    uri: Optional[Any]
 
 
 QuerySpecifications.model_rebuild()

@@ -150,7 +150,6 @@ query GetSpecification($id: ID!) {
       name
       description
       schema
-      uri
     }
   }
 }

@@ -236,7 +236,6 @@ class GetSpecificationSpecificationTools(BaseModel):
     name: str
     description: Optional[str]
     schema_: str = Field(alias="schema")
-    uri: Optional[Any]
 
 
 GetSpecification.model_rebuild()

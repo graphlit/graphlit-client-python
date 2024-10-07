@@ -151,7 +151,6 @@ query QuerySpecifications($filter: SpecificationFilter) {
         name
         description
         schema
-        uri
       }
     }
   }

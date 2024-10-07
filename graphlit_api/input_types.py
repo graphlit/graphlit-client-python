@@ -1768,7 +1768,6 @@ class ToolDefinitionInput(BaseModel):
     name: str
     description: Optional[str] = None
     schema_: str = Field(alias="schema")
-    uri: Optional[Any] = None
 
 
 class AzureAIModelPropertiesInput(BaseModel):
@@ -2107,7 +2106,6 @@ class ToolDefinitionUpdateInput(BaseModel):
     name: Optional[str] = None
     description: Optional[str] = None
     schema_: Optional[str] = Field(alias="schema", default=None)
-    uri: Optional[Any] = None
 
 
 class AzureAIModelPropertiesUpdateInput(BaseModel):
