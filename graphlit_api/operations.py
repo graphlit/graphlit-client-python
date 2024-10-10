@@ -3075,6 +3075,13 @@ query GetFeed($id: ID!) {
         clientId
         clientSecret
       }
+      github {
+        uri
+        repositoryOwner
+        repositoryName
+        refreshToken
+        personalAccessToken
+      }
       readLimit
     }
     email {
@@ -3254,6 +3261,13 @@ query QueryFeeds($filter: FeedFilter) {
           refreshToken
           clientId
           clientSecret
+        }
+        github {
+          uri
+          repositoryOwner
+          repositoryName
+          refreshToken
+          personalAccessToken
         }
         readLimit
       }

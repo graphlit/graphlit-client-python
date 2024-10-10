@@ -448,6 +448,7 @@ class FeedServiceTypes(str, Enum):
     ATLASSIAN_JIRA = "ATLASSIAN_JIRA"
     LINEAR = "LINEAR"
     GIT_HUB_ISSUES = "GIT_HUB_ISSUES"
+    GIT_HUB = "GIT_HUB"
 
 
 class SearchServiceTypes(str, Enum):

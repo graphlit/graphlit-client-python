@@ -1605,6 +1605,7 @@ class SiteFeedPropertiesInput(BaseModel):
     google_drive: Optional["GoogleDriveFeedPropertiesInput"] = Field(
         alias="googleDrive", default=None
     )
+    github: Optional["GitHubFeedPropertiesInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -1974,6 +1975,7 @@ class SiteFeedPropertiesUpdateInput(BaseModel):
     google_drive: Optional["GoogleDriveFeedPropertiesUpdateInput"] = Field(
         alias="googleDrive", default=None
     )
+    github: Optional["GitHubFeedPropertiesUpdateInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -2330,6 +2332,16 @@ class GoogleDriveFeedPropertiesInput(BaseModel):
     client_secret: str = Field(alias="clientSecret")
 
 
+class GitHubFeedPropertiesInput(BaseModel):
+    repository_owner: str = Field(alias="repositoryOwner")
+    repository_name: str = Field(alias="repositoryName")
+    uri: Optional[Any] = None
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+
+
 class GoogleEmailFeedPropertiesInput(BaseModel):
     type: Optional[EmailListingTypes] = None
     refresh_token: str = Field(alias="refreshToken")
@@ -2478,6 +2490,16 @@ class GoogleDriveFeedPropertiesUpdateInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
 
 
+class GitHubFeedPropertiesUpdateInput(BaseModel):
+    repository_owner: Optional[str] = Field(alias="repositoryOwner", default=None)
+    repository_name: Optional[str] = Field(alias="repositoryName", default=None)
+    uri: Optional[Any] = None
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+
+
 class GoogleEmailFeedPropertiesUpdateInput(BaseModel):
     type: Optional[EmailListingTypes] = None
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
@@ -2528,7 +2550,7 @@ class FilePreparationConnectorInput(BaseModel):
         alias="azureDocument", default=None
     )
     deepgram: Optional["DeepgramAudioPreparationPropertiesInput"] = None
-    model_document: Optional["ModelDocumentPreparationInputProperties"] = Field(
+    model_document: Optional["ModelDocumentPreparationPropertiesInput"] = Field(
         alias="modelDocument", default=None
     )
 
@@ -2591,7 +2613,7 @@ class DeepgramAudioPreparationPropertiesInput(BaseModel):
     )
 
 
-class ModelDocumentPreparationInputProperties(BaseModel):
+class ModelDocumentPreparationPropertiesInput(BaseModel):
     specification: Optional["EntityReferenceInput"] = None
 
 

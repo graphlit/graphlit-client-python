@@ -57,6 +57,13 @@ query QueryFeeds($filter: FeedFilter) {
           clientId
           clientSecret
         }
+        github {
+          uri
+          repositoryOwner
+          repositoryName
+          refreshToken
+          personalAccessToken
+        }
         readLimit
       }
       email {

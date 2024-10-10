@@ -82,6 +82,7 @@ class QueryFeedsFeedsResultsSite(BaseModel):
     google_drive: Optional["QueryFeedsFeedsResultsSiteGoogleDrive"] = Field(
         alias="googleDrive"
     )
+    github: Optional["QueryFeedsFeedsResultsSiteGithub"]
     read_limit: Optional[int] = Field(alias="readLimit")
 
 
@@ -134,6 +135,14 @@ class QueryFeedsFeedsResultsSiteGoogleDrive(BaseModel):
     refresh_token: str = Field(alias="refreshToken")
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
+
+
+class QueryFeedsFeedsResultsSiteGithub(BaseModel):
+    uri: Optional[Any]
+    repository_owner: str = Field(alias="repositoryOwner")
+    repository_name: str = Field(alias="repositoryName")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    personal_access_token: Optional[str] = Field(alias="personalAccessToken")
 
 
 class QueryFeedsFeedsResultsEmail(BaseModel):

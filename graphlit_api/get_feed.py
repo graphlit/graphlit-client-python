@@ -70,6 +70,7 @@ class GetFeedFeedSite(BaseModel):
     share_point: Optional["GetFeedFeedSiteSharePoint"] = Field(alias="sharePoint")
     one_drive: Optional["GetFeedFeedSiteOneDrive"] = Field(alias="oneDrive")
     google_drive: Optional["GetFeedFeedSiteGoogleDrive"] = Field(alias="googleDrive")
+    github: Optional["GetFeedFeedSiteGithub"]
     read_limit: Optional[int] = Field(alias="readLimit")
 
 
@@ -122,6 +123,14 @@ class GetFeedFeedSiteGoogleDrive(BaseModel):
     refresh_token: str = Field(alias="refreshToken")
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
+
+
+class GetFeedFeedSiteGithub(BaseModel):
+    uri: Optional[Any]
+    repository_owner: str = Field(alias="repositoryOwner")
+    repository_name: str = Field(alias="repositoryName")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    personal_access_token: Optional[str] = Field(alias="personalAccessToken")
 
 
 class GetFeedFeedEmail(BaseModel):
