@@ -183,6 +183,7 @@ from .get_workflow import GetWorkflow
 from .ingest_batch import IngestBatch
 from .ingest_encoded_file import IngestEncodedFile
 from .ingest_text import IngestText
+from .ingest_text_batch import IngestTextBatch
 from .ingest_uri import IngestUri
 from .input_types import (
     AlertFilter,
@@ -276,6 +277,7 @@ from .input_types import (
     SpecificationInput,
     SpecificationUpdateInput,
     SummarizationStrategyInput,
+    TextContentInput,
     ToolDefinitionInput,
     WorkflowFilter,
     WorkflowInput,
@@ -462,6 +464,7 @@ from .operations import (
     GET_WORKFLOW_GQL,
     INGEST_BATCH_GQL,
     INGEST_ENCODED_FILE_GQL,
+    INGEST_TEXT_BATCH_GQL,
     INGEST_TEXT_GQL,
     INGEST_URI_GQL,
     IS_CONTENT_DONE_GQL,
@@ -1200,6 +1203,31 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return IngestText.model_validate(data)
+
+    async def ingest_text_batch(
+        self,
+        batch: List[TextContentInput],
+        text_type: Union[Optional[TextTypes], UnsetType] = UNSET,
+        workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        collections: Union[Optional[List[EntityReferenceInput]], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> IngestTextBatch:
+        variables: Dict[str, object] = {
+            "batch": batch,
+            "textType": text_type,
+            "workflow": workflow,
+            "collections": collections,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=INGEST_TEXT_BATCH_GQL,
+            operation_name="IngestTextBatch",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return IngestTextBatch.model_validate(data)
 
     async def ingest_uri(
         self,

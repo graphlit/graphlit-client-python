@@ -79,11 +79,6 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
           azureImage {
             confidenceThreshold
           }
-          openAIImage {
-            confidenceThreshold
-            detailLevel
-            customInstructions
-          }
           modelImage {
             specification {
               id
@@ -119,11 +114,6 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
             endpoint
           }
         }
-      }
-    }
-    storage {
-      embeddings {
-        chunkTokenLimit
       }
     }
     actions {

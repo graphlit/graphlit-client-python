@@ -18,6 +18,14 @@ query GetProject {
       id
       name
     }
+    embeddings {
+      textSpecification {
+        id
+      }
+      imageSpecification {
+        id
+      }
+    }
     quota {
       storage
       contents

@@ -45,6 +45,7 @@ from .enums import (
     H3ResolutionTypes,
     ImageProjectionTypes,
     IntegrationServiceTypes,
+    JinaModels,
     LabelFacetTypes,
     LinkTypes,
     MailImportance,
@@ -94,6 +95,7 @@ from .enums import (
     TimedPolicyRecurrenceTypes,
     TimeIntervalTypes,
     UnitTypes,
+    VoyageModels,
     YouTubeTypes,
 )
 
@@ -1089,6 +1091,8 @@ class SpecificationInput(BaseModel):
     groq: Optional["GroqModelPropertiesInput"] = None
     cerebras: Optional["CerebrasModelPropertiesInput"] = None
     deepseek: Optional["DeepseekModelPropertiesInput"] = None
+    jina: Optional["JinaModelPropertiesInput"] = None
+    voyage: Optional["VoyageModelPropertiesInput"] = None
 
 
 class WorkflowInput(BaseModel):
@@ -1098,7 +1102,6 @@ class WorkflowInput(BaseModel):
     preparation: Optional["PreparationWorkflowStageInput"] = None
     extraction: Optional["ExtractionWorkflowStageInput"] = None
     enrichment: Optional["EnrichmentWorkflowStageInput"] = None
-    storage: Optional["StorageWorkflowStageInput"] = None
     actions: Optional[List[Optional["WorkflowActionInput"]]] = None
 
 
@@ -1400,6 +1403,7 @@ class ProductUpdateInput(BaseModel):
 class ProjectUpdateInput(BaseModel):
     workflow: Optional["EntityReferenceInput"] = None
     specification: Optional["EntityReferenceInput"] = None
+    embeddings: Optional["EmbeddingsStrategyInput"] = None
     callback_uri: Optional[Any] = Field(alias="callbackUri", default=None)
 
 
@@ -1466,6 +1470,8 @@ class SpecificationUpdateInput(BaseModel):
     groq: Optional["GroqModelPropertiesUpdateInput"] = None
     cerebras: Optional["CerebrasModelPropertiesUpdateInput"] = None
     deepseek: Optional["DeepseekModelPropertiesUpdateInput"] = None
+    jina: Optional["JinaModelPropertiesUpdateInput"] = None
+    voyage: Optional["VoyageModelPropertiesUpdateInput"] = None
 
 
 class WorkflowUpdateInput(BaseModel):
@@ -1476,7 +1482,6 @@ class WorkflowUpdateInput(BaseModel):
     preparation: Optional["PreparationWorkflowStageInput"] = None
     extraction: Optional["ExtractionWorkflowStageInput"] = None
     enrichment: Optional["EnrichmentWorkflowStageInput"] = None
-    storage: Optional["StorageWorkflowStageInput"] = None
     actions: Optional[List[Optional["WorkflowActionInput"]]] = None
 
 
@@ -1765,12 +1770,6 @@ class RevisionStrategyInput(BaseModel):
     count: Optional[int] = None
 
 
-class ToolDefinitionInput(BaseModel):
-    name: str
-    description: Optional[str] = None
-    schema_: str = Field(alias="schema")
-
-
 class AzureAIModelPropertiesInput(BaseModel):
     key: str
     endpoint: Any
@@ -1780,6 +1779,7 @@ class AzureAIModelPropertiesInput(BaseModel):
     completion_token_limit: Optional[int] = Field(
         alias="completionTokenLimit", default=None
     )
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
 
 
 class OpenAIModelPropertiesInput(BaseModel):
@@ -1792,6 +1792,7 @@ class OpenAIModelPropertiesInput(BaseModel):
     completion_token_limit: Optional[int] = Field(
         alias="completionTokenLimit", default=None
     )
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
     detail_level: Optional[OpenAIVisionDetailLevels] = Field(
         alias="detailLevel", default=None
     )
@@ -1808,6 +1809,7 @@ class AzureOpenAIModelPropertiesInput(BaseModel):
     completion_token_limit: Optional[int] = Field(
         alias="completionTokenLimit", default=None
     )
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
 
 
 class CohereModelPropertiesInput(BaseModel):
@@ -1820,6 +1822,7 @@ class CohereModelPropertiesInput(BaseModel):
     completion_token_limit: Optional[int] = Field(
         alias="completionTokenLimit", default=None
     )
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
 
 
 class AnthropicModelPropertiesInput(BaseModel):
@@ -1844,6 +1847,7 @@ class GoogleModelPropertiesInput(BaseModel):
     completion_token_limit: Optional[int] = Field(
         alias="completionTokenLimit", default=None
     )
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
 
 
 class ReplicateModelPropertiesInput(BaseModel):
@@ -1869,6 +1873,7 @@ class MistralModelPropertiesInput(BaseModel):
     completion_token_limit: Optional[int] = Field(
         alias="completionTokenLimit", default=None
     )
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
 
 
 class GroqModelPropertiesInput(BaseModel):
@@ -1909,6 +1914,20 @@ class DeepseekModelPropertiesInput(BaseModel):
     )
 
 
+class JinaModelPropertiesInput(BaseModel):
+    model: JinaModels
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+
+
+class VoyageModelPropertiesInput(BaseModel):
+    model: VoyageModels
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+
+
 class IngestionWorkflowStageInput(BaseModel):
     if_: Optional["IngestionContentFilterInput"] = Field(alias="if", default=None)
     collections: Optional[List[Optional["EntityReferenceInput"]]] = None
@@ -1933,10 +1952,6 @@ class ExtractionWorkflowStageInput(BaseModel):
 class EnrichmentWorkflowStageInput(BaseModel):
     link: Optional["LinkStrategyInput"] = None
     jobs: Optional[List[Optional["EnrichmentWorkflowJobInput"]]] = None
-
-
-class StorageWorkflowStageInput(BaseModel):
-    embeddings: Optional["EmbeddingsStrategyInput"] = None
 
 
 class WorkflowActionInput(BaseModel):
@@ -2067,6 +2082,15 @@ class DiscordFeedPropertiesUpdateInput(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
+class EmbeddingsStrategyInput(BaseModel):
+    text_specification: Optional["EntityReferenceInput"] = Field(
+        alias="textSpecification", default=None
+    )
+    image_specification: Optional["EntityReferenceInput"] = Field(
+        alias="imageSpecification", default=None
+    )
+
+
 class ConversationStrategyUpdateInput(BaseModel):
     type: Optional[ConversationStrategyTypes] = None
     message_limit: Optional[int] = Field(alias="messageLimit", default=None)
@@ -2104,12 +2128,6 @@ class RevisionStrategyUpdateInput(BaseModel):
     count: Optional[int] = None
 
 
-class ToolDefinitionUpdateInput(BaseModel):
-    name: Optional[str] = None
-    description: Optional[str] = None
-    schema_: Optional[str] = Field(alias="schema", default=None)
-
-
 class AzureAIModelPropertiesUpdateInput(BaseModel):
     key: Optional[str] = None
     endpoint: Optional[Any] = None
@@ -2119,6 +2137,7 @@ class AzureAIModelPropertiesUpdateInput(BaseModel):
     completion_token_limit: Optional[int] = Field(
         alias="completionTokenLimit", default=None
     )
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
 
 
 class OpenAIModelPropertiesUpdateInput(BaseModel):
@@ -2131,6 +2150,7 @@ class OpenAIModelPropertiesUpdateInput(BaseModel):
     completion_token_limit: Optional[int] = Field(
         alias="completionTokenLimit", default=None
     )
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
     detail_level: Optional[OpenAIVisionDetailLevels] = Field(
         alias="detailLevel", default=None
     )
@@ -2147,6 +2167,7 @@ class AzureOpenAIModelPropertiesUpdateInput(BaseModel):
     completion_token_limit: Optional[int] = Field(
         alias="completionTokenLimit", default=None
     )
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
 
 
 class CohereModelPropertiesUpdateInput(BaseModel):
@@ -2159,6 +2180,7 @@ class CohereModelPropertiesUpdateInput(BaseModel):
     completion_token_limit: Optional[int] = Field(
         alias="completionTokenLimit", default=None
     )
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
 
 
 class AnthropicModelPropertiesUpdateInput(BaseModel):
@@ -2183,6 +2205,7 @@ class GoogleModelPropertiesUpdateInput(BaseModel):
     completion_token_limit: Optional[int] = Field(
         alias="completionTokenLimit", default=None
     )
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
 
 
 class ReplicateModelPropertiesUpdateInput(BaseModel):
@@ -2208,6 +2231,7 @@ class MistralModelPropertiesUpdateInput(BaseModel):
     completion_token_limit: Optional[int] = Field(
         alias="completionTokenLimit", default=None
     )
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
 
 
 class GroqModelPropertiesUpdateInput(BaseModel):
@@ -2246,6 +2270,20 @@ class DeepseekModelPropertiesUpdateInput(BaseModel):
     completion_token_limit: Optional[int] = Field(
         alias="completionTokenLimit", default=None
     )
+
+
+class JinaModelPropertiesUpdateInput(BaseModel):
+    model: Optional[JinaModels] = None
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+
+
+class VoyageModelPropertiesUpdateInput(BaseModel):
+    model: Optional[VoyageModels] = None
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
 
 
 class H3IndexFilter(BaseModel):
@@ -2435,10 +2473,6 @@ class EnrichmentWorkflowJobInput(BaseModel):
     connector: Optional["EntityEnrichmentConnectorInput"] = None
 
 
-class EmbeddingsStrategyInput(BaseModel):
-    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
-
-
 class AmazonFeedPropertiesUpdateInput(BaseModel):
     access_key: Optional[str] = Field(alias="accessKey", default=None)
     secret_access_key: Optional[str] = Field(alias="secretAccessKey", default=None)
@@ -2625,16 +2659,6 @@ class AzureTextExtractionPropertiesInput(BaseModel):
 
 
 class AzureImageExtractionPropertiesInput(BaseModel):
-    confidence_threshold: Optional[float] = Field(
-        alias="confidenceThreshold", default=None
-    )
-
-
-class OpenAIImageExtractionPropertiesInput(BaseModel):
-    detail_level: Optional[OpenAIVisionDetailLevels] = Field(
-        alias="detailLevel", default=None
-    )
-    custom_instructions: Optional[str] = Field(alias="customInstructions", default=None)
     confidence_threshold: Optional[float] = Field(
         alias="confidenceThreshold", default=None
     )
@@ -2856,6 +2880,11 @@ class SoftwareFacetInput(BaseModel):
     facet: Optional[SoftwareFacetTypes] = None
 
 
+class TextContentInput(BaseModel):
+    name: str
+    text: str
+
+
 class ContentUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
@@ -2883,6 +2912,12 @@ class ContentUpdateInput(BaseModel):
     )
     package: Optional["PackageMetadataInput"] = None
     language: Optional["LanguageMetadataInput"] = None
+
+
+class ToolDefinitionInput(BaseModel):
+    name: str
+    description: Optional[str] = None
+    schema_: str = Field(alias="schema")
 
 
 class ConversationToolResponseInput(BaseModel):
@@ -3058,3 +3093,132 @@ class PackageMetadataInput(BaseModel):
 
 class LanguageMetadataInput(BaseModel):
     languages: Optional[List[Optional[str]]] = None
+
+
+AlertFilter.model_rebuild()
+CategoryFilter.model_rebuild()
+CollectionFilter.model_rebuild()
+ContentFilter.model_rebuild()
+ConversationFilter.model_rebuild()
+EventFilter.model_rebuild()
+FeedFilter.model_rebuild()
+LabelFilter.model_rebuild()
+MetadataFilter.model_rebuild()
+MedicalStudyFilter.model_rebuild()
+MedicalConditionFilter.model_rebuild()
+MedicalGuidelineFilter.model_rebuild()
+MedicalDrugFilter.model_rebuild()
+MedicalDrugClassFilter.model_rebuild()
+MedicalContraindicationFilter.model_rebuild()
+MedicalIndicationFilter.model_rebuild()
+MedicalProcedureFilter.model_rebuild()
+MedicalDeviceFilter.model_rebuild()
+MedicalTherapyFilter.model_rebuild()
+MedicalTestFilter.model_rebuild()
+ObservationReferenceFilter.model_rebuild()
+OrganizationFilter.model_rebuild()
+PersonFilter.model_rebuild()
+PlaceFilter.model_rebuild()
+ProductFilter.model_rebuild()
+ProjectFilter.model_rebuild()
+RepoFilter.model_rebuild()
+SoftwareFilter.model_rebuild()
+SpecificationFilter.model_rebuild()
+WorkflowFilter.model_rebuild()
+AlertInput.model_rebuild()
+CollectionInput.model_rebuild()
+ContentInput.model_rebuild()
+ConversationInput.model_rebuild()
+EventInput.model_rebuild()
+FeedInput.model_rebuild()
+MetadataInput.model_rebuild()
+MedicalStudyInput.model_rebuild()
+MedicalConditionInput.model_rebuild()
+MedicalGuidelineInput.model_rebuild()
+MedicalDrugInput.model_rebuild()
+MedicalDrugClassInput.model_rebuild()
+MedicalContraindicationInput.model_rebuild()
+MedicalIndicationInput.model_rebuild()
+MedicalProcedureInput.model_rebuild()
+MedicalDeviceInput.model_rebuild()
+MedicalTherapyInput.model_rebuild()
+MedicalTestInput.model_rebuild()
+ObservationInput.model_rebuild()
+OrganizationInput.model_rebuild()
+PersonInput.model_rebuild()
+PlaceInput.model_rebuild()
+ProductInput.model_rebuild()
+ProjectInput.model_rebuild()
+SpecificationInput.model_rebuild()
+WorkflowInput.model_rebuild()
+AlertUpdateInput.model_rebuild()
+CollectionUpdateInput.model_rebuild()
+ConversationUpdateInput.model_rebuild()
+EventUpdateInput.model_rebuild()
+FeedUpdateInput.model_rebuild()
+MetadataUpdateInput.model_rebuild()
+MedicalStudyUpdateInput.model_rebuild()
+MedicalConditionUpdateInput.model_rebuild()
+MedicalGuidelineUpdateInput.model_rebuild()
+MedicalDrugUpdateInput.model_rebuild()
+MedicalDrugClassUpdateInput.model_rebuild()
+MedicalContraindicationUpdateInput.model_rebuild()
+MedicalIndicationUpdateInput.model_rebuild()
+MedicalProcedureUpdateInput.model_rebuild()
+MedicalDeviceUpdateInput.model_rebuild()
+MedicalTherapyUpdateInput.model_rebuild()
+MedicalTestUpdateInput.model_rebuild()
+ObservationUpdateInput.model_rebuild()
+OrganizationUpdateInput.model_rebuild()
+PersonUpdateInput.model_rebuild()
+PlaceUpdateInput.model_rebuild()
+ProductUpdateInput.model_rebuild()
+ProjectUpdateInput.model_rebuild()
+SpecificationUpdateInput.model_rebuild()
+WorkflowUpdateInput.model_rebuild()
+H3Filter.model_rebuild()
+ContentFilterLevel.model_rebuild()
+ContentCriteriaInput.model_rebuild()
+ContentPublishingConnectorInput.model_rebuild()
+IntegrationConnectorInput.model_rebuild()
+SiteFeedPropertiesInput.model_rebuild()
+EmailFeedPropertiesInput.model_rebuild()
+IssueFeedPropertiesInput.model_rebuild()
+ObservationOccurrenceInput.model_rebuild()
+IngestionWorkflowStageInput.model_rebuild()
+IndexingWorkflowStageInput.model_rebuild()
+PreparationWorkflowStageInput.model_rebuild()
+ExtractionWorkflowStageInput.model_rebuild()
+EnrichmentWorkflowStageInput.model_rebuild()
+WorkflowActionInput.model_rebuild()
+ContentPublishingConnectorUpdateInput.model_rebuild()
+IntegrationConnectorUpdateInput.model_rebuild()
+SiteFeedPropertiesUpdateInput.model_rebuild()
+EmailFeedPropertiesUpdateInput.model_rebuild()
+IssueFeedPropertiesUpdateInput.model_rebuild()
+EmbeddingsStrategyInput.model_rebuild()
+ObservationCriteriaInput.model_rebuild()
+ContentCriteriaLevelInput.model_rebuild()
+IndexingWorkflowJobInput.model_rebuild()
+SummarizationStrategyInput.model_rebuild()
+PreparationWorkflowJobInput.model_rebuild()
+ExtractionWorkflowJobInput.model_rebuild()
+EnrichmentWorkflowJobInput.model_rebuild()
+FilePreparationConnectorInput.model_rebuild()
+EntityExtractionConnectorInput.model_rebuild()
+EntityEnrichmentConnectorInput.model_rebuild()
+ModelDocumentPreparationPropertiesInput.model_rebuild()
+ModelTextExtractionPropertiesInput.model_rebuild()
+ModelImageExtractionPropertiesInput.model_rebuild()
+ContentUpdateInput.model_rebuild()
+VideoMetadataInput.model_rebuild()
+AudioMetadataInput.model_rebuild()
+ImageMetadataInput.model_rebuild()
+DocumentMetadataInput.model_rebuild()
+EmailMetadataInput.model_rebuild()
+IssueMetadataInput.model_rebuild()
+DrawingMetadataInput.model_rebuild()
+ShapeMetadataInput.model_rebuild()
+GeometryMetadataInput.model_rebuild()
+PointCloudMetadataInput.model_rebuild()
+PackageMetadataInput.model_rebuild()

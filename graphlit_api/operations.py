@@ -178,6 +178,7 @@ __all__ = [
     "GET_WORKFLOW_GQL",
     "INGEST_BATCH_GQL",
     "INGEST_ENCODED_FILE_GQL",
+    "INGEST_TEXT_BATCH_GQL",
     "INGEST_TEXT_GQL",
     "INGEST_URI_GQL",
     "IS_CONTENT_DONE_GQL",
@@ -1137,6 +1138,30 @@ mutation IngestText($name: String!, $text: String!, $textType: TextTypes, $uri: 
     id: $id
     isSynchronous: $isSynchronous
     workflow: $workflow
+    collections: $collections
+    correlationId: $correlationId
+  ) {
+    id
+    name
+    state
+    type
+    fileType
+    mimeType
+    uri
+    collections {
+      id
+      name
+    }
+  }
+}
+"""
+
+INGEST_TEXT_BATCH_GQL = """
+mutation IngestTextBatch($batch: [TextContentInput!]!, $textType: TextTypes, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $correlationId: String) {
+  ingestTextBatch(
+    batch: $batch
+    workflow: $workflow
+    textType: $textType
     collections: $collections
     correlationId: $correlationId
   ) {
@@ -4966,6 +4991,14 @@ query GetProject {
       id
       name
     }
+    embeddings {
+      textSpecification {
+        id
+      }
+      imageSpecification {
+        id
+      }
+    }
     quota {
       storage
       contents
@@ -5391,6 +5424,7 @@ query GetSpecification($id: ID!) {
       endpoint
       temperature
       probability
+      chunkTokenLimit
     }
     openAI {
       tokenLimit
@@ -5400,6 +5434,7 @@ query GetSpecification($id: ID!) {
       modelName
       temperature
       probability
+      chunkTokenLimit
     }
     azureOpenAI {
       tokenLimit
@@ -5410,6 +5445,7 @@ query GetSpecification($id: ID!) {
       deploymentName
       temperature
       probability
+      chunkTokenLimit
     }
     cohere {
       tokenLimit
@@ -5419,6 +5455,7 @@ query GetSpecification($id: ID!) {
       modelName
       temperature
       probability
+      chunkTokenLimit
     }
     anthropic {
       tokenLimit
@@ -5437,6 +5474,7 @@ query GetSpecification($id: ID!) {
       modelName
       temperature
       probability
+      chunkTokenLimit
     }
     replicate {
       tokenLimit
@@ -5456,6 +5494,7 @@ query GetSpecification($id: ID!) {
       endpoint
       temperature
       probability
+      chunkTokenLimit
     }
     groq {
       tokenLimit
@@ -5486,10 +5525,17 @@ query GetSpecification($id: ID!) {
       temperature
       probability
     }
-    tools {
-      name
-      description
-      schema
+    jina {
+      model
+      key
+      modelName
+      chunkTokenLimit
+    }
+    voyage {
+      model
+      key
+      modelName
+      chunkTokenLimit
     }
   }
 }
@@ -5682,6 +5728,7 @@ query QuerySpecifications($filter: SpecificationFilter) {
         endpoint
         temperature
         probability
+        chunkTokenLimit
       }
       openAI {
         tokenLimit
@@ -5691,6 +5738,7 @@ query QuerySpecifications($filter: SpecificationFilter) {
         modelName
         temperature
         probability
+        chunkTokenLimit
       }
       azureOpenAI {
         tokenLimit
@@ -5701,6 +5749,7 @@ query QuerySpecifications($filter: SpecificationFilter) {
         deploymentName
         temperature
         probability
+        chunkTokenLimit
       }
       cohere {
         tokenLimit
@@ -5710,6 +5759,7 @@ query QuerySpecifications($filter: SpecificationFilter) {
         modelName
         temperature
         probability
+        chunkTokenLimit
       }
       anthropic {
         tokenLimit
@@ -5728,6 +5778,7 @@ query QuerySpecifications($filter: SpecificationFilter) {
         modelName
         temperature
         probability
+        chunkTokenLimit
       }
       replicate {
         tokenLimit
@@ -5747,6 +5798,7 @@ query QuerySpecifications($filter: SpecificationFilter) {
         endpoint
         temperature
         probability
+        chunkTokenLimit
       }
       groq {
         tokenLimit
@@ -5777,10 +5829,17 @@ query QuerySpecifications($filter: SpecificationFilter) {
         temperature
         probability
       }
-      tools {
-        name
-        description
-        schema
+      jina {
+        model
+        key
+        modelName
+        chunkTokenLimit
+      }
+      voyage {
+        model
+        key
+        modelName
+        chunkTokenLimit
       }
     }
   }
@@ -5889,11 +5948,6 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
           azureImage {
             confidenceThreshold
           }
-          openAIImage {
-            confidenceThreshold
-            detailLevel
-            customInstructions
-          }
           modelImage {
             specification {
               id
@@ -5929,11 +5983,6 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
             endpoint
           }
         }
-      }
-    }
-    storage {
-      embeddings {
-        chunkTokenLimit
       }
     }
     actions {
@@ -6068,11 +6117,6 @@ query GetWorkflow($id: ID!) {
           azureImage {
             confidenceThreshold
           }
-          openAIImage {
-            confidenceThreshold
-            detailLevel
-            customInstructions
-          }
           modelImage {
             specification {
               id
@@ -6108,11 +6152,6 @@ query GetWorkflow($id: ID!) {
             endpoint
           }
         }
-      }
-    }
-    storage {
-      embeddings {
-        chunkTokenLimit
       }
     }
     actions {
@@ -6217,11 +6256,6 @@ query QueryWorkflows($filter: WorkflowFilter) {
             azureImage {
               confidenceThreshold
             }
-            openAIImage {
-              confidenceThreshold
-              detailLevel
-              customInstructions
-            }
             modelImage {
               specification {
                 id
@@ -6257,11 +6291,6 @@ query QueryWorkflows($filter: WorkflowFilter) {
               endpoint
             }
           }
-        }
-      }
-      storage {
-        embeddings {
-          chunkTokenLimit
         }
       }
       actions {
@@ -6361,11 +6390,6 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
           azureImage {
             confidenceThreshold
           }
-          openAIImage {
-            confidenceThreshold
-            detailLevel
-            customInstructions
-          }
           modelImage {
             specification {
               id
@@ -6401,11 +6425,6 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
             endpoint
           }
         }
-      }
-    }
-    storage {
-      embeddings {
-        chunkTokenLimit
       }
     }
     actions {

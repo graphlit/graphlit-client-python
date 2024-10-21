@@ -26,6 +26,7 @@ class GetProjectProject(BaseModel):
     last_credits_date: Optional[Any] = Field(alias="lastCreditsDate")
     workflow: Optional["GetProjectProjectWorkflow"]
     specification: Optional["GetProjectProjectSpecification"]
+    embeddings: Optional["GetProjectProjectEmbeddings"]
     quota: Optional["GetProjectProjectQuota"]
     callback_uri: Optional[Any] = Field(alias="callbackUri")
 
@@ -40,6 +41,23 @@ class GetProjectProjectSpecification(BaseModel):
     name: str
 
 
+class GetProjectProjectEmbeddings(BaseModel):
+    text_specification: Optional["GetProjectProjectEmbeddingsTextSpecification"] = (
+        Field(alias="textSpecification")
+    )
+    image_specification: Optional["GetProjectProjectEmbeddingsImageSpecification"] = (
+        Field(alias="imageSpecification")
+    )
+
+
+class GetProjectProjectEmbeddingsTextSpecification(BaseModel):
+    id: str
+
+
+class GetProjectProjectEmbeddingsImageSpecification(BaseModel):
+    id: str
+
+
 class GetProjectProjectQuota(BaseModel):
     storage: Optional[Any]
     contents: Optional[int]
@@ -51,3 +69,4 @@ class GetProjectProjectQuota(BaseModel):
 
 GetProject.model_rebuild()
 GetProjectProject.model_rebuild()
+GetProjectProjectEmbeddings.model_rebuild()

@@ -52,6 +52,7 @@ query QuerySpecifications($filter: SpecificationFilter) {
         endpoint
         temperature
         probability
+        chunkTokenLimit
       }
       openAI {
         tokenLimit
@@ -61,6 +62,7 @@ query QuerySpecifications($filter: SpecificationFilter) {
         modelName
         temperature
         probability
+        chunkTokenLimit
       }
       azureOpenAI {
         tokenLimit
@@ -71,6 +73,7 @@ query QuerySpecifications($filter: SpecificationFilter) {
         deploymentName
         temperature
         probability
+        chunkTokenLimit
       }
       cohere {
         tokenLimit
@@ -80,6 +83,7 @@ query QuerySpecifications($filter: SpecificationFilter) {
         modelName
         temperature
         probability
+        chunkTokenLimit
       }
       anthropic {
         tokenLimit
@@ -98,6 +102,7 @@ query QuerySpecifications($filter: SpecificationFilter) {
         modelName
         temperature
         probability
+        chunkTokenLimit
       }
       replicate {
         tokenLimit
@@ -117,6 +122,7 @@ query QuerySpecifications($filter: SpecificationFilter) {
         endpoint
         temperature
         probability
+        chunkTokenLimit
       }
       groq {
         tokenLimit
@@ -147,10 +153,17 @@ query QuerySpecifications($filter: SpecificationFilter) {
         temperature
         probability
       }
-      tools {
-        name
-        description
-        schema
+      jina {
+        model
+        key
+        modelName
+        chunkTokenLimit
+      }
+      voyage {
+        model
+        key
+        modelName
+        chunkTokenLimit
       }
     }
   }

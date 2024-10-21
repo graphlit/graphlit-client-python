@@ -229,6 +229,8 @@ class RenditionTypes(str, Enum):
 
 class SpecificationTypes(str, Enum):
     COMPLETION = "COMPLETION"
+    TEXT_EMBEDDING = "TEXT_EMBEDDING"
+    IMAGE_EMBEDDING = "IMAGE_EMBEDDING"
     EXTRACTION = "EXTRACTION"
     PREPARATION = "PREPARATION"
 
@@ -245,6 +247,8 @@ class ModelServiceTypes(str, Enum):
     MISTRAL = "MISTRAL"
     COHERE = "COHERE"
     DEEPSEEK = "DEEPSEEK"
+    JINA = "JINA"
+    VOYAGE = "VOYAGE"
 
 
 class ConversationSearchTypes(str, Enum):
@@ -499,7 +503,7 @@ class RetrievalStrategyTypes(str, Enum):
 class RerankingModelServiceTypes(str, Enum):
     COHERE = "COHERE"
     JINA = "JINA"
-    PONGO = "PONGO"
+    VOYAGE = "VOYAGE"
 
 
 class GraphStrategyTypes(str, Enum):
@@ -541,6 +545,9 @@ class OpenAIModels(str, Enum):
     O1_MINI_128K_20240912 = "O1_MINI_128K_20240912"
     O1_PREVIEW_128K = "O1_PREVIEW_128K"
     O1_PREVIEW_128K_20240912 = "O1_PREVIEW_128K_20240912"
+    ADA_002 = "ADA_002"
+    EMBEDDING_3_SMALL = "EMBEDDING_3_SMALL"
+    EMBEDDING_3_LARGE = "EMBEDDING_3_LARGE"
     CUSTOM = "CUSTOM"
 
 
@@ -557,6 +564,8 @@ class AzureOpenAIModels(str, Enum):
 
 
 class CohereModels(str, Enum):
+    EMBED_ENGLISH_3_0 = "EMBED_ENGLISH_3_0"
+    EMBED_MULTILINGUAL_3_0 = "EMBED_MULTILINGUAL_3_0"
     COMMAND_R = "COMMAND_R"
     COMMAND_R_202403 = "COMMAND_R_202403"
     COMMAND_R_202408 = "COMMAND_R_202408"
@@ -588,6 +597,7 @@ class GoogleModels(str, Enum):
     GEMINI_1_5_PRO_001 = "GEMINI_1_5_PRO_001"
     GEMINI_1_5_FLASH_002 = "GEMINI_1_5_FLASH_002"
     GEMINI_1_5_PRO_002 = "GEMINI_1_5_PRO_002"
+    EMBEDDING_004 = "EMBEDDING_004"
     CUSTOM = "CUSTOM"
 
 
@@ -610,6 +620,7 @@ class MistralModels(str, Enum):
     MISTRAL_MEDIUM = "MISTRAL_MEDIUM"
     MISTRAL_LARGE = "MISTRAL_LARGE"
     PIXTRAL_12B_2409 = "PIXTRAL_12B_2409"
+    MISTRAL_EMBED = "MISTRAL_EMBED"
     CUSTOM = "CUSTOM"
 
 
@@ -638,6 +649,24 @@ class CerebrasModels(str, Enum):
 class DeepseekModels(str, Enum):
     CHAT = "CHAT"
     CODER = "CODER"
+    CUSTOM = "CUSTOM"
+
+
+class JinaModels(str, Enum):
+    CLIP_IMAGE = "CLIP_IMAGE"
+    EMBED = "EMBED"
+    EMBED_3_0 = "EMBED_3_0"
+    CUSTOM = "CUSTOM"
+
+
+class VoyageModels(str, Enum):
+    VOYAGE = "VOYAGE"
+    VOYAGE_3_0 = "VOYAGE_3_0"
+    VOYAGE_LITE_3_0 = "VOYAGE_LITE_3_0"
+    VOYAGE_FINANCE_2_0 = "VOYAGE_FINANCE_2_0"
+    VOYAGE_MULTILINGUAL_2_0 = "VOYAGE_MULTILINGUAL_2_0"
+    VOYAGE_LAW_2_0 = "VOYAGE_LAW_2_0"
+    VOYAGE_CODE_2_0 = "VOYAGE_CODE_2_0"
     CUSTOM = "CUSTOM"
 
 
@@ -717,8 +746,8 @@ class FilePreparationServiceTypes(str, Enum):
 class EntityExtractionServiceTypes(str, Enum):
     ROBOFLOW_IMAGE = "ROBOFLOW_IMAGE"
     MODEL_TEXT = "MODEL_TEXT"
-    OPEN_AI_IMAGE = "OPEN_AI_IMAGE"
     MODEL_IMAGE = "MODEL_IMAGE"
+    OPEN_AI_IMAGE = "OPEN_AI_IMAGE"
     AZURE_COGNITIVE_SERVICES_IMAGE = "AZURE_COGNITIVE_SERVICES_IMAGE"
     AZURE_COGNITIVE_SERVICES_TEXT = "AZURE_COGNITIVE_SERVICES_TEXT"
 

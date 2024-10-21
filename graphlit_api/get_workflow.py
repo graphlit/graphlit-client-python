@@ -20,7 +20,6 @@ from .enums import (
     IntegrationServiceTypes,
     LinkTypes,
     ObservableTypes,
-    OpenAIVisionDetailLevels,
     SummarizationTypes,
 )
 
@@ -41,7 +40,6 @@ class GetWorkflowWorkflow(BaseModel):
     preparation: Optional["GetWorkflowWorkflowPreparation"]
     extraction: Optional["GetWorkflowWorkflowExtraction"]
     enrichment: Optional["GetWorkflowWorkflowEnrichment"]
-    storage: Optional["GetWorkflowWorkflowStorage"]
     actions: Optional[List[Optional["GetWorkflowWorkflowActions"]]]
 
 
@@ -169,9 +167,6 @@ class GetWorkflowWorkflowExtractionJobsConnector(BaseModel):
     azure_image: Optional["GetWorkflowWorkflowExtractionJobsConnectorAzureImage"] = (
         Field(alias="azureImage")
     )
-    open_ai_image: Optional["GetWorkflowWorkflowExtractionJobsConnectorOpenAiImage"] = (
-        Field(alias="openAIImage")
-    )
     model_image: Optional["GetWorkflowWorkflowExtractionJobsConnectorModelImage"] = (
         Field(alias="modelImage")
     )
@@ -187,12 +182,6 @@ class GetWorkflowWorkflowExtractionJobsConnectorAzureText(BaseModel):
 
 class GetWorkflowWorkflowExtractionJobsConnectorAzureImage(BaseModel):
     confidence_threshold: Optional[float] = Field(alias="confidenceThreshold")
-
-
-class GetWorkflowWorkflowExtractionJobsConnectorOpenAiImage(BaseModel):
-    confidence_threshold: Optional[float] = Field(alias="confidenceThreshold")
-    detail_level: Optional[OpenAIVisionDetailLevels] = Field(alias="detailLevel")
-    custom_instructions: Optional[str] = Field(alias="customInstructions")
 
 
 class GetWorkflowWorkflowExtractionJobsConnectorModelImage(BaseModel):
@@ -250,14 +239,6 @@ class GetWorkflowWorkflowEnrichmentJobsConnectorFhir(BaseModel):
     endpoint: Optional[Any]
 
 
-class GetWorkflowWorkflowStorage(BaseModel):
-    embeddings: Optional["GetWorkflowWorkflowStorageEmbeddings"]
-
-
-class GetWorkflowWorkflowStorageEmbeddings(BaseModel):
-    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit")
-
-
 class GetWorkflowWorkflowActions(BaseModel):
     connector: Optional["GetWorkflowWorkflowActionsConnector"]
 
@@ -291,6 +272,5 @@ GetWorkflowWorkflowExtractionJobsConnectorModelText.model_rebuild()
 GetWorkflowWorkflowEnrichment.model_rebuild()
 GetWorkflowWorkflowEnrichmentJobs.model_rebuild()
 GetWorkflowWorkflowEnrichmentJobsConnector.model_rebuild()
-GetWorkflowWorkflowStorage.model_rebuild()
 GetWorkflowWorkflowActions.model_rebuild()
 GetWorkflowWorkflowActionsConnector.model_rebuild()

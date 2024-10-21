@@ -79,11 +79,6 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
           azureImage {
             confidenceThreshold
           }
-          openAIImage {
-            confidenceThreshold
-            detailLevel
-            customInstructions
-          }
           modelImage {
             specification {
               id
@@ -119,11 +114,6 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
             endpoint
           }
         }
-      }
-    }
-    storage {
-      embeddings {
-        chunkTokenLimit
       }
     }
     actions {

@@ -85,11 +85,6 @@ query QueryWorkflows($filter: WorkflowFilter) {
             azureImage {
               confidenceThreshold
             }
-            openAIImage {
-              confidenceThreshold
-              detailLevel
-              customInstructions
-            }
             modelImage {
               specification {
                 id
@@ -125,11 +120,6 @@ query QueryWorkflows($filter: WorkflowFilter) {
               endpoint
             }
           }
-        }
-      }
-      storage {
-        embeddings {
-          chunkTokenLimit
         }
       }
       actions {

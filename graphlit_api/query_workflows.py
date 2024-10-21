@@ -20,7 +20,6 @@ from .enums import (
     IntegrationServiceTypes,
     LinkTypes,
     ObservableTypes,
-    OpenAIVisionDetailLevels,
     SummarizationTypes,
 )
 
@@ -45,7 +44,6 @@ class QueryWorkflowsWorkflowsResults(BaseModel):
     preparation: Optional["QueryWorkflowsWorkflowsResultsPreparation"]
     extraction: Optional["QueryWorkflowsWorkflowsResultsExtraction"]
     enrichment: Optional["QueryWorkflowsWorkflowsResultsEnrichment"]
-    storage: Optional["QueryWorkflowsWorkflowsResultsStorage"]
     actions: Optional[List[Optional["QueryWorkflowsWorkflowsResultsActions"]]]
 
 
@@ -179,9 +177,6 @@ class QueryWorkflowsWorkflowsResultsExtractionJobsConnector(BaseModel):
     azure_image: Optional[
         "QueryWorkflowsWorkflowsResultsExtractionJobsConnectorAzureImage"
     ] = Field(alias="azureImage")
-    open_ai_image: Optional[
-        "QueryWorkflowsWorkflowsResultsExtractionJobsConnectorOpenAiImage"
-    ] = Field(alias="openAIImage")
     model_image: Optional[
         "QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelImage"
     ] = Field(alias="modelImage")
@@ -197,12 +192,6 @@ class QueryWorkflowsWorkflowsResultsExtractionJobsConnectorAzureText(BaseModel):
 
 class QueryWorkflowsWorkflowsResultsExtractionJobsConnectorAzureImage(BaseModel):
     confidence_threshold: Optional[float] = Field(alias="confidenceThreshold")
-
-
-class QueryWorkflowsWorkflowsResultsExtractionJobsConnectorOpenAiImage(BaseModel):
-    confidence_threshold: Optional[float] = Field(alias="confidenceThreshold")
-    detail_level: Optional[OpenAIVisionDetailLevels] = Field(alias="detailLevel")
-    custom_instructions: Optional[str] = Field(alias="customInstructions")
 
 
 class QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelImage(BaseModel):
@@ -264,14 +253,6 @@ class QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorFhir(BaseModel):
     endpoint: Optional[Any]
 
 
-class QueryWorkflowsWorkflowsResultsStorage(BaseModel):
-    embeddings: Optional["QueryWorkflowsWorkflowsResultsStorageEmbeddings"]
-
-
-class QueryWorkflowsWorkflowsResultsStorageEmbeddings(BaseModel):
-    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit")
-
-
 class QueryWorkflowsWorkflowsResultsActions(BaseModel):
     connector: Optional["QueryWorkflowsWorkflowsResultsActionsConnector"]
 
@@ -306,6 +287,5 @@ QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelText.model_rebuild()
 QueryWorkflowsWorkflowsResultsEnrichment.model_rebuild()
 QueryWorkflowsWorkflowsResultsEnrichmentJobs.model_rebuild()
 QueryWorkflowsWorkflowsResultsEnrichmentJobsConnector.model_rebuild()
-QueryWorkflowsWorkflowsResultsStorage.model_rebuild()
 QueryWorkflowsWorkflowsResultsActions.model_rebuild()
 QueryWorkflowsWorkflowsResultsActionsConnector.model_rebuild()

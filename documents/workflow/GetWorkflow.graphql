@@ -84,11 +84,6 @@ query GetWorkflow($id: ID!) {
           azureImage {
             confidenceThreshold
           }
-          openAIImage {
-            confidenceThreshold
-            detailLevel
-            customInstructions
-          }
           modelImage {
             specification {
               id
@@ -124,11 +119,6 @@ query GetWorkflow($id: ID!) {
             endpoint
           }
         }
-      }
-    }
-    storage {
-      embeddings {
-        chunkTokenLimit
       }
     }
     actions {

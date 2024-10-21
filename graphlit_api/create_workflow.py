@@ -20,7 +20,6 @@ from .enums import (
     IntegrationServiceTypes,
     LinkTypes,
     ObservableTypes,
-    OpenAIVisionDetailLevels,
     SummarizationTypes,
 )
 
@@ -40,7 +39,6 @@ class CreateWorkflowCreateWorkflow(BaseModel):
     preparation: Optional["CreateWorkflowCreateWorkflowPreparation"]
     extraction: Optional["CreateWorkflowCreateWorkflowExtraction"]
     enrichment: Optional["CreateWorkflowCreateWorkflowEnrichment"]
-    storage: Optional["CreateWorkflowCreateWorkflowStorage"]
     actions: Optional[List[Optional["CreateWorkflowCreateWorkflowActions"]]]
 
 
@@ -170,9 +168,6 @@ class CreateWorkflowCreateWorkflowExtractionJobsConnector(BaseModel):
     azure_image: Optional[
         "CreateWorkflowCreateWorkflowExtractionJobsConnectorAzureImage"
     ] = Field(alias="azureImage")
-    open_ai_image: Optional[
-        "CreateWorkflowCreateWorkflowExtractionJobsConnectorOpenAiImage"
-    ] = Field(alias="openAIImage")
     model_image: Optional[
         "CreateWorkflowCreateWorkflowExtractionJobsConnectorModelImage"
     ] = Field(alias="modelImage")
@@ -188,12 +183,6 @@ class CreateWorkflowCreateWorkflowExtractionJobsConnectorAzureText(BaseModel):
 
 class CreateWorkflowCreateWorkflowExtractionJobsConnectorAzureImage(BaseModel):
     confidence_threshold: Optional[float] = Field(alias="confidenceThreshold")
-
-
-class CreateWorkflowCreateWorkflowExtractionJobsConnectorOpenAiImage(BaseModel):
-    confidence_threshold: Optional[float] = Field(alias="confidenceThreshold")
-    detail_level: Optional[OpenAIVisionDetailLevels] = Field(alias="detailLevel")
-    custom_instructions: Optional[str] = Field(alias="customInstructions")
 
 
 class CreateWorkflowCreateWorkflowExtractionJobsConnectorModelImage(BaseModel):
@@ -255,14 +244,6 @@ class CreateWorkflowCreateWorkflowEnrichmentJobsConnectorFhir(BaseModel):
     endpoint: Optional[Any]
 
 
-class CreateWorkflowCreateWorkflowStorage(BaseModel):
-    embeddings: Optional["CreateWorkflowCreateWorkflowStorageEmbeddings"]
-
-
-class CreateWorkflowCreateWorkflowStorageEmbeddings(BaseModel):
-    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit")
-
-
 class CreateWorkflowCreateWorkflowActions(BaseModel):
     connector: Optional["CreateWorkflowCreateWorkflowActionsConnector"]
 
@@ -296,6 +277,5 @@ CreateWorkflowCreateWorkflowExtractionJobsConnectorModelText.model_rebuild()
 CreateWorkflowCreateWorkflowEnrichment.model_rebuild()
 CreateWorkflowCreateWorkflowEnrichmentJobs.model_rebuild()
 CreateWorkflowCreateWorkflowEnrichmentJobsConnector.model_rebuild()
-CreateWorkflowCreateWorkflowStorage.model_rebuild()
 CreateWorkflowCreateWorkflowActions.model_rebuild()
 CreateWorkflowCreateWorkflowActionsConnector.model_rebuild()

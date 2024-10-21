@@ -18,6 +18,7 @@ from .enums import (
     GoogleModels,
     GraphStrategyTypes,
     GroqModels,
+    JinaModels,
     MistralModels,
     ModelServiceTypes,
     OpenAIModels,
@@ -27,6 +28,7 @@ from .enums import (
     RetrievalStrategyTypes,
     RevisionStrategyTypes,
     SpecificationTypes,
+    VoyageModels,
 )
 
 
@@ -85,7 +87,8 @@ class QuerySpecificationsSpecificationsResults(BaseModel):
     groq: Optional["QuerySpecificationsSpecificationsResultsGroq"]
     cerebras: Optional["QuerySpecificationsSpecificationsResultsCerebras"]
     deepseek: Optional["QuerySpecificationsSpecificationsResultsDeepseek"]
-    tools: Optional[List["QuerySpecificationsSpecificationsResultsTools"]]
+    jina: Optional["QuerySpecificationsSpecificationsResultsJina"]
+    voyage: Optional["QuerySpecificationsSpecificationsResultsVoyage"]
 
 
 class QuerySpecificationsSpecificationsResultsOwner(BaseModel):
@@ -134,6 +137,7 @@ class QuerySpecificationsSpecificationsResultsAzureAi(BaseModel):
     endpoint: Any
     temperature: Optional[float]
     probability: Optional[float]
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit")
 
 
 class QuerySpecificationsSpecificationsResultsOpenAi(BaseModel):
@@ -144,6 +148,7 @@ class QuerySpecificationsSpecificationsResultsOpenAi(BaseModel):
     model_name: Optional[str] = Field(alias="modelName")
     temperature: Optional[float]
     probability: Optional[float]
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit")
 
 
 class QuerySpecificationsSpecificationsResultsAzureOpenAi(BaseModel):
@@ -155,6 +160,7 @@ class QuerySpecificationsSpecificationsResultsAzureOpenAi(BaseModel):
     deployment_name: Optional[str] = Field(alias="deploymentName")
     temperature: Optional[float]
     probability: Optional[float]
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit")
 
 
 class QuerySpecificationsSpecificationsResultsCohere(BaseModel):
@@ -165,6 +171,7 @@ class QuerySpecificationsSpecificationsResultsCohere(BaseModel):
     model_name: Optional[str] = Field(alias="modelName")
     temperature: Optional[float]
     probability: Optional[float]
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit")
 
 
 class QuerySpecificationsSpecificationsResultsAnthropic(BaseModel):
@@ -185,6 +192,7 @@ class QuerySpecificationsSpecificationsResultsGoogle(BaseModel):
     model_name: Optional[str] = Field(alias="modelName")
     temperature: Optional[float]
     probability: Optional[float]
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit")
 
 
 class QuerySpecificationsSpecificationsResultsReplicate(BaseModel):
@@ -206,6 +214,7 @@ class QuerySpecificationsSpecificationsResultsMistral(BaseModel):
     endpoint: Optional[Any]
     temperature: Optional[float]
     probability: Optional[float]
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit")
 
 
 class QuerySpecificationsSpecificationsResultsGroq(BaseModel):
@@ -240,10 +249,18 @@ class QuerySpecificationsSpecificationsResultsDeepseek(BaseModel):
     probability: Optional[float]
 
 
-class QuerySpecificationsSpecificationsResultsTools(BaseModel):
-    name: str
-    description: Optional[str]
-    schema_: str = Field(alias="schema")
+class QuerySpecificationsSpecificationsResultsJina(BaseModel):
+    model: JinaModels
+    key: Optional[str]
+    model_name: Optional[str] = Field(alias="modelName")
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit")
+
+
+class QuerySpecificationsSpecificationsResultsVoyage(BaseModel):
+    model: VoyageModels
+    key: Optional[str]
+    model_name: Optional[str] = Field(alias="modelName")
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit")
 
 
 QuerySpecifications.model_rebuild()
