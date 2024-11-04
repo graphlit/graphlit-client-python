@@ -184,7 +184,7 @@ class ContinueConversationContinueConversationMessageCitationsContentDocument(
 
 
 class ContinueConversationContinueConversationMessageToolCalls(BaseModel):
-    id: Optional[str]
+    id: str
     name: str
     arguments: str
 

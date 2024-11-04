@@ -177,7 +177,7 @@ class GetConversationConversationMessagesCitationsContentDocument(BaseModel):
 
 
 class GetConversationConversationMessagesToolCalls(BaseModel):
-    id: Optional[str]
+    id: str
     name: str
     arguments: str
 

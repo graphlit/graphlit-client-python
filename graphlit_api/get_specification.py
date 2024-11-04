@@ -103,6 +103,7 @@ class GetSpecificationSpecificationPromptStrategy(BaseModel):
 class GetSpecificationSpecificationRetrievalStrategy(BaseModel):
     type: RetrievalStrategyTypes
     content_limit: Optional[int] = Field(alias="contentLimit")
+    disable_fallback: Optional[bool] = Field(alias="disableFallback")
 
 
 class GetSpecificationSpecificationRerankingStrategy(BaseModel):

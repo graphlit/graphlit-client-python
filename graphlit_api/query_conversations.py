@@ -191,7 +191,7 @@ class QueryConversationsConversationsResultsMessagesCitationsContentDocument(Bas
 
 
 class QueryConversationsConversationsResultsMessagesToolCalls(BaseModel):
-    id: Optional[str]
+    id: str
     name: str
     arguments: str
 

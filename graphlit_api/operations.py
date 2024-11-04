@@ -5402,6 +5402,7 @@ query GetSpecification($id: ID!) {
     retrievalStrategy {
       type
       contentLimit
+      disableFallback
     }
     rerankingStrategy {
       serviceType
@@ -5706,6 +5707,7 @@ query QuerySpecifications($filter: SpecificationFilter) {
       retrievalStrategy {
         type
         contentLimit
+        disableFallback
       }
       rerankingStrategy {
         serviceType

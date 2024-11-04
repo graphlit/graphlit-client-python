@@ -176,7 +176,7 @@ class PromptConversationPromptConversationMessageCitationsContentDocument(BaseMo
 
 
 class PromptConversationPromptConversationMessageToolCalls(BaseModel):
-    id: Optional[str]
+    id: str
     name: str
     arguments: str
 

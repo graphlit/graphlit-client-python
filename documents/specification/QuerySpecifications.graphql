@@ -30,6 +30,7 @@ query QuerySpecifications($filter: SpecificationFilter) {
       retrievalStrategy {
         type
         contentLimit
+        disableFallback
       }
       rerankingStrategy {
         serviceType

@@ -780,7 +780,7 @@ class ContentInput(BaseModel):
 class ConversationInput(BaseModel):
     name: str
     type: Optional[ConversationTypes] = None
-    messages: Optional[List[Optional["ConversationMessageInput"]]] = None
+    messages: Optional[List["ConversationMessageInput"]] = None
     specification: Optional["EntityReferenceInput"] = None
     filter: Optional["ContentCriteriaInput"] = None
     augmented_filter: Optional["ContentCriteriaInput"] = Field(
@@ -1751,6 +1751,7 @@ class PromptStrategyInput(BaseModel):
 class RetrievalStrategyInput(BaseModel):
     type: RetrievalStrategyTypes
     content_limit: Optional[int] = Field(alias="contentLimit", default=None)
+    disable_fallback: Optional[bool] = Field(alias="disableFallback", default=None)
 
 
 class RerankingStrategyInput(BaseModel):

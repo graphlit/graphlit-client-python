@@ -111,6 +111,7 @@ class QuerySpecificationsSpecificationsResultsPromptStrategy(BaseModel):
 class QuerySpecificationsSpecificationsResultsRetrievalStrategy(BaseModel):
     type: RetrievalStrategyTypes
     content_limit: Optional[int] = Field(alias="contentLimit")
+    disable_fallback: Optional[bool] = Field(alias="disableFallback")
 
 
 class QuerySpecificationsSpecificationsResultsRerankingStrategy(BaseModel):

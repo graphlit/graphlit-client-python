@@ -182,7 +182,7 @@ class PromptSpecificationsPromptSpecificationsMessagesCitationsContentDocument(
 
 
 class PromptSpecificationsPromptSpecificationsMessagesToolCalls(BaseModel):
-    id: Optional[str]
+    id: str
     name: str
     arguments: str
 
