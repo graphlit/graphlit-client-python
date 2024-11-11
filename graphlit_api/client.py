@@ -149,7 +149,7 @@ from .disable_alert import DisableAlert
 from .disable_feed import DisableFeed
 from .enable_alert import EnableAlert
 from .enable_feed import EnableFeed
-from .enums import TextTypes
+from .enums import SearchServiceTypes, TextTypes
 from .extract_contents import ExtractContents
 from .get_alert import GetAlert
 from .get_category import GetCategory
@@ -513,6 +513,8 @@ from .operations import (
     QUERY_USAGE_GQL,
     QUERY_WORKFLOWS_GQL,
     REMOVE_CONTENTS_FROM_COLLECTION_GQL,
+    REVISE_CONTENT_GQL,
+    SEARCH_WEB_GQL,
     SUGGEST_CONVERSATION_GQL,
     SUMMARIZE_CONTENTS_GQL,
     UPDATE_ALERT_GQL,
@@ -587,6 +589,8 @@ from .query_specifications import QuerySpecifications
 from .query_usage import QueryUsage
 from .query_workflows import QueryWorkflows
 from .remove_contents_from_collection import RemoveContentsFromCollection
+from .revise_content import ReviseContent
+from .search_web import SearchWeb
 from .suggest_conversation import SuggestConversation
 from .summarize_contents import SummarizeContents
 from .update_alert import UpdateAlert
@@ -1554,6 +1558,7 @@ class Client(AsyncBaseClient):
         id: Union[Optional[str], UnsetType] = UNSET,
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         tools: Union[Optional[List[ToolDefinitionInput]], UnsetType] = UNSET,
+        require_tool: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> PromptConversation:
@@ -1562,6 +1567,7 @@ class Client(AsyncBaseClient):
             "id": id,
             "specification": specification,
             "tools": tools,
+            "requireTool": require_tool,
             "correlationId": correlation_id,
         }
         response = await self.execute(
@@ -1614,6 +1620,31 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryConversations.model_validate(data)
+
+    async def revise_content(
+        self,
+        prompt: str,
+        content: EntityReferenceInput,
+        id: Union[Optional[str], UnsetType] = UNSET,
+        specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> ReviseContent:
+        variables: Dict[str, object] = {
+            "prompt": prompt,
+            "content": content,
+            "id": id,
+            "specification": specification,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=REVISE_CONTENT_GQL,
+            operation_name="ReviseContent",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return ReviseContent.model_validate(data)
 
     async def suggest_conversation(
         self,
@@ -4061,6 +4092,27 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdateRepo.model_validate(data)
+
+    async def search_web(
+        self,
+        text: str,
+        service: Union[Optional[SearchServiceTypes], UnsetType] = UNSET,
+        limit: Union[Optional[int], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> SearchWeb:
+        variables: Dict[str, object] = {
+            "text": text,
+            "service": service,
+            "limit": limit,
+        }
+        response = await self.execute(
+            query=SEARCH_WEB_GQL,
+            operation_name="SearchWeb",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return SearchWeb.model_validate(data)
 
     async def count_softwares(
         self, filter: Union[Optional[SoftwareFilter], UnsetType] = UNSET, **kwargs: Any

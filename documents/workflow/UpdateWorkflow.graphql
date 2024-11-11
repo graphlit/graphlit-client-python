@@ -49,6 +49,8 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
             key
             enableRedaction
             enableSpeakerDiarization
+            detectLanguage
+            language
           }
           document {
             includeImages

@@ -227,6 +227,8 @@ __all__ = [
     "QUERY_USAGE_GQL",
     "QUERY_WORKFLOWS_GQL",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
+    "REVISE_CONTENT_GQL",
+    "SEARCH_WEB_GQL",
     "SUGGEST_CONVERSATION_GQL",
     "SUMMARIZE_CONTENTS_GQL",
     "UPDATE_ALERT_GQL",
@@ -2357,12 +2359,13 @@ query GetConversation($id: ID!) {
 """
 
 PROMPT_CONVERSATION_GQL = """
-mutation PromptConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $tools: [ToolDefinitionInput!], $correlationId: String) {
+mutation PromptConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $tools: [ToolDefinitionInput!], $requireTool: Boolean, $correlationId: String) {
   promptConversation(
     prompt: $prompt
     id: $id
     specification: $specification
     tools: $tools
+    requireTool: $requireTool
     correlationId: $correlationId
   ) {
     conversation {
@@ -2826,6 +2829,144 @@ query QueryConversations($filter: ConversationFilter) {
         }
       }
     }
+  }
+}
+"""
+
+REVISE_CONTENT_GQL = """
+mutation ReviseContent($prompt: String!, $content: EntityReferenceInput!, $id: ID, $specification: EntityReferenceInput, $correlationId: String) {
+  reviseContent(
+    prompt: $prompt
+    content: $content
+    id: $id
+    specification: $specification
+    correlationId: $correlationId
+  ) {
+    conversation {
+      id
+    }
+    message {
+      role
+      author
+      message
+      citations {
+        content {
+          id
+          name
+          state
+          originalDate
+          identifier
+          uri
+          type
+          fileType
+          mimeType
+          format
+          formatName
+          fileExtension
+          fileName
+          fileSize
+          masterUri
+          imageUri
+          textUri
+          audioUri
+          transcriptUri
+          summary
+          customSummary
+          keywords
+          bullets
+          headlines
+          posts
+          chapters
+          questions
+          video {
+            width
+            height
+            duration
+            make
+            model
+            software
+            title
+            description
+            keywords
+            author
+          }
+          audio {
+            keywords
+            author
+            series
+            episode
+            episodeType
+            season
+            publisher
+            copyright
+            genre
+            title
+            description
+            bitrate
+            channels
+            sampleRate
+            bitsPerSample
+            duration
+          }
+          image {
+            width
+            height
+            resolutionX
+            resolutionY
+            bitsPerComponent
+            components
+            projectionType
+            orientation
+            description
+            make
+            model
+            software
+            lens
+            focalLength
+            exposureTime
+            fNumber
+            iso
+            heading
+            pitch
+          }
+          document {
+            title
+            subject
+            summary
+            author
+            publisher
+            description
+            keywords
+            pageCount
+            worksheetCount
+            slideCount
+            wordCount
+            lineCount
+            paragraphCount
+            isEncrypted
+            hasDigitalSignature
+          }
+        }
+        index
+        text
+        startTime
+        endTime
+        pageNumber
+        frameNumber
+      }
+      toolCalls {
+        id
+        name
+        arguments
+      }
+      tokens
+      throughput
+      completionTime
+      timestamp
+      modelService
+      model
+    }
+    messageCount
   }
 }
 """
@@ -5230,6 +5371,19 @@ mutation UpdateRepo($repo: RepoUpdateInput!) {
 }
 """
 
+SEARCH_WEB_GQL = """
+query SearchWeb($text: String!, $service: SearchServiceTypes, $limit: Int) {
+  searchWeb(text: $text, service: $service, limit: $limit) {
+    results {
+      uri
+      text
+      title
+      score
+    }
+  }
+}
+"""
+
 COUNT_SOFTWARES_GQL = """
 query CountSoftwares($filter: SoftwareFilter) {
   countSoftwares(filter: $filter) {
@@ -5920,6 +6074,8 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
             key
             enableRedaction
             enableSpeakerDiarization
+            detectLanguage
+            language
           }
           document {
             includeImages
@@ -6089,6 +6245,8 @@ query GetWorkflow($id: ID!) {
             key
             enableRedaction
             enableSpeakerDiarization
+            detectLanguage
+            language
           }
           document {
             includeImages
@@ -6228,6 +6386,8 @@ query QueryWorkflows($filter: WorkflowFilter) {
               key
               enableRedaction
               enableSpeakerDiarization
+              detectLanguage
+              language
             }
             document {
               includeImages
@@ -6362,6 +6522,8 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
             key
             enableRedaction
             enableSpeakerDiarization
+            detectLanguage
+            language
           }
           document {
             includeImages

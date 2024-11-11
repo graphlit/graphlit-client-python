@@ -55,6 +55,8 @@ query QueryWorkflows($filter: WorkflowFilter) {
               key
               enableRedaction
               enableSpeakerDiarization
+              detectLanguage
+              language
             }
             document {
               includeImages

@@ -135,6 +135,8 @@ class QueryWorkflowsWorkflowsResultsPreparationJobsConnectorDeepgram(BaseModel):
     key: Optional[str]
     enable_redaction: Optional[bool] = Field(alias="enableRedaction")
     enable_speaker_diarization: Optional[bool] = Field(alias="enableSpeakerDiarization")
+    detect_language: Optional[bool] = Field(alias="detectLanguage")
+    language: Optional[str]
 
 
 class QueryWorkflowsWorkflowsResultsPreparationJobsConnectorDocument(BaseModel):

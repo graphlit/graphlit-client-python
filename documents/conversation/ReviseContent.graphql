@@ -1,5 +1,5 @@
-mutation PromptConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $tools: [ToolDefinitionInput!], $requireTool: Boolean, $correlationId: String) {
-  promptConversation(prompt: $prompt, id: $id, specification: $specification, tools: $tools, requireTool: $requireTool, correlationId: $correlationId) {
+mutation ReviseContent($prompt: String!, $content: EntityReferenceInput!, $id: ID, $specification: EntityReferenceInput, $correlationId: String) {
+  reviseContent(prompt: $prompt, content: $content, id: $id, specification: $specification, correlationId: $correlationId) {
     conversation {
       id
     }
@@ -125,35 +125,5 @@ mutation PromptConversation($prompt: String!, $id: ID, $specification: EntityRef
       model
     }
     messageCount
-    facets {
-      type
-      value
-      range {
-        from
-        to
-      }
-      count
-      facet
-      observable {
-        type
-        observable {
-          id
-          name
-        }
-      }
-    }
-    graph {
-      nodes {
-        id
-        name
-        type
-        metadata
-      }
-      edges {
-        from
-        to
-        relation
-      }
-    }
   }
 }

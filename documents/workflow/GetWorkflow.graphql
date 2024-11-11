@@ -54,6 +54,8 @@ query GetWorkflow($id: ID!) {
             key
             enableRedaction
             enableSpeakerDiarization
+            detectLanguage
+            language
           }
           document {
             includeImages

@@ -1,0 +1,10 @@
+query SearchWeb($text: String!, $service: SearchServiceTypes, $limit: Int) {
+  searchWeb(text: $text, service: $service, limit: $limit) {
+    results {
+      uri
+      text
+      title
+      score
+    }
+  }
+}
