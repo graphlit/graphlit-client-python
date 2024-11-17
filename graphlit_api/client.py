@@ -145,6 +145,8 @@ from .delete_specification import DeleteSpecification
 from .delete_specifications import DeleteSpecifications
 from .delete_workflow import DeleteWorkflow
 from .delete_workflows import DeleteWorkflows
+from .describe_encoded_image import DescribeEncodedImage
+from .describe_image import DescribeImage
 from .disable_alert import DisableAlert
 from .disable_feed import DisableFeed
 from .enable_alert import EnableAlert
@@ -428,6 +430,8 @@ from .operations import (
     DELETE_SPECIFICATIONS_GQL,
     DELETE_WORKFLOW_GQL,
     DELETE_WORKFLOWS_GQL,
+    DESCRIBE_ENCODED_IMAGE_GQL,
+    DESCRIBE_IMAGE_GQL,
     DISABLE_ALERT_GQL,
     DISABLE_FEED_GQL,
     ENABLE_ALERT_GQL,
@@ -514,6 +518,7 @@ from .operations import (
     QUERY_WORKFLOWS_GQL,
     REMOVE_CONTENTS_FROM_COLLECTION_GQL,
     REVISE_CONTENT_GQL,
+    REVISE_TEXT_GQL,
     SEARCH_WEB_GQL,
     SUGGEST_CONVERSATION_GQL,
     SUMMARIZE_CONTENTS_GQL,
@@ -590,6 +595,7 @@ from .query_usage import QueryUsage
 from .query_workflows import QueryWorkflows
 from .remove_contents_from_collection import RemoveContentsFromCollection
 from .revise_content import ReviseContent
+from .revise_text import ReviseText
 from .search_web import SearchWeb
 from .suggest_conversation import SuggestConversation
 from .summarize_contents import SummarizeContents
@@ -1084,6 +1090,54 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return DeleteContents.model_validate(data)
+
+    async def describe_encoded_image(
+        self,
+        prompt: str,
+        mime_type: str,
+        data: str,
+        specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DescribeEncodedImage:
+        variables: Dict[str, object] = {
+            "prompt": prompt,
+            "mimeType": mime_type,
+            "data": data,
+            "specification": specification,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DESCRIBE_ENCODED_IMAGE_GQL,
+            operation_name="DescribeEncodedImage",
+            variables=variables,
+            **kwargs
+        )
+        _data = self.get_data(response)
+        return DescribeEncodedImage.model_validate(_data)
+
+    async def describe_image(
+        self,
+        prompt: str,
+        uri: Any,
+        specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DescribeImage:
+        variables: Dict[str, object] = {
+            "prompt": prompt,
+            "uri": uri,
+            "specification": specification,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DESCRIBE_IMAGE_GQL,
+            operation_name="DescribeImage",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DescribeImage.model_validate(data)
 
     async def extract_contents(
         self,
@@ -1645,6 +1699,31 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return ReviseContent.model_validate(data)
+
+    async def revise_text(
+        self,
+        prompt: str,
+        text: str,
+        id: Union[Optional[str], UnsetType] = UNSET,
+        specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> ReviseText:
+        variables: Dict[str, object] = {
+            "prompt": prompt,
+            "text": text,
+            "id": id,
+            "specification": specification,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=REVISE_TEXT_GQL,
+            operation_name="ReviseText",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return ReviseText.model_validate(data)
 
     async def suggest_conversation(
         self,

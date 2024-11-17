@@ -142,6 +142,8 @@ __all__ = [
     "DELETE_SPECIFICATION_GQL",
     "DELETE_WORKFLOWS_GQL",
     "DELETE_WORKFLOW_GQL",
+    "DESCRIBE_ENCODED_IMAGE_GQL",
+    "DESCRIBE_IMAGE_GQL",
     "DISABLE_ALERT_GQL",
     "DISABLE_FEED_GQL",
     "ENABLE_ALERT_GQL",
@@ -228,6 +230,7 @@ __all__ = [
     "QUERY_WORKFLOWS_GQL",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
     "REVISE_CONTENT_GQL",
+    "REVISE_TEXT_GQL",
     "SEARCH_WEB_GQL",
     "SUGGEST_CONVERSATION_GQL",
     "SUMMARIZE_CONTENTS_GQL",
@@ -810,6 +813,269 @@ mutation DeleteContents($ids: [ID!]!, $isSynchronous: Boolean) {
   deleteContents(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
+  }
+}
+"""
+
+DESCRIBE_ENCODED_IMAGE_GQL = """
+mutation DescribeEncodedImage($prompt: String!, $mimeType: String!, $data: String!, $specification: EntityReferenceInput, $correlationId: String) {
+  describeEncodedImage(
+    prompt: $prompt
+    mimeType: $mimeType
+    data: $data
+    specification: $specification
+    correlationId: $correlationId
+  ) {
+    role
+    author
+    message
+    citations {
+      content {
+        id
+        name
+        state
+        originalDate
+        identifier
+        uri
+        type
+        fileType
+        mimeType
+        format
+        formatName
+        fileExtension
+        fileName
+        fileSize
+        masterUri
+        imageUri
+        textUri
+        audioUri
+        transcriptUri
+        summary
+        customSummary
+        keywords
+        bullets
+        headlines
+        posts
+        chapters
+        questions
+        video {
+          width
+          height
+          duration
+          make
+          model
+          software
+          title
+          description
+          keywords
+          author
+        }
+        audio {
+          keywords
+          author
+          series
+          episode
+          episodeType
+          season
+          publisher
+          copyright
+          genre
+          title
+          description
+          bitrate
+          channels
+          sampleRate
+          bitsPerSample
+          duration
+        }
+        image {
+          width
+          height
+          resolutionX
+          resolutionY
+          bitsPerComponent
+          components
+          projectionType
+          orientation
+          description
+          make
+          model
+          software
+          lens
+          focalLength
+          exposureTime
+          fNumber
+          iso
+          heading
+          pitch
+        }
+        document {
+          title
+          subject
+          summary
+          author
+          publisher
+          description
+          keywords
+          pageCount
+          worksheetCount
+          slideCount
+          wordCount
+          lineCount
+          paragraphCount
+          isEncrypted
+          hasDigitalSignature
+        }
+      }
+      index
+      text
+      startTime
+      endTime
+      pageNumber
+      frameNumber
+    }
+    toolCalls {
+      id
+      name
+      arguments
+    }
+    tokens
+    throughput
+    completionTime
+    timestamp
+    modelService
+    model
+  }
+}
+"""
+
+DESCRIBE_IMAGE_GQL = """
+mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityReferenceInput, $correlationId: String) {
+  describeImage(
+    prompt: $prompt
+    uri: $uri
+    specification: $specification
+    correlationId: $correlationId
+  ) {
+    role
+    author
+    message
+    citations {
+      content {
+        id
+        name
+        state
+        originalDate
+        identifier
+        uri
+        type
+        fileType
+        mimeType
+        format
+        formatName
+        fileExtension
+        fileName
+        fileSize
+        masterUri
+        imageUri
+        textUri
+        audioUri
+        transcriptUri
+        summary
+        customSummary
+        keywords
+        bullets
+        headlines
+        posts
+        chapters
+        questions
+        video {
+          width
+          height
+          duration
+          make
+          model
+          software
+          title
+          description
+          keywords
+          author
+        }
+        audio {
+          keywords
+          author
+          series
+          episode
+          episodeType
+          season
+          publisher
+          copyright
+          genre
+          title
+          description
+          bitrate
+          channels
+          sampleRate
+          bitsPerSample
+          duration
+        }
+        image {
+          width
+          height
+          resolutionX
+          resolutionY
+          bitsPerComponent
+          components
+          projectionType
+          orientation
+          description
+          make
+          model
+          software
+          lens
+          focalLength
+          exposureTime
+          fNumber
+          iso
+          heading
+          pitch
+        }
+        document {
+          title
+          subject
+          summary
+          author
+          publisher
+          description
+          keywords
+          pageCount
+          worksheetCount
+          slideCount
+          wordCount
+          lineCount
+          paragraphCount
+          isEncrypted
+          hasDigitalSignature
+        }
+      }
+      index
+      text
+      startTime
+      endTime
+      pageNumber
+      frameNumber
+    }
+    toolCalls {
+      id
+      name
+      arguments
+    }
+    tokens
+    throughput
+    completionTime
+    timestamp
+    modelService
+    model
   }
 }
 """
@@ -2838,6 +3104,144 @@ mutation ReviseContent($prompt: String!, $content: EntityReferenceInput!, $id: I
   reviseContent(
     prompt: $prompt
     content: $content
+    id: $id
+    specification: $specification
+    correlationId: $correlationId
+  ) {
+    conversation {
+      id
+    }
+    message {
+      role
+      author
+      message
+      citations {
+        content {
+          id
+          name
+          state
+          originalDate
+          identifier
+          uri
+          type
+          fileType
+          mimeType
+          format
+          formatName
+          fileExtension
+          fileName
+          fileSize
+          masterUri
+          imageUri
+          textUri
+          audioUri
+          transcriptUri
+          summary
+          customSummary
+          keywords
+          bullets
+          headlines
+          posts
+          chapters
+          questions
+          video {
+            width
+            height
+            duration
+            make
+            model
+            software
+            title
+            description
+            keywords
+            author
+          }
+          audio {
+            keywords
+            author
+            series
+            episode
+            episodeType
+            season
+            publisher
+            copyright
+            genre
+            title
+            description
+            bitrate
+            channels
+            sampleRate
+            bitsPerSample
+            duration
+          }
+          image {
+            width
+            height
+            resolutionX
+            resolutionY
+            bitsPerComponent
+            components
+            projectionType
+            orientation
+            description
+            make
+            model
+            software
+            lens
+            focalLength
+            exposureTime
+            fNumber
+            iso
+            heading
+            pitch
+          }
+          document {
+            title
+            subject
+            summary
+            author
+            publisher
+            description
+            keywords
+            pageCount
+            worksheetCount
+            slideCount
+            wordCount
+            lineCount
+            paragraphCount
+            isEncrypted
+            hasDigitalSignature
+          }
+        }
+        index
+        text
+        startTime
+        endTime
+        pageNumber
+        frameNumber
+      }
+      toolCalls {
+        id
+        name
+        arguments
+      }
+      tokens
+      throughput
+      completionTime
+      timestamp
+      modelService
+      model
+    }
+    messageCount
+  }
+}
+"""
+
+REVISE_TEXT_GQL = """
+mutation ReviseText($prompt: String!, $text: String!, $id: ID, $specification: EntityReferenceInput, $correlationId: String) {
+  reviseText(
+    prompt: $prompt
+    text: $text
     id: $id
     specification: $specification
     correlationId: $correlationId
