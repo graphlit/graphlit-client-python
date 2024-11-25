@@ -574,6 +574,8 @@ class SharePointFoldersInput(BaseModel):
         alias="authenticationType"
     )
     tenant_id: Optional[str] = Field(alias="tenantId", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
 
 
@@ -1728,6 +1730,8 @@ class SharePointLibrariesInput(BaseModel):
         alias="authenticationType"
     )
     tenant_id: Optional[str] = Field(alias="tenantId", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
 
 
