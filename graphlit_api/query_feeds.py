@@ -122,6 +122,8 @@ class QueryFeedsFeedsResultsSiteSharePoint(BaseModel):
     library_id: str = Field(alias="libraryId")
     folder_id: Optional[str] = Field(alias="folderId")
     tenant_id: Optional[str] = Field(alias="tenantId")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
 
 

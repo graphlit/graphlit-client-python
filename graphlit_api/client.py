@@ -204,6 +204,7 @@ from .input_types import (
     ContentUpdateInput,
     ConversationFilter,
     ConversationInput,
+    ConversationMessageInput,
     ConversationToolResponseInput,
     ConversationUpdateInput,
     EntityReferenceInput,
@@ -476,6 +477,7 @@ from .operations import (
     LOOKUP_CREDITS_GQL,
     LOOKUP_USAGE_GQL,
     PROMPT_CONVERSATION_GQL,
+    PROMPT_GQL,
     PROMPT_SPECIFICATIONS_GQL,
     PUBLISH_CONTENTS_GQL,
     PUBLISH_CONVERSATION_GQL,
@@ -518,6 +520,8 @@ from .operations import (
     QUERY_WORKFLOWS_GQL,
     REMOVE_CONTENTS_FROM_COLLECTION_GQL,
     REVISE_CONTENT_GQL,
+    REVISE_ENCODED_IMAGE_GQL,
+    REVISE_IMAGE_GQL,
     REVISE_TEXT_GQL,
     SEARCH_WEB_GQL,
     SUGGEST_CONVERSATION_GQL,
@@ -552,6 +556,7 @@ from .operations import (
     UPDATE_SPECIFICATION_GQL,
     UPDATE_WORKFLOW_GQL,
 )
+from .prompt import Prompt
 from .prompt_conversation import PromptConversation
 from .prompt_specifications import PromptSpecifications
 from .publish_contents import PublishContents
@@ -595,6 +600,8 @@ from .query_usage import QueryUsage
 from .query_workflows import QueryWorkflows
 from .remove_contents_from_collection import RemoveContentsFromCollection
 from .revise_content import ReviseContent
+from .revise_encoded_image import ReviseEncodedImage
+from .revise_image import ReviseImage
 from .revise_text import ReviseText
 from .search_web import SearchWeb
 from .suggest_conversation import SuggestConversation
@@ -1606,6 +1613,26 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return GetConversation.model_validate(data)
 
+    async def prompt(
+        self,
+        prompt: str,
+        specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        messages: Union[Optional[List[ConversationMessageInput]], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> Prompt:
+        variables: Dict[str, object] = {
+            "prompt": prompt,
+            "specification": specification,
+            "messages": messages,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=PROMPT_GQL, operation_name="Prompt", variables=variables, **kwargs
+        )
+        data = self.get_data(response)
+        return Prompt.model_validate(data)
+
     async def prompt_conversation(
         self,
         prompt: str,
@@ -1699,6 +1726,58 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return ReviseContent.model_validate(data)
+
+    async def revise_encoded_image(
+        self,
+        prompt: str,
+        mime_type: str,
+        data: str,
+        id: Union[Optional[str], UnsetType] = UNSET,
+        specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> ReviseEncodedImage:
+        variables: Dict[str, object] = {
+            "prompt": prompt,
+            "mimeType": mime_type,
+            "data": data,
+            "id": id,
+            "specification": specification,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=REVISE_ENCODED_IMAGE_GQL,
+            operation_name="ReviseEncodedImage",
+            variables=variables,
+            **kwargs
+        )
+        _data = self.get_data(response)
+        return ReviseEncodedImage.model_validate(_data)
+
+    async def revise_image(
+        self,
+        prompt: str,
+        uri: Any,
+        id: Union[Optional[str], UnsetType] = UNSET,
+        specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> ReviseImage:
+        variables: Dict[str, object] = {
+            "prompt": prompt,
+            "uri": uri,
+            "id": id,
+            "specification": specification,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=REVISE_IMAGE_GQL,
+            operation_name="ReviseImage",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return ReviseImage.model_validate(data)
 
     async def revise_text(
         self,

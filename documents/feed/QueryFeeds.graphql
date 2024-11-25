@@ -45,6 +45,8 @@ query QueryFeeds($filter: FeedFilter) {
           libraryId
           folderId
           tenantId
+          clientId
+          clientSecret
           refreshToken
         }
         oneDrive {
