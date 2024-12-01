@@ -8,6 +8,7 @@ from .async_base_client import AsyncBaseClient
 from .base_model import UNSET, UnsetType
 from .clear_conversation import ClearConversation
 from .close_conversation import CloseConversation
+from .complete_conversation import CompleteConversation
 from .continue_conversation import ContinueConversation
 from .count_alerts import CountAlerts
 from .count_categories import CountCategories
@@ -153,6 +154,7 @@ from .enable_alert import EnableAlert
 from .enable_feed import EnableFeed
 from .enums import SearchServiceTypes, TextTypes
 from .extract_contents import ExtractContents
+from .format_conversation import FormatConversation
 from .get_alert import GetAlert
 from .get_category import GetCategory
 from .get_collection import GetCollection
@@ -294,6 +296,7 @@ from .operations import (
     ADD_CONTENTS_TO_COLLECTIONS_GQL,
     CLEAR_CONVERSATION_GQL,
     CLOSE_CONVERSATION_GQL,
+    COMPLETE_CONVERSATION_GQL,
     CONTINUE_CONVERSATION_GQL,
     COUNT_ALERTS_GQL,
     COUNT_CATEGORIES_GQL,
@@ -438,6 +441,7 @@ from .operations import (
     ENABLE_ALERT_GQL,
     ENABLE_FEED_GQL,
     EXTRACT_CONTENTS_GQL,
+    FORMAT_CONVERSATION_GQL,
     GET_ALERT_GQL,
     GET_CATEGORY_GQL,
     GET_COLLECTION_GQL,
@@ -1499,6 +1503,27 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return CloseConversation.model_validate(data)
 
+    async def complete_conversation(
+        self,
+        completion: str,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CompleteConversation:
+        variables: Dict[str, object] = {
+            "completion": completion,
+            "id": id,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=COMPLETE_CONVERSATION_GQL,
+            operation_name="CompleteConversation",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CompleteConversation.model_validate(data)
+
     async def continue_conversation(
         self,
         id: str,
@@ -1601,6 +1626,29 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return DeleteConversations.model_validate(data)
+
+    async def format_conversation(
+        self,
+        prompt: str,
+        id: Union[Optional[str], UnsetType] = UNSET,
+        specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> FormatConversation:
+        variables: Dict[str, object] = {
+            "prompt": prompt,
+            "id": id,
+            "specification": specification,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=FORMAT_CONVERSATION_GQL,
+            operation_name="FormatConversation",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return FormatConversation.model_validate(data)
 
     async def get_conversation(self, id: str, **kwargs: Any) -> GetConversation:
         variables: Dict[str, object] = {"id": id}
