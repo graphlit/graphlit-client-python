@@ -6532,8 +6532,13 @@ mutation UpdateRepo($repo: RepoUpdateInput!) {
 """
 
 SEARCH_WEB_GQL = """
-query SearchWeb($text: String!, $service: SearchServiceTypes, $limit: Int) {
-  searchWeb(text: $text, service: $service, limit: $limit) {
+query SearchWeb($text: String!, $service: SearchServiceTypes, $limit: Int, $correlationId: String) {
+  searchWeb(
+    text: $text
+    service: $service
+    limit: $limit
+    correlationId: $correlationId
+  ) {
     results {
       uri
       text

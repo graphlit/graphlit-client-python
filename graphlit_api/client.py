@@ -4304,12 +4304,14 @@ class Client(AsyncBaseClient):
         text: str,
         service: Union[Optional[SearchServiceTypes], UnsetType] = UNSET,
         limit: Union[Optional[int], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> SearchWeb:
         variables: Dict[str, object] = {
             "text": text,
             "service": service,
             "limit": limit,
+            "correlationId": correlation_id,
         }
         response = await self.execute(
             query=SEARCH_WEB_GQL,
