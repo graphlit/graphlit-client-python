@@ -91,6 +91,7 @@ class GetSpecificationSpecificationStrategy(BaseModel):
     type: Optional[ConversationStrategyTypes]
     message_limit: Optional[int] = Field(alias="messageLimit")
     embed_citations: Optional[bool] = Field(alias="embedCitations")
+    flatten_citations: Optional[bool] = Field(alias="flattenCitations")
     enable_facets: Optional[bool] = Field(alias="enableFacets")
     messages_weight: Optional[float] = Field(alias="messagesWeight")
     contents_weight: Optional[float] = Field(alias="contentsWeight")

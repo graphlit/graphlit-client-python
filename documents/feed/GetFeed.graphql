@@ -50,6 +50,8 @@ query GetFeed($id: ID!) {
       }
       oneDrive {
         folderId
+        clientId
+        clientSecret
         refreshToken
       }
       googleDrive {
@@ -79,6 +81,8 @@ query GetFeed($id: ID!) {
       microsoft {
         type
         refreshToken
+        clientId
+        clientSecret
       }
       readLimit
     }
@@ -145,6 +149,15 @@ query GetFeed($id: ID!) {
       token
       channel
       includeAttachments
+    }
+    microsoftTeams {
+      readLimit
+      type
+      clientId
+      clientSecret
+      refreshToken
+      teamId
+      channelId
     }
     discord {
       readLimit

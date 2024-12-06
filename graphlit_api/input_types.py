@@ -340,6 +340,8 @@ class ProductFilter(BaseModel):
 
 class OneDriveFeedPropertiesInput(BaseModel):
     folder_id: Optional[str] = Field(alias="folderId", default=None)
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
     refresh_token: str = Field(alias="refreshToken")
 
 
@@ -501,6 +503,7 @@ class ConversationStrategyInput(BaseModel):
     type: Optional[ConversationStrategyTypes] = None
     message_limit: Optional[int] = Field(alias="messageLimit", default=None)
     embed_citations: Optional[bool] = Field(alias="embedCitations", default=None)
+    flatten_citations: Optional[bool] = Field(alias="flattenCitations", default=None)
     enable_facets: Optional[bool] = Field(alias="enableFacets", default=None)
     messages_weight: Optional[float] = Field(alias="messagesWeight", default=None)
     contents_weight: Optional[float] = Field(alias="contentsWeight", default=None)
@@ -2245,6 +2248,8 @@ class SearchFeedPropertiesUpdateInput(BaseModel):
 
 class MicrosoftTeamsFeedPropertiesInput(BaseModel):
     type: Optional[FeedListingTypes] = None
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
     refresh_token: str = Field(alias="refreshToken")
     team_id: str = Field(alias="teamId")
     channel_id: str = Field(alias="channelId")
@@ -2356,6 +2361,8 @@ class LabelFilter(BaseModel):
 
 class MicrosoftEmailFeedPropertiesInput(BaseModel):
     type: Optional[EmailListingTypes] = None
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
     refresh_token: str = Field(alias="refreshToken")
 
 
@@ -2613,6 +2620,8 @@ class WorkflowInput(BaseModel):
 
 class MicrosoftTeamsFeedPropertiesUpdateInput(BaseModel):
     type: Optional[FeedListingTypes] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     team_id: str = Field(alias="teamId")
     channel_id: str = Field(alias="channelId")
@@ -2810,6 +2819,7 @@ class ConversationStrategyUpdateInput(BaseModel):
     type: Optional[ConversationStrategyTypes] = None
     message_limit: Optional[int] = Field(alias="messageLimit", default=None)
     embed_citations: Optional[bool] = Field(alias="embedCitations", default=None)
+    flatten_citations: Optional[bool] = Field(alias="flattenCitations", default=None)
     enable_facets: Optional[bool] = Field(alias="enableFacets", default=None)
     messages_weight: Optional[float] = Field(alias="messagesWeight", default=None)
     contents_weight: Optional[float] = Field(alias="contentsWeight", default=None)
@@ -2817,6 +2827,8 @@ class ConversationStrategyUpdateInput(BaseModel):
 
 class MicrosoftEmailFeedPropertiesUpdateInput(BaseModel):
     type: Optional[EmailListingTypes] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
 
 
@@ -2829,6 +2841,8 @@ class MetadataInput(BaseModel):
 
 class OneDriveFeedPropertiesUpdateInput(BaseModel):
     folder_id: Optional[str] = Field(alias="folderId", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
 
 

@@ -44,6 +44,9 @@ class GetFeedFeed(BaseModel):
     notion: Optional["GetFeedFeedNotion"]
     youtube: Optional["GetFeedFeedYoutube"]
     slack: Optional["GetFeedFeedSlack"]
+    microsoft_teams: Optional["GetFeedFeedMicrosoftTeams"] = Field(
+        alias="microsoftTeams"
+    )
     discord: Optional["GetFeedFeedDiscord"]
     error: Optional[str]
     last_post_date: Optional[Any] = Field(alias="lastPostDate")
@@ -117,6 +120,8 @@ class GetFeedFeedSiteSharePoint(BaseModel):
 
 class GetFeedFeedSiteOneDrive(BaseModel):
     folder_id: Optional[str] = Field(alias="folderId")
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
     refresh_token: str = Field(alias="refreshToken")
 
 
@@ -153,6 +158,8 @@ class GetFeedFeedEmailGoogle(BaseModel):
 class GetFeedFeedEmailMicrosoft(BaseModel):
     type: Optional[EmailListingTypes]
     refresh_token: str = Field(alias="refreshToken")
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
 
 
 class GetFeedFeedIssue(BaseModel):
@@ -231,6 +238,16 @@ class GetFeedFeedSlack(BaseModel):
     token: str
     channel: str
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
+
+
+class GetFeedFeedMicrosoftTeams(BaseModel):
+    read_limit: Optional[int] = Field(alias="readLimit")
+    type: Optional[FeedListingTypes]
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
+    refresh_token: str = Field(alias="refreshToken")
+    team_id: str = Field(alias="teamId")
+    channel_id: str = Field(alias="channelId")
 
 
 class GetFeedFeedDiscord(BaseModel):

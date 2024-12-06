@@ -4391,6 +4391,8 @@ query GetFeed($id: ID!) {
       }
       oneDrive {
         folderId
+        clientId
+        clientSecret
         refreshToken
       }
       googleDrive {
@@ -4420,6 +4422,8 @@ query GetFeed($id: ID!) {
       microsoft {
         type
         refreshToken
+        clientId
+        clientSecret
       }
       readLimit
     }
@@ -4486,6 +4490,15 @@ query GetFeed($id: ID!) {
       token
       channel
       includeAttachments
+    }
+    microsoftTeams {
+      readLimit
+      type
+      clientId
+      clientSecret
+      refreshToken
+      teamId
+      channelId
     }
     discord {
       readLimit
@@ -4580,6 +4593,8 @@ query QueryFeeds($filter: FeedFilter) {
         }
         oneDrive {
           folderId
+          clientId
+          clientSecret
           refreshToken
         }
         googleDrive {
@@ -4609,6 +4624,8 @@ query QueryFeeds($filter: FeedFilter) {
         microsoft {
           type
           refreshToken
+          clientId
+          clientSecret
         }
         readLimit
       }
@@ -4675,6 +4692,15 @@ query QueryFeeds($filter: FeedFilter) {
         token
         channel
         includeAttachments
+      }
+      microsoftTeams {
+        readLimit
+        type
+        clientId
+        clientSecret
+        refreshToken
+        teamId
+        channelId
       }
       discord {
         readLimit
@@ -6711,6 +6737,7 @@ query GetSpecification($id: ID!) {
       type
       messageLimit
       embedCitations
+      flattenCitations
       enableFacets
       messagesWeight
       contentsWeight
@@ -7016,6 +7043,7 @@ query QuerySpecifications($filter: SpecificationFilter) {
         type
         messageLimit
         embedCitations
+        flattenCitations
         enableFacets
         messagesWeight
         contentsWeight

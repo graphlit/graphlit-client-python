@@ -19,6 +19,7 @@ query GetSpecification($id: ID!) {
       type
       messageLimit
       embedCitations
+      flattenCitations
       enableFacets
       messagesWeight
       contentsWeight

@@ -48,6 +48,9 @@ class QueryFeedsFeedsResults(BaseModel):
     notion: Optional["QueryFeedsFeedsResultsNotion"]
     youtube: Optional["QueryFeedsFeedsResultsYoutube"]
     slack: Optional["QueryFeedsFeedsResultsSlack"]
+    microsoft_teams: Optional["QueryFeedsFeedsResultsMicrosoftTeams"] = Field(
+        alias="microsoftTeams"
+    )
     discord: Optional["QueryFeedsFeedsResultsDiscord"]
     error: Optional[str]
     last_post_date: Optional[Any] = Field(alias="lastPostDate")
@@ -129,6 +132,8 @@ class QueryFeedsFeedsResultsSiteSharePoint(BaseModel):
 
 class QueryFeedsFeedsResultsSiteOneDrive(BaseModel):
     folder_id: Optional[str] = Field(alias="folderId")
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
     refresh_token: str = Field(alias="refreshToken")
 
 
@@ -165,6 +170,8 @@ class QueryFeedsFeedsResultsEmailGoogle(BaseModel):
 class QueryFeedsFeedsResultsEmailMicrosoft(BaseModel):
     type: Optional[EmailListingTypes]
     refresh_token: str = Field(alias="refreshToken")
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
 
 
 class QueryFeedsFeedsResultsIssue(BaseModel):
@@ -243,6 +250,16 @@ class QueryFeedsFeedsResultsSlack(BaseModel):
     token: str
     channel: str
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
+
+
+class QueryFeedsFeedsResultsMicrosoftTeams(BaseModel):
+    read_limit: Optional[int] = Field(alias="readLimit")
+    type: Optional[FeedListingTypes]
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
+    refresh_token: str = Field(alias="refreshToken")
+    team_id: str = Field(alias="teamId")
+    channel_id: str = Field(alias="channelId")
 
 
 class QueryFeedsFeedsResultsDiscord(BaseModel):
