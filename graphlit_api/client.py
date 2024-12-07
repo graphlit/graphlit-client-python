@@ -154,6 +154,7 @@ from .enable_alert import EnableAlert
 from .enable_feed import EnableFeed
 from .enums import SearchServiceTypes, TextTypes
 from .extract_contents import ExtractContents
+from .extract_text import ExtractText
 from .format_conversation import FormatConversation
 from .get_alert import GetAlert
 from .get_category import GetCategory
@@ -442,6 +443,7 @@ from .operations import (
     ENABLE_ALERT_GQL,
     ENABLE_FEED_GQL,
     EXTRACT_CONTENTS_GQL,
+    EXTRACT_TEXT_GQL,
     FORMAT_CONVERSATION_GQL,
     GET_ALERT_GQL,
     GET_CATEGORY_GQL,
@@ -1180,6 +1182,33 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return ExtractContents.model_validate(data)
+
+    async def extract_text(
+        self,
+        prompt: str,
+        text: str,
+        specification: EntityReferenceInput,
+        tools: List[ToolDefinitionInput],
+        text_type: Union[Optional[TextTypes], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> ExtractText:
+        variables: Dict[str, object] = {
+            "prompt": prompt,
+            "text": text,
+            "textType": text_type,
+            "specification": specification,
+            "tools": tools,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=EXTRACT_TEXT_GQL,
+            operation_name="ExtractText",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return ExtractText.model_validate(data)
 
     async def get_content(self, id: str, **kwargs: Any) -> GetContent:
         variables: Dict[str, object] = {"id": id}

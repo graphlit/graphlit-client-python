@@ -15,9 +15,10 @@ class ExtractContents(BaseModel):
 
 
 class ExtractContentsExtractContents(BaseModel):
-    specification: Optional["ExtractContentsExtractContentsSpecification"]
+    specification: "ExtractContentsExtractContentsSpecification"
     content: Optional["ExtractContentsExtractContentsContent"]
-    value: Optional[str]
+    name: str
+    value: str
     start_time: Optional[Any] = Field(alias="startTime")
     end_time: Optional[Any] = Field(alias="endTime")
     page_number: Optional[int] = Field(alias="pageNumber")

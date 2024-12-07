@@ -569,6 +569,12 @@ from .extract_contents import (
     ExtractContentsExtractContentsContent,
     ExtractContentsExtractContentsSpecification,
 )
+from .extract_text import (
+    ExtractText,
+    ExtractTextExtractText,
+    ExtractTextExtractTextContent,
+    ExtractTextExtractTextSpecification,
+)
 from .format_conversation import (
     FormatConversation,
     FormatConversationFormatConversation,
@@ -1325,6 +1331,7 @@ from .operations import (
     ENABLE_ALERT_GQL,
     ENABLE_FEED_GQL,
     EXTRACT_CONTENTS_GQL,
+    EXTRACT_TEXT_GQL,
     FORMAT_CONVERSATION_GQL,
     GET_ALERT_GQL,
     GET_CATEGORY_GQL,
@@ -2705,6 +2712,7 @@ __all__ = [
     "ENABLE_ALERT_GQL",
     "ENABLE_FEED_GQL",
     "EXTRACT_CONTENTS_GQL",
+    "EXTRACT_TEXT_GQL",
     "ElevenLabsModels",
     "ElevenLabsPublishingPropertiesInput",
     "EmailFeedPropertiesInput",
@@ -2737,6 +2745,10 @@ __all__ = [
     "ExtractContentsExtractContents",
     "ExtractContentsExtractContentsContent",
     "ExtractContentsExtractContentsSpecification",
+    "ExtractText",
+    "ExtractTextExtractText",
+    "ExtractTextExtractTextContent",
+    "ExtractTextExtractTextSpecification",
     "ExtractionWorkflowJobInput",
     "ExtractionWorkflowStageInput",
     "FHIREnrichmentPropertiesInput",

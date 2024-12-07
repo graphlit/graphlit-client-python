@@ -6,6 +6,7 @@ mutation ExtractContents($prompt: String!, $filter: ContentFilter, $specificatio
     content {
       id
     }
+    name
     value
     startTime
     endTime

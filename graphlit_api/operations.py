@@ -150,6 +150,7 @@ __all__ = [
     "ENABLE_ALERT_GQL",
     "ENABLE_FEED_GQL",
     "EXTRACT_CONTENTS_GQL",
+    "EXTRACT_TEXT_GQL",
     "FORMAT_CONVERSATION_GQL",
     "GET_ALERT_GQL",
     "GET_CATEGORY_GQL",
@@ -1103,6 +1104,33 @@ mutation ExtractContents($prompt: String!, $filter: ContentFilter, $specificatio
     content {
       id
     }
+    name
+    value
+    startTime
+    endTime
+    pageNumber
+    error
+  }
+}
+"""
+
+EXTRACT_TEXT_GQL = """
+mutation ExtractText($prompt: String!, $text: String!, $textType: TextTypes, $specification: EntityReferenceInput!, $tools: [ToolDefinitionInput!]!, $correlationId: String) {
+  extractText(
+    prompt: $prompt
+    text: $text
+    textType: $textType
+    specification: $specification
+    tools: $tools
+    correlationId: $correlationId
+  ) {
+    specification {
+      id
+    }
+    content {
+      id
+    }
+    name
     value
     startTime
     endTime
