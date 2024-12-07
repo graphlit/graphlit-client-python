@@ -1090,7 +1090,7 @@ mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityRefer
 """
 
 EXTRACT_CONTENTS_GQL = """
-mutation ExtractContents($prompt: String!, $filter: ContentFilter, $specification: EntityReferenceInput!, $tools: [ToolDefinitionInput!]!, $correlationId: String) {
+mutation ExtractContents($prompt: String!, $filter: ContentFilter, $specification: EntityReferenceInput, $tools: [ToolDefinitionInput!]!, $correlationId: String) {
   extractContents(
     prompt: $prompt
     filter: $filter
@@ -1115,7 +1115,7 @@ mutation ExtractContents($prompt: String!, $filter: ContentFilter, $specificatio
 """
 
 EXTRACT_TEXT_GQL = """
-mutation ExtractText($prompt: String!, $text: String!, $textType: TextTypes, $specification: EntityReferenceInput!, $tools: [ToolDefinitionInput!]!, $correlationId: String) {
+mutation ExtractText($prompt: String!, $text: String!, $textType: TextTypes, $specification: EntityReferenceInput, $tools: [ToolDefinitionInput!]!, $correlationId: String) {
   extractText(
     prompt: $prompt
     text: $text

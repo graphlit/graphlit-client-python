@@ -1161,9 +1161,9 @@ class Client(AsyncBaseClient):
     async def extract_contents(
         self,
         prompt: str,
-        specification: EntityReferenceInput,
         tools: List[ToolDefinitionInput],
         filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> ExtractContents:
@@ -1187,9 +1187,9 @@ class Client(AsyncBaseClient):
         self,
         prompt: str,
         text: str,
-        specification: EntityReferenceInput,
         tools: List[ToolDefinitionInput],
         text_type: Union[Optional[TextTypes], UnsetType] = UNSET,
+        specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> ExtractText:

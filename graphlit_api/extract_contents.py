@@ -15,7 +15,7 @@ class ExtractContents(BaseModel):
 
 
 class ExtractContentsExtractContents(BaseModel):
-    specification: "ExtractContentsExtractContentsSpecification"
+    specification: Optional["ExtractContentsExtractContentsSpecification"]
     content: Optional["ExtractContentsExtractContentsContent"]
     name: str
     value: str
