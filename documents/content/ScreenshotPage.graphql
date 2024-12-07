@@ -1,0 +1,15 @@
+mutation ScreenshotPage($uri: URL!, $maximumHeight: Int, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $correlationId: String) {
+  screenshotPage(uri: $uri, maximumHeight: $maximumHeight, workflow: $workflow, collections: $collections, isSynchronous: $isSynchronous, correlationId: $correlationId) {
+    id
+    name
+    state
+    type
+    fileType
+    mimeType
+    uri
+    collections {
+      id
+      name
+    }
+  }
+}

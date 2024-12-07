@@ -527,9 +527,11 @@ from .operations import (
     REVISE_ENCODED_IMAGE_GQL,
     REVISE_IMAGE_GQL,
     REVISE_TEXT_GQL,
+    SCREENSHOT_PAGE_GQL,
     SEARCH_WEB_GQL,
     SUGGEST_CONVERSATION_GQL,
     SUMMARIZE_CONTENTS_GQL,
+    SUMMARIZE_TEXT_GQL,
     UPDATE_ALERT_GQL,
     UPDATE_CATEGORY_GQL,
     UPDATE_COLLECTION_GQL,
@@ -607,9 +609,11 @@ from .revise_content import ReviseContent
 from .revise_encoded_image import ReviseEncodedImage
 from .revise_image import ReviseImage
 from .revise_text import ReviseText
+from .screenshot_page import ScreenshotPage
 from .search_web import SearchWeb
 from .suggest_conversation import SuggestConversation
 from .summarize_contents import SummarizeContents
+from .summarize_text import SummarizeText
 from .update_alert import UpdateAlert
 from .update_category import UpdateCategory
 from .update_collection import UpdateCollection
@@ -1447,6 +1451,33 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryContentsGraph.model_validate(data)
 
+    async def screenshot_page(
+        self,
+        uri: Any,
+        maximum_height: Union[Optional[int], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        collections: Union[Optional[List[EntityReferenceInput]], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> ScreenshotPage:
+        variables: Dict[str, object] = {
+            "uri": uri,
+            "maximumHeight": maximum_height,
+            "isSynchronous": is_synchronous,
+            "workflow": workflow,
+            "collections": collections,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=SCREENSHOT_PAGE_GQL,
+            operation_name="ScreenshotPage",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return ScreenshotPage.model_validate(data)
+
     async def summarize_contents(
         self,
         summarizations: List[SummarizationStrategyInput],
@@ -1467,6 +1498,29 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return SummarizeContents.model_validate(data)
+
+    async def summarize_text(
+        self,
+        summarization: SummarizationStrategyInput,
+        text: str,
+        text_type: Union[Optional[TextTypes], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> SummarizeText:
+        variables: Dict[str, object] = {
+            "summarization": summarization,
+            "text": text,
+            "textType": text_type,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=SUMMARIZE_TEXT_GQL,
+            operation_name="SummarizeText",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return SummarizeText.model_validate(data)
 
     async def update_content(
         self, content: ContentUpdateInput, **kwargs: Any

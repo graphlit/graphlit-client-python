@@ -236,9 +236,11 @@ __all__ = [
     "REVISE_ENCODED_IMAGE_GQL",
     "REVISE_IMAGE_GQL",
     "REVISE_TEXT_GQL",
+    "SCREENSHOT_PAGE_GQL",
     "SEARCH_WEB_GQL",
     "SUGGEST_CONVERSATION_GQL",
     "SUMMARIZE_CONTENTS_GQL",
+    "SUMMARIZE_TEXT_GQL",
     "UPDATE_ALERT_GQL",
     "UPDATE_CATEGORY_GQL",
     "UPDATE_COLLECTION_GQL",
@@ -2073,11 +2075,61 @@ query QueryContentsGraph($filter: ContentFilter, $graph: ContentGraphInput) {
 }
 """
 
+SCREENSHOT_PAGE_GQL = """
+mutation ScreenshotPage($uri: URL!, $maximumHeight: Int, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $correlationId: String) {
+  screenshotPage(
+    uri: $uri
+    maximumHeight: $maximumHeight
+    workflow: $workflow
+    collections: $collections
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
+    id
+    name
+    state
+    type
+    fileType
+    mimeType
+    uri
+    collections {
+      id
+      name
+    }
+  }
+}
+"""
+
 SUMMARIZE_CONTENTS_GQL = """
 mutation SummarizeContents($summarizations: [SummarizationStrategyInput!]!, $filter: ContentFilter, $correlationId: String) {
   summarizeContents(
     summarizations: $summarizations
     filter: $filter
+    correlationId: $correlationId
+  ) {
+    specification {
+      id
+    }
+    content {
+      id
+    }
+    type
+    items {
+      text
+      tokens
+      summarizationTime
+    }
+    error
+  }
+}
+"""
+
+SUMMARIZE_TEXT_GQL = """
+mutation SummarizeText($summarization: SummarizationStrategyInput!, $text: String!, $textType: TextTypes, $correlationId: String) {
+  summarizeText(
+    summarization: $summarization
+    text: $text
+    textType: $textType
     correlationId: $correlationId
   ) {
     specification {

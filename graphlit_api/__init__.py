@@ -1410,9 +1410,11 @@ from .operations import (
     REVISE_ENCODED_IMAGE_GQL,
     REVISE_IMAGE_GQL,
     REVISE_TEXT_GQL,
+    SCREENSHOT_PAGE_GQL,
     SEARCH_WEB_GQL,
     SUGGEST_CONVERSATION_GQL,
     SUMMARIZE_CONTENTS_GQL,
+    SUMMARIZE_TEXT_GQL,
     UPDATE_ALERT_GQL,
     UPDATE_CATEGORY_GQL,
     UPDATE_COLLECTION_GQL,
@@ -1960,6 +1962,11 @@ from .revise_text import (
     ReviseTextReviseTextMessageCitationsContentVideo,
     ReviseTextReviseTextMessageToolCalls,
 )
+from .screenshot_page import (
+    ScreenshotPage,
+    ScreenshotPageScreenshotPage,
+    ScreenshotPageScreenshotPageCollections,
+)
 from .search_web import SearchWeb, SearchWebSearchWeb, SearchWebSearchWebResults
 from .suggest_conversation import (
     SuggestConversation,
@@ -1971,6 +1978,13 @@ from .summarize_contents import (
     SummarizeContentsSummarizeContentsContent,
     SummarizeContentsSummarizeContentsItems,
     SummarizeContentsSummarizeContentsSpecification,
+)
+from .summarize_text import (
+    SummarizeText,
+    SummarizeTextSummarizeText,
+    SummarizeTextSummarizeTextContent,
+    SummarizeTextSummarizeTextItems,
+    SummarizeTextSummarizeTextSpecification,
 )
 from .update_alert import UpdateAlert, UpdateAlertUpdateAlert
 from .update_category import UpdateCategory, UpdateCategoryUpdateCategory
@@ -3772,9 +3786,14 @@ __all__ = [
     "RevisionStrategyInput",
     "RevisionStrategyTypes",
     "RevisionStrategyUpdateInput",
+    "SCREENSHOT_PAGE_GQL",
     "SEARCH_WEB_GQL",
     "SUGGEST_CONVERSATION_GQL",
     "SUMMARIZE_CONTENTS_GQL",
+    "SUMMARIZE_TEXT_GQL",
+    "ScreenshotPage",
+    "ScreenshotPageScreenshotPage",
+    "ScreenshotPageScreenshotPageCollections",
     "SearchFeedPropertiesInput",
     "SearchFeedPropertiesUpdateInput",
     "SearchQueryTypes",
@@ -3814,6 +3833,11 @@ __all__ = [
     "SummarizeContentsSummarizeContentsContent",
     "SummarizeContentsSummarizeContentsItems",
     "SummarizeContentsSummarizeContentsSpecification",
+    "SummarizeText",
+    "SummarizeTextSummarizeText",
+    "SummarizeTextSummarizeTextContent",
+    "SummarizeTextSummarizeTextItems",
+    "SummarizeTextSummarizeTextSpecification",
     "TextContentInput",
     "TextRoles",
     "TextTypes",
