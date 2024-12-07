@@ -189,6 +189,7 @@ __all__ = [
     "IS_FEED_DONE_GQL",
     "LOOKUP_CREDITS_GQL",
     "LOOKUP_USAGE_GQL",
+    "MAP_WEB_GQL",
     "PROMPT_CONVERSATION_GQL",
     "PROMPT_GQL",
     "PROMPT_SPECIFICATIONS_GQL",
@@ -6605,6 +6606,19 @@ mutation UpdateRepo($repo: RepoUpdateInput!) {
   updateRepo(repo: $repo) {
     id
     name
+  }
+}
+"""
+
+MAP_WEB_GQL = """
+query MapWeb($uri: URL!, $allowedPaths: [String!], $excludedPaths: [String!], $correlationId: String) {
+  mapWeb(
+    uri: $uri
+    allowedPaths: $allowedPaths
+    excludedPaths: $excludedPaths
+    correlationId: $correlationId
+  ) {
+    results
   }
 }
 """

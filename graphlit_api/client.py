@@ -292,6 +292,7 @@ from .is_content_done import IsContentDone
 from .is_feed_done import IsFeedDone
 from .lookup_credits import LookupCredits
 from .lookup_usage import LookupUsage
+from .map_web import MapWeb
 from .operations import (
     ADD_CONTENTS_TO_COLLECTIONS_GQL,
     CLEAR_CONVERSATION_GQL,
@@ -480,6 +481,7 @@ from .operations import (
     IS_FEED_DONE_GQL,
     LOOKUP_CREDITS_GQL,
     LOOKUP_USAGE_GQL,
+    MAP_WEB_GQL,
     PROMPT_CONVERSATION_GQL,
     PROMPT_GQL,
     PROMPT_SPECIFICATIONS_GQL,
@@ -4352,6 +4354,26 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdateRepo.model_validate(data)
+
+    async def map_web(
+        self,
+        uri: Any,
+        allowed_paths: Union[Optional[List[str]], UnsetType] = UNSET,
+        excluded_paths: Union[Optional[List[str]], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> MapWeb:
+        variables: Dict[str, object] = {
+            "uri": uri,
+            "allowedPaths": allowed_paths,
+            "excludedPaths": excluded_paths,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=MAP_WEB_GQL, operation_name="MapWeb", variables=variables, **kwargs
+        )
+        data = self.get_data(response)
+        return MapWeb.model_validate(data)
 
     async def search_web(
         self,

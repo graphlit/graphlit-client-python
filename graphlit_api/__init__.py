@@ -1175,6 +1175,7 @@ from .is_content_done import IsContentDone, IsContentDoneIsContentDone
 from .is_feed_done import IsFeedDone, IsFeedDoneIsFeedDone
 from .lookup_credits import LookupCredits, LookupCreditsLookupCredits
 from .lookup_usage import LookupUsage, LookupUsageLookupUsage
+from .map_web import MapWeb, MapWebMapWeb
 from .operations import (
     ADD_CONTENTS_TO_COLLECTIONS_GQL,
     CLEAR_CONVERSATION_GQL,
@@ -1363,6 +1364,7 @@ from .operations import (
     IS_FEED_DONE_GQL,
     LOOKUP_CREDITS_GQL,
     LOOKUP_USAGE_GQL,
+    MAP_WEB_GQL,
     PROMPT_CONVERSATION_GQL,
     PROMPT_GQL,
     PROMPT_SPECIFICATIONS_GQL,
@@ -3148,9 +3150,12 @@ __all__ = [
     "LookupCreditsLookupCredits",
     "LookupUsage",
     "LookupUsageLookupUsage",
+    "MAP_WEB_GQL",
     "MailImportance",
     "MailPriority",
     "MailSensitivity",
+    "MapWeb",
+    "MapWebMapWeb",
     "MedicalConditionFacetInput",
     "MedicalConditionFacetTypes",
     "MedicalConditionFilter",

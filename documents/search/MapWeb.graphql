@@ -1,0 +1,5 @@
+query MapWeb($uri: URL!, $allowedPaths: [String!], $excludedPaths: [String!], $correlationId: String) {
+  mapWeb(uri: $uri, allowedPaths: $allowedPaths, excludedPaths: $excludedPaths, correlationId: $correlationId) {
+    results
+  }
+}
