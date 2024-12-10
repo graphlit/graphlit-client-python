@@ -5,6 +5,9 @@ query QuerySoftwares($filter: SoftwareFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
       releaseDate

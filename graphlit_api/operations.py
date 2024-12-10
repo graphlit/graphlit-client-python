@@ -4305,6 +4305,9 @@ query GetEvent($id: ID!) {
     name
     alternateNames
     creationDate
+    uri
+    description
+    identifier
     thing
     relevance
     address {
@@ -4336,6 +4339,9 @@ query QueryEvents($filter: EventFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
       address {
@@ -5037,6 +5043,9 @@ query GetMedicalCondition($id: ID!) {
     name
     alternateNames
     creationDate
+    uri
+    description
+    identifier
     thing
     relevance
   }
@@ -5051,6 +5060,9 @@ query QueryMedicalConditions($filter: MedicalConditionFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
     }
@@ -5122,6 +5134,9 @@ query GetMedicalContraindication($id: ID!) {
     name
     alternateNames
     creationDate
+    uri
+    description
+    identifier
     thing
     relevance
   }
@@ -5136,6 +5151,9 @@ query QueryMedicalContraindications($filter: MedicalContraindicationFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
     }
@@ -5207,6 +5225,9 @@ query GetMedicalDevice($id: ID!) {
     name
     alternateNames
     creationDate
+    uri
+    description
+    identifier
     thing
     relevance
   }
@@ -5221,6 +5242,9 @@ query QueryMedicalDevices($filter: MedicalDeviceFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
     }
@@ -5292,6 +5316,9 @@ query GetMedicalDrug($id: ID!) {
     name
     alternateNames
     creationDate
+    uri
+    description
+    identifier
     thing
     relevance
   }
@@ -5306,6 +5333,9 @@ query QueryMedicalDrugs($filter: MedicalDrugFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
     }
@@ -5377,6 +5407,9 @@ query GetMedicalDrugClass($id: ID!) {
     name
     alternateNames
     creationDate
+    uri
+    description
+    identifier
     thing
     relevance
   }
@@ -5391,6 +5424,9 @@ query QueryMedicalDrugClasses($filter: MedicalDrugClassFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
     }
@@ -5462,6 +5498,9 @@ query GetMedicalGuideline($id: ID!) {
     name
     alternateNames
     creationDate
+    uri
+    description
+    identifier
     thing
     relevance
   }
@@ -5476,6 +5515,9 @@ query QueryMedicalGuidelines($filter: MedicalGuidelineFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
     }
@@ -5547,6 +5589,9 @@ query GetMedicalIndication($id: ID!) {
     name
     alternateNames
     creationDate
+    uri
+    description
+    identifier
     thing
     relevance
   }
@@ -5561,6 +5606,9 @@ query QueryMedicalIndications($filter: MedicalIndicationFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
     }
@@ -5632,6 +5680,9 @@ query GetMedicalProcedure($id: ID!) {
     name
     alternateNames
     creationDate
+    uri
+    description
+    identifier
     thing
     relevance
   }
@@ -5646,6 +5697,9 @@ query QueryMedicalProcedures($filter: MedicalProcedureFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
     }
@@ -5717,6 +5771,9 @@ query GetMedicalStudy($id: ID!) {
     name
     alternateNames
     creationDate
+    uri
+    description
+    identifier
     thing
     relevance
     address {
@@ -5738,6 +5795,9 @@ query QueryMedicalStudies($filter: MedicalStudyFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
       address {
@@ -5816,6 +5876,9 @@ query GetMedicalTest($id: ID!) {
     name
     alternateNames
     creationDate
+    uri
+    description
+    identifier
     thing
     relevance
   }
@@ -5830,6 +5893,9 @@ query QueryMedicalTests($filter: MedicalTestFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
     }
@@ -5901,6 +5967,9 @@ query GetMedicalTherapy($id: ID!) {
     name
     alternateNames
     creationDate
+    uri
+    description
+    identifier
     thing
     relevance
   }
@@ -5915,6 +5984,9 @@ query QueryMedicalTherapies($filter: MedicalTherapyFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
     }
@@ -6013,6 +6085,9 @@ query GetOrganization($id: ID!) {
     name
     alternateNames
     creationDate
+    uri
+    description
+    identifier
     thing
     relevance
     address {
@@ -6040,6 +6115,9 @@ query QueryOrganizations($filter: OrganizationFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
       address {
@@ -6124,6 +6202,9 @@ query GetPerson($id: ID!) {
     name
     alternateNames
     creationDate
+    uri
+    description
+    identifier
     thing
     relevance
     address {
@@ -6153,6 +6234,9 @@ query QueryPersons($filter: PersonFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
       address {
@@ -6239,6 +6323,9 @@ query GetPlace($id: ID!) {
     name
     alternateNames
     creationDate
+    uri
+    description
+    identifier
     thing
     relevance
     address {
@@ -6260,6 +6347,9 @@ query QueryPlaces($filter: PlaceFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
       address {
@@ -6338,6 +6428,9 @@ query GetProduct($id: ID!) {
     name
     alternateNames
     creationDate
+    uri
+    description
+    identifier
     thing
     relevance
     address {
@@ -6366,6 +6459,9 @@ query QueryProducts($filter: ProductFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
       address {
@@ -6626,6 +6722,9 @@ query GetRepo($id: ID!) {
     name
     alternateNames
     creationDate
+    uri
+    description
+    identifier
     thing
     relevance
   }
@@ -6640,6 +6739,9 @@ query QueryRepos($filter: RepoFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
     }
@@ -6742,6 +6844,9 @@ query GetSoftware($id: ID!) {
     name
     alternateNames
     creationDate
+    uri
+    description
+    identifier
     thing
     relevance
     releaseDate
@@ -6758,6 +6863,9 @@ query QuerySoftwares($filter: SoftwareFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
       releaseDate

@@ -5,6 +5,9 @@ query QueryRepos($filter: RepoFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
     }

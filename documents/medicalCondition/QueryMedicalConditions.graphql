@@ -5,6 +5,9 @@ query QueryMedicalConditions($filter: MedicalConditionFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
     }

@@ -5,6 +5,9 @@ query QueryMedicalDevices($filter: MedicalDeviceFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
     }

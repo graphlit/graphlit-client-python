@@ -5,6 +5,9 @@ query QueryMedicalContraindications($filter: MedicalContraindicationFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
     }

@@ -5,6 +5,9 @@ query QueryMedicalDrugClasses($filter: MedicalDrugClassFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
     }

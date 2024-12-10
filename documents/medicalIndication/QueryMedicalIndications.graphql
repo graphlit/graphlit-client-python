@@ -5,6 +5,9 @@ query QueryMedicalIndications($filter: MedicalIndicationFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
     }

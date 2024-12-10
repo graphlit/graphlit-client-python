@@ -4,6 +4,9 @@ query GetEvent($id: ID!) {
     name
     alternateNames
     creationDate
+    uri
+    description
+    identifier
     thing
     relevance
     address {

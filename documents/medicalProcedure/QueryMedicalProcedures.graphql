@@ -5,6 +5,9 @@ query QueryMedicalProcedures($filter: MedicalProcedureFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
     }

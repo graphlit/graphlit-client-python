@@ -5,6 +5,9 @@ query QueryPlaces($filter: PlaceFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
       address {

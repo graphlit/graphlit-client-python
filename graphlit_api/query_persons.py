@@ -21,6 +21,9 @@ class QueryPersonsPersonsResults(BaseModel):
     name: str
     alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     creation_date: Any = Field(alias="creationDate")
+    uri: Optional[Any]
+    description: Optional[str]
+    identifier: Optional[str]
     thing: Optional[str]
     relevance: Optional[float]
     address: Optional["QueryPersonsPersonsResultsAddress"]

@@ -5,6 +5,9 @@ query QueryMedicalStudies($filter: MedicalStudyFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
       address {

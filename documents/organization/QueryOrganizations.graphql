@@ -5,6 +5,9 @@ query QueryOrganizations($filter: OrganizationFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
       address {

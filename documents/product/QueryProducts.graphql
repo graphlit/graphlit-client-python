@@ -5,6 +5,9 @@ query QueryProducts($filter: ProductFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
       address {

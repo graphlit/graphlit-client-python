@@ -5,6 +5,9 @@ query QueryMedicalGuidelines($filter: MedicalGuidelineFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
     }

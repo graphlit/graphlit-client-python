@@ -5,6 +5,9 @@ query QueryEvents($filter: EventFilter) {
       name
       alternateNames
       creationDate
+      uri
+      description
+      identifier
       thing
       relevance
       address {
