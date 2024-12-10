@@ -1377,6 +1377,12 @@ query GetContent($id: ID!) {
       text
       relevance
     }
+    frames {
+      index
+      description
+      text
+      relevance
+    }
     error
   }
 }
@@ -1817,6 +1823,12 @@ query QueryContents($filter: ContentFilter) {
         text
         relevance
       }
+      frames {
+        index
+        description
+        text
+        relevance
+      }
       error
     }
   }
@@ -2058,6 +2070,12 @@ query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!])
       segments {
         startTime
         endTime
+        text
+        relevance
+      }
+      frames {
+        index
+        description
         text
         relevance
       }

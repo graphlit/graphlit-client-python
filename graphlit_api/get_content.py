@@ -77,6 +77,7 @@ class GetContentContent(BaseModel):
     workflow: Optional["GetContentContentWorkflow"]
     pages: Optional[List["GetContentContentPages"]]
     segments: Optional[List["GetContentContentSegments"]]
+    frames: Optional[List["GetContentContentFrames"]]
     error: Optional[str]
 
 
@@ -320,6 +321,13 @@ class GetContentContentPagesChunks(BaseModel):
 class GetContentContentSegments(BaseModel):
     start_time: Optional[Any] = Field(alias="startTime")
     end_time: Optional[Any] = Field(alias="endTime")
+    text: Optional[str]
+    relevance: Optional[float]
+
+
+class GetContentContentFrames(BaseModel):
+    index: Optional[int]
+    description: Optional[str]
     text: Optional[str]
     relevance: Optional[float]
 

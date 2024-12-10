@@ -235,6 +235,12 @@ query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!])
         text
         relevance
       }
+      frames {
+        index
+        description
+        text
+        relevance
+      }
       error
     }
     facets {

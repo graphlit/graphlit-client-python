@@ -234,6 +234,12 @@ query GetContent($id: ID!) {
       text
       relevance
     }
+    frames {
+      index
+      description
+      text
+      relevance
+    }
     error
   }
 }

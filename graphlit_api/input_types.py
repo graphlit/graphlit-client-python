@@ -2015,6 +2015,7 @@ class PersonFilter(BaseModel):
     family_name: Optional[str] = Field(alias="familyName", default=None)
     phone_number: Optional[str] = Field(alias="phoneNumber", default=None)
     email: Optional[str] = None
+    uri: Optional[Any] = None
     persons: Optional[List["EntityReferenceFilter"]] = None
 
 
@@ -3009,6 +3010,7 @@ class OrganizationFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
+    uri: Optional[Any] = None
     organizations: Optional[List["EntityReferenceFilter"]] = None
 
 

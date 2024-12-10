@@ -235,6 +235,12 @@ query QueryContents($filter: ContentFilter) {
         text
         relevance
       }
+      frames {
+        index
+        description
+        text
+        relevance
+      }
       error
     }
   }

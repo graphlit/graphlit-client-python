@@ -88,6 +88,7 @@ class QueryContentsFacetsContentsResults(BaseModel):
     workflow: Optional["QueryContentsFacetsContentsResultsWorkflow"]
     pages: Optional[List["QueryContentsFacetsContentsResultsPages"]]
     segments: Optional[List["QueryContentsFacetsContentsResultsSegments"]]
+    frames: Optional[List["QueryContentsFacetsContentsResultsFrames"]]
     error: Optional[str]
 
 
@@ -335,6 +336,13 @@ class QueryContentsFacetsContentsResultsPagesChunks(BaseModel):
 class QueryContentsFacetsContentsResultsSegments(BaseModel):
     start_time: Optional[Any] = Field(alias="startTime")
     end_time: Optional[Any] = Field(alias="endTime")
+    text: Optional[str]
+    relevance: Optional[float]
+
+
+class QueryContentsFacetsContentsResultsFrames(BaseModel):
+    index: Optional[int]
+    description: Optional[str]
     text: Optional[str]
     relevance: Optional[float]
 
