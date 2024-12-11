@@ -31,6 +31,20 @@ Alternately, you can pass these values with the constructor of the Graphlit clie
 
 You can find these values in the API settings dashboard on the [Graphlit Platform](https://portal.graphlit.dev).
 
+For example, to use Graphlit in a Google Colab notebook, you need to assign these properties as Colab secrets: GRAPHLIT_ORGANIZATION_ID, GRAPHLIT_ENVIRONMENT_ID and GRAPHLIT_JWT_SECRET.
+
+```python
+import os
+from google.colab import userdata
+from graphlit import Graphlit
+
+os.environ['GRAPHLIT_ORGANIZATION_ID'] = userdata.get('GRAPHLIT_ORGANIZATION_ID')
+os.environ['GRAPHLIT_ENVIRONMENT_ID'] = userdata.get('GRAPHLIT_ENVIRONMENT_ID')
+os.environ['GRAPHLIT_JWT_SECRET'] = userdata.get('GRAPHLIT_JWT_SECRET')
+
+graphlit = Graphlit()
+```
+
 ### Setting Environment Variables
 
 To set these environment variables on your system, use the following commands, replacing `your_value` with the actual values from your account.
