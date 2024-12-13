@@ -22,7 +22,6 @@ query QuerySpecifications($filter: SpecificationFilter) {
         embedCitations
         flattenCitations
         enableFacets
-        disableGuardrails
         messagesWeight
         contentsWeight
       }

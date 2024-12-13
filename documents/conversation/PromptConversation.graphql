@@ -175,6 +175,7 @@ mutation PromptConversation($prompt: String!, $id: ID, $specification: EntityRef
       formattedObservables
       formattedInstructions
       formattedTools
+      specification
       messages {
         role
         author

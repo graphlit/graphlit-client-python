@@ -93,7 +93,6 @@ class GetSpecificationSpecificationStrategy(BaseModel):
     embed_citations: Optional[bool] = Field(alias="embedCitations")
     flatten_citations: Optional[bool] = Field(alias="flattenCitations")
     enable_facets: Optional[bool] = Field(alias="enableFacets")
-    disable_guardrails: Optional[bool] = Field(alias="disableGuardrails")
     messages_weight: Optional[float] = Field(alias="messagesWeight")
     contents_weight: Optional[float] = Field(alias="contentsWeight")
 

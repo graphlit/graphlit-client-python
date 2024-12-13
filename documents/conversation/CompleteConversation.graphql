@@ -175,6 +175,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $correlationId: St
       formattedObservables
       formattedInstructions
       formattedTools
+      specification
       messages {
         role
         author

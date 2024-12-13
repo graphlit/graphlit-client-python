@@ -506,7 +506,6 @@ class ConversationStrategyInput(BaseModel):
     embed_citations: Optional[bool] = Field(alias="embedCitations", default=None)
     flatten_citations: Optional[bool] = Field(alias="flattenCitations", default=None)
     enable_facets: Optional[bool] = Field(alias="enableFacets", default=None)
-    disable_guardrails: Optional[bool] = Field(alias="disableGuardrails", default=None)
     messages_weight: Optional[float] = Field(alias="messagesWeight", default=None)
     contents_weight: Optional[float] = Field(alias="contentsWeight", default=None)
 
@@ -2825,7 +2824,6 @@ class ConversationStrategyUpdateInput(BaseModel):
     embed_citations: Optional[bool] = Field(alias="embedCitations", default=None)
     flatten_citations: Optional[bool] = Field(alias="flattenCitations", default=None)
     enable_facets: Optional[bool] = Field(alias="enableFacets", default=None)
-    disable_guardrails: Optional[bool] = Field(alias="disableGuardrails", default=None)
     messages_weight: Optional[float] = Field(alias="messagesWeight", default=None)
     contents_weight: Optional[float] = Field(alias="contentsWeight", default=None)
 

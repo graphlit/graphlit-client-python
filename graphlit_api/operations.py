@@ -2418,6 +2418,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $correlationId: St
       formattedObservables
       formattedInstructions
       formattedTools
+      specification
       messages {
         role
         author
@@ -2726,6 +2727,7 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
       formattedObservables
       formattedInstructions
       formattedTools
+      specification
       messages {
         role
         author
@@ -3086,6 +3088,7 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
       formattedObservables
       formattedInstructions
       formattedTools
+      specification
       messages {
         role
         author
@@ -3811,6 +3814,7 @@ mutation PromptConversation($prompt: String!, $id: ID, $specification: EntityRef
       formattedObservables
       formattedInstructions
       formattedTools
+      specification
       messages {
         role
         author
@@ -7529,7 +7533,6 @@ query GetSpecification($id: ID!) {
       embedCitations
       flattenCitations
       enableFacets
-      disableGuardrails
       messagesWeight
       contentsWeight
     }
@@ -7837,7 +7840,6 @@ query QuerySpecifications($filter: SpecificationFilter) {
         embedCitations
         flattenCitations
         enableFacets
-        disableGuardrails
         messagesWeight
         contentsWeight
       }

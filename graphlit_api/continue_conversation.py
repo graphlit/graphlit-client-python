@@ -258,6 +258,7 @@ class ContinueConversationContinueConversationDetails(BaseModel):
     formatted_observables: Optional[str] = Field(alias="formattedObservables")
     formatted_instructions: Optional[str] = Field(alias="formattedInstructions")
     formatted_tools: Optional[str] = Field(alias="formattedTools")
+    specification: Optional[str]
     messages: Optional[
         List[Optional["ContinueConversationContinueConversationDetailsMessages"]]
     ]
