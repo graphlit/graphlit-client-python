@@ -134,6 +134,7 @@ class MedicalDrugClassFacetTypes(str, Enum):
 
 
 class ConversationSearchTypes(str, Enum):
+    NONE = "NONE"
     VECTOR = "VECTOR"
     HYBRID = "HYBRID"
 
