@@ -2619,11 +2619,12 @@ mutation DeleteConversations($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 FORMAT_CONVERSATION_GQL = """
-mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $correlationId: String) {
+mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $includeDetails: Boolean, $correlationId: String) {
   formatConversation(
     prompt: $prompt
     id: $id
     specification: $specification
+    includeDetails: $includeDetails
     correlationId: $correlationId
   ) {
     conversation {
@@ -3199,13 +3200,14 @@ mutation Prompt($prompt: String!, $specification: EntityReferenceInput, $message
 """
 
 PROMPT_CONVERSATION_GQL = """
-mutation PromptConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $tools: [ToolDefinitionInput!], $requireTool: Boolean, $correlationId: String) {
+mutation PromptConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $tools: [ToolDefinitionInput!], $requireTool: Boolean, $includeDetails: Boolean, $correlationId: String) {
   promptConversation(
     prompt: $prompt
     id: $id
     specification: $specification
     tools: $tools
     requireTool: $requireTool
+    includeDetails: $includeDetails
     correlationId: $correlationId
   ) {
     conversation {
@@ -6959,6 +6961,7 @@ query GetSpecification($id: ID!) {
       embedCitations
       flattenCitations
       enableFacets
+      disableGuardrails
       messagesWeight
       contentsWeight
     }
@@ -7265,6 +7268,7 @@ query QuerySpecifications($filter: SpecificationFilter) {
         embedCitations
         flattenCitations
         enableFacets
+        disableGuardrails
         messagesWeight
         contentsWeight
       }

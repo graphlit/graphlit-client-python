@@ -1717,6 +1717,7 @@ class Client(AsyncBaseClient):
         prompt: str,
         id: Union[Optional[str], UnsetType] = UNSET,
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        include_details: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> FormatConversation:
@@ -1724,6 +1725,7 @@ class Client(AsyncBaseClient):
             "prompt": prompt,
             "id": id,
             "specification": specification,
+            "includeDetails": include_details,
             "correlationId": correlation_id,
         }
         response = await self.execute(
@@ -1773,6 +1775,7 @@ class Client(AsyncBaseClient):
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         tools: Union[Optional[List[ToolDefinitionInput]], UnsetType] = UNSET,
         require_tool: Union[Optional[bool], UnsetType] = UNSET,
+        include_details: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> PromptConversation:
@@ -1782,6 +1785,7 @@ class Client(AsyncBaseClient):
             "specification": specification,
             "tools": tools,
             "requireTool": require_tool,
+            "includeDetails": include_details,
             "correlationId": correlation_id,
         }
         response = await self.execute(

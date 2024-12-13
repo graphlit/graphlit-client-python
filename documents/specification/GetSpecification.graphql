@@ -21,6 +21,7 @@ query GetSpecification($id: ID!) {
       embedCitations
       flattenCitations
       enableFacets
+      disableGuardrails
       messagesWeight
       contentsWeight
     }
