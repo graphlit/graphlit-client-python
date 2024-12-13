@@ -249,7 +249,6 @@ class FormatConversationFormatConversationDetails(BaseModel):
     messages: Optional[
         List[Optional["FormatConversationFormatConversationDetailsMessages"]]
     ]
-    assistant_message: Optional[str] = Field(alias="assistantMessage")
 
 
 class FormatConversationFormatConversationDetailsMessages(BaseModel):

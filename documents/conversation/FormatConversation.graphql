@@ -296,7 +296,6 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
         modelService
         model
       }
-      assistantMessage
     }
   }
 }

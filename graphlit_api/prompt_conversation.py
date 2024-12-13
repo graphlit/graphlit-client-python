@@ -249,7 +249,6 @@ class PromptConversationPromptConversationDetails(BaseModel):
     messages: Optional[
         List[Optional["PromptConversationPromptConversationDetailsMessages"]]
     ]
-    assistant_message: Optional[str] = Field(alias="assistantMessage")
 
 
 class PromptConversationPromptConversationDetailsMessages(BaseModel):

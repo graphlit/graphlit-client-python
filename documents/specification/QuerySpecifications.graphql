@@ -62,6 +62,7 @@ query QuerySpecifications($filter: SpecificationFilter) {
         completionTokenLimit
         model
         key
+        endpoint
         modelName
         temperature
         probability

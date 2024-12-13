@@ -296,7 +296,6 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
         modelService
         model
       }
-      assistantMessage
     }
   }
 }

@@ -296,7 +296,6 @@ mutation CompleteConversation($completion: String!, $id: ID!, $correlationId: St
         modelService
         model
       }
-      assistantMessage
     }
   }
 }

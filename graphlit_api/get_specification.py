@@ -140,6 +140,7 @@ class GetSpecificationSpecificationOpenAi(BaseModel):
     completion_token_limit: Optional[int] = Field(alias="completionTokenLimit")
     model: OpenAIModels
     key: Optional[str]
+    endpoint: Optional[Any]
     model_name: Optional[str] = Field(alias="modelName")
     temperature: Optional[float]
     probability: Optional[float]

@@ -2539,7 +2539,6 @@ mutation CompleteConversation($completion: String!, $id: ID!, $correlationId: St
         modelService
         model
       }
-      assistantMessage
     }
   }
 }
@@ -2848,7 +2847,6 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
         modelService
         model
       }
-      assistantMessage
     }
   }
 }
@@ -3209,7 +3207,6 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
         modelService
         model
       }
-      assistantMessage
     }
   }
 }
@@ -3935,7 +3932,6 @@ mutation PromptConversation($prompt: String!, $id: ID, $specification: EntityRef
         modelService
         model
       }
-      assistantMessage
     }
   }
 }
@@ -7573,6 +7569,7 @@ query GetSpecification($id: ID!) {
       completionTokenLimit
       model
       key
+      endpoint
       modelName
       temperature
       probability
@@ -7880,6 +7877,7 @@ query QuerySpecifications($filter: SpecificationFilter) {
         completionTokenLimit
         model
         key
+        endpoint
         modelName
         temperature
         probability

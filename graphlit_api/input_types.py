@@ -231,6 +231,7 @@ class OpenAIModelPropertiesUpdateInput(BaseModel):
     model: Optional[OpenAIModels] = None
     model_name: Optional[str] = Field(alias="modelName", default=None)
     key: Optional[str] = None
+    endpoint: Optional[Any] = None
     temperature: Optional[float] = None
     probability: Optional[float] = None
     token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
@@ -617,6 +618,7 @@ class OpenAIModelPropertiesInput(BaseModel):
     model: OpenAIModels
     model_name: Optional[str] = Field(alias="modelName", default=None)
     key: Optional[str] = None
+    endpoint: Optional[Any] = None
     temperature: Optional[float] = None
     probability: Optional[float] = None
     token_limit: Optional[int] = Field(alias="tokenLimit", default=None)

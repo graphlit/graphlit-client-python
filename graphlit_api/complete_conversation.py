@@ -261,7 +261,6 @@ class CompleteConversationCompleteConversationDetails(BaseModel):
     messages: Optional[
         List[Optional["CompleteConversationCompleteConversationDetailsMessages"]]
     ]
-    assistant_message: Optional[str] = Field(alias="assistantMessage")
 
 
 class CompleteConversationCompleteConversationDetailsMessages(BaseModel):
