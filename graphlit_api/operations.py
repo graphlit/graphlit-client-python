@@ -362,10 +362,12 @@ query GetAlert($id: ID!) {
         from
         to
       }
+      inLast
       creationDateRange {
         from
         to
       }
+      createdInLast
       types
       fileTypes
       contents {
@@ -471,10 +473,12 @@ query QueryAlerts($filter: AlertFilter) {
           from
           to
         }
+        inLast
         creationDateRange {
           from
           to
         }
+        createdInLast
         types
         fileTypes
         contents {
@@ -3358,10 +3362,12 @@ query GetConversation($id: ID!) {
         from
         to
       }
+      inLast
       creationDateRange {
         from
         to
       }
+      createdInLast
       types
       fileTypes
       contents {
@@ -3425,10 +3431,12 @@ query GetConversation($id: ID!) {
         from
         to
       }
+      inLast
       creationDateRange {
         from
         to
       }
+      createdInLast
       types
       fileTypes
       contents {
@@ -4113,10 +4121,12 @@ query QueryConversations($filter: ConversationFilter) {
           from
           to
         }
+        inLast
         creationDateRange {
           from
           to
         }
+        createdInLast
         types
         fileTypes
         contents {
@@ -4180,10 +4190,12 @@ query QueryConversations($filter: ConversationFilter) {
           from
           to
         }
+        inLast
         creationDateRange {
           from
           to
         }
+        createdInLast
         types
         fileTypes
         contents {
@@ -5070,15 +5082,31 @@ query GetFeed($id: ID!) {
       }
       oneDrive {
         folderId
+        files
         clientId
         clientSecret
         refreshToken
       }
       googleDrive {
         folderId
+        files
         refreshToken
         clientId
         clientSecret
+      }
+      dropbox {
+        path
+        appKey
+        appSecret
+        refreshToken
+        redirectUri
+      }
+      box {
+        folderId
+        clientId
+        clientSecret
+        refreshToken
+        redirectUri
       }
       github {
         uri
@@ -5127,6 +5155,13 @@ query GetFeed($id: ID!) {
         refreshToken
         personalAccessToken
       }
+      intercom {
+        accessToken
+      }
+      zendesk {
+        subdomain
+        accessToken
+      }
       readLimit
     }
     rss {
@@ -5154,6 +5189,15 @@ query GetFeed($id: ID!) {
       token
       identifiers
       type
+    }
+    intercom {
+      readLimit
+      accessToken
+    }
+    zendesk {
+      readLimit
+      subdomain
+      accessToken
     }
     youtube {
       readLimit
@@ -5272,15 +5316,31 @@ query QueryFeeds($filter: FeedFilter) {
         }
         oneDrive {
           folderId
+          files
           clientId
           clientSecret
           refreshToken
         }
         googleDrive {
           folderId
+          files
           refreshToken
           clientId
           clientSecret
+        }
+        dropbox {
+          path
+          appKey
+          appSecret
+          refreshToken
+          redirectUri
+        }
+        box {
+          folderId
+          clientId
+          clientSecret
+          refreshToken
+          redirectUri
         }
         github {
           uri
@@ -5329,6 +5389,13 @@ query QueryFeeds($filter: FeedFilter) {
           refreshToken
           personalAccessToken
         }
+        intercom {
+          accessToken
+        }
+        zendesk {
+          subdomain
+          accessToken
+        }
         readLimit
       }
       rss {
@@ -5356,6 +5423,15 @@ query QueryFeeds($filter: FeedFilter) {
         token
         identifiers
         type
+      }
+      intercom {
+        readLimit
+        accessToken
+      }
+      zendesk {
+        readLimit
+        subdomain
+        accessToken
       }
       youtube {
         readLimit

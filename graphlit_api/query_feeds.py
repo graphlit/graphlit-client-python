@@ -46,6 +46,8 @@ class QueryFeedsFeedsResults(BaseModel):
     search: Optional["QueryFeedsFeedsResultsSearch"]
     reddit: Optional["QueryFeedsFeedsResultsReddit"]
     notion: Optional["QueryFeedsFeedsResultsNotion"]
+    intercom: Optional["QueryFeedsFeedsResultsIntercom"]
+    zendesk: Optional["QueryFeedsFeedsResultsZendesk"]
     youtube: Optional["QueryFeedsFeedsResultsYoutube"]
     slack: Optional["QueryFeedsFeedsResultsSlack"]
     microsoft_teams: Optional["QueryFeedsFeedsResultsMicrosoftTeams"] = Field(
@@ -85,6 +87,8 @@ class QueryFeedsFeedsResultsSite(BaseModel):
     google_drive: Optional["QueryFeedsFeedsResultsSiteGoogleDrive"] = Field(
         alias="googleDrive"
     )
+    dropbox: Optional["QueryFeedsFeedsResultsSiteDropbox"]
+    box: Optional["QueryFeedsFeedsResultsSiteBox"]
     github: Optional["QueryFeedsFeedsResultsSiteGithub"]
     read_limit: Optional[int] = Field(alias="readLimit")
 
@@ -132,6 +136,7 @@ class QueryFeedsFeedsResultsSiteSharePoint(BaseModel):
 
 class QueryFeedsFeedsResultsSiteOneDrive(BaseModel):
     folder_id: Optional[str] = Field(alias="folderId")
+    files: Optional[List[Optional[str]]]
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
     refresh_token: str = Field(alias="refreshToken")
@@ -139,9 +144,26 @@ class QueryFeedsFeedsResultsSiteOneDrive(BaseModel):
 
 class QueryFeedsFeedsResultsSiteGoogleDrive(BaseModel):
     folder_id: Optional[str] = Field(alias="folderId")
+    files: Optional[List[Optional[str]]]
     refresh_token: str = Field(alias="refreshToken")
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
+
+
+class QueryFeedsFeedsResultsSiteDropbox(BaseModel):
+    path: Optional[str]
+    app_key: str = Field(alias="appKey")
+    app_secret: str = Field(alias="appSecret")
+    refresh_token: str = Field(alias="refreshToken")
+    redirect_uri: str = Field(alias="redirectUri")
+
+
+class QueryFeedsFeedsResultsSiteBox(BaseModel):
+    folder_id: Optional[str] = Field(alias="folderId")
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
+    refresh_token: str = Field(alias="refreshToken")
+    redirect_uri: str = Field(alias="redirectUri")
 
 
 class QueryFeedsFeedsResultsSiteGithub(BaseModel):
@@ -180,6 +202,8 @@ class QueryFeedsFeedsResultsIssue(BaseModel):
     jira: Optional["QueryFeedsFeedsResultsIssueJira"]
     linear: Optional["QueryFeedsFeedsResultsIssueLinear"]
     github: Optional["QueryFeedsFeedsResultsIssueGithub"]
+    intercom: Optional["QueryFeedsFeedsResultsIssueIntercom"]
+    zendesk: Optional["QueryFeedsFeedsResultsIssueZendesk"]
     read_limit: Optional[int] = Field(alias="readLimit")
 
 
@@ -202,6 +226,15 @@ class QueryFeedsFeedsResultsIssueGithub(BaseModel):
     repository_name: str = Field(alias="repositoryName")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     personal_access_token: Optional[str] = Field(alias="personalAccessToken")
+
+
+class QueryFeedsFeedsResultsIssueIntercom(BaseModel):
+    access_token: str = Field(alias="accessToken")
+
+
+class QueryFeedsFeedsResultsIssueZendesk(BaseModel):
+    subdomain: str
+    access_token: str = Field(alias="accessToken")
 
 
 class QueryFeedsFeedsResultsRss(BaseModel):
@@ -233,6 +266,17 @@ class QueryFeedsFeedsResultsNotion(BaseModel):
     token: str
     identifiers: List[str]
     type: NotionTypes
+
+
+class QueryFeedsFeedsResultsIntercom(BaseModel):
+    read_limit: Optional[int] = Field(alias="readLimit")
+    access_token: str = Field(alias="accessToken")
+
+
+class QueryFeedsFeedsResultsZendesk(BaseModel):
+    read_limit: Optional[int] = Field(alias="readLimit")
+    subdomain: str
+    access_token: str = Field(alias="accessToken")
 
 
 class QueryFeedsFeedsResultsYoutube(BaseModel):

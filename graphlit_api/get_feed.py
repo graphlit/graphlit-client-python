@@ -42,6 +42,8 @@ class GetFeedFeed(BaseModel):
     search: Optional["GetFeedFeedSearch"]
     reddit: Optional["GetFeedFeedReddit"]
     notion: Optional["GetFeedFeedNotion"]
+    intercom: Optional["GetFeedFeedIntercom"]
+    zendesk: Optional["GetFeedFeedZendesk"]
     youtube: Optional["GetFeedFeedYoutube"]
     slack: Optional["GetFeedFeedSlack"]
     microsoft_teams: Optional["GetFeedFeedMicrosoftTeams"] = Field(
@@ -73,6 +75,8 @@ class GetFeedFeedSite(BaseModel):
     share_point: Optional["GetFeedFeedSiteSharePoint"] = Field(alias="sharePoint")
     one_drive: Optional["GetFeedFeedSiteOneDrive"] = Field(alias="oneDrive")
     google_drive: Optional["GetFeedFeedSiteGoogleDrive"] = Field(alias="googleDrive")
+    dropbox: Optional["GetFeedFeedSiteDropbox"]
+    box: Optional["GetFeedFeedSiteBox"]
     github: Optional["GetFeedFeedSiteGithub"]
     read_limit: Optional[int] = Field(alias="readLimit")
 
@@ -120,6 +124,7 @@ class GetFeedFeedSiteSharePoint(BaseModel):
 
 class GetFeedFeedSiteOneDrive(BaseModel):
     folder_id: Optional[str] = Field(alias="folderId")
+    files: Optional[List[Optional[str]]]
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
     refresh_token: str = Field(alias="refreshToken")
@@ -127,9 +132,26 @@ class GetFeedFeedSiteOneDrive(BaseModel):
 
 class GetFeedFeedSiteGoogleDrive(BaseModel):
     folder_id: Optional[str] = Field(alias="folderId")
+    files: Optional[List[Optional[str]]]
     refresh_token: str = Field(alias="refreshToken")
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
+
+
+class GetFeedFeedSiteDropbox(BaseModel):
+    path: Optional[str]
+    app_key: str = Field(alias="appKey")
+    app_secret: str = Field(alias="appSecret")
+    refresh_token: str = Field(alias="refreshToken")
+    redirect_uri: str = Field(alias="redirectUri")
+
+
+class GetFeedFeedSiteBox(BaseModel):
+    folder_id: Optional[str] = Field(alias="folderId")
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
+    refresh_token: str = Field(alias="refreshToken")
+    redirect_uri: str = Field(alias="redirectUri")
 
 
 class GetFeedFeedSiteGithub(BaseModel):
@@ -168,6 +190,8 @@ class GetFeedFeedIssue(BaseModel):
     jira: Optional["GetFeedFeedIssueJira"]
     linear: Optional["GetFeedFeedIssueLinear"]
     github: Optional["GetFeedFeedIssueGithub"]
+    intercom: Optional["GetFeedFeedIssueIntercom"]
+    zendesk: Optional["GetFeedFeedIssueZendesk"]
     read_limit: Optional[int] = Field(alias="readLimit")
 
 
@@ -190,6 +214,15 @@ class GetFeedFeedIssueGithub(BaseModel):
     repository_name: str = Field(alias="repositoryName")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     personal_access_token: Optional[str] = Field(alias="personalAccessToken")
+
+
+class GetFeedFeedIssueIntercom(BaseModel):
+    access_token: str = Field(alias="accessToken")
+
+
+class GetFeedFeedIssueZendesk(BaseModel):
+    subdomain: str
+    access_token: str = Field(alias="accessToken")
 
 
 class GetFeedFeedRss(BaseModel):
@@ -221,6 +254,17 @@ class GetFeedFeedNotion(BaseModel):
     token: str
     identifiers: List[str]
     type: NotionTypes
+
+
+class GetFeedFeedIntercom(BaseModel):
+    read_limit: Optional[int] = Field(alias="readLimit")
+    access_token: str = Field(alias="accessToken")
+
+
+class GetFeedFeedZendesk(BaseModel):
+    read_limit: Optional[int] = Field(alias="readLimit")
+    subdomain: str
+    access_token: str = Field(alias="accessToken")
 
 
 class GetFeedFeedYoutube(BaseModel):

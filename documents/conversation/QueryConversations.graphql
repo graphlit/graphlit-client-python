@@ -141,10 +141,12 @@ query QueryConversations($filter: ConversationFilter) {
           from
           to
         }
+        inLast
         creationDateRange {
           from
           to
         }
+        createdInLast
         types
         fileTypes
         contents {
@@ -208,10 +210,12 @@ query QueryConversations($filter: ConversationFilter) {
           from
           to
         }
+        inLast
         creationDateRange {
           from
           to
         }
+        createdInLast
         types
         fileTypes
         contents {

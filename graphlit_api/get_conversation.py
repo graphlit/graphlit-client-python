@@ -191,9 +191,11 @@ class GetConversationConversationFilter(BaseModel):
     date_range: Optional["GetConversationConversationFilterDateRange"] = Field(
         alias="dateRange"
     )
+    in_last: Optional[Any] = Field(alias="inLast")
     creation_date_range: Optional[
         "GetConversationConversationFilterCreationDateRange"
     ] = Field(alias="creationDateRange")
+    created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
     file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
     contents: Optional[List["GetConversationConversationFilterContents"]]
@@ -303,9 +305,11 @@ class GetConversationConversationAugmentedFilter(BaseModel):
     date_range: Optional["GetConversationConversationAugmentedFilterDateRange"] = Field(
         alias="dateRange"
     )
+    in_last: Optional[Any] = Field(alias="inLast")
     creation_date_range: Optional[
         "GetConversationConversationAugmentedFilterCreationDateRange"
     ] = Field(alias="creationDateRange")
+    created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
     file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
     contents: Optional[List["GetConversationConversationAugmentedFilterContents"]]

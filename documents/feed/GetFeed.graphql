@@ -50,15 +50,31 @@ query GetFeed($id: ID!) {
       }
       oneDrive {
         folderId
+        files
         clientId
         clientSecret
         refreshToken
       }
       googleDrive {
         folderId
+        files
         refreshToken
         clientId
         clientSecret
+      }
+      dropbox {
+        path
+        appKey
+        appSecret
+        refreshToken
+        redirectUri
+      }
+      box {
+        folderId
+        clientId
+        clientSecret
+        refreshToken
+        redirectUri
       }
       github {
         uri
@@ -107,6 +123,13 @@ query GetFeed($id: ID!) {
         refreshToken
         personalAccessToken
       }
+      intercom {
+        accessToken
+      }
+      zendesk {
+        subdomain
+        accessToken
+      }
       readLimit
     }
     rss {
@@ -134,6 +157,15 @@ query GetFeed($id: ID!) {
       token
       identifiers
       type
+    }
+    intercom {
+      readLimit
+      accessToken
+    }
+    zendesk {
+      readLimit
+      subdomain
+      accessToken
     }
     youtube {
       readLimit

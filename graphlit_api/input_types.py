@@ -125,7 +125,9 @@ class OrganizationInput(BaseModel):
 
 
 class ContentCriteriaInput(BaseModel):
+    in_last: Optional[Any] = Field(alias="inLast", default=None)
     date_range: Optional["DateRangeInput"] = Field(alias="dateRange", default=None)
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeInput"] = Field(
         alias="creationDateRange", default=None
     )
@@ -253,6 +255,7 @@ class WorkflowFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -271,6 +274,14 @@ class MedicalIndicationInput(BaseModel):
     description: Optional[str] = None
     location: Optional["PointInput"] = None
     boundary: Optional[str] = None
+
+
+class BoxFeedPropertiesInput(BaseModel):
+    folder_id: Optional[str] = Field(alias="folderId", default=None)
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
+    refresh_token: str = Field(alias="refreshToken")
+    redirect_uri: str = Field(alias="redirectUri")
 
 
 class ReplicateModelPropertiesUpdateInput(BaseModel):
@@ -315,6 +326,7 @@ class ProductFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -340,6 +352,7 @@ class ProductFilter(BaseModel):
 
 
 class OneDriveFeedPropertiesInput(BaseModel):
+    files: Optional[List[Optional[str]]] = None
     folder_id: Optional[str] = Field(alias="folderId", default=None)
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
@@ -481,6 +494,7 @@ class SpecificationFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -667,6 +681,7 @@ class MedicalStudyFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -784,6 +799,7 @@ class ProjectFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -797,6 +813,14 @@ class MedicalProcedureUpdateInput(BaseModel):
     description: Optional[str] = None
     location: Optional["PointInput"] = None
     boundary: Optional[str] = None
+
+
+class BoxFeedPropertiesUpdateInput(BaseModel):
+    folder_id: Optional[str] = Field(alias="folderId", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    redirect_uri: Optional[str] = Field(alias="redirectUri", default=None)
 
 
 class GitHubFeedPropertiesInput(BaseModel):
@@ -854,6 +878,7 @@ class RepoFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -868,6 +893,7 @@ class RepoFilter(BaseModel):
 
 
 class GoogleDriveFeedPropertiesInput(BaseModel):
+    files: Optional[List[Optional[str]]] = None
     folder_id: Optional[str] = Field(alias="folderId", default=None)
     refresh_token: str = Field(alias="refreshToken")
     client_id: str = Field(alias="clientId")
@@ -888,6 +914,7 @@ class MedicalDeviceFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -910,6 +937,7 @@ class MedicalContraindicationFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -959,6 +987,7 @@ class MedicalIndicationFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -1129,6 +1158,7 @@ class ConversationFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -1302,6 +1332,7 @@ class EventFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -1388,6 +1419,7 @@ class MedicalGuidelineFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -1480,6 +1512,8 @@ class FeedInput(BaseModel):
         alias="microsoftTeams", default=None
     )
     discord: Optional["DiscordFeedPropertiesInput"] = None
+    intercom: Optional["IntercomFeedPropertiesInput"] = None
+    zendesk: Optional["ZendeskFeedPropertiesInput"] = None
     schedule_policy: Optional["FeedSchedulePolicyInput"] = Field(
         alias="schedulePolicy", default=None
     )
@@ -1517,6 +1551,7 @@ class MedicalDrugFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -1586,6 +1621,7 @@ class ContentFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -1600,6 +1636,7 @@ class ContentFilter(BaseModel):
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
     boundaries: Optional[List[Optional[str]]] = None
     contents: Optional[List["EntityReferenceFilter"]] = None
+    in_last: Optional[Any] = Field(alias="inLast", default=None)
     original_date_range: Optional["DateRangeFilter"] = Field(
         alias="originalDateRange", default=None
     )
@@ -1653,6 +1690,7 @@ class MetadataFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -1671,6 +1709,7 @@ class AlertFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -1780,6 +1819,11 @@ class CohereModelPropertiesInput(BaseModel):
     chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
 
 
+class ZendeskTicketsFeedPropertiesUpdateInput(BaseModel):
+    subdomain: Optional[str] = None
+    access_token: Optional[str] = Field(alias="accessToken", default=None)
+
+
 class MedicalConditionUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
@@ -1805,6 +1849,11 @@ class IssueMetadataInput(BaseModel):
     links: Optional[List[Optional[Any]]] = None
 
 
+class ZendeskTicketsFeedPropertiesInput(BaseModel):
+    subdomain: str
+    access_token: str = Field(alias="accessToken")
+
+
 class MedicalTherapyFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
@@ -1814,6 +1863,7 @@ class MedicalTherapyFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -1913,6 +1963,7 @@ class SoftwareFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -1967,7 +2018,17 @@ class SiteFeedPropertiesInput(BaseModel):
         alias="googleDrive", default=None
     )
     github: Optional["GitHubFeedPropertiesInput"] = None
+    dropbox: Optional["DropboxFeedPropertiesInput"] = None
+    box: Optional["BoxFeedPropertiesInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class DropboxFeedPropertiesUpdateInput(BaseModel):
+    path: Optional[str] = None
+    app_key: Optional[str] = Field(alias="appKey", default=None)
+    app_secret: Optional[str] = Field(alias="appSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    redirect_uri: Optional[str] = Field(alias="redirectUri", default=None)
 
 
 class RepoFacetInput(BaseModel):
@@ -1994,6 +2055,10 @@ class DeepgramAudioPreparationPropertiesInput(BaseModel):
     language: Optional[str] = None
 
 
+class IntercomTicketsFeedPropertiesUpdateInput(BaseModel):
+    access_token: Optional[str] = Field(alias="accessToken", default=None)
+
+
 class PersonFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
@@ -2003,6 +2068,7 @@ class PersonFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -2050,6 +2116,7 @@ class FeedFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -2157,6 +2224,7 @@ class CategoryFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -2227,6 +2295,7 @@ class CategoryInput(BaseModel):
 
 
 class GoogleDriveFeedPropertiesUpdateInput(BaseModel):
+    files: Optional[List[Optional[str]]] = None
     folder_id: Optional[str] = Field(alias="folderId", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     client_id: Optional[str] = Field(alias="clientId", default=None)
@@ -2275,6 +2344,8 @@ class IssueFeedPropertiesInput(BaseModel):
     jira: Optional["AtlassianJiraFeedPropertiesInput"] = None
     linear: Optional["LinearFeedPropertiesInput"] = None
     github: Optional["GitHubIssuesFeedPropertiesInput"] = None
+    intercom: Optional["IntercomTicketsFeedPropertiesInput"] = None
+    zendesk: Optional["ZendeskTicketsFeedPropertiesInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -2325,6 +2396,7 @@ class MedicalDrugClassFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -2357,6 +2429,7 @@ class LabelFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -2421,6 +2494,8 @@ class IssueFeedPropertiesUpdateInput(BaseModel):
     jira: Optional["AtlassianJiraFeedPropertiesUpdateInput"] = None
     linear: Optional["LinearFeedPropertiesUpdateInput"] = None
     github: Optional["GitHubIssuesFeedPropertiesUpdateInput"] = None
+    intercom: Optional["IntercomTicketsFeedPropertiesUpdateInput"] = None
+    zendesk: Optional["ZendeskTicketsFeedPropertiesUpdateInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -2473,6 +2548,7 @@ class MedicalTestFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -2539,6 +2615,14 @@ class SlackFeedPropertiesUpdateInput(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
+class DropboxFeedPropertiesInput(BaseModel):
+    path: Optional[str] = None
+    app_key: str = Field(alias="appKey")
+    app_secret: str = Field(alias="appSecret")
+    refresh_token: str = Field(alias="refreshToken")
+    redirect_uri: str = Field(alias="redirectUri")
+
+
 class MedicalProcedureFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
@@ -2548,6 +2632,7 @@ class MedicalProcedureFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -2631,6 +2716,12 @@ class MicrosoftTeamsFeedPropertiesUpdateInput(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
+class ZendeskFeedPropertiesInput(BaseModel):
+    subdomain: str
+    access_token: str = Field(alias="accessToken")
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
 class CollectionFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
@@ -2640,6 +2731,7 @@ class CollectionFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -2666,6 +2758,7 @@ class MedicalConditionFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -2694,6 +2787,11 @@ class EmailMetadataInput(BaseModel):
 
 class MicrosoftTeamsChannelsInput(BaseModel):
     refresh_token: str = Field(alias="refreshToken")
+
+
+class IntercomFeedPropertiesInput(BaseModel):
+    access_token: str = Field(alias="accessToken")
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class AddressInput(BaseModel):
@@ -2777,6 +2875,8 @@ class SiteFeedPropertiesUpdateInput(BaseModel):
         alias="googleDrive", default=None
     )
     github: Optional["GitHubFeedPropertiesUpdateInput"] = None
+    dropbox: Optional["DropboxFeedPropertiesUpdateInput"] = None
+    box: Optional["BoxFeedPropertiesUpdateInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -2843,6 +2943,7 @@ class MetadataInput(BaseModel):
 
 
 class OneDriveFeedPropertiesUpdateInput(BaseModel):
+    files: Optional[List[Optional[str]]] = None
     folder_id: Optional[str] = Field(alias="folderId", default=None)
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
@@ -2958,6 +3059,10 @@ class LinkStrategyInput(BaseModel):
     maximum_links: Optional[int] = Field(alias="maximumLinks", default=None)
 
 
+class IntercomTicketsFeedPropertiesInput(BaseModel):
+    access_token: str = Field(alias="accessToken")
+
+
 class MedicalDrugInput(BaseModel):
     name: str
     uri: Optional[Any] = None
@@ -3002,6 +3107,7 @@ class OrganizationFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
@@ -3093,6 +3199,7 @@ class PlaceFilter(BaseModel):
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )

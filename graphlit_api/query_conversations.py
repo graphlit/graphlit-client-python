@@ -205,9 +205,11 @@ class QueryConversationsConversationsResultsFilter(BaseModel):
     date_range: Optional["QueryConversationsConversationsResultsFilterDateRange"] = (
         Field(alias="dateRange")
     )
+    in_last: Optional[Any] = Field(alias="inLast")
     creation_date_range: Optional[
         "QueryConversationsConversationsResultsFilterCreationDateRange"
     ] = Field(alias="creationDateRange")
+    created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
     file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
     contents: Optional[List["QueryConversationsConversationsResultsFilterContents"]]
@@ -335,9 +337,11 @@ class QueryConversationsConversationsResultsAugmentedFilter(BaseModel):
     date_range: Optional[
         "QueryConversationsConversationsResultsAugmentedFilterDateRange"
     ] = Field(alias="dateRange")
+    in_last: Optional[Any] = Field(alias="inLast")
     creation_date_range: Optional[
         "QueryConversationsConversationsResultsAugmentedFilterCreationDateRange"
     ] = Field(alias="creationDateRange")
+    created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
     file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
     contents: Optional[

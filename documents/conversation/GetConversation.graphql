@@ -140,10 +140,12 @@ query GetConversation($id: ID!) {
         from
         to
       }
+      inLast
       creationDateRange {
         from
         to
       }
+      createdInLast
       types
       fileTypes
       contents {
@@ -207,10 +209,12 @@ query GetConversation($id: ID!) {
         from
         to
       }
+      inLast
       creationDateRange {
         from
         to
       }
+      createdInLast
       types
       fileTypes
       contents {

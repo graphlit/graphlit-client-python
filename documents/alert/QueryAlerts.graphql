@@ -18,10 +18,12 @@ query QueryAlerts($filter: AlertFilter) {
           from
           to
         }
+        inLast
         creationDateRange {
           from
           to
         }
+        createdInLast
         types
         fileTypes
         contents {

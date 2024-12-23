@@ -57,9 +57,11 @@ class QueryAlertsAlertsResultsFilter(BaseModel):
     date_range: Optional["QueryAlertsAlertsResultsFilterDateRange"] = Field(
         alias="dateRange"
     )
+    in_last: Optional[Any] = Field(alias="inLast")
     creation_date_range: Optional["QueryAlertsAlertsResultsFilterCreationDateRange"] = (
         Field(alias="creationDateRange")
     )
+    created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
     file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
     contents: Optional[List["QueryAlertsAlertsResultsFilterContents"]]
