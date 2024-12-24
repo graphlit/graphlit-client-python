@@ -1411,6 +1411,34 @@ mutation IngestBatch($uris: [URL!]!, $workflow: EntityReferenceInput, $collectio
       id
       name
     }
+    observations {
+      id
+      type
+      observable {
+        id
+        name
+      }
+      related {
+        id
+        name
+      }
+      relatedType
+      relation
+      occurrences {
+        type
+        confidence
+        startTime
+        endTime
+        pageIndex
+        boundingBox {
+          left
+          top
+          width
+          height
+        }
+      }
+      state
+    }
   }
 }
 """
@@ -1437,6 +1465,34 @@ mutation IngestEncodedFile($name: String!, $data: String!, $mimeType: String!, $
     collections {
       id
       name
+    }
+    observations {
+      id
+      type
+      observable {
+        id
+        name
+      }
+      related {
+        id
+        name
+      }
+      relatedType
+      relation
+      occurrences {
+        type
+        confidence
+        startTime
+        endTime
+        pageIndex
+        boundingBox {
+          left
+          top
+          width
+          height
+        }
+      }
+      state
     }
   }
 }
@@ -1466,6 +1522,34 @@ mutation IngestText($name: String!, $text: String!, $textType: TextTypes, $uri: 
       id
       name
     }
+    observations {
+      id
+      type
+      observable {
+        id
+        name
+      }
+      related {
+        id
+        name
+      }
+      relatedType
+      relation
+      occurrences {
+        type
+        confidence
+        startTime
+        endTime
+        pageIndex
+        boundingBox {
+          left
+          top
+          width
+          height
+        }
+      }
+      state
+    }
   }
 }
 """
@@ -1489,6 +1573,34 @@ mutation IngestTextBatch($batch: [TextContentInput!]!, $textType: TextTypes, $wo
     collections {
       id
       name
+    }
+    observations {
+      id
+      type
+      observable {
+        id
+        name
+      }
+      related {
+        id
+        name
+      }
+      relatedType
+      relation
+      occurrences {
+        type
+        confidence
+        startTime
+        endTime
+        pageIndex
+        boundingBox {
+          left
+          top
+          width
+          height
+        }
+      }
+      state
     }
   }
 }
@@ -1515,6 +1627,34 @@ mutation IngestUri($name: String, $uri: URL!, $id: ID, $isSynchronous: Boolean, 
     collections {
       id
       name
+    }
+    observations {
+      id
+      type
+      observable {
+        id
+        name
+      }
+      related {
+        id
+        name
+      }
+      relatedType
+      relation
+      occurrences {
+        type
+        confidence
+        startTime
+        endTime
+        pageIndex
+        boundingBox {
+          left
+          top
+          width
+          height
+        }
+      }
+      state
     }
   }
 }
@@ -1553,6 +1693,34 @@ mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $conne
       id
       name
     }
+    observations {
+      id
+      type
+      observable {
+        id
+        name
+      }
+      related {
+        id
+        name
+      }
+      relatedType
+      relation
+      occurrences {
+        type
+        confidence
+        startTime
+        endTime
+        pageIndex
+        boundingBox {
+          left
+          top
+          width
+          height
+        }
+      }
+      state
+    }
     textUri
     audioUri
     markdown
@@ -1581,6 +1749,34 @@ mutation PublishText($text: String!, $textType: TextTypes, $connector: ContentPu
     collections {
       id
       name
+    }
+    observations {
+      id
+      type
+      observable {
+        id
+        name
+      }
+      related {
+        id
+        name
+      }
+      relatedType
+      relation
+      occurrences {
+        type
+        confidence
+        startTime
+        endTime
+        pageIndex
+        boundingBox {
+          left
+          top
+          width
+          height
+        }
+      }
+      state
     }
     textUri
     audioUri
@@ -2147,6 +2343,34 @@ mutation ScreenshotPage($uri: URL!, $maximumHeight: Int, $isSynchronous: Boolean
       id
       name
     }
+    observations {
+      id
+      type
+      observable {
+        id
+        name
+      }
+      related {
+        id
+        name
+      }
+      relatedType
+      relation
+      occurrences {
+        type
+        confidence
+        startTime
+        endTime
+        pageIndex
+        boundingBox {
+          left
+          top
+          width
+          height
+        }
+      }
+      state
+    }
   }
 }
 """
@@ -2213,6 +2437,34 @@ mutation UpdateContent($content: ContentUpdateInput!) {
     collections {
       id
       name
+    }
+    observations {
+      id
+      type
+      observable {
+        id
+        name
+      }
+      related {
+        id
+        name
+      }
+      relatedType
+      relation
+      occurrences {
+        type
+        confidence
+        startTime
+        endTime
+        pageIndex
+        boundingBox {
+          left
+          top
+          width
+          height
+        }
+      }
+      state
     }
   }
 }
@@ -3969,6 +4221,34 @@ mutation PublishConversation($id: ID!, $connector: ContentPublishingConnectorInp
     collections {
       id
       name
+    }
+    observations {
+      id
+      type
+      observable {
+        id
+        name
+      }
+      related {
+        id
+        name
+      }
+      relatedType
+      relation
+      occurrences {
+        type
+        confidence
+        startTime
+        endTime
+        pageIndex
+        boundingBox {
+          left
+          top
+          width
+          height
+        }
+      }
+      state
     }
     textUri
     audioUri

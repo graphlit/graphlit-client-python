@@ -6,7 +6,13 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import ContentTypes, EntityState, FileTypes
+from .enums import (
+    ContentTypes,
+    EntityState,
+    FileTypes,
+    ObservableTypes,
+    OccurrenceTypes,
+)
 
 
 class IngestUri(BaseModel):
@@ -22,6 +28,7 @@ class IngestUriIngestUri(BaseModel):
     mime_type: Optional[str] = Field(alias="mimeType")
     uri: Optional[Any]
     collections: Optional[List[Optional["IngestUriIngestUriCollections"]]]
+    observations: Optional[List[Optional["IngestUriIngestUriObservations"]]]
 
 
 class IngestUriIngestUriCollections(BaseModel):
@@ -29,5 +36,46 @@ class IngestUriIngestUriCollections(BaseModel):
     name: str
 
 
+class IngestUriIngestUriObservations(BaseModel):
+    id: str
+    type: ObservableTypes
+    observable: "IngestUriIngestUriObservationsObservable"
+    related: Optional["IngestUriIngestUriObservationsRelated"]
+    related_type: Optional[ObservableTypes] = Field(alias="relatedType")
+    relation: Optional[str]
+    occurrences: Optional[List[Optional["IngestUriIngestUriObservationsOccurrences"]]]
+    state: EntityState
+
+
+class IngestUriIngestUriObservationsObservable(BaseModel):
+    id: str
+    name: Optional[str]
+
+
+class IngestUriIngestUriObservationsRelated(BaseModel):
+    id: str
+    name: Optional[str]
+
+
+class IngestUriIngestUriObservationsOccurrences(BaseModel):
+    type: Optional[OccurrenceTypes]
+    confidence: Optional[float]
+    start_time: Optional[Any] = Field(alias="startTime")
+    end_time: Optional[Any] = Field(alias="endTime")
+    page_index: Optional[int] = Field(alias="pageIndex")
+    bounding_box: Optional["IngestUriIngestUriObservationsOccurrencesBoundingBox"] = (
+        Field(alias="boundingBox")
+    )
+
+
+class IngestUriIngestUriObservationsOccurrencesBoundingBox(BaseModel):
+    left: Optional[float]
+    top: Optional[float]
+    width: Optional[float]
+    height: Optional[float]
+
+
 IngestUri.model_rebuild()
 IngestUriIngestUri.model_rebuild()
+IngestUriIngestUriObservations.model_rebuild()
+IngestUriIngestUriObservationsOccurrences.model_rebuild()

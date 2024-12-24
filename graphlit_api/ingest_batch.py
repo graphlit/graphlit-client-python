@@ -6,7 +6,13 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import ContentTypes, EntityState, FileTypes
+from .enums import (
+    ContentTypes,
+    EntityState,
+    FileTypes,
+    ObservableTypes,
+    OccurrenceTypes,
+)
 
 
 class IngestBatch(BaseModel):
@@ -24,6 +30,7 @@ class IngestBatchIngestBatch(BaseModel):
     mime_type: Optional[str] = Field(alias="mimeType")
     uri: Optional[Any]
     collections: Optional[List[Optional["IngestBatchIngestBatchCollections"]]]
+    observations: Optional[List[Optional["IngestBatchIngestBatchObservations"]]]
 
 
 class IngestBatchIngestBatchCollections(BaseModel):
@@ -31,5 +38,48 @@ class IngestBatchIngestBatchCollections(BaseModel):
     name: str
 
 
+class IngestBatchIngestBatchObservations(BaseModel):
+    id: str
+    type: ObservableTypes
+    observable: "IngestBatchIngestBatchObservationsObservable"
+    related: Optional["IngestBatchIngestBatchObservationsRelated"]
+    related_type: Optional[ObservableTypes] = Field(alias="relatedType")
+    relation: Optional[str]
+    occurrences: Optional[
+        List[Optional["IngestBatchIngestBatchObservationsOccurrences"]]
+    ]
+    state: EntityState
+
+
+class IngestBatchIngestBatchObservationsObservable(BaseModel):
+    id: str
+    name: Optional[str]
+
+
+class IngestBatchIngestBatchObservationsRelated(BaseModel):
+    id: str
+    name: Optional[str]
+
+
+class IngestBatchIngestBatchObservationsOccurrences(BaseModel):
+    type: Optional[OccurrenceTypes]
+    confidence: Optional[float]
+    start_time: Optional[Any] = Field(alias="startTime")
+    end_time: Optional[Any] = Field(alias="endTime")
+    page_index: Optional[int] = Field(alias="pageIndex")
+    bounding_box: Optional[
+        "IngestBatchIngestBatchObservationsOccurrencesBoundingBox"
+    ] = Field(alias="boundingBox")
+
+
+class IngestBatchIngestBatchObservationsOccurrencesBoundingBox(BaseModel):
+    left: Optional[float]
+    top: Optional[float]
+    width: Optional[float]
+    height: Optional[float]
+
+
 IngestBatch.model_rebuild()
 IngestBatchIngestBatch.model_rebuild()
+IngestBatchIngestBatchObservations.model_rebuild()
+IngestBatchIngestBatchObservationsOccurrences.model_rebuild()

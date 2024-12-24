@@ -6,7 +6,13 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import ContentTypes, EntityState, FileTypes
+from .enums import (
+    ContentTypes,
+    EntityState,
+    FileTypes,
+    ObservableTypes,
+    OccurrenceTypes,
+)
 
 
 class IngestTextBatch(BaseModel):
@@ -24,6 +30,7 @@ class IngestTextBatchIngestTextBatch(BaseModel):
     mime_type: Optional[str] = Field(alias="mimeType")
     uri: Optional[Any]
     collections: Optional[List[Optional["IngestTextBatchIngestTextBatchCollections"]]]
+    observations: Optional[List[Optional["IngestTextBatchIngestTextBatchObservations"]]]
 
 
 class IngestTextBatchIngestTextBatchCollections(BaseModel):
@@ -31,5 +38,48 @@ class IngestTextBatchIngestTextBatchCollections(BaseModel):
     name: str
 
 
+class IngestTextBatchIngestTextBatchObservations(BaseModel):
+    id: str
+    type: ObservableTypes
+    observable: "IngestTextBatchIngestTextBatchObservationsObservable"
+    related: Optional["IngestTextBatchIngestTextBatchObservationsRelated"]
+    related_type: Optional[ObservableTypes] = Field(alias="relatedType")
+    relation: Optional[str]
+    occurrences: Optional[
+        List[Optional["IngestTextBatchIngestTextBatchObservationsOccurrences"]]
+    ]
+    state: EntityState
+
+
+class IngestTextBatchIngestTextBatchObservationsObservable(BaseModel):
+    id: str
+    name: Optional[str]
+
+
+class IngestTextBatchIngestTextBatchObservationsRelated(BaseModel):
+    id: str
+    name: Optional[str]
+
+
+class IngestTextBatchIngestTextBatchObservationsOccurrences(BaseModel):
+    type: Optional[OccurrenceTypes]
+    confidence: Optional[float]
+    start_time: Optional[Any] = Field(alias="startTime")
+    end_time: Optional[Any] = Field(alias="endTime")
+    page_index: Optional[int] = Field(alias="pageIndex")
+    bounding_box: Optional[
+        "IngestTextBatchIngestTextBatchObservationsOccurrencesBoundingBox"
+    ] = Field(alias="boundingBox")
+
+
+class IngestTextBatchIngestTextBatchObservationsOccurrencesBoundingBox(BaseModel):
+    left: Optional[float]
+    top: Optional[float]
+    width: Optional[float]
+    height: Optional[float]
+
+
 IngestTextBatch.model_rebuild()
 IngestTextBatchIngestTextBatch.model_rebuild()
+IngestTextBatchIngestTextBatchObservations.model_rebuild()
+IngestTextBatchIngestTextBatchObservationsOccurrences.model_rebuild()

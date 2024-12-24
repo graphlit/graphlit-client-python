@@ -11,5 +11,33 @@ mutation ScreenshotPage($uri: URL!, $maximumHeight: Int, $isSynchronous: Boolean
       id
       name
     }
+    observations {
+      id
+      type
+      observable {
+        id
+        name
+      }
+      related {
+        id
+        name
+      }
+      relatedType
+      relation
+      occurrences {
+        type
+        confidence
+        startTime
+        endTime
+        pageIndex
+        boundingBox {
+          left
+          top
+          width
+          height
+        }
+      }
+      state
+    }
   }
 }

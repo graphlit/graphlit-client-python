@@ -6,7 +6,13 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import ContentTypes, EntityState, FileTypes
+from .enums import (
+    ContentTypes,
+    EntityState,
+    FileTypes,
+    ObservableTypes,
+    OccurrenceTypes,
+)
 
 
 class IngestText(BaseModel):
@@ -22,6 +28,7 @@ class IngestTextIngestText(BaseModel):
     mime_type: Optional[str] = Field(alias="mimeType")
     uri: Optional[Any]
     collections: Optional[List[Optional["IngestTextIngestTextCollections"]]]
+    observations: Optional[List[Optional["IngestTextIngestTextObservations"]]]
 
 
 class IngestTextIngestTextCollections(BaseModel):
@@ -29,5 +36,46 @@ class IngestTextIngestTextCollections(BaseModel):
     name: str
 
 
+class IngestTextIngestTextObservations(BaseModel):
+    id: str
+    type: ObservableTypes
+    observable: "IngestTextIngestTextObservationsObservable"
+    related: Optional["IngestTextIngestTextObservationsRelated"]
+    related_type: Optional[ObservableTypes] = Field(alias="relatedType")
+    relation: Optional[str]
+    occurrences: Optional[List[Optional["IngestTextIngestTextObservationsOccurrences"]]]
+    state: EntityState
+
+
+class IngestTextIngestTextObservationsObservable(BaseModel):
+    id: str
+    name: Optional[str]
+
+
+class IngestTextIngestTextObservationsRelated(BaseModel):
+    id: str
+    name: Optional[str]
+
+
+class IngestTextIngestTextObservationsOccurrences(BaseModel):
+    type: Optional[OccurrenceTypes]
+    confidence: Optional[float]
+    start_time: Optional[Any] = Field(alias="startTime")
+    end_time: Optional[Any] = Field(alias="endTime")
+    page_index: Optional[int] = Field(alias="pageIndex")
+    bounding_box: Optional["IngestTextIngestTextObservationsOccurrencesBoundingBox"] = (
+        Field(alias="boundingBox")
+    )
+
+
+class IngestTextIngestTextObservationsOccurrencesBoundingBox(BaseModel):
+    left: Optional[float]
+    top: Optional[float]
+    width: Optional[float]
+    height: Optional[float]
+
+
 IngestText.model_rebuild()
 IngestTextIngestText.model_rebuild()
+IngestTextIngestTextObservations.model_rebuild()
+IngestTextIngestTextObservationsOccurrences.model_rebuild()

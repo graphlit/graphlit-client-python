@@ -1455,6 +1455,11 @@ class JinaModelPropertiesUpdateInput(BaseModel):
     chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
 
 
+class ObservationReferenceInput(BaseModel):
+    type: ObservableTypes
+    observable: "NamedEntityReferenceInput"
+
+
 class ContentFilterLevel(BaseModel):
     feeds: Optional[List["EntityReferenceFilter"]] = None
     workflows: Optional[List["EntityReferenceFilter"]] = None
@@ -3280,6 +3285,7 @@ EventFilter.model_rebuild()
 ObservationReferenceFilter.model_rebuild()
 MedicalGuidelineFilter.model_rebuild()
 EmailFeedPropertiesInput.model_rebuild()
+ObservationReferenceInput.model_rebuild()
 ContentFilterLevel.model_rebuild()
 FeedInput.model_rebuild()
 FilePreparationConnectorInput.model_rebuild()

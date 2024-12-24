@@ -6,7 +6,13 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import ContentTypes, EntityState, FileTypes
+from .enums import (
+    ContentTypes,
+    EntityState,
+    FileTypes,
+    ObservableTypes,
+    OccurrenceTypes,
+)
 
 
 class PublishContents(BaseModel):
@@ -24,6 +30,7 @@ class PublishContentsPublishContents(BaseModel):
     mime_type: Optional[str] = Field(alias="mimeType")
     uri: Optional[Any]
     collections: Optional[List[Optional["PublishContentsPublishContentsCollections"]]]
+    observations: Optional[List[Optional["PublishContentsPublishContentsObservations"]]]
     text_uri: Optional[Any] = Field(alias="textUri")
     audio_uri: Optional[Any] = Field(alias="audioUri")
     markdown: Optional[str]
@@ -34,5 +41,48 @@ class PublishContentsPublishContentsCollections(BaseModel):
     name: str
 
 
+class PublishContentsPublishContentsObservations(BaseModel):
+    id: str
+    type: ObservableTypes
+    observable: "PublishContentsPublishContentsObservationsObservable"
+    related: Optional["PublishContentsPublishContentsObservationsRelated"]
+    related_type: Optional[ObservableTypes] = Field(alias="relatedType")
+    relation: Optional[str]
+    occurrences: Optional[
+        List[Optional["PublishContentsPublishContentsObservationsOccurrences"]]
+    ]
+    state: EntityState
+
+
+class PublishContentsPublishContentsObservationsObservable(BaseModel):
+    id: str
+    name: Optional[str]
+
+
+class PublishContentsPublishContentsObservationsRelated(BaseModel):
+    id: str
+    name: Optional[str]
+
+
+class PublishContentsPublishContentsObservationsOccurrences(BaseModel):
+    type: Optional[OccurrenceTypes]
+    confidence: Optional[float]
+    start_time: Optional[Any] = Field(alias="startTime")
+    end_time: Optional[Any] = Field(alias="endTime")
+    page_index: Optional[int] = Field(alias="pageIndex")
+    bounding_box: Optional[
+        "PublishContentsPublishContentsObservationsOccurrencesBoundingBox"
+    ] = Field(alias="boundingBox")
+
+
+class PublishContentsPublishContentsObservationsOccurrencesBoundingBox(BaseModel):
+    left: Optional[float]
+    top: Optional[float]
+    width: Optional[float]
+    height: Optional[float]
+
+
 PublishContents.model_rebuild()
 PublishContentsPublishContents.model_rebuild()
+PublishContentsPublishContentsObservations.model_rebuild()
+PublishContentsPublishContentsObservationsOccurrences.model_rebuild()

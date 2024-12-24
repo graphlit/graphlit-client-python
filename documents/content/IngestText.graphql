@@ -11,5 +11,33 @@ mutation IngestText($name: String!, $text: String!, $textType: TextTypes, $uri: 
       id
       name
     }
+    observations {
+      id
+      type
+      observable {
+        id
+        name
+      }
+      related {
+        id
+        name
+      }
+      relatedType
+      relation
+      occurrences {
+        type
+        confidence
+        startTime
+        endTime
+        pageIndex
+        boundingBox {
+          left
+          top
+          width
+          height
+        }
+      }
+      state
+    }
   }
 }

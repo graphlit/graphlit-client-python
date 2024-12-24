@@ -6,7 +6,13 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import ContentTypes, EntityState, FileTypes
+from .enums import (
+    ContentTypes,
+    EntityState,
+    FileTypes,
+    ObservableTypes,
+    OccurrenceTypes,
+)
 
 
 class PublishConversation(BaseModel):
@@ -26,6 +32,9 @@ class PublishConversationPublishConversation(BaseModel):
     collections: Optional[
         List[Optional["PublishConversationPublishConversationCollections"]]
     ]
+    observations: Optional[
+        List[Optional["PublishConversationPublishConversationObservations"]]
+    ]
     text_uri: Optional[Any] = Field(alias="textUri")
     audio_uri: Optional[Any] = Field(alias="audioUri")
     markdown: Optional[str]
@@ -36,5 +45,50 @@ class PublishConversationPublishConversationCollections(BaseModel):
     name: str
 
 
+class PublishConversationPublishConversationObservations(BaseModel):
+    id: str
+    type: ObservableTypes
+    observable: "PublishConversationPublishConversationObservationsObservable"
+    related: Optional["PublishConversationPublishConversationObservationsRelated"]
+    related_type: Optional[ObservableTypes] = Field(alias="relatedType")
+    relation: Optional[str]
+    occurrences: Optional[
+        List[Optional["PublishConversationPublishConversationObservationsOccurrences"]]
+    ]
+    state: EntityState
+
+
+class PublishConversationPublishConversationObservationsObservable(BaseModel):
+    id: str
+    name: Optional[str]
+
+
+class PublishConversationPublishConversationObservationsRelated(BaseModel):
+    id: str
+    name: Optional[str]
+
+
+class PublishConversationPublishConversationObservationsOccurrences(BaseModel):
+    type: Optional[OccurrenceTypes]
+    confidence: Optional[float]
+    start_time: Optional[Any] = Field(alias="startTime")
+    end_time: Optional[Any] = Field(alias="endTime")
+    page_index: Optional[int] = Field(alias="pageIndex")
+    bounding_box: Optional[
+        "PublishConversationPublishConversationObservationsOccurrencesBoundingBox"
+    ] = Field(alias="boundingBox")
+
+
+class PublishConversationPublishConversationObservationsOccurrencesBoundingBox(
+    BaseModel
+):
+    left: Optional[float]
+    top: Optional[float]
+    width: Optional[float]
+    height: Optional[float]
+
+
 PublishConversation.model_rebuild()
 PublishConversationPublishConversation.model_rebuild()
+PublishConversationPublishConversationObservations.model_rebuild()
+PublishConversationPublishConversationObservationsOccurrences.model_rebuild()

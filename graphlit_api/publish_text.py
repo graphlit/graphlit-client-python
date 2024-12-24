@@ -6,7 +6,13 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import ContentTypes, EntityState, FileTypes
+from .enums import (
+    ContentTypes,
+    EntityState,
+    FileTypes,
+    ObservableTypes,
+    OccurrenceTypes,
+)
 
 
 class PublishText(BaseModel):
@@ -22,6 +28,7 @@ class PublishTextPublishText(BaseModel):
     mime_type: Optional[str] = Field(alias="mimeType")
     uri: Optional[Any]
     collections: Optional[List[Optional["PublishTextPublishTextCollections"]]]
+    observations: Optional[List[Optional["PublishTextPublishTextObservations"]]]
     text_uri: Optional[Any] = Field(alias="textUri")
     audio_uri: Optional[Any] = Field(alias="audioUri")
     markdown: Optional[str]
@@ -32,5 +39,48 @@ class PublishTextPublishTextCollections(BaseModel):
     name: str
 
 
+class PublishTextPublishTextObservations(BaseModel):
+    id: str
+    type: ObservableTypes
+    observable: "PublishTextPublishTextObservationsObservable"
+    related: Optional["PublishTextPublishTextObservationsRelated"]
+    related_type: Optional[ObservableTypes] = Field(alias="relatedType")
+    relation: Optional[str]
+    occurrences: Optional[
+        List[Optional["PublishTextPublishTextObservationsOccurrences"]]
+    ]
+    state: EntityState
+
+
+class PublishTextPublishTextObservationsObservable(BaseModel):
+    id: str
+    name: Optional[str]
+
+
+class PublishTextPublishTextObservationsRelated(BaseModel):
+    id: str
+    name: Optional[str]
+
+
+class PublishTextPublishTextObservationsOccurrences(BaseModel):
+    type: Optional[OccurrenceTypes]
+    confidence: Optional[float]
+    start_time: Optional[Any] = Field(alias="startTime")
+    end_time: Optional[Any] = Field(alias="endTime")
+    page_index: Optional[int] = Field(alias="pageIndex")
+    bounding_box: Optional[
+        "PublishTextPublishTextObservationsOccurrencesBoundingBox"
+    ] = Field(alias="boundingBox")
+
+
+class PublishTextPublishTextObservationsOccurrencesBoundingBox(BaseModel):
+    left: Optional[float]
+    top: Optional[float]
+    width: Optional[float]
+    height: Optional[float]
+
+
 PublishText.model_rebuild()
 PublishTextPublishText.model_rebuild()
+PublishTextPublishTextObservations.model_rebuild()
+PublishTextPublishTextObservationsOccurrences.model_rebuild()

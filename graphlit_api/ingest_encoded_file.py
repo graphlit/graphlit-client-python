@@ -6,7 +6,13 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import ContentTypes, EntityState, FileTypes
+from .enums import (
+    ContentTypes,
+    EntityState,
+    FileTypes,
+    ObservableTypes,
+    OccurrenceTypes,
+)
 
 
 class IngestEncodedFile(BaseModel):
@@ -26,6 +32,9 @@ class IngestEncodedFileIngestEncodedFile(BaseModel):
     collections: Optional[
         List[Optional["IngestEncodedFileIngestEncodedFileCollections"]]
     ]
+    observations: Optional[
+        List[Optional["IngestEncodedFileIngestEncodedFileObservations"]]
+    ]
 
 
 class IngestEncodedFileIngestEncodedFileCollections(BaseModel):
@@ -33,5 +42,48 @@ class IngestEncodedFileIngestEncodedFileCollections(BaseModel):
     name: str
 
 
+class IngestEncodedFileIngestEncodedFileObservations(BaseModel):
+    id: str
+    type: ObservableTypes
+    observable: "IngestEncodedFileIngestEncodedFileObservationsObservable"
+    related: Optional["IngestEncodedFileIngestEncodedFileObservationsRelated"]
+    related_type: Optional[ObservableTypes] = Field(alias="relatedType")
+    relation: Optional[str]
+    occurrences: Optional[
+        List[Optional["IngestEncodedFileIngestEncodedFileObservationsOccurrences"]]
+    ]
+    state: EntityState
+
+
+class IngestEncodedFileIngestEncodedFileObservationsObservable(BaseModel):
+    id: str
+    name: Optional[str]
+
+
+class IngestEncodedFileIngestEncodedFileObservationsRelated(BaseModel):
+    id: str
+    name: Optional[str]
+
+
+class IngestEncodedFileIngestEncodedFileObservationsOccurrences(BaseModel):
+    type: Optional[OccurrenceTypes]
+    confidence: Optional[float]
+    start_time: Optional[Any] = Field(alias="startTime")
+    end_time: Optional[Any] = Field(alias="endTime")
+    page_index: Optional[int] = Field(alias="pageIndex")
+    bounding_box: Optional[
+        "IngestEncodedFileIngestEncodedFileObservationsOccurrencesBoundingBox"
+    ] = Field(alias="boundingBox")
+
+
+class IngestEncodedFileIngestEncodedFileObservationsOccurrencesBoundingBox(BaseModel):
+    left: Optional[float]
+    top: Optional[float]
+    width: Optional[float]
+    height: Optional[float]
+
+
 IngestEncodedFile.model_rebuild()
 IngestEncodedFileIngestEncodedFile.model_rebuild()
+IngestEncodedFileIngestEncodedFileObservations.model_rebuild()
+IngestEncodedFileIngestEncodedFileObservationsOccurrences.model_rebuild()

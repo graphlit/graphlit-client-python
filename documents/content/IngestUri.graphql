@@ -11,5 +11,33 @@ mutation IngestUri($name: String, $uri: URL!, $id: ID, $isSynchronous: Boolean, 
       id
       name
     }
+    observations {
+      id
+      type
+      observable {
+        id
+        name
+      }
+      related {
+        id
+        name
+      }
+      relatedType
+      relation
+      occurrences {
+        type
+        confidence
+        startTime
+        endTime
+        pageIndex
+        boundingBox {
+          left
+          top
+          width
+          height
+        }
+      }
+      state
+    }
   }
 }
