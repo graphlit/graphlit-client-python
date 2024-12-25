@@ -1,5 +1,5 @@
-mutation IngestTextBatch($batch: [TextContentInput!]!, $textType: TextTypes, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $correlationId: String) {
-  ingestTextBatch(batch: $batch, workflow: $workflow, textType: $textType, collections: $collections, correlationId: $correlationId) {
+mutation IngestTextBatch($batch: [TextContentInput!]!, $textType: TextTypes, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $correlationId: String) {
+  ingestTextBatch(batch: $batch, workflow: $workflow, textType: $textType, collections: $collections, observations: $observations, correlationId: $correlationId) {
     id
     name
     state

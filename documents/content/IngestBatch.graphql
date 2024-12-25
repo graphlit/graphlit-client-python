@@ -1,5 +1,5 @@
-mutation IngestBatch($uris: [URL!]!, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $correlationId: String) {
-  ingestBatch(uris: $uris, workflow: $workflow, collections: $collections, correlationId: $correlationId) {
+mutation IngestBatch($uris: [URL!]!, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $correlationId: String) {
+  ingestBatch(uris: $uris, workflow: $workflow, collections: $collections, observations: $observations, correlationId: $correlationId) {
     id
     name
     state

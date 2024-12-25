@@ -1,5 +1,5 @@
-mutation IngestEncodedFile($name: String!, $data: String!, $mimeType: String!, $id: ID, $isSynchronous: Boolean, $collections: [EntityReferenceInput!], $workflow: EntityReferenceInput, $correlationId: String) {
-  ingestEncodedFile(name: $name, data: $data, mimeType: $mimeType, id: $id, isSynchronous: $isSynchronous, collections: $collections, workflow: $workflow, correlationId: $correlationId) {
+mutation IngestEncodedFile($name: String!, $data: String!, $mimeType: String!, $id: ID, $isSynchronous: Boolean, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $workflow: EntityReferenceInput, $correlationId: String) {
+  ingestEncodedFile(name: $name, data: $data, mimeType: $mimeType, id: $id, isSynchronous: $isSynchronous, collections: $collections, observations: $observations, workflow: $workflow, correlationId: $correlationId) {
     id
     name
     state

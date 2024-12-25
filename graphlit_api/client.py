@@ -256,6 +256,7 @@ from .input_types import (
     MicrosoftTeamsChannelsInput,
     MicrosoftTeamsTeamsInput,
     ObservationInput,
+    ObservationReferenceInput,
     ObservationUpdateInput,
     OneDriveFoldersInput,
     OrganizationFilter,
@@ -1226,6 +1227,9 @@ class Client(AsyncBaseClient):
         uris: List[Any],
         workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         collections: Union[Optional[List[EntityReferenceInput]], UnsetType] = UNSET,
+        observations: Union[
+            Optional[List[ObservationReferenceInput]], UnsetType
+        ] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> IngestBatch:
@@ -1233,6 +1237,7 @@ class Client(AsyncBaseClient):
             "uris": uris,
             "workflow": workflow,
             "collections": collections,
+            "observations": observations,
             "correlationId": correlation_id,
         }
         response = await self.execute(
@@ -1252,6 +1257,9 @@ class Client(AsyncBaseClient):
         id: Union[Optional[str], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         collections: Union[Optional[List[EntityReferenceInput]], UnsetType] = UNSET,
+        observations: Union[
+            Optional[List[ObservationReferenceInput]], UnsetType
+        ] = UNSET,
         workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
@@ -1263,6 +1271,7 @@ class Client(AsyncBaseClient):
             "id": id,
             "isSynchronous": is_synchronous,
             "collections": collections,
+            "observations": observations,
             "workflow": workflow,
             "correlationId": correlation_id,
         }
@@ -1285,6 +1294,9 @@ class Client(AsyncBaseClient):
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         collections: Union[Optional[List[EntityReferenceInput]], UnsetType] = UNSET,
+        observations: Union[
+            Optional[List[ObservationReferenceInput]], UnsetType
+        ] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> IngestText:
@@ -1297,6 +1309,7 @@ class Client(AsyncBaseClient):
             "isSynchronous": is_synchronous,
             "workflow": workflow,
             "collections": collections,
+            "observations": observations,
             "correlationId": correlation_id,
         }
         response = await self.execute(
@@ -1314,6 +1327,9 @@ class Client(AsyncBaseClient):
         text_type: Union[Optional[TextTypes], UnsetType] = UNSET,
         workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         collections: Union[Optional[List[EntityReferenceInput]], UnsetType] = UNSET,
+        observations: Union[
+            Optional[List[ObservationReferenceInput]], UnsetType
+        ] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> IngestTextBatch:
@@ -1322,6 +1338,7 @@ class Client(AsyncBaseClient):
             "textType": text_type,
             "workflow": workflow,
             "collections": collections,
+            "observations": observations,
             "correlationId": correlation_id,
         }
         response = await self.execute(
@@ -1341,6 +1358,9 @@ class Client(AsyncBaseClient):
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         collections: Union[Optional[List[EntityReferenceInput]], UnsetType] = UNSET,
+        observations: Union[
+            Optional[List[ObservationReferenceInput]], UnsetType
+        ] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> IngestUri:
@@ -1351,6 +1371,7 @@ class Client(AsyncBaseClient):
             "isSynchronous": is_synchronous,
             "workflow": workflow,
             "collections": collections,
+            "observations": observations,
             "correlationId": correlation_id,
         }
         response = await self.execute(

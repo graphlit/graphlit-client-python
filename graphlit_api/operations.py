@@ -1393,11 +1393,12 @@ query GetContent($id: ID!) {
 """
 
 INGEST_BATCH_GQL = """
-mutation IngestBatch($uris: [URL!]!, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $correlationId: String) {
+mutation IngestBatch($uris: [URL!]!, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $correlationId: String) {
   ingestBatch(
     uris: $uris
     workflow: $workflow
     collections: $collections
+    observations: $observations
     correlationId: $correlationId
   ) {
     id
@@ -1444,7 +1445,7 @@ mutation IngestBatch($uris: [URL!]!, $workflow: EntityReferenceInput, $collectio
 """
 
 INGEST_ENCODED_FILE_GQL = """
-mutation IngestEncodedFile($name: String!, $data: String!, $mimeType: String!, $id: ID, $isSynchronous: Boolean, $collections: [EntityReferenceInput!], $workflow: EntityReferenceInput, $correlationId: String) {
+mutation IngestEncodedFile($name: String!, $data: String!, $mimeType: String!, $id: ID, $isSynchronous: Boolean, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $workflow: EntityReferenceInput, $correlationId: String) {
   ingestEncodedFile(
     name: $name
     data: $data
@@ -1452,6 +1453,7 @@ mutation IngestEncodedFile($name: String!, $data: String!, $mimeType: String!, $
     id: $id
     isSynchronous: $isSynchronous
     collections: $collections
+    observations: $observations
     workflow: $workflow
     correlationId: $correlationId
   ) {
@@ -1499,7 +1501,7 @@ mutation IngestEncodedFile($name: String!, $data: String!, $mimeType: String!, $
 """
 
 INGEST_TEXT_GQL = """
-mutation IngestText($name: String!, $text: String!, $textType: TextTypes, $uri: URL, $id: ID, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $correlationId: String) {
+mutation IngestText($name: String!, $text: String!, $textType: TextTypes, $uri: URL, $id: ID, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $correlationId: String) {
   ingestText(
     name: $name
     text: $text
@@ -1509,6 +1511,7 @@ mutation IngestText($name: String!, $text: String!, $textType: TextTypes, $uri: 
     isSynchronous: $isSynchronous
     workflow: $workflow
     collections: $collections
+    observations: $observations
     correlationId: $correlationId
   ) {
     id
@@ -1555,12 +1558,13 @@ mutation IngestText($name: String!, $text: String!, $textType: TextTypes, $uri: 
 """
 
 INGEST_TEXT_BATCH_GQL = """
-mutation IngestTextBatch($batch: [TextContentInput!]!, $textType: TextTypes, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $correlationId: String) {
+mutation IngestTextBatch($batch: [TextContentInput!]!, $textType: TextTypes, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $correlationId: String) {
   ingestTextBatch(
     batch: $batch
     workflow: $workflow
     textType: $textType
     collections: $collections
+    observations: $observations
     correlationId: $correlationId
   ) {
     id
@@ -1607,13 +1611,14 @@ mutation IngestTextBatch($batch: [TextContentInput!]!, $textType: TextTypes, $wo
 """
 
 INGEST_URI_GQL = """
-mutation IngestUri($name: String, $uri: URL!, $id: ID, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $correlationId: String) {
+mutation IngestUri($name: String, $uri: URL!, $id: ID, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $correlationId: String) {
   ingestUri(
     name: $name
     uri: $uri
     id: $id
     workflow: $workflow
     collections: $collections
+    observations: $observations
     isSynchronous: $isSynchronous
     correlationId: $correlationId
   ) {
