@@ -1,6 +1,7 @@
 query QueryModels {
   models {
     results {
+      name
       type
       serviceType
       model
