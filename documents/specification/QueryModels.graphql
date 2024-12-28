@@ -1,0 +1,27 @@
+query QueryModels {
+  models {
+    results {
+      type
+      serviceType
+      model
+      description
+      availableOn
+      features {
+        keyFeatures
+        strengths
+        useCases
+      }
+      metadata {
+        multilingual
+        multimodal
+        knowledgeCutoff
+        promptCostPerMillion
+        completionCostPerMillion
+        embeddingsCostPerMillion
+        rerankingCostPerMillion
+        contextWindowTokens
+        maxOutputTokens
+      }
+    }
+  }
+}

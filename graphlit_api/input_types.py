@@ -783,6 +783,9 @@ class LabelInput(BaseModel):
 
 
 class PreparationWorkflowStageInput(BaseModel):
+    enable_unblocked_capture: Optional[bool] = Field(
+        alias="enableUnblockedCapture", default=None
+    )
     disable_smart_capture: Optional[bool] = Field(
         alias="disableSmartCapture", default=None
     )
@@ -1787,6 +1790,7 @@ class SharePointLibrariesInput(BaseModel):
 class IngestionWorkflowStageInput(BaseModel):
     if_: Optional["IngestionContentFilterInput"] = Field(alias="if", default=None)
     collections: Optional[List[Optional["EntityReferenceInput"]]] = None
+    observations: Optional[List[Optional["ObservationReferenceInput"]]] = None
 
 
 class VideoMetadataInput(BaseModel):
@@ -2145,6 +2149,7 @@ class ConversationInput(BaseModel):
     type: Optional[ConversationTypes] = None
     messages: Optional[List["ConversationMessageInput"]] = None
     specification: Optional["EntityReferenceInput"] = None
+    fallbacks: Optional[List[Optional["EntityReferenceInput"]]] = None
     filter: Optional["ContentCriteriaInput"] = None
     augmented_filter: Optional["ContentCriteriaInput"] = Field(
         alias="augmentedFilter", default=None
@@ -2474,6 +2479,7 @@ class ConversationUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
     specification: Optional["EntityReferenceInput"] = None
+    fallbacks: Optional[List[Optional["EntityReferenceInput"]]] = None
     filter: Optional["ContentCriteriaInput"] = None
     augmented_filter: Optional["ContentCriteriaInput"] = Field(
         alias="augmentedFilter", default=None

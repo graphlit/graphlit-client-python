@@ -515,6 +515,7 @@ from .operations import (
     QUERY_MEDICAL_THERAPIES_GQL,
     QUERY_MICROSOFT_TEAMS_CHANNELS_GQL,
     QUERY_MICROSOFT_TEAMS_TEAMS_GQL,
+    QUERY_MODELS_GQL,
     QUERY_ONE_DRIVE_FOLDERS_GQL,
     QUERY_ORGANIZATIONS_GQL,
     QUERY_PERSONS_GQL,
@@ -597,6 +598,7 @@ from .query_medical_tests import QueryMedicalTests
 from .query_medical_therapies import QueryMedicalTherapies
 from .query_microsoft_teams_channels import QueryMicrosoftTeamsChannels
 from .query_microsoft_teams_teams import QueryMicrosoftTeamsTeams
+from .query_models import QueryModels
 from .query_one_drive_folders import QueryOneDriveFolders
 from .query_organizations import QueryOrganizations
 from .query_persons import QueryPersons
@@ -4662,6 +4664,17 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return PromptSpecifications.model_validate(data)
+
+    async def query_models(self, **kwargs: Any) -> QueryModels:
+        variables: Dict[str, object] = {}
+        response = await self.execute(
+            query=QUERY_MODELS_GQL,
+            operation_name="QueryModels",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryModels.model_validate(data)
 
     async def query_specifications(
         self,

@@ -34,6 +34,7 @@ class GetConversationConversation(BaseModel):
     type: Optional[ConversationTypes]
     messages: Optional[List[Optional["GetConversationConversationMessages"]]]
     specification: Optional["GetConversationConversationSpecification"]
+    fallbacks: Optional[List[Optional["GetConversationConversationFallbacks"]]]
     filter: Optional["GetConversationConversationFilter"]
     augmented_filter: Optional["GetConversationConversationAugmentedFilter"] = Field(
         alias="augmentedFilter"
@@ -183,6 +184,11 @@ class GetConversationConversationMessagesToolCalls(BaseModel):
 
 
 class GetConversationConversationSpecification(BaseModel):
+    id: str
+    name: str
+
+
+class GetConversationConversationFallbacks(BaseModel):
     id: str
     name: str
 

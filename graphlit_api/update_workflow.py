@@ -47,6 +47,9 @@ class UpdateWorkflowUpdateWorkflowIngestion(BaseModel):
     collections: Optional[
         List[Optional["UpdateWorkflowUpdateWorkflowIngestionCollections"]]
     ]
+    observations: Optional[
+        List[Optional["UpdateWorkflowUpdateWorkflowIngestionObservations"]]
+    ]
 
 
 class UpdateWorkflowUpdateWorkflowIngestionIf(BaseModel):
@@ -58,6 +61,16 @@ class UpdateWorkflowUpdateWorkflowIngestionIf(BaseModel):
 
 class UpdateWorkflowUpdateWorkflowIngestionCollections(BaseModel):
     id: str
+
+
+class UpdateWorkflowUpdateWorkflowIngestionObservations(BaseModel):
+    type: ObservableTypes
+    observable: "UpdateWorkflowUpdateWorkflowIngestionObservationsObservable"
+
+
+class UpdateWorkflowUpdateWorkflowIngestionObservationsObservable(BaseModel):
+    id: str
+    name: Optional[str]
 
 
 class UpdateWorkflowUpdateWorkflowIndexing(BaseModel):
@@ -75,6 +88,7 @@ class UpdateWorkflowUpdateWorkflowIndexingJobsConnector(BaseModel):
 
 
 class UpdateWorkflowUpdateWorkflowPreparation(BaseModel):
+    enable_unblocked_capture: Optional[bool] = Field(alias="enableUnblockedCapture")
     disable_smart_capture: Optional[bool] = Field(alias="disableSmartCapture")
     summarizations: Optional[
         List[Optional["UpdateWorkflowUpdateWorkflowPreparationSummarizations"]]
@@ -264,6 +278,7 @@ class UpdateWorkflowUpdateWorkflowActionsConnectorSlack(BaseModel):
 UpdateWorkflow.model_rebuild()
 UpdateWorkflowUpdateWorkflow.model_rebuild()
 UpdateWorkflowUpdateWorkflowIngestion.model_rebuild()
+UpdateWorkflowUpdateWorkflowIngestionObservations.model_rebuild()
 UpdateWorkflowUpdateWorkflowIndexing.model_rebuild()
 UpdateWorkflowUpdateWorkflowIndexingJobs.model_rebuild()
 UpdateWorkflowUpdateWorkflowPreparation.model_rebuild()

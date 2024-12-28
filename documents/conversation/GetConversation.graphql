@@ -135,6 +135,10 @@ query GetConversation($id: ID!) {
       id
       name
     }
+    fallbacks {
+      id
+      name
+    }
     filter {
       dateRange {
         from

@@ -47,6 +47,9 @@ class CreateWorkflowCreateWorkflowIngestion(BaseModel):
     collections: Optional[
         List[Optional["CreateWorkflowCreateWorkflowIngestionCollections"]]
     ]
+    observations: Optional[
+        List[Optional["CreateWorkflowCreateWorkflowIngestionObservations"]]
+    ]
 
 
 class CreateWorkflowCreateWorkflowIngestionIf(BaseModel):
@@ -58,6 +61,16 @@ class CreateWorkflowCreateWorkflowIngestionIf(BaseModel):
 
 class CreateWorkflowCreateWorkflowIngestionCollections(BaseModel):
     id: str
+
+
+class CreateWorkflowCreateWorkflowIngestionObservations(BaseModel):
+    type: ObservableTypes
+    observable: "CreateWorkflowCreateWorkflowIngestionObservationsObservable"
+
+
+class CreateWorkflowCreateWorkflowIngestionObservationsObservable(BaseModel):
+    id: str
+    name: Optional[str]
 
 
 class CreateWorkflowCreateWorkflowIndexing(BaseModel):
@@ -75,6 +88,7 @@ class CreateWorkflowCreateWorkflowIndexingJobsConnector(BaseModel):
 
 
 class CreateWorkflowCreateWorkflowPreparation(BaseModel):
+    enable_unblocked_capture: Optional[bool] = Field(alias="enableUnblockedCapture")
     disable_smart_capture: Optional[bool] = Field(alias="disableSmartCapture")
     summarizations: Optional[
         List[Optional["CreateWorkflowCreateWorkflowPreparationSummarizations"]]
@@ -264,6 +278,7 @@ class CreateWorkflowCreateWorkflowActionsConnectorSlack(BaseModel):
 CreateWorkflow.model_rebuild()
 CreateWorkflowCreateWorkflow.model_rebuild()
 CreateWorkflowCreateWorkflowIngestion.model_rebuild()
+CreateWorkflowCreateWorkflowIngestionObservations.model_rebuild()
 CreateWorkflowCreateWorkflowIndexing.model_rebuild()
 CreateWorkflowCreateWorkflowIndexingJobs.model_rebuild()
 CreateWorkflowCreateWorkflowPreparation.model_rebuild()

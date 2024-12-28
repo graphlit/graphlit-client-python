@@ -38,6 +38,9 @@ class QueryConversationsConversationsResults(BaseModel):
     type: Optional[ConversationTypes]
     messages: Optional[List[Optional["QueryConversationsConversationsResultsMessages"]]]
     specification: Optional["QueryConversationsConversationsResultsSpecification"]
+    fallbacks: Optional[
+        List[Optional["QueryConversationsConversationsResultsFallbacks"]]
+    ]
     filter: Optional["QueryConversationsConversationsResultsFilter"]
     augmented_filter: Optional[
         "QueryConversationsConversationsResultsAugmentedFilter"
@@ -197,6 +200,11 @@ class QueryConversationsConversationsResultsMessagesToolCalls(BaseModel):
 
 
 class QueryConversationsConversationsResultsSpecification(BaseModel):
+    id: str
+    name: str
+
+
+class QueryConversationsConversationsResultsFallbacks(BaseModel):
     id: str
     name: str
 

@@ -221,6 +221,7 @@ __all__ = [
     "QUERY_MEDICAL_THERAPIES_GQL",
     "QUERY_MICROSOFT_TEAMS_CHANNELS_GQL",
     "QUERY_MICROSOFT_TEAMS_TEAMS_GQL",
+    "QUERY_MODELS_GQL",
     "QUERY_ONE_DRIVE_FOLDERS_GQL",
     "QUERY_ORGANIZATIONS_GQL",
     "QUERY_PERSONS_GQL",
@@ -3614,6 +3615,10 @@ query GetConversation($id: ID!) {
       id
       name
     }
+    fallbacks {
+      id
+      name
+    }
     filter {
       dateRange {
         from
@@ -4398,6 +4403,10 @@ query QueryConversations($filter: ConversationFilter) {
         model
       }
       specification {
+        id
+        name
+      }
+      fallbacks {
         id
         name
       }
@@ -8176,6 +8185,36 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
 }
 """
 
+QUERY_MODELS_GQL = """
+query QueryModels {
+  models {
+    results {
+      type
+      serviceType
+      model
+      description
+      availableOn
+      features {
+        keyFeatures
+        strengths
+        useCases
+      }
+      metadata {
+        multilingual
+        multimodal
+        knowledgeCutoff
+        promptCostPerMillion
+        completionCostPerMillion
+        embeddingsCostPerMillion
+        rerankingCostPerMillion
+        contextWindowTokens
+        maxOutputTokens
+      }
+    }
+  }
+}
+"""
+
 QUERY_SPECIFICATIONS_GQL = """
 query QuerySpecifications($filter: SpecificationFilter) {
   specifications(filter: $filter) {
@@ -8388,6 +8427,13 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
       collections {
         id
       }
+      observations {
+        type
+        observable {
+          id
+          name
+        }
+      }
     }
     indexing {
       jobs {
@@ -8399,6 +8445,7 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
       }
     }
     preparation {
+      enableUnblockedCapture
       disableSmartCapture
       summarizations {
         type
@@ -8559,6 +8606,13 @@ query GetWorkflow($id: ID!) {
       collections {
         id
       }
+      observations {
+        type
+        observable {
+          id
+          name
+        }
+      }
     }
     indexing {
       jobs {
@@ -8570,6 +8624,7 @@ query GetWorkflow($id: ID!) {
       }
     }
     preparation {
+      enableUnblockedCapture
       disableSmartCapture
       summarizations {
         type
@@ -8700,6 +8755,13 @@ query QueryWorkflows($filter: WorkflowFilter) {
         collections {
           id
         }
+        observations {
+          type
+          observable {
+            id
+            name
+          }
+        }
       }
       indexing {
         jobs {
@@ -8711,6 +8773,7 @@ query QueryWorkflows($filter: WorkflowFilter) {
         }
       }
       preparation {
+        enableUnblockedCapture
         disableSmartCapture
         summarizations {
           type
@@ -8836,6 +8899,13 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
       collections {
         id
       }
+      observations {
+        type
+        observable {
+          id
+          name
+        }
+      }
     }
     indexing {
       jobs {
@@ -8847,6 +8917,7 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
       }
     }
     preparation {
+      enableUnblockedCapture
       disableSmartCapture
       summarizations {
         type

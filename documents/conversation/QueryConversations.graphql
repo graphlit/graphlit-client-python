@@ -136,6 +136,10 @@ query QueryConversations($filter: ConversationFilter) {
         id
         name
       }
+      fallbacks {
+        id
+        name
+      }
       filter {
         dateRange {
           from

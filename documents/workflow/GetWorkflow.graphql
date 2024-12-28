@@ -18,6 +18,13 @@ query GetWorkflow($id: ID!) {
       collections {
         id
       }
+      observations {
+        type
+        observable {
+          id
+          name
+        }
+      }
     }
     indexing {
       jobs {
@@ -29,6 +36,7 @@ query GetWorkflow($id: ID!) {
       }
     }
     preparation {
+      enableUnblockedCapture
       disableSmartCapture
       summarizations {
         type

@@ -56,6 +56,9 @@ class QueryWorkflowsWorkflowsResultsIngestion(BaseModel):
     collections: Optional[
         List[Optional["QueryWorkflowsWorkflowsResultsIngestionCollections"]]
     ]
+    observations: Optional[
+        List[Optional["QueryWorkflowsWorkflowsResultsIngestionObservations"]]
+    ]
 
 
 class QueryWorkflowsWorkflowsResultsIngestionIf(BaseModel):
@@ -67,6 +70,16 @@ class QueryWorkflowsWorkflowsResultsIngestionIf(BaseModel):
 
 class QueryWorkflowsWorkflowsResultsIngestionCollections(BaseModel):
     id: str
+
+
+class QueryWorkflowsWorkflowsResultsIngestionObservations(BaseModel):
+    type: ObservableTypes
+    observable: "QueryWorkflowsWorkflowsResultsIngestionObservationsObservable"
+
+
+class QueryWorkflowsWorkflowsResultsIngestionObservationsObservable(BaseModel):
+    id: str
+    name: Optional[str]
 
 
 class QueryWorkflowsWorkflowsResultsIndexing(BaseModel):
@@ -84,6 +97,7 @@ class QueryWorkflowsWorkflowsResultsIndexingJobsConnector(BaseModel):
 
 
 class QueryWorkflowsWorkflowsResultsPreparation(BaseModel):
+    enable_unblocked_capture: Optional[bool] = Field(alias="enableUnblockedCapture")
     disable_smart_capture: Optional[bool] = Field(alias="disableSmartCapture")
     summarizations: Optional[
         List[Optional["QueryWorkflowsWorkflowsResultsPreparationSummarizations"]]
@@ -274,6 +288,7 @@ QueryWorkflows.model_rebuild()
 QueryWorkflowsWorkflows.model_rebuild()
 QueryWorkflowsWorkflowsResults.model_rebuild()
 QueryWorkflowsWorkflowsResultsIngestion.model_rebuild()
+QueryWorkflowsWorkflowsResultsIngestionObservations.model_rebuild()
 QueryWorkflowsWorkflowsResultsIndexing.model_rebuild()
 QueryWorkflowsWorkflowsResultsIndexingJobs.model_rebuild()
 QueryWorkflowsWorkflowsResultsPreparation.model_rebuild()

@@ -50,6 +50,7 @@ class GetWorkflowWorkflowOwner(BaseModel):
 class GetWorkflowWorkflowIngestion(BaseModel):
     if_: Optional["GetWorkflowWorkflowIngestionIf"] = Field(alias="if")
     collections: Optional[List[Optional["GetWorkflowWorkflowIngestionCollections"]]]
+    observations: Optional[List[Optional["GetWorkflowWorkflowIngestionObservations"]]]
 
 
 class GetWorkflowWorkflowIngestionIf(BaseModel):
@@ -61,6 +62,16 @@ class GetWorkflowWorkflowIngestionIf(BaseModel):
 
 class GetWorkflowWorkflowIngestionCollections(BaseModel):
     id: str
+
+
+class GetWorkflowWorkflowIngestionObservations(BaseModel):
+    type: ObservableTypes
+    observable: "GetWorkflowWorkflowIngestionObservationsObservable"
+
+
+class GetWorkflowWorkflowIngestionObservationsObservable(BaseModel):
+    id: str
+    name: Optional[str]
 
 
 class GetWorkflowWorkflowIndexing(BaseModel):
@@ -78,6 +89,7 @@ class GetWorkflowWorkflowIndexingJobsConnector(BaseModel):
 
 
 class GetWorkflowWorkflowPreparation(BaseModel):
+    enable_unblocked_capture: Optional[bool] = Field(alias="enableUnblockedCapture")
     disable_smart_capture: Optional[bool] = Field(alias="disableSmartCapture")
     summarizations: Optional[
         List[Optional["GetWorkflowWorkflowPreparationSummarizations"]]
@@ -259,6 +271,7 @@ class GetWorkflowWorkflowActionsConnectorSlack(BaseModel):
 GetWorkflow.model_rebuild()
 GetWorkflowWorkflow.model_rebuild()
 GetWorkflowWorkflowIngestion.model_rebuild()
+GetWorkflowWorkflowIngestionObservations.model_rebuild()
 GetWorkflowWorkflowIndexing.model_rebuild()
 GetWorkflowWorkflowIndexingJobs.model_rebuild()
 GetWorkflowWorkflowPreparation.model_rebuild()

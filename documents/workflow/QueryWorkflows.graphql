@@ -19,6 +19,13 @@ query QueryWorkflows($filter: WorkflowFilter) {
         collections {
           id
         }
+        observations {
+          type
+          observable {
+            id
+            name
+          }
+        }
       }
       indexing {
         jobs {
@@ -30,6 +37,7 @@ query QueryWorkflows($filter: WorkflowFilter) {
         }
       }
       preparation {
+        enableUnblockedCapture
         disableSmartCapture
         summarizations {
           type
