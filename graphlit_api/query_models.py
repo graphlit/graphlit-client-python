@@ -18,6 +18,7 @@ class QueryModelsModels(BaseModel):
 
 
 class QueryModelsModelsResults(BaseModel):
+    name: str
     type: Optional[ModelTypes]
     service_type: Optional[ModelServiceTypes] = Field(alias="serviceType")
     model: Optional[str]

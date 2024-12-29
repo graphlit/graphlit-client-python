@@ -1688,48 +1688,129 @@ mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $conne
     publishSpecification: $publishSpecification
     workflow: $workflow
   ) {
-    id
-    name
-    state
-    type
-    fileType
-    mimeType
-    uri
-    collections {
+    content {
       id
       name
-    }
-    observations {
-      id
+      state
+      originalDate
+      identifier
+      markdown
+      uri
       type
-      observable {
-        id
-        name
+      fileType
+      mimeType
+      format
+      formatName
+      fileExtension
+      fileName
+      fileSize
+      masterUri
+      imageUri
+      textUri
+      audioUri
+      transcriptUri
+      summary
+      customSummary
+      keywords
+      bullets
+      headlines
+      posts
+      chapters
+      questions
+      video {
+        width
+        height
+        duration
+        make
+        model
+        software
+        title
+        description
+        keywords
+        author
       }
-      related {
-        id
-        name
+      audio {
+        keywords
+        author
+        series
+        episode
+        episodeType
+        season
+        publisher
+        copyright
+        genre
+        title
+        description
+        bitrate
+        channels
+        sampleRate
+        bitsPerSample
+        duration
       }
-      relatedType
-      relation
-      occurrences {
-        type
-        confidence
-        startTime
-        endTime
-        pageIndex
-        boundingBox {
-          left
-          top
-          width
-          height
+      image {
+        width
+        height
+        resolutionX
+        resolutionY
+        bitsPerComponent
+        components
+        projectionType
+        orientation
+        description
+        make
+        model
+        software
+        lens
+        focalLength
+        exposureTime
+        fNumber
+        iso
+        heading
+        pitch
+      }
+      document {
+        title
+        subject
+        summary
+        author
+        publisher
+        description
+        keywords
+        pageCount
+        worksheetCount
+        slideCount
+        wordCount
+        lineCount
+        paragraphCount
+        isEncrypted
+        hasDigitalSignature
+      }
+    }
+    details {
+      contents {
+        id
+      }
+      summaries {
+        index
+        relevance
+        chunks {
+          index
+          pageIndex
+          rowIndex
+          columnIndex
+          confidence
+          text
+          role
+          relevance
         }
       }
-      state
+      text
+      textType
+      summarySpecification
+      publishSpecification
+      summaryTime
+      publishTime
     }
-    textUri
-    audioUri
-    markdown
   }
 }
 """
@@ -1748,45 +1829,99 @@ mutation PublishText($text: String!, $textType: TextTypes, $connector: ContentPu
     id
     name
     state
+    originalDate
+    identifier
+    markdown
+    uri
     type
     fileType
     mimeType
-    uri
-    collections {
-      id
-      name
-    }
-    observations {
-      id
-      type
-      observable {
-        id
-        name
-      }
-      related {
-        id
-        name
-      }
-      relatedType
-      relation
-      occurrences {
-        type
-        confidence
-        startTime
-        endTime
-        pageIndex
-        boundingBox {
-          left
-          top
-          width
-          height
-        }
-      }
-      state
-    }
+    format
+    formatName
+    fileExtension
+    fileName
+    fileSize
+    masterUri
+    imageUri
     textUri
     audioUri
-    markdown
+    transcriptUri
+    summary
+    customSummary
+    keywords
+    bullets
+    headlines
+    posts
+    chapters
+    questions
+    video {
+      width
+      height
+      duration
+      make
+      model
+      software
+      title
+      description
+      keywords
+      author
+    }
+    audio {
+      keywords
+      author
+      series
+      episode
+      episodeType
+      season
+      publisher
+      copyright
+      genre
+      title
+      description
+      bitrate
+      channels
+      sampleRate
+      bitsPerSample
+      duration
+    }
+    image {
+      width
+      height
+      resolutionX
+      resolutionY
+      bitsPerComponent
+      components
+      projectionType
+      orientation
+      description
+      make
+      model
+      software
+      lens
+      focalLength
+      exposureTime
+      fNumber
+      iso
+      heading
+      pitch
+    }
+    document {
+      title
+      subject
+      summary
+      author
+      publisher
+      description
+      keywords
+      pageCount
+      worksheetCount
+      slideCount
+      wordCount
+      lineCount
+      paragraphCount
+      isEncrypted
+      hasDigitalSignature
+    }
   }
 }
 """
@@ -4224,45 +4359,99 @@ mutation PublishConversation($id: ID!, $connector: ContentPublishingConnectorInp
     id
     name
     state
+    originalDate
+    identifier
+    markdown
+    uri
     type
     fileType
     mimeType
-    uri
-    collections {
-      id
-      name
-    }
-    observations {
-      id
-      type
-      observable {
-        id
-        name
-      }
-      related {
-        id
-        name
-      }
-      relatedType
-      relation
-      occurrences {
-        type
-        confidence
-        startTime
-        endTime
-        pageIndex
-        boundingBox {
-          left
-          top
-          width
-          height
-        }
-      }
-      state
-    }
+    format
+    formatName
+    fileExtension
+    fileName
+    fileSize
+    masterUri
+    imageUri
     textUri
     audioUri
-    markdown
+    transcriptUri
+    summary
+    customSummary
+    keywords
+    bullets
+    headlines
+    posts
+    chapters
+    questions
+    video {
+      width
+      height
+      duration
+      make
+      model
+      software
+      title
+      description
+      keywords
+      author
+    }
+    audio {
+      keywords
+      author
+      series
+      episode
+      episodeType
+      season
+      publisher
+      copyright
+      genre
+      title
+      description
+      bitrate
+      channels
+      sampleRate
+      bitsPerSample
+      duration
+    }
+    image {
+      width
+      height
+      resolutionX
+      resolutionY
+      bitsPerComponent
+      components
+      projectionType
+      orientation
+      description
+      make
+      model
+      software
+      lens
+      focalLength
+      exposureTime
+      fNumber
+      iso
+      heading
+      pitch
+    }
+    document {
+      title
+      subject
+      summary
+      author
+      publisher
+      description
+      keywords
+      pageCount
+      worksheetCount
+      slideCount
+      wordCount
+      lineCount
+      paragraphCount
+      isEncrypted
+      hasDigitalSignature
+    }
   }
 }
 """
@@ -8189,6 +8378,7 @@ QUERY_MODELS_GQL = """
 query QueryModels {
   models {
     results {
+      name
       type
       serviceType
       model

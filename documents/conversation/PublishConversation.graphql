@@ -3,44 +3,98 @@ mutation PublishConversation($id: ID!, $connector: ContentPublishingConnectorInp
     id
     name
     state
+    originalDate
+    identifier
+    markdown
+    uri
     type
     fileType
     mimeType
-    uri
-    collections {
-      id
-      name
-    }
-    observations {
-      id
-      type
-      observable {
-        id
-        name
-      }
-      related {
-        id
-        name
-      }
-      relatedType
-      relation
-      occurrences {
-        type
-        confidence
-        startTime
-        endTime
-        pageIndex
-        boundingBox {
-          left
-          top
-          width
-          height
-        }
-      }
-      state
-    }
+    format
+    formatName
+    fileExtension
+    fileName
+    fileSize
+    masterUri
+    imageUri
     textUri
     audioUri
-    markdown
+    transcriptUri
+    summary
+    customSummary
+    keywords
+    bullets
+    headlines
+    posts
+    chapters
+    questions
+    video {
+      width
+      height
+      duration
+      make
+      model
+      software
+      title
+      description
+      keywords
+      author
+    }
+    audio {
+      keywords
+      author
+      series
+      episode
+      episodeType
+      season
+      publisher
+      copyright
+      genre
+      title
+      description
+      bitrate
+      channels
+      sampleRate
+      bitsPerSample
+      duration
+    }
+    image {
+      width
+      height
+      resolutionX
+      resolutionY
+      bitsPerComponent
+      components
+      projectionType
+      orientation
+      description
+      make
+      model
+      software
+      lens
+      focalLength
+      exposureTime
+      fNumber
+      iso
+      heading
+      pitch
+    }
+    document {
+      title
+      subject
+      summary
+      author
+      publisher
+      description
+      keywords
+      pageCount
+      worksheetCount
+      slideCount
+      wordCount
+      lineCount
+      paragraphCount
+      isEncrypted
+      hasDigitalSignature
+    }
   }
 }
