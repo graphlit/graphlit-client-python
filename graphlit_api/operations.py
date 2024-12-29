@@ -1675,12 +1675,13 @@ query IsContentDone($id: ID!) {
 """
 
 PUBLISH_CONTENTS_GQL = """
-mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $connector: ContentPublishingConnectorInput!, $filter: ContentFilter, $isSynchronous: Boolean, $correlationId: String, $name: String, $summarySpecification: EntityReferenceInput, $publishSpecification: EntityReferenceInput, $workflow: EntityReferenceInput) {
+mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $connector: ContentPublishingConnectorInput!, $filter: ContentFilter, $includeDetails: Boolean, $isSynchronous: Boolean, $correlationId: String, $name: String, $summarySpecification: EntityReferenceInput, $publishSpecification: EntityReferenceInput, $workflow: EntityReferenceInput) {
   publishContents(
     summaryPrompt: $summaryPrompt
     publishPrompt: $publishPrompt
     connector: $connector
     filter: $filter
+    includeDetails: $includeDetails
     isSynchronous: $isSynchronous
     correlationId: $correlationId
     name: $name
