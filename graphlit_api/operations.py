@@ -1364,6 +1364,7 @@ query GetContent($id: ID!) {
     }
     pages {
       index
+      text
       relevance
       chunks {
         index
@@ -1791,20 +1792,7 @@ mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $conne
       contents {
         id
       }
-      summaries {
-        index
-        relevance
-        chunks {
-          index
-          pageIndex
-          rowIndex
-          columnIndex
-          confidence
-          text
-          role
-          relevance
-        }
-      }
+      summaries
       text
       textType
       summarySpecification
@@ -2147,6 +2135,7 @@ query QueryContents($filter: ContentFilter) {
       }
       pages {
         index
+        text
         relevance
         chunks {
           index
@@ -2397,6 +2386,7 @@ query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!])
       }
       pages {
         index
+        text
         relevance
         chunks {
           index

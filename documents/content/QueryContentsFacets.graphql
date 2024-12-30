@@ -217,6 +217,7 @@ query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!])
       }
       pages {
         index
+        text
         relevance
         chunks {
           index

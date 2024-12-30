@@ -216,6 +216,7 @@ query GetContent($id: ID!) {
     }
     pages {
       index
+      text
       relevance
       chunks {
         index

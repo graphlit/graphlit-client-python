@@ -12,7 +12,6 @@ from .enums import (
     FileTypes,
     ImageProjectionTypes,
     OrientationTypes,
-    TextRoles,
     TextTypes,
 )
 
@@ -136,10 +135,8 @@ class PublishContentsPublishContentsContentDocument(BaseModel):
 
 
 class PublishContentsPublishContentsDetails(BaseModel):
-    contents: Optional[List[Optional["PublishContentsPublishContentsDetailsContents"]]]
-    summaries: Optional[
-        List[Optional["PublishContentsPublishContentsDetailsSummaries"]]
-    ]
+    contents: Optional[List["PublishContentsPublishContentsDetailsContents"]]
+    summaries: Optional[List[str]]
     text: Optional[str]
     text_type: Optional[TextTypes] = Field(alias="textType")
     summary_specification: Optional[str] = Field(alias="summarySpecification")
@@ -152,27 +149,7 @@ class PublishContentsPublishContentsDetailsContents(BaseModel):
     id: str
 
 
-class PublishContentsPublishContentsDetailsSummaries(BaseModel):
-    index: Optional[int]
-    relevance: Optional[float]
-    chunks: Optional[
-        List[Optional["PublishContentsPublishContentsDetailsSummariesChunks"]]
-    ]
-
-
-class PublishContentsPublishContentsDetailsSummariesChunks(BaseModel):
-    index: Optional[int]
-    page_index: Optional[int] = Field(alias="pageIndex")
-    row_index: Optional[int] = Field(alias="rowIndex")
-    column_index: Optional[int] = Field(alias="columnIndex")
-    confidence: Optional[float]
-    text: Optional[str]
-    role: Optional[TextRoles]
-    relevance: Optional[float]
-
-
 PublishContents.model_rebuild()
 PublishContentsPublishContents.model_rebuild()
 PublishContentsPublishContentsContent.model_rebuild()
 PublishContentsPublishContentsDetails.model_rebuild()
-PublishContentsPublishContentsDetailsSummaries.model_rebuild()

@@ -1600,8 +1600,6 @@ from .publish_contents import (
     PublishContentsPublishContentsContentVideo,
     PublishContentsPublishContentsDetails,
     PublishContentsPublishContentsDetailsContents,
-    PublishContentsPublishContentsDetailsSummaries,
-    PublishContentsPublishContentsDetailsSummariesChunks,
 )
 from .publish_conversation import (
     PublishConversation,
@@ -3567,8 +3565,6 @@ __all__ = [
     "PublishContentsPublishContentsContentVideo",
     "PublishContentsPublishContentsDetails",
     "PublishContentsPublishContentsDetailsContents",
-    "PublishContentsPublishContentsDetailsSummaries",
-    "PublishContentsPublishContentsDetailsSummariesChunks",
     "PublishConversation",
     "PublishConversationPublishConversation",
     "PublishConversationPublishConversationAudio",

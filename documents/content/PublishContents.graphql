@@ -102,20 +102,7 @@ mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $conne
       contents {
         id
       }
-      summaries {
-        index
-        relevance
-        chunks {
-          index
-          pageIndex
-          rowIndex
-          columnIndex
-          confidence
-          text
-          role
-          relevance
-        }
-      }
+      summaries
       text
       textType
       summarySpecification
