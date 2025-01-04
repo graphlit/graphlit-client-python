@@ -255,6 +255,7 @@ class IntegrationServiceTypes(str, Enum):
 
 
 class LinkTypes(str, Enum):
+    DROPBOX = "DROPBOX"
     TYPE_FORM = "TYPE_FORM"
     AIRTABLE = "AIRTABLE"
     MICROSOFT_TEAMS = "MICROSOFT_TEAMS"
@@ -314,6 +315,12 @@ class MedicalProcedureFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
 
+class SdkTypes(str, Enum):
+    DOTNET = "DOTNET"
+    PYTHON = "PYTHON"
+    NODE_JS = "NODE_JS"
+
+
 class ApplyPolicy(str, Enum):
     BEFORE_RESOLVER = "BEFORE_RESOLVER"
     AFTER_RESOLVER = "AFTER_RESOLVER"
@@ -356,6 +363,11 @@ class FeedServiceTypes(str, Enum):
 
 class MedicalDrugFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
+
+
+class StoragePolicyTypes(str, Enum):
+    ARCHIVE = "ARCHIVE"
+    MINIMIZE = "MINIMIZE"
 
 
 class MedicalTherapyFacetTypes(str, Enum):
@@ -868,6 +880,7 @@ class ObservableTypes(str, Enum):
 
 
 class GoogleModels(str, Enum):
+    GEMINI_2_0_FLASH_THINKING_EXPERIMENTAL = "GEMINI_2_0_FLASH_THINKING_EXPERIMENTAL"
     GEMINI_2_0_FLASH_EXPERIMENTAL = "GEMINI_2_0_FLASH_EXPERIMENTAL"
     GEMINI_1_5_FLASH_8B = "GEMINI_1_5_FLASH_8B"
     GEMINI_1_5_FLASH_8B_001 = "GEMINI_1_5_FLASH_8B_001"

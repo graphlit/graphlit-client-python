@@ -126,6 +126,12 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
         }
       }
     }
+    storage {
+      policy {
+        type
+        allowDuplicates
+      }
+    }
     actions {
       connector {
         type

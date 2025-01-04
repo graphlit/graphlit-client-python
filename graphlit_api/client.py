@@ -4,6 +4,7 @@
 from typing import Any, Dict, List, Optional, Union
 
 from .add_contents_to_collections import AddContentsToCollections
+from .ask_graphlit import AskGraphlit
 from .async_base_client import AsyncBaseClient
 from .base_model import UNSET, UnsetType
 from .clear_conversation import ClearConversation
@@ -152,7 +153,7 @@ from .disable_alert import DisableAlert
 from .disable_feed import DisableFeed
 from .enable_alert import EnableAlert
 from .enable_feed import EnableFeed
-from .enums import SearchServiceTypes, TextTypes
+from .enums import SdkTypes, SearchServiceTypes, TextTypes
 from .extract_contents import ExtractContents
 from .extract_text import ExtractText
 from .format_conversation import FormatConversation
@@ -297,6 +298,7 @@ from .lookup_usage import LookupUsage
 from .map_web import MapWeb
 from .operations import (
     ADD_CONTENTS_TO_COLLECTIONS_GQL,
+    ASK_GRAPHLIT_GQL,
     CLEAR_CONVERSATION_GQL,
     CLOSE_CONVERSATION_GQL,
     COMPLETE_CONVERSATION_GQL,
@@ -1591,6 +1593,31 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return UpdateContent.model_validate(data)
 
+    async def ask_graphlit(
+        self,
+        prompt: str,
+        type: Union[Optional[SdkTypes], UnsetType] = UNSET,
+        id: Union[Optional[str], UnsetType] = UNSET,
+        specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> AskGraphlit:
+        variables: Dict[str, object] = {
+            "prompt": prompt,
+            "type": type,
+            "id": id,
+            "specification": specification,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=ASK_GRAPHLIT_GQL,
+            operation_name="AskGraphlit",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return AskGraphlit.model_validate(data)
+
     async def clear_conversation(self, id: str, **kwargs: Any) -> ClearConversation:
         variables: Dict[str, object] = {"id": id}
         response = await self.execute(
@@ -2298,13 +2325,13 @@ class Client(AsyncBaseClient):
     async def query_share_point_folders(
         self,
         properties: SharePointFoldersInput,
-        drive_id: str,
+        library_id: str,
         folder_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> QuerySharePointFolders:
         variables: Dict[str, object] = {
             "properties": properties,
-            "driveId": drive_id,
+            "libraryId": library_id,
             "folderId": folder_id,
         }
         response = await self.execute(

@@ -20,6 +20,7 @@ from .enums import (
     IntegrationServiceTypes,
     LinkTypes,
     ObservableTypes,
+    StoragePolicyTypes,
     SummarizationTypes,
 )
 
@@ -44,6 +45,7 @@ class QueryWorkflowsWorkflowsResults(BaseModel):
     preparation: Optional["QueryWorkflowsWorkflowsResultsPreparation"]
     extraction: Optional["QueryWorkflowsWorkflowsResultsExtraction"]
     enrichment: Optional["QueryWorkflowsWorkflowsResultsEnrichment"]
+    storage: Optional["QueryWorkflowsWorkflowsResultsStorage"]
     actions: Optional[List[Optional["QueryWorkflowsWorkflowsResultsActions"]]]
 
 
@@ -269,6 +271,15 @@ class QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorFhir(BaseModel):
     endpoint: Optional[Any]
 
 
+class QueryWorkflowsWorkflowsResultsStorage(BaseModel):
+    policy: Optional["QueryWorkflowsWorkflowsResultsStoragePolicy"]
+
+
+class QueryWorkflowsWorkflowsResultsStoragePolicy(BaseModel):
+    type: Optional[StoragePolicyTypes]
+    allow_duplicates: Optional[bool] = Field(alias="allowDuplicates")
+
+
 class QueryWorkflowsWorkflowsResultsActions(BaseModel):
     connector: Optional["QueryWorkflowsWorkflowsResultsActionsConnector"]
 
@@ -304,5 +315,6 @@ QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelText.model_rebuild()
 QueryWorkflowsWorkflowsResultsEnrichment.model_rebuild()
 QueryWorkflowsWorkflowsResultsEnrichmentJobs.model_rebuild()
 QueryWorkflowsWorkflowsResultsEnrichmentJobsConnector.model_rebuild()
+QueryWorkflowsWorkflowsResultsStorage.model_rebuild()
 QueryWorkflowsWorkflowsResultsActions.model_rebuild()
 QueryWorkflowsWorkflowsResultsActionsConnector.model_rebuild()

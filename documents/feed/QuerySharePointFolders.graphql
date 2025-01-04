@@ -1,5 +1,5 @@
-query QuerySharePointFolders($properties: SharePointFoldersInput!, $driveId: ID!, $folderId: ID) {
-  sharePointFolders(properties: $properties, driveId: $driveId, folderId: $folderId) {
+query QuerySharePointFolders($properties: SharePointFoldersInput!, $libraryId: ID!, $folderId: ID) {
+  sharePointFolders(properties: $properties, libraryId: $libraryId, folderId: $folderId) {
     accountName
     results {
       folderName

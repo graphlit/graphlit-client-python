@@ -132,6 +132,12 @@ query QueryWorkflows($filter: WorkflowFilter) {
           }
         }
       }
+      storage {
+        policy {
+          type
+          allowDuplicates
+        }
+      }
       actions {
         connector {
           type

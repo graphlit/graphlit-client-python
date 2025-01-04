@@ -131,6 +131,12 @@ query GetWorkflow($id: ID!) {
         }
       }
     }
+    storage {
+      policy {
+        type
+        allowDuplicates
+      }
+    }
     actions {
       connector {
         type

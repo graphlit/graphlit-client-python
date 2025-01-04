@@ -91,6 +91,7 @@ from .enums import (
     SharePointAuthenticationTypes,
     SoftwareFacetTypes,
     SpecificationTypes,
+    StoragePolicyTypes,
     SummarizationTypes,
     TimedPolicyRecurrenceTypes,
     TimeIntervalTypes,
@@ -176,6 +177,11 @@ class AddressFilter(BaseModel):
     postal_code: Optional[str] = Field(alias="postalCode", default=None)
 
 
+class StoragePolicyInput(BaseModel):
+    type: Optional[StoragePolicyTypes] = None
+    allow_duplicates: Optional[bool] = Field(alias="allowDuplicates", default=None)
+
+
 class ContentIndexingConnectorInput(BaseModel):
     type: Optional[ContentIndexingServiceTypes] = None
     content_type: Optional[ContentTypes] = Field(alias="contentType", default=None)
@@ -244,6 +250,10 @@ class OpenAIModelPropertiesUpdateInput(BaseModel):
     detail_level: Optional[OpenAIVisionDetailLevels] = Field(
         alias="detailLevel", default=None
     )
+
+
+class StorageWorkflowStageInput(BaseModel):
+    policy: Optional["StoragePolicyInput"] = None
 
 
 class WorkflowFilter(BaseModel):
@@ -2518,6 +2528,7 @@ class WorkflowUpdateInput(BaseModel):
     preparation: Optional["PreparationWorkflowStageInput"] = None
     extraction: Optional["ExtractionWorkflowStageInput"] = None
     enrichment: Optional["EnrichmentWorkflowStageInput"] = None
+    storage: Optional["StorageWorkflowStageInput"] = None
     actions: Optional[List[Optional["WorkflowActionInput"]]] = None
 
 
@@ -2714,6 +2725,7 @@ class WorkflowInput(BaseModel):
     preparation: Optional["PreparationWorkflowStageInput"] = None
     extraction: Optional["ExtractionWorkflowStageInput"] = None
     enrichment: Optional["EnrichmentWorkflowStageInput"] = None
+    storage: Optional["StorageWorkflowStageInput"] = None
     actions: Optional[List[Optional["WorkflowActionInput"]]] = None
 
 
@@ -3244,6 +3256,7 @@ OrganizationInput.model_rebuild()
 ContentCriteriaInput.model_rebuild()
 MetadataUpdateInput.model_rebuild()
 MedicalIndicationUpdateInput.model_rebuild()
+StorageWorkflowStageInput.model_rebuild()
 WorkflowFilter.model_rebuild()
 MedicalIndicationInput.model_rebuild()
 ProductFilter.model_rebuild()

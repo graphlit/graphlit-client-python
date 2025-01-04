@@ -5,6 +5,19 @@ from .add_contents_to_collections import (
     AddContentsToCollectionsAddContentsToCollections,
     AddContentsToCollectionsAddContentsToCollectionsContents,
 )
+from .ask_graphlit import (
+    AskGraphlit,
+    AskGraphlitAskGraphlit,
+    AskGraphlitAskGraphlitConversation,
+    AskGraphlitAskGraphlitMessage,
+    AskGraphlitAskGraphlitMessageCitations,
+    AskGraphlitAskGraphlitMessageCitationsContent,
+    AskGraphlitAskGraphlitMessageCitationsContentAudio,
+    AskGraphlitAskGraphlitMessageCitationsContentDocument,
+    AskGraphlitAskGraphlitMessageCitationsContentImage,
+    AskGraphlitAskGraphlitMessageCitationsContentVideo,
+    AskGraphlitAskGraphlitMessageToolCalls,
+)
 from .async_base_client import AsyncBaseClient
 from .base_model import BaseModel, Upload
 from .clear_conversation import ClearConversation, ClearConversationClearConversation
@@ -232,6 +245,8 @@ from .create_workflow import (
     CreateWorkflowCreateWorkflowPreparationJobsConnectorModelDocumentSpecification,
     CreateWorkflowCreateWorkflowPreparationSummarizations,
     CreateWorkflowCreateWorkflowPreparationSummarizationsSpecification,
+    CreateWorkflowCreateWorkflowStorage,
+    CreateWorkflowCreateWorkflowStoragePolicy,
 )
 from .delete_alert import DeleteAlert, DeleteAlertDeleteAlert
 from .delete_alerts import DeleteAlerts, DeleteAlertsDeleteAlerts
@@ -561,6 +576,7 @@ from .enums import (
     ResourceConnectorTypes,
     RetrievalStrategyTypes,
     RevisionStrategyTypes,
+    SdkTypes,
     SearchQueryTypes,
     SearchServiceTypes,
     SearchTypes,
@@ -568,6 +584,7 @@ from .enums import (
     SiteTypes,
     SoftwareFacetTypes,
     SpecificationTypes,
+    StoragePolicyTypes,
     SummarizationTypes,
     TextRoles,
     TextTypes,
@@ -916,6 +933,8 @@ from .get_workflow import (
     GetWorkflowWorkflowPreparationJobsConnectorModelDocumentSpecification,
     GetWorkflowWorkflowPreparationSummarizations,
     GetWorkflowWorkflowPreparationSummarizationsSpecification,
+    GetWorkflowWorkflowStorage,
+    GetWorkflowWorkflowStoragePolicy,
 )
 from .ingest_batch import (
     IngestBatch,
@@ -1239,6 +1258,8 @@ from .input_types import (
     SpecificationFilter,
     SpecificationInput,
     SpecificationUpdateInput,
+    StoragePolicyInput,
+    StorageWorkflowStageInput,
     SummarizationStrategyInput,
     TextContentInput,
     ToolDefinitionInput,
@@ -1264,6 +1285,7 @@ from .lookup_usage import LookupUsage, LookupUsageLookupUsage
 from .map_web import MapWeb, MapWebMapWeb
 from .operations import (
     ADD_CONTENTS_TO_COLLECTIONS_GQL,
+    ASK_GRAPHLIT_GQL,
     CLEAR_CONVERSATION_GQL,
     CLOSE_CONVERSATION_GQL,
     COMPLETE_CONVERSATION_GQL,
@@ -2033,6 +2055,8 @@ from .query_workflows import (
     QueryWorkflowsWorkflowsResultsPreparationJobsConnectorModelDocumentSpecification,
     QueryWorkflowsWorkflowsResultsPreparationSummarizations,
     QueryWorkflowsWorkflowsResultsPreparationSummarizationsSpecification,
+    QueryWorkflowsWorkflowsResultsStorage,
+    QueryWorkflowsWorkflowsResultsStoragePolicy,
 )
 from .remove_contents_from_collection import (
     RemoveContentsFromCollection,
@@ -2232,10 +2256,13 @@ from .update_workflow import (
     UpdateWorkflowUpdateWorkflowPreparationJobsConnectorModelDocumentSpecification,
     UpdateWorkflowUpdateWorkflowPreparationSummarizations,
     UpdateWorkflowUpdateWorkflowPreparationSummarizationsSpecification,
+    UpdateWorkflowUpdateWorkflowStorage,
+    UpdateWorkflowUpdateWorkflowStoragePolicy,
 )
 
 __all__ = [
     "ADD_CONTENTS_TO_COLLECTIONS_GQL",
+    "ASK_GRAPHLIT_GQL",
     "AddContentsToCollections",
     "AddContentsToCollectionsAddContentsToCollections",
     "AddContentsToCollectionsAddContentsToCollectionsContents",
@@ -2252,6 +2279,17 @@ __all__ = [
     "AnthropicModelPropertiesUpdateInput",
     "AnthropicModels",
     "ApplyPolicy",
+    "AskGraphlit",
+    "AskGraphlitAskGraphlit",
+    "AskGraphlitAskGraphlitConversation",
+    "AskGraphlitAskGraphlitMessage",
+    "AskGraphlitAskGraphlitMessageCitations",
+    "AskGraphlitAskGraphlitMessageCitationsContent",
+    "AskGraphlitAskGraphlitMessageCitationsContentAudio",
+    "AskGraphlitAskGraphlitMessageCitationsContentDocument",
+    "AskGraphlitAskGraphlitMessageCitationsContentImage",
+    "AskGraphlitAskGraphlitMessageCitationsContentVideo",
+    "AskGraphlitAskGraphlitMessageToolCalls",
     "AsyncBaseClient",
     "AtlassianJiraFeedPropertiesInput",
     "AtlassianJiraFeedPropertiesUpdateInput",
@@ -2578,6 +2616,8 @@ __all__ = [
     "CreateWorkflowCreateWorkflowPreparationJobsConnectorModelDocumentSpecification",
     "CreateWorkflowCreateWorkflowPreparationSummarizations",
     "CreateWorkflowCreateWorkflowPreparationSummarizationsSpecification",
+    "CreateWorkflowCreateWorkflowStorage",
+    "CreateWorkflowCreateWorkflowStoragePolicy",
     "DELETE_ALERTS_GQL",
     "DELETE_ALERT_GQL",
     "DELETE_ALL_ALERTS_GQL",
@@ -3252,6 +3292,8 @@ __all__ = [
     "GetWorkflowWorkflowPreparationJobsConnectorModelDocumentSpecification",
     "GetWorkflowWorkflowPreparationSummarizations",
     "GetWorkflowWorkflowPreparationSummarizationsSpecification",
+    "GetWorkflowWorkflowStorage",
+    "GetWorkflowWorkflowStoragePolicy",
     "GitHubFeedPropertiesInput",
     "GitHubFeedPropertiesUpdateInput",
     "GitHubIssuesFeedPropertiesInput",
@@ -3971,6 +4013,8 @@ __all__ = [
     "QueryWorkflowsWorkflowsResultsPreparationJobsConnectorModelDocumentSpecification",
     "QueryWorkflowsWorkflowsResultsPreparationSummarizations",
     "QueryWorkflowsWorkflowsResultsPreparationSummarizationsSpecification",
+    "QueryWorkflowsWorkflowsResultsStorage",
+    "QueryWorkflowsWorkflowsResultsStoragePolicy",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
     "REVISE_CONTENT_GQL",
     "REVISE_ENCODED_IMAGE_GQL",
@@ -4059,6 +4103,7 @@ __all__ = [
     "ScreenshotPageScreenshotPageObservationsOccurrences",
     "ScreenshotPageScreenshotPageObservationsOccurrencesBoundingBox",
     "ScreenshotPageScreenshotPageObservationsRelated",
+    "SdkTypes",
     "SearchFeedPropertiesInput",
     "SearchFeedPropertiesUpdateInput",
     "SearchQueryTypes",
@@ -4089,6 +4134,9 @@ __all__ = [
     "SpecificationInput",
     "SpecificationTypes",
     "SpecificationUpdateInput",
+    "StoragePolicyInput",
+    "StoragePolicyTypes",
+    "StorageWorkflowStageInput",
     "SuggestConversation",
     "SuggestConversationSuggestConversation",
     "SummarizationStrategyInput",
@@ -4239,6 +4287,8 @@ __all__ = [
     "UpdateWorkflowUpdateWorkflowPreparationJobsConnectorModelDocumentSpecification",
     "UpdateWorkflowUpdateWorkflowPreparationSummarizations",
     "UpdateWorkflowUpdateWorkflowPreparationSummarizationsSpecification",
+    "UpdateWorkflowUpdateWorkflowStorage",
+    "UpdateWorkflowUpdateWorkflowStoragePolicy",
     "Upload",
     "VideoMetadataInput",
     "VoyageModelPropertiesInput",

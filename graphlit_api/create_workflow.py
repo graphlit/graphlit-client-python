@@ -20,6 +20,7 @@ from .enums import (
     IntegrationServiceTypes,
     LinkTypes,
     ObservableTypes,
+    StoragePolicyTypes,
     SummarizationTypes,
 )
 
@@ -39,6 +40,7 @@ class CreateWorkflowCreateWorkflow(BaseModel):
     preparation: Optional["CreateWorkflowCreateWorkflowPreparation"]
     extraction: Optional["CreateWorkflowCreateWorkflowExtraction"]
     enrichment: Optional["CreateWorkflowCreateWorkflowEnrichment"]
+    storage: Optional["CreateWorkflowCreateWorkflowStorage"]
     actions: Optional[List[Optional["CreateWorkflowCreateWorkflowActions"]]]
 
 
@@ -260,6 +262,15 @@ class CreateWorkflowCreateWorkflowEnrichmentJobsConnectorFhir(BaseModel):
     endpoint: Optional[Any]
 
 
+class CreateWorkflowCreateWorkflowStorage(BaseModel):
+    policy: Optional["CreateWorkflowCreateWorkflowStoragePolicy"]
+
+
+class CreateWorkflowCreateWorkflowStoragePolicy(BaseModel):
+    type: Optional[StoragePolicyTypes]
+    allow_duplicates: Optional[bool] = Field(alias="allowDuplicates")
+
+
 class CreateWorkflowCreateWorkflowActions(BaseModel):
     connector: Optional["CreateWorkflowCreateWorkflowActionsConnector"]
 
@@ -294,5 +305,6 @@ CreateWorkflowCreateWorkflowExtractionJobsConnectorModelText.model_rebuild()
 CreateWorkflowCreateWorkflowEnrichment.model_rebuild()
 CreateWorkflowCreateWorkflowEnrichmentJobs.model_rebuild()
 CreateWorkflowCreateWorkflowEnrichmentJobsConnector.model_rebuild()
+CreateWorkflowCreateWorkflowStorage.model_rebuild()
 CreateWorkflowCreateWorkflowActions.model_rebuild()
 CreateWorkflowCreateWorkflowActionsConnector.model_rebuild()

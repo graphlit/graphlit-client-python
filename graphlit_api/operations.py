@@ -3,6 +3,7 @@
 
 __all__ = [
     "ADD_CONTENTS_TO_COLLECTIONS_GQL",
+    "ASK_GRAPHLIT_GQL",
     "CLEAR_CONVERSATION_GQL",
     "CLOSE_CONVERSATION_GQL",
     "COMPLETE_CONVERSATION_GQL",
@@ -2598,6 +2599,144 @@ mutation UpdateContent($content: ContentUpdateInput!) {
       }
       state
     }
+  }
+}
+"""
+
+ASK_GRAPHLIT_GQL = """
+mutation AskGraphlit($prompt: String!, $type: SdkTypes, $id: ID, $specification: EntityReferenceInput, $correlationId: String) {
+  askGraphlit(
+    prompt: $prompt
+    type: $type
+    id: $id
+    specification: $specification
+    correlationId: $correlationId
+  ) {
+    conversation {
+      id
+    }
+    message {
+      role
+      author
+      message
+      citations {
+        content {
+          id
+          name
+          state
+          originalDate
+          identifier
+          uri
+          type
+          fileType
+          mimeType
+          format
+          formatName
+          fileExtension
+          fileName
+          fileSize
+          masterUri
+          imageUri
+          textUri
+          audioUri
+          transcriptUri
+          summary
+          customSummary
+          keywords
+          bullets
+          headlines
+          posts
+          chapters
+          questions
+          video {
+            width
+            height
+            duration
+            make
+            model
+            software
+            title
+            description
+            keywords
+            author
+          }
+          audio {
+            keywords
+            author
+            series
+            episode
+            episodeType
+            season
+            publisher
+            copyright
+            genre
+            title
+            description
+            bitrate
+            channels
+            sampleRate
+            bitsPerSample
+            duration
+          }
+          image {
+            width
+            height
+            resolutionX
+            resolutionY
+            bitsPerComponent
+            components
+            projectionType
+            orientation
+            description
+            make
+            model
+            software
+            lens
+            focalLength
+            exposureTime
+            fNumber
+            iso
+            heading
+            pitch
+          }
+          document {
+            title
+            subject
+            summary
+            author
+            publisher
+            description
+            keywords
+            pageCount
+            worksheetCount
+            slideCount
+            wordCount
+            lineCount
+            paragraphCount
+            isEncrypted
+            hasDigitalSignature
+          }
+        }
+        index
+        text
+        startTime
+        endTime
+        pageNumber
+        frameNumber
+      }
+      toolCalls {
+        id
+        name
+        arguments
+      }
+      tokens
+      throughput
+      completionTime
+      timestamp
+      modelService
+      model
+    }
+    messageCount
   }
 }
 """
@@ -5989,10 +6128,10 @@ query QueryOneDriveFolders($properties: OneDriveFoldersInput!, $folderId: ID) {
 """
 
 QUERY_SHARE_POINT_FOLDERS_GQL = """
-query QuerySharePointFolders($properties: SharePointFoldersInput!, $driveId: ID!, $folderId: ID) {
+query QuerySharePointFolders($properties: SharePointFoldersInput!, $libraryId: ID!, $folderId: ID) {
   sharePointFolders(
     properties: $properties
-    driveId: $driveId
+    libraryId: $libraryId
     folderId: $folderId
   ) {
     accountName
@@ -8721,6 +8860,12 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
         }
       }
     }
+    storage {
+      policy {
+        type
+        allowDuplicates
+      }
+    }
     actions {
       connector {
         type
@@ -8900,6 +9045,12 @@ query GetWorkflow($id: ID!) {
         }
       }
     }
+    storage {
+      policy {
+        type
+        allowDuplicates
+      }
+    }
     actions {
       connector {
         type
@@ -9049,6 +9200,12 @@ query QueryWorkflows($filter: WorkflowFilter) {
           }
         }
       }
+      storage {
+        policy {
+          type
+          allowDuplicates
+        }
+      }
       actions {
         connector {
           type
@@ -9191,6 +9348,12 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
             endpoint
           }
         }
+      }
+    }
+    storage {
+      policy {
+        type
+        allowDuplicates
       }
     }
     actions {
