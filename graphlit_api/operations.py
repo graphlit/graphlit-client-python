@@ -8505,13 +8505,15 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
 """
 
 QUERY_MODELS_GQL = """
-query QueryModels {
-  models {
+query QueryModels($filter: ModelFilter) {
+  models(filter: $filter) {
     results {
+      uri
       name
       type
       serviceType
       model
+      modelType
       description
       availableOn
       features {

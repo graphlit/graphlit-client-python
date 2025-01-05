@@ -65,6 +65,7 @@ from .enums import (
     MetadataTypes,
     MistralModels,
     ModelServiceTypes,
+    ModelTypes,
     NotionTypes,
     ObservableTypes,
     OccurrenceTypes,
@@ -708,6 +709,13 @@ class MedicalStudyFilter(BaseModel):
 class H3IndexFilter(BaseModel):
     resolution: Optional[H3ResolutionTypes] = None
     key: Optional[str] = None
+
+
+class ModelFilter(BaseModel):
+    types: Optional[List[Optional[ModelTypes]]] = None
+    service_types: Optional[List[Optional[ModelServiceTypes]]] = Field(
+        alias="serviceTypes", default=None
+    )
 
 
 class CollectionUpdateInput(BaseModel):

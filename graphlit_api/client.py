@@ -256,6 +256,7 @@ from .input_types import (
     MedicalTherapyUpdateInput,
     MicrosoftTeamsChannelsInput,
     MicrosoftTeamsTeamsInput,
+    ModelFilter,
     ObservationInput,
     ObservationReferenceInput,
     ObservationUpdateInput,
@@ -4694,8 +4695,10 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return PromptSpecifications.model_validate(data)
 
-    async def query_models(self, **kwargs: Any) -> QueryModels:
-        variables: Dict[str, object] = {}
+    async def query_models(
+        self, filter: Union[Optional[ModelFilter], UnsetType] = UNSET, **kwargs: Any
+    ) -> QueryModels:
+        variables: Dict[str, object] = {"filter": filter}
         response = await self.execute(
             query=QUERY_MODELS_GQL,
             operation_name="QueryModels",

@@ -18,10 +18,12 @@ class QueryModelsModels(BaseModel):
 
 
 class QueryModelsModelsResults(BaseModel):
+    uri: Optional[Any]
     name: str
     type: Optional[ModelTypes]
     service_type: Optional[ModelServiceTypes] = Field(alias="serviceType")
     model: Optional[str]
+    model_type: Optional[str] = Field(alias="modelType")
     description: Optional[str]
     available_on: Optional[List[Optional[str]]] = Field(alias="availableOn")
     features: Optional["QueryModelsModelsResultsFeatures"]
