@@ -249,10 +249,15 @@ class GetWorkflowWorkflowEnrichmentJobsConnector(BaseModel):
         alias="enrichedTypes"
     )
     fhir: Optional["GetWorkflowWorkflowEnrichmentJobsConnectorFhir"]
+    diffbot: Optional["GetWorkflowWorkflowEnrichmentJobsConnectorDiffbot"]
 
 
 class GetWorkflowWorkflowEnrichmentJobsConnectorFhir(BaseModel):
     endpoint: Optional[Any]
+
+
+class GetWorkflowWorkflowEnrichmentJobsConnectorDiffbot(BaseModel):
+    key: Optional[Any]
 
 
 class GetWorkflowWorkflowStorage(BaseModel):

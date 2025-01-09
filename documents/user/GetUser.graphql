@@ -1,0 +1,40 @@
+query GetUser {
+  user {
+    id
+    name
+    creationDate
+    relevance
+    owner {
+      id
+    }
+    state
+    type
+    identifier
+    connectors {
+      id
+      name
+      state
+      type
+      authentication {
+        type
+        microsoft {
+          tenantId
+          clientId
+          clientSecret
+        }
+        google {
+          clientId
+          clientSecret
+        }
+      }
+      integration {
+        type
+        uri
+        slack {
+          token
+          channel
+        }
+      }
+    }
+  }
+}

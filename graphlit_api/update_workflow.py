@@ -256,10 +256,15 @@ class UpdateWorkflowUpdateWorkflowEnrichmentJobsConnector(BaseModel):
         alias="enrichedTypes"
     )
     fhir: Optional["UpdateWorkflowUpdateWorkflowEnrichmentJobsConnectorFhir"]
+    diffbot: Optional["UpdateWorkflowUpdateWorkflowEnrichmentJobsConnectorDiffbot"]
 
 
 class UpdateWorkflowUpdateWorkflowEnrichmentJobsConnectorFhir(BaseModel):
     endpoint: Optional[Any]
+
+
+class UpdateWorkflowUpdateWorkflowEnrichmentJobsConnectorDiffbot(BaseModel):
+    key: Optional[Any]
 
 
 class UpdateWorkflowUpdateWorkflowStorage(BaseModel):

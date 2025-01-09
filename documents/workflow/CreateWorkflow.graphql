@@ -123,6 +123,9 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
           fhir {
             endpoint
           }
+          diffbot {
+            key
+          }
         }
       }
     }

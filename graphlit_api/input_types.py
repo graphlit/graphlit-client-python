@@ -9,6 +9,7 @@ from .base_model import BaseModel
 from .enums import (
     AlertTypes,
     AnthropicModels,
+    AuthenticationServiceTypes,
     AzureDocumentIntelligenceModels,
     AzureDocumentIntelligenceVersions,
     AzureOpenAIModels,
@@ -16,6 +17,7 @@ from .enums import (
     CerebrasModels,
     CohereModels,
     CollectionTypes,
+    ConnectorTypes,
     ContentFacetTypes,
     ContentIndexingServiceTypes,
     ContentPublishingFormats,
@@ -97,6 +99,7 @@ from .enums import (
     TimedPolicyRecurrenceTypes,
     TimeIntervalTypes,
     UnitTypes,
+    UserTypes,
     VoyageModels,
     YouTubeTypes,
 )
@@ -295,6 +298,28 @@ class BoxFeedPropertiesInput(BaseModel):
     redirect_uri: str = Field(alias="redirectUri")
 
 
+class MicrosoftAuthenticationPropertiesInput(BaseModel):
+    tenant_id: str = Field(alias="tenantId")
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
+
+
+class UserFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    identifier: Optional[str] = None
+
+
 class ReplicateModelPropertiesUpdateInput(BaseModel):
     model: Optional[ReplicateModels] = None
     model_name: Optional[str] = Field(alias="modelName", default=None)
@@ -477,6 +502,7 @@ class EntityEnrichmentConnectorInput(BaseModel):
         alias="enrichedTypes", default=None
     )
     fhir: Optional["FHIREnrichmentPropertiesInput"] = None
+    diffbot: Optional["DiffbotEnrichmentPropertiesInput"] = None
 
 
 class PlaceInput(BaseModel):
@@ -578,6 +604,22 @@ class EmbeddingsStrategyInput(BaseModel):
     image_specification: Optional["EntityReferenceInput"] = Field(
         alias="imageSpecification", default=None
     )
+
+
+class ConnectorFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    types: Optional[List[ConnectorTypes]] = None
 
 
 class RedditFeedPropertiesInput(BaseModel):
@@ -793,6 +835,13 @@ class SharePointFeedPropertiesInput(BaseModel):
     account_name: str = Field(alias="accountName")
     library_id: str = Field(alias="libraryId")
     folder_id: Optional[str] = Field(alias="folderId", default=None)
+
+
+class ConnectorInput(BaseModel):
+    name: str
+    type: ConnectorTypes
+    authentication: Optional["AuthenticationConnectorInput"] = None
+    integration: Optional["IntegrationConnectorInput"] = None
 
 
 class LabelInput(BaseModel):
@@ -1068,6 +1117,10 @@ class ContentGraphInput(BaseModel):
     types: Optional[List[Optional[ObservableTypes]]] = None
 
 
+class DiffbotEnrichmentPropertiesInput(BaseModel):
+    key: Optional[str] = None
+
+
 class GoogleModelPropertiesUpdateInput(BaseModel):
     model: Optional[GoogleModels] = None
     model_name: Optional[str] = Field(alias="modelName", default=None)
@@ -1334,6 +1387,13 @@ class SpecificationUpdateInput(BaseModel):
     deepseek: Optional["DeepseekModelPropertiesUpdateInput"] = None
     jina: Optional["JinaModelPropertiesUpdateInput"] = None
     voyage: Optional["VoyageModelPropertiesUpdateInput"] = None
+
+
+class UserInput(BaseModel):
+    name: str
+    type: Optional[UserTypes] = None
+    identifier: str
+    description: Optional[str] = None
 
 
 class ContentPublishingConnectorUpdateInput(BaseModel):
@@ -1654,6 +1714,9 @@ class ContentFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
     types: Optional[List[ContentTypes]] = None
     file_types: Optional[List[FileTypes]] = Field(alias="fileTypes", default=None)
     uri: Optional[Any] = None
@@ -2680,6 +2743,11 @@ class ExtractionWorkflowJobInput(BaseModel):
     connector: Optional["EntityExtractionConnectorInput"] = None
 
 
+class GoogleAuthenticationPropertiesInput(BaseModel):
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
+
+
 class MedicalProcedureInput(BaseModel):
     name: str
     uri: Optional[Any] = None
@@ -2767,6 +2835,9 @@ class CollectionFilter(BaseModel):
         alias="creationDateRange", default=None
     )
     types: Optional[List[CollectionTypes]] = None
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
 
 
 class ConversationToolResponseInput(BaseModel):
@@ -3061,6 +3132,14 @@ class EventUpdateInput(BaseModel):
     typical_age_range: Optional[str] = Field(alias="typicalAgeRange", default=None)
 
 
+class UserUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    type: Optional[UserTypes] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+
+
 class EmailFeedPropertiesUpdateInput(BaseModel):
     include_attachments: Optional[bool] = Field(
         alias="includeAttachments", default=None
@@ -3161,6 +3240,12 @@ class SoftwareFacetInput(BaseModel):
     facet: Optional[SoftwareFacetTypes] = None
 
 
+class AuthenticationConnectorInput(BaseModel):
+    type: AuthenticationServiceTypes
+    microsoft: Optional["MicrosoftAuthenticationPropertiesInput"] = None
+    google: Optional["GoogleAuthenticationPropertiesInput"] = None
+
+
 class MedicalConditionFacetInput(BaseModel):
     time_interval: Optional[TimeIntervalTypes] = Field(
         alias="timeInterval", default=None
@@ -3208,6 +3293,13 @@ class ContentCriteriaLevelInput(BaseModel):
     workflows: Optional[List["EntityReferenceInput"]] = None
     collections: Optional[List["EntityReferenceInput"]] = None
     observations: Optional[List["ObservationCriteriaInput"]] = None
+
+
+class ConnectorUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    authentication: Optional["AuthenticationConnectorInput"] = None
+    integration: Optional["IntegrationConnectorInput"] = None
 
 
 class SharePointFeedPropertiesUpdateInput(BaseModel):
@@ -3267,6 +3359,7 @@ MedicalIndicationUpdateInput.model_rebuild()
 StorageWorkflowStageInput.model_rebuild()
 WorkflowFilter.model_rebuild()
 MedicalIndicationInput.model_rebuild()
+UserFilter.model_rebuild()
 ProductFilter.model_rebuild()
 EnrichmentWorkflowJobInput.model_rebuild()
 ContentUpdateInput.model_rebuild()
@@ -3277,11 +3370,13 @@ EntityEnrichmentConnectorInput.model_rebuild()
 PlaceInput.model_rebuild()
 SpecificationFilter.model_rebuild()
 EmbeddingsStrategyInput.model_rebuild()
+ConnectorFilter.model_rebuild()
 ProjectUpdateInput.model_rebuild()
 MedicalStudyFilter.model_rebuild()
 CollectionUpdateInput.model_rebuild()
 SpecificationInput.model_rebuild()
 PackageMetadataInput.model_rebuild()
+ConnectorInput.model_rebuild()
 PreparationWorkflowStageInput.model_rebuild()
 ProjectFilter.model_rebuild()
 MedicalProcedureUpdateInput.model_rebuild()
@@ -3386,6 +3481,8 @@ MedicalDrugInput.model_rebuild()
 ProductInput.model_rebuild()
 MedicalDrugClassInput.model_rebuild()
 OrganizationFilter.model_rebuild()
+AuthenticationConnectorInput.model_rebuild()
 ContentCriteriaLevelInput.model_rebuild()
+ConnectorUpdateInput.model_rebuild()
 PlaceFilter.model_rebuild()
 H3Filter.model_rebuild()

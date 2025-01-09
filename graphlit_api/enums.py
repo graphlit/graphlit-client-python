@@ -415,6 +415,7 @@ class EntityTypes(str, Enum):
     SITE = "SITE"
     SOFTWARE = "SOFTWARE"
     SPECIFICATION = "SPECIFICATION"
+    USER = "USER"
     WORKFLOW = "WORKFLOW"
 
 
@@ -891,6 +892,11 @@ class GoogleModels(str, Enum):
     CUSTOM = "CUSTOM"
 
 
+class UserTypes(str, Enum):
+    HUMAN = "HUMAN"
+    AGENT = "AGENT"
+
+
 class EntityExtractionServiceTypes(str, Enum):
     ROBOFLOW_IMAGE = "ROBOFLOW_IMAGE"
     MODEL_TEXT = "MODEL_TEXT"
@@ -927,6 +933,11 @@ class ConversationRoleTypes(str, Enum):
     SYSTEM = "SYSTEM"
     ASSISTANT = "ASSISTANT"
     USER = "USER"
+
+
+class ConnectorTypes(str, Enum):
+    INTEGRATION = "INTEGRATION"
+    AUTHENTICATION = "AUTHENTICATION"
 
 
 class TextRoles(str, Enum):
@@ -976,6 +987,13 @@ class OrderByTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
     ORIGINAL_DATE = "ORIGINAL_DATE"
     RELEVANCE = "RELEVANCE"
+
+
+class AuthenticationServiceTypes(str, Enum):
+    AUTH0 = "AUTH0"
+    MICROSOFT_GRAPH = "MICROSOFT_GRAPH"
+    CLERK = "CLERK"
+    GOOGLE = "GOOGLE"
 
 
 class RevisionStrategyTypes(str, Enum):

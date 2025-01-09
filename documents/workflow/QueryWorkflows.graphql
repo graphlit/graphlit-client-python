@@ -129,6 +129,9 @@ query QueryWorkflows($filter: WorkflowFilter) {
             fhir {
               endpoint
             }
+            diffbot {
+              key
+            }
           }
         }
       }

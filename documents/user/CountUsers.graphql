@@ -1,0 +1,5 @@
+query CountUsers($filter: UserFilter) {
+  countUsers(filter: $filter) {
+    count
+  }
+}

@@ -1,0 +1,6 @@
+mutation EnableUser($id: ID!) {
+  enableUser(id: $id) {
+    id
+    state
+  }
+}

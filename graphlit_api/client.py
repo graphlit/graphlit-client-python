@@ -37,6 +37,7 @@ from .count_products import CountProducts
 from .count_repos import CountRepos
 from .count_softwares import CountSoftwares
 from .count_specifications import CountSpecifications
+from .count_users import CountUsers
 from .count_workflows import CountWorkflows
 from .create_alert import CreateAlert
 from .create_category import CreateCategory
@@ -64,6 +65,7 @@ from .create_product import CreateProduct
 from .create_repo import CreateRepo
 from .create_software import CreateSoftware
 from .create_specification import CreateSpecification
+from .create_user import CreateUser
 from .create_workflow import CreateWorkflow
 from .delete_alert import DeleteAlert
 from .delete_alerts import DeleteAlerts
@@ -145,14 +147,17 @@ from .delete_software import DeleteSoftware
 from .delete_softwares import DeleteSoftwares
 from .delete_specification import DeleteSpecification
 from .delete_specifications import DeleteSpecifications
+from .delete_user import DeleteUser
 from .delete_workflow import DeleteWorkflow
 from .delete_workflows import DeleteWorkflows
 from .describe_encoded_image import DescribeEncodedImage
 from .describe_image import DescribeImage
 from .disable_alert import DisableAlert
 from .disable_feed import DisableFeed
+from .disable_user import DisableUser
 from .enable_alert import EnableAlert
 from .enable_feed import EnableFeed
+from .enable_user import EnableUser
 from .enums import SdkTypes, SearchServiceTypes, TextTypes
 from .extract_contents import ExtractContents
 from .extract_text import ExtractText
@@ -185,6 +190,7 @@ from .get_repo import GetRepo
 from .get_share_point_consent_uri import GetSharePointConsentUri
 from .get_software import GetSoftware
 from .get_specification import GetSpecification
+from .get_user import GetUser
 from .get_workflow import GetWorkflow
 from .ingest_batch import IngestBatch
 from .ingest_encoded_file import IngestEncodedFile
@@ -288,6 +294,9 @@ from .input_types import (
     SummarizationStrategyInput,
     TextContentInput,
     ToolDefinitionInput,
+    UserFilter,
+    UserInput,
+    UserUpdateInput,
     WorkflowFilter,
     WorkflowInput,
     WorkflowUpdateInput,
@@ -330,6 +339,7 @@ from .operations import (
     COUNT_REPOS_GQL,
     COUNT_SOFTWARES_GQL,
     COUNT_SPECIFICATIONS_GQL,
+    COUNT_USERS_GQL,
     COUNT_WORKFLOWS_GQL,
     CREATE_ALERT_GQL,
     CREATE_CATEGORY_GQL,
@@ -357,6 +367,7 @@ from .operations import (
     CREATE_REPO_GQL,
     CREATE_SOFTWARE_GQL,
     CREATE_SPECIFICATION_GQL,
+    CREATE_USER_GQL,
     CREATE_WORKFLOW_GQL,
     DELETE_ALERT_GQL,
     DELETE_ALERTS_GQL,
@@ -438,14 +449,17 @@ from .operations import (
     DELETE_SOFTWARES_GQL,
     DELETE_SPECIFICATION_GQL,
     DELETE_SPECIFICATIONS_GQL,
+    DELETE_USER_GQL,
     DELETE_WORKFLOW_GQL,
     DELETE_WORKFLOWS_GQL,
     DESCRIBE_ENCODED_IMAGE_GQL,
     DESCRIBE_IMAGE_GQL,
     DISABLE_ALERT_GQL,
     DISABLE_FEED_GQL,
+    DISABLE_USER_GQL,
     ENABLE_ALERT_GQL,
     ENABLE_FEED_GQL,
+    ENABLE_USER_GQL,
     EXTRACT_CONTENTS_GQL,
     EXTRACT_TEXT_GQL,
     FORMAT_CONVERSATION_GQL,
@@ -477,6 +491,7 @@ from .operations import (
     GET_SHARE_POINT_CONSENT_URI_GQL,
     GET_SOFTWARE_GQL,
     GET_SPECIFICATION_GQL,
+    GET_USER_GQL,
     GET_WORKFLOW_GQL,
     INGEST_BATCH_GQL,
     INGEST_ENCODED_FILE_GQL,
@@ -530,6 +545,7 @@ from .operations import (
     QUERY_SOFTWARES_GQL,
     QUERY_SPECIFICATIONS_GQL,
     QUERY_USAGE_GQL,
+    QUERY_USERS_GQL,
     QUERY_WORKFLOWS_GQL,
     REMOVE_CONTENTS_FROM_COLLECTION_GQL,
     REVISE_CONTENT_GQL,
@@ -569,6 +585,7 @@ from .operations import (
     UPDATE_REPO_GQL,
     UPDATE_SOFTWARE_GQL,
     UPDATE_SPECIFICATION_GQL,
+    UPDATE_USER_GQL,
     UPDATE_WORKFLOW_GQL,
 )
 from .prompt import Prompt
@@ -613,6 +630,7 @@ from .query_share_point_libraries import QuerySharePointLibraries
 from .query_softwares import QuerySoftwares
 from .query_specifications import QuerySpecifications
 from .query_usage import QueryUsage
+from .query_users import QueryUsers
 from .query_workflows import QueryWorkflows
 from .remove_contents_from_collection import RemoveContentsFromCollection
 from .revise_content import ReviseContent
@@ -652,6 +670,7 @@ from .update_project import UpdateProject
 from .update_repo import UpdateRepo
 from .update_software import UpdateSoftware
 from .update_specification import UpdateSpecification
+from .update_user import UpdateUser
 from .update_workflow import UpdateWorkflow
 
 
@@ -4735,6 +4754,95 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdateSpecification.model_validate(data)
+
+    async def count_users(
+        self, filter: Union[Optional[UserFilter], UnsetType] = UNSET, **kwargs: Any
+    ) -> CountUsers:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=COUNT_USERS_GQL,
+            operation_name="CountUsers",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountUsers.model_validate(data)
+
+    async def create_user(self, user: UserInput, **kwargs: Any) -> CreateUser:
+        variables: Dict[str, object] = {"user": user}
+        response = await self.execute(
+            query=CREATE_USER_GQL,
+            operation_name="CreateUser",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CreateUser.model_validate(data)
+
+    async def delete_user(self, id: str, **kwargs: Any) -> DeleteUser:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DELETE_USER_GQL,
+            operation_name="DeleteUser",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteUser.model_validate(data)
+
+    async def disable_user(self, id: str, **kwargs: Any) -> DisableUser:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DISABLE_USER_GQL,
+            operation_name="DisableUser",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DisableUser.model_validate(data)
+
+    async def enable_user(self, id: str, **kwargs: Any) -> EnableUser:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=ENABLE_USER_GQL,
+            operation_name="EnableUser",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return EnableUser.model_validate(data)
+
+    async def get_user(self, **kwargs: Any) -> GetUser:
+        variables: Dict[str, object] = {}
+        response = await self.execute(
+            query=GET_USER_GQL, operation_name="GetUser", variables=variables, **kwargs
+        )
+        data = self.get_data(response)
+        return GetUser.model_validate(data)
+
+    async def query_users(
+        self, filter: Union[Optional[UserFilter], UnsetType] = UNSET, **kwargs: Any
+    ) -> QueryUsers:
+        variables: Dict[str, object] = {"filter": filter}
+        response = await self.execute(
+            query=QUERY_USERS_GQL,
+            operation_name="QueryUsers",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryUsers.model_validate(data)
+
+    async def update_user(self, user: UserUpdateInput, **kwargs: Any) -> UpdateUser:
+        variables: Dict[str, object] = {"user": user}
+        response = await self.execute(
+            query=UPDATE_USER_GQL,
+            operation_name="UpdateUser",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateUser.model_validate(data)
 
     async def count_workflows(
         self, filter: Union[Optional[WorkflowFilter], UnsetType] = UNSET, **kwargs: Any

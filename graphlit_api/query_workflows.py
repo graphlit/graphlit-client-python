@@ -265,10 +265,15 @@ class QueryWorkflowsWorkflowsResultsEnrichmentJobsConnector(BaseModel):
         alias="enrichedTypes"
     )
     fhir: Optional["QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorFhir"]
+    diffbot: Optional["QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorDiffbot"]
 
 
 class QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorFhir(BaseModel):
     endpoint: Optional[Any]
+
+
+class QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorDiffbot(BaseModel):
+    key: Optional[Any]
 
 
 class QueryWorkflowsWorkflowsResultsStorage(BaseModel):

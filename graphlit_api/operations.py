@@ -34,6 +34,7 @@ __all__ = [
     "COUNT_REPOS_GQL",
     "COUNT_SOFTWARES_GQL",
     "COUNT_SPECIFICATIONS_GQL",
+    "COUNT_USERS_GQL",
     "COUNT_WORKFLOWS_GQL",
     "CREATE_ALERT_GQL",
     "CREATE_CATEGORY_GQL",
@@ -61,6 +62,7 @@ __all__ = [
     "CREATE_REPO_GQL",
     "CREATE_SOFTWARE_GQL",
     "CREATE_SPECIFICATION_GQL",
+    "CREATE_USER_GQL",
     "CREATE_WORKFLOW_GQL",
     "DELETE_ALERTS_GQL",
     "DELETE_ALERT_GQL",
@@ -142,14 +144,17 @@ __all__ = [
     "DELETE_SOFTWARE_GQL",
     "DELETE_SPECIFICATIONS_GQL",
     "DELETE_SPECIFICATION_GQL",
+    "DELETE_USER_GQL",
     "DELETE_WORKFLOWS_GQL",
     "DELETE_WORKFLOW_GQL",
     "DESCRIBE_ENCODED_IMAGE_GQL",
     "DESCRIBE_IMAGE_GQL",
     "DISABLE_ALERT_GQL",
     "DISABLE_FEED_GQL",
+    "DISABLE_USER_GQL",
     "ENABLE_ALERT_GQL",
     "ENABLE_FEED_GQL",
+    "ENABLE_USER_GQL",
     "EXTRACT_CONTENTS_GQL",
     "EXTRACT_TEXT_GQL",
     "FORMAT_CONVERSATION_GQL",
@@ -181,6 +186,7 @@ __all__ = [
     "GET_SHARE_POINT_CONSENT_URI_GQL",
     "GET_SOFTWARE_GQL",
     "GET_SPECIFICATION_GQL",
+    "GET_USER_GQL",
     "GET_WORKFLOW_GQL",
     "INGEST_BATCH_GQL",
     "INGEST_ENCODED_FILE_GQL",
@@ -234,6 +240,7 @@ __all__ = [
     "QUERY_SOFTWARES_GQL",
     "QUERY_SPECIFICATIONS_GQL",
     "QUERY_USAGE_GQL",
+    "QUERY_USERS_GQL",
     "QUERY_WORKFLOWS_GQL",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
     "REVISE_CONTENT_GQL",
@@ -273,6 +280,7 @@ __all__ = [
     "UPDATE_REPO_GQL",
     "UPDATE_SOFTWARE_GQL",
     "UPDATE_SPECIFICATION_GQL",
+    "UPDATE_USER_GQL",
     "UPDATE_WORKFLOW_GQL",
 ]
 
@@ -8725,6 +8733,153 @@ mutation UpdateSpecification($specification: SpecificationUpdateInput!) {
 }
 """
 
+COUNT_USERS_GQL = """
+query CountUsers($filter: UserFilter) {
+  countUsers(filter: $filter) {
+    count
+  }
+}
+"""
+
+CREATE_USER_GQL = """
+mutation CreateUser($user: UserInput!) {
+  createUser(user: $user) {
+    id
+    name
+    state
+    type
+    identifier
+  }
+}
+"""
+
+DELETE_USER_GQL = """
+mutation DeleteUser($id: ID!) {
+  deleteUser(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DISABLE_USER_GQL = """
+mutation DisableUser($id: ID!) {
+  disableUser(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+ENABLE_USER_GQL = """
+mutation EnableUser($id: ID!) {
+  enableUser(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+GET_USER_GQL = """
+query GetUser {
+  user {
+    id
+    name
+    creationDate
+    relevance
+    owner {
+      id
+    }
+    state
+    type
+    identifier
+    connectors {
+      id
+      name
+      state
+      type
+      authentication {
+        type
+        microsoft {
+          tenantId
+          clientId
+          clientSecret
+        }
+        google {
+          clientId
+          clientSecret
+        }
+      }
+      integration {
+        type
+        uri
+        slack {
+          token
+          channel
+        }
+      }
+    }
+  }
+}
+"""
+
+QUERY_USERS_GQL = """
+query QueryUsers($filter: UserFilter) {
+  users(filter: $filter) {
+    results {
+      id
+      name
+      creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      type
+      identifier
+      connectors {
+        id
+        name
+        state
+        type
+        authentication {
+          type
+          microsoft {
+            tenantId
+            clientId
+            clientSecret
+          }
+          google {
+            clientId
+            clientSecret
+          }
+        }
+        integration {
+          type
+          uri
+          slack {
+            token
+            channel
+          }
+        }
+      }
+    }
+  }
+}
+"""
+
+UPDATE_USER_GQL = """
+mutation UpdateUser($user: UserUpdateInput!) {
+  updateUser(user: $user) {
+    id
+    name
+    state
+    type
+    identifier
+  }
+}
+"""
+
 COUNT_WORKFLOWS_GQL = """
 query CountWorkflows($filter: WorkflowFilter) {
   countWorkflows(filter: $filter) {
@@ -8858,6 +9013,9 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
           enrichedTypes
           fhir {
             endpoint
+          }
+          diffbot {
+            key
           }
         }
       }
@@ -9044,6 +9202,9 @@ query GetWorkflow($id: ID!) {
           fhir {
             endpoint
           }
+          diffbot {
+            key
+          }
         }
       }
     }
@@ -9199,6 +9360,9 @@ query QueryWorkflows($filter: WorkflowFilter) {
             fhir {
               endpoint
             }
+            diffbot {
+              key
+            }
           }
         }
       }
@@ -9348,6 +9512,9 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
           enrichedTypes
           fhir {
             endpoint
+          }
+          diffbot {
+            key
           }
         }
       }
