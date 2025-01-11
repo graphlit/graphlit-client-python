@@ -119,5 +119,7 @@ mutation DescribeEncodedImage($prompt: String!, $mimeType: String!, $data: Strin
     timestamp
     modelService
     model
+    data
+    mimeType
   }
 }

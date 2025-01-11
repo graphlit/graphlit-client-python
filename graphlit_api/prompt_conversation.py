@@ -56,6 +56,8 @@ class PromptConversationPromptConversationMessage(BaseModel):
     timestamp: Optional[Any]
     model_service: Optional[ModelServiceTypes] = Field(alias="modelService")
     model: Optional[str]
+    data: Optional[str]
+    mime_type: Optional[str] = Field(alias="mimeType")
 
 
 class PromptConversationPromptConversationMessageCitations(BaseModel):
@@ -268,6 +270,8 @@ class PromptConversationPromptConversationDetailsMessages(BaseModel):
     timestamp: Optional[Any]
     model_service: Optional[ModelServiceTypes] = Field(alias="modelService")
     model: Optional[str]
+    data: Optional[str]
+    mime_type: Optional[str] = Field(alias="mimeType")
 
 
 class PromptConversationPromptConversationDetailsMessagesCitations(BaseModel):

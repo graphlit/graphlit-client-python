@@ -184,6 +184,10 @@ class QueryFeedsFeedsResultsEmail(BaseModel):
 
 class QueryFeedsFeedsResultsEmailGoogle(BaseModel):
     type: Optional[EmailListingTypes]
+    include_spam: Optional[bool] = Field(alias="includeSpam")
+    exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems")
+    include_deleted_items: Optional[bool] = Field(alias="includeDeletedItems")
+    inbox_only: Optional[bool] = Field(alias="inboxOnly")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
@@ -191,6 +195,10 @@ class QueryFeedsFeedsResultsEmailGoogle(BaseModel):
 
 class QueryFeedsFeedsResultsEmailMicrosoft(BaseModel):
     type: Optional[EmailListingTypes]
+    include_spam: Optional[bool] = Field(alias="includeSpam")
+    exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems")
+    include_deleted_items: Optional[bool] = Field(alias="includeDeletedItems")
+    inbox_only: Optional[bool] = Field(alias="inboxOnly")
     refresh_token: str = Field(alias="refreshToken")
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")

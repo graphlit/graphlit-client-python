@@ -123,6 +123,8 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
       timestamp
       modelService
       model
+      data
+      mimeType
     }
     error
   }

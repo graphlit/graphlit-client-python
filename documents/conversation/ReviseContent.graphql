@@ -123,6 +123,8 @@ mutation ReviseContent($prompt: String!, $content: EntityReferenceInput!, $id: I
       timestamp
       modelService
       model
+      data
+      mimeType
     }
     messageCount
   }

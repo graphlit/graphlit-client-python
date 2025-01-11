@@ -131,6 +131,8 @@ query QueryConversations($filter: ConversationFilter) {
         timestamp
         modelService
         model
+        data
+        mimeType
       }
       specification {
         id

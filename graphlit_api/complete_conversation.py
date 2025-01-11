@@ -56,6 +56,8 @@ class CompleteConversationCompleteConversationMessage(BaseModel):
     timestamp: Optional[Any]
     model_service: Optional[ModelServiceTypes] = Field(alias="modelService")
     model: Optional[str]
+    data: Optional[str]
+    mime_type: Optional[str] = Field(alias="mimeType")
 
 
 class CompleteConversationCompleteConversationMessageCitations(BaseModel):
@@ -284,6 +286,8 @@ class CompleteConversationCompleteConversationDetailsMessages(BaseModel):
     timestamp: Optional[Any]
     model_service: Optional[ModelServiceTypes] = Field(alias="modelService")
     model: Optional[str]
+    data: Optional[str]
+    mime_type: Optional[str] = Field(alias="mimeType")
 
 
 class CompleteConversationCompleteConversationDetailsMessagesCitations(BaseModel):

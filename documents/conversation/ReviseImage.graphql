@@ -123,6 +123,8 @@ mutation ReviseImage($prompt: String!, $uri: URL!, $id: ID, $specification: Enti
       timestamp
       modelService
       model
+      data
+      mimeType
     }
     messageCount
   }

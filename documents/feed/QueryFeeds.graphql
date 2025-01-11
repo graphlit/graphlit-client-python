@@ -91,12 +91,20 @@ query QueryFeeds($filter: FeedFilter) {
         includeAttachments
         google {
           type
+          includeSpam
+          excludeSentItems
+          includeDeletedItems
+          inboxOnly
           refreshToken
           clientId
           clientSecret
         }
         microsoft {
           type
+          includeSpam
+          excludeSentItems
+          includeDeletedItems
+          inboxOnly
           refreshToken
           clientId
           clientSecret

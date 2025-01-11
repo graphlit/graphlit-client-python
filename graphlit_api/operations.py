@@ -968,6 +968,8 @@ mutation DescribeEncodedImage($prompt: String!, $mimeType: String!, $data: Strin
     timestamp
     modelService
     model
+    data
+    mimeType
   }
 }
 """
@@ -1099,6 +1101,8 @@ mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityRefer
     timestamp
     modelService
     model
+    data
+    mimeType
   }
 }
 """
@@ -2743,6 +2747,8 @@ mutation AskGraphlit($prompt: String!, $type: SdkTypes, $id: ID, $specification:
       timestamp
       modelService
       model
+      data
+      mimeType
     }
     messageCount
   }
@@ -2901,6 +2907,8 @@ mutation CompleteConversation($completion: String!, $id: ID!, $correlationId: St
       timestamp
       modelService
       model
+      data
+      mimeType
     }
     messageCount
     facets {
@@ -3074,6 +3082,8 @@ mutation CompleteConversation($completion: String!, $id: ID!, $correlationId: St
         timestamp
         modelService
         model
+        data
+        mimeType
       }
     }
   }
@@ -3210,6 +3220,8 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
       timestamp
       modelService
       model
+      data
+      mimeType
     }
     messageCount
     facets {
@@ -3383,6 +3395,8 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
         timestamp
         modelService
         model
+        data
+        mimeType
       }
     }
   }
@@ -3571,6 +3585,8 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
       timestamp
       modelService
       model
+      data
+      mimeType
     }
     messageCount
     facets {
@@ -3744,6 +3760,8 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
         timestamp
         modelService
         model
+        data
+        mimeType
       }
     }
   }
@@ -3883,6 +3901,8 @@ query GetConversation($id: ID!) {
       timestamp
       modelService
       model
+      data
+      mimeType
     }
     specification {
       id
@@ -4035,9 +4055,11 @@ query GetConversation($id: ID!) {
 """
 
 PROMPT_GQL = """
-mutation Prompt($prompt: String!, $specification: EntityReferenceInput, $messages: [ConversationMessageInput!], $correlationId: String) {
+mutation Prompt($prompt: String!, $mimeType: String, $data: String, $specification: EntityReferenceInput, $messages: [ConversationMessageInput!], $correlationId: String) {
   prompt(
     prompt: $prompt
+    mimeType: $mimeType
+    data: $data
     specification: $specification
     messages: $messages
     correlationId: $correlationId
@@ -4165,6 +4187,8 @@ mutation Prompt($prompt: String!, $specification: EntityReferenceInput, $message
       timestamp
       modelService
       model
+      data
+      mimeType
     }
     error
   }
@@ -4305,6 +4329,8 @@ mutation PromptConversation($prompt: String!, $id: ID, $specification: EntityRef
       timestamp
       modelService
       model
+      data
+      mimeType
     }
     messageCount
     facets {
@@ -4478,6 +4504,8 @@ mutation PromptConversation($prompt: String!, $id: ID, $specification: EntityRef
         timestamp
         modelService
         model
+        data
+        mimeType
       }
     }
   }
@@ -4728,6 +4756,8 @@ query QueryConversations($filter: ConversationFilter) {
         timestamp
         modelService
         model
+        data
+        mimeType
       }
       specification {
         id
@@ -5012,6 +5042,8 @@ mutation ReviseContent($prompt: String!, $content: EntityReferenceInput!, $id: I
       timestamp
       modelService
       model
+      data
+      mimeType
     }
     messageCount
   }
@@ -5151,6 +5183,8 @@ mutation ReviseEncodedImage($prompt: String!, $mimeType: String!, $data: String!
       timestamp
       modelService
       model
+      data
+      mimeType
     }
     messageCount
   }
@@ -5289,6 +5323,8 @@ mutation ReviseImage($prompt: String!, $uri: URL!, $id: ID, $specification: Enti
       timestamp
       modelService
       model
+      data
+      mimeType
     }
     messageCount
   }
@@ -5427,6 +5463,8 @@ mutation ReviseText($prompt: String!, $text: String!, $id: ID, $specification: E
       timestamp
       modelService
       model
+      data
+      mimeType
     }
     messageCount
   }
@@ -5743,12 +5781,20 @@ query GetFeed($id: ID!) {
       includeAttachments
       google {
         type
+        includeSpam
+        excludeSentItems
+        includeDeletedItems
+        inboxOnly
         refreshToken
         clientId
         clientSecret
       }
       microsoft {
         type
+        includeSpam
+        excludeSentItems
+        includeDeletedItems
+        inboxOnly
         refreshToken
         clientId
         clientSecret
@@ -5977,12 +6023,20 @@ query QueryFeeds($filter: FeedFilter) {
         includeAttachments
         google {
           type
+          includeSpam
+          excludeSentItems
+          includeDeletedItems
+          inboxOnly
           refreshToken
           clientId
           clientSecret
         }
         microsoft {
           type
+          includeSpam
+          excludeSentItems
+          includeDeletedItems
+          inboxOnly
           refreshToken
           clientId
           clientSecret
@@ -8506,6 +8560,8 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
       timestamp
       modelService
       model
+      data
+      mimeType
     }
     error
   }

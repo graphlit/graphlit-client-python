@@ -1563,6 +1563,12 @@ class SoftwareInput(BaseModel):
 
 class GoogleEmailFeedPropertiesUpdateInput(BaseModel):
     type: Optional[EmailListingTypes] = None
+    inbox_only: Optional[bool] = Field(alias="inboxOnly", default=None)
+    include_deleted_items: Optional[bool] = Field(
+        alias="includeDeletedItems", default=None
+    )
+    exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems", default=None)
+    include_spam: Optional[bool] = Field(alias="includeSpam", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
@@ -1807,6 +1813,12 @@ class AlertFilter(BaseModel):
 
 class GoogleEmailFeedPropertiesInput(BaseModel):
     type: Optional[EmailListingTypes] = None
+    inbox_only: Optional[bool] = Field(alias="inboxOnly", default=None)
+    include_deleted_items: Optional[bool] = Field(
+        alias="includeDeletedItems", default=None
+    )
+    exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems", default=None)
+    include_spam: Optional[bool] = Field(alias="includeSpam", default=None)
     refresh_token: str = Field(alias="refreshToken")
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
@@ -2528,6 +2540,12 @@ class LabelFilter(BaseModel):
 
 class MicrosoftEmailFeedPropertiesInput(BaseModel):
     type: Optional[EmailListingTypes] = None
+    inbox_only: Optional[bool] = Field(alias="inboxOnly", default=None)
+    include_deleted_items: Optional[bool] = Field(
+        alias="includeDeletedItems", default=None
+    )
+    exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems", default=None)
+    include_spam: Optional[bool] = Field(alias="includeSpam", default=None)
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
     refresh_token: str = Field(alias="refreshToken")
@@ -3032,6 +3050,12 @@ class ConversationStrategyUpdateInput(BaseModel):
 
 class MicrosoftEmailFeedPropertiesUpdateInput(BaseModel):
     type: Optional[EmailListingTypes] = None
+    inbox_only: Optional[bool] = Field(alias="inboxOnly", default=None)
+    include_deleted_items: Optional[bool] = Field(
+        alias="includeDeletedItems", default=None
+    )
+    exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems", default=None)
+    include_spam: Optional[bool] = Field(alias="includeSpam", default=None)
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
@@ -3056,6 +3080,8 @@ class ConversationMessageInput(BaseModel):
     role: ConversationRoleTypes
     author: Optional[str] = None
     message: str
+    data: Optional[str] = None
+    mime_type: Optional[str] = Field(alias="mimeType", default=None)
 
 
 class AnthropicModelPropertiesUpdateInput(BaseModel):

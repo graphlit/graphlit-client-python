@@ -123,6 +123,8 @@ mutation ReviseEncodedImage($prompt: String!, $mimeType: String!, $data: String!
       timestamp
       modelService
       model
+      data
+      mimeType
     }
     messageCount
   }

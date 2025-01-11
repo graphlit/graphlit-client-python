@@ -1823,6 +1823,8 @@ class Client(AsyncBaseClient):
     async def prompt(
         self,
         prompt: str,
+        mime_type: Union[Optional[str], UnsetType] = UNSET,
+        data: Union[Optional[str], UnsetType] = UNSET,
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         messages: Union[Optional[List[ConversationMessageInput]], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
@@ -1830,6 +1832,8 @@ class Client(AsyncBaseClient):
     ) -> Prompt:
         variables: Dict[str, object] = {
             "prompt": prompt,
+            "mimeType": mime_type,
+            "data": data,
             "specification": specification,
             "messages": messages,
             "correlationId": correlation_id,
@@ -1837,8 +1841,8 @@ class Client(AsyncBaseClient):
         response = await self.execute(
             query=PROMPT_GQL, operation_name="Prompt", variables=variables, **kwargs
         )
-        data = self.get_data(response)
-        return Prompt.model_validate(data)
+        _data = self.get_data(response)
+        return Prompt.model_validate(_data)
 
     async def prompt_conversation(
         self,

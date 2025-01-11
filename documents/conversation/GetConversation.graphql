@@ -130,6 +130,8 @@ query GetConversation($id: ID!) {
       timestamp
       modelService
       model
+      data
+      mimeType
     }
     specification {
       id

@@ -123,6 +123,8 @@ mutation ReviseText($prompt: String!, $text: String!, $id: ID, $specification: E
       timestamp
       modelService
       model
+      data
+      mimeType
     }
     messageCount
   }

@@ -123,6 +123,8 @@ mutation AskGraphlit($prompt: String!, $type: SdkTypes, $id: ID, $specification:
       timestamp
       modelService
       model
+      data
+      mimeType
     }
     messageCount
   }

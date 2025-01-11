@@ -119,5 +119,7 @@ mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityRefer
     timestamp
     modelService
     model
+    data
+    mimeType
   }
 }
