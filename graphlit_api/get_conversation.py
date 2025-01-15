@@ -210,6 +210,7 @@ class GetConversationConversationFilter(BaseModel):
     feeds: Optional[List["GetConversationConversationFilterFeeds"]]
     workflows: Optional[List["GetConversationConversationFilterWorkflows"]]
     collections: Optional[List["GetConversationConversationFilterCollections"]]
+    users: Optional[List["GetConversationConversationFilterUsers"]]
     observations: Optional[List["GetConversationConversationFilterObservations"]]
     or_: Optional[List["GetConversationConversationFilterOr"]] = Field(alias="or")
     and_: Optional[List["GetConversationConversationFilterAnd"]] = Field(alias="and")
@@ -241,6 +242,10 @@ class GetConversationConversationFilterCollections(BaseModel):
     id: str
 
 
+class GetConversationConversationFilterUsers(BaseModel):
+    id: str
+
+
 class GetConversationConversationFilterObservations(BaseModel):
     type: ObservableTypes
     observable: "GetConversationConversationFilterObservationsObservable"
@@ -255,6 +260,7 @@ class GetConversationConversationFilterOr(BaseModel):
     feeds: Optional[List["GetConversationConversationFilterOrFeeds"]]
     workflows: Optional[List["GetConversationConversationFilterOrWorkflows"]]
     collections: Optional[List["GetConversationConversationFilterOrCollections"]]
+    users: Optional[List["GetConversationConversationFilterOrUsers"]]
     observations: Optional[List["GetConversationConversationFilterOrObservations"]]
 
 
@@ -267,6 +273,10 @@ class GetConversationConversationFilterOrWorkflows(BaseModel):
 
 
 class GetConversationConversationFilterOrCollections(BaseModel):
+    id: str
+
+
+class GetConversationConversationFilterOrUsers(BaseModel):
     id: str
 
 
@@ -284,6 +294,7 @@ class GetConversationConversationFilterAnd(BaseModel):
     feeds: Optional[List["GetConversationConversationFilterAndFeeds"]]
     workflows: Optional[List["GetConversationConversationFilterAndWorkflows"]]
     collections: Optional[List["GetConversationConversationFilterAndCollections"]]
+    users: Optional[List["GetConversationConversationFilterAndUsers"]]
     observations: Optional[List["GetConversationConversationFilterAndObservations"]]
 
 
@@ -296,6 +307,10 @@ class GetConversationConversationFilterAndWorkflows(BaseModel):
 
 
 class GetConversationConversationFilterAndCollections(BaseModel):
+    id: str
+
+
+class GetConversationConversationFilterAndUsers(BaseModel):
     id: str
 
 
@@ -324,6 +339,7 @@ class GetConversationConversationAugmentedFilter(BaseModel):
     feeds: Optional[List["GetConversationConversationAugmentedFilterFeeds"]]
     workflows: Optional[List["GetConversationConversationAugmentedFilterWorkflows"]]
     collections: Optional[List["GetConversationConversationAugmentedFilterCollections"]]
+    users: Optional[List["GetConversationConversationAugmentedFilterUsers"]]
     observations: Optional[
         List["GetConversationConversationAugmentedFilterObservations"]
     ]
@@ -361,6 +377,10 @@ class GetConversationConversationAugmentedFilterCollections(BaseModel):
     id: str
 
 
+class GetConversationConversationAugmentedFilterUsers(BaseModel):
+    id: str
+
+
 class GetConversationConversationAugmentedFilterObservations(BaseModel):
     type: ObservableTypes
     observable: "GetConversationConversationAugmentedFilterObservationsObservable"
@@ -377,6 +397,7 @@ class GetConversationConversationAugmentedFilterOr(BaseModel):
     collections: Optional[
         List["GetConversationConversationAugmentedFilterOrCollections"]
     ]
+    users: Optional[List["GetConversationConversationAugmentedFilterOrUsers"]]
     observations: Optional[
         List["GetConversationConversationAugmentedFilterOrObservations"]
     ]
@@ -391,6 +412,10 @@ class GetConversationConversationAugmentedFilterOrWorkflows(BaseModel):
 
 
 class GetConversationConversationAugmentedFilterOrCollections(BaseModel):
+    id: str
+
+
+class GetConversationConversationAugmentedFilterOrUsers(BaseModel):
     id: str
 
 
@@ -410,6 +435,7 @@ class GetConversationConversationAugmentedFilterAnd(BaseModel):
     collections: Optional[
         List["GetConversationConversationAugmentedFilterAndCollections"]
     ]
+    users: Optional[List["GetConversationConversationAugmentedFilterAndUsers"]]
     observations: Optional[
         List["GetConversationConversationAugmentedFilterAndObservations"]
     ]
@@ -424,6 +450,10 @@ class GetConversationConversationAugmentedFilterAndWorkflows(BaseModel):
 
 
 class GetConversationConversationAugmentedFilterAndCollections(BaseModel):
+    id: str
+
+
+class GetConversationConversationAugmentedFilterAndUsers(BaseModel):
     id: str
 
 

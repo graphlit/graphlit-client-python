@@ -228,6 +228,7 @@ class QueryConversationsConversationsResultsFilter(BaseModel):
     collections: Optional[
         List["QueryConversationsConversationsResultsFilterCollections"]
     ]
+    users: Optional[List["QueryConversationsConversationsResultsFilterUsers"]]
     observations: Optional[
         List["QueryConversationsConversationsResultsFilterObservations"]
     ]
@@ -265,6 +266,10 @@ class QueryConversationsConversationsResultsFilterCollections(BaseModel):
     id: str
 
 
+class QueryConversationsConversationsResultsFilterUsers(BaseModel):
+    id: str
+
+
 class QueryConversationsConversationsResultsFilterObservations(BaseModel):
     type: ObservableTypes
     observable: "QueryConversationsConversationsResultsFilterObservationsObservable"
@@ -281,6 +286,7 @@ class QueryConversationsConversationsResultsFilterOr(BaseModel):
     collections: Optional[
         List["QueryConversationsConversationsResultsFilterOrCollections"]
     ]
+    users: Optional[List["QueryConversationsConversationsResultsFilterOrUsers"]]
     observations: Optional[
         List["QueryConversationsConversationsResultsFilterOrObservations"]
     ]
@@ -295,6 +301,10 @@ class QueryConversationsConversationsResultsFilterOrWorkflows(BaseModel):
 
 
 class QueryConversationsConversationsResultsFilterOrCollections(BaseModel):
+    id: str
+
+
+class QueryConversationsConversationsResultsFilterOrUsers(BaseModel):
     id: str
 
 
@@ -316,6 +326,7 @@ class QueryConversationsConversationsResultsFilterAnd(BaseModel):
     collections: Optional[
         List["QueryConversationsConversationsResultsFilterAndCollections"]
     ]
+    users: Optional[List["QueryConversationsConversationsResultsFilterAndUsers"]]
     observations: Optional[
         List["QueryConversationsConversationsResultsFilterAndObservations"]
     ]
@@ -330,6 +341,10 @@ class QueryConversationsConversationsResultsFilterAndWorkflows(BaseModel):
 
 
 class QueryConversationsConversationsResultsFilterAndCollections(BaseModel):
+    id: str
+
+
+class QueryConversationsConversationsResultsFilterAndUsers(BaseModel):
     id: str
 
 
@@ -364,6 +379,7 @@ class QueryConversationsConversationsResultsAugmentedFilter(BaseModel):
     collections: Optional[
         List["QueryConversationsConversationsResultsAugmentedFilterCollections"]
     ]
+    users: Optional[List["QueryConversationsConversationsResultsAugmentedFilterUsers"]]
     observations: Optional[
         List["QueryConversationsConversationsResultsAugmentedFilterObservations"]
     ]
@@ -401,6 +417,10 @@ class QueryConversationsConversationsResultsAugmentedFilterCollections(BaseModel
     id: str
 
 
+class QueryConversationsConversationsResultsAugmentedFilterUsers(BaseModel):
+    id: str
+
+
 class QueryConversationsConversationsResultsAugmentedFilterObservations(BaseModel):
     type: ObservableTypes
     observable: (
@@ -425,6 +445,9 @@ class QueryConversationsConversationsResultsAugmentedFilterOr(BaseModel):
     collections: Optional[
         List["QueryConversationsConversationsResultsAugmentedFilterOrCollections"]
     ]
+    users: Optional[
+        List["QueryConversationsConversationsResultsAugmentedFilterOrUsers"]
+    ]
     observations: Optional[
         List["QueryConversationsConversationsResultsAugmentedFilterOrObservations"]
     ]
@@ -439,6 +462,10 @@ class QueryConversationsConversationsResultsAugmentedFilterOrWorkflows(BaseModel
 
 
 class QueryConversationsConversationsResultsAugmentedFilterOrCollections(BaseModel):
+    id: str
+
+
+class QueryConversationsConversationsResultsAugmentedFilterOrUsers(BaseModel):
     id: str
 
 
@@ -466,6 +493,9 @@ class QueryConversationsConversationsResultsAugmentedFilterAnd(BaseModel):
     collections: Optional[
         List["QueryConversationsConversationsResultsAugmentedFilterAndCollections"]
     ]
+    users: Optional[
+        List["QueryConversationsConversationsResultsAugmentedFilterAndUsers"]
+    ]
     observations: Optional[
         List["QueryConversationsConversationsResultsAugmentedFilterAndObservations"]
     ]
@@ -480,6 +510,10 @@ class QueryConversationsConversationsResultsAugmentedFilterAndWorkflows(BaseMode
 
 
 class QueryConversationsConversationsResultsAugmentedFilterAndCollections(BaseModel):
+    id: str
+
+
+class QueryConversationsConversationsResultsAugmentedFilterAndUsers(BaseModel):
     id: str
 
 

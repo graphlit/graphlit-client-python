@@ -38,6 +38,9 @@ query QueryAlerts($filter: AlertFilter) {
         collections {
           id
         }
+        users {
+          id
+        }
         observations {
           type
           observable {
@@ -53,6 +56,9 @@ query QueryAlerts($filter: AlertFilter) {
             id
           }
           collections {
+            id
+          }
+          users {
             id
           }
           observations {
@@ -71,6 +77,9 @@ query QueryAlerts($filter: AlertFilter) {
             id
           }
           collections {
+            id
+          }
+          users {
             id
           }
           observations {

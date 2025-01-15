@@ -167,6 +167,9 @@ query QueryConversations($filter: ConversationFilter) {
         collections {
           id
         }
+        users {
+          id
+        }
         observations {
           type
           observable {
@@ -182,6 +185,9 @@ query QueryConversations($filter: ConversationFilter) {
             id
           }
           collections {
+            id
+          }
+          users {
             id
           }
           observations {
@@ -200,6 +206,9 @@ query QueryConversations($filter: ConversationFilter) {
             id
           }
           collections {
+            id
+          }
+          users {
             id
           }
           observations {
@@ -236,6 +245,9 @@ query QueryConversations($filter: ConversationFilter) {
         collections {
           id
         }
+        users {
+          id
+        }
         observations {
           type
           observable {
@@ -251,6 +263,9 @@ query QueryConversations($filter: ConversationFilter) {
             id
           }
           collections {
+            id
+          }
+          users {
             id
           }
           observations {
@@ -269,6 +284,9 @@ query QueryConversations($filter: ConversationFilter) {
             id
           }
           collections {
+            id
+          }
+          users {
             id
           }
           observations {

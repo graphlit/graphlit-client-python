@@ -68,6 +68,7 @@ class QueryAlertsAlertsResultsFilter(BaseModel):
     feeds: Optional[List["QueryAlertsAlertsResultsFilterFeeds"]]
     workflows: Optional[List["QueryAlertsAlertsResultsFilterWorkflows"]]
     collections: Optional[List["QueryAlertsAlertsResultsFilterCollections"]]
+    users: Optional[List["QueryAlertsAlertsResultsFilterUsers"]]
     observations: Optional[List["QueryAlertsAlertsResultsFilterObservations"]]
     or_: Optional[List["QueryAlertsAlertsResultsFilterOr"]] = Field(alias="or")
     and_: Optional[List["QueryAlertsAlertsResultsFilterAnd"]] = Field(alias="and")
@@ -99,6 +100,10 @@ class QueryAlertsAlertsResultsFilterCollections(BaseModel):
     id: str
 
 
+class QueryAlertsAlertsResultsFilterUsers(BaseModel):
+    id: str
+
+
 class QueryAlertsAlertsResultsFilterObservations(BaseModel):
     type: ObservableTypes
     observable: "QueryAlertsAlertsResultsFilterObservationsObservable"
@@ -113,6 +118,7 @@ class QueryAlertsAlertsResultsFilterOr(BaseModel):
     feeds: Optional[List["QueryAlertsAlertsResultsFilterOrFeeds"]]
     workflows: Optional[List["QueryAlertsAlertsResultsFilterOrWorkflows"]]
     collections: Optional[List["QueryAlertsAlertsResultsFilterOrCollections"]]
+    users: Optional[List["QueryAlertsAlertsResultsFilterOrUsers"]]
     observations: Optional[List["QueryAlertsAlertsResultsFilterOrObservations"]]
 
 
@@ -125,6 +131,10 @@ class QueryAlertsAlertsResultsFilterOrWorkflows(BaseModel):
 
 
 class QueryAlertsAlertsResultsFilterOrCollections(BaseModel):
+    id: str
+
+
+class QueryAlertsAlertsResultsFilterOrUsers(BaseModel):
     id: str
 
 
@@ -142,6 +152,7 @@ class QueryAlertsAlertsResultsFilterAnd(BaseModel):
     feeds: Optional[List["QueryAlertsAlertsResultsFilterAndFeeds"]]
     workflows: Optional[List["QueryAlertsAlertsResultsFilterAndWorkflows"]]
     collections: Optional[List["QueryAlertsAlertsResultsFilterAndCollections"]]
+    users: Optional[List["QueryAlertsAlertsResultsFilterAndUsers"]]
     observations: Optional[List["QueryAlertsAlertsResultsFilterAndObservations"]]
 
 
@@ -154,6 +165,10 @@ class QueryAlertsAlertsResultsFilterAndWorkflows(BaseModel):
 
 
 class QueryAlertsAlertsResultsFilterAndCollections(BaseModel):
+    id: str
+
+
+class QueryAlertsAlertsResultsFilterAndUsers(BaseModel):
     id: str
 
 

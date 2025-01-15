@@ -392,6 +392,9 @@ query GetAlert($id: ID!) {
       collections {
         id
       }
+      users {
+        id
+      }
       observations {
         type
         observable {
@@ -407,6 +410,9 @@ query GetAlert($id: ID!) {
           id
         }
         collections {
+          id
+        }
+        users {
           id
         }
         observations {
@@ -425,6 +431,9 @@ query GetAlert($id: ID!) {
           id
         }
         collections {
+          id
+        }
+        users {
           id
         }
         observations {
@@ -503,6 +512,9 @@ query QueryAlerts($filter: AlertFilter) {
         collections {
           id
         }
+        users {
+          id
+        }
         observations {
           type
           observable {
@@ -518,6 +530,9 @@ query QueryAlerts($filter: AlertFilter) {
             id
           }
           collections {
+            id
+          }
+          users {
             id
           }
           observations {
@@ -536,6 +551,9 @@ query QueryAlerts($filter: AlertFilter) {
             id
           }
           collections {
+            id
+          }
+          users {
             id
           }
           observations {
@@ -3937,6 +3955,9 @@ query GetConversation($id: ID!) {
       collections {
         id
       }
+      users {
+        id
+      }
       observations {
         type
         observable {
@@ -3952,6 +3973,9 @@ query GetConversation($id: ID!) {
           id
         }
         collections {
+          id
+        }
+        users {
           id
         }
         observations {
@@ -3970,6 +3994,9 @@ query GetConversation($id: ID!) {
           id
         }
         collections {
+          id
+        }
+        users {
           id
         }
         observations {
@@ -4006,6 +4033,9 @@ query GetConversation($id: ID!) {
       collections {
         id
       }
+      users {
+        id
+      }
       observations {
         type
         observable {
@@ -4021,6 +4051,9 @@ query GetConversation($id: ID!) {
           id
         }
         collections {
+          id
+        }
+        users {
           id
         }
         observations {
@@ -4039,6 +4072,9 @@ query GetConversation($id: ID!) {
           id
         }
         collections {
+          id
+        }
+        users {
           id
         }
         observations {
@@ -4792,6 +4828,9 @@ query QueryConversations($filter: ConversationFilter) {
         collections {
           id
         }
+        users {
+          id
+        }
         observations {
           type
           observable {
@@ -4807,6 +4846,9 @@ query QueryConversations($filter: ConversationFilter) {
             id
           }
           collections {
+            id
+          }
+          users {
             id
           }
           observations {
@@ -4825,6 +4867,9 @@ query QueryConversations($filter: ConversationFilter) {
             id
           }
           collections {
+            id
+          }
+          users {
             id
           }
           observations {
@@ -4861,6 +4906,9 @@ query QueryConversations($filter: ConversationFilter) {
         collections {
           id
         }
+        users {
+          id
+        }
         observations {
           type
           observable {
@@ -4876,6 +4924,9 @@ query QueryConversations($filter: ConversationFilter) {
             id
           }
           collections {
+            id
+          }
+          users {
             id
           }
           observations {
@@ -4894,6 +4945,9 @@ query QueryConversations($filter: ConversationFilter) {
             id
           }
           collections {
+            id
+          }
+          users {
             id
           }
           observations {

@@ -62,6 +62,7 @@ class GetAlertAlertFilter(BaseModel):
     feeds: Optional[List["GetAlertAlertFilterFeeds"]]
     workflows: Optional[List["GetAlertAlertFilterWorkflows"]]
     collections: Optional[List["GetAlertAlertFilterCollections"]]
+    users: Optional[List["GetAlertAlertFilterUsers"]]
     observations: Optional[List["GetAlertAlertFilterObservations"]]
     or_: Optional[List["GetAlertAlertFilterOr"]] = Field(alias="or")
     and_: Optional[List["GetAlertAlertFilterAnd"]] = Field(alias="and")
@@ -93,6 +94,10 @@ class GetAlertAlertFilterCollections(BaseModel):
     id: str
 
 
+class GetAlertAlertFilterUsers(BaseModel):
+    id: str
+
+
 class GetAlertAlertFilterObservations(BaseModel):
     type: ObservableTypes
     observable: "GetAlertAlertFilterObservationsObservable"
@@ -107,6 +112,7 @@ class GetAlertAlertFilterOr(BaseModel):
     feeds: Optional[List["GetAlertAlertFilterOrFeeds"]]
     workflows: Optional[List["GetAlertAlertFilterOrWorkflows"]]
     collections: Optional[List["GetAlertAlertFilterOrCollections"]]
+    users: Optional[List["GetAlertAlertFilterOrUsers"]]
     observations: Optional[List["GetAlertAlertFilterOrObservations"]]
 
 
@@ -119,6 +125,10 @@ class GetAlertAlertFilterOrWorkflows(BaseModel):
 
 
 class GetAlertAlertFilterOrCollections(BaseModel):
+    id: str
+
+
+class GetAlertAlertFilterOrUsers(BaseModel):
     id: str
 
 
@@ -136,6 +146,7 @@ class GetAlertAlertFilterAnd(BaseModel):
     feeds: Optional[List["GetAlertAlertFilterAndFeeds"]]
     workflows: Optional[List["GetAlertAlertFilterAndWorkflows"]]
     collections: Optional[List["GetAlertAlertFilterAndCollections"]]
+    users: Optional[List["GetAlertAlertFilterAndUsers"]]
     observations: Optional[List["GetAlertAlertFilterAndObservations"]]
 
 
@@ -148,6 +159,10 @@ class GetAlertAlertFilterAndWorkflows(BaseModel):
 
 
 class GetAlertAlertFilterAndCollections(BaseModel):
+    id: str
+
+
+class GetAlertAlertFilterAndUsers(BaseModel):
     id: str
 
 

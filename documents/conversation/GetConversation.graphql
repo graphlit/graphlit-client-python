@@ -166,6 +166,9 @@ query GetConversation($id: ID!) {
       collections {
         id
       }
+      users {
+        id
+      }
       observations {
         type
         observable {
@@ -181,6 +184,9 @@ query GetConversation($id: ID!) {
           id
         }
         collections {
+          id
+        }
+        users {
           id
         }
         observations {
@@ -199,6 +205,9 @@ query GetConversation($id: ID!) {
           id
         }
         collections {
+          id
+        }
+        users {
           id
         }
         observations {
@@ -235,6 +244,9 @@ query GetConversation($id: ID!) {
       collections {
         id
       }
+      users {
+        id
+      }
       observations {
         type
         observable {
@@ -250,6 +262,9 @@ query GetConversation($id: ID!) {
           id
         }
         collections {
+          id
+        }
+        users {
           id
         }
         observations {
@@ -268,6 +283,9 @@ query GetConversation($id: ID!) {
           id
         }
         collections {
+          id
+        }
+        users {
           id
         }
         observations {

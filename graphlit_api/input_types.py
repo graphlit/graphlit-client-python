@@ -1545,6 +1545,7 @@ class ContentFilterLevel(BaseModel):
     feeds: Optional[List["EntityReferenceFilter"]] = None
     workflows: Optional[List["EntityReferenceFilter"]] = None
     collections: Optional[List["EntityReferenceFilter"]] = None
+    users: Optional[List["EntityReferenceFilter"]] = None
     observations: Optional[List["ObservationReferenceFilter"]] = None
 
 
@@ -1743,6 +1744,7 @@ class ContentFilter(BaseModel):
     feeds: Optional[List["EntityReferenceFilter"]] = None
     workflows: Optional[List["EntityReferenceFilter"]] = None
     collections: Optional[List["EntityReferenceFilter"]] = None
+    users: Optional[List["EntityReferenceFilter"]] = None
     observations: Optional[List["ObservationReferenceFilter"]] = None
     or_: Optional[List[Optional["ContentFilterLevel"]]] = Field(
         alias="or", default=None
