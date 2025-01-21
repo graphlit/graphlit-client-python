@@ -654,6 +654,7 @@ class MailSensitivity(str, Enum):
 
 
 class DeepseekModels(str, Enum):
+    REASONER = "REASONER"
     CHAT = "CHAT"
     CODER = "CODER"
     CUSTOM = "CUSTOM"
