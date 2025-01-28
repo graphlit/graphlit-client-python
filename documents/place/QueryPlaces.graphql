@@ -1,5 +1,5 @@
-query QueryPlaces($filter: PlaceFilter) {
-  places(filter: $filter) {
+query QueryPlaces($filter: PlaceFilter, $correlationId: String) {
+  places(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name

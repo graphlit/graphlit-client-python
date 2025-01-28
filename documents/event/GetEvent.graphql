@@ -1,5 +1,5 @@
-query GetEvent($id: ID!) {
-  event(id: $id) {
+query GetEvent($id: ID!, $correlationId: String) {
+  event(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames

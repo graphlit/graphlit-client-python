@@ -1,5 +1,5 @@
-query CountSoftwares($filter: SoftwareFilter) {
-  countSoftwares(filter: $filter) {
+query CountSoftwares($filter: SoftwareFilter, $correlationId: String) {
+  countSoftwares(filter: $filter, correlationId: $correlationId) {
     count
   }
 }

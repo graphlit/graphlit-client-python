@@ -1,5 +1,5 @@
-query GetMedicalContraindication($id: ID!) {
-  medicalContraindication(id: $id) {
+query GetMedicalContraindication($id: ID!, $correlationId: String) {
+  medicalContraindication(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames

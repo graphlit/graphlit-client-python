@@ -1,5 +1,5 @@
-query GetFeed($id: ID!) {
-  feed(id: $id) {
+query GetFeed($id: ID!, $correlationId: String) {
+  feed(id: $id, correlationId: $correlationId) {
     id
     name
     creationDate

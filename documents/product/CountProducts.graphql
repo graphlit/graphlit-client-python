@@ -1,5 +1,5 @@
-query CountProducts($filter: ProductFilter) {
-  countProducts(filter: $filter) {
+query CountProducts($filter: ProductFilter, $correlationId: String) {
+  countProducts(filter: $filter, correlationId: $correlationId) {
     count
   }
 }

@@ -1,5 +1,5 @@
-query QueryAlerts($filter: AlertFilter) {
-  alerts(filter: $filter) {
+query QueryAlerts($filter: AlertFilter, $correlationId: String) {
+  alerts(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name

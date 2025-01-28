@@ -1,5 +1,5 @@
-query GetAlert($id: ID!) {
-  alert(id: $id) {
+query GetAlert($id: ID!, $correlationId: String) {
+  alert(id: $id, correlationId: $correlationId) {
     id
     name
     creationDate

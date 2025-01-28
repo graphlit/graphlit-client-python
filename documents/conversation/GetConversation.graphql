@@ -1,5 +1,5 @@
-query GetConversation($id: ID!) {
-  conversation(id: $id) {
+query GetConversation($id: ID!, $correlationId: String) {
+  conversation(id: $id, correlationId: $correlationId) {
     id
     name
     creationDate

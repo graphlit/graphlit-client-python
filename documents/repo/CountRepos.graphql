@@ -1,5 +1,5 @@
-query CountRepos($filter: RepoFilter) {
-  countRepos(filter: $filter) {
+query CountRepos($filter: RepoFilter, $correlationId: String) {
+  countRepos(filter: $filter, correlationId: $correlationId) {
     count
   }
 }

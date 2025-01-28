@@ -1,5 +1,5 @@
-query GetOrganization($id: ID!) {
-  organization(id: $id) {
+query GetOrganization($id: ID!, $correlationId: String) {
+  organization(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames

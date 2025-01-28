@@ -1,5 +1,5 @@
-query GetWorkflow($id: ID!) {
-  workflow(id: $id) {
+query GetWorkflow($id: ID!, $correlationId: String) {
+  workflow(id: $id, correlationId: $correlationId) {
     id
     name
     creationDate

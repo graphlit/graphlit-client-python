@@ -1,5 +1,5 @@
-query QueryPersons($filter: PersonFilter) {
-  persons(filter: $filter) {
+query QueryPersons($filter: PersonFilter, $correlationId: String) {
+  persons(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name

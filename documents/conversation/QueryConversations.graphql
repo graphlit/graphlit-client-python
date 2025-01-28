@@ -1,5 +1,5 @@
-query QueryConversations($filter: ConversationFilter) {
-  conversations(filter: $filter) {
+query QueryConversations($filter: ConversationFilter, $correlationId: String) {
+  conversations(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name

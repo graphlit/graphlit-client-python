@@ -1,5 +1,5 @@
-query QueryMedicalDrugs($filter: MedicalDrugFilter) {
-  medicalDrugs(filter: $filter) {
+query QueryMedicalDrugs($filter: MedicalDrugFilter, $correlationId: String) {
+  medicalDrugs(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name

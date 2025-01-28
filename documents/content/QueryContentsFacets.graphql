@@ -1,5 +1,5 @@
-query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!]) {
-  contents(filter: $filter, facets: $facets) {
+query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!], $correlationId: String) {
+  contents(filter: $filter, facets: $facets, correlationId: $correlationId) {
     results {
       id
       name

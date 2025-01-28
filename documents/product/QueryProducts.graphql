@@ -1,5 +1,5 @@
-query QueryProducts($filter: ProductFilter) {
-  products(filter: $filter) {
+query QueryProducts($filter: ProductFilter, $correlationId: String) {
+  products(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name

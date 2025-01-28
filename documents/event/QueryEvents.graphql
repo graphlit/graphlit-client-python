@@ -1,5 +1,5 @@
-query QueryEvents($filter: EventFilter) {
-  events(filter: $filter) {
+query QueryEvents($filter: EventFilter, $correlationId: String) {
+  events(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name

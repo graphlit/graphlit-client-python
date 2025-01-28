@@ -1,5 +1,5 @@
-query CountPlaces($filter: PlaceFilter) {
-  countPlaces(filter: $filter) {
+query CountPlaces($filter: PlaceFilter, $correlationId: String) {
+  countPlaces(filter: $filter, correlationId: $correlationId) {
     count
   }
 }

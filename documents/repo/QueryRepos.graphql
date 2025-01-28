@@ -1,5 +1,5 @@
-query QueryRepos($filter: RepoFilter) {
-  repos(filter: $filter) {
+query QueryRepos($filter: RepoFilter, $correlationId: String) {
+  repos(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name

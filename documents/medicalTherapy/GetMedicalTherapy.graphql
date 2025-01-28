@@ -1,5 +1,5 @@
-query GetMedicalTherapy($id: ID!) {
-  medicalTherapy(id: $id) {
+query GetMedicalTherapy($id: ID!, $correlationId: String) {
+  medicalTherapy(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames

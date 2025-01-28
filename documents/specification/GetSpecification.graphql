@@ -1,5 +1,5 @@
-query GetSpecification($id: ID!) {
-  specification(id: $id) {
+query GetSpecification($id: ID!, $correlationId: String) {
+  specification(id: $id, correlationId: $correlationId) {
     id
     name
     creationDate

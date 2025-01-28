@@ -1,5 +1,5 @@
-query QueryOrganizations($filter: OrganizationFilter) {
-  organizations(filter: $filter) {
+query QueryOrganizations($filter: OrganizationFilter, $correlationId: String) {
+  organizations(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name

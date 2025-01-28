@@ -1,5 +1,5 @@
-query CountLabels($filter: LabelFilter) {
-  countLabels(filter: $filter) {
+query CountLabels($filter: LabelFilter, $correlationId: String) {
+  countLabels(filter: $filter, correlationId: $correlationId) {
     count
   }
 }

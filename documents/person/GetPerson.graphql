@@ -1,5 +1,5 @@
-query GetPerson($id: ID!) {
-  person(id: $id) {
+query GetPerson($id: ID!, $correlationId: String) {
+  person(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames

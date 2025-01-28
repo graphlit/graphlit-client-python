@@ -680,9 +680,15 @@ def gql(q: str) -> str:
 
 class Client(AsyncBaseClient):
     async def count_alerts(
-        self, filter: Union[Optional[AlertFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[AlertFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> CountAlerts:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_ALERTS_GQL,
             operation_name="CountAlerts",
@@ -778,8 +784,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return EnableAlert.model_validate(data)
 
-    async def get_alert(self, id: str, **kwargs: Any) -> GetAlert:
-        variables: Dict[str, object] = {"id": id}
+    async def get_alert(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetAlert:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_ALERT_GQL,
             operation_name="GetAlert",
@@ -790,9 +801,15 @@ class Client(AsyncBaseClient):
         return GetAlert.model_validate(data)
 
     async def query_alerts(
-        self, filter: Union[Optional[AlertFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[AlertFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> QueryAlerts:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_ALERTS_GQL,
             operation_name="QueryAlerts",
@@ -814,9 +831,15 @@ class Client(AsyncBaseClient):
         return UpdateAlert.model_validate(data)
 
     async def count_categories(
-        self, filter: Union[Optional[CategoryFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[CategoryFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> CountCategories:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_CATEGORIES_GQL,
             operation_name="CountCategories",
@@ -887,8 +910,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteCategory.model_validate(data)
 
-    async def get_category(self, id: str, **kwargs: Any) -> GetCategory:
-        variables: Dict[str, object] = {"id": id}
+    async def get_category(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetCategory:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_CATEGORY_GQL,
             operation_name="GetCategory",
@@ -899,9 +927,15 @@ class Client(AsyncBaseClient):
         return GetCategory.model_validate(data)
 
     async def query_categories(
-        self, filter: Union[Optional[CategoryFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[CategoryFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> QueryCategories:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_CATEGORIES_GQL,
             operation_name="QueryCategories",
@@ -946,9 +980,13 @@ class Client(AsyncBaseClient):
     async def count_collections(
         self,
         filter: Union[Optional[CollectionFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> CountCollections:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_COLLECTIONS_GQL,
             operation_name="CountCollections",
@@ -1019,8 +1057,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteCollections.model_validate(data)
 
-    async def get_collection(self, id: str, **kwargs: Any) -> GetCollection:
-        variables: Dict[str, object] = {"id": id}
+    async def get_collection(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetCollection:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_COLLECTION_GQL,
             operation_name="GetCollection",
@@ -1033,9 +1076,13 @@ class Client(AsyncBaseClient):
     async def query_collections(
         self,
         filter: Union[Optional[CollectionFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> QueryCollections:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_COLLECTIONS_GQL,
             operation_name="QueryCollections",
@@ -1075,9 +1122,15 @@ class Client(AsyncBaseClient):
         return UpdateCollection.model_validate(data)
 
     async def count_contents(
-        self, filter: Union[Optional[ContentFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> CountContents:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_CONTENTS_GQL,
             operation_name="CountContents",
@@ -1235,8 +1288,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return ExtractText.model_validate(data)
 
-    async def get_content(self, id: str, **kwargs: Any) -> GetContent:
-        variables: Dict[str, object] = {"id": id}
+    async def get_content(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetContent:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_CONTENT_GQL,
             operation_name="GetContent",
@@ -1485,9 +1543,15 @@ class Client(AsyncBaseClient):
         return PublishText.model_validate(data)
 
     async def query_contents(
-        self, filter: Union[Optional[ContentFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> QueryContents:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_CONTENTS_GQL,
             operation_name="QueryContents",
@@ -1501,9 +1565,14 @@ class Client(AsyncBaseClient):
         self,
         filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
         facets: Union[Optional[List[ContentFacetInput]], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> QueryContentsFacets:
-        variables: Dict[str, object] = {"filter": filter, "facets": facets}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "facets": facets,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_CONTENTS_FACETS_GQL,
             operation_name="QueryContentsFacets",
@@ -1517,9 +1586,14 @@ class Client(AsyncBaseClient):
         self,
         filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
         graph: Union[Optional[ContentGraphInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> QueryContentsGraph:
-        variables: Dict[str, object] = {"filter": filter, "graph": graph}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "graph": graph,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_CONTENTS_GRAPH_GQL,
             operation_name="QueryContentsGraph",
@@ -1705,9 +1779,13 @@ class Client(AsyncBaseClient):
     async def count_conversations(
         self,
         filter: Union[Optional[ConversationFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> CountConversations:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_CONVERSATIONS_GQL,
             operation_name="CountConversations",
@@ -1809,8 +1887,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return FormatConversation.model_validate(data)
 
-    async def get_conversation(self, id: str, **kwargs: Any) -> GetConversation:
-        variables: Dict[str, object] = {"id": id}
+    async def get_conversation(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetConversation:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_CONVERSATION_GQL,
             operation_name="GetConversation",
@@ -1903,9 +1986,13 @@ class Client(AsyncBaseClient):
     async def query_conversations(
         self,
         filter: Union[Optional[ConversationFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> QueryConversations:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_CONVERSATIONS_GQL,
             operation_name="QueryConversations",
@@ -2054,9 +2141,15 @@ class Client(AsyncBaseClient):
         return UpdateConversation.model_validate(data)
 
     async def count_events(
-        self, filter: Union[Optional[EventFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[EventFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> CountEvents:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_EVENTS_GQL,
             operation_name="CountEvents",
@@ -2125,8 +2218,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteEvents.model_validate(data)
 
-    async def get_event(self, id: str, **kwargs: Any) -> GetEvent:
-        variables: Dict[str, object] = {"id": id}
+    async def get_event(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetEvent:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_EVENT_GQL,
             operation_name="GetEvent",
@@ -2137,9 +2235,15 @@ class Client(AsyncBaseClient):
         return GetEvent.model_validate(data)
 
     async def query_events(
-        self, filter: Union[Optional[EventFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[EventFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> QueryEvents:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_EVENTS_GQL,
             operation_name="QueryEvents",
@@ -2161,9 +2265,15 @@ class Client(AsyncBaseClient):
         return UpdateEvent.model_validate(data)
 
     async def count_feeds(
-        self, filter: Union[Optional[FeedFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[FeedFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> CountFeeds:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_FEEDS_GQL,
             operation_name="CountFeeds",
@@ -2259,8 +2369,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return EnableFeed.model_validate(data)
 
-    async def get_feed(self, id: str, **kwargs: Any) -> GetFeed:
-        variables: Dict[str, object] = {"id": id}
+    async def get_feed(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetFeed:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_FEED_GQL, operation_name="GetFeed", variables=variables, **kwargs
         )
@@ -2292,9 +2407,15 @@ class Client(AsyncBaseClient):
         return IsFeedDone.model_validate(data)
 
     async def query_feeds(
-        self, filter: Union[Optional[FeedFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[FeedFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> QueryFeeds:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_FEEDS_GQL,
             operation_name="QueryFeeds",
@@ -2392,9 +2513,15 @@ class Client(AsyncBaseClient):
         return UpdateFeed.model_validate(data)
 
     async def count_labels(
-        self, filter: Union[Optional[LabelFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[LabelFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> CountLabels:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_LABELS_GQL,
             operation_name="CountLabels",
@@ -2463,8 +2590,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteLabels.model_validate(data)
 
-    async def get_label(self, id: str, **kwargs: Any) -> GetLabel:
-        variables: Dict[str, object] = {"id": id}
+    async def get_label(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetLabel:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_LABEL_GQL,
             operation_name="GetLabel",
@@ -2475,9 +2607,15 @@ class Client(AsyncBaseClient):
         return GetLabel.model_validate(data)
 
     async def query_labels(
-        self, filter: Union[Optional[LabelFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[LabelFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> QueryLabels:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_LABELS_GQL,
             operation_name="QueryLabels",
@@ -2501,9 +2639,13 @@ class Client(AsyncBaseClient):
     async def count_medical_conditions(
         self,
         filter: Union[Optional[MedicalConditionFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> CountMedicalConditions:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_MEDICAL_CONDITIONS_GQL,
             operation_name="CountMedicalConditions",
@@ -2577,9 +2719,12 @@ class Client(AsyncBaseClient):
         return DeleteMedicalConditions.model_validate(data)
 
     async def get_medical_condition(
-        self, id: str, **kwargs: Any
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> GetMedicalCondition:
-        variables: Dict[str, object] = {"id": id}
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_MEDICAL_CONDITION_GQL,
             operation_name="GetMedicalCondition",
@@ -2592,9 +2737,13 @@ class Client(AsyncBaseClient):
     async def query_medical_conditions(
         self,
         filter: Union[Optional[MedicalConditionFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> QueryMedicalConditions:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_MEDICAL_CONDITIONS_GQL,
             operation_name="QueryMedicalConditions",
@@ -2620,9 +2769,13 @@ class Client(AsyncBaseClient):
     async def count_medical_contraindications(
         self,
         filter: Union[Optional[MedicalContraindicationFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> CountMedicalContraindications:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_MEDICAL_CONTRAINDICATIONS_GQL,
             operation_name="CountMedicalContraindications",
@@ -2698,9 +2851,12 @@ class Client(AsyncBaseClient):
         return DeleteMedicalContraindications.model_validate(data)
 
     async def get_medical_contraindication(
-        self, id: str, **kwargs: Any
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> GetMedicalContraindication:
-        variables: Dict[str, object] = {"id": id}
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_MEDICAL_CONTRAINDICATION_GQL,
             operation_name="GetMedicalContraindication",
@@ -2713,9 +2869,13 @@ class Client(AsyncBaseClient):
     async def query_medical_contraindications(
         self,
         filter: Union[Optional[MedicalContraindicationFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> QueryMedicalContraindications:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_MEDICAL_CONTRAINDICATIONS_GQL,
             operation_name="QueryMedicalContraindications",
@@ -2745,9 +2905,13 @@ class Client(AsyncBaseClient):
     async def count_medical_devices(
         self,
         filter: Union[Optional[MedicalDeviceFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> CountMedicalDevices:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_MEDICAL_DEVICES_GQL,
             operation_name="CountMedicalDevices",
@@ -2820,8 +2984,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteMedicalDevices.model_validate(data)
 
-    async def get_medical_device(self, id: str, **kwargs: Any) -> GetMedicalDevice:
-        variables: Dict[str, object] = {"id": id}
+    async def get_medical_device(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetMedicalDevice:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_MEDICAL_DEVICE_GQL,
             operation_name="GetMedicalDevice",
@@ -2834,9 +3003,13 @@ class Client(AsyncBaseClient):
     async def query_medical_devices(
         self,
         filter: Union[Optional[MedicalDeviceFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> QueryMedicalDevices:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_MEDICAL_DEVICES_GQL,
             operation_name="QueryMedicalDevices",
@@ -2862,9 +3035,13 @@ class Client(AsyncBaseClient):
     async def count_medical_drugs(
         self,
         filter: Union[Optional[MedicalDrugFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> CountMedicalDrugs:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_MEDICAL_DRUGS_GQL,
             operation_name="CountMedicalDrugs",
@@ -2935,8 +3112,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteMedicalDrugs.model_validate(data)
 
-    async def get_medical_drug(self, id: str, **kwargs: Any) -> GetMedicalDrug:
-        variables: Dict[str, object] = {"id": id}
+    async def get_medical_drug(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetMedicalDrug:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_MEDICAL_DRUG_GQL,
             operation_name="GetMedicalDrug",
@@ -2949,9 +3131,13 @@ class Client(AsyncBaseClient):
     async def query_medical_drugs(
         self,
         filter: Union[Optional[MedicalDrugFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> QueryMedicalDrugs:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_MEDICAL_DRUGS_GQL,
             operation_name="QueryMedicalDrugs",
@@ -2977,9 +3163,13 @@ class Client(AsyncBaseClient):
     async def count_medical_drug_classes(
         self,
         filter: Union[Optional[MedicalDrugClassFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> CountMedicalDrugClasses:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_MEDICAL_DRUG_CLASSES_GQL,
             operation_name="CountMedicalDrugClasses",
@@ -3053,9 +3243,12 @@ class Client(AsyncBaseClient):
         return DeleteMedicalDrugClasses.model_validate(data)
 
     async def get_medical_drug_class(
-        self, id: str, **kwargs: Any
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> GetMedicalDrugClass:
-        variables: Dict[str, object] = {"id": id}
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_MEDICAL_DRUG_CLASS_GQL,
             operation_name="GetMedicalDrugClass",
@@ -3068,9 +3261,13 @@ class Client(AsyncBaseClient):
     async def query_medical_drug_classes(
         self,
         filter: Union[Optional[MedicalDrugClassFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> QueryMedicalDrugClasses:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_MEDICAL_DRUG_CLASSES_GQL,
             operation_name="QueryMedicalDrugClasses",
@@ -3096,9 +3293,13 @@ class Client(AsyncBaseClient):
     async def count_medical_guidelines(
         self,
         filter: Union[Optional[MedicalGuidelineFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> CountMedicalGuidelines:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_MEDICAL_GUIDELINES_GQL,
             operation_name="CountMedicalGuidelines",
@@ -3172,9 +3373,12 @@ class Client(AsyncBaseClient):
         return DeleteMedicalGuidelines.model_validate(data)
 
     async def get_medical_guideline(
-        self, id: str, **kwargs: Any
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> GetMedicalGuideline:
-        variables: Dict[str, object] = {"id": id}
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_MEDICAL_GUIDELINE_GQL,
             operation_name="GetMedicalGuideline",
@@ -3187,9 +3391,13 @@ class Client(AsyncBaseClient):
     async def query_medical_guidelines(
         self,
         filter: Union[Optional[MedicalGuidelineFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> QueryMedicalGuidelines:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_MEDICAL_GUIDELINES_GQL,
             operation_name="QueryMedicalGuidelines",
@@ -3215,9 +3423,13 @@ class Client(AsyncBaseClient):
     async def count_medical_indications(
         self,
         filter: Union[Optional[MedicalIndicationFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> CountMedicalIndications:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_MEDICAL_INDICATIONS_GQL,
             operation_name="CountMedicalIndications",
@@ -3291,9 +3503,12 @@ class Client(AsyncBaseClient):
         return DeleteMedicalIndications.model_validate(data)
 
     async def get_medical_indication(
-        self, id: str, **kwargs: Any
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> GetMedicalIndication:
-        variables: Dict[str, object] = {"id": id}
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_MEDICAL_INDICATION_GQL,
             operation_name="GetMedicalIndication",
@@ -3306,9 +3521,13 @@ class Client(AsyncBaseClient):
     async def query_medical_indications(
         self,
         filter: Union[Optional[MedicalIndicationFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> QueryMedicalIndications:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_MEDICAL_INDICATIONS_GQL,
             operation_name="QueryMedicalIndications",
@@ -3334,9 +3553,13 @@ class Client(AsyncBaseClient):
     async def count_medical_procedures(
         self,
         filter: Union[Optional[MedicalProcedureFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> CountMedicalProcedures:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_MEDICAL_PROCEDURES_GQL,
             operation_name="CountMedicalProcedures",
@@ -3410,9 +3633,12 @@ class Client(AsyncBaseClient):
         return DeleteMedicalProcedures.model_validate(data)
 
     async def get_medical_procedure(
-        self, id: str, **kwargs: Any
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> GetMedicalProcedure:
-        variables: Dict[str, object] = {"id": id}
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_MEDICAL_PROCEDURE_GQL,
             operation_name="GetMedicalProcedure",
@@ -3425,9 +3651,13 @@ class Client(AsyncBaseClient):
     async def query_medical_procedures(
         self,
         filter: Union[Optional[MedicalProcedureFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> QueryMedicalProcedures:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_MEDICAL_PROCEDURES_GQL,
             operation_name="QueryMedicalProcedures",
@@ -3526,8 +3756,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteMedicalStudy.model_validate(data)
 
-    async def get_medical_study(self, id: str, **kwargs: Any) -> GetMedicalStudy:
-        variables: Dict[str, object] = {"id": id}
+    async def get_medical_study(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetMedicalStudy:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_MEDICAL_STUDY_GQL,
             operation_name="GetMedicalStudy",
@@ -3540,9 +3775,13 @@ class Client(AsyncBaseClient):
     async def query_medical_studies(
         self,
         filter: Union[Optional[MedicalStudyFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> QueryMedicalStudies:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_MEDICAL_STUDIES_GQL,
             operation_name="QueryMedicalStudies",
@@ -3568,9 +3807,13 @@ class Client(AsyncBaseClient):
     async def count_medical_tests(
         self,
         filter: Union[Optional[MedicalTestFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> CountMedicalTests:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_MEDICAL_TESTS_GQL,
             operation_name="CountMedicalTests",
@@ -3641,8 +3884,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteMedicalTests.model_validate(data)
 
-    async def get_medical_test(self, id: str, **kwargs: Any) -> GetMedicalTest:
-        variables: Dict[str, object] = {"id": id}
+    async def get_medical_test(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetMedicalTest:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_MEDICAL_TEST_GQL,
             operation_name="GetMedicalTest",
@@ -3655,9 +3903,13 @@ class Client(AsyncBaseClient):
     async def query_medical_tests(
         self,
         filter: Union[Optional[MedicalTestFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> QueryMedicalTests:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_MEDICAL_TESTS_GQL,
             operation_name="QueryMedicalTests",
@@ -3683,9 +3935,13 @@ class Client(AsyncBaseClient):
     async def count_medical_therapies(
         self,
         filter: Union[Optional[MedicalTherapyFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> CountMedicalTherapies:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_MEDICAL_THERAPIES_GQL,
             operation_name="CountMedicalTherapies",
@@ -3758,8 +4014,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteMedicalTherapy.model_validate(data)
 
-    async def get_medical_therapy(self, id: str, **kwargs: Any) -> GetMedicalTherapy:
-        variables: Dict[str, object] = {"id": id}
+    async def get_medical_therapy(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetMedicalTherapy:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_MEDICAL_THERAPY_GQL,
             operation_name="GetMedicalTherapy",
@@ -3772,9 +4033,13 @@ class Client(AsyncBaseClient):
     async def query_medical_therapies(
         self,
         filter: Union[Optional[MedicalTherapyFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> QueryMedicalTherapies:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_MEDICAL_THERAPIES_GQL,
             operation_name="QueryMedicalTherapies",
@@ -3837,9 +4102,13 @@ class Client(AsyncBaseClient):
     async def count_organizations(
         self,
         filter: Union[Optional[OrganizationFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> CountOrganizations:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_ORGANIZATIONS_GQL,
             operation_name="CountOrganizations",
@@ -3910,8 +4179,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteOrganizations.model_validate(data)
 
-    async def get_organization(self, id: str, **kwargs: Any) -> GetOrganization:
-        variables: Dict[str, object] = {"id": id}
+    async def get_organization(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetOrganization:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_ORGANIZATION_GQL,
             operation_name="GetOrganization",
@@ -3924,9 +4198,13 @@ class Client(AsyncBaseClient):
     async def query_organizations(
         self,
         filter: Union[Optional[OrganizationFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> QueryOrganizations:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_ORGANIZATIONS_GQL,
             operation_name="QueryOrganizations",
@@ -3950,9 +4228,15 @@ class Client(AsyncBaseClient):
         return UpdateOrganization.model_validate(data)
 
     async def count_persons(
-        self, filter: Union[Optional[PersonFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[PersonFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> CountPersons:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_PERSONS_GQL,
             operation_name="CountPersons",
@@ -4021,8 +4305,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeletePersons.model_validate(data)
 
-    async def get_person(self, id: str, **kwargs: Any) -> GetPerson:
-        variables: Dict[str, object] = {"id": id}
+    async def get_person(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetPerson:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_PERSON_GQL,
             operation_name="GetPerson",
@@ -4033,9 +4322,15 @@ class Client(AsyncBaseClient):
         return GetPerson.model_validate(data)
 
     async def query_persons(
-        self, filter: Union[Optional[PersonFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[PersonFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> QueryPersons:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_PERSONS_GQL,
             operation_name="QueryPersons",
@@ -4059,9 +4354,15 @@ class Client(AsyncBaseClient):
         return UpdatePerson.model_validate(data)
 
     async def count_places(
-        self, filter: Union[Optional[PlaceFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[PlaceFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> CountPlaces:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_PLACES_GQL,
             operation_name="CountPlaces",
@@ -4130,8 +4431,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeletePlaces.model_validate(data)
 
-    async def get_place(self, id: str, **kwargs: Any) -> GetPlace:
-        variables: Dict[str, object] = {"id": id}
+    async def get_place(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetPlace:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_PLACE_GQL,
             operation_name="GetPlace",
@@ -4142,9 +4448,15 @@ class Client(AsyncBaseClient):
         return GetPlace.model_validate(data)
 
     async def query_places(
-        self, filter: Union[Optional[PlaceFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[PlaceFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> QueryPlaces:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_PLACES_GQL,
             operation_name="QueryPlaces",
@@ -4166,9 +4478,15 @@ class Client(AsyncBaseClient):
         return UpdatePlace.model_validate(data)
 
     async def count_products(
-        self, filter: Union[Optional[ProductFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[ProductFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> CountProducts:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_PRODUCTS_GQL,
             operation_name="CountProducts",
@@ -4239,8 +4557,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteProducts.model_validate(data)
 
-    async def get_product(self, id: str, **kwargs: Any) -> GetProduct:
-        variables: Dict[str, object] = {"id": id}
+    async def get_product(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetProduct:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_PRODUCT_GQL,
             operation_name="GetProduct",
@@ -4251,9 +4574,15 @@ class Client(AsyncBaseClient):
         return GetProduct.model_validate(data)
 
     async def query_products(
-        self, filter: Union[Optional[ProductFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[ProductFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> QueryProducts:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_PRODUCTS_GQL,
             operation_name="QueryProducts",
@@ -4361,9 +4690,15 @@ class Client(AsyncBaseClient):
         return UpdateProject.model_validate(data)
 
     async def count_repos(
-        self, filter: Union[Optional[RepoFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[RepoFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> CountRepos:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_REPOS_GQL,
             operation_name="CountRepos",
@@ -4432,8 +4767,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteRepos.model_validate(data)
 
-    async def get_repo(self, id: str, **kwargs: Any) -> GetRepo:
-        variables: Dict[str, object] = {"id": id}
+    async def get_repo(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetRepo:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_REPO_GQL, operation_name="GetRepo", variables=variables, **kwargs
         )
@@ -4441,9 +4781,15 @@ class Client(AsyncBaseClient):
         return GetRepo.model_validate(data)
 
     async def query_repos(
-        self, filter: Union[Optional[RepoFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[RepoFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> QueryRepos:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_REPOS_GQL,
             operation_name="QueryRepos",
@@ -4508,9 +4854,15 @@ class Client(AsyncBaseClient):
         return SearchWeb.model_validate(data)
 
     async def count_softwares(
-        self, filter: Union[Optional[SoftwareFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[SoftwareFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> CountSoftwares:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_SOFTWARES_GQL,
             operation_name="CountSoftwares",
@@ -4581,8 +4933,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteSoftwares.model_validate(data)
 
-    async def get_software(self, id: str, **kwargs: Any) -> GetSoftware:
-        variables: Dict[str, object] = {"id": id}
+    async def get_software(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetSoftware:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_SOFTWARE_GQL,
             operation_name="GetSoftware",
@@ -4593,9 +4950,15 @@ class Client(AsyncBaseClient):
         return GetSoftware.model_validate(data)
 
     async def query_softwares(
-        self, filter: Union[Optional[SoftwareFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[SoftwareFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> QuerySoftwares:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_SOFTWARES_GQL,
             operation_name="QuerySoftwares",
@@ -4621,9 +4984,13 @@ class Client(AsyncBaseClient):
     async def count_specifications(
         self,
         filter: Union[Optional[SpecificationFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> CountSpecifications:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_SPECIFICATIONS_GQL,
             operation_name="CountSpecifications",
@@ -4694,8 +5061,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteSpecifications.model_validate(data)
 
-    async def get_specification(self, id: str, **kwargs: Any) -> GetSpecification:
-        variables: Dict[str, object] = {"id": id}
+    async def get_specification(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetSpecification:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_SPECIFICATION_GQL,
             operation_name="GetSpecification",
@@ -4734,9 +5106,13 @@ class Client(AsyncBaseClient):
     async def query_specifications(
         self,
         filter: Union[Optional[SpecificationFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> QuerySpecifications:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_SPECIFICATIONS_GQL,
             operation_name="QuerySpecifications",
@@ -4760,9 +5136,15 @@ class Client(AsyncBaseClient):
         return UpdateSpecification.model_validate(data)
 
     async def count_users(
-        self, filter: Union[Optional[UserFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[UserFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> CountUsers:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_USERS_GQL,
             operation_name="CountUsers",
@@ -4825,9 +5207,15 @@ class Client(AsyncBaseClient):
         return GetUser.model_validate(data)
 
     async def query_users(
-        self, filter: Union[Optional[UserFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[UserFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> QueryUsers:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_USERS_GQL,
             operation_name="QueryUsers",
@@ -4849,9 +5237,15 @@ class Client(AsyncBaseClient):
         return UpdateUser.model_validate(data)
 
     async def count_workflows(
-        self, filter: Union[Optional[WorkflowFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[WorkflowFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> CountWorkflows:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_WORKFLOWS_GQL,
             operation_name="CountWorkflows",
@@ -4922,8 +5316,13 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteWorkflows.model_validate(data)
 
-    async def get_workflow(self, id: str, **kwargs: Any) -> GetWorkflow:
-        variables: Dict[str, object] = {"id": id}
+    async def get_workflow(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetWorkflow:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_WORKFLOW_GQL,
             operation_name="GetWorkflow",
@@ -4934,9 +5333,15 @@ class Client(AsyncBaseClient):
         return GetWorkflow.model_validate(data)
 
     async def query_workflows(
-        self, filter: Union[Optional[WorkflowFilter], UnsetType] = UNSET, **kwargs: Any
+        self,
+        filter: Union[Optional[WorkflowFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> QueryWorkflows:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=QUERY_WORKFLOWS_GQL,
             operation_name="QueryWorkflows",

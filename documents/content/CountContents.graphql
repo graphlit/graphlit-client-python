@@ -1,5 +1,5 @@
-query CountContents($filter: ContentFilter) {
-  countContents(filter: $filter) {
+query CountContents($filter: ContentFilter, $correlationId: String) {
+  countContents(filter: $filter, correlationId: $correlationId) {
     count
   }
 }

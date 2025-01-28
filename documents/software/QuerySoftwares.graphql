@@ -1,5 +1,5 @@
-query QuerySoftwares($filter: SoftwareFilter) {
-  softwares(filter: $filter) {
+query QuerySoftwares($filter: SoftwareFilter, $correlationId: String) {
+  softwares(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name

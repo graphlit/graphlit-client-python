@@ -1,5 +1,5 @@
-query QueryCollections($filter: CollectionFilter) {
-  collections(filter: $filter) {
+query QueryCollections($filter: CollectionFilter, $correlationId: String) {
+  collections(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name

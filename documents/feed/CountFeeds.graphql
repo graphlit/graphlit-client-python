@@ -1,5 +1,5 @@
-query CountFeeds($filter: FeedFilter) {
-  countFeeds(filter: $filter) {
+query CountFeeds($filter: FeedFilter, $correlationId: String) {
+  countFeeds(filter: $filter, correlationId: $correlationId) {
     count
   }
 }

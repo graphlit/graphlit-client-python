@@ -1,5 +1,5 @@
-query QueryCategories($filter: CategoryFilter) {
-  categories(filter: $filter) {
+query QueryCategories($filter: CategoryFilter, $correlationId: String) {
+  categories(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name

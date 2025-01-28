@@ -285,8 +285,8 @@ __all__ = [
 ]
 
 COUNT_ALERTS_GQL = """
-query CountAlerts($filter: AlertFilter) {
-  countAlerts(filter: $filter) {
+query CountAlerts($filter: AlertFilter, $correlationId: String) {
+  countAlerts(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -353,8 +353,8 @@ mutation EnableAlert($id: ID!) {
 """
 
 GET_ALERT_GQL = """
-query GetAlert($id: ID!) {
-  alert(id: $id) {
+query GetAlert($id: ID!, $correlationId: String) {
+  alert(id: $id, correlationId: $correlationId) {
     id
     name
     creationDate
@@ -472,8 +472,8 @@ query GetAlert($id: ID!) {
 """
 
 QUERY_ALERTS_GQL = """
-query QueryAlerts($filter: AlertFilter) {
-  alerts(filter: $filter) {
+query QueryAlerts($filter: AlertFilter, $correlationId: String) {
+  alerts(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -604,8 +604,8 @@ mutation UpdateAlert($alert: AlertUpdateInput!) {
 """
 
 COUNT_CATEGORIES_GQL = """
-query CountCategories($filter: CategoryFilter) {
-  countCategories(filter: $filter) {
+query CountCategories($filter: CategoryFilter, $correlationId: String) {
+  countCategories(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -652,8 +652,8 @@ mutation DeleteCategory($id: ID!) {
 """
 
 GET_CATEGORY_GQL = """
-query GetCategory($id: ID!) {
-  category(id: $id) {
+query GetCategory($id: ID!, $correlationId: String) {
+  category(id: $id, correlationId: $correlationId) {
     id
     name
     description
@@ -664,8 +664,8 @@ query GetCategory($id: ID!) {
 """
 
 QUERY_CATEGORIES_GQL = """
-query QueryCategories($filter: CategoryFilter) {
-  categories(filter: $filter) {
+query QueryCategories($filter: CategoryFilter, $correlationId: String) {
+  categories(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -702,8 +702,8 @@ mutation AddContentsToCollections($contents: [EntityReferenceInput!]!, $collecti
 """
 
 COUNT_COLLECTIONS_GQL = """
-query CountCollections($filter: CollectionFilter) {
-  countCollections(filter: $filter) {
+query CountCollections($filter: CollectionFilter, $correlationId: String) {
+  countCollections(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -752,8 +752,8 @@ mutation DeleteCollections($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 GET_COLLECTION_GQL = """
-query GetCollection($id: ID!) {
-  collection(id: $id) {
+query GetCollection($id: ID!, $correlationId: String) {
+  collection(id: $id, correlationId: $correlationId) {
     id
     name
     creationDate
@@ -772,8 +772,8 @@ query GetCollection($id: ID!) {
 """
 
 QUERY_COLLECTIONS_GQL = """
-query QueryCollections($filter: CollectionFilter) {
-  collections(filter: $filter) {
+query QueryCollections($filter: CollectionFilter, $correlationId: String) {
+  collections(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -820,8 +820,8 @@ mutation UpdateCollection($collection: CollectionUpdateInput!) {
 """
 
 COUNT_CONTENTS_GQL = """
-query CountContents($filter: ContentFilter) {
-  countContents(filter: $filter) {
+query CountContents($filter: ContentFilter, $correlationId: String) {
+  countContents(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -1177,8 +1177,8 @@ mutation ExtractText($prompt: String!, $text: String!, $textType: TextTypes, $sp
 """
 
 GET_CONTENT_GQL = """
-query GetContent($id: ID!) {
-  content(id: $id) {
+query GetContent($id: ID!, $correlationId: String) {
+  content(id: $id, correlationId: $correlationId) {
     id
     name
     creationDate
@@ -1947,8 +1947,8 @@ mutation PublishText($text: String!, $textType: TextTypes, $connector: ContentPu
 """
 
 QUERY_CONTENTS_GQL = """
-query QueryContents($filter: ContentFilter) {
-  contents(filter: $filter) {
+query QueryContents($filter: ContentFilter, $correlationId: String) {
+  contents(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -2198,8 +2198,8 @@ query QueryContents($filter: ContentFilter) {
 """
 
 QUERY_CONTENTS_FACETS_GQL = """
-query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!]) {
-  contents(filter: $filter, facets: $facets) {
+query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!], $correlationId: String) {
+  contents(filter: $filter, facets: $facets, correlationId: $correlationId) {
     results {
       id
       name
@@ -2466,8 +2466,8 @@ query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!])
 """
 
 QUERY_CONTENTS_GRAPH_GQL = """
-query QueryContentsGraph($filter: ContentFilter, $graph: ContentGraphInput) {
-  contents(filter: $filter, graph: $graph) {
+query QueryContentsGraph($filter: ContentFilter, $graph: ContentGraphInput, $correlationId: String) {
+  contents(filter: $filter, graph: $graph, correlationId: $correlationId) {
     graph {
       nodes {
         id
@@ -3422,8 +3422,8 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
 """
 
 COUNT_CONVERSATIONS_GQL = """
-query CountConversations($filter: ConversationFilter) {
-  countConversations(filter: $filter) {
+query CountConversations($filter: ConversationFilter, $correlationId: String) {
+  countConversations(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -3787,8 +3787,8 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
 """
 
 GET_CONVERSATION_GQL = """
-query GetConversation($id: ID!) {
-  conversation(id: $id) {
+query GetConversation($id: ID!, $correlationId: String) {
+  conversation(id: $id, correlationId: $correlationId) {
     id
     name
     creationDate
@@ -4659,8 +4659,8 @@ mutation PublishConversation($id: ID!, $connector: ContentPublishingConnectorInp
 """
 
 QUERY_CONVERSATIONS_GQL = """
-query QueryConversations($filter: ConversationFilter) {
-  conversations(filter: $filter) {
+query QueryConversations($filter: ConversationFilter, $correlationId: String) {
+  conversations(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -5550,8 +5550,8 @@ mutation UpdateConversation($conversation: ConversationUpdateInput!) {
 """
 
 COUNT_EVENTS_GQL = """
-query CountEvents($filter: EventFilter) {
-  countEvents(filter: $filter) {
+query CountEvents($filter: EventFilter, $correlationId: String) {
+  countEvents(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -5598,8 +5598,8 @@ mutation DeleteEvents($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 GET_EVENT_GQL = """
-query GetEvent($id: ID!) {
-  event(id: $id) {
+query GetEvent($id: ID!, $correlationId: String) {
+  event(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames
@@ -5631,8 +5631,8 @@ query GetEvent($id: ID!) {
 """
 
 QUERY_EVENTS_GQL = """
-query QueryEvents($filter: EventFilter) {
-  events(filter: $filter) {
+query QueryEvents($filter: EventFilter, $correlationId: String) {
+  events(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -5675,8 +5675,8 @@ mutation UpdateEvent($event: EventUpdateInput!) {
 """
 
 COUNT_FEEDS_GQL = """
-query CountFeeds($filter: FeedFilter) {
-  countFeeds(filter: $filter) {
+query CountFeeds($filter: FeedFilter, $correlationId: String) {
+  countFeeds(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -5743,8 +5743,8 @@ mutation EnableFeed($id: ID!) {
 """
 
 GET_FEED_GQL = """
-query GetFeed($id: ID!) {
-  feed(id: $id) {
+query GetFeed($id: ID!, $correlationId: String) {
+  feed(id: $id, correlationId: $correlationId) {
     id
     name
     creationDate
@@ -5984,8 +5984,8 @@ query IsFeedDone($id: ID!) {
 """
 
 QUERY_FEEDS_GQL = """
-query QueryFeeds($filter: FeedFilter) {
-  feeds(filter: $filter) {
+query QueryFeeds($filter: FeedFilter, $correlationId: String) {
+  feeds(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -6285,8 +6285,8 @@ mutation UpdateFeed($feed: FeedUpdateInput!) {
 """
 
 COUNT_LABELS_GQL = """
-query CountLabels($filter: LabelFilter) {
-  countLabels(filter: $filter) {
+query CountLabels($filter: LabelFilter, $correlationId: String) {
+  countLabels(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -6333,8 +6333,8 @@ mutation DeleteLabels($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 GET_LABEL_GQL = """
-query GetLabel($id: ID!) {
-  label(id: $id) {
+query GetLabel($id: ID!, $correlationId: String) {
+  label(id: $id, correlationId: $correlationId) {
     id
     name
     description
@@ -6345,8 +6345,8 @@ query GetLabel($id: ID!) {
 """
 
 QUERY_LABELS_GQL = """
-query QueryLabels($filter: LabelFilter) {
-  labels(filter: $filter) {
+query QueryLabels($filter: LabelFilter, $correlationId: String) {
+  labels(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -6368,8 +6368,8 @@ mutation UpdateLabel($label: LabelUpdateInput!) {
 """
 
 COUNT_MEDICAL_CONDITIONS_GQL = """
-query CountMedicalConditions($filter: MedicalConditionFilter) {
-  countMedicalConditions(filter: $filter) {
+query CountMedicalConditions($filter: MedicalConditionFilter, $correlationId: String) {
+  countMedicalConditions(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -6416,8 +6416,8 @@ mutation DeleteMedicalConditions($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 GET_MEDICAL_CONDITION_GQL = """
-query GetMedicalCondition($id: ID!) {
-  medicalCondition(id: $id) {
+query GetMedicalCondition($id: ID!, $correlationId: String) {
+  medicalCondition(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames
@@ -6432,8 +6432,8 @@ query GetMedicalCondition($id: ID!) {
 """
 
 QUERY_MEDICAL_CONDITIONS_GQL = """
-query QueryMedicalConditions($filter: MedicalConditionFilter) {
-  medicalConditions(filter: $filter) {
+query QueryMedicalConditions($filter: MedicalConditionFilter, $correlationId: String) {
+  medicalConditions(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -6459,8 +6459,8 @@ mutation UpdateMedicalCondition($medicalCondition: MedicalConditionUpdateInput!)
 """
 
 COUNT_MEDICAL_CONTRAINDICATIONS_GQL = """
-query CountMedicalContraindications($filter: MedicalContraindicationFilter) {
-  countMedicalContraindications(filter: $filter) {
+query CountMedicalContraindications($filter: MedicalContraindicationFilter, $correlationId: String) {
+  countMedicalContraindications(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -6507,8 +6507,8 @@ mutation DeleteMedicalContraindications($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 GET_MEDICAL_CONTRAINDICATION_GQL = """
-query GetMedicalContraindication($id: ID!) {
-  medicalContraindication(id: $id) {
+query GetMedicalContraindication($id: ID!, $correlationId: String) {
+  medicalContraindication(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames
@@ -6523,8 +6523,8 @@ query GetMedicalContraindication($id: ID!) {
 """
 
 QUERY_MEDICAL_CONTRAINDICATIONS_GQL = """
-query QueryMedicalContraindications($filter: MedicalContraindicationFilter) {
-  medicalContraindications(filter: $filter) {
+query QueryMedicalContraindications($filter: MedicalContraindicationFilter, $correlationId: String) {
+  medicalContraindications(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -6550,8 +6550,8 @@ mutation UpdateMedicalContraindication($medicalContraindication: MedicalContrain
 """
 
 COUNT_MEDICAL_DEVICES_GQL = """
-query CountMedicalDevices($filter: MedicalDeviceFilter) {
-  countMedicalDevices(filter: $filter) {
+query CountMedicalDevices($filter: MedicalDeviceFilter, $correlationId: String) {
+  countMedicalDevices(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -6598,8 +6598,8 @@ mutation DeleteMedicalDevices($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 GET_MEDICAL_DEVICE_GQL = """
-query GetMedicalDevice($id: ID!) {
-  medicalDevice(id: $id) {
+query GetMedicalDevice($id: ID!, $correlationId: String) {
+  medicalDevice(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames
@@ -6614,8 +6614,8 @@ query GetMedicalDevice($id: ID!) {
 """
 
 QUERY_MEDICAL_DEVICES_GQL = """
-query QueryMedicalDevices($filter: MedicalDeviceFilter) {
-  medicalDevices(filter: $filter) {
+query QueryMedicalDevices($filter: MedicalDeviceFilter, $correlationId: String) {
+  medicalDevices(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -6641,8 +6641,8 @@ mutation UpdateMedicalDevice($medicalDevice: MedicalDeviceUpdateInput!) {
 """
 
 COUNT_MEDICAL_DRUGS_GQL = """
-query CountMedicalDrugs($filter: MedicalDrugFilter) {
-  countMedicalDrugs(filter: $filter) {
+query CountMedicalDrugs($filter: MedicalDrugFilter, $correlationId: String) {
+  countMedicalDrugs(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -6689,8 +6689,8 @@ mutation DeleteMedicalDrugs($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 GET_MEDICAL_DRUG_GQL = """
-query GetMedicalDrug($id: ID!) {
-  medicalDrug(id: $id) {
+query GetMedicalDrug($id: ID!, $correlationId: String) {
+  medicalDrug(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames
@@ -6705,8 +6705,8 @@ query GetMedicalDrug($id: ID!) {
 """
 
 QUERY_MEDICAL_DRUGS_GQL = """
-query QueryMedicalDrugs($filter: MedicalDrugFilter) {
-  medicalDrugs(filter: $filter) {
+query QueryMedicalDrugs($filter: MedicalDrugFilter, $correlationId: String) {
+  medicalDrugs(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -6732,8 +6732,8 @@ mutation UpdateMedicalDrug($medicalDrug: MedicalDrugUpdateInput!) {
 """
 
 COUNT_MEDICAL_DRUG_CLASSES_GQL = """
-query CountMedicalDrugClasses($filter: MedicalDrugClassFilter) {
-  countMedicalDrugClasses(filter: $filter) {
+query CountMedicalDrugClasses($filter: MedicalDrugClassFilter, $correlationId: String) {
+  countMedicalDrugClasses(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -6780,8 +6780,8 @@ mutation DeleteMedicalDrugClasses($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 GET_MEDICAL_DRUG_CLASS_GQL = """
-query GetMedicalDrugClass($id: ID!) {
-  medicalDrugClass(id: $id) {
+query GetMedicalDrugClass($id: ID!, $correlationId: String) {
+  medicalDrugClass(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames
@@ -6796,8 +6796,8 @@ query GetMedicalDrugClass($id: ID!) {
 """
 
 QUERY_MEDICAL_DRUG_CLASSES_GQL = """
-query QueryMedicalDrugClasses($filter: MedicalDrugClassFilter) {
-  medicalDrugClasses(filter: $filter) {
+query QueryMedicalDrugClasses($filter: MedicalDrugClassFilter, $correlationId: String) {
+  medicalDrugClasses(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -6823,8 +6823,8 @@ mutation UpdateMedicalDrugClass($medicalDrugClass: MedicalDrugClassUpdateInput!)
 """
 
 COUNT_MEDICAL_GUIDELINES_GQL = """
-query CountMedicalGuidelines($filter: MedicalGuidelineFilter) {
-  countMedicalGuidelines(filter: $filter) {
+query CountMedicalGuidelines($filter: MedicalGuidelineFilter, $correlationId: String) {
+  countMedicalGuidelines(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -6871,8 +6871,8 @@ mutation DeleteMedicalGuidelines($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 GET_MEDICAL_GUIDELINE_GQL = """
-query GetMedicalGuideline($id: ID!) {
-  medicalGuideline(id: $id) {
+query GetMedicalGuideline($id: ID!, $correlationId: String) {
+  medicalGuideline(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames
@@ -6887,8 +6887,8 @@ query GetMedicalGuideline($id: ID!) {
 """
 
 QUERY_MEDICAL_GUIDELINES_GQL = """
-query QueryMedicalGuidelines($filter: MedicalGuidelineFilter) {
-  medicalGuidelines(filter: $filter) {
+query QueryMedicalGuidelines($filter: MedicalGuidelineFilter, $correlationId: String) {
+  medicalGuidelines(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -6914,8 +6914,8 @@ mutation UpdateMedicalGuideline($medicalGuideline: MedicalGuidelineUpdateInput!)
 """
 
 COUNT_MEDICAL_INDICATIONS_GQL = """
-query CountMedicalIndications($filter: MedicalIndicationFilter) {
-  countMedicalIndications(filter: $filter) {
+query CountMedicalIndications($filter: MedicalIndicationFilter, $correlationId: String) {
+  countMedicalIndications(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -6962,8 +6962,8 @@ mutation DeleteMedicalIndications($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 GET_MEDICAL_INDICATION_GQL = """
-query GetMedicalIndication($id: ID!) {
-  medicalIndication(id: $id) {
+query GetMedicalIndication($id: ID!, $correlationId: String) {
+  medicalIndication(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames
@@ -6978,8 +6978,8 @@ query GetMedicalIndication($id: ID!) {
 """
 
 QUERY_MEDICAL_INDICATIONS_GQL = """
-query QueryMedicalIndications($filter: MedicalIndicationFilter) {
-  medicalIndications(filter: $filter) {
+query QueryMedicalIndications($filter: MedicalIndicationFilter, $correlationId: String) {
+  medicalIndications(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -7005,8 +7005,8 @@ mutation UpdateMedicalIndication($medicalIndication: MedicalIndicationUpdateInpu
 """
 
 COUNT_MEDICAL_PROCEDURES_GQL = """
-query CountMedicalProcedures($filter: MedicalProcedureFilter) {
-  countMedicalProcedures(filter: $filter) {
+query CountMedicalProcedures($filter: MedicalProcedureFilter, $correlationId: String) {
+  countMedicalProcedures(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -7053,8 +7053,8 @@ mutation DeleteMedicalProcedures($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 GET_MEDICAL_PROCEDURE_GQL = """
-query GetMedicalProcedure($id: ID!) {
-  medicalProcedure(id: $id) {
+query GetMedicalProcedure($id: ID!, $correlationId: String) {
+  medicalProcedure(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames
@@ -7069,8 +7069,8 @@ query GetMedicalProcedure($id: ID!) {
 """
 
 QUERY_MEDICAL_PROCEDURES_GQL = """
-query QueryMedicalProcedures($filter: MedicalProcedureFilter) {
-  medicalProcedures(filter: $filter) {
+query QueryMedicalProcedures($filter: MedicalProcedureFilter, $correlationId: String) {
+  medicalProcedures(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -7144,8 +7144,8 @@ mutation DeleteMedicalStudy($id: ID!) {
 """
 
 GET_MEDICAL_STUDY_GQL = """
-query GetMedicalStudy($id: ID!) {
-  medicalStudy(id: $id) {
+query GetMedicalStudy($id: ID!, $correlationId: String) {
+  medicalStudy(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames
@@ -7167,8 +7167,8 @@ query GetMedicalStudy($id: ID!) {
 """
 
 QUERY_MEDICAL_STUDIES_GQL = """
-query QueryMedicalStudies($filter: MedicalStudyFilter) {
-  medicalStudies(filter: $filter) {
+query QueryMedicalStudies($filter: MedicalStudyFilter, $correlationId: String) {
+  medicalStudies(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -7201,8 +7201,8 @@ mutation UpdateMedicalStudy($medicalStudy: MedicalStudyUpdateInput!) {
 """
 
 COUNT_MEDICAL_TESTS_GQL = """
-query CountMedicalTests($filter: MedicalTestFilter) {
-  countMedicalTests(filter: $filter) {
+query CountMedicalTests($filter: MedicalTestFilter, $correlationId: String) {
+  countMedicalTests(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -7249,8 +7249,8 @@ mutation DeleteMedicalTests($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 GET_MEDICAL_TEST_GQL = """
-query GetMedicalTest($id: ID!) {
-  medicalTest(id: $id) {
+query GetMedicalTest($id: ID!, $correlationId: String) {
+  medicalTest(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames
@@ -7265,8 +7265,8 @@ query GetMedicalTest($id: ID!) {
 """
 
 QUERY_MEDICAL_TESTS_GQL = """
-query QueryMedicalTests($filter: MedicalTestFilter) {
-  medicalTests(filter: $filter) {
+query QueryMedicalTests($filter: MedicalTestFilter, $correlationId: String) {
+  medicalTests(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -7292,8 +7292,8 @@ mutation UpdateMedicalTest($medicalTest: MedicalTestUpdateInput!) {
 """
 
 COUNT_MEDICAL_THERAPIES_GQL = """
-query CountMedicalTherapies($filter: MedicalTherapyFilter) {
-  countMedicalTherapies(filter: $filter) {
+query CountMedicalTherapies($filter: MedicalTherapyFilter, $correlationId: String) {
+  countMedicalTherapies(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -7340,8 +7340,8 @@ mutation DeleteMedicalTherapy($id: ID!) {
 """
 
 GET_MEDICAL_THERAPY_GQL = """
-query GetMedicalTherapy($id: ID!) {
-  medicalTherapy(id: $id) {
+query GetMedicalTherapy($id: ID!, $correlationId: String) {
+  medicalTherapy(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames
@@ -7356,8 +7356,8 @@ query GetMedicalTherapy($id: ID!) {
 """
 
 QUERY_MEDICAL_THERAPIES_GQL = """
-query QueryMedicalTherapies($filter: MedicalTherapyFilter) {
-  medicalTherapies(filter: $filter) {
+query QueryMedicalTherapies($filter: MedicalTherapyFilter, $correlationId: String) {
+  medicalTherapies(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -7410,8 +7410,8 @@ mutation UpdateObservation($observation: ObservationUpdateInput!) {
 """
 
 COUNT_ORGANIZATIONS_GQL = """
-query CountOrganizations($filter: OrganizationFilter) {
-  countOrganizations(filter: $filter) {
+query CountOrganizations($filter: OrganizationFilter, $correlationId: String) {
+  countOrganizations(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -7458,8 +7458,8 @@ mutation DeleteOrganizations($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 GET_ORGANIZATION_GQL = """
-query GetOrganization($id: ID!) {
-  organization(id: $id) {
+query GetOrganization($id: ID!, $correlationId: String) {
+  organization(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames
@@ -7487,8 +7487,8 @@ query GetOrganization($id: ID!) {
 """
 
 QUERY_ORGANIZATIONS_GQL = """
-query QueryOrganizations($filter: OrganizationFilter) {
-  organizations(filter: $filter) {
+query QueryOrganizations($filter: OrganizationFilter, $correlationId: String) {
+  organizations(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -7527,8 +7527,8 @@ mutation UpdateOrganization($organization: OrganizationUpdateInput!) {
 """
 
 COUNT_PERSONS_GQL = """
-query CountPersons($filter: PersonFilter) {
-  countPersons(filter: $filter) {
+query CountPersons($filter: PersonFilter, $correlationId: String) {
+  countPersons(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -7575,8 +7575,8 @@ mutation DeletePersons($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 GET_PERSON_GQL = """
-query GetPerson($id: ID!) {
-  person(id: $id) {
+query GetPerson($id: ID!, $correlationId: String) {
+  person(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames
@@ -7606,8 +7606,8 @@ query GetPerson($id: ID!) {
 """
 
 QUERY_PERSONS_GQL = """
-query QueryPersons($filter: PersonFilter) {
-  persons(filter: $filter) {
+query QueryPersons($filter: PersonFilter, $correlationId: String) {
+  persons(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -7648,8 +7648,8 @@ mutation UpdatePerson($person: PersonUpdateInput!) {
 """
 
 COUNT_PLACES_GQL = """
-query CountPlaces($filter: PlaceFilter) {
-  countPlaces(filter: $filter) {
+query CountPlaces($filter: PlaceFilter, $correlationId: String) {
+  countPlaces(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -7696,8 +7696,8 @@ mutation DeletePlaces($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 GET_PLACE_GQL = """
-query GetPlace($id: ID!) {
-  place(id: $id) {
+query GetPlace($id: ID!, $correlationId: String) {
+  place(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames
@@ -7719,8 +7719,8 @@ query GetPlace($id: ID!) {
 """
 
 QUERY_PLACES_GQL = """
-query QueryPlaces($filter: PlaceFilter) {
-  places(filter: $filter) {
+query QueryPlaces($filter: PlaceFilter, $correlationId: String) {
+  places(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -7753,8 +7753,8 @@ mutation UpdatePlace($place: PlaceUpdateInput!) {
 """
 
 COUNT_PRODUCTS_GQL = """
-query CountProducts($filter: ProductFilter) {
-  countProducts(filter: $filter) {
+query CountProducts($filter: ProductFilter, $correlationId: String) {
+  countProducts(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -7801,8 +7801,8 @@ mutation DeleteProducts($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 GET_PRODUCT_GQL = """
-query GetProduct($id: ID!) {
-  product(id: $id) {
+query GetProduct($id: ID!, $correlationId: String) {
+  product(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames
@@ -7831,8 +7831,8 @@ query GetProduct($id: ID!) {
 """
 
 QUERY_PRODUCTS_GQL = """
-query QueryProducts($filter: ProductFilter) {
-  products(filter: $filter) {
+query QueryProducts($filter: ProductFilter, $correlationId: String) {
+  products(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -8047,8 +8047,8 @@ mutation UpdateProject($project: ProjectUpdateInput!) {
 """
 
 COUNT_REPOS_GQL = """
-query CountRepos($filter: RepoFilter) {
-  countRepos(filter: $filter) {
+query CountRepos($filter: RepoFilter, $correlationId: String) {
+  countRepos(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -8095,8 +8095,8 @@ mutation DeleteRepos($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 GET_REPO_GQL = """
-query GetRepo($id: ID!) {
-  repo(id: $id) {
+query GetRepo($id: ID!, $correlationId: String) {
+  repo(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames
@@ -8111,8 +8111,8 @@ query GetRepo($id: ID!) {
 """
 
 QUERY_REPOS_GQL = """
-query QueryRepos($filter: RepoFilter) {
-  repos(filter: $filter) {
+query QueryRepos($filter: RepoFilter, $correlationId: String) {
+  repos(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -8169,8 +8169,8 @@ query SearchWeb($text: String!, $service: SearchServiceTypes, $limit: Int, $corr
 """
 
 COUNT_SOFTWARES_GQL = """
-query CountSoftwares($filter: SoftwareFilter) {
-  countSoftwares(filter: $filter) {
+query CountSoftwares($filter: SoftwareFilter, $correlationId: String) {
+  countSoftwares(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -8217,8 +8217,8 @@ mutation DeleteSoftwares($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 GET_SOFTWARE_GQL = """
-query GetSoftware($id: ID!) {
-  software(id: $id) {
+query GetSoftware($id: ID!, $correlationId: String) {
+  software(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames
@@ -8235,8 +8235,8 @@ query GetSoftware($id: ID!) {
 """
 
 QUERY_SOFTWARES_GQL = """
-query QuerySoftwares($filter: SoftwareFilter) {
-  softwares(filter: $filter) {
+query QuerySoftwares($filter: SoftwareFilter, $correlationId: String) {
+  softwares(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -8264,8 +8264,8 @@ mutation UpdateSoftware($software: SoftwareUpdateInput!) {
 """
 
 COUNT_SPECIFICATIONS_GQL = """
-query CountSpecifications($filter: SpecificationFilter) {
-  countSpecifications(filter: $filter) {
+query CountSpecifications($filter: SpecificationFilter, $correlationId: String) {
+  countSpecifications(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -8315,8 +8315,8 @@ mutation DeleteSpecifications($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 GET_SPECIFICATION_GQL = """
-query GetSpecification($id: ID!) {
-  specification(id: $id) {
+query GetSpecification($id: ID!, $correlationId: String) {
+  specification(id: $id, correlationId: $correlationId) {
     id
     name
     creationDate
@@ -8656,8 +8656,8 @@ query QueryModels($filter: ModelFilter) {
 """
 
 QUERY_SPECIFICATIONS_GQL = """
-query QuerySpecifications($filter: SpecificationFilter) {
-  specifications(filter: $filter) {
+query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) {
+  specifications(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -8844,8 +8844,8 @@ mutation UpdateSpecification($specification: SpecificationUpdateInput!) {
 """
 
 COUNT_USERS_GQL = """
-query CountUsers($filter: UserFilter) {
-  countUsers(filter: $filter) {
+query CountUsers($filter: UserFilter, $correlationId: String) {
+  countUsers(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -8934,8 +8934,8 @@ query GetUser {
 """
 
 QUERY_USERS_GQL = """
-query QueryUsers($filter: UserFilter) {
-  users(filter: $filter) {
+query QueryUsers($filter: UserFilter, $correlationId: String) {
+  users(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -8991,8 +8991,8 @@ mutation UpdateUser($user: UserUpdateInput!) {
 """
 
 COUNT_WORKFLOWS_GQL = """
-query CountWorkflows($filter: WorkflowFilter) {
-  countWorkflows(filter: $filter) {
+query CountWorkflows($filter: WorkflowFilter, $correlationId: String) {
+  countWorkflows(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -9182,8 +9182,8 @@ mutation DeleteWorkflows($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 GET_WORKFLOW_GQL = """
-query GetWorkflow($id: ID!) {
-  workflow(id: $id) {
+query GetWorkflow($id: ID!, $correlationId: String) {
+  workflow(id: $id, correlationId: $correlationId) {
     id
     name
     creationDate
@@ -9339,8 +9339,8 @@ query GetWorkflow($id: ID!) {
 """
 
 QUERY_WORKFLOWS_GQL = """
-query QueryWorkflows($filter: WorkflowFilter) {
-  workflows(filter: $filter) {
+query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
+  workflows(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name

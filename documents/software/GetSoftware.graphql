@@ -1,5 +1,5 @@
-query GetSoftware($id: ID!) {
-  software(id: $id) {
+query GetSoftware($id: ID!, $correlationId: String) {
+  software(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames

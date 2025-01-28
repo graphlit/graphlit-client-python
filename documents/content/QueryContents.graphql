@@ -1,5 +1,5 @@
-query QueryContents($filter: ContentFilter) {
-  contents(filter: $filter) {
+query QueryContents($filter: ContentFilter, $correlationId: String) {
+  contents(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name

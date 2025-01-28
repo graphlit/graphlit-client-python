@@ -1,5 +1,5 @@
-query QueryFeeds($filter: FeedFilter) {
-  feeds(filter: $filter) {
+query QueryFeeds($filter: FeedFilter, $correlationId: String) {
+  feeds(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name

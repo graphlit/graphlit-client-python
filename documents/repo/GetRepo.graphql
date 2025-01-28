@@ -1,5 +1,5 @@
-query GetRepo($id: ID!) {
-  repo(id: $id) {
+query GetRepo($id: ID!, $correlationId: String) {
+  repo(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames

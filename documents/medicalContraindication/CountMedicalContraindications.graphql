@@ -1,5 +1,5 @@
-query CountMedicalContraindications($filter: MedicalContraindicationFilter) {
-  countMedicalContraindications(filter: $filter) {
+query CountMedicalContraindications($filter: MedicalContraindicationFilter, $correlationId: String) {
+  countMedicalContraindications(filter: $filter, correlationId: $correlationId) {
     count
   }
 }

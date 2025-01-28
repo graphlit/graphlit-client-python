@@ -1,5 +1,5 @@
-query GetCollection($id: ID!) {
-  collection(id: $id) {
+query GetCollection($id: ID!, $correlationId: String) {
+  collection(id: $id, correlationId: $correlationId) {
     id
     name
     creationDate

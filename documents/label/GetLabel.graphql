@@ -1,5 +1,5 @@
-query GetLabel($id: ID!) {
-  label(id: $id) {
+query GetLabel($id: ID!, $correlationId: String) {
+  label(id: $id, correlationId: $correlationId) {
     id
     name
     description

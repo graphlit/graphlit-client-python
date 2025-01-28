@@ -1,5 +1,5 @@
-query CountOrganizations($filter: OrganizationFilter) {
-  countOrganizations(filter: $filter) {
+query CountOrganizations($filter: OrganizationFilter, $correlationId: String) {
+  countOrganizations(filter: $filter, correlationId: $correlationId) {
     count
   }
 }

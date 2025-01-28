@@ -1,5 +1,5 @@
-query GetPlace($id: ID!) {
-  place(id: $id) {
+query GetPlace($id: ID!, $correlationId: String) {
+  place(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames

@@ -1,5 +1,5 @@
-query CountWorkflows($filter: WorkflowFilter) {
-  countWorkflows(filter: $filter) {
+query CountWorkflows($filter: WorkflowFilter, $correlationId: String) {
+  countWorkflows(filter: $filter, correlationId: $correlationId) {
     count
   }
 }

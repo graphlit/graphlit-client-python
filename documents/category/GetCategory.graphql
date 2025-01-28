@@ -1,5 +1,5 @@
-query GetCategory($id: ID!) {
-  category(id: $id) {
+query GetCategory($id: ID!, $correlationId: String) {
+  category(id: $id, correlationId: $correlationId) {
     id
     name
     description

@@ -1,5 +1,5 @@
-query GetContent($id: ID!) {
-  content(id: $id) {
+query GetContent($id: ID!, $correlationId: String) {
+  content(id: $id, correlationId: $correlationId) {
     id
     name
     creationDate

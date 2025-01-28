@@ -1,5 +1,5 @@
-query QueryWorkflows($filter: WorkflowFilter) {
-  workflows(filter: $filter) {
+query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
+  workflows(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name

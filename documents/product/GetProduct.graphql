@@ -1,5 +1,5 @@
-query GetProduct($id: ID!) {
-  product(id: $id) {
+query GetProduct($id: ID!, $correlationId: String) {
+  product(id: $id, correlationId: $correlationId) {
     id
     name
     alternateNames

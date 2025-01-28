@@ -1,5 +1,5 @@
-query QueryContentsGraph($filter: ContentFilter, $graph: ContentGraphInput) {
-  contents(filter: $filter, graph: $graph) {
+query QueryContentsGraph($filter: ContentFilter, $graph: ContentGraphInput, $correlationId: String) {
+  contents(filter: $filter, graph: $graph, correlationId: $correlationId) {
     graph {
       nodes {
         id
