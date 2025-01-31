@@ -1905,7 +1905,7 @@ class Client(AsyncBaseClient):
 
     async def prompt(
         self,
-        prompt: str,
+        prompt: Union[Optional[str], UnsetType] = UNSET,
         mime_type: Union[Optional[str], UnsetType] = UNSET,
         data: Union[Optional[str], UnsetType] = UNSET,
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
