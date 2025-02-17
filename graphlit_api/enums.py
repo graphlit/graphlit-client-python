@@ -162,6 +162,11 @@ class H3ResolutionTypes(str, Enum):
     R15 = "R15"
 
 
+class AssemblyAIModels(str, Enum):
+    BEST = "BEST"
+    NANO = "NANO"
+
+
 class ContentTypes(str, Enum):
     FILE = "FILE"
     PAGE = "PAGE"
@@ -354,6 +359,7 @@ class FeedServiceTypes(str, Enum):
     GOOGLE_EMAIL = "GOOGLE_EMAIL"
     MICROSOFT_EMAIL = "MICROSOFT_EMAIL"
     ATLASSIAN_JIRA = "ATLASSIAN_JIRA"
+    TRELLO = "TRELLO"
     LINEAR = "LINEAR"
     GIT_HUB_ISSUES = "GIT_HUB_ISSUES"
     GIT_HUB = "GIT_HUB"
@@ -520,6 +526,11 @@ class OrientationTypes(str, Enum):
     RIGHT_TOP = "RIGHT_TOP"
     RIGHT_BOTTOM = "RIGHT_BOTTOM"
     LEFT_BOTTOM = "LEFT_BOTTOM"
+
+
+class TrelloTypes(str, Enum):
+    CARD = "CARD"
+    BOARD = "BOARD"
 
 
 class EmailListingTypes(str, Enum):
@@ -750,6 +761,7 @@ class FilePreparationServiceTypes(str, Enum):
     DOCUMENT = "DOCUMENT"
     EMAIL = "EMAIL"
     MODEL_DOCUMENT = "MODEL_DOCUMENT"
+    ASSEMBLY_AI = "ASSEMBLY_AI"
 
 
 class FacetValueTypes(str, Enum):
@@ -792,6 +804,7 @@ class MedicalGuidelineFacetTypes(str, Enum):
 
 
 class DeepgramModels(str, Enum):
+    NOVA3 = "NOVA3"
     NOVA2 = "NOVA2"
     NOVA2_MEETING = "NOVA2_MEETING"
     NOVA2_PHONECALL = "NOVA2_PHONECALL"
@@ -807,6 +820,12 @@ class DeepgramModels(str, Enum):
     WHISPER_BASE = "WHISPER_BASE"
     WHISPER_MEDIUM = "WHISPER_MEDIUM"
     WHISPER_LARGE = "WHISPER_LARGE"
+
+
+class OpenAIReasoningEffortLevels(str, Enum):
+    LOW = "LOW"
+    MEDIUM = "MEDIUM"
+    HIGH = "HIGH"
 
 
 class FeedTypes(str, Enum):
@@ -887,11 +906,13 @@ class GoogleModels(str, Enum):
     GEMINI_2_0_PRO_EXPERIMENTAL = "GEMINI_2_0_PRO_EXPERIMENTAL"
     GEMINI_2_0_FLASH_THINKING_EXPERIMENTAL = "GEMINI_2_0_FLASH_THINKING_EXPERIMENTAL"
     GEMINI_2_0_FLASH_EXPERIMENTAL = "GEMINI_2_0_FLASH_EXPERIMENTAL"
+    GEMINI_2_0_FLASH = "GEMINI_2_0_FLASH"
+    GEMINI_2_0_FLASH_001 = "GEMINI_2_0_FLASH_001"
     GEMINI_1_5_FLASH_8B = "GEMINI_1_5_FLASH_8B"
     GEMINI_1_5_FLASH_8B_001 = "GEMINI_1_5_FLASH_8B_001"
     GEMINI_1_5_FLASH = "GEMINI_1_5_FLASH"
-    GEMINI_1_5_PRO = "GEMINI_1_5_PRO"
     GEMINI_1_5_FLASH_001 = "GEMINI_1_5_FLASH_001"
+    GEMINI_1_5_PRO = "GEMINI_1_5_PRO"
     GEMINI_1_5_PRO_001 = "GEMINI_1_5_PRO_001"
     GEMINI_1_5_FLASH_002 = "GEMINI_1_5_FLASH_002"
     GEMINI_1_5_PRO_002 = "GEMINI_1_5_PRO_002"

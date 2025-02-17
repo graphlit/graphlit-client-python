@@ -9,6 +9,7 @@ from .base_model import BaseModel
 from .enums import (
     AlertTypes,
     AnthropicModels,
+    AssemblyAIModels,
     AuthenticationServiceTypes,
     AzureDocumentIntelligenceModels,
     AzureDocumentIntelligenceVersions,
@@ -72,6 +73,7 @@ from .enums import (
     ObservableTypes,
     OccurrenceTypes,
     OpenAIModels,
+    OpenAIReasoningEffortLevels,
     OpenAIVisionDetailLevels,
     OrderByTypes,
     OrderDirectionTypes,
@@ -98,6 +100,7 @@ from .enums import (
     SummarizationTypes,
     TimedPolicyRecurrenceTypes,
     TimeIntervalTypes,
+    TrelloTypes,
     UnitTypes,
     UserTypes,
     VoyageModels,
@@ -253,6 +256,9 @@ class OpenAIModelPropertiesUpdateInput(BaseModel):
     chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
     detail_level: Optional[OpenAIVisionDetailLevels] = Field(
         alias="detailLevel", default=None
+    )
+    reasoning_effort: Optional[OpenAIReasoningEffortLevels] = Field(
+        alias="reasoningEffort", default=None
     )
 
 
@@ -694,6 +700,9 @@ class OpenAIModelPropertiesInput(BaseModel):
     chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
     detail_level: Optional[OpenAIVisionDetailLevels] = Field(
         alias="detailLevel", default=None
+    )
+    reasoning_effort: Optional[OpenAIReasoningEffortLevels] = Field(
+        alias="reasoningEffort", default=None
     )
 
 
@@ -1553,6 +1562,13 @@ class OneDriveFoldersInput(BaseModel):
     refresh_token: str = Field(alias="refreshToken")
 
 
+class TrelloFeedPropertiesUpdateInput(BaseModel):
+    key: Optional[str] = None
+    token: Optional[str] = None
+    type: Optional[TrelloTypes] = None
+    identifiers: Optional[List[str]] = None
+
+
 class SoftwareInput(BaseModel):
     name: str
     uri: Optional[Any] = None
@@ -1613,6 +1629,13 @@ class FeedInput(BaseModel):
     workflow: Optional["EntityReferenceInput"] = None
 
 
+class TrelloFeedPropertiesInput(BaseModel):
+    key: str
+    token: str
+    type: TrelloTypes
+    identifiers: List[str]
+
+
 class RepoUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
@@ -1630,6 +1653,9 @@ class FilePreparationConnectorInput(BaseModel):
         alias="azureDocument", default=None
     )
     deepgram: Optional["DeepgramAudioPreparationPropertiesInput"] = None
+    assembly_ai: Optional["AssemblyAIAudioPreparationPropertiesInput"] = Field(
+        alias="assemblyAI", default=None
+    )
     model_document: Optional["ModelDocumentPreparationPropertiesInput"] = Field(
         alias="modelDocument", default=None
     )
@@ -2451,6 +2477,7 @@ class IssueFeedPropertiesInput(BaseModel):
     github: Optional["GitHubIssuesFeedPropertiesInput"] = None
     intercom: Optional["IntercomTicketsFeedPropertiesInput"] = None
     zendesk: Optional["ZendeskTicketsFeedPropertiesInput"] = None
+    trello: Optional["TrelloFeedPropertiesInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -2540,6 +2567,17 @@ class LabelFilter(BaseModel):
     )
 
 
+class AssemblyAIAudioPreparationPropertiesInput(BaseModel):
+    model: Optional[AssemblyAIModels] = None
+    key: Optional[str] = None
+    enable_redaction: Optional[bool] = Field(alias="enableRedaction", default=None)
+    enable_speaker_diarization: Optional[bool] = Field(
+        alias="enableSpeakerDiarization", default=None
+    )
+    detect_language: Optional[bool] = Field(alias="detectLanguage", default=None)
+    language: Optional[str] = None
+
+
 class MicrosoftEmailFeedPropertiesInput(BaseModel):
     type: Optional[EmailListingTypes] = None
     inbox_only: Optional[bool] = Field(alias="inboxOnly", default=None)
@@ -2608,6 +2646,7 @@ class IssueFeedPropertiesUpdateInput(BaseModel):
     github: Optional["GitHubIssuesFeedPropertiesUpdateInput"] = None
     intercom: Optional["IntercomTicketsFeedPropertiesUpdateInput"] = None
     zendesk: Optional["ZendeskTicketsFeedPropertiesUpdateInput"] = None
+    trello: Optional["TrelloFeedPropertiesUpdateInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -2698,6 +2737,8 @@ class FeedUpdateInput(BaseModel):
         alias="microsoftTeams", default=None
     )
     discord: Optional["DiscordFeedPropertiesUpdateInput"] = None
+    intercom: Optional["IntercomFeedPropertiesUpdateInput"] = None
+    zendesk: Optional["ZendeskFeedPropertiesUpdateInput"] = None
     schedule_policy: Optional["FeedSchedulePolicyInput"] = Field(
         alias="schedulePolicy", default=None
     )
@@ -2789,6 +2830,11 @@ class BoundingBoxInput(BaseModel):
     top: Optional[float] = None
     width: Optional[float] = None
     height: Optional[float] = None
+
+
+class IntercomFeedPropertiesUpdateInput(BaseModel):
+    access_token: Optional[str] = Field(alias="accessToken", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class ModelTextExtractionPropertiesInput(BaseModel):
@@ -3266,6 +3312,12 @@ class SoftwareFacetInput(BaseModel):
     )
     time_offset: Optional[int] = Field(alias="timeOffset", default=None)
     facet: Optional[SoftwareFacetTypes] = None
+
+
+class ZendeskFeedPropertiesUpdateInput(BaseModel):
+    subdomain: Optional[str] = None
+    access_token: Optional[str] = Field(alias="accessToken", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class AuthenticationConnectorInput(BaseModel):
