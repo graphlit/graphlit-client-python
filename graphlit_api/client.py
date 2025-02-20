@@ -283,6 +283,8 @@ from .input_types import (
     RepoFilter,
     RepoInput,
     RepoUpdateInput,
+    RerankingStrategyInput,
+    RetrievalStrategyInput,
     SharePointFoldersInput,
     SharePointLibrariesInput,
     SoftwareFilter,
@@ -548,6 +550,7 @@ from .operations import (
     QUERY_USERS_GQL,
     QUERY_WORKFLOWS_GQL,
     REMOVE_CONTENTS_FROM_COLLECTION_GQL,
+    RETRIEVE_SOURCES_GQL,
     REVISE_CONTENT_GQL,
     REVISE_ENCODED_IMAGE_GQL,
     REVISE_IMAGE_GQL,
@@ -633,6 +636,7 @@ from .query_usage import QueryUsage
 from .query_users import QueryUsers
 from .query_workflows import QueryWorkflows
 from .remove_contents_from_collection import RemoveContentsFromCollection
+from .retrieve_sources import RetrieveSources
 from .revise_content import ReviseContent
 from .revise_encoded_image import ReviseEncodedImage
 from .revise_image import ReviseImage
@@ -2001,6 +2005,33 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryConversations.model_validate(data)
+
+    async def retrieve_sources(
+        self,
+        prompt: str,
+        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        augmented_filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        retrieval_strategy: Union[Optional[RetrievalStrategyInput], UnsetType] = UNSET,
+        reranking_strategy: Union[Optional[RerankingStrategyInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> RetrieveSources:
+        variables: Dict[str, object] = {
+            "prompt": prompt,
+            "filter": filter,
+            "augmentedFilter": augmented_filter,
+            "retrievalStrategy": retrieval_strategy,
+            "rerankingStrategy": reranking_strategy,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=RETRIEVE_SOURCES_GQL,
+            operation_name="RetrieveSources",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return RetrieveSources.model_validate(data)
 
     async def revise_content(
         self,
