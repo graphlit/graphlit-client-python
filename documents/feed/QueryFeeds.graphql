@@ -139,6 +139,12 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           subdomain
           accessToken
         }
+        trello {
+          key
+          token
+          identifiers
+          type
+        }
         readLimit
       }
       rss {

@@ -17,6 +17,7 @@ from .enums import (
     SharePointAuthenticationTypes,
     SiteTypes,
     TimedPolicyRecurrenceTypes,
+    TrelloTypes,
     YouTubeTypes,
 )
 
@@ -212,6 +213,7 @@ class QueryFeedsFeedsResultsIssue(BaseModel):
     github: Optional["QueryFeedsFeedsResultsIssueGithub"]
     intercom: Optional["QueryFeedsFeedsResultsIssueIntercom"]
     zendesk: Optional["QueryFeedsFeedsResultsIssueZendesk"]
+    trello: Optional["QueryFeedsFeedsResultsIssueTrello"]
     read_limit: Optional[int] = Field(alias="readLimit")
 
 
@@ -243,6 +245,13 @@ class QueryFeedsFeedsResultsIssueIntercom(BaseModel):
 class QueryFeedsFeedsResultsIssueZendesk(BaseModel):
     subdomain: str
     access_token: str = Field(alias="accessToken")
+
+
+class QueryFeedsFeedsResultsIssueTrello(BaseModel):
+    key: str
+    token: str
+    identifiers: List[str]
+    type: TrelloTypes
 
 
 class QueryFeedsFeedsResultsRss(BaseModel):

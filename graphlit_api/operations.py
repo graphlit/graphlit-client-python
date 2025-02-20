@@ -5883,6 +5883,12 @@ query GetFeed($id: ID!, $correlationId: String) {
         subdomain
         accessToken
       }
+      trello {
+        key
+        token
+        identifiers
+        type
+      }
       readLimit
     }
     rss {
@@ -6124,6 +6130,12 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         zendesk {
           subdomain
           accessToken
+        }
+        trello {
+          key
+          token
+          identifiers
+          type
         }
         readLimit
       }
@@ -8382,6 +8394,8 @@ query GetSpecification($id: ID!, $correlationId: String) {
       temperature
       probability
       chunkTokenLimit
+      detailLevel
+      reasoningEffort
     }
     azureOpenAI {
       tokenLimit
@@ -8724,6 +8738,8 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         temperature
         probability
         chunkTokenLimit
+        detailLevel
+        reasoningEffort
       }
       azureOpenAI {
         tokenLimit
@@ -9061,6 +9077,14 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
             detectLanguage
             language
           }
+          assemblyAI {
+            model
+            key
+            enableRedaction
+            enableSpeakerDiarization
+            detectLanguage
+            language
+          }
           document {
             includeImages
           }
@@ -9249,6 +9273,14 @@ query GetWorkflow($id: ID!, $correlationId: String) {
             detectLanguage
             language
           }
+          assemblyAI {
+            model
+            key
+            enableRedaction
+            enableSpeakerDiarization
+            detectLanguage
+            language
+          }
           document {
             includeImages
           }
@@ -9407,6 +9439,14 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
               detectLanguage
               language
             }
+            assemblyAI {
+              model
+              key
+              enableRedaction
+              enableSpeakerDiarization
+              detectLanguage
+              language
+            }
             document {
               includeImages
             }
@@ -9553,6 +9593,14 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
             key
           }
           deepgram {
+            model
+            key
+            enableRedaction
+            enableSpeakerDiarization
+            detectLanguage
+            language
+          }
+          assemblyAI {
             model
             key
             enableRedaction

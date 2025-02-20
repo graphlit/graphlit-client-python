@@ -7,6 +7,7 @@ from pydantic import Field
 
 from .base_model import BaseModel
 from .enums import (
+    AssemblyAIModels,
     AzureDocumentIntelligenceModels,
     AzureDocumentIntelligenceVersions,
     ContentIndexingServiceTypes,
@@ -132,6 +133,9 @@ class QueryWorkflowsWorkflowsResultsPreparationJobsConnector(BaseModel):
         "QueryWorkflowsWorkflowsResultsPreparationJobsConnectorAzureDocument"
     ] = Field(alias="azureDocument")
     deepgram: Optional["QueryWorkflowsWorkflowsResultsPreparationJobsConnectorDeepgram"]
+    assembly_ai: Optional[
+        "QueryWorkflowsWorkflowsResultsPreparationJobsConnectorAssemblyAi"
+    ] = Field(alias="assemblyAI")
     document: Optional["QueryWorkflowsWorkflowsResultsPreparationJobsConnectorDocument"]
     email: Optional["QueryWorkflowsWorkflowsResultsPreparationJobsConnectorEmail"]
     model_document: Optional[
@@ -148,6 +152,15 @@ class QueryWorkflowsWorkflowsResultsPreparationJobsConnectorAzureDocument(BaseMo
 
 class QueryWorkflowsWorkflowsResultsPreparationJobsConnectorDeepgram(BaseModel):
     model: Optional[DeepgramModels]
+    key: Optional[str]
+    enable_redaction: Optional[bool] = Field(alias="enableRedaction")
+    enable_speaker_diarization: Optional[bool] = Field(alias="enableSpeakerDiarization")
+    detect_language: Optional[bool] = Field(alias="detectLanguage")
+    language: Optional[str]
+
+
+class QueryWorkflowsWorkflowsResultsPreparationJobsConnectorAssemblyAi(BaseModel):
+    model: Optional[AssemblyAIModels]
     key: Optional[str]
     enable_redaction: Optional[bool] = Field(alias="enableRedaction")
     enable_speaker_diarization: Optional[bool] = Field(alias="enableSpeakerDiarization")

@@ -22,6 +22,8 @@ from .enums import (
     MistralModels,
     ModelServiceTypes,
     OpenAIModels,
+    OpenAIReasoningEffortLevels,
+    OpenAIVisionDetailLevels,
     PromptStrategyTypes,
     ReplicateModels,
     RerankingModelServiceTypes,
@@ -144,6 +146,10 @@ class GetSpecificationSpecificationOpenAi(BaseModel):
     temperature: Optional[float]
     probability: Optional[float]
     chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit")
+    detail_level: Optional[OpenAIVisionDetailLevels] = Field(alias="detailLevel")
+    reasoning_effort: Optional[OpenAIReasoningEffortLevels] = Field(
+        alias="reasoningEffort"
+    )
 
 
 class GetSpecificationSpecificationAzureOpenAi(BaseModel):

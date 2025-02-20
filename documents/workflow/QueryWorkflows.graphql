@@ -66,6 +66,14 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
               detectLanguage
               language
             }
+            assemblyAI {
+              model
+              key
+              enableRedaction
+              enableSpeakerDiarization
+              detectLanguage
+              language
+            }
             document {
               includeImages
             }

@@ -65,6 +65,8 @@ query GetSpecification($id: ID!, $correlationId: String) {
       temperature
       probability
       chunkTokenLimit
+      detailLevel
+      reasoningEffort
     }
     azureOpenAI {
       tokenLimit

@@ -65,6 +65,14 @@ query GetWorkflow($id: ID!, $correlationId: String) {
             detectLanguage
             language
           }
+          assemblyAI {
+            model
+            key
+            enableRedaction
+            enableSpeakerDiarization
+            detectLanguage
+            language
+          }
           document {
             includeImages
           }

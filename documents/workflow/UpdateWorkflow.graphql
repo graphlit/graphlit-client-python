@@ -60,6 +60,14 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
             detectLanguage
             language
           }
+          assemblyAI {
+            model
+            key
+            enableRedaction
+            enableSpeakerDiarization
+            detectLanguage
+            language
+          }
           document {
             includeImages
           }

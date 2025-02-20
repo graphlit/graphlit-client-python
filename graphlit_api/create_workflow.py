@@ -7,6 +7,7 @@ from pydantic import Field
 
 from .base_model import BaseModel
 from .enums import (
+    AssemblyAIModels,
     AzureDocumentIntelligenceModels,
     AzureDocumentIntelligenceVersions,
     ContentIndexingServiceTypes,
@@ -123,6 +124,9 @@ class CreateWorkflowCreateWorkflowPreparationJobsConnector(BaseModel):
         "CreateWorkflowCreateWorkflowPreparationJobsConnectorAzureDocument"
     ] = Field(alias="azureDocument")
     deepgram: Optional["CreateWorkflowCreateWorkflowPreparationJobsConnectorDeepgram"]
+    assembly_ai: Optional[
+        "CreateWorkflowCreateWorkflowPreparationJobsConnectorAssemblyAi"
+    ] = Field(alias="assemblyAI")
     document: Optional["CreateWorkflowCreateWorkflowPreparationJobsConnectorDocument"]
     email: Optional["CreateWorkflowCreateWorkflowPreparationJobsConnectorEmail"]
     model_document: Optional[
@@ -139,6 +143,15 @@ class CreateWorkflowCreateWorkflowPreparationJobsConnectorAzureDocument(BaseMode
 
 class CreateWorkflowCreateWorkflowPreparationJobsConnectorDeepgram(BaseModel):
     model: Optional[DeepgramModels]
+    key: Optional[str]
+    enable_redaction: Optional[bool] = Field(alias="enableRedaction")
+    enable_speaker_diarization: Optional[bool] = Field(alias="enableSpeakerDiarization")
+    detect_language: Optional[bool] = Field(alias="detectLanguage")
+    language: Optional[str]
+
+
+class CreateWorkflowCreateWorkflowPreparationJobsConnectorAssemblyAi(BaseModel):
+    model: Optional[AssemblyAIModels]
     key: Optional[str]
     enable_redaction: Optional[bool] = Field(alias="enableRedaction")
     enable_speaker_diarization: Optional[bool] = Field(alias="enableSpeakerDiarization")
