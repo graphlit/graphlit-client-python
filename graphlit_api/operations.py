@@ -4976,12 +4976,17 @@ mutation RetrieveSources($prompt: String!, $filter: ContentFilter, $augmentedFil
     correlationId: $correlationId
   ) {
     results {
+      type
       content {
         id
       }
       text
       metadata
       relevance
+      startTime
+      endTime
+      pageNumber
+      frameNumber
     }
   }
 }
