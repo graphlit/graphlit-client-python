@@ -19,10 +19,10 @@ class RetrieveSourcesRetrieveSources(BaseModel):
 
 
 class RetrieveSourcesRetrieveSourcesResults(BaseModel):
-    content: Optional["RetrieveSourcesRetrieveSourcesResultsContent"]
-    text: Optional[str]
+    content: "RetrieveSourcesRetrieveSourcesResultsContent"
+    text: str
     metadata: Optional[str]
-    relevance: Optional[float]
+    relevance: float
 
 
 class RetrieveSourcesRetrieveSourcesResultsContent(BaseModel):

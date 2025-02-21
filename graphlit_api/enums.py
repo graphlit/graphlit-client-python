@@ -506,6 +506,12 @@ class OccurrenceTypes(str, Enum):
     TEXT = "TEXT"
 
 
+class ContentSourceTypes(str, Enum):
+    FRAME = "FRAME"
+    DOCUMENT = "DOCUMENT"
+    TRANSCRIPT = "TRANSCRIPT"
+
+
 class MedicalIndicationFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
