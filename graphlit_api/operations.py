@@ -1406,6 +1406,7 @@ query GetContent($id: ID!, $correlationId: String) {
         confidence
         text
         role
+        language
         relevance
       }
     }
@@ -2177,6 +2178,7 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
           confidence
           text
           role
+          language
           relevance
         }
       }
@@ -2428,6 +2430,7 @@ query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!],
           confidence
           text
           role
+          language
           relevance
         }
       }

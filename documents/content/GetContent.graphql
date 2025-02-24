@@ -226,6 +226,7 @@ query GetContent($id: ID!, $correlationId: String) {
         confidence
         text
         role
+        language
         relevance
       }
     }

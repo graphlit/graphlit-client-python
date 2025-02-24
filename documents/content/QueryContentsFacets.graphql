@@ -227,6 +227,7 @@ query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!],
           confidence
           text
           role
+          language
           relevance
         }
       }

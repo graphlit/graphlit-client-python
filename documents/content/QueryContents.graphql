@@ -227,6 +227,7 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
           confidence
           text
           role
+          language
           relevance
         }
       }

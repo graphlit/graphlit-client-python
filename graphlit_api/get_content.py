@@ -316,6 +316,7 @@ class GetContentContentPagesChunks(BaseModel):
     confidence: Optional[float]
     text: Optional[str]
     role: Optional[TextRoles]
+    language: Optional[str]
     relevance: Optional[float]
 
 
