@@ -3139,8 +3139,13 @@ class AnthropicModelPropertiesUpdateInput(BaseModel):
     temperature: Optional[float] = None
     probability: Optional[float] = None
     token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
     completion_token_limit: Optional[int] = Field(
         alias="completionTokenLimit", default=None
+    )
+    enable_thinking: Optional[bool] = Field(alias="enableThinking", default=None)
+    thinking_token_limit: Optional[int] = Field(
+        alias="thinkingTokenLimit", default=None
     )
 
 
@@ -3363,8 +3368,13 @@ class AnthropicModelPropertiesInput(BaseModel):
     temperature: Optional[float] = None
     probability: Optional[float] = None
     token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
     completion_token_limit: Optional[int] = Field(
         alias="completionTokenLimit", default=None
+    )
+    enable_thinking: Optional[bool] = Field(alias="enableThinking", default=None)
+    thinking_token_limit: Optional[int] = Field(
+        alias="thinkingTokenLimit", default=None
     )
 
 
