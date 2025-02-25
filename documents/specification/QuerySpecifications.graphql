@@ -98,6 +98,8 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         modelName
         temperature
         probability
+        enableThinking
+        thinkingTokenLimit
       }
       google {
         tokenLimit

@@ -183,6 +183,8 @@ class GetSpecificationSpecificationAnthropic(BaseModel):
     model_name: Optional[str] = Field(alias="modelName")
     temperature: Optional[float]
     probability: Optional[float]
+    enable_thinking: Optional[bool] = Field(alias="enableThinking")
+    thinking_token_limit: Optional[int] = Field(alias="thinkingTokenLimit")
 
 
 class GetSpecificationSpecificationGoogle(BaseModel):
