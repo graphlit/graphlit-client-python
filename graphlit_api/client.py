@@ -287,6 +287,7 @@ from .input_types import (
     RetrievalStrategyInput,
     SharePointFoldersInput,
     SharePointLibrariesInput,
+    SlackChannelsInput,
     SoftwareFilter,
     SoftwareInput,
     SoftwareUpdateInput,
@@ -544,6 +545,7 @@ from .operations import (
     QUERY_REPOS_GQL,
     QUERY_SHARE_POINT_FOLDERS_GQL,
     QUERY_SHARE_POINT_LIBRARIES_GQL,
+    QUERY_SLACK_CHANNELS_GQL,
     QUERY_SOFTWARES_GQL,
     QUERY_SPECIFICATIONS_GQL,
     QUERY_USAGE_GQL,
@@ -630,6 +632,7 @@ from .query_products import QueryProducts
 from .query_repos import QueryRepos
 from .query_share_point_folders import QuerySharePointFolders
 from .query_share_point_libraries import QuerySharePointLibraries
+from .query_slack_channels import QuerySlackChannels
 from .query_softwares import QuerySoftwares
 from .query_specifications import QuerySpecifications
 from .query_usage import QueryUsage
@@ -2531,6 +2534,19 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QuerySharePointLibraries.model_validate(data)
+
+    async def query_slack_channels(
+        self, properties: SlackChannelsInput, **kwargs: Any
+    ) -> QuerySlackChannels:
+        variables: Dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_SLACK_CHANNELS_GQL,
+            operation_name="QuerySlackChannels",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QuerySlackChannels.model_validate(data)
 
     async def update_feed(self, feed: FeedUpdateInput, **kwargs: Any) -> UpdateFeed:
         variables: Dict[str, object] = {"feed": feed}

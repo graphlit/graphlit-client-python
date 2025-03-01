@@ -237,6 +237,7 @@ __all__ = [
     "QUERY_REPOS_GQL",
     "QUERY_SHARE_POINT_FOLDERS_GQL",
     "QUERY_SHARE_POINT_LIBRARIES_GQL",
+    "QUERY_SLACK_CHANNELS_GQL",
     "QUERY_SOFTWARES_GQL",
     "QUERY_SPECIFICATIONS_GQL",
     "QUERY_USAGE_GQL",
@@ -6312,6 +6313,14 @@ query QuerySharePointLibraries($properties: SharePointLibrariesInput!) {
       siteName
       siteId
     }
+  }
+}
+"""
+
+QUERY_SLACK_CHANNELS_GQL = """
+query QuerySlackChannels($properties: SlackChannelsInput!) {
+  slackChannels(properties: $properties) {
+    results
   }
 }
 """

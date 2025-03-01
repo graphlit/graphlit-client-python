@@ -1,0 +1,5 @@
+query QuerySlackChannels($properties: SlackChannelsInput!) {
+  slackChannels(properties: $properties) {
+    results
+  }
+}
