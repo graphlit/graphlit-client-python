@@ -227,6 +227,7 @@ from .input_types import (
     LabelFilter,
     LabelInput,
     LabelUpdateInput,
+    LinearProjectsInput,
     MedicalConditionFilter,
     MedicalConditionInput,
     MedicalConditionUpdateInput,
@@ -523,6 +524,7 @@ from .operations import (
     QUERY_EVENTS_GQL,
     QUERY_FEEDS_GQL,
     QUERY_LABELS_GQL,
+    QUERY_LINEAR_PROJECTS_GQL,
     QUERY_MEDICAL_CONDITIONS_GQL,
     QUERY_MEDICAL_CONTRAINDICATIONS_GQL,
     QUERY_MEDICAL_DEVICES_GQL,
@@ -610,6 +612,7 @@ from .query_credits import QueryCredits
 from .query_events import QueryEvents
 from .query_feeds import QueryFeeds
 from .query_labels import QueryLabels
+from .query_linear_projects import QueryLinearProjects
 from .query_medical_conditions import QueryMedicalConditions
 from .query_medical_contraindications import QueryMedicalContraindications
 from .query_medical_devices import QueryMedicalDevices
@@ -2458,6 +2461,19 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryFeeds.model_validate(data)
+
+    async def query_linear_projects(
+        self, properties: LinearProjectsInput, **kwargs: Any
+    ) -> QueryLinearProjects:
+        variables: Dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_LINEAR_PROJECTS_GQL,
+            operation_name="QueryLinearProjects",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryLinearProjects.model_validate(data)
 
     async def query_microsoft_teams_channels(
         self, properties: MicrosoftTeamsChannelsInput, team_id: str, **kwargs: Any

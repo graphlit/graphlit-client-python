@@ -85,6 +85,9 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
                 id
               }
             }
+            mistral {
+              key
+            }
           }
         }
       }

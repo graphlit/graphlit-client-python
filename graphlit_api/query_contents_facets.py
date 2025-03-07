@@ -320,7 +320,18 @@ class QueryContentsFacetsContentsResultsPages(BaseModel):
     index: Optional[int]
     text: Optional[str]
     relevance: Optional[float]
+    images: Optional[List[Optional["QueryContentsFacetsContentsResultsPagesImages"]]]
     chunks: Optional[List[Optional["QueryContentsFacetsContentsResultsPagesChunks"]]]
+
+
+class QueryContentsFacetsContentsResultsPagesImages(BaseModel):
+    id: Optional[str]
+    mime_type: Optional[str] = Field(alias="mimeType")
+    data: Optional[str]
+    left: Optional[int]
+    right: Optional[int]
+    top: Optional[int]
+    bottom: Optional[int]
 
 
 class QueryContentsFacetsContentsResultsPagesChunks(BaseModel):

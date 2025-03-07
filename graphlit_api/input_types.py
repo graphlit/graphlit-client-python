@@ -492,6 +492,10 @@ class MedicalDrugFacetInput(BaseModel):
     facet: Optional[MedicalDrugFacetTypes] = None
 
 
+class MistralDocumentPreparationPropertiesInput(BaseModel):
+    key: Optional[str] = None
+
+
 class DocumentPreparationPropertiesInput(BaseModel):
     include_images: Optional[bool] = Field(alias="includeImages", default=None)
 
@@ -1122,6 +1126,10 @@ class ObservationInput(BaseModel):
     occurrences: List["ObservationOccurrenceInput"]
 
 
+class LinearProjectsInput(BaseModel):
+    key: str
+
+
 class ContentGraphInput(BaseModel):
     types: Optional[List[Optional[ObservableTypes]]] = None
 
@@ -1656,6 +1664,7 @@ class FilePreparationConnectorInput(BaseModel):
     assembly_ai: Optional["AssemblyAIAudioPreparationPropertiesInput"] = Field(
         alias="assemblyAI", default=None
     )
+    mistral: Optional["MistralDocumentPreparationPropertiesInput"] = None
     model_document: Optional["ModelDocumentPreparationPropertiesInput"] = Field(
         alias="modelDocument", default=None
     )

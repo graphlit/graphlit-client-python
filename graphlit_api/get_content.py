@@ -305,7 +305,18 @@ class GetContentContentPages(BaseModel):
     index: Optional[int]
     text: Optional[str]
     relevance: Optional[float]
+    images: Optional[List[Optional["GetContentContentPagesImages"]]]
     chunks: Optional[List[Optional["GetContentContentPagesChunks"]]]
+
+
+class GetContentContentPagesImages(BaseModel):
+    id: Optional[str]
+    mime_type: Optional[str] = Field(alias="mimeType")
+    data: Optional[str]
+    left: Optional[int]
+    right: Optional[int]
+    top: Optional[int]
+    bottom: Optional[int]
 
 
 class GetContentContentPagesChunks(BaseModel):

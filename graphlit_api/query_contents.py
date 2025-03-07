@@ -313,7 +313,18 @@ class QueryContentsContentsResultsPages(BaseModel):
     index: Optional[int]
     text: Optional[str]
     relevance: Optional[float]
+    images: Optional[List[Optional["QueryContentsContentsResultsPagesImages"]]]
     chunks: Optional[List[Optional["QueryContentsContentsResultsPagesChunks"]]]
+
+
+class QueryContentsContentsResultsPagesImages(BaseModel):
+    id: Optional[str]
+    mime_type: Optional[str] = Field(alias="mimeType")
+    data: Optional[str]
+    left: Optional[int]
+    right: Optional[int]
+    top: Optional[int]
+    bottom: Optional[int]
 
 
 class QueryContentsContentsResultsPagesChunks(BaseModel):

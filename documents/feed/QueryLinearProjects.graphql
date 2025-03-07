@@ -1,0 +1,5 @@
+query QueryLinearProjects($properties: LinearProjectsInput!) {
+  linearProjects(properties: $properties) {
+    results
+  }
+}

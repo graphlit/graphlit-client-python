@@ -131,6 +131,7 @@ class GetWorkflowWorkflowPreparationJobsConnector(BaseModel):
     model_document: Optional[
         "GetWorkflowWorkflowPreparationJobsConnectorModelDocument"
     ] = Field(alias="modelDocument")
+    mistral: Optional["GetWorkflowWorkflowPreparationJobsConnectorMistral"]
 
 
 class GetWorkflowWorkflowPreparationJobsConnectorAzureDocument(BaseModel):
@@ -174,6 +175,10 @@ class GetWorkflowWorkflowPreparationJobsConnectorModelDocument(BaseModel):
 
 class GetWorkflowWorkflowPreparationJobsConnectorModelDocumentSpecification(BaseModel):
     id: str
+
+
+class GetWorkflowWorkflowPreparationJobsConnectorMistral(BaseModel):
+    key: Optional[str]
 
 
 class GetWorkflowWorkflowExtraction(BaseModel):

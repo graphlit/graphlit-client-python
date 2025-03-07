@@ -132,6 +132,7 @@ class CreateWorkflowCreateWorkflowPreparationJobsConnector(BaseModel):
     model_document: Optional[
         "CreateWorkflowCreateWorkflowPreparationJobsConnectorModelDocument"
     ] = Field(alias="modelDocument")
+    mistral: Optional["CreateWorkflowCreateWorkflowPreparationJobsConnectorMistral"]
 
 
 class CreateWorkflowCreateWorkflowPreparationJobsConnectorAzureDocument(BaseModel):
@@ -177,6 +178,10 @@ class CreateWorkflowCreateWorkflowPreparationJobsConnectorModelDocumentSpecifica
     BaseModel
 ):
     id: str
+
+
+class CreateWorkflowCreateWorkflowPreparationJobsConnectorMistral(BaseModel):
+    key: Optional[str]
 
 
 class CreateWorkflowCreateWorkflowExtraction(BaseModel):

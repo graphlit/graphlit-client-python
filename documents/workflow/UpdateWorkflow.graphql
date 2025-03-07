@@ -79,6 +79,9 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
               id
             }
           }
+          mistral {
+            key
+          }
         }
       }
     }

@@ -218,6 +218,15 @@ query GetContent($id: ID!, $correlationId: String) {
       index
       text
       relevance
+      images {
+        id
+        mimeType
+        data
+        left
+        right
+        top
+        bottom
+      }
       chunks {
         index
         pageIndex

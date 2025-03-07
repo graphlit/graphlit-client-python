@@ -215,6 +215,7 @@ __all__ = [
     "QUERY_EVENTS_GQL",
     "QUERY_FEEDS_GQL",
     "QUERY_LABELS_GQL",
+    "QUERY_LINEAR_PROJECTS_GQL",
     "QUERY_MEDICAL_CONDITIONS_GQL",
     "QUERY_MEDICAL_CONTRAINDICATIONS_GQL",
     "QUERY_MEDICAL_DEVICES_GQL",
@@ -1399,6 +1400,15 @@ query GetContent($id: ID!, $correlationId: String) {
       index
       text
       relevance
+      images {
+        id
+        mimeType
+        data
+        left
+        right
+        top
+        bottom
+      }
       chunks {
         index
         pageIndex
@@ -2171,6 +2181,15 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
         index
         text
         relevance
+        images {
+          id
+          mimeType
+          data
+          left
+          right
+          top
+          bottom
+        }
         chunks {
           index
           pageIndex
@@ -2423,6 +2442,15 @@ query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!],
         index
         text
         relevance
+        images {
+          id
+          mimeType
+          data
+          left
+          right
+          top
+          bottom
+        }
         chunks {
           index
           pageIndex
@@ -6254,6 +6282,14 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
 }
 """
 
+QUERY_LINEAR_PROJECTS_GQL = """
+query QueryLinearProjects($properties: LinearProjectsInput!) {
+  linearProjects(properties: $properties) {
+    results
+  }
+}
+"""
+
 QUERY_MICROSOFT_TEAMS_CHANNELS_GQL = """
 query QueryMicrosoftTeamsChannels($properties: MicrosoftTeamsChannelsInput!, $teamId: ID!) {
   microsoftTeamsChannels(properties: $properties, teamId: $teamId) {
@@ -9140,6 +9176,9 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
               id
             }
           }
+          mistral {
+            key
+          }
         }
       }
     }
@@ -9336,6 +9375,9 @@ query GetWorkflow($id: ID!, $correlationId: String) {
               id
             }
           }
+          mistral {
+            key
+          }
         }
       }
     }
@@ -9502,6 +9544,9 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
                 id
               }
             }
+            mistral {
+              key
+            }
           }
         }
       }
@@ -9662,6 +9707,9 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
             specification {
               id
             }
+          }
+          mistral {
+            key
           }
         }
       }

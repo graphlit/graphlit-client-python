@@ -219,6 +219,15 @@ query QueryContentsFacets($filter: ContentFilter, $facets: [ContentFacetInput!],
         index
         text
         relevance
+        images {
+          id
+          mimeType
+          data
+          left
+          right
+          top
+          bottom
+        }
         chunks {
           index
           pageIndex

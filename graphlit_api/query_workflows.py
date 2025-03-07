@@ -141,6 +141,7 @@ class QueryWorkflowsWorkflowsResultsPreparationJobsConnector(BaseModel):
     model_document: Optional[
         "QueryWorkflowsWorkflowsResultsPreparationJobsConnectorModelDocument"
     ] = Field(alias="modelDocument")
+    mistral: Optional["QueryWorkflowsWorkflowsResultsPreparationJobsConnectorMistral"]
 
 
 class QueryWorkflowsWorkflowsResultsPreparationJobsConnectorAzureDocument(BaseModel):
@@ -186,6 +187,10 @@ class QueryWorkflowsWorkflowsResultsPreparationJobsConnectorModelDocumentSpecifi
     BaseModel
 ):
     id: str
+
+
+class QueryWorkflowsWorkflowsResultsPreparationJobsConnectorMistral(BaseModel):
+    key: Optional[str]
 
 
 class QueryWorkflowsWorkflowsResultsExtraction(BaseModel):
