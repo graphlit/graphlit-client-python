@@ -65,11 +65,18 @@ class GetUserUserConnectorsIntegration(BaseModel):
     type: IntegrationServiceTypes
     uri: Optional[str]
     slack: Optional["GetUserUserConnectorsIntegrationSlack"]
+    email: Optional["GetUserUserConnectorsIntegrationEmail"]
 
 
 class GetUserUserConnectorsIntegrationSlack(BaseModel):
     token: str
     channel: str
+
+
+class GetUserUserConnectorsIntegrationEmail(BaseModel):
+    from_: str = Field(alias="from")
+    subject: str
+    to: List[str]
 
 
 GetUser.model_rebuild()

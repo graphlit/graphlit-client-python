@@ -252,6 +252,7 @@ __all__ = [
     "REVISE_TEXT_GQL",
     "SCREENSHOT_PAGE_GQL",
     "SEARCH_WEB_GQL",
+    "SEND_NOTIFICATION_GQL",
     "SUGGEST_CONVERSATION_GQL",
     "SUMMARIZE_CONTENTS_GQL",
     "SUMMARIZE_TEXT_GQL",
@@ -455,6 +456,11 @@ query GetAlert($id: ID!, $correlationId: String) {
         token
         channel
       }
+      email {
+        from
+        subject
+        to
+      }
     }
     publishing {
       type
@@ -574,6 +580,11 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
         slack {
           token
           channel
+        }
+        email {
+          from
+          subject
+          to
         }
       }
       publishing {
@@ -7470,6 +7481,14 @@ mutation UpdateMedicalTherapy($medicalTherapy: MedicalTherapyUpdateInput!) {
 }
 """
 
+SEND_NOTIFICATION_GQL = """
+mutation SendNotification($connector: IntegrationConnectorInput!, $text: String!, $textType: TextTypes) {
+  sendNotification(connector: $connector, text: $text, textType: $textType) {
+    result
+  }
+}
+"""
+
 CREATE_OBSERVATION_GQL = """
 mutation CreateObservation($observation: ObservationInput!) {
   createObservation(observation: $observation) {
@@ -8015,6 +8034,7 @@ query LookupCredits($correlationId: String!) {
     indexingRatio
     preparationRatio
     extractionRatio
+    classificationRatio
     enrichmentRatio
     publishingRatio
     searchRatio
@@ -8074,6 +8094,7 @@ query QueryCredits($startDate: DateTime!, $duration: TimeSpan!) {
     indexingRatio
     preparationRatio
     extractionRatio
+    classificationRatio
     enrichmentRatio
     publishingRatio
     searchRatio
@@ -9023,6 +9044,11 @@ query GetUser {
           token
           channel
         }
+        email {
+          from
+          subject
+          to
+        }
       }
     }
   }
@@ -9066,6 +9092,11 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
           slack {
             token
             channel
+          }
+          email {
+            from
+            subject
+            to
           }
         }
       }
@@ -9210,6 +9241,32 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
         }
       }
     }
+    classification {
+      jobs {
+        connector {
+          type
+          contentType
+          fileType
+          model {
+            specification {
+              id
+            }
+            rules {
+              then
+              if
+            }
+          }
+          regex {
+            rules {
+              then
+              type
+              path
+              matches
+            }
+          }
+        }
+      }
+    }
     enrichment {
       link {
         enableCrawling
@@ -9250,6 +9307,11 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
         slack {
           token
           channel
+        }
+        email {
+          from
+          subject
+          to
         }
       }
     }
@@ -9409,6 +9471,32 @@ query GetWorkflow($id: ID!, $correlationId: String) {
         }
       }
     }
+    classification {
+      jobs {
+        connector {
+          type
+          contentType
+          fileType
+          model {
+            specification {
+              id
+            }
+            rules {
+              then
+              if
+            }
+          }
+          regex {
+            rules {
+              then
+              type
+              path
+              matches
+            }
+          }
+        }
+      }
+    }
     enrichment {
       link {
         enableCrawling
@@ -9449,6 +9537,11 @@ query GetWorkflow($id: ID!, $correlationId: String) {
         slack {
           token
           channel
+        }
+        email {
+          from
+          subject
+          to
         }
       }
     }
@@ -9578,6 +9671,32 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
           }
         }
       }
+      classification {
+        jobs {
+          connector {
+            type
+            contentType
+            fileType
+            model {
+              specification {
+                id
+              }
+              rules {
+                then
+                if
+              }
+            }
+            regex {
+              rules {
+                then
+                type
+                path
+                matches
+              }
+            }
+          }
+        }
+      }
       enrichment {
         link {
           enableCrawling
@@ -9618,6 +9737,11 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
           slack {
             token
             channel
+          }
+          email {
+            from
+            subject
+            to
           }
         }
       }
@@ -9742,6 +9866,32 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
         }
       }
     }
+    classification {
+      jobs {
+        connector {
+          type
+          contentType
+          fileType
+          model {
+            specification {
+              id
+            }
+            rules {
+              then
+              if
+            }
+          }
+          regex {
+            rules {
+              then
+              type
+              path
+              matches
+            }
+          }
+        }
+      }
+    }
     enrichment {
       link {
         enableCrawling
@@ -9782,6 +9932,11 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
         slack {
           token
           channel
+        }
+        email {
+          from
+          subject
+          to
         }
       }
     }

@@ -97,6 +97,11 @@ query GetAlert($id: ID!, $correlationId: String) {
         token
         channel
       }
+      email {
+        from
+        subject
+        to
+      }
     }
     publishing {
       type

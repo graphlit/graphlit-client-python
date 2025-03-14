@@ -26,6 +26,7 @@ class LookupCreditsLookupCredits(BaseModel):
     indexing_ratio: Optional[Any] = Field(alias="indexingRatio")
     preparation_ratio: Optional[Any] = Field(alias="preparationRatio")
     extraction_ratio: Optional[Any] = Field(alias="extractionRatio")
+    classification_ratio: Optional[Any] = Field(alias="classificationRatio")
     enrichment_ratio: Optional[Any] = Field(alias="enrichmentRatio")
     publishing_ratio: Optional[Any] = Field(alias="publishingRatio")
     search_ratio: Optional[Any] = Field(alias="searchRatio")

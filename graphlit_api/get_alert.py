@@ -180,11 +180,18 @@ class GetAlertAlertIntegration(BaseModel):
     type: IntegrationServiceTypes
     uri: Optional[str]
     slack: Optional["GetAlertAlertIntegrationSlack"]
+    email: Optional["GetAlertAlertIntegrationEmail"]
 
 
 class GetAlertAlertIntegrationSlack(BaseModel):
     token: str
     channel: str
+
+
+class GetAlertAlertIntegrationEmail(BaseModel):
+    from_: str = Field(alias="from")
+    subject: str
+    to: List[str]
 
 
 class GetAlertAlertPublishing(BaseModel):

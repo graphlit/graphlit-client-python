@@ -186,11 +186,18 @@ class QueryAlertsAlertsResultsIntegration(BaseModel):
     type: IntegrationServiceTypes
     uri: Optional[str]
     slack: Optional["QueryAlertsAlertsResultsIntegrationSlack"]
+    email: Optional["QueryAlertsAlertsResultsIntegrationEmail"]
 
 
 class QueryAlertsAlertsResultsIntegrationSlack(BaseModel):
     token: str
     channel: str
+
+
+class QueryAlertsAlertsResultsIntegrationEmail(BaseModel):
+    from_: str = Field(alias="from")
+    subject: str
+    to: List[str]
 
 
 class QueryAlertsAlertsResultsPublishing(BaseModel):

@@ -19,6 +19,7 @@ from .enums import (
     CohereModels,
     CollectionTypes,
     ConnectorTypes,
+    ContentClassificationServiceTypes,
     ContentFacetTypes,
     ContentIndexingServiceTypes,
     ContentPublishingFormats,
@@ -84,6 +85,7 @@ from .enums import (
     PolicyTimeTypes,
     ProductFacetTypes,
     PromptStrategyTypes,
+    RegexSourceTypes,
     ReplicateModels,
     RepoFacetTypes,
     RerankingModelServiceTypes,
@@ -357,6 +359,10 @@ class MedicalTherapyFacetInput(BaseModel):
     )
     time_offset: Optional[int] = Field(alias="timeOffset", default=None)
     facet: Optional[MedicalTherapyFacetTypes] = None
+
+
+class RegexContentClassificationPropertiesInput(BaseModel):
+    rules: Optional[List[Optional["RegexClassificationRuleInput"]]] = None
 
 
 class ProductFilter(BaseModel):
@@ -766,6 +772,10 @@ class H3IndexFilter(BaseModel):
     key: Optional[str] = None
 
 
+class ClassificationWorkflowJobInput(BaseModel):
+    connector: Optional["ContentClassificationConnectorInput"] = None
+
+
 class ModelFilter(BaseModel):
     types: Optional[List[Optional[ModelTypes]]] = None
     service_types: Optional[List[Optional[ModelServiceTypes]]] = Field(
@@ -986,6 +996,7 @@ class GoogleDriveFeedPropertiesInput(BaseModel):
 class IntegrationConnectorUpdateInput(BaseModel):
     uri: Optional[str] = None
     slack: Optional["SlackIntegrationPropertiesInput"] = None
+    email: Optional["EmailIntegrationPropertiesInput"] = None
 
 
 class MedicalDeviceFilter(BaseModel):
@@ -1049,6 +1060,11 @@ class AzureFileFeedPropertiesUpdateInput(BaseModel):
     account_name: Optional[str] = Field(alias="accountName", default=None)
     share_name: Optional[str] = Field(alias="shareName", default=None)
     prefix: Optional[str] = None
+
+
+class PromptClassificationRuleInput(BaseModel):
+    if_: Optional[str] = Field(alias="if", default=None)
+    then: Optional[str] = None
 
 
 class ProjectInput(BaseModel):
@@ -1155,6 +1171,7 @@ class IntegrationConnectorInput(BaseModel):
     type: IntegrationServiceTypes
     uri: Optional[str] = None
     slack: Optional["SlackIntegrationPropertiesInput"] = None
+    email: Optional["EmailIntegrationPropertiesInput"] = None
 
 
 class SummarizationStrategyInput(BaseModel):
@@ -1264,6 +1281,13 @@ class PointInput(BaseModel):
     latitude: float
     longitude: float
     distance: Optional[float] = None
+
+
+class RegexClassificationRuleInput(BaseModel):
+    type: Optional[RegexSourceTypes] = None
+    path: Optional[str] = None
+    matches: Optional[str] = None
+    then: Optional[str] = None
 
 
 class ContentPublishingConnectorInput(BaseModel):
@@ -1462,6 +1486,10 @@ class EventFilter(BaseModel):
     )
     typical_age_range: Optional[str] = Field(alias="typicalAgeRange", default=None)
     events: Optional[List["EntityReferenceFilter"]] = None
+
+
+class ClassificationWorkflowStageInput(BaseModel):
+    jobs: Optional[List[Optional["ClassificationWorkflowJobInput"]]] = None
 
 
 class RepoInput(BaseModel):
@@ -2162,6 +2190,11 @@ class SiteFeedPropertiesInput(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
+class ModelContentClassificationPropertiesInput(BaseModel):
+    specification: Optional["EntityReferenceInput"] = None
+    rules: Optional[List[Optional["PromptClassificationRuleInput"]]] = None
+
+
 class DropboxFeedPropertiesUpdateInput(BaseModel):
     path: Optional[str] = None
     app_key: Optional[str] = Field(alias="appKey", default=None)
@@ -2176,6 +2209,14 @@ class RepoFacetInput(BaseModel):
     )
     time_offset: Optional[int] = Field(alias="timeOffset", default=None)
     facet: Optional[RepoFacetTypes] = None
+
+
+class ContentClassificationConnectorInput(BaseModel):
+    type: Optional[ContentClassificationServiceTypes] = None
+    content_type: Optional[ContentTypes] = Field(alias="contentType", default=None)
+    file_type: Optional[FileTypes] = Field(alias="fileType", default=None)
+    model: Optional["ModelContentClassificationPropertiesInput"] = None
+    regex: Optional["RegexContentClassificationPropertiesInput"] = None
 
 
 class EnrichmentWorkflowStageInput(BaseModel):
@@ -2623,6 +2664,12 @@ class RevisionStrategyInput(BaseModel):
     count: Optional[int] = None
 
 
+class EmailIntegrationPropertiesInput(BaseModel):
+    subject: str
+    from_: str = Field(alias="from")
+    to: List[str]
+
+
 class ConversationUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
@@ -2667,6 +2714,7 @@ class WorkflowUpdateInput(BaseModel):
     preparation: Optional["PreparationWorkflowStageInput"] = None
     extraction: Optional["ExtractionWorkflowStageInput"] = None
     enrichment: Optional["EnrichmentWorkflowStageInput"] = None
+    classification: Optional["ClassificationWorkflowStageInput"] = None
     storage: Optional["StorageWorkflowStageInput"] = None
     actions: Optional[List[Optional["WorkflowActionInput"]]] = None
 
@@ -2876,6 +2924,7 @@ class WorkflowInput(BaseModel):
     preparation: Optional["PreparationWorkflowStageInput"] = None
     extraction: Optional["ExtractionWorkflowStageInput"] = None
     enrichment: Optional["EnrichmentWorkflowStageInput"] = None
+    classification: Optional["ClassificationWorkflowStageInput"] = None
     storage: Optional["StorageWorkflowStageInput"] = None
     actions: Optional[List[Optional["WorkflowActionInput"]]] = None
 
@@ -3459,6 +3508,7 @@ StorageWorkflowStageInput.model_rebuild()
 WorkflowFilter.model_rebuild()
 MedicalIndicationInput.model_rebuild()
 UserFilter.model_rebuild()
+RegexContentClassificationPropertiesInput.model_rebuild()
 ProductFilter.model_rebuild()
 EnrichmentWorkflowJobInput.model_rebuild()
 ContentUpdateInput.model_rebuild()
@@ -3472,6 +3522,7 @@ EmbeddingsStrategyInput.model_rebuild()
 ConnectorFilter.model_rebuild()
 ProjectUpdateInput.model_rebuild()
 MedicalStudyFilter.model_rebuild()
+ClassificationWorkflowJobInput.model_rebuild()
 CollectionUpdateInput.model_rebuild()
 SpecificationInput.model_rebuild()
 PackageMetadataInput.model_rebuild()
@@ -3503,6 +3554,7 @@ AudioMetadataInput.model_rebuild()
 SpecificationUpdateInput.model_rebuild()
 ContentPublishingConnectorUpdateInput.model_rebuild()
 EventFilter.model_rebuild()
+ClassificationWorkflowStageInput.model_rebuild()
 ObservationReferenceFilter.model_rebuild()
 MedicalGuidelineFilter.model_rebuild()
 EmailFeedPropertiesInput.model_rebuild()
@@ -3531,6 +3583,8 @@ MedicalDrugUpdateInput.model_rebuild()
 PersonInput.model_rebuild()
 SoftwareFilter.model_rebuild()
 SiteFeedPropertiesInput.model_rebuild()
+ModelContentClassificationPropertiesInput.model_rebuild()
+ContentClassificationConnectorInput.model_rebuild()
 EnrichmentWorkflowStageInput.model_rebuild()
 PersonFilter.model_rebuild()
 FeedFilter.model_rebuild()

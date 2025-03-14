@@ -35,6 +35,11 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
             token
             channel
           }
+          email {
+            from
+            subject
+            to
+          }
         }
       }
     }

@@ -84,6 +84,7 @@ class EntityState(str, Enum):
     SANITIZED = "SANITIZED"
     EXTRACTED = "EXTRACTED"
     ENRICHED = "ENRICHED"
+    CLASSIFIED = "CLASSIFIED"
     CHANGED = "CHANGED"
     ARCHIVED = "ARCHIVED"
     APPROVED = "APPROVED"
@@ -261,6 +262,7 @@ class SearchQueryTypes(str, Enum):
 class IntegrationServiceTypes(str, Enum):
     SLACK = "SLACK"
     WEB_HOOK = "WEB_HOOK"
+    EMAIL = "EMAIL"
 
 
 class LinkTypes(str, Enum):
@@ -341,6 +343,7 @@ class SpecificationTypes(str, Enum):
     TEXT_EMBEDDING = "TEXT_EMBEDDING"
     IMAGE_EMBEDDING = "IMAGE_EMBEDDING"
     EXTRACTION = "EXTRACTION"
+    CLASSIFICATION = "CLASSIFICATION"
     PREPARATION = "PREPARATION"
 
 
@@ -498,6 +501,8 @@ class ElevenLabsModels(str, Enum):
     MULTILINGUAL_V1 = "MULTILINGUAL_V1"
     MULTILINGUAL_V2 = "MULTILINGUAL_V2"
     ENGLISH_V1 = "ENGLISH_V1"
+    FLASH_V2 = "FLASH_V2"
+    FLASH_V2_5 = "FLASH_V2_5"
     TURBO_V2 = "TURBO_V2"
     TURBO_V2_5 = "TURBO_V2_5"
 
@@ -773,6 +778,11 @@ class FilePreparationServiceTypes(str, Enum):
     MISTRAL_DOCUMENT = "MISTRAL_DOCUMENT"
 
 
+class RegexSourceTypes(str, Enum):
+    MARKDOWN = "MARKDOWN"
+    METADATA = "METADATA"
+
+
 class FacetValueTypes(str, Enum):
     VALUE = "VALUE"
     RANGE = "RANGE"
@@ -800,6 +810,8 @@ class CohereModels(str, Enum):
     COMMAND_R_PLUS_202404 = "COMMAND_R_PLUS_202404"
     COMMAND_R_PLUS_202408 = "COMMAND_R_PLUS_202408"
     COMMAND_R7_B_202412 = "COMMAND_R7_B_202412"
+    COMMAND_A = "COMMAND_A"
+    COMMAND_A_202503 = "COMMAND_A_202503"
     CUSTOM = "CUSTOM"
 
 
@@ -1028,6 +1040,11 @@ class OrderByTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
     ORIGINAL_DATE = "ORIGINAL_DATE"
     RELEVANCE = "RELEVANCE"
+
+
+class ContentClassificationServiceTypes(str, Enum):
+    REGEX = "REGEX"
+    MODEL = "MODEL"
 
 
 class AuthenticationServiceTypes(str, Enum):

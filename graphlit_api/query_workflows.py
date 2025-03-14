@@ -10,6 +10,7 @@ from .enums import (
     AssemblyAIModels,
     AzureDocumentIntelligenceModels,
     AzureDocumentIntelligenceVersions,
+    ContentClassificationServiceTypes,
     ContentIndexingServiceTypes,
     ContentTypes,
     DeepgramModels,
@@ -21,6 +22,7 @@ from .enums import (
     IntegrationServiceTypes,
     LinkTypes,
     ObservableTypes,
+    RegexSourceTypes,
     StoragePolicyTypes,
     SummarizationTypes,
 )
@@ -45,6 +47,7 @@ class QueryWorkflowsWorkflowsResults(BaseModel):
     indexing: Optional["QueryWorkflowsWorkflowsResultsIndexing"]
     preparation: Optional["QueryWorkflowsWorkflowsResultsPreparation"]
     extraction: Optional["QueryWorkflowsWorkflowsResultsExtraction"]
+    classification: Optional["QueryWorkflowsWorkflowsResultsClassification"]
     enrichment: Optional["QueryWorkflowsWorkflowsResultsEnrichment"]
     storage: Optional["QueryWorkflowsWorkflowsResultsStorage"]
     actions: Optional[List[Optional["QueryWorkflowsWorkflowsResultsActions"]]]
@@ -254,6 +257,63 @@ class QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelTextSpecificatio
     id: str
 
 
+class QueryWorkflowsWorkflowsResultsClassification(BaseModel):
+    jobs: Optional[List[Optional["QueryWorkflowsWorkflowsResultsClassificationJobs"]]]
+
+
+class QueryWorkflowsWorkflowsResultsClassificationJobs(BaseModel):
+    connector: Optional["QueryWorkflowsWorkflowsResultsClassificationJobsConnector"]
+
+
+class QueryWorkflowsWorkflowsResultsClassificationJobsConnector(BaseModel):
+    type: ContentClassificationServiceTypes
+    content_type: Optional[ContentTypes] = Field(alias="contentType")
+    file_type: Optional[FileTypes] = Field(alias="fileType")
+    model: Optional["QueryWorkflowsWorkflowsResultsClassificationJobsConnectorModel"]
+    regex: Optional["QueryWorkflowsWorkflowsResultsClassificationJobsConnectorRegex"]
+
+
+class QueryWorkflowsWorkflowsResultsClassificationJobsConnectorModel(BaseModel):
+    specification: Optional[
+        "QueryWorkflowsWorkflowsResultsClassificationJobsConnectorModelSpecification"
+    ]
+    rules: Optional[
+        List[
+            Optional[
+                "QueryWorkflowsWorkflowsResultsClassificationJobsConnectorModelRules"
+            ]
+        ]
+    ]
+
+
+class QueryWorkflowsWorkflowsResultsClassificationJobsConnectorModelSpecification(
+    BaseModel
+):
+    id: str
+
+
+class QueryWorkflowsWorkflowsResultsClassificationJobsConnectorModelRules(BaseModel):
+    then: Optional[str]
+    if_: Optional[str] = Field(alias="if")
+
+
+class QueryWorkflowsWorkflowsResultsClassificationJobsConnectorRegex(BaseModel):
+    rules: Optional[
+        List[
+            Optional[
+                "QueryWorkflowsWorkflowsResultsClassificationJobsConnectorRegexRules"
+            ]
+        ]
+    ]
+
+
+class QueryWorkflowsWorkflowsResultsClassificationJobsConnectorRegexRules(BaseModel):
+    then: Optional[str]
+    type: Optional[RegexSourceTypes]
+    path: Optional[str]
+    matches: Optional[str]
+
+
 class QueryWorkflowsWorkflowsResultsEnrichment(BaseModel):
     link: Optional["QueryWorkflowsWorkflowsResultsEnrichmentLink"]
     jobs: Optional[List[Optional["QueryWorkflowsWorkflowsResultsEnrichmentJobs"]]]
@@ -311,11 +371,18 @@ class QueryWorkflowsWorkflowsResultsActionsConnector(BaseModel):
     type: IntegrationServiceTypes
     uri: Optional[str]
     slack: Optional["QueryWorkflowsWorkflowsResultsActionsConnectorSlack"]
+    email: Optional["QueryWorkflowsWorkflowsResultsActionsConnectorEmail"]
 
 
 class QueryWorkflowsWorkflowsResultsActionsConnectorSlack(BaseModel):
     token: str
     channel: str
+
+
+class QueryWorkflowsWorkflowsResultsActionsConnectorEmail(BaseModel):
+    from_: str = Field(alias="from")
+    subject: str
+    to: List[str]
 
 
 QueryWorkflows.model_rebuild()
@@ -335,6 +402,11 @@ QueryWorkflowsWorkflowsResultsExtractionJobs.model_rebuild()
 QueryWorkflowsWorkflowsResultsExtractionJobsConnector.model_rebuild()
 QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelImage.model_rebuild()
 QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelText.model_rebuild()
+QueryWorkflowsWorkflowsResultsClassification.model_rebuild()
+QueryWorkflowsWorkflowsResultsClassificationJobs.model_rebuild()
+QueryWorkflowsWorkflowsResultsClassificationJobsConnector.model_rebuild()
+QueryWorkflowsWorkflowsResultsClassificationJobsConnectorModel.model_rebuild()
+QueryWorkflowsWorkflowsResultsClassificationJobsConnectorRegex.model_rebuild()
 QueryWorkflowsWorkflowsResultsEnrichment.model_rebuild()
 QueryWorkflowsWorkflowsResultsEnrichmentJobs.model_rebuild()
 QueryWorkflowsWorkflowsResultsEnrichmentJobsConnector.model_rebuild()

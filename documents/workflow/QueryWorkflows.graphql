@@ -119,6 +119,32 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
           }
         }
       }
+      classification {
+        jobs {
+          connector {
+            type
+            contentType
+            fileType
+            model {
+              specification {
+                id
+              }
+              rules {
+                then
+                if
+              }
+            }
+            regex {
+              rules {
+                then
+                type
+                path
+                matches
+              }
+            }
+          }
+        }
+      }
       enrichment {
         link {
           enableCrawling
@@ -159,6 +185,11 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
           slack {
             token
             channel
+          }
+          email {
+            from
+            subject
+            to
           }
         }
       }

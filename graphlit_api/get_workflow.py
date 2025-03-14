@@ -10,6 +10,7 @@ from .enums import (
     AssemblyAIModels,
     AzureDocumentIntelligenceModels,
     AzureDocumentIntelligenceVersions,
+    ContentClassificationServiceTypes,
     ContentIndexingServiceTypes,
     ContentTypes,
     DeepgramModels,
@@ -21,6 +22,7 @@ from .enums import (
     IntegrationServiceTypes,
     LinkTypes,
     ObservableTypes,
+    RegexSourceTypes,
     StoragePolicyTypes,
     SummarizationTypes,
 )
@@ -41,6 +43,7 @@ class GetWorkflowWorkflow(BaseModel):
     indexing: Optional["GetWorkflowWorkflowIndexing"]
     preparation: Optional["GetWorkflowWorkflowPreparation"]
     extraction: Optional["GetWorkflowWorkflowExtraction"]
+    classification: Optional["GetWorkflowWorkflowClassification"]
     enrichment: Optional["GetWorkflowWorkflowEnrichment"]
     storage: Optional["GetWorkflowWorkflowStorage"]
     actions: Optional[List[Optional["GetWorkflowWorkflowActions"]]]
@@ -238,6 +241,53 @@ class GetWorkflowWorkflowExtractionJobsConnectorModelTextSpecification(BaseModel
     id: str
 
 
+class GetWorkflowWorkflowClassification(BaseModel):
+    jobs: Optional[List[Optional["GetWorkflowWorkflowClassificationJobs"]]]
+
+
+class GetWorkflowWorkflowClassificationJobs(BaseModel):
+    connector: Optional["GetWorkflowWorkflowClassificationJobsConnector"]
+
+
+class GetWorkflowWorkflowClassificationJobsConnector(BaseModel):
+    type: ContentClassificationServiceTypes
+    content_type: Optional[ContentTypes] = Field(alias="contentType")
+    file_type: Optional[FileTypes] = Field(alias="fileType")
+    model: Optional["GetWorkflowWorkflowClassificationJobsConnectorModel"]
+    regex: Optional["GetWorkflowWorkflowClassificationJobsConnectorRegex"]
+
+
+class GetWorkflowWorkflowClassificationJobsConnectorModel(BaseModel):
+    specification: Optional[
+        "GetWorkflowWorkflowClassificationJobsConnectorModelSpecification"
+    ]
+    rules: Optional[
+        List[Optional["GetWorkflowWorkflowClassificationJobsConnectorModelRules"]]
+    ]
+
+
+class GetWorkflowWorkflowClassificationJobsConnectorModelSpecification(BaseModel):
+    id: str
+
+
+class GetWorkflowWorkflowClassificationJobsConnectorModelRules(BaseModel):
+    then: Optional[str]
+    if_: Optional[str] = Field(alias="if")
+
+
+class GetWorkflowWorkflowClassificationJobsConnectorRegex(BaseModel):
+    rules: Optional[
+        List[Optional["GetWorkflowWorkflowClassificationJobsConnectorRegexRules"]]
+    ]
+
+
+class GetWorkflowWorkflowClassificationJobsConnectorRegexRules(BaseModel):
+    then: Optional[str]
+    type: Optional[RegexSourceTypes]
+    path: Optional[str]
+    matches: Optional[str]
+
+
 class GetWorkflowWorkflowEnrichment(BaseModel):
     link: Optional["GetWorkflowWorkflowEnrichmentLink"]
     jobs: Optional[List[Optional["GetWorkflowWorkflowEnrichmentJobs"]]]
@@ -295,11 +345,18 @@ class GetWorkflowWorkflowActionsConnector(BaseModel):
     type: IntegrationServiceTypes
     uri: Optional[str]
     slack: Optional["GetWorkflowWorkflowActionsConnectorSlack"]
+    email: Optional["GetWorkflowWorkflowActionsConnectorEmail"]
 
 
 class GetWorkflowWorkflowActionsConnectorSlack(BaseModel):
     token: str
     channel: str
+
+
+class GetWorkflowWorkflowActionsConnectorEmail(BaseModel):
+    from_: str = Field(alias="from")
+    subject: str
+    to: List[str]
 
 
 GetWorkflow.model_rebuild()
@@ -318,6 +375,11 @@ GetWorkflowWorkflowExtractionJobs.model_rebuild()
 GetWorkflowWorkflowExtractionJobsConnector.model_rebuild()
 GetWorkflowWorkflowExtractionJobsConnectorModelImage.model_rebuild()
 GetWorkflowWorkflowExtractionJobsConnectorModelText.model_rebuild()
+GetWorkflowWorkflowClassification.model_rebuild()
+GetWorkflowWorkflowClassificationJobs.model_rebuild()
+GetWorkflowWorkflowClassificationJobsConnector.model_rebuild()
+GetWorkflowWorkflowClassificationJobsConnectorModel.model_rebuild()
+GetWorkflowWorkflowClassificationJobsConnectorRegex.model_rebuild()
 GetWorkflowWorkflowEnrichment.model_rebuild()
 GetWorkflowWorkflowEnrichmentJobs.model_rebuild()
 GetWorkflowWorkflowEnrichmentJobsConnector.model_rebuild()

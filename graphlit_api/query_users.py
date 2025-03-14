@@ -69,11 +69,18 @@ class QueryUsersUsersResultsConnectorsIntegration(BaseModel):
     type: IntegrationServiceTypes
     uri: Optional[str]
     slack: Optional["QueryUsersUsersResultsConnectorsIntegrationSlack"]
+    email: Optional["QueryUsersUsersResultsConnectorsIntegrationEmail"]
 
 
 class QueryUsersUsersResultsConnectorsIntegrationSlack(BaseModel):
     token: str
     channel: str
+
+
+class QueryUsersUsersResultsConnectorsIntegrationEmail(BaseModel):
+    from_: str = Field(alias="from")
+    subject: str
+    to: List[str]
 
 
 QueryUsers.model_rebuild()

@@ -1,0 +1,5 @@
+mutation SendNotification($connector: IntegrationConnectorInput!, $text: String!, $textType: TextTypes) {
+  sendNotification(connector: $connector, text: $text, textType: $textType) {
+    result
+  }
+}

@@ -118,6 +118,32 @@ query GetWorkflow($id: ID!, $correlationId: String) {
         }
       }
     }
+    classification {
+      jobs {
+        connector {
+          type
+          contentType
+          fileType
+          model {
+            specification {
+              id
+            }
+            rules {
+              then
+              if
+            }
+          }
+          regex {
+            rules {
+              then
+              type
+              path
+              matches
+            }
+          }
+        }
+      }
+    }
     enrichment {
       link {
         enableCrawling
@@ -158,6 +184,11 @@ query GetWorkflow($id: ID!, $correlationId: String) {
         slack {
           token
           channel
+        }
+        email {
+          from
+          subject
+          to
         }
       }
     }

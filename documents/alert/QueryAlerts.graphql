@@ -98,6 +98,11 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
           token
           channel
         }
+        email {
+          from
+          subject
+          to
+        }
       }
       publishing {
         type

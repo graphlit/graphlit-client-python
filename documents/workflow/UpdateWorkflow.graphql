@@ -113,6 +113,32 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
         }
       }
     }
+    classification {
+      jobs {
+        connector {
+          type
+          contentType
+          fileType
+          model {
+            specification {
+              id
+            }
+            rules {
+              then
+              if
+            }
+          }
+          regex {
+            rules {
+              then
+              type
+              path
+              matches
+            }
+          }
+        }
+      }
+    }
     enrichment {
       link {
         enableCrawling
@@ -153,6 +179,11 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
         slack {
           token
           channel
+        }
+        email {
+          from
+          subject
+          to
         }
       }
     }

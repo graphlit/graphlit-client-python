@@ -11,6 +11,7 @@ query QueryCredits($startDate: DateTime!, $duration: TimeSpan!) {
     indexingRatio
     preparationRatio
     extractionRatio
+    classificationRatio
     enrichmentRatio
     publishingRatio
     searchRatio

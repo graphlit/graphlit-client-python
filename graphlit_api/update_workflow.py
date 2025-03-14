@@ -10,6 +10,7 @@ from .enums import (
     AssemblyAIModels,
     AzureDocumentIntelligenceModels,
     AzureDocumentIntelligenceVersions,
+    ContentClassificationServiceTypes,
     ContentIndexingServiceTypes,
     ContentTypes,
     DeepgramModels,
@@ -21,6 +22,7 @@ from .enums import (
     IntegrationServiceTypes,
     LinkTypes,
     ObservableTypes,
+    RegexSourceTypes,
     StoragePolicyTypes,
     SummarizationTypes,
 )
@@ -40,6 +42,7 @@ class UpdateWorkflowUpdateWorkflow(BaseModel):
     indexing: Optional["UpdateWorkflowUpdateWorkflowIndexing"]
     preparation: Optional["UpdateWorkflowUpdateWorkflowPreparation"]
     extraction: Optional["UpdateWorkflowUpdateWorkflowExtraction"]
+    classification: Optional["UpdateWorkflowUpdateWorkflowClassification"]
     enrichment: Optional["UpdateWorkflowUpdateWorkflowEnrichment"]
     storage: Optional["UpdateWorkflowUpdateWorkflowStorage"]
     actions: Optional[List[Optional["UpdateWorkflowUpdateWorkflowActions"]]]
@@ -245,6 +248,63 @@ class UpdateWorkflowUpdateWorkflowExtractionJobsConnectorModelTextSpecification(
     id: str
 
 
+class UpdateWorkflowUpdateWorkflowClassification(BaseModel):
+    jobs: Optional[List[Optional["UpdateWorkflowUpdateWorkflowClassificationJobs"]]]
+
+
+class UpdateWorkflowUpdateWorkflowClassificationJobs(BaseModel):
+    connector: Optional["UpdateWorkflowUpdateWorkflowClassificationJobsConnector"]
+
+
+class UpdateWorkflowUpdateWorkflowClassificationJobsConnector(BaseModel):
+    type: ContentClassificationServiceTypes
+    content_type: Optional[ContentTypes] = Field(alias="contentType")
+    file_type: Optional[FileTypes] = Field(alias="fileType")
+    model: Optional["UpdateWorkflowUpdateWorkflowClassificationJobsConnectorModel"]
+    regex: Optional["UpdateWorkflowUpdateWorkflowClassificationJobsConnectorRegex"]
+
+
+class UpdateWorkflowUpdateWorkflowClassificationJobsConnectorModel(BaseModel):
+    specification: Optional[
+        "UpdateWorkflowUpdateWorkflowClassificationJobsConnectorModelSpecification"
+    ]
+    rules: Optional[
+        List[
+            Optional[
+                "UpdateWorkflowUpdateWorkflowClassificationJobsConnectorModelRules"
+            ]
+        ]
+    ]
+
+
+class UpdateWorkflowUpdateWorkflowClassificationJobsConnectorModelSpecification(
+    BaseModel
+):
+    id: str
+
+
+class UpdateWorkflowUpdateWorkflowClassificationJobsConnectorModelRules(BaseModel):
+    then: Optional[str]
+    if_: Optional[str] = Field(alias="if")
+
+
+class UpdateWorkflowUpdateWorkflowClassificationJobsConnectorRegex(BaseModel):
+    rules: Optional[
+        List[
+            Optional[
+                "UpdateWorkflowUpdateWorkflowClassificationJobsConnectorRegexRules"
+            ]
+        ]
+    ]
+
+
+class UpdateWorkflowUpdateWorkflowClassificationJobsConnectorRegexRules(BaseModel):
+    then: Optional[str]
+    type: Optional[RegexSourceTypes]
+    path: Optional[str]
+    matches: Optional[str]
+
+
 class UpdateWorkflowUpdateWorkflowEnrichment(BaseModel):
     link: Optional["UpdateWorkflowUpdateWorkflowEnrichmentLink"]
     jobs: Optional[List[Optional["UpdateWorkflowUpdateWorkflowEnrichmentJobs"]]]
@@ -302,11 +362,18 @@ class UpdateWorkflowUpdateWorkflowActionsConnector(BaseModel):
     type: IntegrationServiceTypes
     uri: Optional[str]
     slack: Optional["UpdateWorkflowUpdateWorkflowActionsConnectorSlack"]
+    email: Optional["UpdateWorkflowUpdateWorkflowActionsConnectorEmail"]
 
 
 class UpdateWorkflowUpdateWorkflowActionsConnectorSlack(BaseModel):
     token: str
     channel: str
+
+
+class UpdateWorkflowUpdateWorkflowActionsConnectorEmail(BaseModel):
+    from_: str = Field(alias="from")
+    subject: str
+    to: List[str]
 
 
 UpdateWorkflow.model_rebuild()
@@ -325,6 +392,11 @@ UpdateWorkflowUpdateWorkflowExtractionJobs.model_rebuild()
 UpdateWorkflowUpdateWorkflowExtractionJobsConnector.model_rebuild()
 UpdateWorkflowUpdateWorkflowExtractionJobsConnectorModelImage.model_rebuild()
 UpdateWorkflowUpdateWorkflowExtractionJobsConnectorModelText.model_rebuild()
+UpdateWorkflowUpdateWorkflowClassification.model_rebuild()
+UpdateWorkflowUpdateWorkflowClassificationJobs.model_rebuild()
+UpdateWorkflowUpdateWorkflowClassificationJobsConnector.model_rebuild()
+UpdateWorkflowUpdateWorkflowClassificationJobsConnectorModel.model_rebuild()
+UpdateWorkflowUpdateWorkflowClassificationJobsConnectorRegex.model_rebuild()
 UpdateWorkflowUpdateWorkflowEnrichment.model_rebuild()
 UpdateWorkflowUpdateWorkflowEnrichmentJobs.model_rebuild()
 UpdateWorkflowUpdateWorkflowEnrichmentJobsConnector.model_rebuild()

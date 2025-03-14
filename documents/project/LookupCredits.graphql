@@ -11,6 +11,7 @@ query LookupCredits($correlationId: String!) {
     indexingRatio
     preparationRatio
     extractionRatio
+    classificationRatio
     enrichmentRatio
     publishingRatio
     searchRatio

@@ -224,6 +224,7 @@ from .input_types import (
     FeedFilter,
     FeedInput,
     FeedUpdateInput,
+    IntegrationConnectorInput,
     LabelFilter,
     LabelInput,
     LabelUpdateInput,
@@ -561,6 +562,7 @@ from .operations import (
     REVISE_TEXT_GQL,
     SCREENSHOT_PAGE_GQL,
     SEARCH_WEB_GQL,
+    SEND_NOTIFICATION_GQL,
     SUGGEST_CONVERSATION_GQL,
     SUMMARIZE_CONTENTS_GQL,
     SUMMARIZE_TEXT_GQL,
@@ -649,6 +651,7 @@ from .revise_image import ReviseImage
 from .revise_text import ReviseText
 from .screenshot_page import ScreenshotPage
 from .search_web import SearchWeb
+from .send_notification import SendNotification
 from .suggest_conversation import SuggestConversation
 from .summarize_contents import SummarizeContents
 from .summarize_text import SummarizeText
@@ -4124,6 +4127,27 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdateMedicalTherapy.model_validate(data)
+
+    async def send_notification(
+        self,
+        connector: IntegrationConnectorInput,
+        text: str,
+        text_type: Union[Optional[TextTypes], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> SendNotification:
+        variables: Dict[str, object] = {
+            "connector": connector,
+            "text": text,
+            "textType": text_type,
+        }
+        response = await self.execute(
+            query=SEND_NOTIFICATION_GQL,
+            operation_name="SendNotification",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return SendNotification.model_validate(data)
 
     async def create_observation(
         self, observation: ObservationInput, **kwargs: Any

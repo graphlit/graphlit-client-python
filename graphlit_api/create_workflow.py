@@ -10,6 +10,7 @@ from .enums import (
     AssemblyAIModels,
     AzureDocumentIntelligenceModels,
     AzureDocumentIntelligenceVersions,
+    ContentClassificationServiceTypes,
     ContentIndexingServiceTypes,
     ContentTypes,
     DeepgramModels,
@@ -21,6 +22,7 @@ from .enums import (
     IntegrationServiceTypes,
     LinkTypes,
     ObservableTypes,
+    RegexSourceTypes,
     StoragePolicyTypes,
     SummarizationTypes,
 )
@@ -40,6 +42,7 @@ class CreateWorkflowCreateWorkflow(BaseModel):
     indexing: Optional["CreateWorkflowCreateWorkflowIndexing"]
     preparation: Optional["CreateWorkflowCreateWorkflowPreparation"]
     extraction: Optional["CreateWorkflowCreateWorkflowExtraction"]
+    classification: Optional["CreateWorkflowCreateWorkflowClassification"]
     enrichment: Optional["CreateWorkflowCreateWorkflowEnrichment"]
     storage: Optional["CreateWorkflowCreateWorkflowStorage"]
     actions: Optional[List[Optional["CreateWorkflowCreateWorkflowActions"]]]
@@ -245,6 +248,63 @@ class CreateWorkflowCreateWorkflowExtractionJobsConnectorModelTextSpecification(
     id: str
 
 
+class CreateWorkflowCreateWorkflowClassification(BaseModel):
+    jobs: Optional[List[Optional["CreateWorkflowCreateWorkflowClassificationJobs"]]]
+
+
+class CreateWorkflowCreateWorkflowClassificationJobs(BaseModel):
+    connector: Optional["CreateWorkflowCreateWorkflowClassificationJobsConnector"]
+
+
+class CreateWorkflowCreateWorkflowClassificationJobsConnector(BaseModel):
+    type: ContentClassificationServiceTypes
+    content_type: Optional[ContentTypes] = Field(alias="contentType")
+    file_type: Optional[FileTypes] = Field(alias="fileType")
+    model: Optional["CreateWorkflowCreateWorkflowClassificationJobsConnectorModel"]
+    regex: Optional["CreateWorkflowCreateWorkflowClassificationJobsConnectorRegex"]
+
+
+class CreateWorkflowCreateWorkflowClassificationJobsConnectorModel(BaseModel):
+    specification: Optional[
+        "CreateWorkflowCreateWorkflowClassificationJobsConnectorModelSpecification"
+    ]
+    rules: Optional[
+        List[
+            Optional[
+                "CreateWorkflowCreateWorkflowClassificationJobsConnectorModelRules"
+            ]
+        ]
+    ]
+
+
+class CreateWorkflowCreateWorkflowClassificationJobsConnectorModelSpecification(
+    BaseModel
+):
+    id: str
+
+
+class CreateWorkflowCreateWorkflowClassificationJobsConnectorModelRules(BaseModel):
+    then: Optional[str]
+    if_: Optional[str] = Field(alias="if")
+
+
+class CreateWorkflowCreateWorkflowClassificationJobsConnectorRegex(BaseModel):
+    rules: Optional[
+        List[
+            Optional[
+                "CreateWorkflowCreateWorkflowClassificationJobsConnectorRegexRules"
+            ]
+        ]
+    ]
+
+
+class CreateWorkflowCreateWorkflowClassificationJobsConnectorRegexRules(BaseModel):
+    then: Optional[str]
+    type: Optional[RegexSourceTypes]
+    path: Optional[str]
+    matches: Optional[str]
+
+
 class CreateWorkflowCreateWorkflowEnrichment(BaseModel):
     link: Optional["CreateWorkflowCreateWorkflowEnrichmentLink"]
     jobs: Optional[List[Optional["CreateWorkflowCreateWorkflowEnrichmentJobs"]]]
@@ -302,11 +362,18 @@ class CreateWorkflowCreateWorkflowActionsConnector(BaseModel):
     type: IntegrationServiceTypes
     uri: Optional[str]
     slack: Optional["CreateWorkflowCreateWorkflowActionsConnectorSlack"]
+    email: Optional["CreateWorkflowCreateWorkflowActionsConnectorEmail"]
 
 
 class CreateWorkflowCreateWorkflowActionsConnectorSlack(BaseModel):
     token: str
     channel: str
+
+
+class CreateWorkflowCreateWorkflowActionsConnectorEmail(BaseModel):
+    from_: str = Field(alias="from")
+    subject: str
+    to: List[str]
 
 
 CreateWorkflow.model_rebuild()
@@ -325,6 +392,11 @@ CreateWorkflowCreateWorkflowExtractionJobs.model_rebuild()
 CreateWorkflowCreateWorkflowExtractionJobsConnector.model_rebuild()
 CreateWorkflowCreateWorkflowExtractionJobsConnectorModelImage.model_rebuild()
 CreateWorkflowCreateWorkflowExtractionJobsConnectorModelText.model_rebuild()
+CreateWorkflowCreateWorkflowClassification.model_rebuild()
+CreateWorkflowCreateWorkflowClassificationJobs.model_rebuild()
+CreateWorkflowCreateWorkflowClassificationJobsConnector.model_rebuild()
+CreateWorkflowCreateWorkflowClassificationJobsConnectorModel.model_rebuild()
+CreateWorkflowCreateWorkflowClassificationJobsConnectorRegex.model_rebuild()
 CreateWorkflowCreateWorkflowEnrichment.model_rebuild()
 CreateWorkflowCreateWorkflowEnrichmentJobs.model_rebuild()
 CreateWorkflowCreateWorkflowEnrichmentJobsConnector.model_rebuild()
