@@ -690,6 +690,7 @@ class DeepseekModels(str, Enum):
 class SearchServiceTypes(str, Enum):
     TAVILY = "TAVILY"
     EXA = "EXA"
+    PODSCAN = "PODSCAN"
 
 
 class MedicalContraindicationFacetTypes(str, Enum):
@@ -949,7 +950,6 @@ class UserTypes(str, Enum):
 
 
 class EntityExtractionServiceTypes(str, Enum):
-    ROBOFLOW_IMAGE = "ROBOFLOW_IMAGE"
     MODEL_TEXT = "MODEL_TEXT"
     MODEL_IMAGE = "MODEL_IMAGE"
     OPEN_AI_IMAGE = "OPEN_AI_IMAGE"

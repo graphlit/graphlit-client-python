@@ -1,0 +1,6 @@
+mutation UpsertCategory($category: CategoryInput!) {
+  upsertCategory(category: $category) {
+    id
+    name
+  }
+}

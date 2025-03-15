@@ -1,0 +1,191 @@
+mutation UpsertWorkflow($workflow: WorkflowInput!) {
+  upsertWorkflow(workflow: $workflow) {
+    id
+    name
+    state
+    ingestion {
+      if {
+        types
+        fileTypes
+        allowedPaths
+        excludedPaths
+      }
+      collections {
+        id
+      }
+      observations {
+        type
+        observable {
+          id
+          name
+        }
+      }
+    }
+    indexing {
+      jobs {
+        connector {
+          type
+          contentType
+          fileType
+        }
+      }
+    }
+    preparation {
+      enableUnblockedCapture
+      disableSmartCapture
+      summarizations {
+        type
+        specification {
+          id
+        }
+        tokens
+        items
+        prompt
+      }
+      jobs {
+        connector {
+          type
+          fileTypes
+          azureDocument {
+            version
+            model
+            endpoint
+            key
+          }
+          deepgram {
+            model
+            key
+            enableRedaction
+            enableSpeakerDiarization
+            detectLanguage
+            language
+          }
+          assemblyAI {
+            model
+            key
+            enableRedaction
+            enableSpeakerDiarization
+            detectLanguage
+            language
+          }
+          document {
+            includeImages
+          }
+          email {
+            includeAttachments
+          }
+          modelDocument {
+            specification {
+              id
+            }
+          }
+          mistral {
+            key
+          }
+        }
+      }
+    }
+    extraction {
+      jobs {
+        connector {
+          type
+          contentTypes
+          fileTypes
+          extractedTypes
+          extractedCount
+          azureText {
+            confidenceThreshold
+            enablePII
+          }
+          azureImage {
+            confidenceThreshold
+          }
+          modelImage {
+            specification {
+              id
+            }
+          }
+          modelText {
+            specification {
+              id
+            }
+          }
+        }
+      }
+    }
+    classification {
+      jobs {
+        connector {
+          type
+          contentType
+          fileType
+          model {
+            specification {
+              id
+            }
+            rules {
+              then
+              if
+            }
+          }
+          regex {
+            rules {
+              then
+              type
+              path
+              matches
+            }
+          }
+        }
+      }
+    }
+    enrichment {
+      link {
+        enableCrawling
+        allowedDomains
+        excludedDomains
+        allowedPaths
+        excludedPaths
+        allowedLinks
+        excludedLinks
+        allowedFiles
+        excludedFiles
+        allowContentDomain
+        maximumLinks
+      }
+      jobs {
+        connector {
+          type
+          enrichedTypes
+          fhir {
+            endpoint
+          }
+          diffbot {
+            key
+          }
+        }
+      }
+    }
+    storage {
+      policy {
+        type
+        allowDuplicates
+      }
+    }
+    actions {
+      connector {
+        type
+        uri
+        slack {
+          token
+          channel
+        }
+        email {
+          from
+          subject
+          to
+        }
+      }
+    }
+  }
+}

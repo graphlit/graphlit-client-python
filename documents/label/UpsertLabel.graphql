@@ -1,0 +1,6 @@
+mutation UpsertLabel($label: LabelInput!) {
+  upsertLabel(label: $label) {
+    id
+    name
+  }
+}

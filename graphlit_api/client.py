@@ -596,6 +596,10 @@ from .operations import (
     UPDATE_SPECIFICATION_GQL,
     UPDATE_USER_GQL,
     UPDATE_WORKFLOW_GQL,
+    UPSERT_CATEGORY_GQL,
+    UPSERT_LABEL_GQL,
+    UPSERT_SPECIFICATION_GQL,
+    UPSERT_WORKFLOW_GQL,
 )
 from .prompt import Prompt
 from .prompt_conversation import PromptConversation
@@ -685,6 +689,10 @@ from .update_software import UpdateSoftware
 from .update_specification import UpdateSpecification
 from .update_user import UpdateUser
 from .update_workflow import UpdateWorkflow
+from .upsert_category import UpsertCategory
+from .upsert_label import UpsertLabel
+from .upsert_specification import UpsertSpecification
+from .upsert_workflow import UpsertWorkflow
 
 
 def gql(q: str) -> str:
@@ -970,6 +978,19 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdateCategory.model_validate(data)
+
+    async def upsert_category(
+        self, category: CategoryInput, **kwargs: Any
+    ) -> UpsertCategory:
+        variables: Dict[str, object] = {"category": category}
+        response = await self.execute(
+            query=UPSERT_CATEGORY_GQL,
+            operation_name="UpsertCategory",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpsertCategory.model_validate(data)
 
     async def add_contents_to_collections(
         self,
@@ -2701,6 +2722,17 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdateLabel.model_validate(data)
+
+    async def upsert_label(self, label: LabelInput, **kwargs: Any) -> UpsertLabel:
+        variables: Dict[str, object] = {"label": label}
+        response = await self.execute(
+            query=UPSERT_LABEL_GQL,
+            operation_name="UpsertLabel",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpsertLabel.model_validate(data)
 
     async def count_medical_conditions(
         self,
@@ -5222,6 +5254,19 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return UpdateSpecification.model_validate(data)
 
+    async def upsert_specification(
+        self, specification: SpecificationInput, **kwargs: Any
+    ) -> UpsertSpecification:
+        variables: Dict[str, object] = {"specification": specification}
+        response = await self.execute(
+            query=UPSERT_SPECIFICATION_GQL,
+            operation_name="UpsertSpecification",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpsertSpecification.model_validate(data)
+
     async def count_users(
         self,
         filter: Union[Optional[UserFilter], UnsetType] = UNSET,
@@ -5450,3 +5495,16 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdateWorkflow.model_validate(data)
+
+    async def upsert_workflow(
+        self, workflow: WorkflowInput, **kwargs: Any
+    ) -> UpsertWorkflow:
+        variables: Dict[str, object] = {"workflow": workflow}
+        response = await self.execute(
+            query=UPSERT_WORKFLOW_GQL,
+            operation_name="UpsertWorkflow",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpsertWorkflow.model_validate(data)

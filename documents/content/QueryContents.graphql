@@ -15,7 +15,6 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
       uri
       description
       identifier
-      markdown
       address {
         streetAddress
         city
@@ -162,14 +161,6 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
       }
       language {
         languages
-      }
-      parent {
-        id
-        name
-      }
-      children {
-        id
-        name
       }
       feed {
         id

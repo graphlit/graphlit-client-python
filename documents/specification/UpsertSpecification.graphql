@@ -1,0 +1,9 @@
+mutation UpsertSpecification($specification: SpecificationInput!) {
+  upsertSpecification(specification: $specification) {
+    id
+    name
+    state
+    type
+    serviceType
+  }
+}

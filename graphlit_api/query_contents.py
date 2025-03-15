@@ -43,7 +43,6 @@ class QueryContentsContentsResults(BaseModel):
     uri: Optional[Any]
     description: Optional[str]
     identifier: Optional[str]
-    markdown: Optional[str]
     address: Optional["QueryContentsContentsResultsAddress"]
     location: Optional["QueryContentsContentsResultsLocation"]
     type: Optional[ContentTypes]
@@ -72,8 +71,6 @@ class QueryContentsContentsResults(BaseModel):
     issue: Optional["QueryContentsContentsResultsIssue"]
     package: Optional["QueryContentsContentsResultsPackage"]
     language: Optional["QueryContentsContentsResultsLanguage"]
-    parent: Optional["QueryContentsContentsResultsParent"]
-    children: Optional[List[Optional["QueryContentsContentsResultsChildren"]]]
     feed: Optional["QueryContentsContentsResultsFeed"]
     collections: Optional[List[Optional["QueryContentsContentsResultsCollections"]]]
     links: Optional[List["QueryContentsContentsResultsLinks"]]
@@ -236,16 +233,6 @@ class QueryContentsContentsResultsPackage(BaseModel):
 
 class QueryContentsContentsResultsLanguage(BaseModel):
     languages: Optional[List[Optional[str]]]
-
-
-class QueryContentsContentsResultsParent(BaseModel):
-    id: str
-    name: str
-
-
-class QueryContentsContentsResultsChildren(BaseModel):
-    id: str
-    name: str
 
 
 class QueryContentsContentsResultsFeed(BaseModel):

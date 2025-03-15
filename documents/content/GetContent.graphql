@@ -3,7 +3,6 @@ query GetContent($id: ID!, $correlationId: String) {
     id
     name
     creationDate
-    relevance
     owner {
       id
     }
