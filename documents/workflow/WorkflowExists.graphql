@@ -1,0 +1,5 @@
+query WorkflowExists($filter: WorkflowFilter, $correlationId: String) {
+  workflowExists(filter: $filter, correlationId: $correlationId) {
+    result
+  }
+}

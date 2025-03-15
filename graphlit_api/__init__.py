@@ -639,6 +639,7 @@ from .extract_text import (
     ExtractTextExtractTextContent,
     ExtractTextExtractTextSpecification,
 )
+from .feed_exists import FeedExists, FeedExistsFeedExists
 from .format_conversation import (
     FormatConversation,
     FormatConversationFormatConversation,
@@ -1527,6 +1528,7 @@ from .operations import (
     ENABLE_USER_GQL,
     EXTRACT_CONTENTS_GQL,
     EXTRACT_TEXT_GQL,
+    FEED_EXISTS_GQL,
     FORMAT_CONVERSATION_GQL,
     GET_ALERT_GQL,
     GET_CATEGORY_GQL,
@@ -1623,6 +1625,7 @@ from .operations import (
     SCREENSHOT_PAGE_GQL,
     SEARCH_WEB_GQL,
     SEND_NOTIFICATION_GQL,
+    SPECIFICATION_EXISTS_GQL,
     SUGGEST_CONVERSATION_GQL,
     SUMMARIZE_CONTENTS_GQL,
     SUMMARIZE_TEXT_GQL,
@@ -1660,6 +1663,7 @@ from .operations import (
     UPSERT_LABEL_GQL,
     UPSERT_SPECIFICATION_GQL,
     UPSERT_WORKFLOW_GQL,
+    WORKFLOW_EXISTS_GQL,
 )
 from .prompt import (
     Prompt,
@@ -2246,6 +2250,10 @@ from .screenshot_page import (
 )
 from .search_web import SearchWeb, SearchWebSearchWeb, SearchWebSearchWebResults
 from .send_notification import SendNotification, SendNotificationSendNotification
+from .specification_exists import (
+    SpecificationExists,
+    SpecificationExistsSpecificationExists,
+)
 from .suggest_conversation import (
     SuggestConversation,
     SuggestConversationSuggestConversation,
@@ -2452,6 +2460,7 @@ from .upsert_workflow import (
     UpsertWorkflowUpsertWorkflowStorage,
     UpsertWorkflowUpsertWorkflowStoragePolicy,
 )
+from .workflow_exists import WorkflowExists, WorkflowExistsWorkflowExists
 
 __all__ = [
     "ADD_CONTENTS_TO_COLLECTIONS_GQL",
@@ -3182,10 +3191,13 @@ __all__ = [
     "ExtractTextExtractTextSpecification",
     "ExtractionWorkflowJobInput",
     "ExtractionWorkflowStageInput",
+    "FEED_EXISTS_GQL",
     "FHIREnrichmentPropertiesInput",
     "FORMAT_CONVERSATION_GQL",
     "FacetValueTypes",
     "FeedConnectorTypes",
+    "FeedExists",
+    "FeedExistsFeedExists",
     "FeedFilter",
     "FeedInput",
     "FeedListingTypes",
@@ -4389,6 +4401,7 @@ __all__ = [
     "SCREENSHOT_PAGE_GQL",
     "SEARCH_WEB_GQL",
     "SEND_NOTIFICATION_GQL",
+    "SPECIFICATION_EXISTS_GQL",
     "SUGGEST_CONVERSATION_GQL",
     "SUMMARIZE_CONTENTS_GQL",
     "SUMMARIZE_TEXT_GQL",
@@ -4429,6 +4442,8 @@ __all__ = [
     "SoftwareFilter",
     "SoftwareInput",
     "SoftwareUpdateInput",
+    "SpecificationExists",
+    "SpecificationExistsSpecificationExists",
     "SpecificationFilter",
     "SpecificationInput",
     "SpecificationTypes",
@@ -4677,9 +4692,12 @@ __all__ = [
     "VoyageModelPropertiesInput",
     "VoyageModelPropertiesUpdateInput",
     "VoyageModels",
+    "WORKFLOW_EXISTS_GQL",
     "WebFeedPropertiesInput",
     "WebFeedPropertiesUpdateInput",
     "WorkflowActionInput",
+    "WorkflowExists",
+    "WorkflowExistsWorkflowExists",
     "WorkflowFilter",
     "WorkflowInput",
     "WorkflowUpdateInput",

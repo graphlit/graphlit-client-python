@@ -161,6 +161,7 @@ from .enable_user import EnableUser
 from .enums import SdkTypes, SearchServiceTypes, TextTypes
 from .extract_contents import ExtractContents
 from .extract_text import ExtractText
+from .feed_exists import FeedExists
 from .format_conversation import FormatConversation
 from .get_alert import GetAlert
 from .get_category import GetCategory
@@ -467,6 +468,7 @@ from .operations import (
     ENABLE_USER_GQL,
     EXTRACT_CONTENTS_GQL,
     EXTRACT_TEXT_GQL,
+    FEED_EXISTS_GQL,
     FORMAT_CONVERSATION_GQL,
     GET_ALERT_GQL,
     GET_CATEGORY_GQL,
@@ -563,6 +565,7 @@ from .operations import (
     SCREENSHOT_PAGE_GQL,
     SEARCH_WEB_GQL,
     SEND_NOTIFICATION_GQL,
+    SPECIFICATION_EXISTS_GQL,
     SUGGEST_CONVERSATION_GQL,
     SUMMARIZE_CONTENTS_GQL,
     SUMMARIZE_TEXT_GQL,
@@ -600,6 +603,7 @@ from .operations import (
     UPSERT_LABEL_GQL,
     UPSERT_SPECIFICATION_GQL,
     UPSERT_WORKFLOW_GQL,
+    WORKFLOW_EXISTS_GQL,
 )
 from .prompt import Prompt
 from .prompt_conversation import PromptConversation
@@ -656,6 +660,7 @@ from .revise_text import ReviseText
 from .screenshot_page import ScreenshotPage
 from .search_web import SearchWeb
 from .send_notification import SendNotification
+from .specification_exists import SpecificationExists
 from .suggest_conversation import SuggestConversation
 from .summarize_contents import SummarizeContents
 from .summarize_text import SummarizeText
@@ -693,6 +698,7 @@ from .upsert_category import UpsertCategory
 from .upsert_label import UpsertLabel
 from .upsert_specification import UpsertSpecification
 from .upsert_workflow import UpsertWorkflow
+from .workflow_exists import WorkflowExists
 
 
 def gql(q: str) -> str:
@@ -2429,6 +2435,25 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return EnableFeed.model_validate(data)
+
+    async def feed_exists(
+        self,
+        filter: Union[Optional[FeedFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> FeedExists:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=FEED_EXISTS_GQL,
+            operation_name="FeedExists",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return FeedExists.model_validate(data)
 
     async def get_feed(
         self,
@@ -5241,6 +5266,25 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QuerySpecifications.model_validate(data)
 
+    async def specification_exists(
+        self,
+        filter: Union[Optional[SpecificationFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> SpecificationExists:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=SPECIFICATION_EXISTS_GQL,
+            operation_name="SpecificationExists",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return SpecificationExists.model_validate(data)
+
     async def update_specification(
         self, specification: SpecificationUpdateInput, **kwargs: Any
     ) -> UpdateSpecification:
@@ -5508,3 +5552,22 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpsertWorkflow.model_validate(data)
+
+    async def workflow_exists(
+        self,
+        filter: Union[Optional[WorkflowFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> WorkflowExists:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=WORKFLOW_EXISTS_GQL,
+            operation_name="WorkflowExists",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return WorkflowExists.model_validate(data)

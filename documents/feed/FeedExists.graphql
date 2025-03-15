@@ -1,0 +1,5 @@
+query FeedExists($filter: FeedFilter, $correlationId: String) {
+  feedExists(filter: $filter, correlationId: $correlationId) {
+    result
+  }
+}

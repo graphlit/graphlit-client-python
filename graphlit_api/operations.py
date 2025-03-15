@@ -157,6 +157,7 @@ __all__ = [
     "ENABLE_USER_GQL",
     "EXTRACT_CONTENTS_GQL",
     "EXTRACT_TEXT_GQL",
+    "FEED_EXISTS_GQL",
     "FORMAT_CONVERSATION_GQL",
     "GET_ALERT_GQL",
     "GET_CATEGORY_GQL",
@@ -253,6 +254,7 @@ __all__ = [
     "SCREENSHOT_PAGE_GQL",
     "SEARCH_WEB_GQL",
     "SEND_NOTIFICATION_GQL",
+    "SPECIFICATION_EXISTS_GQL",
     "SUGGEST_CONVERSATION_GQL",
     "SUMMARIZE_CONTENTS_GQL",
     "SUMMARIZE_TEXT_GQL",
@@ -290,6 +292,7 @@ __all__ = [
     "UPSERT_LABEL_GQL",
     "UPSERT_SPECIFICATION_GQL",
     "UPSERT_WORKFLOW_GQL",
+    "WORKFLOW_EXISTS_GQL",
 ]
 
 COUNT_ALERTS_GQL = """
@@ -5562,6 +5565,14 @@ mutation EnableFeed($id: ID!) {
 }
 """
 
+FEED_EXISTS_GQL = """
+query FeedExists($filter: FeedFilter, $correlationId: String) {
+  feedExists(filter: $filter, correlationId: $correlationId) {
+    result
+  }
+}
+"""
+
 GET_FEED_GQL = """
 query GetFeed($id: ID!, $correlationId: String) {
   feed(id: $id, correlationId: $correlationId) {
@@ -8706,6 +8717,14 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
 }
 """
 
+SPECIFICATION_EXISTS_GQL = """
+query SpecificationExists($filter: SpecificationFilter, $correlationId: String) {
+  specificationExists(filter: $filter, correlationId: $correlationId) {
+    result
+  }
+}
+"""
+
 UPDATE_SPECIFICATION_GQL = """
 mutation UpdateSpecification($specification: SpecificationUpdateInput!) {
   updateSpecification(specification: $specification) {
@@ -9904,6 +9923,14 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
         }
       }
     }
+  }
+}
+"""
+
+WORKFLOW_EXISTS_GQL = """
+query WorkflowExists($filter: WorkflowFilter, $correlationId: String) {
+  workflowExists(filter: $filter, correlationId: $correlationId) {
+    result
   }
 }
 """

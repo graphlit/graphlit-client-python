@@ -1,0 +1,5 @@
+query SpecificationExists($filter: SpecificationFilter, $correlationId: String) {
+  specificationExists(filter: $filter, correlationId: $correlationId) {
+    result
+  }
+}
