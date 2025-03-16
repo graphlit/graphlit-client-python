@@ -1784,7 +1784,8 @@ class ContentFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    image: Optional[str] = None
+    image_data: Optional[str] = Field(alias="imageData", default=None)
+    image_mime_type: Optional[str] = Field(alias="imageMimeType", default=None)
     disable_inheritance: Optional[bool] = Field(
         alias="disableInheritance", default=None
     )
