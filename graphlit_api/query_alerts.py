@@ -64,6 +64,8 @@ class QueryAlertsAlertsResultsFilter(BaseModel):
     created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
     file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
+    formats: Optional[List[Optional[str]]]
+    file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
     contents: Optional[List["QueryAlertsAlertsResultsFilterContents"]]
     feeds: Optional[List["QueryAlertsAlertsResultsFilterFeeds"]]
     workflows: Optional[List["QueryAlertsAlertsResultsFilterWorkflows"]]

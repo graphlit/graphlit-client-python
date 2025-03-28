@@ -25,6 +25,8 @@ query GetAlert($id: ID!, $correlationId: String) {
       createdInLast
       types
       fileTypes
+      formats
+      fileExtensions
       contents {
         id
       }

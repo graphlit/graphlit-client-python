@@ -206,6 +206,8 @@ class GetConversationConversationFilter(BaseModel):
     created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
     file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
+    formats: Optional[List[Optional[str]]]
+    file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
     contents: Optional[List["GetConversationConversationFilterContents"]]
     feeds: Optional[List["GetConversationConversationFilterFeeds"]]
     workflows: Optional[List["GetConversationConversationFilterWorkflows"]]
@@ -335,6 +337,8 @@ class GetConversationConversationAugmentedFilter(BaseModel):
     created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
     file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
+    formats: Optional[List[Optional[str]]]
+    file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
     contents: Optional[List["GetConversationConversationAugmentedFilterContents"]]
     feeds: Optional[List["GetConversationConversationAugmentedFilterFeeds"]]
     workflows: Optional[List["GetConversationConversationAugmentedFilterWorkflows"]]

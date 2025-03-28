@@ -13,6 +13,8 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
         if {
           types
           fileTypes
+          formats
+          fileExtensions
           allowedPaths
           excludedPaths
         }

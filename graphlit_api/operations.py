@@ -391,6 +391,8 @@ query GetAlert($id: ID!, $correlationId: String) {
       createdInLast
       types
       fileTypes
+      formats
+      fileExtensions
       contents {
         id
       }
@@ -516,6 +518,8 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
         createdInLast
         types
         fileTypes
+        formats
+        fileExtensions
         contents {
           id
         }
@@ -3739,6 +3743,8 @@ query GetConversation($id: ID!, $correlationId: String) {
       createdInLast
       types
       fileTypes
+      formats
+      fileExtensions
       contents {
         id
       }
@@ -3817,6 +3823,8 @@ query GetConversation($id: ID!, $correlationId: String) {
       createdInLast
       types
       fileTypes
+      formats
+      fileExtensions
       contents {
         id
       }
@@ -4612,6 +4620,8 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         createdInLast
         types
         fileTypes
+        formats
+        fileExtensions
         contents {
           id
         }
@@ -4690,6 +4700,8 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         createdInLast
         types
         fileTypes
+        formats
+        fileExtensions
         contents {
           id
         }
@@ -5765,6 +5777,14 @@ query GetFeed($id: ID!, $correlationId: String) {
       channelIdentifier
       playlistIdentifier
     }
+    twitter {
+      readLimit
+      token
+      type
+      userName
+      query
+      includeAttachments
+    }
     slack {
       readLimit
       type
@@ -6012,6 +6032,14 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         videoIdentifiers
         channelIdentifier
         playlistIdentifier
+      }
+      twitter {
+        readLimit
+        token
+        type
+        userName
+        query
+        includeAttachments
       }
       slack {
         readLimit
@@ -8924,6 +8952,8 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
       if {
         types
         fileTypes
+        formats
+        fileExtensions
         allowedPaths
         excludedPaths
       }
@@ -9154,6 +9184,8 @@ query GetWorkflow($id: ID!, $correlationId: String) {
       if {
         types
         fileTypes
+        formats
+        fileExtensions
         allowedPaths
         excludedPaths
       }
@@ -9354,6 +9386,8 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
         if {
           types
           fileTypes
+          formats
+          fileExtensions
           allowedPaths
           excludedPaths
         }
@@ -9549,6 +9583,8 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
       if {
         types
         fileTypes
+        formats
+        fileExtensions
         allowedPaths
         excludedPaths
       }
@@ -9743,6 +9779,8 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
       if {
         types
         fileTypes
+        formats
+        fileExtensions
         allowedPaths
         excludedPaths
       }

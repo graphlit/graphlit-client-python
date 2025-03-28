@@ -12,6 +12,8 @@ query GetWorkflow($id: ID!, $correlationId: String) {
       if {
         types
         fileTypes
+        formats
+        fileExtensions
         allowedPaths
         excludedPaths
       }

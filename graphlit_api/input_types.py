@@ -103,6 +103,7 @@ from .enums import (
     TimedPolicyRecurrenceTypes,
     TimeIntervalTypes,
     TrelloTypes,
+    TwitterListingTypes,
     UnitTypes,
     UserTypes,
     VoyageModels,
@@ -534,6 +535,8 @@ class PlaceInput(BaseModel):
 class IngestionContentFilterInput(BaseModel):
     types: Optional[List[ContentTypes]] = None
     file_types: Optional[List[FileTypes]] = Field(alias="fileTypes", default=None)
+    formats: Optional[List[Optional[str]]] = None
+    file_extensions: Optional[List[str]] = Field(alias="fileExtensions", default=None)
     allowed_paths: Optional[List[str]] = Field(alias="allowedPaths", default=None)
     excluded_paths: Optional[List[str]] = Field(alias="excludedPaths", default=None)
 
@@ -1283,6 +1286,17 @@ class PointInput(BaseModel):
     distance: Optional[float] = None
 
 
+class TwitterFeedPropertiesUpdateInput(BaseModel):
+    token: Optional[str] = None
+    type: Optional[TwitterListingTypes] = None
+    user_name: Optional[str] = Field(alias="userName", default=None)
+    query: Optional[str] = None
+    include_attachments: Optional[bool] = Field(
+        alias="includeAttachments", default=None
+    )
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
 class RegexClassificationRuleInput(BaseModel):
     type: Optional[RegexSourceTypes] = None
     path: Optional[str] = None
@@ -1652,6 +1666,7 @@ class FeedInput(BaseModel):
     reddit: Optional["RedditFeedPropertiesInput"] = None
     youtube: Optional["YouTubeFeedPropertiesInput"] = None
     notion: Optional["NotionFeedPropertiesInput"] = None
+    twitter: Optional["TwitterFeedPropertiesInput"] = None
     slack: Optional["SlackFeedPropertiesInput"] = None
     microsoft_teams: Optional["MicrosoftTeamsFeedPropertiesInput"] = Field(
         alias="microsoftTeams", default=None
@@ -2791,6 +2806,7 @@ class FeedUpdateInput(BaseModel):
     reddit: Optional["RedditFeedPropertiesUpdateInput"] = None
     youtube: Optional["YouTubeFeedPropertiesUpdateInput"] = None
     notion: Optional["NotionFeedPropertiesUpdateInput"] = None
+    twitter: Optional["TwitterFeedPropertiesUpdateInput"] = None
     slack: Optional["SlackFeedPropertiesUpdateInput"] = None
     microsoft_teams: Optional["MicrosoftTeamsFeedPropertiesUpdateInput"] = Field(
         alias="microsoftTeams", default=None
@@ -3182,6 +3198,17 @@ class OneDriveFeedPropertiesUpdateInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+
+
+class TwitterFeedPropertiesInput(BaseModel):
+    token: str
+    type: Optional[TwitterListingTypes] = None
+    user_name: Optional[str] = Field(alias="userName", default=None)
+    query: Optional[str] = None
+    include_attachments: Optional[bool] = Field(
+        alias="includeAttachments", default=None
+    )
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class ConversationMessageInput(BaseModel):

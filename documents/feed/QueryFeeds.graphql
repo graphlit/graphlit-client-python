@@ -190,6 +190,14 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         channelIdentifier
         playlistIdentifier
       }
+      twitter {
+        readLimit
+        token
+        type
+        userName
+        query
+        includeAttachments
+      }
       slack {
         readLimit
         type

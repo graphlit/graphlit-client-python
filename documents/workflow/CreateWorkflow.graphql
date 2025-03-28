@@ -7,6 +7,8 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
       if {
         types
         fileTypes
+        formats
+        fileExtensions
         allowedPaths
         excludedPaths
       }

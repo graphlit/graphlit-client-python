@@ -58,6 +58,8 @@ class GetAlertAlertFilter(BaseModel):
     created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
     file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
+    formats: Optional[List[Optional[str]]]
+    file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
     contents: Optional[List["GetAlertAlertFilterContents"]]
     feeds: Optional[List["GetAlertAlertFilterFeeds"]]
     workflows: Optional[List["GetAlertAlertFilterWorkflows"]]

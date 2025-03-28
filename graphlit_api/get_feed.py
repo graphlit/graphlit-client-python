@@ -18,6 +18,7 @@ from .enums import (
     SiteTypes,
     TimedPolicyRecurrenceTypes,
     TrelloTypes,
+    TwitterListingTypes,
     YouTubeTypes,
 )
 
@@ -46,6 +47,7 @@ class GetFeedFeed(BaseModel):
     intercom: Optional["GetFeedFeedIntercom"]
     zendesk: Optional["GetFeedFeedZendesk"]
     youtube: Optional["GetFeedFeedYoutube"]
+    twitter: Optional["GetFeedFeedTwitter"]
     slack: Optional["GetFeedFeedSlack"]
     microsoft_teams: Optional["GetFeedFeedMicrosoftTeams"] = Field(
         alias="microsoftTeams"
@@ -291,6 +293,15 @@ class GetFeedFeedYoutube(BaseModel):
     video_identifiers: Optional[List[str]] = Field(alias="videoIdentifiers")
     channel_identifier: Optional[str] = Field(alias="channelIdentifier")
     playlist_identifier: Optional[str] = Field(alias="playlistIdentifier")
+
+
+class GetFeedFeedTwitter(BaseModel):
+    read_limit: Optional[int] = Field(alias="readLimit")
+    token: str
+    type: Optional[TwitterListingTypes]
+    user_name: Optional[str] = Field(alias="userName")
+    query: Optional[str]
+    include_attachments: Optional[bool] = Field(alias="includeAttachments")
 
 
 class GetFeedFeedSlack(BaseModel):

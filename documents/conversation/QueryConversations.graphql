@@ -155,6 +155,8 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         createdInLast
         types
         fileTypes
+        formats
+        fileExtensions
         contents {
           id
         }
@@ -233,6 +235,8 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         createdInLast
         types
         fileTypes
+        formats
+        fileExtensions
         contents {
           id
         }

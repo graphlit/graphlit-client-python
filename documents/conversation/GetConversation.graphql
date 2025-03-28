@@ -154,6 +154,8 @@ query GetConversation($id: ID!, $correlationId: String) {
       createdInLast
       types
       fileTypes
+      formats
+      fileExtensions
       contents {
         id
       }
@@ -232,6 +234,8 @@ query GetConversation($id: ID!, $correlationId: String) {
       createdInLast
       types
       fileTypes
+      formats
+      fileExtensions
       contents {
         id
       }

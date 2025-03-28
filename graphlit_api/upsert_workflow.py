@@ -61,6 +61,8 @@ class UpsertWorkflowUpsertWorkflowIngestion(BaseModel):
 class UpsertWorkflowUpsertWorkflowIngestionIf(BaseModel):
     types: Optional[List[ContentTypes]]
     file_types: Optional[List[FileTypes]] = Field(alias="fileTypes")
+    formats: Optional[List[Optional[str]]]
+    file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
     allowed_paths: Optional[List[str]] = Field(alias="allowedPaths")
     excluded_paths: Optional[List[str]] = Field(alias="excludedPaths")
 
