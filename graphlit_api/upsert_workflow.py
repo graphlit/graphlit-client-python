@@ -365,6 +365,7 @@ class UpsertWorkflowUpsertWorkflowActionsConnector(BaseModel):
     uri: Optional[str]
     slack: Optional["UpsertWorkflowUpsertWorkflowActionsConnectorSlack"]
     email: Optional["UpsertWorkflowUpsertWorkflowActionsConnectorEmail"]
+    twitter: Optional["UpsertWorkflowUpsertWorkflowActionsConnectorTwitter"]
 
 
 class UpsertWorkflowUpsertWorkflowActionsConnectorSlack(BaseModel):
@@ -376,6 +377,13 @@ class UpsertWorkflowUpsertWorkflowActionsConnectorEmail(BaseModel):
     from_: str = Field(alias="from")
     subject: str
     to: List[str]
+
+
+class UpsertWorkflowUpsertWorkflowActionsConnectorTwitter(BaseModel):
+    consumer_key: str = Field(alias="consumerKey")
+    consumer_secret: str = Field(alias="consumerSecret")
+    access_token_key: str = Field(alias="accessTokenKey")
+    access_token_secret: str = Field(alias="accessTokenSecret")
 
 
 UpsertWorkflow.model_rebuild()

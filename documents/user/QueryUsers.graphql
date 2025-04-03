@@ -40,6 +40,12 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
             subject
             to
           }
+          twitter {
+            consumerKey
+            consumerSecret
+            accessTokenKey
+            accessTokenSecret
+          }
         }
       }
     }

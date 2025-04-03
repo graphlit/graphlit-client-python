@@ -503,6 +503,10 @@ class MistralDocumentPreparationPropertiesInput(BaseModel):
     key: Optional[str] = None
 
 
+class NotionDatabasesInput(BaseModel):
+    token: str
+
+
 class DocumentPreparationPropertiesInput(BaseModel):
     include_images: Optional[bool] = Field(alias="includeImages", default=None)
 
@@ -1000,6 +1004,7 @@ class IntegrationConnectorUpdateInput(BaseModel):
     uri: Optional[str] = None
     slack: Optional["SlackIntegrationPropertiesInput"] = None
     email: Optional["EmailIntegrationPropertiesInput"] = None
+    twitter: Optional["TwitterIntegrationPropertiesInput"] = None
 
 
 class MedicalDeviceFilter(BaseModel):
@@ -1175,6 +1180,7 @@ class IntegrationConnectorInput(BaseModel):
     uri: Optional[str] = None
     slack: Optional["SlackIntegrationPropertiesInput"] = None
     email: Optional["EmailIntegrationPropertiesInput"] = None
+    twitter: Optional["TwitterIntegrationPropertiesInput"] = None
 
 
 class SummarizationStrategyInput(BaseModel):
@@ -1323,6 +1329,13 @@ class AmazonFeedPropertiesUpdateInput(BaseModel):
 class DateRangeInput(BaseModel):
     from_: Optional[Any] = Field(alias="from", default=None)
     to: Optional[Any] = None
+
+
+class TwitterIntegrationPropertiesInput(BaseModel):
+    consumer_key: str = Field(alias="consumerKey")
+    consumer_secret: str = Field(alias="consumerSecret")
+    access_token_key: str = Field(alias="accessTokenKey")
+    access_token_secret: str = Field(alias="accessTokenSecret")
 
 
 class EventInput(BaseModel):
@@ -1988,6 +2001,10 @@ class PointFilter(BaseModel):
     latitude: float
     longitude: float
     distance: Optional[float] = None
+
+
+class NotionPagesInput(BaseModel):
+    token: str
 
 
 class CohereModelPropertiesInput(BaseModel):

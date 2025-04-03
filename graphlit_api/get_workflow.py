@@ -348,6 +348,7 @@ class GetWorkflowWorkflowActionsConnector(BaseModel):
     uri: Optional[str]
     slack: Optional["GetWorkflowWorkflowActionsConnectorSlack"]
     email: Optional["GetWorkflowWorkflowActionsConnectorEmail"]
+    twitter: Optional["GetWorkflowWorkflowActionsConnectorTwitter"]
 
 
 class GetWorkflowWorkflowActionsConnectorSlack(BaseModel):
@@ -359,6 +360,13 @@ class GetWorkflowWorkflowActionsConnectorEmail(BaseModel):
     from_: str = Field(alias="from")
     subject: str
     to: List[str]
+
+
+class GetWorkflowWorkflowActionsConnectorTwitter(BaseModel):
+    consumer_key: str = Field(alias="consumerKey")
+    consumer_secret: str = Field(alias="consumerSecret")
+    access_token_key: str = Field(alias="accessTokenKey")
+    access_token_secret: str = Field(alias="accessTokenSecret")
 
 
 GetWorkflow.model_rebuild()

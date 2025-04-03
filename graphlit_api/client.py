@@ -266,6 +266,8 @@ from .input_types import (
     MicrosoftTeamsChannelsInput,
     MicrosoftTeamsTeamsInput,
     ModelFilter,
+    NotionDatabasesInput,
+    NotionPagesInput,
     ObservationInput,
     ObservationReferenceInput,
     ObservationUpdateInput,
@@ -542,6 +544,8 @@ from .operations import (
     QUERY_MICROSOFT_TEAMS_CHANNELS_GQL,
     QUERY_MICROSOFT_TEAMS_TEAMS_GQL,
     QUERY_MODELS_GQL,
+    QUERY_NOTION_DATABASES_GQL,
+    QUERY_NOTION_PAGES_GQL,
     QUERY_ONE_DRIVE_FOLDERS_GQL,
     QUERY_ORGANIZATIONS_GQL,
     QUERY_PERSONS_GQL,
@@ -637,6 +641,8 @@ from .query_medical_therapies import QueryMedicalTherapies
 from .query_microsoft_teams_channels import QueryMicrosoftTeamsChannels
 from .query_microsoft_teams_teams import QueryMicrosoftTeamsTeams
 from .query_models import QueryModels
+from .query_notion_databases import QueryNotionDatabases
+from .query_notion_pages import QueryNotionPages
 from .query_one_drive_folders import QueryOneDriveFolders
 from .query_organizations import QueryOrganizations
 from .query_persons import QueryPersons
@@ -2549,6 +2555,35 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryMicrosoftTeamsTeams.model_validate(data)
+
+    async def query_notion_databases(
+        self, properties: NotionDatabasesInput, **kwargs: Any
+    ) -> QueryNotionDatabases:
+        variables: Dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_NOTION_DATABASES_GQL,
+            operation_name="QueryNotionDatabases",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryNotionDatabases.model_validate(data)
+
+    async def query_notion_pages(
+        self, properties: NotionPagesInput, identifier: str, **kwargs: Any
+    ) -> QueryNotionPages:
+        variables: Dict[str, object] = {
+            "properties": properties,
+            "identifier": identifier,
+        }
+        response = await self.execute(
+            query=QUERY_NOTION_PAGES_GQL,
+            operation_name="QueryNotionPages",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryNotionPages.model_validate(data)
 
     async def query_one_drive_folders(
         self,

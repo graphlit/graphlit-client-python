@@ -189,6 +189,7 @@ class QueryAlertsAlertsResultsIntegration(BaseModel):
     uri: Optional[str]
     slack: Optional["QueryAlertsAlertsResultsIntegrationSlack"]
     email: Optional["QueryAlertsAlertsResultsIntegrationEmail"]
+    twitter: Optional["QueryAlertsAlertsResultsIntegrationTwitter"]
 
 
 class QueryAlertsAlertsResultsIntegrationSlack(BaseModel):
@@ -200,6 +201,13 @@ class QueryAlertsAlertsResultsIntegrationEmail(BaseModel):
     from_: str = Field(alias="from")
     subject: str
     to: List[str]
+
+
+class QueryAlertsAlertsResultsIntegrationTwitter(BaseModel):
+    consumer_key: str = Field(alias="consumerKey")
+    consumer_secret: str = Field(alias="consumerSecret")
+    access_token_key: str = Field(alias="accessTokenKey")
+    access_token_secret: str = Field(alias="accessTokenSecret")
 
 
 class QueryAlertsAlertsResultsPublishing(BaseModel):

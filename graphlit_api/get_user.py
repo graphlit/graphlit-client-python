@@ -66,6 +66,7 @@ class GetUserUserConnectorsIntegration(BaseModel):
     uri: Optional[str]
     slack: Optional["GetUserUserConnectorsIntegrationSlack"]
     email: Optional["GetUserUserConnectorsIntegrationEmail"]
+    twitter: Optional["GetUserUserConnectorsIntegrationTwitter"]
 
 
 class GetUserUserConnectorsIntegrationSlack(BaseModel):
@@ -77,6 +78,13 @@ class GetUserUserConnectorsIntegrationEmail(BaseModel):
     from_: str = Field(alias="from")
     subject: str
     to: List[str]
+
+
+class GetUserUserConnectorsIntegrationTwitter(BaseModel):
+    consumer_key: str = Field(alias="consumerKey")
+    consumer_secret: str = Field(alias="consumerSecret")
+    access_token_key: str = Field(alias="accessTokenKey")
+    access_token_secret: str = Field(alias="accessTokenSecret")
 
 
 GetUser.model_rebuild()

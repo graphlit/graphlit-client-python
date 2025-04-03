@@ -1,0 +1,5 @@
+query QueryNotionPages($properties: NotionPagesInput!, $identifier: String!) {
+  notionPages(properties: $properties, identifier: $identifier) {
+    results
+  }
+}

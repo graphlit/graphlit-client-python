@@ -70,6 +70,7 @@ class QueryUsersUsersResultsConnectorsIntegration(BaseModel):
     uri: Optional[str]
     slack: Optional["QueryUsersUsersResultsConnectorsIntegrationSlack"]
     email: Optional["QueryUsersUsersResultsConnectorsIntegrationEmail"]
+    twitter: Optional["QueryUsersUsersResultsConnectorsIntegrationTwitter"]
 
 
 class QueryUsersUsersResultsConnectorsIntegrationSlack(BaseModel):
@@ -81,6 +82,13 @@ class QueryUsersUsersResultsConnectorsIntegrationEmail(BaseModel):
     from_: str = Field(alias="from")
     subject: str
     to: List[str]
+
+
+class QueryUsersUsersResultsConnectorsIntegrationTwitter(BaseModel):
+    consumer_key: str = Field(alias="consumerKey")
+    consumer_secret: str = Field(alias="consumerSecret")
+    access_token_key: str = Field(alias="accessTokenKey")
+    access_token_secret: str = Field(alias="accessTokenSecret")
 
 
 QueryUsers.model_rebuild()

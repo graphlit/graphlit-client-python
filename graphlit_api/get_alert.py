@@ -183,6 +183,7 @@ class GetAlertAlertIntegration(BaseModel):
     uri: Optional[str]
     slack: Optional["GetAlertAlertIntegrationSlack"]
     email: Optional["GetAlertAlertIntegrationEmail"]
+    twitter: Optional["GetAlertAlertIntegrationTwitter"]
 
 
 class GetAlertAlertIntegrationSlack(BaseModel):
@@ -194,6 +195,13 @@ class GetAlertAlertIntegrationEmail(BaseModel):
     from_: str = Field(alias="from")
     subject: str
     to: List[str]
+
+
+class GetAlertAlertIntegrationTwitter(BaseModel):
+    consumer_key: str = Field(alias="consumerKey")
+    consumer_secret: str = Field(alias="consumerSecret")
+    access_token_key: str = Field(alias="accessTokenKey")
+    access_token_secret: str = Field(alias="accessTokenSecret")
 
 
 class GetAlertAlertPublishing(BaseModel):

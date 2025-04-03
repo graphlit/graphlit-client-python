@@ -374,6 +374,7 @@ class QueryWorkflowsWorkflowsResultsActionsConnector(BaseModel):
     uri: Optional[str]
     slack: Optional["QueryWorkflowsWorkflowsResultsActionsConnectorSlack"]
     email: Optional["QueryWorkflowsWorkflowsResultsActionsConnectorEmail"]
+    twitter: Optional["QueryWorkflowsWorkflowsResultsActionsConnectorTwitter"]
 
 
 class QueryWorkflowsWorkflowsResultsActionsConnectorSlack(BaseModel):
@@ -385,6 +386,13 @@ class QueryWorkflowsWorkflowsResultsActionsConnectorEmail(BaseModel):
     from_: str = Field(alias="from")
     subject: str
     to: List[str]
+
+
+class QueryWorkflowsWorkflowsResultsActionsConnectorTwitter(BaseModel):
+    consumer_key: str = Field(alias="consumerKey")
+    consumer_secret: str = Field(alias="consumerSecret")
+    access_token_key: str = Field(alias="accessTokenKey")
+    access_token_secret: str = Field(alias="accessTokenSecret")
 
 
 QueryWorkflows.model_rebuild()

@@ -1,0 +1,5 @@
+query QueryNotionDatabases($properties: NotionDatabasesInput!) {
+  notionDatabases(properties: $properties) {
+    results
+  }
+}

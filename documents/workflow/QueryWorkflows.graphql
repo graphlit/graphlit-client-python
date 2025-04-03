@@ -193,6 +193,12 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
             subject
             to
           }
+          twitter {
+            consumerKey
+            consumerSecret
+            accessTokenKey
+            accessTokenSecret
+          }
         }
       }
     }

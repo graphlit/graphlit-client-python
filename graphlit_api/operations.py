@@ -231,6 +231,8 @@ __all__ = [
     "QUERY_MICROSOFT_TEAMS_CHANNELS_GQL",
     "QUERY_MICROSOFT_TEAMS_TEAMS_GQL",
     "QUERY_MODELS_GQL",
+    "QUERY_NOTION_DATABASES_GQL",
+    "QUERY_NOTION_PAGES_GQL",
     "QUERY_ONE_DRIVE_FOLDERS_GQL",
     "QUERY_ORGANIZATIONS_GQL",
     "QUERY_PERSONS_GQL",
@@ -470,6 +472,12 @@ query GetAlert($id: ID!, $correlationId: String) {
         subject
         to
       }
+      twitter {
+        consumerKey
+        consumerSecret
+        accessTokenKey
+        accessTokenSecret
+      }
     }
     publishing {
       type
@@ -596,6 +604,12 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
           from
           subject
           to
+        }
+        twitter {
+          consumerKey
+          consumerSecret
+          accessTokenKey
+          accessTokenSecret
         }
       }
       publishing {
@@ -6111,6 +6125,22 @@ query QueryMicrosoftTeamsTeams($properties: MicrosoftTeamsTeamsInput!) {
 }
 """
 
+QUERY_NOTION_DATABASES_GQL = """
+query QueryNotionDatabases($properties: NotionDatabasesInput!) {
+  notionDatabases(properties: $properties) {
+    results
+  }
+}
+"""
+
+QUERY_NOTION_PAGES_GQL = """
+query QueryNotionPages($properties: NotionPagesInput!, $identifier: String!) {
+  notionPages(properties: $properties, identifier: $identifier) {
+    results
+  }
+}
+"""
+
 QUERY_ONE_DRIVE_FOLDERS_GQL = """
 query QueryOneDriveFolders($properties: OneDriveFoldersInput!, $folderId: ID) {
   oneDriveFolders(properties: $properties, folderId: $folderId) {
@@ -8866,6 +8896,12 @@ query GetUser {
           subject
           to
         }
+        twitter {
+          consumerKey
+          consumerSecret
+          accessTokenKey
+          accessTokenSecret
+        }
       }
     }
   }
@@ -8914,6 +8950,12 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
             from
             subject
             to
+          }
+          twitter {
+            consumerKey
+            consumerSecret
+            accessTokenKey
+            accessTokenSecret
           }
         }
       }
@@ -9131,6 +9173,12 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
           from
           subject
           to
+        }
+        twitter {
+          consumerKey
+          consumerSecret
+          accessTokenKey
+          accessTokenSecret
         }
       }
     }
@@ -9364,6 +9412,12 @@ query GetWorkflow($id: ID!, $correlationId: String) {
           subject
           to
         }
+        twitter {
+          consumerKey
+          consumerSecret
+          accessTokenKey
+          accessTokenSecret
+        }
       }
     }
   }
@@ -9566,6 +9620,12 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
             subject
             to
           }
+          twitter {
+            consumerKey
+            consumerSecret
+            accessTokenKey
+            accessTokenSecret
+          }
         }
       }
     }
@@ -9763,6 +9823,12 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
           subject
           to
         }
+        twitter {
+          consumerKey
+          consumerSecret
+          accessTokenKey
+          accessTokenSecret
+        }
       }
     }
   }
@@ -9958,6 +10024,12 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
           from
           subject
           to
+        }
+        twitter {
+          consumerKey
+          consumerSecret
+          accessTokenKey
+          accessTokenSecret
         }
       }
     }

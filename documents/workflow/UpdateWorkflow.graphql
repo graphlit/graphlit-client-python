@@ -187,6 +187,12 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
           subject
           to
         }
+        twitter {
+          consumerKey
+          consumerSecret
+          accessTokenKey
+          accessTokenSecret
+        }
       }
     }
   }

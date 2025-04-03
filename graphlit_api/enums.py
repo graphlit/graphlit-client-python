@@ -263,6 +263,7 @@ class IntegrationServiceTypes(str, Enum):
     SLACK = "SLACK"
     WEB_HOOK = "WEB_HOOK"
     EMAIL = "EMAIL"
+    TWITTER = "TWITTER"
 
 
 class LinkTypes(str, Enum):

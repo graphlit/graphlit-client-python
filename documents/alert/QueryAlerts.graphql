@@ -105,6 +105,12 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
           subject
           to
         }
+        twitter {
+          consumerKey
+          consumerSecret
+          accessTokenKey
+          accessTokenSecret
+        }
       }
       publishing {
         type
