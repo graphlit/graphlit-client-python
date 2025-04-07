@@ -171,6 +171,7 @@ class GetContentContentDocument(BaseModel):
 
 class GetContentContentEmail(BaseModel):
     identifier: Optional[str]
+    thread_identifier: Optional[str] = Field(alias="threadIdentifier")
     subject: Optional[str]
     labels: Optional[List[Optional[str]]]
     sensitivity: Optional[MailSensitivity]

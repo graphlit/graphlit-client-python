@@ -56,6 +56,7 @@ class UpdateWorkflowUpdateWorkflowIngestion(BaseModel):
     observations: Optional[
         List[Optional["UpdateWorkflowUpdateWorkflowIngestionObservations"]]
     ]
+    enable_email_collections: Optional[bool] = Field(alias="enableEmailCollections")
 
 
 class UpdateWorkflowUpdateWorkflowIngestionIf(BaseModel):

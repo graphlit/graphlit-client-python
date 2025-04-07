@@ -28,6 +28,7 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
             name
           }
         }
+        enableEmailCollections
       }
       indexing {
         jobs {

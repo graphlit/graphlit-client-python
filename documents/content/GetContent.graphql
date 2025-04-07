@@ -113,6 +113,7 @@ query GetContent($id: ID!, $correlationId: String) {
     }
     email {
       identifier
+      threadIdentifier
       subject
       labels
       sensitivity

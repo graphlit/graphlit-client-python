@@ -1340,6 +1340,7 @@ query GetContent($id: ID!, $correlationId: String) {
     }
     email {
       identifier
+      threadIdentifier
       subject
       labels
       sensitivity
@@ -2120,6 +2121,7 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
       }
       email {
         identifier
+        threadIdentifier
         subject
         labels
         sensitivity
@@ -9009,6 +9011,7 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
           name
         }
       }
+      enableEmailCollections
     }
     indexing {
       jobs {
@@ -9247,6 +9250,7 @@ query GetWorkflow($id: ID!, $correlationId: String) {
           name
         }
       }
+      enableEmailCollections
     }
     indexing {
       jobs {
@@ -9455,6 +9459,7 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
             name
           }
         }
+        enableEmailCollections
       }
       indexing {
         jobs {
@@ -9658,6 +9663,7 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
           name
         }
       }
+      enableEmailCollections
     }
     indexing {
       jobs {
@@ -9860,6 +9866,7 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
           name
         }
       }
+      enableEmailCollections
     }
     indexing {
       jobs {

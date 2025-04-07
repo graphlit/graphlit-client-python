@@ -65,6 +65,7 @@ class QueryWorkflowsWorkflowsResultsIngestion(BaseModel):
     observations: Optional[
         List[Optional["QueryWorkflowsWorkflowsResultsIngestionObservations"]]
     ]
+    enable_email_collections: Optional[bool] = Field(alias="enableEmailCollections")
 
 
 class QueryWorkflowsWorkflowsResultsIngestionIf(BaseModel):

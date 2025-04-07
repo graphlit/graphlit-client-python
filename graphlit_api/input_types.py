@@ -1979,6 +1979,9 @@ class IngestionWorkflowStageInput(BaseModel):
     if_: Optional["IngestionContentFilterInput"] = Field(alias="if", default=None)
     collections: Optional[List[Optional["EntityReferenceInput"]]] = None
     observations: Optional[List[Optional["ObservationReferenceInput"]]] = None
+    enable_email_collections: Optional[bool] = Field(
+        alias="enableEmailCollections", default=None
+    )
 
 
 class VideoMetadataInput(BaseModel):
@@ -3039,6 +3042,7 @@ class EmailMetadataInput(BaseModel):
     location: Optional["PointInput"] = None
     subject: Optional[str] = None
     identifier: Optional[str] = None
+    thread_identifier: Optional[str] = Field(alias="threadIdentifier", default=None)
     sensitivity: Optional[MailSensitivity] = None
     priority: Optional[MailPriority] = None
     importance: Optional[MailImportance] = None

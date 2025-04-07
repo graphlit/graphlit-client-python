@@ -238,6 +238,7 @@ class MedicalStudyFacetTypes(str, Enum):
 
 class CollectionTypes(str, Enum):
     COLLECTION = "COLLECTION"
+    THREAD = "THREAD"
 
 
 class MedicalDeviceFacetTypes(str, Enum):
@@ -653,6 +654,8 @@ class VoyageModels(str, Enum):
 
 
 class GroqModels(str, Enum):
+    LLAMA_4_MAVERICK_17B = "LLAMA_4_MAVERICK_17B"
+    LLAMA_4_SCOUT_17B = "LLAMA_4_SCOUT_17B"
     DEEPSEEK_R1_LLAMA_70B_PREVIEW = "DEEPSEEK_R1_LLAMA_70B_PREVIEW"
     MIXTRAL_8X7B_INSTRUCT = "MIXTRAL_8X7B_INSTRUCT"
     LLAMA_3_3_70B = "LLAMA_3_3_70B"
