@@ -12,6 +12,7 @@ from .enums import (
     FeedListingTypes,
     FeedServiceTypes,
     FeedTypes,
+    GoogleDriveAuthenticationTypes,
     NotionTypes,
     SearchServiceTypes,
     SharePointAuthenticationTypes,
@@ -134,11 +135,15 @@ class GetFeedFeedSiteOneDrive(BaseModel):
 
 
 class GetFeedFeedSiteGoogleDrive(BaseModel):
+    authentication_type: Optional[GoogleDriveAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
     folder_id: Optional[str] = Field(alias="folderId")
     files: Optional[List[Optional[str]]]
-    refresh_token: str = Field(alias="refreshToken")
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    service_account_json: Optional[str] = Field(alias="serviceAccountJson")
 
 
 class GetFeedFeedSiteDropbox(BaseModel):

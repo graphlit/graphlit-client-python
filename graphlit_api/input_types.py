@@ -43,6 +43,7 @@ from .enums import (
     FeedTypes,
     FilePreparationServiceTypes,
     FileTypes,
+    GoogleDriveAuthenticationTypes,
     GoogleModels,
     GraphStrategyTypes,
     GroqModels,
@@ -993,11 +994,17 @@ class RepoFilter(BaseModel):
 
 
 class GoogleDriveFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[GoogleDriveAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     files: Optional[List[Optional[str]]] = None
     folder_id: Optional[str] = Field(alias="folderId", default=None)
-    refresh_token: str = Field(alias="refreshToken")
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    service_account_json: Optional[str] = Field(
+        alias="serviceAccountJson", default=None
+    )
 
 
 class IntegrationConnectorUpdateInput(BaseModel):

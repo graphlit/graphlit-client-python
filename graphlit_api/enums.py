@@ -675,6 +675,11 @@ class PromptStrategyTypes(str, Enum):
     NONE = "NONE"
 
 
+class GoogleDriveAuthenticationTypes(str, Enum):
+    SERVICE_ACCOUNT = "SERVICE_ACCOUNT"
+    USER = "USER"
+
+
 class AzureDocumentIntelligenceVersions(str, Enum):
     V2023_07_31 = "V2023_07_31"
     V2024_02_29_PREVIEW = "V2024_02_29_PREVIEW"

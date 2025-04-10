@@ -5660,11 +5660,13 @@ query GetFeed($id: ID!, $correlationId: String) {
         refreshToken
       }
       googleDrive {
+        authenticationType
         folderId
         files
         refreshToken
         clientId
         clientSecret
+        serviceAccountJson
       }
       dropbox {
         path
@@ -5916,11 +5918,13 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           refreshToken
         }
         googleDrive {
+          authenticationType
           folderId
           files
           refreshToken
           clientId
           clientSecret
+          serviceAccountJson
         }
         dropbox {
           path
