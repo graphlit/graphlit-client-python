@@ -191,6 +191,7 @@ __all__ = [
     "GET_WORKFLOW_GQL",
     "INGEST_BATCH_GQL",
     "INGEST_ENCODED_FILE_GQL",
+    "INGEST_MEMORY_GQL",
     "INGEST_TEXT_BATCH_GQL",
     "INGEST_TEXT_GQL",
     "INGEST_URI_GQL",
@@ -1591,8 +1592,60 @@ mutation IngestEncodedFile($name: String!, $data: String!, $mimeType: String!, $
 }
 """
 
+INGEST_MEMORY_GQL = """
+mutation IngestMemory($text: String!, $name: String, $textType: TextTypes, $collections: [EntityReferenceInput!], $correlationId: String) {
+  ingestMemory(
+    name: $name
+    text: $text
+    textType: $textType
+    collections: $collections
+    correlationId: $correlationId
+  ) {
+    id
+    name
+    state
+    type
+    fileType
+    mimeType
+    uri
+    collections {
+      id
+      name
+    }
+    observations {
+      id
+      type
+      observable {
+        id
+        name
+      }
+      related {
+        id
+        name
+      }
+      relatedType
+      relation
+      occurrences {
+        type
+        confidence
+        startTime
+        endTime
+        pageIndex
+        boundingBox {
+          left
+          top
+          width
+          height
+        }
+      }
+      state
+    }
+  }
+}
+"""
+
 INGEST_TEXT_GQL = """
-mutation IngestText($name: String!, $text: String!, $textType: TextTypes, $uri: URL, $id: ID, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $correlationId: String) {
+mutation IngestText($text: String!, $name: String, $textType: TextTypes, $uri: URL, $id: ID, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $correlationId: String) {
   ingestText(
     name: $name
     text: $text

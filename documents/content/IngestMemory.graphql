@@ -1,5 +1,5 @@
-mutation IngestText($text: String!, $name: String, $textType: TextTypes, $uri: URL, $id: ID, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $correlationId: String) {
-  ingestText(name: $name, text: $text, textType: $textType, uri: $uri, id: $id, isSynchronous: $isSynchronous, workflow: $workflow, collections: $collections, observations: $observations, correlationId: $correlationId) {
+mutation IngestMemory($text: String!, $name: String, $textType: TextTypes, $collections: [EntityReferenceInput!], $correlationId: String) {
+  ingestMemory(name: $name, text: $text, textType: $textType, collections: $collections, correlationId: $correlationId) {
     id
     name
     state

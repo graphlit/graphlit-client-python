@@ -179,6 +179,7 @@ class ContentTypes(str, Enum):
     EMAIL = "EMAIL"
     EVENT = "EVENT"
     ISSUE = "ISSUE"
+    MEMORY = "MEMORY"
 
 
 class CerebrasModels(str, Enum):

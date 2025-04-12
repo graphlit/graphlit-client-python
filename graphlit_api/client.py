@@ -195,6 +195,7 @@ from .get_user import GetUser
 from .get_workflow import GetWorkflow
 from .ingest_batch import IngestBatch
 from .ingest_encoded_file import IngestEncodedFile
+from .ingest_memory import IngestMemory
 from .ingest_text import IngestText
 from .ingest_text_batch import IngestTextBatch
 from .ingest_uri import IngestUri
@@ -504,6 +505,7 @@ from .operations import (
     GET_WORKFLOW_GQL,
     INGEST_BATCH_GQL,
     INGEST_ENCODED_FILE_GQL,
+    INGEST_MEMORY_GQL,
     INGEST_TEXT_BATCH_GQL,
     INGEST_TEXT_GQL,
     INGEST_URI_GQL,
@@ -1412,10 +1414,35 @@ class Client(AsyncBaseClient):
         _data = self.get_data(response)
         return IngestEncodedFile.model_validate(_data)
 
+    async def ingest_memory(
+        self,
+        text: str,
+        name: Union[Optional[str], UnsetType] = UNSET,
+        text_type: Union[Optional[TextTypes], UnsetType] = UNSET,
+        collections: Union[Optional[List[EntityReferenceInput]], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> IngestMemory:
+        variables: Dict[str, object] = {
+            "text": text,
+            "name": name,
+            "textType": text_type,
+            "collections": collections,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=INGEST_MEMORY_GQL,
+            operation_name="IngestMemory",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return IngestMemory.model_validate(data)
+
     async def ingest_text(
         self,
-        name: str,
         text: str,
+        name: Union[Optional[str], UnsetType] = UNSET,
         text_type: Union[Optional[TextTypes], UnsetType] = UNSET,
         uri: Union[Optional[Any], UnsetType] = UNSET,
         id: Union[Optional[str], UnsetType] = UNSET,
@@ -1429,8 +1456,8 @@ class Client(AsyncBaseClient):
         **kwargs: Any
     ) -> IngestText:
         variables: Dict[str, object] = {
-            "name": name,
             "text": text,
+            "name": name,
             "textType": text_type,
             "uri": uri,
             "id": id,
