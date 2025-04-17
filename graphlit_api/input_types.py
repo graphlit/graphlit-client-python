@@ -2520,11 +2520,17 @@ class CategoryInput(BaseModel):
 
 
 class GoogleDriveFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[GoogleDriveAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     files: Optional[List[Optional[str]]] = None
     folder_id: Optional[str] = Field(alias="folderId", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    service_account_json: Optional[str] = Field(
+        alias="serviceAccountJson", default=None
+    )
 
 
 class PointCloudMetadataInput(BaseModel):
