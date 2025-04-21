@@ -1180,6 +1180,10 @@ class GoogleModelPropertiesUpdateInput(BaseModel):
         alias="completionTokenLimit", default=None
     )
     chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+    enable_thinking: Optional[bool] = Field(alias="enableThinking", default=None)
+    thinking_token_limit: Optional[int] = Field(
+        alias="thinkingTokenLimit", default=None
+    )
 
 
 class IntegrationConnectorInput(BaseModel):
@@ -2702,6 +2706,10 @@ class GoogleModelPropertiesInput(BaseModel):
         alias="completionTokenLimit", default=None
     )
     chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+    enable_thinking: Optional[bool] = Field(alias="enableThinking", default=None)
+    thinking_token_limit: Optional[int] = Field(
+        alias="thinkingTokenLimit", default=None
+    )
 
 
 class WorkflowActionInput(BaseModel):

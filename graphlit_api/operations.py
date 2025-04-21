@@ -8421,6 +8421,8 @@ query GetSpecification($id: ID!, $correlationId: String) {
       temperature
       probability
       chunkTokenLimit
+      enableThinking
+      thinkingTokenLimit
     }
     replicate {
       tokenLimit
@@ -8767,6 +8769,8 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         temperature
         probability
         chunkTokenLimit
+        enableThinking
+        thinkingTokenLimit
       }
       replicate {
         tokenLimit

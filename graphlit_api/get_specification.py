@@ -196,6 +196,8 @@ class GetSpecificationSpecificationGoogle(BaseModel):
     temperature: Optional[float]
     probability: Optional[float]
     chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit")
+    enable_thinking: Optional[bool] = Field(alias="enableThinking")
+    thinking_token_limit: Optional[int] = Field(alias="thinkingTokenLimit")
 
 
 class GetSpecificationSpecificationReplicate(BaseModel):

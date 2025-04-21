@@ -109,6 +109,8 @@ query GetSpecification($id: ID!, $correlationId: String) {
       temperature
       probability
       chunkTokenLimit
+      enableThinking
+      thinkingTokenLimit
     }
     replicate {
       tokenLimit
