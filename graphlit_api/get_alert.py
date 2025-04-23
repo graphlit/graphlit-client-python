@@ -15,6 +15,7 @@ from .enums import (
     FileTypes,
     IntegrationServiceTypes,
     ObservableTypes,
+    OpenAIImageModels,
 )
 
 
@@ -209,11 +210,18 @@ class GetAlertAlertPublishing(BaseModel):
     eleven_labs: Optional["GetAlertAlertPublishingElevenLabs"] = Field(
         alias="elevenLabs"
     )
+    open_ai_image: Optional["GetAlertAlertPublishingOpenAiImage"] = Field(
+        alias="openAIImage"
+    )
 
 
 class GetAlertAlertPublishingElevenLabs(BaseModel):
     model: Optional[ElevenLabsModels]
     voice: Optional[str]
+
+
+class GetAlertAlertPublishingOpenAiImage(BaseModel):
+    model: Optional[OpenAIImageModels]
 
 
 class GetAlertAlertSummarySpecification(BaseModel):

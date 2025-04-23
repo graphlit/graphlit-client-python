@@ -74,6 +74,7 @@ from .enums import (
     NotionTypes,
     ObservableTypes,
     OccurrenceTypes,
+    OpenAIImageModels,
     OpenAIModels,
     OpenAIReasoningEffortLevels,
     OpenAIVisionDetailLevels,
@@ -644,6 +645,10 @@ class ConnectorFilter(BaseModel):
         alias="creationDateRange", default=None
     )
     types: Optional[List[ConnectorTypes]] = None
+
+
+class OpenAIImagePublishingPropertiesInput(BaseModel):
+    model: Optional[OpenAIImageModels] = None
 
 
 class RedditFeedPropertiesInput(BaseModel):
@@ -1327,6 +1332,9 @@ class ContentPublishingConnectorInput(BaseModel):
     eleven_labs: Optional["ElevenLabsPublishingPropertiesInput"] = Field(
         alias="elevenLabs", default=None
     )
+    open_ai_image: Optional["OpenAIImagePublishingPropertiesInput"] = Field(
+        alias="openAIImage", default=None
+    )
 
 
 class AmazonFeedPropertiesUpdateInput(BaseModel):
@@ -1480,6 +1488,9 @@ class ContentPublishingConnectorUpdateInput(BaseModel):
     format: Optional[ContentPublishingFormats] = None
     eleven_labs: Optional["ElevenLabsPublishingPropertiesInput"] = Field(
         alias="elevenLabs", default=None
+    )
+    open_ai_image: Optional["OpenAIImagePublishingPropertiesInput"] = Field(
+        alias="openAIImage", default=None
     )
 
 

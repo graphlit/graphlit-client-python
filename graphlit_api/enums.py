@@ -217,6 +217,11 @@ class OrganizationFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
 
+class OpenAIImageModels(str, Enum):
+    GPT_IMAGE_1 = "GPT_IMAGE_1"
+    CUSTOM = "CUSTOM"
+
+
 class LabelFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
@@ -988,6 +993,9 @@ class EntityExtractionServiceTypes(str, Enum):
 
 
 class ContentPublishingFormats(str, Enum):
+    PNG = "PNG"
+    JPEG = "JPEG"
+    WEBP = "WEBP"
     MP3 = "MP3"
     TEXT = "TEXT"
     MARKDOWN = "MARKDOWN"
@@ -1062,6 +1070,7 @@ class TextRoles(str, Enum):
 
 class ContentPublishingServiceTypes(str, Enum):
     ELEVEN_LABS_AUDIO = "ELEVEN_LABS_AUDIO"
+    OPEN_AI_IMAGE = "OPEN_AI_IMAGE"
     TEXT = "TEXT"
 
 

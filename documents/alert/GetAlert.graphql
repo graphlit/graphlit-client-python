@@ -117,6 +117,9 @@ query GetAlert($id: ID!, $correlationId: String) {
         model
         voice
       }
+      openAIImage {
+        model
+      }
     }
     summarySpecification {
       id

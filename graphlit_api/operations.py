@@ -486,6 +486,9 @@ query GetAlert($id: ID!, $correlationId: String) {
         model
         voice
       }
+      openAIImage {
+        model
+      }
     }
     summarySpecification {
       id
@@ -618,6 +621,9 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
         elevenLabs {
           model
           voice
+        }
+        openAIImage {
+          model
         }
       }
       summarySpecification {
@@ -7916,6 +7922,7 @@ query LookupCredits($correlationId: String!) {
     computeRatio
     embeddingRatio
     completionRatio
+    generationRatio
     ingestionRatio
     indexingRatio
     preparationRatio
@@ -7976,6 +7983,7 @@ query QueryCredits($startDate: DateTime!, $duration: TimeSpan!) {
     computeRatio
     embeddingRatio
     completionRatio
+    generationRatio
     ingestionRatio
     indexingRatio
     preparationRatio

@@ -118,6 +118,9 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
           model
           voice
         }
+        openAIImage {
+          model
+        }
       }
       summarySpecification {
         id
