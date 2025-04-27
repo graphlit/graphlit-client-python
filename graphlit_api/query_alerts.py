@@ -67,6 +67,9 @@ class QueryAlertsAlertsResultsFilter(BaseModel):
     file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
     formats: Optional[List[Optional[str]]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
+    similar_contents: Optional[
+        List["QueryAlertsAlertsResultsFilterSimilarContents"]
+    ] = Field(alias="similarContents")
     contents: Optional[List["QueryAlertsAlertsResultsFilterContents"]]
     feeds: Optional[List["QueryAlertsAlertsResultsFilterFeeds"]]
     workflows: Optional[List["QueryAlertsAlertsResultsFilterWorkflows"]]
@@ -85,6 +88,10 @@ class QueryAlertsAlertsResultsFilterDateRange(BaseModel):
 class QueryAlertsAlertsResultsFilterCreationDateRange(BaseModel):
     from_: Optional[Any] = Field(alias="from")
     to: Optional[Any]
+
+
+class QueryAlertsAlertsResultsFilterSimilarContents(BaseModel):
+    id: str
 
 
 class QueryAlertsAlertsResultsFilterContents(BaseModel):

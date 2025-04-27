@@ -396,6 +396,9 @@ query GetAlert($id: ID!, $correlationId: String) {
       fileTypes
       formats
       fileExtensions
+      similarContents {
+        id
+      }
       contents {
         id
       }
@@ -532,6 +535,9 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
         fileTypes
         formats
         fileExtensions
+        similarContents {
+          id
+        }
         contents {
           id
         }
@@ -3820,6 +3826,9 @@ query GetConversation($id: ID!, $correlationId: String) {
       fileTypes
       formats
       fileExtensions
+      similarContents {
+        id
+      }
       contents {
         id
       }
@@ -3900,6 +3909,9 @@ query GetConversation($id: ID!, $correlationId: String) {
       fileTypes
       formats
       fileExtensions
+      similarContents {
+        id
+      }
       contents {
         id
       }
@@ -4697,6 +4709,9 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         fileTypes
         formats
         fileExtensions
+        similarContents {
+          id
+        }
         contents {
           id
         }
@@ -4777,6 +4792,9 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         fileTypes
         formats
         fileExtensions
+        similarContents {
+          id
+        }
         contents {
           id
         }

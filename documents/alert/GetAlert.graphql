@@ -27,6 +27,9 @@ query GetAlert($id: ID!, $correlationId: String) {
       fileTypes
       formats
       fileExtensions
+      similarContents {
+        id
+      }
       contents {
         id
       }

@@ -28,6 +28,9 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
         fileTypes
         formats
         fileExtensions
+        similarContents {
+          id
+        }
         contents {
           id
         }

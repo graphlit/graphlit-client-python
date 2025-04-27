@@ -224,6 +224,9 @@ class QueryConversationsConversationsResultsFilter(BaseModel):
     file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
     formats: Optional[List[Optional[str]]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
+    similar_contents: Optional[
+        List["QueryConversationsConversationsResultsFilterSimilarContents"]
+    ] = Field(alias="similarContents")
     contents: Optional[List["QueryConversationsConversationsResultsFilterContents"]]
     feeds: Optional[List["QueryConversationsConversationsResultsFilterFeeds"]]
     workflows: Optional[List["QueryConversationsConversationsResultsFilterWorkflows"]]
@@ -250,6 +253,10 @@ class QueryConversationsConversationsResultsFilterDateRange(BaseModel):
 class QueryConversationsConversationsResultsFilterCreationDateRange(BaseModel):
     from_: Optional[Any] = Field(alias="from")
     to: Optional[Any]
+
+
+class QueryConversationsConversationsResultsFilterSimilarContents(BaseModel):
+    id: str
 
 
 class QueryConversationsConversationsResultsFilterContents(BaseModel):
@@ -373,6 +380,9 @@ class QueryConversationsConversationsResultsAugmentedFilter(BaseModel):
     file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
     formats: Optional[List[Optional[str]]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
+    similar_contents: Optional[
+        List["QueryConversationsConversationsResultsAugmentedFilterSimilarContents"]
+    ] = Field(alias="similarContents")
     contents: Optional[
         List["QueryConversationsConversationsResultsAugmentedFilterContents"]
     ]
@@ -403,6 +413,10 @@ class QueryConversationsConversationsResultsAugmentedFilterDateRange(BaseModel):
 class QueryConversationsConversationsResultsAugmentedFilterCreationDateRange(BaseModel):
     from_: Optional[Any] = Field(alias="from")
     to: Optional[Any]
+
+
+class QueryConversationsConversationsResultsAugmentedFilterSimilarContents(BaseModel):
+    id: str
 
 
 class QueryConversationsConversationsResultsAugmentedFilterContents(BaseModel):

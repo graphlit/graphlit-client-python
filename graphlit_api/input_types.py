@@ -146,6 +146,9 @@ class ContentCriteriaInput(BaseModel):
     )
     types: Optional[List[ContentTypes]] = None
     file_types: Optional[List[FileTypes]] = Field(alias="fileTypes", default=None)
+    similar_contents: Optional[List["EntityReferenceInput"]] = Field(
+        alias="similarContents", default=None
+    )
     contents: Optional[List["EntityReferenceInput"]] = None
     feeds: Optional[List["EntityReferenceInput"]] = None
     workflows: Optional[List["EntityReferenceInput"]] = None
@@ -399,7 +402,9 @@ class ProductFilter(BaseModel):
     manufacturer: Optional[str] = None
     brand: Optional[str] = None
     model: Optional[str] = None
-    products: Optional[List["EntityReferenceFilter"]] = None
+    similar_products: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="similarProducts", default=None
+    )
 
 
 class OneDriveFeedPropertiesInput(BaseModel):
@@ -777,7 +782,9 @@ class MedicalStudyFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    studies: Optional[List["EntityReferenceFilter"]] = None
+    similar_studies: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="similarStudies", default=None
+    )
 
 
 class H3IndexFilter(BaseModel):
@@ -995,7 +1002,9 @@ class RepoFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    repos: Optional[List["EntityReferenceFilter"]] = None
+    similar_repos: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="similarRepos", default=None
+    )
 
 
 class GoogleDriveFeedPropertiesInput(BaseModel):
@@ -1039,7 +1048,9 @@ class MedicalDeviceFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    devices: Optional[List["EntityReferenceFilter"]] = None
+    similar_devices: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="similarDevices", default=None
+    )
 
 
 class MedicalContraindicationFilter(BaseModel):
@@ -1062,7 +1073,9 @@ class MedicalContraindicationFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    contraindications: Optional[List["EntityReferenceFilter"]] = None
+    similar_contraindications: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="similarContraindications", default=None
+    )
 
 
 class DiscordFeedPropertiesUpdateInput(BaseModel):
@@ -1117,7 +1130,9 @@ class MedicalIndicationFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    indications: Optional[List["EntityReferenceFilter"]] = None
+    similar_indications: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="similarIndications", default=None
+    )
 
 
 class IndexingWorkflowJobInput(BaseModel):
@@ -1299,6 +1314,9 @@ class ConversationFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
+    similar_conversations: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="similarConversations", default=None
+    )
     conversations: Optional[List["EntityReferenceFilter"]] = None
 
 
@@ -1534,7 +1552,9 @@ class EventFilter(BaseModel):
         alias="isAccessibleForFree", default=None
     )
     typical_age_range: Optional[str] = Field(alias="typicalAgeRange", default=None)
-    events: Optional[List["EntityReferenceFilter"]] = None
+    similar_events: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="similarEvents", default=None
+    )
 
 
 class ClassificationWorkflowStageInput(BaseModel):
@@ -1605,7 +1625,9 @@ class MedicalGuidelineFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    guidelines: Optional[List["EntityReferenceFilter"]] = None
+    similar_guidelines: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="similarGuidelines", default=None
+    )
 
 
 class EmailFeedPropertiesInput(BaseModel):
@@ -1768,7 +1790,9 @@ class MedicalDrugFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    drugs: Optional[List["EntityReferenceFilter"]] = None
+    similar_drugs: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="similarDrugs", default=None
+    )
 
 
 class SlackIntegrationPropertiesInput(BaseModel):
@@ -1846,7 +1870,6 @@ class ContentFilter(BaseModel):
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
     boundaries: Optional[List[Optional[str]]] = None
-    contents: Optional[List["EntityReferenceFilter"]] = None
     in_last: Optional[Any] = Field(alias="inLast", default=None)
     original_date_range: Optional["DateRangeFilter"] = Field(
         alias="originalDateRange", default=None
@@ -1856,6 +1879,10 @@ class ContentFilter(BaseModel):
     file_size_range: Optional["Int64RangeFilter"] = Field(
         alias="fileSizeRange", default=None
     )
+    similar_contents: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="similarContents", default=None
+    )
+    contents: Optional[List["EntityReferenceFilter"]] = None
     feeds: Optional[List["EntityReferenceFilter"]] = None
     workflows: Optional[List["EntityReferenceFilter"]] = None
     collections: Optional[List["EntityReferenceFilter"]] = None
@@ -2100,7 +2127,9 @@ class MedicalTherapyFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    therapies: Optional[List["EntityReferenceFilter"]] = None
+    similar_therapies: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="similarTherapies", default=None
+    )
 
 
 class ElevenLabsPublishingPropertiesInput(BaseModel):
@@ -2200,7 +2229,9 @@ class SoftwareFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    softwares: Optional[List["EntityReferenceFilter"]] = None
+    similar_softwares: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="similarSoftwares", default=None
+    )
 
 
 class AzureAIModelPropertiesUpdateInput(BaseModel):
@@ -2323,7 +2354,9 @@ class PersonFilter(BaseModel):
     phone_number: Optional[str] = Field(alias="phoneNumber", default=None)
     email: Optional[str] = None
     uri: Optional[Any] = None
-    persons: Optional[List["EntityReferenceFilter"]] = None
+    similar_persons: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="similarPersons", default=None
+    )
 
 
 class CerebrasModelPropertiesUpdateInput(BaseModel):
@@ -2654,7 +2687,9 @@ class MedicalDrugClassFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    classes: Optional[List["EntityReferenceFilter"]] = None
+    similar_classes: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="similarClasses", default=None
+    )
 
 
 class MedicalStudyInput(BaseModel):
@@ -2837,7 +2872,9 @@ class MedicalTestFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    tests: Optional[List["EntityReferenceFilter"]] = None
+    similar_tests: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="similarTests", default=None
+    )
 
 
 class IndexingWorkflowStageInput(BaseModel):
@@ -2924,7 +2961,9 @@ class MedicalProcedureFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    procedures: Optional[List["EntityReferenceFilter"]] = None
+    similar_procedures: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="similarProcedures", default=None
+    )
 
 
 class ExtractionWorkflowJobInput(BaseModel):
@@ -3065,7 +3104,9 @@ class MedicalConditionFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    conditions: Optional[List["EntityReferenceFilter"]] = None
+    similar_conditions: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="similarConditions", default=None
+    )
 
 
 class EmailMetadataInput(BaseModel):
@@ -3448,7 +3489,9 @@ class OrganizationFilter(BaseModel):
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
     uri: Optional[Any] = None
-    organizations: Optional[List["EntityReferenceFilter"]] = None
+    similar_organizations: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="similarOrganizations", default=None
+    )
 
 
 class SoftwareFacetInput(BaseModel):
@@ -3563,7 +3606,9 @@ class PlaceFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    places: Optional[List["EntityReferenceFilter"]] = None
+    similar_places: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="similarPlaces", default=None
+    )
 
 
 class H3Filter(BaseModel):

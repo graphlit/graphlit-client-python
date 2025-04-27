@@ -208,6 +208,9 @@ class GetConversationConversationFilter(BaseModel):
     file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
     formats: Optional[List[Optional[str]]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
+    similar_contents: Optional[
+        List["GetConversationConversationFilterSimilarContents"]
+    ] = Field(alias="similarContents")
     contents: Optional[List["GetConversationConversationFilterContents"]]
     feeds: Optional[List["GetConversationConversationFilterFeeds"]]
     workflows: Optional[List["GetConversationConversationFilterWorkflows"]]
@@ -226,6 +229,10 @@ class GetConversationConversationFilterDateRange(BaseModel):
 class GetConversationConversationFilterCreationDateRange(BaseModel):
     from_: Optional[Any] = Field(alias="from")
     to: Optional[Any]
+
+
+class GetConversationConversationFilterSimilarContents(BaseModel):
+    id: str
 
 
 class GetConversationConversationFilterContents(BaseModel):
@@ -339,6 +346,9 @@ class GetConversationConversationAugmentedFilter(BaseModel):
     file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
     formats: Optional[List[Optional[str]]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
+    similar_contents: Optional[
+        List["GetConversationConversationAugmentedFilterSimilarContents"]
+    ] = Field(alias="similarContents")
     contents: Optional[List["GetConversationConversationAugmentedFilterContents"]]
     feeds: Optional[List["GetConversationConversationAugmentedFilterFeeds"]]
     workflows: Optional[List["GetConversationConversationAugmentedFilterWorkflows"]]
@@ -363,6 +373,10 @@ class GetConversationConversationAugmentedFilterDateRange(BaseModel):
 class GetConversationConversationAugmentedFilterCreationDateRange(BaseModel):
     from_: Optional[Any] = Field(alias="from")
     to: Optional[Any]
+
+
+class GetConversationConversationAugmentedFilterSimilarContents(BaseModel):
+    id: str
 
 
 class GetConversationConversationAugmentedFilterContents(BaseModel):
