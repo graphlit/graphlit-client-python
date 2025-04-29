@@ -1768,11 +1768,12 @@ mutation IngestTextBatch($batch: [TextContentInput!]!, $textType: TextTypes, $wo
 """
 
 INGEST_URI_GQL = """
-mutation IngestUri($name: String, $uri: URL!, $id: ID, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $correlationId: String) {
+mutation IngestUri($name: String, $uri: URL!, $id: ID, $mimeType: String, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $correlationId: String) {
   ingestUri(
     name: $name
     uri: $uri
     id: $id
+    mimeType: $mimeType
     workflow: $workflow
     collections: $collections
     observations: $observations
