@@ -245,6 +245,7 @@ __all__ = [
     "QUERY_SLACK_CHANNELS_GQL",
     "QUERY_SOFTWARES_GQL",
     "QUERY_SPECIFICATIONS_GQL",
+    "QUERY_TOKENS_GQL",
     "QUERY_USAGE_GQL",
     "QUERY_USERS_GQL",
     "QUERY_WORKFLOWS_GQL",
@@ -8015,6 +8016,29 @@ query QueryCredits($startDate: DateTime!, $duration: TimeSpan!) {
 }
 """
 
+QUERY_TOKENS_GQL = """
+query QueryTokens($startDate: DateTime!, $duration: TimeSpan!) {
+  tokens(startDate: $startDate, duration: $duration) {
+    correlationId
+    ownerId
+    embeddingInputTokens
+    embeddingModelServices
+    completionInputTokens
+    completionOutputTokens
+    completionModelServices
+    preparationInputTokens
+    preparationOutputTokens
+    preparationModelServices
+    extractionInputTokens
+    extractionOutputTokens
+    extractionModelServices
+    generationInputTokens
+    generationOutputTokens
+    generationModelServices
+  }
+}
+"""
+
 QUERY_USAGE_GQL = """
 query QueryUsage($startDate: DateTime!, $duration: TimeSpan!, $names: [String!], $offset: Int, $limit: Int) {
   usage(
@@ -8470,6 +8494,16 @@ query GetSpecification($id: ID!, $correlationId: String) {
       probability
       chunkTokenLimit
     }
+    bedrock {
+      tokenLimit
+      completionTokenLimit
+      model
+      accessKey
+      secretAccessKey
+      modelName
+      temperature
+      probability
+    }
     groq {
       tokenLimit
       completionTokenLimit
@@ -8817,6 +8851,16 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         temperature
         probability
         chunkTokenLimit
+      }
+      bedrock {
+        tokenLimit
+        completionTokenLimit
+        model
+        accessKey
+        secretAccessKey
+        modelName
+        temperature
+        probability
       }
       groq {
         tokenLimit

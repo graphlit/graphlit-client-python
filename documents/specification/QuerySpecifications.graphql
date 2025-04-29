@@ -133,6 +133,16 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         probability
         chunkTokenLimit
       }
+      bedrock {
+        tokenLimit
+        completionTokenLimit
+        model
+        accessKey
+        secretAccessKey
+        modelName
+        temperature
+        probability
+      }
       groq {
         tokenLimit
         completionTokenLimit

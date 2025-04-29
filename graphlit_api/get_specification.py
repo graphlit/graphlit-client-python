@@ -9,6 +9,7 @@ from .base_model import BaseModel
 from .enums import (
     AnthropicModels,
     AzureOpenAIModels,
+    BedrockModels,
     CerebrasModels,
     CohereModels,
     ConversationSearchTypes,
@@ -78,6 +79,7 @@ class GetSpecificationSpecification(BaseModel):
     google: Optional["GetSpecificationSpecificationGoogle"]
     replicate: Optional["GetSpecificationSpecificationReplicate"]
     mistral: Optional["GetSpecificationSpecificationMistral"]
+    bedrock: Optional["GetSpecificationSpecificationBedrock"]
     groq: Optional["GetSpecificationSpecificationGroq"]
     cerebras: Optional["GetSpecificationSpecificationCerebras"]
     deepseek: Optional["GetSpecificationSpecificationDeepseek"]
@@ -220,6 +222,17 @@ class GetSpecificationSpecificationMistral(BaseModel):
     temperature: Optional[float]
     probability: Optional[float]
     chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit")
+
+
+class GetSpecificationSpecificationBedrock(BaseModel):
+    token_limit: Optional[int] = Field(alias="tokenLimit")
+    completion_token_limit: Optional[int] = Field(alias="completionTokenLimit")
+    model: BedrockModels
+    access_key: Optional[str] = Field(alias="accessKey")
+    secret_access_key: Optional[str] = Field(alias="secretAccessKey")
+    model_name: Optional[str] = Field(alias="modelName")
+    temperature: Optional[float]
+    probability: Optional[float]
 
 
 class GetSpecificationSpecificationGroq(BaseModel):

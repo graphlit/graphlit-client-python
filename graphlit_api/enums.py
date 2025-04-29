@@ -246,6 +246,7 @@ class ModelServiceTypes(str, Enum):
     DEEPSEEK = "DEEPSEEK"
     JINA = "JINA"
     VOYAGE = "VOYAGE"
+    BEDROCK = "BEDROCK"
 
 
 class MedicalStudyFacetTypes(str, Enum):
@@ -535,6 +536,10 @@ class OccurrenceTypes(str, Enum):
     IMAGE = "IMAGE"
     TIME = "TIME"
     TEXT = "TEXT"
+
+
+class BedrockModels(str, Enum):
+    CUSTOM = "CUSTOM"
 
 
 class ContentSourceTypes(str, Enum):

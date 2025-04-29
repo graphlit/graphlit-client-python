@@ -1,0 +1,20 @@
+query QueryTokens($startDate: DateTime!, $duration: TimeSpan!) {
+  tokens(startDate: $startDate, duration: $duration) {
+    correlationId
+    ownerId
+    embeddingInputTokens
+    embeddingModelServices
+    completionInputTokens
+    completionOutputTokens
+    completionModelServices
+    preparationInputTokens
+    preparationOutputTokens
+    preparationModelServices
+    extractionInputTokens
+    extractionOutputTokens
+    extractionModelServices
+    generationInputTokens
+    generationOutputTokens
+    generationModelServices
+  }
+}

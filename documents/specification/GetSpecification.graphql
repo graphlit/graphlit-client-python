@@ -132,6 +132,16 @@ query GetSpecification($id: ID!, $correlationId: String) {
       probability
       chunkTokenLimit
     }
+    bedrock {
+      tokenLimit
+      completionTokenLimit
+      model
+      accessKey
+      secretAccessKey
+      modelName
+      temperature
+      probability
+    }
     groq {
       tokenLimit
       completionTokenLimit

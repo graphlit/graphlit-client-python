@@ -559,6 +559,7 @@ from .operations import (
     QUERY_SLACK_CHANNELS_GQL,
     QUERY_SOFTWARES_GQL,
     QUERY_SPECIFICATIONS_GQL,
+    QUERY_TOKENS_GQL,
     QUERY_USAGE_GQL,
     QUERY_USERS_GQL,
     QUERY_WORKFLOWS_GQL,
@@ -656,6 +657,7 @@ from .query_share_point_libraries import QuerySharePointLibraries
 from .query_slack_channels import QuerySlackChannels
 from .query_softwares import QuerySoftwares
 from .query_specifications import QuerySpecifications
+from .query_tokens import QueryTokens
 from .query_usage import QueryUsage
 from .query_users import QueryUsers
 from .query_workflows import QueryWorkflows
@@ -4856,6 +4858,19 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryCredits.model_validate(data)
+
+    async def query_tokens(
+        self, start_date: Any, duration: Any, **kwargs: Any
+    ) -> QueryTokens:
+        variables: Dict[str, object] = {"startDate": start_date, "duration": duration}
+        response = await self.execute(
+            query=QUERY_TOKENS_GQL,
+            operation_name="QueryTokens",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryTokens.model_validate(data)
 
     async def query_usage(
         self,

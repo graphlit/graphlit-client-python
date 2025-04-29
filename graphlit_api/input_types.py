@@ -14,6 +14,7 @@ from .enums import (
     AzureDocumentIntelligenceModels,
     AzureDocumentIntelligenceVersions,
     AzureOpenAIModels,
+    BedrockModels,
     CategoryFacetTypes,
     CerebrasModels,
     CohereModels,
@@ -852,6 +853,7 @@ class SpecificationInput(BaseModel):
     google: Optional["GoogleModelPropertiesInput"] = None
     replicate: Optional["ReplicateModelPropertiesInput"] = None
     mistral: Optional["MistralModelPropertiesInput"] = None
+    bedrock: Optional["BedrockModelPropertiesInput"] = None
     groq: Optional["GroqModelPropertiesInput"] = None
     cerebras: Optional["CerebrasModelPropertiesInput"] = None
     deepseek: Optional["DeepseekModelPropertiesInput"] = None
@@ -1028,6 +1030,19 @@ class IntegrationConnectorUpdateInput(BaseModel):
     twitter: Optional["TwitterIntegrationPropertiesInput"] = None
 
 
+class BedrockModelPropertiesInput(BaseModel):
+    model: BedrockModels
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    access_key: Optional[str] = Field(alias="accessKey", default=None)
+    secret_access_key: Optional[str] = Field(alias="secretAccessKey", default=None)
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+
+
 class MedicalDeviceFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
@@ -1093,6 +1108,19 @@ class AzureFileFeedPropertiesUpdateInput(BaseModel):
     account_name: Optional[str] = Field(alias="accountName", default=None)
     share_name: Optional[str] = Field(alias="shareName", default=None)
     prefix: Optional[str] = None
+
+
+class BedrockModelPropertiesUpdateInput(BaseModel):
+    model: Optional[BedrockModels] = None
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    access_key: Optional[str] = Field(alias="accessKey", default=None)
+    secret_access_key: Optional[str] = Field(alias="secretAccessKey", default=None)
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
 
 
 class PromptClassificationRuleInput(BaseModel):
@@ -1487,6 +1515,7 @@ class SpecificationUpdateInput(BaseModel):
     google: Optional["GoogleModelPropertiesUpdateInput"] = None
     replicate: Optional["ReplicateModelPropertiesUpdateInput"] = None
     mistral: Optional["MistralModelPropertiesUpdateInput"] = None
+    bedrock: Optional["BedrockModelPropertiesUpdateInput"] = None
     groq: Optional["GroqModelPropertiesUpdateInput"] = None
     cerebras: Optional["CerebrasModelPropertiesUpdateInput"] = None
     deepseek: Optional["DeepseekModelPropertiesUpdateInput"] = None
