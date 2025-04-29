@@ -8040,11 +8040,12 @@ query QueryTokens($startDate: DateTime!, $duration: TimeSpan!) {
 """
 
 QUERY_USAGE_GQL = """
-query QueryUsage($startDate: DateTime!, $duration: TimeSpan!, $names: [String!], $offset: Int, $limit: Int) {
+query QueryUsage($startDate: DateTime!, $duration: TimeSpan!, $names: [String!], $excludedNames: [String!], $offset: Int, $limit: Int) {
   usage(
     startDate: $startDate
     duration: $duration
     names: $names
+    excludedNames: $excludedNames
     offset: $offset
     limit: $limit
   ) {

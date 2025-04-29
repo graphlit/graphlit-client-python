@@ -4877,6 +4877,7 @@ class Client(AsyncBaseClient):
         start_date: Any,
         duration: Any,
         names: Union[Optional[List[str]], UnsetType] = UNSET,
+        excluded_names: Union[Optional[List[str]], UnsetType] = UNSET,
         offset: Union[Optional[int], UnsetType] = UNSET,
         limit: Union[Optional[int], UnsetType] = UNSET,
         **kwargs: Any
@@ -4885,6 +4886,7 @@ class Client(AsyncBaseClient):
             "startDate": start_date,
             "duration": duration,
             "names": names,
+            "excludedNames": excluded_names,
             "offset": offset,
             "limit": limit,
         }
