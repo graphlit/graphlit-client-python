@@ -4125,10 +4125,12 @@ mutation Prompt($prompt: String, $mimeType: String, $data: String, $specificatio
 """
 
 PROMPT_CONVERSATION_GQL = """
-mutation PromptConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $tools: [ToolDefinitionInput!], $requireTool: Boolean, $includeDetails: Boolean, $correlationId: String) {
+mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, $id: ID, $specification: EntityReferenceInput, $tools: [ToolDefinitionInput!], $requireTool: Boolean, $includeDetails: Boolean, $correlationId: String) {
   promptConversation(
     prompt: $prompt
     id: $id
+    mimeType: $mimeType
+    data: $data
     specification: $specification
     tools: $tools
     requireTool: $requireTool

@@ -2007,6 +2007,8 @@ class Client(AsyncBaseClient):
     async def prompt_conversation(
         self,
         prompt: str,
+        mime_type: Union[Optional[str], UnsetType] = UNSET,
+        data: Union[Optional[str], UnsetType] = UNSET,
         id: Union[Optional[str], UnsetType] = UNSET,
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         tools: Union[Optional[List[ToolDefinitionInput]], UnsetType] = UNSET,
@@ -2017,6 +2019,8 @@ class Client(AsyncBaseClient):
     ) -> PromptConversation:
         variables: Dict[str, object] = {
             "prompt": prompt,
+            "mimeType": mime_type,
+            "data": data,
             "id": id,
             "specification": specification,
             "tools": tools,
@@ -2030,8 +2034,8 @@ class Client(AsyncBaseClient):
             variables=variables,
             **kwargs
         )
-        data = self.get_data(response)
-        return PromptConversation.model_validate(data)
+        _data = self.get_data(response)
+        return PromptConversation.model_validate(_data)
 
     async def publish_conversation(
         self,
