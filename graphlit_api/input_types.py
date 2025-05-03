@@ -655,6 +655,8 @@ class ConnectorFilter(BaseModel):
 
 class OpenAIImagePublishingPropertiesInput(BaseModel):
     model: Optional[OpenAIImageModels] = None
+    count: Optional[int] = None
+    seed: Optional["EntityReferenceInput"] = None
 
 
 class RedditFeedPropertiesInput(BaseModel):
@@ -3676,6 +3678,7 @@ PlaceInput.model_rebuild()
 SpecificationFilter.model_rebuild()
 EmbeddingsStrategyInput.model_rebuild()
 ConnectorFilter.model_rebuild()
+OpenAIImagePublishingPropertiesInput.model_rebuild()
 ProjectUpdateInput.model_rebuild()
 MedicalStudyFilter.model_rebuild()
 ClassificationWorkflowJobInput.model_rebuild()

@@ -492,6 +492,10 @@ query GetAlert($id: ID!, $correlationId: String) {
       }
       openAIImage {
         model
+        count
+        seed {
+          id
+        }
       }
     }
     summarySpecification {
@@ -631,6 +635,10 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
         }
         openAIImage {
           model
+          count
+          seed {
+            id
+          }
         }
       }
       summarySpecification {
@@ -1846,7 +1854,7 @@ mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $conne
     publishSpecification: $publishSpecification
     workflow: $workflow
   ) {
-    content {
+    contents {
       id
       name
       state

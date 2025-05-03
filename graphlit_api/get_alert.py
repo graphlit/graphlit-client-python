@@ -229,6 +229,12 @@ class GetAlertAlertPublishingElevenLabs(BaseModel):
 
 class GetAlertAlertPublishingOpenAiImage(BaseModel):
     model: Optional[OpenAIImageModels]
+    count: Optional[int]
+    seed: Optional["GetAlertAlertPublishingOpenAiImageSeed"]
+
+
+class GetAlertAlertPublishingOpenAiImageSeed(BaseModel):
+    id: str
 
 
 class GetAlertAlertSummarySpecification(BaseModel):
@@ -249,3 +255,4 @@ GetAlertAlertFilterAnd.model_rebuild()
 GetAlertAlertFilterAndObservations.model_rebuild()
 GetAlertAlertIntegration.model_rebuild()
 GetAlertAlertPublishing.model_rebuild()
+GetAlertAlertPublishingOpenAiImage.model_rebuild()

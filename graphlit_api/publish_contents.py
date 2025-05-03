@@ -23,11 +23,11 @@ class PublishContents(BaseModel):
 
 
 class PublishContentsPublishContents(BaseModel):
-    content: Optional["PublishContentsPublishContentsContent"]
+    contents: Optional[List[Optional["PublishContentsPublishContentsContents"]]]
     details: Optional["PublishContentsPublishContentsDetails"]
 
 
-class PublishContentsPublishContentsContent(BaseModel):
+class PublishContentsPublishContentsContents(BaseModel):
     id: str
     name: str
     state: EntityState
@@ -56,13 +56,13 @@ class PublishContentsPublishContentsContent(BaseModel):
     posts: Optional[List[str]]
     chapters: Optional[List[str]]
     questions: Optional[List[str]]
-    video: Optional["PublishContentsPublishContentsContentVideo"]
-    audio: Optional["PublishContentsPublishContentsContentAudio"]
-    image: Optional["PublishContentsPublishContentsContentImage"]
-    document: Optional["PublishContentsPublishContentsContentDocument"]
+    video: Optional["PublishContentsPublishContentsContentsVideo"]
+    audio: Optional["PublishContentsPublishContentsContentsAudio"]
+    image: Optional["PublishContentsPublishContentsContentsImage"]
+    document: Optional["PublishContentsPublishContentsContentsDocument"]
 
 
-class PublishContentsPublishContentsContentVideo(BaseModel):
+class PublishContentsPublishContentsContentsVideo(BaseModel):
     width: Optional[int]
     height: Optional[int]
     duration: Optional[Any]
@@ -75,7 +75,7 @@ class PublishContentsPublishContentsContentVideo(BaseModel):
     author: Optional[str]
 
 
-class PublishContentsPublishContentsContentAudio(BaseModel):
+class PublishContentsPublishContentsContentsAudio(BaseModel):
     keywords: Optional[List[Optional[str]]]
     author: Optional[str]
     series: Optional[str]
@@ -94,7 +94,7 @@ class PublishContentsPublishContentsContentAudio(BaseModel):
     duration: Optional[Any]
 
 
-class PublishContentsPublishContentsContentImage(BaseModel):
+class PublishContentsPublishContentsContentsImage(BaseModel):
     width: Optional[int]
     height: Optional[int]
     resolution_x: Optional[int] = Field(alias="resolutionX")
@@ -116,7 +116,7 @@ class PublishContentsPublishContentsContentImage(BaseModel):
     pitch: Optional[float]
 
 
-class PublishContentsPublishContentsContentDocument(BaseModel):
+class PublishContentsPublishContentsContentsDocument(BaseModel):
     title: Optional[str]
     subject: Optional[str]
     summary: Optional[str]
@@ -151,5 +151,5 @@ class PublishContentsPublishContentsDetailsContents(BaseModel):
 
 PublishContents.model_rebuild()
 PublishContentsPublishContents.model_rebuild()
-PublishContentsPublishContentsContent.model_rebuild()
+PublishContentsPublishContentsContents.model_rebuild()
 PublishContentsPublishContentsDetails.model_rebuild()

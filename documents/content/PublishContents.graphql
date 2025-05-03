@@ -1,6 +1,6 @@
 mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $connector: ContentPublishingConnectorInput!, $filter: ContentFilter, $includeDetails: Boolean, $isSynchronous: Boolean, $correlationId: String, $name: String, $summarySpecification: EntityReferenceInput, $publishSpecification: EntityReferenceInput, $workflow: EntityReferenceInput) {
   publishContents(summaryPrompt: $summaryPrompt, publishPrompt: $publishPrompt, connector: $connector, filter: $filter, includeDetails: $includeDetails, isSynchronous: $isSynchronous, correlationId: $correlationId, name: $name, summarySpecification: $summarySpecification, publishSpecification: $publishSpecification, workflow: $workflow) {
-    content {
+    contents {
       id
       name
       state

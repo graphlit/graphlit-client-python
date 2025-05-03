@@ -235,6 +235,12 @@ class QueryAlertsAlertsResultsPublishingElevenLabs(BaseModel):
 
 class QueryAlertsAlertsResultsPublishingOpenAiImage(BaseModel):
     model: Optional[OpenAIImageModels]
+    count: Optional[int]
+    seed: Optional["QueryAlertsAlertsResultsPublishingOpenAiImageSeed"]
+
+
+class QueryAlertsAlertsResultsPublishingOpenAiImageSeed(BaseModel):
+    id: str
 
 
 class QueryAlertsAlertsResultsSummarySpecification(BaseModel):
@@ -256,3 +262,4 @@ QueryAlertsAlertsResultsFilterAnd.model_rebuild()
 QueryAlertsAlertsResultsFilterAndObservations.model_rebuild()
 QueryAlertsAlertsResultsIntegration.model_rebuild()
 QueryAlertsAlertsResultsPublishing.model_rebuild()
+QueryAlertsAlertsResultsPublishingOpenAiImage.model_rebuild()

@@ -122,6 +122,10 @@ query GetAlert($id: ID!, $correlationId: String) {
       }
       openAIImage {
         model
+        count
+        seed {
+          id
+        }
       }
     }
     summarySpecification {

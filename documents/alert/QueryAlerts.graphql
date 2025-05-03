@@ -123,6 +123,10 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
         }
         openAIImage {
           model
+          count
+          seed {
+            id
+          }
         }
       }
       summarySpecification {
