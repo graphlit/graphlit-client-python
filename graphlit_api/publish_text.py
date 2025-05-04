@@ -12,6 +12,7 @@ from .enums import (
     FileTypes,
     ImageProjectionTypes,
     OrientationTypes,
+    TextTypes,
 )
 
 
@@ -20,6 +21,11 @@ class PublishText(BaseModel):
 
 
 class PublishTextPublishText(BaseModel):
+    contents: Optional[List[Optional["PublishTextPublishTextContents"]]]
+    details: Optional["PublishTextPublishTextDetails"]
+
+
+class PublishTextPublishTextContents(BaseModel):
     id: str
     name: str
     state: EntityState
@@ -48,13 +54,13 @@ class PublishTextPublishText(BaseModel):
     posts: Optional[List[str]]
     chapters: Optional[List[str]]
     questions: Optional[List[str]]
-    video: Optional["PublishTextPublishTextVideo"]
-    audio: Optional["PublishTextPublishTextAudio"]
-    image: Optional["PublishTextPublishTextImage"]
-    document: Optional["PublishTextPublishTextDocument"]
+    video: Optional["PublishTextPublishTextContentsVideo"]
+    audio: Optional["PublishTextPublishTextContentsAudio"]
+    image: Optional["PublishTextPublishTextContentsImage"]
+    document: Optional["PublishTextPublishTextContentsDocument"]
 
 
-class PublishTextPublishTextVideo(BaseModel):
+class PublishTextPublishTextContentsVideo(BaseModel):
     width: Optional[int]
     height: Optional[int]
     duration: Optional[Any]
@@ -67,7 +73,7 @@ class PublishTextPublishTextVideo(BaseModel):
     author: Optional[str]
 
 
-class PublishTextPublishTextAudio(BaseModel):
+class PublishTextPublishTextContentsAudio(BaseModel):
     keywords: Optional[List[Optional[str]]]
     author: Optional[str]
     series: Optional[str]
@@ -86,7 +92,7 @@ class PublishTextPublishTextAudio(BaseModel):
     duration: Optional[Any]
 
 
-class PublishTextPublishTextImage(BaseModel):
+class PublishTextPublishTextContentsImage(BaseModel):
     width: Optional[int]
     height: Optional[int]
     resolution_x: Optional[int] = Field(alias="resolutionX")
@@ -108,7 +114,7 @@ class PublishTextPublishTextImage(BaseModel):
     pitch: Optional[float]
 
 
-class PublishTextPublishTextDocument(BaseModel):
+class PublishTextPublishTextContentsDocument(BaseModel):
     title: Optional[str]
     subject: Optional[str]
     summary: Optional[str]
@@ -126,5 +132,22 @@ class PublishTextPublishTextDocument(BaseModel):
     has_digital_signature: Optional[bool] = Field(alias="hasDigitalSignature")
 
 
+class PublishTextPublishTextDetails(BaseModel):
+    contents: Optional[List["PublishTextPublishTextDetailsContents"]]
+    summaries: Optional[List[str]]
+    text: Optional[str]
+    text_type: Optional[TextTypes] = Field(alias="textType")
+    summary_specification: Optional[str] = Field(alias="summarySpecification")
+    publish_specification: Optional[str] = Field(alias="publishSpecification")
+    summary_time: Optional[Any] = Field(alias="summaryTime")
+    publish_time: Optional[Any] = Field(alias="publishTime")
+
+
+class PublishTextPublishTextDetailsContents(BaseModel):
+    id: str
+
+
 PublishText.model_rebuild()
 PublishTextPublishText.model_rebuild()
+PublishTextPublishTextContents.model_rebuild()
+PublishTextPublishTextDetails.model_rebuild()

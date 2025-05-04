@@ -12,6 +12,7 @@ from .enums import (
     FileTypes,
     ImageProjectionTypes,
     OrientationTypes,
+    TextTypes,
 )
 
 
@@ -22,6 +23,11 @@ class PublishConversation(BaseModel):
 
 
 class PublishConversationPublishConversation(BaseModel):
+    contents: Optional[List[Optional["PublishConversationPublishConversationContents"]]]
+    details: Optional["PublishConversationPublishConversationDetails"]
+
+
+class PublishConversationPublishConversationContents(BaseModel):
     id: str
     name: str
     state: EntityState
@@ -50,13 +56,13 @@ class PublishConversationPublishConversation(BaseModel):
     posts: Optional[List[str]]
     chapters: Optional[List[str]]
     questions: Optional[List[str]]
-    video: Optional["PublishConversationPublishConversationVideo"]
-    audio: Optional["PublishConversationPublishConversationAudio"]
-    image: Optional["PublishConversationPublishConversationImage"]
-    document: Optional["PublishConversationPublishConversationDocument"]
+    video: Optional["PublishConversationPublishConversationContentsVideo"]
+    audio: Optional["PublishConversationPublishConversationContentsAudio"]
+    image: Optional["PublishConversationPublishConversationContentsImage"]
+    document: Optional["PublishConversationPublishConversationContentsDocument"]
 
 
-class PublishConversationPublishConversationVideo(BaseModel):
+class PublishConversationPublishConversationContentsVideo(BaseModel):
     width: Optional[int]
     height: Optional[int]
     duration: Optional[Any]
@@ -69,7 +75,7 @@ class PublishConversationPublishConversationVideo(BaseModel):
     author: Optional[str]
 
 
-class PublishConversationPublishConversationAudio(BaseModel):
+class PublishConversationPublishConversationContentsAudio(BaseModel):
     keywords: Optional[List[Optional[str]]]
     author: Optional[str]
     series: Optional[str]
@@ -88,7 +94,7 @@ class PublishConversationPublishConversationAudio(BaseModel):
     duration: Optional[Any]
 
 
-class PublishConversationPublishConversationImage(BaseModel):
+class PublishConversationPublishConversationContentsImage(BaseModel):
     width: Optional[int]
     height: Optional[int]
     resolution_x: Optional[int] = Field(alias="resolutionX")
@@ -110,7 +116,7 @@ class PublishConversationPublishConversationImage(BaseModel):
     pitch: Optional[float]
 
 
-class PublishConversationPublishConversationDocument(BaseModel):
+class PublishConversationPublishConversationContentsDocument(BaseModel):
     title: Optional[str]
     subject: Optional[str]
     summary: Optional[str]
@@ -128,5 +134,22 @@ class PublishConversationPublishConversationDocument(BaseModel):
     has_digital_signature: Optional[bool] = Field(alias="hasDigitalSignature")
 
 
+class PublishConversationPublishConversationDetails(BaseModel):
+    contents: Optional[List["PublishConversationPublishConversationDetailsContents"]]
+    summaries: Optional[List[str]]
+    text: Optional[str]
+    text_type: Optional[TextTypes] = Field(alias="textType")
+    summary_specification: Optional[str] = Field(alias="summarySpecification")
+    publish_specification: Optional[str] = Field(alias="publishSpecification")
+    summary_time: Optional[Any] = Field(alias="summaryTime")
+    publish_time: Optional[Any] = Field(alias="publishTime")
+
+
+class PublishConversationPublishConversationDetailsContents(BaseModel):
+    id: str
+
+
 PublishConversation.model_rebuild()
 PublishConversationPublishConversation.model_rebuild()
+PublishConversationPublishConversationContents.model_rebuild()
+PublishConversationPublishConversationDetails.model_rebuild()
