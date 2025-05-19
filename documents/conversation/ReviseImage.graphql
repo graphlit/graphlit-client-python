@@ -125,6 +125,8 @@ mutation ReviseImage($prompt: String!, $uri: URL!, $id: ID, $specification: Enti
       model
       data
       mimeType
+      toolCallId
+      toolCallResponse
     }
     messageCount
   }

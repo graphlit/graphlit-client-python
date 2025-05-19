@@ -1058,6 +1058,8 @@ mutation DescribeEncodedImage($prompt: String!, $mimeType: String!, $data: Strin
     model
     data
     mimeType
+    toolCallId
+    toolCallResponse
   }
 }
 """
@@ -1191,6 +1193,8 @@ mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityRefer
     model
     data
     mimeType
+    toolCallId
+    toolCallResponse
   }
 }
 """
@@ -2672,6 +2676,8 @@ mutation AskGraphlit($prompt: String!, $type: SdkTypes, $id: ID, $specification:
       model
       data
       mimeType
+      toolCallId
+      toolCallResponse
     }
     messageCount
   }
@@ -2832,6 +2838,8 @@ mutation CompleteConversation($completion: String!, $id: ID!, $correlationId: St
       model
       data
       mimeType
+      toolCallId
+      toolCallResponse
     }
     messageCount
     facets {
@@ -3007,6 +3015,8 @@ mutation CompleteConversation($completion: String!, $id: ID!, $correlationId: St
         model
         data
         mimeType
+        toolCallId
+        toolCallResponse
       }
     }
   }
@@ -3145,6 +3155,8 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
       model
       data
       mimeType
+      toolCallId
+      toolCallResponse
     }
     messageCount
     facets {
@@ -3320,6 +3332,8 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
         model
         data
         mimeType
+        toolCallId
+        toolCallResponse
       }
     }
   }
@@ -3510,6 +3524,8 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
       model
       data
       mimeType
+      toolCallId
+      toolCallResponse
     }
     messageCount
     facets {
@@ -3685,6 +3701,8 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
         model
         data
         mimeType
+        toolCallId
+        toolCallResponse
       }
     }
   }
@@ -3826,6 +3844,8 @@ query GetConversation($id: ID!, $correlationId: String) {
       model
       data
       mimeType
+      toolCallId
+      toolCallResponse
     }
     specification {
       id
@@ -4140,6 +4160,8 @@ mutation Prompt($prompt: String, $mimeType: String, $data: String, $specificatio
       model
       data
       mimeType
+      toolCallId
+      toolCallResponse
     }
     error
   }
@@ -4284,6 +4306,8 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
       model
       data
       mimeType
+      toolCallId
+      toolCallResponse
     }
     messageCount
     facets {
@@ -4459,6 +4483,8 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
         model
         data
         mimeType
+        toolCallId
+        toolCallResponse
       }
     }
   }
@@ -4725,6 +4751,8 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         model
         data
         mimeType
+        toolCallId
+        toolCallResponse
       }
       specification {
         id
@@ -5066,6 +5094,8 @@ mutation ReviseContent($prompt: String!, $content: EntityReferenceInput!, $id: I
       model
       data
       mimeType
+      toolCallId
+      toolCallResponse
     }
     messageCount
   }
@@ -5207,6 +5237,8 @@ mutation ReviseEncodedImage($prompt: String!, $mimeType: String!, $data: String!
       model
       data
       mimeType
+      toolCallId
+      toolCallResponse
     }
     messageCount
   }
@@ -5347,6 +5379,8 @@ mutation ReviseImage($prompt: String!, $uri: URL!, $id: ID, $specification: Enti
       model
       data
       mimeType
+      toolCallId
+      toolCallResponse
     }
     messageCount
   }
@@ -5487,6 +5521,8 @@ mutation ReviseText($prompt: String!, $text: String!, $id: ID, $specification: E
       model
       data
       mimeType
+      toolCallId
+      toolCallResponse
     }
     messageCount
   }
@@ -8717,6 +8753,8 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
       model
       data
       mimeType
+      toolCallId
+      toolCallResponse
     }
     error
   }

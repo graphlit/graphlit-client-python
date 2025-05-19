@@ -125,6 +125,8 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
       model
       data
       mimeType
+      toolCallId
+      toolCallResponse
     }
     error
   }

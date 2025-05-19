@@ -539,6 +539,11 @@ class OccurrenceTypes(str, Enum):
 
 
 class BedrockModels(str, Enum):
+    LLAMA_4_MAVERICK_17B = "LLAMA_4_MAVERICK_17B"
+    LLAMA_4_SCOUT_17B = "LLAMA_4_SCOUT_17B"
+    CLAUDE_3_7_SONNET = "CLAUDE_3_7_SONNET"
+    NOVA_PREMIER = "NOVA_PREMIER"
+    NOVA_PRO = "NOVA_PRO"
     CUSTOM = "CUSTOM"
 
 
@@ -1027,6 +1032,7 @@ class ConversationRoleTypes(str, Enum):
     SYSTEM = "SYSTEM"
     ASSISTANT = "ASSISTANT"
     USER = "USER"
+    TOOL = "TOOL"
 
 
 class ConnectorTypes(str, Enum):

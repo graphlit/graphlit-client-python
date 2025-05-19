@@ -125,6 +125,8 @@ mutation Prompt($prompt: String, $mimeType: String, $data: String, $specificatio
       model
       data
       mimeType
+      toolCallId
+      toolCallResponse
     }
     error
   }

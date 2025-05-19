@@ -125,6 +125,8 @@ mutation ReviseContent($prompt: String!, $content: EntityReferenceInput!, $id: I
       model
       data
       mimeType
+      toolCallId
+      toolCallResponse
     }
     messageCount
   }

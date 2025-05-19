@@ -125,6 +125,8 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
       model
       data
       mimeType
+      toolCallId
+      toolCallResponse
     }
     messageCount
     facets {
@@ -300,6 +302,8 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
         model
         data
         mimeType
+        toolCallId
+        toolCallResponse
       }
     }
   }

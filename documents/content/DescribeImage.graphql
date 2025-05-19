@@ -121,5 +121,7 @@ mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityRefer
     model
     data
     mimeType
+    toolCallId
+    toolCallResponse
   }
 }

@@ -125,6 +125,8 @@ mutation CompleteConversation($completion: String!, $id: ID!, $correlationId: St
       model
       data
       mimeType
+      toolCallId
+      toolCallResponse
     }
     messageCount
     facets {
@@ -300,6 +302,8 @@ mutation CompleteConversation($completion: String!, $id: ID!, $correlationId: St
         model
         data
         mimeType
+        toolCallId
+        toolCallResponse
       }
     }
   }

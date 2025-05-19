@@ -125,6 +125,8 @@ mutation ReviseEncodedImage($prompt: String!, $mimeType: String!, $data: String!
       model
       data
       mimeType
+      toolCallId
+      toolCallResponse
     }
     messageCount
   }

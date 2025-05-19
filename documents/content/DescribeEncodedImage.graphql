@@ -121,5 +121,7 @@ mutation DescribeEncodedImage($prompt: String!, $mimeType: String!, $data: Strin
     model
     data
     mimeType
+    toolCallId
+    toolCallResponse
   }
 }

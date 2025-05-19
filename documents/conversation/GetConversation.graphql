@@ -132,6 +132,8 @@ query GetConversation($id: ID!, $correlationId: String) {
       model
       data
       mimeType
+      toolCallId
+      toolCallResponse
     }
     specification {
       id

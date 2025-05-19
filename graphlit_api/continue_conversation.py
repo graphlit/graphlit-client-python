@@ -58,6 +58,8 @@ class ContinueConversationContinueConversationMessage(BaseModel):
     model: Optional[str]
     data: Optional[str]
     mime_type: Optional[str] = Field(alias="mimeType")
+    tool_call_id: Optional[str] = Field(alias="toolCallId")
+    tool_call_response: Optional[str] = Field(alias="toolCallResponse")
 
 
 class ContinueConversationContinueConversationMessageCitations(BaseModel):
@@ -288,6 +290,8 @@ class ContinueConversationContinueConversationDetailsMessages(BaseModel):
     model: Optional[str]
     data: Optional[str]
     mime_type: Optional[str] = Field(alias="mimeType")
+    tool_call_id: Optional[str] = Field(alias="toolCallId")
+    tool_call_response: Optional[str] = Field(alias="toolCallResponse")
 
 
 class ContinueConversationContinueConversationDetailsMessagesCitations(BaseModel):

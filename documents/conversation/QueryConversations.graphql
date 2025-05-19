@@ -133,6 +133,8 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         model
         data
         mimeType
+        toolCallId
+        toolCallResponse
       }
       specification {
         id

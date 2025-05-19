@@ -125,6 +125,8 @@ mutation ReviseText($prompt: String!, $text: String!, $id: ID, $specification: E
       model
       data
       mimeType
+      toolCallId
+      toolCallResponse
     }
     messageCount
   }

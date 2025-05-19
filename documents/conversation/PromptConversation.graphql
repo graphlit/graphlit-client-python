@@ -125,6 +125,8 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
       model
       data
       mimeType
+      toolCallId
+      toolCallResponse
     }
     messageCount
     facets {
@@ -300,6 +302,8 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
         model
         data
         mimeType
+        toolCallId
+        toolCallResponse
       }
     }
   }
