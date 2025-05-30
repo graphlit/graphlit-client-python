@@ -76,6 +76,9 @@ query GetWorkflow($id: ID!, $correlationId: String) {
             detectLanguage
             language
           }
+          page {
+            enableScreenshot
+          }
           document {
             includeImages
           }

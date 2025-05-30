@@ -133,6 +133,7 @@ class UpsertWorkflowUpsertWorkflowPreparationJobsConnector(BaseModel):
     assembly_ai: Optional[
         "UpsertWorkflowUpsertWorkflowPreparationJobsConnectorAssemblyAi"
     ] = Field(alias="assemblyAI")
+    page: Optional["UpsertWorkflowUpsertWorkflowPreparationJobsConnectorPage"]
     document: Optional["UpsertWorkflowUpsertWorkflowPreparationJobsConnectorDocument"]
     email: Optional["UpsertWorkflowUpsertWorkflowPreparationJobsConnectorEmail"]
     model_document: Optional[
@@ -164,6 +165,10 @@ class UpsertWorkflowUpsertWorkflowPreparationJobsConnectorAssemblyAi(BaseModel):
     enable_speaker_diarization: Optional[bool] = Field(alias="enableSpeakerDiarization")
     detect_language: Optional[bool] = Field(alias="detectLanguage")
     language: Optional[str]
+
+
+class UpsertWorkflowUpsertWorkflowPreparationJobsConnectorPage(BaseModel):
+    enable_screenshot: Optional[bool] = Field(alias="enableScreenshot")
 
 
 class UpsertWorkflowUpsertWorkflowPreparationJobsConnectorDocument(BaseModel):

@@ -41,9 +41,12 @@ class GetContentContent(BaseModel):
     markdown: Optional[str]
     address: Optional["GetContentContentAddress"]
     location: Optional["GetContentContentLocation"]
+    c_4_id: Optional[str] = Field(alias="c4id")
     type: Optional[ContentTypes]
     file_type: Optional[FileTypes] = Field(alias="fileType")
     mime_type: Optional[str] = Field(alias="mimeType")
+    format: Optional[str]
+    format_name: Optional[str] = Field(alias="formatName")
     file_name: Optional[str] = Field(alias="fileName")
     file_size: Optional[Any] = Field(alias="fileSize")
     master_uri: Optional[Any] = Field(alias="masterUri")

@@ -133,6 +133,7 @@ class UpdateWorkflowUpdateWorkflowPreparationJobsConnector(BaseModel):
     assembly_ai: Optional[
         "UpdateWorkflowUpdateWorkflowPreparationJobsConnectorAssemblyAi"
     ] = Field(alias="assemblyAI")
+    page: Optional["UpdateWorkflowUpdateWorkflowPreparationJobsConnectorPage"]
     document: Optional["UpdateWorkflowUpdateWorkflowPreparationJobsConnectorDocument"]
     email: Optional["UpdateWorkflowUpdateWorkflowPreparationJobsConnectorEmail"]
     model_document: Optional[
@@ -164,6 +165,10 @@ class UpdateWorkflowUpdateWorkflowPreparationJobsConnectorAssemblyAi(BaseModel):
     enable_speaker_diarization: Optional[bool] = Field(alias="enableSpeakerDiarization")
     detect_language: Optional[bool] = Field(alias="detectLanguage")
     language: Optional[str]
+
+
+class UpdateWorkflowUpdateWorkflowPreparationJobsConnectorPage(BaseModel):
+    enable_screenshot: Optional[bool] = Field(alias="enableScreenshot")
 
 
 class UpdateWorkflowUpdateWorkflowPreparationJobsConnectorDocument(BaseModel):

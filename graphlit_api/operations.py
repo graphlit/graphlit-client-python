@@ -1278,9 +1278,12 @@ query GetContent($id: ID!, $correlationId: String) {
       latitude
       longitude
     }
+    c4id
     type
     fileType
     mimeType
+    format
+    formatName
     fileName
     fileSize
     masterUri
@@ -9269,6 +9272,9 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
             detectLanguage
             language
           }
+          page {
+            enableScreenshot
+          }
           document {
             includeImages
           }
@@ -9508,6 +9514,9 @@ query GetWorkflow($id: ID!, $correlationId: String) {
             detectLanguage
             language
           }
+          page {
+            enableScreenshot
+          }
           document {
             includeImages
           }
@@ -9717,6 +9726,9 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
               detectLanguage
               language
             }
+            page {
+              enableScreenshot
+            }
             document {
               includeImages
             }
@@ -9921,6 +9933,9 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
             detectLanguage
             language
           }
+          page {
+            enableScreenshot
+          }
           document {
             includeImages
           }
@@ -10123,6 +10138,9 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
             enableSpeakerDiarization
             detectLanguage
             language
+          }
+          page {
+            enableScreenshot
           }
           document {
             includeImages

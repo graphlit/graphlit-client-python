@@ -71,6 +71,9 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
             detectLanguage
             language
           }
+          page {
+            enableScreenshot
+          }
           document {
             includeImages
           }

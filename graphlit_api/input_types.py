@@ -1032,6 +1032,10 @@ class IntegrationConnectorUpdateInput(BaseModel):
     twitter: Optional["TwitterIntegrationPropertiesInput"] = None
 
 
+class PagePreparationPropertiesInput(BaseModel):
+    enable_screenshot: Optional[bool] = Field(alias="enableScreenshot", default=None)
+
+
 class BedrockModelPropertiesInput(BaseModel):
     model: BedrockModels
     model_name: Optional[str] = Field(alias="modelName", default=None)
@@ -1786,6 +1790,7 @@ class RepoUpdateInput(BaseModel):
 class FilePreparationConnectorInput(BaseModel):
     type: FilePreparationServiceTypes
     file_types: Optional[List[FileTypes]] = Field(alias="fileTypes", default=None)
+    page: Optional["PagePreparationPropertiesInput"] = None
     document: Optional["DocumentPreparationPropertiesInput"] = None
     email: Optional["EmailPreparationPropertiesInput"] = None
     azure_document: Optional["AzureDocumentPreparationPropertiesInput"] = Field(
@@ -1905,6 +1910,7 @@ class ContentFilter(BaseModel):
     original_date_range: Optional["DateRangeFilter"] = Field(
         alias="originalDateRange", default=None
     )
+    c_4_id: Optional[str] = Field(alias="c4id", default=None)
     formats: Optional[List[Optional[str]]] = None
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions", default=None)
     file_size_range: Optional["Int64RangeFilter"] = Field(

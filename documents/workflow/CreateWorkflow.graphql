@@ -71,6 +71,9 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
             detectLanguage
             language
           }
+          page {
+            enableScreenshot
+          }
           document {
             includeImages
           }

@@ -142,6 +142,7 @@ class QueryWorkflowsWorkflowsResultsPreparationJobsConnector(BaseModel):
     assembly_ai: Optional[
         "QueryWorkflowsWorkflowsResultsPreparationJobsConnectorAssemblyAi"
     ] = Field(alias="assemblyAI")
+    page: Optional["QueryWorkflowsWorkflowsResultsPreparationJobsConnectorPage"]
     document: Optional["QueryWorkflowsWorkflowsResultsPreparationJobsConnectorDocument"]
     email: Optional["QueryWorkflowsWorkflowsResultsPreparationJobsConnectorEmail"]
     model_document: Optional[
@@ -173,6 +174,10 @@ class QueryWorkflowsWorkflowsResultsPreparationJobsConnectorAssemblyAi(BaseModel
     enable_speaker_diarization: Optional[bool] = Field(alias="enableSpeakerDiarization")
     detect_language: Optional[bool] = Field(alias="detectLanguage")
     language: Optional[str]
+
+
+class QueryWorkflowsWorkflowsResultsPreparationJobsConnectorPage(BaseModel):
+    enable_screenshot: Optional[bool] = Field(alias="enableScreenshot")
 
 
 class QueryWorkflowsWorkflowsResultsPreparationJobsConnectorDocument(BaseModel):

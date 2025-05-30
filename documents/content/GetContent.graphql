@@ -25,9 +25,12 @@ query GetContent($id: ID!, $correlationId: String) {
       latitude
       longitude
     }
+    c4id
     type
     fileType
     mimeType
+    format
+    formatName
     fileName
     fileSize
     masterUri
