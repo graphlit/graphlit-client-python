@@ -9,6 +9,8 @@ query GetContent($id: ID!, $correlationId: String) {
     state
     originalDate
     finishedDate
+    fileCreationDate
+    fileModifiedDate
     workflowDuration
     uri
     description

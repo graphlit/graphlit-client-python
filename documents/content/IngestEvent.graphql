@@ -1,0 +1,43 @@
+mutation IngestEvent($markdown: String!, $name: String, $description: String, $eventDate: DateTime, $collections: [EntityReferenceInput!], $correlationId: String) {
+  ingestEvent(name: $name, description: $description, eventDate: $eventDate, markdown: $markdown, collections: $collections, correlationId: $correlationId) {
+    id
+    name
+    state
+    type
+    fileType
+    mimeType
+    uri
+    collections {
+      id
+      name
+    }
+    observations {
+      id
+      type
+      observable {
+        id
+        name
+      }
+      related {
+        id
+        name
+      }
+      relatedType
+      relation
+      occurrences {
+        type
+        confidence
+        startTime
+        endTime
+        pageIndex
+        boundingBox {
+          left
+          top
+          width
+          height
+        }
+      }
+      state
+    }
+  }
+}

@@ -34,6 +34,8 @@ class GetContentContent(BaseModel):
     state: EntityState
     original_date: Optional[Any] = Field(alias="originalDate")
     finished_date: Optional[Any] = Field(alias="finishedDate")
+    file_creation_date: Optional[Any] = Field(alias="fileCreationDate")
+    file_modified_date: Optional[Any] = Field(alias="fileModifiedDate")
     workflow_duration: Optional[Any] = Field(alias="workflowDuration")
     uri: Optional[Any]
     description: Optional[str]

@@ -192,6 +192,7 @@ __all__ = [
     "GET_WORKFLOW_GQL",
     "INGEST_BATCH_GQL",
     "INGEST_ENCODED_FILE_GQL",
+    "INGEST_EVENT_GQL",
     "INGEST_MEMORY_GQL",
     "INGEST_TEXT_BATCH_GQL",
     "INGEST_TEXT_GQL",
@@ -1263,6 +1264,8 @@ query GetContent($id: ID!, $correlationId: String) {
     state
     originalDate
     finishedDate
+    fileCreationDate
+    fileModifiedDate
     workflowDuration
     uri
     description
@@ -1566,16 +1569,71 @@ mutation IngestBatch($uris: [URL!]!, $workflow: EntityReferenceInput, $collectio
 """
 
 INGEST_ENCODED_FILE_GQL = """
-mutation IngestEncodedFile($name: String!, $data: String!, $mimeType: String!, $id: ID, $isSynchronous: Boolean, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $workflow: EntityReferenceInput, $correlationId: String) {
+mutation IngestEncodedFile($name: String!, $data: String!, $mimeType: String!, $id: ID, $fileCreationDate: DateTime, $fileModifiedDate: DateTime, $isSynchronous: Boolean, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $workflow: EntityReferenceInput, $correlationId: String) {
   ingestEncodedFile(
     name: $name
     data: $data
     mimeType: $mimeType
     id: $id
+    fileCreationDate: $fileCreationDate
+    fileModifiedDate: $fileModifiedDate
     isSynchronous: $isSynchronous
     collections: $collections
     observations: $observations
     workflow: $workflow
+    correlationId: $correlationId
+  ) {
+    id
+    name
+    state
+    type
+    fileType
+    mimeType
+    uri
+    collections {
+      id
+      name
+    }
+    observations {
+      id
+      type
+      observable {
+        id
+        name
+      }
+      related {
+        id
+        name
+      }
+      relatedType
+      relation
+      occurrences {
+        type
+        confidence
+        startTime
+        endTime
+        pageIndex
+        boundingBox {
+          left
+          top
+          width
+          height
+        }
+      }
+      state
+    }
+  }
+}
+"""
+
+INGEST_EVENT_GQL = """
+mutation IngestEvent($markdown: String!, $name: String, $description: String, $eventDate: DateTime, $collections: [EntityReferenceInput!], $correlationId: String) {
+  ingestEvent(
+    name: $name
+    description: $description
+    eventDate: $eventDate
+    markdown: $markdown
+    collections: $collections
     correlationId: $correlationId
   ) {
     id

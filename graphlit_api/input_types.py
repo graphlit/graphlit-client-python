@@ -442,6 +442,8 @@ class ContentUpdateInput(BaseModel):
     name: Optional[str] = None
     description: Optional[str] = None
     identifier: Optional[str] = None
+    file_creation_date: Optional[Any] = Field(alias="fileCreationDate", default=None)
+    file_modified_date: Optional[Any] = Field(alias="fileModifiedDate", default=None)
     summary: Optional[str] = None
     custom_summary: Optional[str] = Field(alias="customSummary", default=None)
     keywords: Optional[List[str]] = None
@@ -1852,6 +1854,8 @@ class ContentInput(BaseModel):
     description: Optional[str] = None
     text: Optional[str] = None
     identifier: Optional[str] = None
+    file_creation_date: Optional[Any] = Field(alias="fileCreationDate", default=None)
+    file_modified_date: Optional[Any] = Field(alias="fileModifiedDate", default=None)
     workflow: Optional["EntityReferenceInput"] = None
 
 

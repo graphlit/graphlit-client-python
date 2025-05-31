@@ -196,6 +196,7 @@ from .get_user_by_identifier import GetUserByIdentifier
 from .get_workflow import GetWorkflow
 from .ingest_batch import IngestBatch
 from .ingest_encoded_file import IngestEncodedFile
+from .ingest_event import IngestEvent
 from .ingest_memory import IngestMemory
 from .ingest_text import IngestText
 from .ingest_text_batch import IngestTextBatch
@@ -507,6 +508,7 @@ from .operations import (
     GET_WORKFLOW_GQL,
     INGEST_BATCH_GQL,
     INGEST_ENCODED_FILE_GQL,
+    INGEST_EVENT_GQL,
     INGEST_MEMORY_GQL,
     INGEST_TEXT_BATCH_GQL,
     INGEST_TEXT_GQL,
@@ -1389,6 +1391,8 @@ class Client(AsyncBaseClient):
         data: str,
         mime_type: str,
         id: Union[Optional[str], UnsetType] = UNSET,
+        file_creation_date: Union[Optional[Any], UnsetType] = UNSET,
+        file_modified_date: Union[Optional[Any], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         collections: Union[Optional[List[EntityReferenceInput]], UnsetType] = UNSET,
         observations: Union[
@@ -1403,6 +1407,8 @@ class Client(AsyncBaseClient):
             "data": data,
             "mimeType": mime_type,
             "id": id,
+            "fileCreationDate": file_creation_date,
+            "fileModifiedDate": file_modified_date,
             "isSynchronous": is_synchronous,
             "collections": collections,
             "observations": observations,
@@ -1417,6 +1423,33 @@ class Client(AsyncBaseClient):
         )
         _data = self.get_data(response)
         return IngestEncodedFile.model_validate(_data)
+
+    async def ingest_event(
+        self,
+        markdown: str,
+        name: Union[Optional[str], UnsetType] = UNSET,
+        description: Union[Optional[str], UnsetType] = UNSET,
+        event_date: Union[Optional[Any], UnsetType] = UNSET,
+        collections: Union[Optional[List[EntityReferenceInput]], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> IngestEvent:
+        variables: Dict[str, object] = {
+            "markdown": markdown,
+            "name": name,
+            "description": description,
+            "eventDate": event_date,
+            "collections": collections,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=INGEST_EVENT_GQL,
+            operation_name="IngestEvent",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return IngestEvent.model_validate(data)
 
     async def ingest_memory(
         self,
