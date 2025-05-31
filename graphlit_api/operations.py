@@ -1627,12 +1627,13 @@ mutation IngestEncodedFile($name: String!, $data: String!, $mimeType: String!, $
 """
 
 INGEST_EVENT_GQL = """
-mutation IngestEvent($markdown: String!, $name: String, $description: String, $eventDate: DateTime, $collections: [EntityReferenceInput!], $correlationId: String) {
+mutation IngestEvent($markdown: String!, $name: String, $description: String, $eventDate: DateTime, $id: ID, $collections: [EntityReferenceInput!], $correlationId: String) {
   ingestEvent(
     name: $name
     description: $description
     eventDate: $eventDate
     markdown: $markdown
+    id: $id
     collections: $collections
     correlationId: $correlationId
   ) {
@@ -1680,11 +1681,12 @@ mutation IngestEvent($markdown: String!, $name: String, $description: String, $e
 """
 
 INGEST_MEMORY_GQL = """
-mutation IngestMemory($text: String!, $name: String, $textType: TextTypes, $collections: [EntityReferenceInput!], $correlationId: String) {
+mutation IngestMemory($text: String!, $name: String, $textType: TextTypes, $id: ID, $collections: [EntityReferenceInput!], $correlationId: String) {
   ingestMemory(
     name: $name
     text: $text
     textType: $textType
+    id: $id
     collections: $collections
     correlationId: $correlationId
   ) {

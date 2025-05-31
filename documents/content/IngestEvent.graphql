@@ -1,5 +1,5 @@
-mutation IngestEvent($markdown: String!, $name: String, $description: String, $eventDate: DateTime, $collections: [EntityReferenceInput!], $correlationId: String) {
-  ingestEvent(name: $name, description: $description, eventDate: $eventDate, markdown: $markdown, collections: $collections, correlationId: $correlationId) {
+mutation IngestEvent($markdown: String!, $name: String, $description: String, $eventDate: DateTime, $id: ID, $collections: [EntityReferenceInput!], $correlationId: String) {
+  ingestEvent(name: $name, description: $description, eventDate: $eventDate, markdown: $markdown, id: $id, collections: $collections, correlationId: $correlationId) {
     id
     name
     state

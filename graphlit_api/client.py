@@ -1430,6 +1430,7 @@ class Client(AsyncBaseClient):
         name: Union[Optional[str], UnsetType] = UNSET,
         description: Union[Optional[str], UnsetType] = UNSET,
         event_date: Union[Optional[Any], UnsetType] = UNSET,
+        id: Union[Optional[str], UnsetType] = UNSET,
         collections: Union[Optional[List[EntityReferenceInput]], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
@@ -1439,6 +1440,7 @@ class Client(AsyncBaseClient):
             "name": name,
             "description": description,
             "eventDate": event_date,
+            "id": id,
             "collections": collections,
             "correlationId": correlation_id,
         }
@@ -1456,6 +1458,7 @@ class Client(AsyncBaseClient):
         text: str,
         name: Union[Optional[str], UnsetType] = UNSET,
         text_type: Union[Optional[TextTypes], UnsetType] = UNSET,
+        id: Union[Optional[str], UnsetType] = UNSET,
         collections: Union[Optional[List[EntityReferenceInput]], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
@@ -1464,6 +1467,7 @@ class Client(AsyncBaseClient):
             "text": text,
             "name": name,
             "textType": text_type,
+            "id": id,
             "collections": collections,
             "correlationId": correlation_id,
         }

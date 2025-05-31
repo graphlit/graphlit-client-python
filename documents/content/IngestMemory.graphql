@@ -1,5 +1,5 @@
-mutation IngestMemory($text: String!, $name: String, $textType: TextTypes, $collections: [EntityReferenceInput!], $correlationId: String) {
-  ingestMemory(name: $name, text: $text, textType: $textType, collections: $collections, correlationId: $correlationId) {
+mutation IngestMemory($text: String!, $name: String, $textType: TextTypes, $id: ID, $collections: [EntityReferenceInput!], $correlationId: String) {
+  ingestMemory(name: $name, text: $text, textType: $textType, id: $id, collections: $collections, correlationId: $correlationId) {
     id
     name
     state
