@@ -11,6 +11,7 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
       state
       type
       identifier
+      description
       connectors {
         id
         name

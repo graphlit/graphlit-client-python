@@ -192,6 +192,7 @@ from .get_share_point_consent_uri import GetSharePointConsentUri
 from .get_software import GetSoftware
 from .get_specification import GetSpecification
 from .get_user import GetUser
+from .get_user_by_identifier import GetUserByIdentifier
 from .get_workflow import GetWorkflow
 from .ingest_batch import IngestBatch
 from .ingest_encoded_file import IngestEncodedFile
@@ -501,6 +502,7 @@ from .operations import (
     GET_SHARE_POINT_CONSENT_URI_GQL,
     GET_SOFTWARE_GQL,
     GET_SPECIFICATION_GQL,
+    GET_USER_BY_IDENTIFIER_GQL,
     GET_USER_GQL,
     GET_WORKFLOW_GQL,
     INGEST_BATCH_GQL,
@@ -5466,6 +5468,19 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return GetUser.model_validate(data)
+
+    async def get_user_by_identifier(
+        self, identifier: str, **kwargs: Any
+    ) -> GetUserByIdentifier:
+        variables: Dict[str, object] = {"identifier": identifier}
+        response = await self.execute(
+            query=GET_USER_BY_IDENTIFIER_GQL,
+            operation_name="GetUserByIdentifier",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return GetUserByIdentifier.model_validate(data)
 
     async def query_users(
         self,

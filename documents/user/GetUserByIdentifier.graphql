@@ -1,5 +1,5 @@
-query GetUser {
-  user {
+query GetUserByIdentifier($identifier: String!) {
+  userByIdentifier(identifier: $identifier) {
     id
     name
     creationDate

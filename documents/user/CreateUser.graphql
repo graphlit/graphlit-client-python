@@ -4,6 +4,7 @@ mutation CreateUser($user: UserInput!) {
     name
     state
     type
+    description
     identifier
   }
 }

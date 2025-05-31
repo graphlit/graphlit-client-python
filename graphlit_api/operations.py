@@ -187,6 +187,7 @@ __all__ = [
     "GET_SHARE_POINT_CONSENT_URI_GQL",
     "GET_SOFTWARE_GQL",
     "GET_SPECIFICATION_GQL",
+    "GET_USER_BY_IDENTIFIER_GQL",
     "GET_USER_GQL",
     "GET_WORKFLOW_GQL",
     "INGEST_BATCH_GQL",
@@ -9036,6 +9037,7 @@ mutation CreateUser($user: UserInput!) {
     name
     state
     type
+    description
     identifier
   }
 }
@@ -9081,6 +9083,62 @@ query GetUser {
     state
     type
     identifier
+    description
+    connectors {
+      id
+      name
+      state
+      type
+      authentication {
+        type
+        microsoft {
+          tenantId
+          clientId
+          clientSecret
+        }
+        google {
+          clientId
+          clientSecret
+        }
+      }
+      integration {
+        type
+        uri
+        slack {
+          token
+          channel
+        }
+        email {
+          from
+          subject
+          to
+        }
+        twitter {
+          consumerKey
+          consumerSecret
+          accessTokenKey
+          accessTokenSecret
+        }
+      }
+    }
+  }
+}
+"""
+
+GET_USER_BY_IDENTIFIER_GQL = """
+query GetUserByIdentifier($identifier: String!) {
+  userByIdentifier(identifier: $identifier) {
+    id
+    name
+    creationDate
+    relevance
+    owner {
+      id
+    }
+    state
+    type
+    identifier
+    description
     connectors {
       id
       name
@@ -9136,6 +9194,7 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
       state
       type
       identifier
+      description
       connectors {
         id
         name
@@ -9185,6 +9244,7 @@ mutation UpdateUser($user: UserUpdateInput!) {
     name
     state
     type
+    description
     identifier
   }
 }

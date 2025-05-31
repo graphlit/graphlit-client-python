@@ -32,6 +32,7 @@ class QueryUsersUsersResults(BaseModel):
     state: EntityState
     type: Optional[UserTypes]
     identifier: str
+    description: Optional[str]
     connectors: Optional[List[Optional["QueryUsersUsersResultsConnectors"]]]
 
 

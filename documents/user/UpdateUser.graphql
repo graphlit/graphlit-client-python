@@ -4,6 +4,7 @@ mutation UpdateUser($user: UserUpdateInput!) {
     name
     state
     type
+    description
     identifier
   }
 }

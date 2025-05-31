@@ -18,6 +18,7 @@ class CreateUserCreateUser(BaseModel):
     name: str
     state: EntityState
     type: Optional[UserTypes]
+    description: Optional[str]
     identifier: str
 
 
