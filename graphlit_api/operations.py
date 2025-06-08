@@ -4,6 +4,7 @@
 __all__ = [
     "ADD_CONTENTS_TO_COLLECTIONS_GQL",
     "ASK_GRAPHLIT_GQL",
+    "BRANCH_CONVERSATION_GQL",
     "CLEAR_CONVERSATION_GQL",
     "CLOSE_CONVERSATION_GQL",
     "COMPLETE_CONVERSATION_GQL",
@@ -1282,6 +1283,28 @@ query GetContent($id: ID!, $correlationId: String) {
       latitude
       longitude
     }
+    h3 {
+      h3r0
+      h3r1
+      h3r2
+      h3r3
+      h3r4
+      h3r5
+      h3r6
+      h3r7
+      h3r8
+      h3r9
+      h3r10
+      h3r11
+      h3r12
+      h3r13
+      h3r14
+      h3r15
+    }
+    boundary
+    epsgCode
+    path
+    features
     c4id
     type
     fileType
@@ -2748,6 +2771,17 @@ mutation AskGraphlit($prompt: String!, $type: SdkTypes, $id: ID, $specification:
 }
 """
 
+BRANCH_CONVERSATION_GQL = """
+mutation BranchConversation($id: ID!) {
+  branchConversation(id: $id) {
+    id
+    name
+    state
+    type
+  }
+}
+"""
+
 CLEAR_CONVERSATION_GQL = """
 mutation ClearConversation($id: ID!) {
   clearConversation(id: $id) {
@@ -3455,11 +3489,12 @@ mutation DeleteConversations($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 FORMAT_CONVERSATION_GQL = """
-mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $includeDetails: Boolean, $correlationId: String) {
+mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $tools: [ToolDefinitionInput!], $includeDetails: Boolean, $correlationId: String) {
   formatConversation(
     prompt: $prompt
     id: $id
     specification: $specification
+    tools: $tools
     includeDetails: $includeDetails
     correlationId: $correlationId
   ) {
@@ -9406,6 +9441,14 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
               id
             }
           }
+          reducto {
+            ocrMode
+            ocrSystem
+            extractionMode
+            enableEnrichment
+            enrichmentMode
+            key
+          }
           mistral {
             key
           }
@@ -9648,6 +9691,14 @@ query GetWorkflow($id: ID!, $correlationId: String) {
               id
             }
           }
+          reducto {
+            ocrMode
+            ocrSystem
+            extractionMode
+            enableEnrichment
+            enrichmentMode
+            key
+          }
           mistral {
             key
           }
@@ -9860,6 +9911,14 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
                 id
               }
             }
+            reducto {
+              ocrMode
+              ocrSystem
+              extractionMode
+              enableEnrichment
+              enrichmentMode
+              key
+            }
             mistral {
               key
             }
@@ -10067,6 +10126,14 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
               id
             }
           }
+          reducto {
+            ocrMode
+            ocrSystem
+            extractionMode
+            enableEnrichment
+            enrichmentMode
+            key
+          }
           mistral {
             key
           }
@@ -10272,6 +10339,14 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
             specification {
               id
             }
+          }
+          reducto {
+            ocrMode
+            ocrSystem
+            extractionMode
+            enableEnrichment
+            enrichmentMode
+            key
           }
           mistral {
             key

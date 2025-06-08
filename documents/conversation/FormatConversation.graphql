@@ -1,5 +1,5 @@
-mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $includeDetails: Boolean, $correlationId: String) {
-  formatConversation(prompt: $prompt, id: $id, specification: $specification, includeDetails: $includeDetails, correlationId: $correlationId) {
+mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $tools: [ToolDefinitionInput!], $includeDetails: Boolean, $correlationId: String) {
+  formatConversation(prompt: $prompt, id: $id, specification: $specification, tools: $tools, includeDetails: $includeDetails, correlationId: $correlationId) {
     conversation {
       id
     }

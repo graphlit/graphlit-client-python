@@ -85,6 +85,14 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
               id
             }
           }
+          reducto {
+            ocrMode
+            ocrSystem
+            extractionMode
+            enableEnrichment
+            enrichmentMode
+            key
+          }
           mistral {
             key
           }

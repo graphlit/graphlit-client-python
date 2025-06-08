@@ -14,7 +14,7 @@ class QueryCollections(BaseModel):
 
 
 class QueryCollectionsCollections(BaseModel):
-    results: Optional[List[Optional["QueryCollectionsCollectionsResults"]]]
+    results: Optional[List["QueryCollectionsCollectionsResults"]]
 
 
 class QueryCollectionsCollectionsResults(BaseModel):

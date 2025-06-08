@@ -29,7 +29,7 @@ class QueryFeeds(BaseModel):
 
 
 class QueryFeedsFeeds(BaseModel):
-    results: Optional[List[Optional["QueryFeedsFeedsResults"]]]
+    results: Optional[List["QueryFeedsFeedsResults"]]
 
 
 class QueryFeedsFeedsResults(BaseModel):

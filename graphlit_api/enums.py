@@ -81,6 +81,7 @@ class SummarizationTypes(str, Enum):
     POSTS = "POSTS"
     CHAPTERS = "CHAPTERS"
     QUESTIONS = "QUESTIONS"
+    GEOTAG = "GEOTAG"
     CUSTOM = "CUSTOM"
 
 
@@ -357,6 +358,17 @@ class TwitterListingTypes(str, Enum):
     RECENT_SEARCH = "RECENT_SEARCH"
 
 
+class ReductoOcrSystems(str, Enum):
+    HIGHRES = "HIGHRES"
+    MULTILINGUAL = "MULTILINGUAL"
+    COMBINED = "COMBINED"
+
+
+class ReductoOcrModes(str, Enum):
+    STANDARD = "STANDARD"
+    AGENTIC = "AGENTIC"
+
+
 class ApplyPolicy(str, Enum):
     BEFORE_RESOLVER = "BEFORE_RESOLVER"
     AFTER_RESOLVER = "AFTER_RESOLVER"
@@ -369,6 +381,7 @@ class SpecificationTypes(str, Enum):
     IMAGE_EMBEDDING = "IMAGE_EMBEDDING"
     EXTRACTION = "EXTRACTION"
     CLASSIFICATION = "CLASSIFICATION"
+    SUMMARIZATION = "SUMMARIZATION"
     PREPARATION = "PREPARATION"
 
 
@@ -816,6 +829,7 @@ class FilePreparationServiceTypes(str, Enum):
     DOCUMENT = "DOCUMENT"
     EMAIL = "EMAIL"
     PAGE = "PAGE"
+    REDUCTO_DOCUMENT = "REDUCTO_DOCUMENT"
     MODEL_DOCUMENT = "MODEL_DOCUMENT"
     ASSEMBLY_AI = "ASSEMBLY_AI"
     MISTRAL_DOCUMENT = "MISTRAL_DOCUMENT"
@@ -994,6 +1008,12 @@ class GoogleModels(str, Enum):
     CUSTOM = "CUSTOM"
 
 
+class ReductoExtractionModes(str, Enum):
+    OCR = "OCR"
+    METADATA = "METADATA"
+    HYBRID = "HYBRID"
+
+
 class UserTypes(str, Enum):
     HUMAN = "HUMAN"
     AGENT = "AGENT"
@@ -1019,6 +1039,12 @@ class ContentPublishingFormats(str, Enum):
 
 class RenditionTypes(str, Enum):
     CONTENT = "CONTENT"
+
+
+class ReductoEnrichmentModes(str, Enum):
+    STANDARD = "STANDARD"
+    PAGE = "PAGE"
+    TABLE = "TABLE"
 
 
 class MistralModels(str, Enum):

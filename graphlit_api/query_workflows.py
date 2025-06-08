@@ -22,6 +22,10 @@ from .enums import (
     IntegrationServiceTypes,
     LinkTypes,
     ObservableTypes,
+    ReductoEnrichmentModes,
+    ReductoExtractionModes,
+    ReductoOcrModes,
+    ReductoOcrSystems,
     RegexSourceTypes,
     StoragePolicyTypes,
     SummarizationTypes,
@@ -33,7 +37,7 @@ class QueryWorkflows(BaseModel):
 
 
 class QueryWorkflowsWorkflows(BaseModel):
-    results: Optional[List[Optional["QueryWorkflowsWorkflowsResults"]]]
+    results: Optional[List["QueryWorkflowsWorkflowsResults"]]
 
 
 class QueryWorkflowsWorkflowsResults(BaseModel):
@@ -148,6 +152,7 @@ class QueryWorkflowsWorkflowsResultsPreparationJobsConnector(BaseModel):
     model_document: Optional[
         "QueryWorkflowsWorkflowsResultsPreparationJobsConnectorModelDocument"
     ] = Field(alias="modelDocument")
+    reducto: Optional["QueryWorkflowsWorkflowsResultsPreparationJobsConnectorReducto"]
     mistral: Optional["QueryWorkflowsWorkflowsResultsPreparationJobsConnectorMistral"]
 
 
@@ -198,6 +203,15 @@ class QueryWorkflowsWorkflowsResultsPreparationJobsConnectorModelDocumentSpecifi
     BaseModel
 ):
     id: str
+
+
+class QueryWorkflowsWorkflowsResultsPreparationJobsConnectorReducto(BaseModel):
+    ocr_mode: Optional[ReductoOcrModes] = Field(alias="ocrMode")
+    ocr_system: Optional[ReductoOcrSystems] = Field(alias="ocrSystem")
+    extraction_mode: Optional[ReductoExtractionModes] = Field(alias="extractionMode")
+    enable_enrichment: Optional[bool] = Field(alias="enableEnrichment")
+    enrichment_mode: Optional[ReductoEnrichmentModes] = Field(alias="enrichmentMode")
+    key: Optional[str]
 
 
 class QueryWorkflowsWorkflowsResultsPreparationJobsConnectorMistral(BaseModel):

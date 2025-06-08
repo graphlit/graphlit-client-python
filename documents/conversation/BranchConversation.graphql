@@ -1,0 +1,8 @@
+mutation BranchConversation($id: ID!) {
+  branchConversation(id: $id) {
+    id
+    name
+    state
+    type
+  }
+}

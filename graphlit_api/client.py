@@ -7,6 +7,7 @@ from .add_contents_to_collections import AddContentsToCollections
 from .ask_graphlit import AskGraphlit
 from .async_base_client import AsyncBaseClient
 from .base_model import UNSET, UnsetType
+from .branch_conversation import BranchConversation
 from .clear_conversation import ClearConversation
 from .close_conversation import CloseConversation
 from .complete_conversation import CompleteConversation
@@ -320,6 +321,7 @@ from .map_web import MapWeb
 from .operations import (
     ADD_CONTENTS_TO_COLLECTIONS_GQL,
     ASK_GRAPHLIT_GQL,
+    BRANCH_CONVERSATION_GQL,
     CLEAR_CONVERSATION_GQL,
     CLOSE_CONVERSATION_GQL,
     COMPLETE_CONVERSATION_GQL,
@@ -1828,6 +1830,17 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return AskGraphlit.model_validate(data)
 
+    async def branch_conversation(self, id: str, **kwargs: Any) -> BranchConversation:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=BRANCH_CONVERSATION_GQL,
+            operation_name="BranchConversation",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return BranchConversation.model_validate(data)
+
     async def clear_conversation(self, id: str, **kwargs: Any) -> ClearConversation:
         variables: Dict[str, object] = {"id": id}
         response = await self.execute(
@@ -1983,6 +1996,7 @@ class Client(AsyncBaseClient):
         prompt: str,
         id: Union[Optional[str], UnsetType] = UNSET,
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        tools: Union[Optional[List[ToolDefinitionInput]], UnsetType] = UNSET,
         include_details: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
@@ -1991,6 +2005,7 @@ class Client(AsyncBaseClient):
             "prompt": prompt,
             "id": id,
             "specification": specification,
+            "tools": tools,
             "includeDetails": include_details,
             "correlationId": correlation_id,
         }

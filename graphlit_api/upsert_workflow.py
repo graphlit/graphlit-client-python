@@ -22,6 +22,10 @@ from .enums import (
     IntegrationServiceTypes,
     LinkTypes,
     ObservableTypes,
+    ReductoEnrichmentModes,
+    ReductoExtractionModes,
+    ReductoOcrModes,
+    ReductoOcrSystems,
     RegexSourceTypes,
     StoragePolicyTypes,
     SummarizationTypes,
@@ -139,6 +143,7 @@ class UpsertWorkflowUpsertWorkflowPreparationJobsConnector(BaseModel):
     model_document: Optional[
         "UpsertWorkflowUpsertWorkflowPreparationJobsConnectorModelDocument"
     ] = Field(alias="modelDocument")
+    reducto: Optional["UpsertWorkflowUpsertWorkflowPreparationJobsConnectorReducto"]
     mistral: Optional["UpsertWorkflowUpsertWorkflowPreparationJobsConnectorMistral"]
 
 
@@ -189,6 +194,15 @@ class UpsertWorkflowUpsertWorkflowPreparationJobsConnectorModelDocumentSpecifica
     BaseModel
 ):
     id: str
+
+
+class UpsertWorkflowUpsertWorkflowPreparationJobsConnectorReducto(BaseModel):
+    ocr_mode: Optional[ReductoOcrModes] = Field(alias="ocrMode")
+    ocr_system: Optional[ReductoOcrSystems] = Field(alias="ocrSystem")
+    extraction_mode: Optional[ReductoExtractionModes] = Field(alias="extractionMode")
+    enable_enrichment: Optional[bool] = Field(alias="enableEnrichment")
+    enrichment_mode: Optional[ReductoEnrichmentModes] = Field(alias="enrichmentMode")
+    key: Optional[str]
 
 
 class UpsertWorkflowUpsertWorkflowPreparationJobsConnectorMistral(BaseModel):

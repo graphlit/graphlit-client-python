@@ -20,7 +20,7 @@ class QueryUsers(BaseModel):
 
 
 class QueryUsersUsers(BaseModel):
-    results: Optional[List[Optional["QueryUsersUsersResults"]]]
+    results: Optional[List["QueryUsersUsersResults"]]
 
 
 class QueryUsersUsersResults(BaseModel):

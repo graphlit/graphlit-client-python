@@ -24,7 +24,7 @@ class QueryConversations(BaseModel):
 
 
 class QueryConversationsConversations(BaseModel):
-    results: Optional[List[Optional["QueryConversationsConversationsResults"]]]
+    results: Optional[List["QueryConversationsConversationsResults"]]
 
 
 class QueryConversationsConversationsResults(BaseModel):

@@ -88,6 +88,10 @@ from .enums import (
     PolicyTimeTypes,
     ProductFacetTypes,
     PromptStrategyTypes,
+    ReductoEnrichmentModes,
+    ReductoExtractionModes,
+    ReductoOcrModes,
+    ReductoOcrSystems,
     RegexSourceTypes,
     ReplicateModels,
     RepoFacetTypes,
@@ -1806,6 +1810,7 @@ class FilePreparationConnectorInput(BaseModel):
     model_document: Optional["ModelDocumentPreparationPropertiesInput"] = Field(
         alias="modelDocument", default=None
     )
+    reducto: Optional["ReductoDocumentPreparationPropertiesInput"] = None
 
 
 class MedicalDrugFilter(BaseModel):
@@ -2452,6 +2457,7 @@ class ConversationInput(BaseModel):
     name: str
     type: Optional[ConversationTypes] = None
     messages: Optional[List["ConversationMessageInput"]] = None
+    tools: Optional[List["ToolDefinitionInput"]] = None
     specification: Optional["EntityReferenceInput"] = None
     fallbacks: Optional[List[Optional["EntityReferenceInput"]]] = None
     filter: Optional["ContentCriteriaInput"] = None
@@ -2818,6 +2824,7 @@ class EmailIntegrationPropertiesInput(BaseModel):
 class ConversationUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
+    tools: Optional[List["ToolDefinitionInput"]] = None
     specification: Optional["EntityReferenceInput"] = None
     fallbacks: Optional[List[Optional["EntityReferenceInput"]]] = None
     filter: Optional["ContentCriteriaInput"] = None
@@ -3650,6 +3657,19 @@ class PlaceFilter(BaseModel):
     similar_places: Optional[List["EntityReferenceFilter"]] = Field(
         alias="similarPlaces", default=None
     )
+
+
+class ReductoDocumentPreparationPropertiesInput(BaseModel):
+    ocr_mode: Optional[ReductoOcrModes] = Field(alias="ocrMode", default=None)
+    ocr_system: Optional[ReductoOcrSystems] = Field(alias="ocrSystem", default=None)
+    extraction_mode: Optional[ReductoExtractionModes] = Field(
+        alias="extractionMode", default=None
+    )
+    enable_enrichment: Optional[bool] = Field(alias="enableEnrichment", default=None)
+    enrichment_mode: Optional[ReductoEnrichmentModes] = Field(
+        alias="enrichmentMode", default=None
+    )
+    key: Optional[str] = None
 
 
 class H3Filter(BaseModel):

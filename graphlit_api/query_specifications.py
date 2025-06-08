@@ -40,7 +40,7 @@ class QuerySpecifications(BaseModel):
 
 
 class QuerySpecificationsSpecifications(BaseModel):
-    results: Optional[List[Optional["QuerySpecificationsSpecificationsResults"]]]
+    results: Optional[List["QuerySpecificationsSpecificationsResults"]]
 
 
 class QuerySpecificationsSpecificationsResults(BaseModel):

@@ -24,7 +24,7 @@ class QueryAlerts(BaseModel):
 
 
 class QueryAlertsAlerts(BaseModel):
-    results: Optional[List[Optional["QueryAlertsAlertsResults"]]]
+    results: Optional[List["QueryAlertsAlertsResults"]]
 
 
 class QueryAlertsAlertsResults(BaseModel):
