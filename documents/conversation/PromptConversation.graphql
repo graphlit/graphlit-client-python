@@ -36,6 +36,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
           posts
           chapters
           questions
+          quotes
           video {
             width
             height
@@ -213,6 +214,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
             posts
             chapters
             questions
+            quotes
             video {
               width
               height

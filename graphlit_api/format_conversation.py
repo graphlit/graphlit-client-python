@@ -100,6 +100,7 @@ class FormatConversationFormatConversationMessageCitationsContent(BaseModel):
     posts: Optional[List[str]]
     chapters: Optional[List[str]]
     questions: Optional[List[str]]
+    quotes: Optional[List[str]]
     video: Optional["FormatConversationFormatConversationMessageCitationsContentVideo"]
     audio: Optional["FormatConversationFormatConversationMessageCitationsContentAudio"]
     image: Optional["FormatConversationFormatConversationMessageCitationsContentImage"]
@@ -318,6 +319,7 @@ class FormatConversationFormatConversationDetailsMessagesCitationsContent(BaseMo
     posts: Optional[List[str]]
     chapters: Optional[List[str]]
     questions: Optional[List[str]]
+    quotes: Optional[List[str]]
     video: Optional[
         "FormatConversationFormatConversationDetailsMessagesCitationsContentVideo"
     ]

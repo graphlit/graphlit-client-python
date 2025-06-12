@@ -32,6 +32,7 @@ mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityRefer
         posts
         chapters
         questions
+        quotes
         video {
           width
           height

@@ -36,6 +36,7 @@ mutation ReviseImage($prompt: String!, $uri: URL!, $id: ID, $specification: Enti
           posts
           chapters
           questions
+          quotes
           video {
             width
             height

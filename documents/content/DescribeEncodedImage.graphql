@@ -32,6 +32,7 @@ mutation DescribeEncodedImage($prompt: String!, $mimeType: String!, $data: Strin
         posts
         chapters
         questions
+        quotes
         video {
           width
           height

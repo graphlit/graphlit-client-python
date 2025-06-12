@@ -36,6 +36,7 @@ mutation ReviseText($prompt: String!, $text: String!, $id: ID, $specification: E
           posts
           chapters
           questions
+          quotes
           video {
             width
             height

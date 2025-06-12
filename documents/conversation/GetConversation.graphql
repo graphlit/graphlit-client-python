@@ -43,6 +43,7 @@ query GetConversation($id: ID!, $correlationId: String) {
           posts
           chapters
           questions
+          quotes
           video {
             width
             height

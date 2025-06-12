@@ -36,6 +36,7 @@ mutation Prompt($prompt: String, $mimeType: String, $data: String, $specificatio
           posts
           chapters
           questions
+          quotes
           video {
             width
             height

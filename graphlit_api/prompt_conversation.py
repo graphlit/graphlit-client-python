@@ -100,6 +100,7 @@ class PromptConversationPromptConversationMessageCitationsContent(BaseModel):
     posts: Optional[List[str]]
     chapters: Optional[List[str]]
     questions: Optional[List[str]]
+    quotes: Optional[List[str]]
     video: Optional["PromptConversationPromptConversationMessageCitationsContentVideo"]
     audio: Optional["PromptConversationPromptConversationMessageCitationsContentAudio"]
     image: Optional["PromptConversationPromptConversationMessageCitationsContentImage"]
@@ -318,6 +319,7 @@ class PromptConversationPromptConversationDetailsMessagesCitationsContent(BaseMo
     posts: Optional[List[str]]
     chapters: Optional[List[str]]
     questions: Optional[List[str]]
+    quotes: Optional[List[str]]
     video: Optional[
         "PromptConversationPromptConversationDetailsMessagesCitationsContentVideo"
     ]

@@ -100,6 +100,7 @@ class ContinueConversationContinueConversationMessageCitationsContent(BaseModel)
     posts: Optional[List[str]]
     chapters: Optional[List[str]]
     questions: Optional[List[str]]
+    quotes: Optional[List[str]]
     video: Optional[
         "ContinueConversationContinueConversationMessageCitationsContentVideo"
     ]
@@ -336,6 +337,7 @@ class ContinueConversationContinueConversationDetailsMessagesCitationsContent(
     posts: Optional[List[str]]
     chapters: Optional[List[str]]
     questions: Optional[List[str]]
+    quotes: Optional[List[str]]
     video: Optional[
         "ContinueConversationContinueConversationDetailsMessagesCitationsContentVideo"
     ]

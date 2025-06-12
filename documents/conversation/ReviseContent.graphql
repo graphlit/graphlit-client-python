@@ -36,6 +36,7 @@ mutation ReviseContent($prompt: String!, $content: EntityReferenceInput!, $id: I
           posts
           chapters
           questions
+          quotes
           video {
             width
             height

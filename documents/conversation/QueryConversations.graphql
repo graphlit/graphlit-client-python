@@ -44,6 +44,7 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
             posts
             chapters
             questions
+            quotes
             video {
               width
               height

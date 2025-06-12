@@ -456,6 +456,7 @@ class ContentUpdateInput(BaseModel):
     posts: Optional[List[str]] = None
     chapters: Optional[List[str]] = None
     questions: Optional[List[str]] = None
+    quotes: Optional[List[str]] = None
     video: Optional["VideoMetadataInput"] = None
     audio: Optional["AudioMetadataInput"] = None
     image: Optional["ImageMetadataInput"] = None
@@ -2824,6 +2825,7 @@ class EmailIntegrationPropertiesInput(BaseModel):
 class ConversationUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
+    messages: Optional[List["ConversationMessageInput"]] = None
     tools: Optional[List["ToolDefinitionInput"]] = None
     specification: Optional["EntityReferenceInput"] = None
     fallbacks: Optional[List[Optional["EntityReferenceInput"]]] = None

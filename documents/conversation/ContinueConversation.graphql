@@ -36,6 +36,7 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
           posts
           chapters
           questions
+          quotes
           video {
             width
             height
@@ -213,6 +214,7 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
             posts
             chapters
             questions
+            quotes
             video {
               width
               height

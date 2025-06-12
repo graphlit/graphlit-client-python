@@ -29,6 +29,7 @@ mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $conne
       posts
       chapters
       questions
+      quotes
       video {
         width
         height

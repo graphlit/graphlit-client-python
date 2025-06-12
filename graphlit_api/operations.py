@@ -972,6 +972,7 @@ mutation DescribeEncodedImage($prompt: String!, $mimeType: String!, $data: Strin
         posts
         chapters
         questions
+        quotes
         video {
           width
           height
@@ -1107,6 +1108,7 @@ mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityRefer
         posts
         chapters
         questions
+        quotes
         video {
           width
           height
@@ -1974,6 +1976,7 @@ mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $conne
       posts
       chapters
       questions
+      quotes
       video {
         width
         height
@@ -2099,6 +2102,7 @@ mutation PublishText($text: String!, $textType: TextTypes, $connector: ContentPu
       posts
       chapters
       questions
+      quotes
       video {
         width
         height
@@ -2231,6 +2235,7 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
       posts
       chapters
       questions
+      quotes
       video {
         width
         height
@@ -2674,6 +2679,7 @@ mutation AskGraphlit($prompt: String!, $type: SdkTypes, $id: ID, $specification:
           posts
           chapters
           questions
+          quotes
           video {
             width
             height
@@ -2847,6 +2853,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $correlationId: St
           posts
           chapters
           questions
+          quotes
           video {
             width
             height
@@ -3024,6 +3031,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $correlationId: St
             posts
             chapters
             questions
+            quotes
             video {
               width
               height
@@ -3164,6 +3172,7 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
           posts
           chapters
           questions
+          quotes
           video {
             width
             height
@@ -3341,6 +3350,7 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
             posts
             chapters
             questions
+            quotes
             video {
               width
               height
@@ -3534,6 +3544,7 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
           posts
           chapters
           questions
+          quotes
           video {
             width
             height
@@ -3711,6 +3722,7 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
             posts
             chapters
             questions
+            quotes
             video {
               width
               height
@@ -3854,6 +3866,7 @@ query GetConversation($id: ID!, $correlationId: String) {
           posts
           chapters
           questions
+          quotes
           video {
             width
             height
@@ -4170,6 +4183,7 @@ mutation Prompt($prompt: String, $mimeType: String, $data: String, $specificatio
           posts
           chapters
           questions
+          quotes
           video {
             width
             height
@@ -4316,6 +4330,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
           posts
           chapters
           questions
+          quotes
           video {
             width
             height
@@ -4493,6 +4508,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
             posts
             chapters
             questions
+            quotes
             video {
               width
               height
@@ -4629,6 +4645,7 @@ mutation PublishConversation($id: ID!, $connector: ContentPublishingConnectorInp
       posts
       chapters
       questions
+      quotes
       video {
         width
         height
@@ -4761,6 +4778,7 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
             posts
             chapters
             questions
+            quotes
             video {
               width
               height
@@ -5104,6 +5122,7 @@ mutation ReviseContent($prompt: String!, $content: EntityReferenceInput!, $id: I
           posts
           chapters
           questions
+          quotes
           video {
             width
             height
@@ -5247,6 +5266,7 @@ mutation ReviseEncodedImage($prompt: String!, $mimeType: String!, $data: String!
           posts
           chapters
           questions
+          quotes
           video {
             width
             height
@@ -5389,6 +5409,7 @@ mutation ReviseImage($prompt: String!, $uri: URL!, $id: ID, $specification: Enti
           posts
           chapters
           questions
+          quotes
           video {
             width
             height
@@ -5531,6 +5552,7 @@ mutation ReviseText($prompt: String!, $text: String!, $id: ID, $specification: E
           posts
           chapters
           questions
+          quotes
           video {
             width
             height
@@ -8763,6 +8785,7 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
           posts
           chapters
           questions
+          quotes
           video {
             width
             height

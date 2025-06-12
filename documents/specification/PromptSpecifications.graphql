@@ -36,6 +36,7 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
           posts
           chapters
           questions
+          quotes
           video {
             width
             height

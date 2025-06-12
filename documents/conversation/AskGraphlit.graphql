@@ -36,6 +36,7 @@ mutation AskGraphlit($prompt: String!, $type: SdkTypes, $id: ID, $specification:
           posts
           chapters
           questions
+          quotes
           video {
             width
             height

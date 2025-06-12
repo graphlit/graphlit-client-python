@@ -36,6 +36,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $correlationId: St
           posts
           chapters
           questions
+          quotes
           video {
             width
             height
@@ -213,6 +214,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $correlationId: St
             posts
             chapters
             questions
+            quotes
             video {
               width
               height

@@ -89,6 +89,7 @@ class PromptPromptMessagesCitationsContent(BaseModel):
     posts: Optional[List[str]]
     chapters: Optional[List[str]]
     questions: Optional[List[str]]
+    quotes: Optional[List[str]]
     video: Optional["PromptPromptMessagesCitationsContentVideo"]
     audio: Optional["PromptPromptMessagesCitationsContentAudio"]
     image: Optional["PromptPromptMessagesCitationsContentImage"]

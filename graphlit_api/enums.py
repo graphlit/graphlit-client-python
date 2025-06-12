@@ -81,6 +81,7 @@ class SummarizationTypes(str, Enum):
     POSTS = "POSTS"
     CHAPTERS = "CHAPTERS"
     QUESTIONS = "QUESTIONS"
+    QUOTES = "QUOTES"
     GEOTAG = "GEOTAG"
     CUSTOM = "CUSTOM"
 

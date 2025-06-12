@@ -36,6 +36,7 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
           posts
           chapters
           questions
+          quotes
           video {
             width
             height
@@ -213,6 +214,7 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
             posts
             chapters
             questions
+            quotes
             video {
               width
               height

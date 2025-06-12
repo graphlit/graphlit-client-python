@@ -29,6 +29,7 @@ mutation PublishText($text: String!, $textType: TextTypes, $connector: ContentPu
       posts
       chapters
       questions
+      quotes
       video {
         width
         height

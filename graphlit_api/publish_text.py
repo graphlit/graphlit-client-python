@@ -54,6 +54,7 @@ class PublishTextPublishTextContents(BaseModel):
     posts: Optional[List[str]]
     chapters: Optional[List[str]]
     questions: Optional[List[str]]
+    quotes: Optional[List[str]]
     video: Optional["PublishTextPublishTextContentsVideo"]
     audio: Optional["PublishTextPublishTextContentsAudio"]
     image: Optional["PublishTextPublishTextContentsImage"]

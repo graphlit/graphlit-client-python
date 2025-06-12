@@ -36,6 +36,7 @@ mutation ReviseEncodedImage($prompt: String!, $mimeType: String!, $data: String!
           posts
           chapters
           questions
+          quotes
           video {
             width
             height

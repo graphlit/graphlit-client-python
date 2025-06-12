@@ -93,6 +93,7 @@ class ReviseEncodedImageReviseEncodedImageMessageCitationsContent(BaseModel):
     posts: Optional[List[str]]
     chapters: Optional[List[str]]
     questions: Optional[List[str]]
+    quotes: Optional[List[str]]
     video: Optional["ReviseEncodedImageReviseEncodedImageMessageCitationsContentVideo"]
     audio: Optional["ReviseEncodedImageReviseEncodedImageMessageCitationsContentAudio"]
     image: Optional["ReviseEncodedImageReviseEncodedImageMessageCitationsContentImage"]

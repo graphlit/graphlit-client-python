@@ -100,6 +100,7 @@ class CompleteConversationCompleteConversationMessageCitationsContent(BaseModel)
     posts: Optional[List[str]]
     chapters: Optional[List[str]]
     questions: Optional[List[str]]
+    quotes: Optional[List[str]]
     video: Optional[
         "CompleteConversationCompleteConversationMessageCitationsContentVideo"
     ]
@@ -336,6 +337,7 @@ class CompleteConversationCompleteConversationDetailsMessagesCitationsContent(
     posts: Optional[List[str]]
     chapters: Optional[List[str]]
     questions: Optional[List[str]]
+    quotes: Optional[List[str]]
     video: Optional[
         "CompleteConversationCompleteConversationDetailsMessagesCitationsContentVideo"
     ]
