@@ -315,6 +315,7 @@ from .input_types import (
 )
 from .is_content_done import IsContentDone
 from .is_feed_done import IsFeedDone
+from .lookup_contents import LookupContents
 from .lookup_credits import LookupCredits
 from .lookup_usage import LookupUsage
 from .map_web import MapWeb
@@ -517,6 +518,7 @@ from .operations import (
     INGEST_URI_GQL,
     IS_CONTENT_DONE_GQL,
     IS_FEED_DONE_GQL,
+    LOOKUP_CONTENTS_GQL,
     LOOKUP_CREDITS_GQL,
     LOOKUP_USAGE_GQL,
     MAP_WEB_GQL,
@@ -1593,6 +1595,22 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return IsContentDone.model_validate(data)
+
+    async def lookup_contents(
+        self,
+        ids: List[str],
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> LookupContents:
+        variables: Dict[str, object] = {"ids": ids, "correlationId": correlation_id}
+        response = await self.execute(
+            query=LOOKUP_CONTENTS_GQL,
+            operation_name="LookupContents",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return LookupContents.model_validate(data)
 
     async def publish_contents(
         self,

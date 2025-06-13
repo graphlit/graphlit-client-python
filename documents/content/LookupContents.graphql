@@ -1,0 +1,285 @@
+query LookupContents($ids: [ID!]!, $correlationId: String) {
+  lookupContents(ids: $ids, correlationId: $correlationId) {
+    results {
+      id
+      name
+      creationDate
+      owner {
+        id
+      }
+      state
+      originalDate
+      finishedDate
+      fileCreationDate
+      fileModifiedDate
+      workflowDuration
+      uri
+      description
+      identifier
+      markdown
+      address {
+        streetAddress
+        city
+        region
+        country
+        postalCode
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+      boundary
+      epsgCode
+      path
+      features
+      c4id
+      type
+      fileType
+      mimeType
+      format
+      formatName
+      fileName
+      fileSize
+      masterUri
+      imageUri
+      textUri
+      audioUri
+      transcriptUri
+      summary
+      customSummary
+      keywords
+      bullets
+      headlines
+      posts
+      chapters
+      questions
+      video {
+        width
+        height
+        duration
+        make
+        model
+        software
+        title
+        description
+        keywords
+        author
+      }
+      audio {
+        keywords
+        author
+        series
+        episode
+        episodeType
+        season
+        publisher
+        copyright
+        genre
+        title
+        description
+        bitrate
+        channels
+        sampleRate
+        bitsPerSample
+        duration
+      }
+      image {
+        width
+        height
+        resolutionX
+        resolutionY
+        bitsPerComponent
+        components
+        projectionType
+        orientation
+        description
+        make
+        model
+        software
+        lens
+        focalLength
+        exposureTime
+        fNumber
+        iso
+        heading
+        pitch
+      }
+      document {
+        title
+        subject
+        summary
+        author
+        publisher
+        description
+        keywords
+        pageCount
+        worksheetCount
+        slideCount
+        wordCount
+        lineCount
+        paragraphCount
+        isEncrypted
+        hasDigitalSignature
+      }
+      email {
+        identifier
+        threadIdentifier
+        subject
+        labels
+        sensitivity
+        priority
+        importance
+        from {
+          name
+          email
+          givenName
+          familyName
+        }
+        to {
+          name
+          email
+          givenName
+          familyName
+        }
+        cc {
+          name
+          email
+          givenName
+          familyName
+        }
+        bcc {
+          name
+          email
+          givenName
+          familyName
+        }
+      }
+      issue {
+        identifier
+        title
+        project
+        team
+        status
+        priority
+        type
+        labels
+      }
+      package {
+        fileCount
+        folderCount
+        isEncrypted
+      }
+      language {
+        languages
+      }
+      parent {
+        id
+        name
+      }
+      children {
+        id
+        name
+      }
+      feed {
+        id
+        name
+      }
+      collections {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+      }
+      observations {
+        id
+        type
+        observable {
+          id
+          name
+        }
+        related {
+          id
+          name
+        }
+        relatedType
+        relation
+        occurrences {
+          type
+          confidence
+          startTime
+          endTime
+          pageIndex
+          boundingBox {
+            left
+            top
+            width
+            height
+          }
+        }
+        state
+      }
+      workflow {
+        id
+        name
+      }
+      pages {
+        index
+        text
+        relevance
+        images {
+          id
+          mimeType
+          data
+          left
+          right
+          top
+          bottom
+        }
+        chunks {
+          index
+          pageIndex
+          rowIndex
+          columnIndex
+          confidence
+          text
+          role
+          language
+          relevance
+        }
+      }
+      segments {
+        startTime
+        endTime
+        text
+        relevance
+      }
+      frames {
+        index
+        description
+        text
+        relevance
+      }
+      error
+    }
+  }
+}
