@@ -56,6 +56,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
       mimeType
       format
       formatName
+      fileExtension
       fileName
       fileSize
       masterUri

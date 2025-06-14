@@ -29,6 +29,9 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
       type
       fileType
       mimeType
+      format
+      formatName
+      fileExtension
       fileName
       fileSize
       masterUri

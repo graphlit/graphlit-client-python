@@ -55,6 +55,7 @@ query GetContent($id: ID!, $correlationId: String) {
     mimeType
     format
     formatName
+    fileExtension
     fileName
     fileSize
     masterUri

@@ -1314,6 +1314,7 @@ query GetContent($id: ID!, $correlationId: String) {
     mimeType
     format
     formatName
+    fileExtension
     fileName
     fileSize
     masterUri
@@ -1992,6 +1993,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
       mimeType
       format
       formatName
+      fileExtension
       fileName
       fileSize
       masterUri
@@ -2509,6 +2511,9 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
       type
       fileType
       mimeType
+      format
+      formatName
+      fileExtension
       fileName
       fileSize
       masterUri
