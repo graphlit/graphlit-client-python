@@ -1330,6 +1330,7 @@ query GetContent($id: ID!, $correlationId: String) {
     posts
     chapters
     questions
+    quotes
     video {
       width
       height
@@ -2009,6 +2010,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
       posts
       chapters
       questions
+      quotes
       video {
         width
         height
