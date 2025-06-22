@@ -2652,10 +2652,6 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
         id
         name
       }
-      collections {
-        id
-        name
-      }
       links {
         uri
         linkType

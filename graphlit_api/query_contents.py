@@ -74,7 +74,6 @@ class QueryContentsContentsResults(BaseModel):
     package: Optional["QueryContentsContentsResultsPackage"]
     language: Optional["QueryContentsContentsResultsLanguage"]
     feed: Optional["QueryContentsContentsResultsFeed"]
-    collections: Optional[List[Optional["QueryContentsContentsResultsCollections"]]]
     links: Optional[List["QueryContentsContentsResultsLinks"]]
     workflow: Optional["QueryContentsContentsResultsWorkflow"]
     pages: Optional[List["QueryContentsContentsResultsPages"]]
@@ -238,11 +237,6 @@ class QueryContentsContentsResultsLanguage(BaseModel):
 
 
 class QueryContentsContentsResultsFeed(BaseModel):
-    id: str
-    name: str
-
-
-class QueryContentsContentsResultsCollections(BaseModel):
     id: str
     name: str
 
