@@ -2968,6 +2968,7 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
         relevance
       }
       error
+      markdown
       observations {
         id
         type

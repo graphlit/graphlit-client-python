@@ -82,6 +82,7 @@ class QueryContentsObservationsContentsResults(BaseModel):
     segments: Optional[List["QueryContentsObservationsContentsResultsSegments"]]
     frames: Optional[List["QueryContentsObservationsContentsResultsFrames"]]
     error: Optional[str]
+    markdown: Optional[str]
     observations: Optional[
         List[Optional["QueryContentsObservationsContentsResultsObservations"]]
     ]
