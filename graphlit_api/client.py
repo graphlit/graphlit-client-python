@@ -534,6 +534,7 @@ from .operations import (
     QUERY_CONTENTS_FACETS_GQL,
     QUERY_CONTENTS_GQL,
     QUERY_CONTENTS_GRAPH_GQL,
+    QUERY_CONTENTS_OBSERVATIONS_GQL,
     QUERY_CONVERSATIONS_GQL,
     QUERY_CREDITS_GQL,
     QUERY_EVENTS_GQL,
@@ -632,6 +633,7 @@ from .query_collections import QueryCollections
 from .query_contents import QueryContents
 from .query_contents_facets import QueryContentsFacets
 from .query_contents_graph import QueryContentsGraph
+from .query_contents_observations import QueryContentsObservations
 from .query_conversations import QueryConversations
 from .query_credits import QueryCredits
 from .query_events import QueryEvents
@@ -1738,6 +1740,25 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryContentsGraph.model_validate(data)
+
+    async def query_contents_observations(
+        self,
+        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryContentsObservations:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_CONTENTS_OBSERVATIONS_GQL,
+            operation_name="QueryContentsObservations",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryContentsObservations.model_validate(data)
 
     async def screenshot_page(
         self,

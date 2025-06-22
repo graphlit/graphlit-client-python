@@ -216,6 +216,7 @@ __all__ = [
     "QUERY_CONTENTS_FACETS_GQL",
     "QUERY_CONTENTS_GQL",
     "QUERY_CONTENTS_GRAPH_GQL",
+    "QUERY_CONTENTS_OBSERVATIONS_GQL",
     "QUERY_CONVERSATIONS_GQL",
     "QUERY_CREDITS_GQL",
     "QUERY_EVENTS_GQL",
@@ -2741,6 +2742,259 @@ query QueryContentsGraph($filter: ContentFilter, $graph: ContentGraphInput, $cor
         from
         to
         relation
+      }
+    }
+  }
+}
+"""
+
+QUERY_CONTENTS_OBSERVATIONS_GQL = """
+query QueryContentsObservations($filter: ContentFilter, $correlationId: String) {
+  contents(filter: $filter, correlationId: $correlationId) {
+    results {
+      id
+      name
+      creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      originalDate
+      finishedDate
+      workflowDuration
+      uri
+      description
+      identifier
+      address {
+        streetAddress
+        city
+        region
+        country
+        postalCode
+      }
+      location {
+        latitude
+        longitude
+      }
+      type
+      fileType
+      mimeType
+      format
+      formatName
+      fileExtension
+      fileName
+      fileSize
+      masterUri
+      imageUri
+      textUri
+      audioUri
+      transcriptUri
+      summary
+      customSummary
+      keywords
+      bullets
+      headlines
+      posts
+      chapters
+      questions
+      quotes
+      video {
+        width
+        height
+        duration
+        make
+        model
+        software
+        title
+        description
+        keywords
+        author
+      }
+      audio {
+        keywords
+        author
+        series
+        episode
+        episodeType
+        season
+        publisher
+        copyright
+        genre
+        title
+        description
+        bitrate
+        channels
+        sampleRate
+        bitsPerSample
+        duration
+      }
+      image {
+        width
+        height
+        resolutionX
+        resolutionY
+        bitsPerComponent
+        components
+        projectionType
+        orientation
+        description
+        make
+        model
+        software
+        lens
+        focalLength
+        exposureTime
+        fNumber
+        iso
+        heading
+        pitch
+      }
+      document {
+        title
+        subject
+        summary
+        author
+        publisher
+        description
+        keywords
+        pageCount
+        worksheetCount
+        slideCount
+        wordCount
+        lineCount
+        paragraphCount
+        isEncrypted
+        hasDigitalSignature
+      }
+      email {
+        identifier
+        threadIdentifier
+        subject
+        labels
+        sensitivity
+        priority
+        importance
+        from {
+          name
+          email
+          givenName
+          familyName
+        }
+        to {
+          name
+          email
+          givenName
+          familyName
+        }
+        cc {
+          name
+          email
+          givenName
+          familyName
+        }
+        bcc {
+          name
+          email
+          givenName
+          familyName
+        }
+      }
+      issue {
+        identifier
+        title
+        project
+        team
+        status
+        priority
+        type
+        labels
+      }
+      package {
+        fileCount
+        folderCount
+        isEncrypted
+      }
+      language {
+        languages
+      }
+      feed {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+      }
+      workflow {
+        id
+        name
+      }
+      pages {
+        index
+        text
+        relevance
+        images {
+          id
+          mimeType
+          data
+          left
+          right
+          top
+          bottom
+        }
+        chunks {
+          index
+          pageIndex
+          rowIndex
+          columnIndex
+          confidence
+          text
+          role
+          language
+          relevance
+        }
+      }
+      segments {
+        startTime
+        endTime
+        text
+        relevance
+      }
+      frames {
+        index
+        description
+        text
+        relevance
+      }
+      error
+      observations {
+        id
+        type
+        observable {
+          id
+          name
+        }
+        related {
+          id
+          name
+        }
+        relatedType
+        relation
+        occurrences {
+          type
+          confidence
+          startTime
+          endTime
+          pageIndex
+          boundingBox {
+            left
+            top
+            width
+            height
+          }
+        }
+        state
       }
     }
   }
