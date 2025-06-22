@@ -37,6 +37,7 @@ class QueryModelsModelsResultsFeatures(BaseModel):
 
 
 class QueryModelsModelsResultsMetadata(BaseModel):
+    reasoning: Optional[bool]
     multilingual: Optional[bool]
     multimodal: Optional[bool]
     knowledge_cutoff: Optional[Any] = Field(alias="knowledgeCutoff")

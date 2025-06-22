@@ -1885,12 +1885,18 @@ class Client(AsyncBaseClient):
         self,
         completion: str,
         id: str,
+        completion_time: Union[Optional[Any], UnsetType] = UNSET,
+        ttft: Union[Optional[Any], UnsetType] = UNSET,
+        throughput: Union[Optional[float], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> CompleteConversation:
         variables: Dict[str, object] = {
             "completion": completion,
             "id": id,
+            "completionTime": completion_time,
+            "ttft": ttft,
+            "throughput": throughput,
             "correlationId": correlation_id,
         }
         response = await self.execute(
@@ -2015,6 +2021,7 @@ class Client(AsyncBaseClient):
         id: Union[Optional[str], UnsetType] = UNSET,
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         tools: Union[Optional[List[ToolDefinitionInput]], UnsetType] = UNSET,
+        system_prompt: Union[Optional[str], UnsetType] = UNSET,
         include_details: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
@@ -2024,6 +2031,7 @@ class Client(AsyncBaseClient):
             "id": id,
             "specification": specification,
             "tools": tools,
+            "systemPrompt": system_prompt,
             "includeDetails": include_details,
             "correlationId": correlation_id,
         }
@@ -2083,6 +2091,7 @@ class Client(AsyncBaseClient):
         data: Union[Optional[str], UnsetType] = UNSET,
         id: Union[Optional[str], UnsetType] = UNSET,
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        system_prompt: Union[Optional[str], UnsetType] = UNSET,
         tools: Union[Optional[List[ToolDefinitionInput]], UnsetType] = UNSET,
         require_tool: Union[Optional[bool], UnsetType] = UNSET,
         include_details: Union[Optional[bool], UnsetType] = UNSET,
@@ -2095,6 +2104,7 @@ class Client(AsyncBaseClient):
             "data": data,
             "id": id,
             "specification": specification,
+            "systemPrompt": system_prompt,
             "tools": tools,
             "requireTool": require_tool,
             "includeDetails": include_details,

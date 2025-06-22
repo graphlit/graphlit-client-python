@@ -120,6 +120,7 @@ mutation Prompt($prompt: String, $mimeType: String, $data: String, $specificatio
       }
       tokens
       throughput
+      ttft
       completionTime
       timestamp
       modelService

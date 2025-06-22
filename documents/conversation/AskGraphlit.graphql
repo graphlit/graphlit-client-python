@@ -120,6 +120,7 @@ mutation AskGraphlit($prompt: String!, $type: SdkTypes, $id: ID, $specification:
       }
       tokens
       throughput
+      ttft
       completionTime
       timestamp
       modelService

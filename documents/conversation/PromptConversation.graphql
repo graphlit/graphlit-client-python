@@ -1,5 +1,5 @@
-mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, $id: ID, $specification: EntityReferenceInput, $tools: [ToolDefinitionInput!], $requireTool: Boolean, $includeDetails: Boolean, $correlationId: String) {
-  promptConversation(prompt: $prompt, id: $id, mimeType: $mimeType, data: $data, specification: $specification, tools: $tools, requireTool: $requireTool, includeDetails: $includeDetails, correlationId: $correlationId) {
+mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, $id: ID, $specification: EntityReferenceInput, $systemPrompt: String, $tools: [ToolDefinitionInput!], $requireTool: Boolean, $includeDetails: Boolean, $correlationId: String) {
+  promptConversation(prompt: $prompt, id: $id, mimeType: $mimeType, data: $data, specification: $specification, tools: $tools, systemPrompt: $systemPrompt, requireTool: $requireTool, includeDetails: $includeDetails, correlationId: $correlationId) {
     conversation {
       id
     }
@@ -120,6 +120,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
       }
       tokens
       throughput
+      ttft
       completionTime
       timestamp
       modelService
@@ -298,6 +299,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
         }
         tokens
         throughput
+        ttft
         completionTime
         timestamp
         modelService

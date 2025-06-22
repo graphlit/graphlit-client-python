@@ -116,6 +116,7 @@ mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityRefer
     }
     tokens
     throughput
+    ttft
     completionTime
     timestamp
     modelService

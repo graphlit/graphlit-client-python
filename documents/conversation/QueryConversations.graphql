@@ -128,6 +128,7 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         }
         tokens
         throughput
+        ttft
         completionTime
         timestamp
         modelService

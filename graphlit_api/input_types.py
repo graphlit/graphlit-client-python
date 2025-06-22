@@ -3359,6 +3359,11 @@ class ConversationMessageInput(BaseModel):
     role: ConversationRoleTypes
     author: Optional[str] = None
     message: str
+    tokens: Optional[int] = None
+    throughput: Optional[float] = None
+    ttft: Optional[Any] = None
+    completion_time: Optional[Any] = Field(alias="completionTime", default=None)
+    timestamp: Optional[Any] = None
     data: Optional[str] = None
     mime_type: Optional[str] = Field(alias="mimeType", default=None)
 

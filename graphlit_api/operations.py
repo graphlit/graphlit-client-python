@@ -831,7 +831,6 @@ query GetCollection($id: ID!, $correlationId: String) {
     id
     name
     creationDate
-    relevance
     owner {
       id
     }
@@ -858,10 +857,6 @@ query QueryCollections($filter: CollectionFilter, $correlationId: String) {
       }
       state
       type
-      contents {
-        id
-        name
-      }
     }
   }
 }
@@ -1057,6 +1052,7 @@ mutation DescribeEncodedImage($prompt: String!, $mimeType: String!, $data: Strin
     }
     tokens
     throughput
+    ttft
     completionTime
     timestamp
     modelService
@@ -1193,6 +1189,7 @@ mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityRefer
     }
     tokens
     throughput
+    ttft
     completionTime
     timestamp
     modelService
@@ -2663,34 +2660,6 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
         uri
         linkType
       }
-      observations {
-        id
-        type
-        observable {
-          id
-          name
-        }
-        related {
-          id
-          name
-        }
-        relatedType
-        relation
-        occurrences {
-          type
-          confidence
-          startTime
-          endTime
-          pageIndex
-          boundingBox {
-            left
-            top
-            width
-            height
-          }
-        }
-        state
-      }
       workflow {
         id
         name
@@ -3059,6 +3028,7 @@ mutation AskGraphlit($prompt: String!, $type: SdkTypes, $id: ID, $specification:
       }
       tokens
       throughput
+      ttft
       completionTime
       timestamp
       modelService
@@ -3107,10 +3077,13 @@ mutation CloseConversation($id: ID!) {
 """
 
 COMPLETE_CONVERSATION_GQL = """
-mutation CompleteConversation($completion: String!, $id: ID!, $correlationId: String) {
+mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: TimeSpan, $ttft: TimeSpan, $throughput: Float, $correlationId: String) {
   completeConversation(
     completion: $completion
     id: $id
+    completionTime: $completionTime
+    ttft: $ttft
+    throughput: $throughput
     correlationId: $correlationId
   ) {
     conversation {
@@ -3233,6 +3206,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $correlationId: St
       }
       tokens
       throughput
+      ttft
       completionTime
       timestamp
       modelService
@@ -3411,6 +3385,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $correlationId: St
         }
         tokens
         throughput
+        ttft
         completionTime
         timestamp
         modelService
@@ -3552,6 +3527,7 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
       }
       tokens
       throughput
+      ttft
       completionTime
       timestamp
       modelService
@@ -3730,6 +3706,7 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
         }
         tokens
         throughput
+        ttft
         completionTime
         timestamp
         modelService
@@ -3795,12 +3772,13 @@ mutation DeleteConversations($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 FORMAT_CONVERSATION_GQL = """
-mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $tools: [ToolDefinitionInput!], $includeDetails: Boolean, $correlationId: String) {
+mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $tools: [ToolDefinitionInput!], $systemPrompt: String, $includeDetails: Boolean, $correlationId: String) {
   formatConversation(
     prompt: $prompt
     id: $id
     specification: $specification
     tools: $tools
+    systemPrompt: $systemPrompt
     includeDetails: $includeDetails
     correlationId: $correlationId
   ) {
@@ -3924,6 +3902,7 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
       }
       tokens
       throughput
+      ttft
       completionTime
       timestamp
       modelService
@@ -4102,6 +4081,7 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
         }
         tokens
         throughput
+        ttft
         completionTime
         timestamp
         modelService
@@ -4246,6 +4226,7 @@ query GetConversation($id: ID!, $correlationId: String) {
       }
       tokens
       throughput
+      ttft
       completionTime
       timestamp
       modelService
@@ -4563,6 +4544,7 @@ mutation Prompt($prompt: String, $mimeType: String, $data: String, $specificatio
       }
       tokens
       throughput
+      ttft
       completionTime
       timestamp
       modelService
@@ -4578,7 +4560,7 @@ mutation Prompt($prompt: String, $mimeType: String, $data: String, $specificatio
 """
 
 PROMPT_CONVERSATION_GQL = """
-mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, $id: ID, $specification: EntityReferenceInput, $tools: [ToolDefinitionInput!], $requireTool: Boolean, $includeDetails: Boolean, $correlationId: String) {
+mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, $id: ID, $specification: EntityReferenceInput, $systemPrompt: String, $tools: [ToolDefinitionInput!], $requireTool: Boolean, $includeDetails: Boolean, $correlationId: String) {
   promptConversation(
     prompt: $prompt
     id: $id
@@ -4586,6 +4568,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
     data: $data
     specification: $specification
     tools: $tools
+    systemPrompt: $systemPrompt
     requireTool: $requireTool
     includeDetails: $includeDetails
     correlationId: $correlationId
@@ -4710,6 +4693,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
       }
       tokens
       throughput
+      ttft
       completionTime
       timestamp
       modelService
@@ -4888,6 +4872,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
         }
         tokens
         throughput
+        ttft
         completionTime
         timestamp
         modelService
@@ -5158,6 +5143,7 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         }
         tokens
         throughput
+        ttft
         completionTime
         timestamp
         modelService
@@ -5502,6 +5488,7 @@ mutation ReviseContent($prompt: String!, $content: EntityReferenceInput!, $id: I
       }
       tokens
       throughput
+      ttft
       completionTime
       timestamp
       modelService
@@ -5646,6 +5633,7 @@ mutation ReviseEncodedImage($prompt: String!, $mimeType: String!, $data: String!
       }
       tokens
       throughput
+      ttft
       completionTime
       timestamp
       modelService
@@ -5789,6 +5777,7 @@ mutation ReviseImage($prompt: String!, $uri: URL!, $id: ID, $specification: Enti
       }
       tokens
       throughput
+      ttft
       completionTime
       timestamp
       modelService
@@ -5932,6 +5921,7 @@ mutation ReviseText($prompt: String!, $text: String!, $id: ID, $specification: E
       }
       tokens
       throughput
+      ttft
       completionTime
       timestamp
       modelService
@@ -6704,7 +6694,10 @@ query QueryMicrosoftTeamsTeams($properties: MicrosoftTeamsTeamsInput!) {
 QUERY_NOTION_DATABASES_GQL = """
 query QueryNotionDatabases($properties: NotionDatabasesInput!) {
   notionDatabases(properties: $properties) {
-    results
+    results {
+      name
+      identifier
+    }
   }
 }
 """
@@ -6712,7 +6705,10 @@ query QueryNotionDatabases($properties: NotionDatabasesInput!) {
 QUERY_NOTION_PAGES_GQL = """
 query QueryNotionPages($properties: NotionPagesInput!, $identifier: String!) {
   notionPages(properties: $properties, identifier: $identifier) {
-    results
+    results {
+      name
+      identifier
+    }
   }
 }
 """
@@ -9165,6 +9161,7 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
       }
       tokens
       throughput
+      ttft
       completionTime
       timestamp
       modelService
@@ -9197,6 +9194,7 @@ query QueryModels($filter: ModelFilter) {
         useCases
       }
       metadata {
+        reasoning
         multilingual
         multimodal
         knowledgeCutoff

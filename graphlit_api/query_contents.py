@@ -15,8 +15,6 @@ from .enums import (
     MailImportance,
     MailPriority,
     MailSensitivity,
-    ObservableTypes,
-    OccurrenceTypes,
     OrientationTypes,
     TextRoles,
 )
@@ -78,7 +76,6 @@ class QueryContentsContentsResults(BaseModel):
     feed: Optional["QueryContentsContentsResultsFeed"]
     collections: Optional[List[Optional["QueryContentsContentsResultsCollections"]]]
     links: Optional[List["QueryContentsContentsResultsLinks"]]
-    observations: Optional[List[Optional["QueryContentsContentsResultsObservations"]]]
     workflow: Optional["QueryContentsContentsResultsWorkflow"]
     pages: Optional[List["QueryContentsContentsResultsPages"]]
     segments: Optional[List["QueryContentsContentsResultsSegments"]]
@@ -255,47 +252,6 @@ class QueryContentsContentsResultsLinks(BaseModel):
     link_type: Optional[LinkTypes] = Field(alias="linkType")
 
 
-class QueryContentsContentsResultsObservations(BaseModel):
-    id: str
-    type: ObservableTypes
-    observable: "QueryContentsContentsResultsObservationsObservable"
-    related: Optional["QueryContentsContentsResultsObservationsRelated"]
-    related_type: Optional[ObservableTypes] = Field(alias="relatedType")
-    relation: Optional[str]
-    occurrences: Optional[
-        List[Optional["QueryContentsContentsResultsObservationsOccurrences"]]
-    ]
-    state: EntityState
-
-
-class QueryContentsContentsResultsObservationsObservable(BaseModel):
-    id: str
-    name: Optional[str]
-
-
-class QueryContentsContentsResultsObservationsRelated(BaseModel):
-    id: str
-    name: Optional[str]
-
-
-class QueryContentsContentsResultsObservationsOccurrences(BaseModel):
-    type: Optional[OccurrenceTypes]
-    confidence: Optional[float]
-    start_time: Optional[Any] = Field(alias="startTime")
-    end_time: Optional[Any] = Field(alias="endTime")
-    page_index: Optional[int] = Field(alias="pageIndex")
-    bounding_box: Optional[
-        "QueryContentsContentsResultsObservationsOccurrencesBoundingBox"
-    ] = Field(alias="boundingBox")
-
-
-class QueryContentsContentsResultsObservationsOccurrencesBoundingBox(BaseModel):
-    left: Optional[float]
-    top: Optional[float]
-    width: Optional[float]
-    height: Optional[float]
-
-
 class QueryContentsContentsResultsWorkflow(BaseModel):
     id: str
     name: str
@@ -349,6 +305,4 @@ QueryContents.model_rebuild()
 QueryContentsContents.model_rebuild()
 QueryContentsContentsResults.model_rebuild()
 QueryContentsContentsResultsEmail.model_rebuild()
-QueryContentsContentsResultsObservations.model_rebuild()
-QueryContentsContentsResultsObservationsOccurrences.model_rebuild()
 QueryContentsContentsResultsPages.model_rebuild()

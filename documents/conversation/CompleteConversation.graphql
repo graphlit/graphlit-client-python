@@ -1,5 +1,5 @@
-mutation CompleteConversation($completion: String!, $id: ID!, $correlationId: String) {
-  completeConversation(completion: $completion, id: $id, correlationId: $correlationId) {
+mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: TimeSpan, $ttft: TimeSpan, $throughput: Float, $correlationId: String) {
+  completeConversation(completion: $completion, id: $id, completionTime: $completionTime, ttft: $ttft, throughput: $throughput, correlationId: $correlationId) {
     conversation {
       id
     }
@@ -120,6 +120,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $correlationId: St
       }
       tokens
       throughput
+      ttft
       completionTime
       timestamp
       modelService
@@ -298,6 +299,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $correlationId: St
         }
         tokens
         throughput
+        ttft
         completionTime
         timestamp
         modelService

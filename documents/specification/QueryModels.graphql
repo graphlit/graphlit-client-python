@@ -15,6 +15,7 @@ query QueryModels($filter: ModelFilter) {
         useCases
       }
       metadata {
+        reasoning
         multilingual
         multimodal
         knowledgeCutoff

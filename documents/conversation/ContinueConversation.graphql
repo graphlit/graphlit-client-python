@@ -120,6 +120,7 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
       }
       tokens
       throughput
+      ttft
       completionTime
       timestamp
       modelService
@@ -298,6 +299,7 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
         }
         tokens
         throughput
+        ttft
         completionTime
         timestamp
         modelService

@@ -120,6 +120,7 @@ mutation ReviseContent($prompt: String!, $content: EntityReferenceInput!, $id: I
       }
       tokens
       throughput
+      ttft
       completionTime
       timestamp
       modelService

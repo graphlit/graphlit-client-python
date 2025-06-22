@@ -1919,7 +1919,6 @@ from .query_collections import (
     QueryCollections,
     QueryCollectionsCollections,
     QueryCollectionsCollectionsResults,
-    QueryCollectionsCollectionsResultsContents,
     QueryCollectionsCollectionsResultsOwner,
 )
 from .query_contents import (
@@ -1942,11 +1941,6 @@ from .query_contents import (
     QueryContentsContentsResultsLanguage,
     QueryContentsContentsResultsLinks,
     QueryContentsContentsResultsLocation,
-    QueryContentsContentsResultsObservations,
-    QueryContentsContentsResultsObservationsObservable,
-    QueryContentsContentsResultsObservationsOccurrences,
-    QueryContentsContentsResultsObservationsOccurrencesBoundingBox,
-    QueryContentsContentsResultsObservationsRelated,
     QueryContentsContentsResultsOwner,
     QueryContentsContentsResultsPackage,
     QueryContentsContentsResultsPages,
@@ -2166,8 +2160,13 @@ from .query_models import (
 from .query_notion_databases import (
     QueryNotionDatabases,
     QueryNotionDatabasesNotionDatabases,
+    QueryNotionDatabasesNotionDatabasesResults,
 )
-from .query_notion_pages import QueryNotionPages, QueryNotionPagesNotionPages
+from .query_notion_pages import (
+    QueryNotionPages,
+    QueryNotionPagesNotionPages,
+    QueryNotionPagesNotionPagesResults,
+)
 from .query_one_drive_folders import (
     QueryOneDriveFolders,
     QueryOneDriveFoldersOneDriveFolders,
@@ -4244,7 +4243,6 @@ __all__ = [
     "QueryCollections",
     "QueryCollectionsCollections",
     "QueryCollectionsCollectionsResults",
-    "QueryCollectionsCollectionsResultsContents",
     "QueryCollectionsCollectionsResultsOwner",
     "QueryContents",
     "QueryContentsContents",
@@ -4265,11 +4263,6 @@ __all__ = [
     "QueryContentsContentsResultsLanguage",
     "QueryContentsContentsResultsLinks",
     "QueryContentsContentsResultsLocation",
-    "QueryContentsContentsResultsObservations",
-    "QueryContentsContentsResultsObservationsObservable",
-    "QueryContentsContentsResultsObservationsOccurrences",
-    "QueryContentsContentsResultsObservationsOccurrencesBoundingBox",
-    "QueryContentsContentsResultsObservationsRelated",
     "QueryContentsContentsResultsOwner",
     "QueryContentsContentsResultsPackage",
     "QueryContentsContentsResultsPages",
@@ -4450,8 +4443,10 @@ __all__ = [
     "QueryModelsModelsResultsMetadata",
     "QueryNotionDatabases",
     "QueryNotionDatabasesNotionDatabases",
+    "QueryNotionDatabasesNotionDatabasesResults",
     "QueryNotionPages",
     "QueryNotionPagesNotionPages",
+    "QueryNotionPagesNotionPagesResults",
     "QueryOneDriveFolders",
     "QueryOneDriveFoldersOneDriveFolders",
     "QueryOneDriveFoldersOneDriveFoldersResults",

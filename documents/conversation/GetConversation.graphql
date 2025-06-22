@@ -127,6 +127,7 @@ query GetConversation($id: ID!, $correlationId: String) {
       }
       tokens
       throughput
+      ttft
       completionTime
       timestamp
       modelService

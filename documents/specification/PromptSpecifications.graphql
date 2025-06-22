@@ -120,6 +120,7 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
       }
       tokens
       throughput
+      ttft
       completionTime
       timestamp
       modelService

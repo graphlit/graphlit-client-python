@@ -15,7 +15,13 @@ class QueryNotionDatabases(BaseModel):
 
 
 class QueryNotionDatabasesNotionDatabases(BaseModel):
-    results: Optional[List[str]]
+    results: Optional[List[Optional["QueryNotionDatabasesNotionDatabasesResults"]]]
+
+
+class QueryNotionDatabasesNotionDatabasesResults(BaseModel):
+    name: Optional[str]
+    identifier: Optional[str]
 
 
 QueryNotionDatabases.model_rebuild()
+QueryNotionDatabasesNotionDatabases.model_rebuild()

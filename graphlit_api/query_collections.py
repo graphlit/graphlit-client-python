@@ -25,16 +25,10 @@ class QueryCollectionsCollectionsResults(BaseModel):
     owner: "QueryCollectionsCollectionsResultsOwner"
     state: EntityState
     type: Optional[CollectionTypes]
-    contents: Optional[List[Optional["QueryCollectionsCollectionsResultsContents"]]]
 
 
 class QueryCollectionsCollectionsResultsOwner(BaseModel):
     id: str
-
-
-class QueryCollectionsCollectionsResultsContents(BaseModel):
-    id: str
-    name: str
 
 
 QueryCollections.model_rebuild()

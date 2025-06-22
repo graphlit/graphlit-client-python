@@ -179,34 +179,6 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
         uri
         linkType
       }
-      observations {
-        id
-        type
-        observable {
-          id
-          name
-        }
-        related {
-          id
-          name
-        }
-        relatedType
-        relation
-        occurrences {
-          type
-          confidence
-          startTime
-          endTime
-          pageIndex
-          boundingBox {
-            left
-            top
-            width
-            height
-          }
-        }
-        state
-      }
       workflow {
         id
         name

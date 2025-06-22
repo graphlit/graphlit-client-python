@@ -35,6 +35,7 @@ class DescribeEncodedImageDescribeEncodedImage(BaseModel):
     ] = Field(alias="toolCalls")
     tokens: Optional[int]
     throughput: Optional[float]
+    ttft: Optional[Any]
     completion_time: Optional[Any] = Field(alias="completionTime")
     timestamp: Optional[Any]
     model_service: Optional[ModelServiceTypes] = Field(alias="modelService")
