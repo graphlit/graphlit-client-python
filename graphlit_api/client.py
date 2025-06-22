@@ -4933,8 +4933,18 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return GetProject.model_validate(data)
 
-    async def lookup_credits(self, correlation_id: str, **kwargs: Any) -> LookupCredits:
-        variables: Dict[str, object] = {"correlationId": correlation_id}
+    async def lookup_credits(
+        self,
+        correlation_id: str,
+        start_date: Union[Optional[Any], UnsetType] = UNSET,
+        duration: Union[Optional[Any], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> LookupCredits:
+        variables: Dict[str, object] = {
+            "correlationId": correlation_id,
+            "startDate": start_date,
+            "duration": duration,
+        }
         response = await self.execute(
             query=LOOKUP_CREDITS_GQL,
             operation_name="LookupCredits",
@@ -4944,8 +4954,18 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return LookupCredits.model_validate(data)
 
-    async def lookup_usage(self, correlation_id: str, **kwargs: Any) -> LookupUsage:
-        variables: Dict[str, object] = {"correlationId": correlation_id}
+    async def lookup_usage(
+        self,
+        correlation_id: str,
+        start_date: Union[Optional[Any], UnsetType] = UNSET,
+        duration: Union[Optional[Any], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> LookupUsage:
+        variables: Dict[str, object] = {
+            "correlationId": correlation_id,
+            "startDate": start_date,
+            "duration": duration,
+        }
         response = await self.execute(
             query=LOOKUP_USAGE_GQL,
             operation_name="LookupUsage",

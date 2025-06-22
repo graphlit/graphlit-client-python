@@ -8671,8 +8671,12 @@ query GetProject {
 """
 
 LOOKUP_CREDITS_GQL = """
-query LookupCredits($correlationId: String!) {
-  lookupCredits(correlationId: $correlationId) {
+query LookupCredits($correlationId: String!, $startDate: DateTime, $duration: TimeSpan) {
+  lookupCredits(
+    correlationId: $correlationId
+    startDate: $startDate
+    duration: $duration
+  ) {
     correlationId
     ownerId
     credits
@@ -8695,8 +8699,12 @@ query LookupCredits($correlationId: String!) {
 """
 
 LOOKUP_USAGE_GQL = """
-query LookupUsage($correlationId: String!) {
-  lookupUsage(correlationId: $correlationId) {
+query LookupUsage($correlationId: String!, $startDate: DateTime, $duration: TimeSpan) {
+  lookupUsage(
+    correlationId: $correlationId
+    startDate: $startDate
+    duration: $duration
+  ) {
     id
     correlationId
     date

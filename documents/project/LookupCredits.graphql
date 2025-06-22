@@ -1,5 +1,5 @@
-query LookupCredits($correlationId: String!) {
-  lookupCredits(correlationId: $correlationId) {
+query LookupCredits($correlationId: String!, $startDate: DateTime, $duration: TimeSpan) {
+  lookupCredits(correlationId: $correlationId, startDate: $startDate, duration: $duration) {
     correlationId
     ownerId
     credits

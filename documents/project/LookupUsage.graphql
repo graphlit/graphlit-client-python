@@ -1,5 +1,5 @@
-query LookupUsage($correlationId: String!) {
-  lookupUsage(correlationId: $correlationId) {
+query LookupUsage($correlationId: String!, $startDate: DateTime, $duration: TimeSpan) {
+  lookupUsage(correlationId: $correlationId, startDate: $startDate, duration: $duration) {
     id
     correlationId
     date
