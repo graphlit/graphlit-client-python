@@ -149,6 +149,27 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         }
         readLimit
       }
+      calendar {
+        type
+        includeAttachments
+        google {
+          calendarId
+          beforeDate
+          afterDate
+          refreshToken
+          clientId
+          clientSecret
+        }
+        microsoft {
+          calendarId
+          beforeDate
+          afterDate
+          refreshToken
+          clientId
+          clientSecret
+        }
+        readLimit
+      }
       rss {
         readLimit
         uri

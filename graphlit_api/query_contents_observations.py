@@ -7,6 +7,11 @@ from pydantic import Field
 
 from .base_model import BaseModel
 from .enums import (
+    CalendarAttendeeResponseStatus,
+    CalendarEventStatus,
+    CalendarEventVisibility,
+    CalendarRecurrencePattern,
+    CalendarReminderMethod,
     ContentTypes,
     EntityState,
     FileTypes,
@@ -45,6 +50,7 @@ class QueryContentsObservationsContentsResults(BaseModel):
     identifier: Optional[str]
     address: Optional["QueryContentsObservationsContentsResultsAddress"]
     location: Optional["QueryContentsObservationsContentsResultsLocation"]
+    features: Optional[str]
     type: Optional[ContentTypes]
     file_type: Optional[FileTypes] = Field(alias="fileType")
     mime_type: Optional[str] = Field(alias="mimeType")
@@ -72,6 +78,7 @@ class QueryContentsObservationsContentsResults(BaseModel):
     image: Optional["QueryContentsObservationsContentsResultsImage"]
     document: Optional["QueryContentsObservationsContentsResultsDocument"]
     email: Optional["QueryContentsObservationsContentsResultsEmail"]
+    event: Optional["QueryContentsObservationsContentsResultsEvent"]
     issue: Optional["QueryContentsObservationsContentsResultsIssue"]
     package: Optional["QueryContentsObservationsContentsResultsPackage"]
     language: Optional["QueryContentsObservationsContentsResultsLanguage"]
@@ -221,6 +228,65 @@ class QueryContentsObservationsContentsResultsEmailBcc(BaseModel):
     family_name: Optional[str] = Field(alias="familyName")
 
 
+class QueryContentsObservationsContentsResultsEvent(BaseModel):
+    event_identifier: Optional[str] = Field(alias="eventIdentifier")
+    calendar_identifier: Optional[str] = Field(alias="calendarIdentifier")
+    subject: Optional[str]
+    start_date_time: Optional[Any] = Field(alias="startDateTime")
+    end_date_time: Optional[Any] = Field(alias="endDateTime")
+    is_all_day: Optional[bool] = Field(alias="isAllDay")
+    timezone: Optional[str]
+    status: Optional[CalendarEventStatus]
+    visibility: Optional[CalendarEventVisibility]
+    meeting_link: Optional[str] = Field(alias="meetingLink")
+    organizer: Optional["QueryContentsObservationsContentsResultsEventOrganizer"]
+    attendees: Optional[
+        List[Optional["QueryContentsObservationsContentsResultsEventAttendees"]]
+    ]
+    categories: Optional[List[Optional[str]]]
+    reminders: Optional[
+        List[Optional["QueryContentsObservationsContentsResultsEventReminders"]]
+    ]
+    recurrence: Optional["QueryContentsObservationsContentsResultsEventRecurrence"]
+    recurring_event_identifier: Optional[str] = Field(alias="recurringEventIdentifier")
+    is_recurring: Optional[bool] = Field(alias="isRecurring")
+
+
+class QueryContentsObservationsContentsResultsEventOrganizer(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    is_optional: Optional[bool] = Field(alias="isOptional")
+    is_organizer: Optional[bool] = Field(alias="isOrganizer")
+    response_status: Optional[CalendarAttendeeResponseStatus] = Field(
+        alias="responseStatus"
+    )
+
+
+class QueryContentsObservationsContentsResultsEventAttendees(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    is_optional: Optional[bool] = Field(alias="isOptional")
+    is_organizer: Optional[bool] = Field(alias="isOrganizer")
+    response_status: Optional[CalendarAttendeeResponseStatus] = Field(
+        alias="responseStatus"
+    )
+
+
+class QueryContentsObservationsContentsResultsEventReminders(BaseModel):
+    minutes_before: Optional[int] = Field(alias="minutesBefore")
+    method: Optional[CalendarReminderMethod]
+
+
+class QueryContentsObservationsContentsResultsEventRecurrence(BaseModel):
+    pattern: Optional[CalendarRecurrencePattern]
+    interval: Optional[int]
+    count: Optional[int]
+    until: Optional[Any]
+    days_of_week: Optional[List[Optional[str]]] = Field(alias="daysOfWeek")
+    day_of_month: Optional[int] = Field(alias="dayOfMonth")
+    month_of_year: Optional[int] = Field(alias="monthOfYear")
+
+
 class QueryContentsObservationsContentsResultsIssue(BaseModel):
     identifier: Optional[str]
     title: Optional[str]
@@ -354,6 +420,7 @@ QueryContentsObservations.model_rebuild()
 QueryContentsObservationsContents.model_rebuild()
 QueryContentsObservationsContentsResults.model_rebuild()
 QueryContentsObservationsContentsResultsEmail.model_rebuild()
+QueryContentsObservationsContentsResultsEvent.model_rebuild()
 QueryContentsObservationsContentsResultsPages.model_rebuild()
 QueryContentsObservationsContentsResultsObservations.model_rebuild()
 QueryContentsObservationsContentsResultsObservationsOccurrences.model_rebuild()

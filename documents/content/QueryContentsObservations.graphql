@@ -26,6 +26,7 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
         latitude
         longitude
       }
+      features
       type
       fileType
       mimeType
@@ -148,6 +149,48 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
           givenName
           familyName
         }
+      }
+      event {
+        eventIdentifier
+        calendarIdentifier
+        subject
+        startDateTime
+        endDateTime
+        isAllDay
+        timezone
+        status
+        visibility
+        meetingLink
+        organizer {
+          name
+          email
+          isOptional
+          isOrganizer
+          responseStatus
+        }
+        attendees {
+          name
+          email
+          isOptional
+          isOrganizer
+          responseStatus
+        }
+        categories
+        reminders {
+          minutesBefore
+          method
+        }
+        recurrence {
+          pattern
+          interval
+          count
+          until
+          daysOfWeek
+          dayOfMonth
+          monthOfYear
+        }
+        recurringEventIdentifier
+        isRecurring
       }
       issue {
         identifier

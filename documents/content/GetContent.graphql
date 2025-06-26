@@ -173,6 +173,48 @@ query GetContent($id: ID!, $correlationId: String) {
         familyName
       }
     }
+    event {
+      eventIdentifier
+      calendarIdentifier
+      subject
+      startDateTime
+      endDateTime
+      isAllDay
+      timezone
+      status
+      visibility
+      meetingLink
+      organizer {
+        name
+        email
+        isOptional
+        isOrganizer
+        responseStatus
+      }
+      attendees {
+        name
+        email
+        isOptional
+        isOrganizer
+        responseStatus
+      }
+      categories
+      reminders {
+        minutesBefore
+        method
+      }
+      recurrence {
+        pattern
+        interval
+        count
+        until
+        daysOfWeek
+        dayOfMonth
+        monthOfYear
+      }
+      recurringEventIdentifier
+      isRecurring
+    }
     issue {
       identifier
       title

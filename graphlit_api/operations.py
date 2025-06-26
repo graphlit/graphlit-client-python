@@ -211,6 +211,7 @@ __all__ = [
     "PUBLISH_CONVERSATION_GQL",
     "PUBLISH_TEXT_GQL",
     "QUERY_ALERTS_GQL",
+    "QUERY_BOX_FOLDERS_GQL",
     "QUERY_CATEGORIES_GQL",
     "QUERY_COLLECTIONS_GQL",
     "QUERY_CONTENTS_FACETS_GQL",
@@ -219,8 +220,11 @@ __all__ = [
     "QUERY_CONTENTS_OBSERVATIONS_GQL",
     "QUERY_CONVERSATIONS_GQL",
     "QUERY_CREDITS_GQL",
+    "QUERY_DROPBOX_FOLDERS_GQL",
     "QUERY_EVENTS_GQL",
     "QUERY_FEEDS_GQL",
+    "QUERY_GOOGLE_CALENDARS_GQL",
+    "QUERY_GOOGLE_DRIVE_FOLDERS_GQL",
     "QUERY_LABELS_GQL",
     "QUERY_LINEAR_PROJECTS_GQL",
     "QUERY_MEDICAL_CONDITIONS_GQL",
@@ -234,6 +238,7 @@ __all__ = [
     "QUERY_MEDICAL_STUDIES_GQL",
     "QUERY_MEDICAL_TESTS_GQL",
     "QUERY_MEDICAL_THERAPIES_GQL",
+    "QUERY_MICROSOFT_CALENDARS_GQL",
     "QUERY_MICROSOFT_TEAMS_CHANNELS_GQL",
     "QUERY_MICROSOFT_TEAMS_TEAMS_GQL",
     "QUERY_MODELS_GQL",
@@ -1430,6 +1435,48 @@ query GetContent($id: ID!, $correlationId: String) {
         familyName
       }
     }
+    event {
+      eventIdentifier
+      calendarIdentifier
+      subject
+      startDateTime
+      endDateTime
+      isAllDay
+      timezone
+      status
+      visibility
+      meetingLink
+      organizer {
+        name
+        email
+        isOptional
+        isOrganizer
+        responseStatus
+      }
+      attendees {
+        name
+        email
+        isOptional
+        isOrganizer
+        responseStatus
+      }
+      categories
+      reminders {
+        minutesBefore
+        method
+      }
+      recurrence {
+        pattern
+        interval
+        count
+        until
+        daysOfWeek
+        dayOfMonth
+        monthOfYear
+      }
+      recurringEventIdentifier
+      isRecurring
+    }
     issue {
       identifier
       title
@@ -2110,6 +2157,48 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
           familyName
         }
       }
+      event {
+        eventIdentifier
+        calendarIdentifier
+        subject
+        startDateTime
+        endDateTime
+        isAllDay
+        timezone
+        status
+        visibility
+        meetingLink
+        organizer {
+          name
+          email
+          isOptional
+          isOrganizer
+          responseStatus
+        }
+        attendees {
+          name
+          email
+          isOptional
+          isOrganizer
+          responseStatus
+        }
+        categories
+        reminders {
+          minutesBefore
+          method
+        }
+        recurrence {
+          pattern
+          interval
+          count
+          until
+          daysOfWeek
+          dayOfMonth
+          monthOfYear
+        }
+        recurringEventIdentifier
+        isRecurring
+      }
       issue {
         identifier
         title
@@ -2508,6 +2597,7 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
         latitude
         longitude
       }
+      features
       type
       fileType
       mimeType
@@ -2630,6 +2720,48 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
           givenName
           familyName
         }
+      }
+      event {
+        eventIdentifier
+        calendarIdentifier
+        subject
+        startDateTime
+        endDateTime
+        isAllDay
+        timezone
+        status
+        visibility
+        meetingLink
+        organizer {
+          name
+          email
+          isOptional
+          isOrganizer
+          responseStatus
+        }
+        attendees {
+          name
+          email
+          isOptional
+          isOrganizer
+          responseStatus
+        }
+        categories
+        reminders {
+          minutesBefore
+          method
+        }
+        recurrence {
+          pattern
+          interval
+          count
+          until
+          daysOfWeek
+          dayOfMonth
+          monthOfYear
+        }
+        recurringEventIdentifier
+        isRecurring
       }
       issue {
         identifier
@@ -2777,6 +2909,7 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
         latitude
         longitude
       }
+      features
       type
       fileType
       mimeType
@@ -2899,6 +3032,48 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
           givenName
           familyName
         }
+      }
+      event {
+        eventIdentifier
+        calendarIdentifier
+        subject
+        startDateTime
+        endDateTime
+        isAllDay
+        timezone
+        status
+        visibility
+        meetingLink
+        organizer {
+          name
+          email
+          isOptional
+          isOrganizer
+          responseStatus
+        }
+        attendees {
+          name
+          email
+          isOptional
+          isOrganizer
+          responseStatus
+        }
+        categories
+        reminders {
+          minutesBefore
+          method
+        }
+        recurrence {
+          pattern
+          interval
+          count
+          until
+          daysOfWeek
+          dayOfMonth
+          monthOfYear
+        }
+        recurringEventIdentifier
+        isRecurring
       }
       issue {
         identifier
@@ -6563,6 +6738,27 @@ query GetFeed($id: ID!, $correlationId: String) {
       }
       readLimit
     }
+    calendar {
+      type
+      includeAttachments
+      google {
+        calendarId
+        beforeDate
+        afterDate
+        refreshToken
+        clientId
+        clientSecret
+      }
+      microsoft {
+        calendarId
+        beforeDate
+        afterDate
+        refreshToken
+        clientId
+        clientSecret
+      }
+      readLimit
+    }
     rss {
       readLimit
       uri
@@ -6665,6 +6861,28 @@ IS_FEED_DONE_GQL = """
 query IsFeedDone($id: ID!) {
   isFeedDone(id: $id) {
     result
+  }
+}
+"""
+
+QUERY_BOX_FOLDERS_GQL = """
+query QueryBoxFolders($properties: BoxFoldersInput!, $folderId: ID) {
+  boxFolders(properties: $properties, folderId: $folderId) {
+    results {
+      folderName
+      folderId
+    }
+  }
+}
+"""
+
+QUERY_DROPBOX_FOLDERS_GQL = """
+query QueryDropboxFolders($properties: DropboxFoldersInput!, $folderPath: String) {
+  dropboxFolders(properties: $properties, folderPath: $folderPath) {
+    results {
+      folderName
+      folderId
+    }
   }
 }
 """
@@ -6821,6 +7039,27 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         }
         readLimit
       }
+      calendar {
+        type
+        includeAttachments
+        google {
+          calendarId
+          beforeDate
+          afterDate
+          refreshToken
+          clientId
+          clientSecret
+        }
+        microsoft {
+          calendarId
+          beforeDate
+          afterDate
+          refreshToken
+          clientId
+          clientSecret
+        }
+        readLimit
+      }
       rss {
         readLimit
         uri
@@ -6912,10 +7151,43 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
 }
 """
 
+QUERY_GOOGLE_CALENDARS_GQL = """
+query QueryGoogleCalendars($properties: GoogleCalendarsInput!) {
+  googleCalendars(properties: $properties) {
+    results {
+      calendarName
+      calendarId
+    }
+  }
+}
+"""
+
+QUERY_GOOGLE_DRIVE_FOLDERS_GQL = """
+query QueryGoogleDriveFolders($properties: GoogleDriveFoldersInput!, $folderId: ID) {
+  googleDriveFolders(properties: $properties, folderId: $folderId) {
+    results {
+      folderName
+      folderId
+    }
+  }
+}
+"""
+
 QUERY_LINEAR_PROJECTS_GQL = """
 query QueryLinearProjects($properties: LinearProjectsInput!) {
   linearProjects(properties: $properties) {
     results
+  }
+}
+"""
+
+QUERY_MICROSOFT_CALENDARS_GQL = """
+query QueryMicrosoftCalendars($properties: MicrosoftCalendarsInput!) {
+  microsoftCalendars(properties: $properties) {
+    results {
+      calendarName
+      calendarId
+    }
   }
 }
 """

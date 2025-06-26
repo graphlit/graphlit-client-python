@@ -206,6 +206,7 @@ from .input_types import (
     AlertFilter,
     AlertInput,
     AlertUpdateInput,
+    BoxFoldersInput,
     CategoryFilter,
     CategoryInput,
     CategoryUpdateInput,
@@ -222,6 +223,7 @@ from .input_types import (
     ConversationMessageInput,
     ConversationToolResponseInput,
     ConversationUpdateInput,
+    DropboxFoldersInput,
     EntityReferenceInput,
     EventFilter,
     EventInput,
@@ -229,6 +231,8 @@ from .input_types import (
     FeedFilter,
     FeedInput,
     FeedUpdateInput,
+    GoogleCalendarsInput,
+    GoogleDriveFoldersInput,
     IntegrationConnectorInput,
     LabelFilter,
     LabelInput,
@@ -267,6 +271,7 @@ from .input_types import (
     MedicalTherapyFilter,
     MedicalTherapyInput,
     MedicalTherapyUpdateInput,
+    MicrosoftCalendarsInput,
     MicrosoftTeamsChannelsInput,
     MicrosoftTeamsTeamsInput,
     ModelFilter,
@@ -529,6 +534,7 @@ from .operations import (
     PUBLISH_CONVERSATION_GQL,
     PUBLISH_TEXT_GQL,
     QUERY_ALERTS_GQL,
+    QUERY_BOX_FOLDERS_GQL,
     QUERY_CATEGORIES_GQL,
     QUERY_COLLECTIONS_GQL,
     QUERY_CONTENTS_FACETS_GQL,
@@ -537,8 +543,11 @@ from .operations import (
     QUERY_CONTENTS_OBSERVATIONS_GQL,
     QUERY_CONVERSATIONS_GQL,
     QUERY_CREDITS_GQL,
+    QUERY_DROPBOX_FOLDERS_GQL,
     QUERY_EVENTS_GQL,
     QUERY_FEEDS_GQL,
+    QUERY_GOOGLE_CALENDARS_GQL,
+    QUERY_GOOGLE_DRIVE_FOLDERS_GQL,
     QUERY_LABELS_GQL,
     QUERY_LINEAR_PROJECTS_GQL,
     QUERY_MEDICAL_CONDITIONS_GQL,
@@ -552,6 +561,7 @@ from .operations import (
     QUERY_MEDICAL_STUDIES_GQL,
     QUERY_MEDICAL_TESTS_GQL,
     QUERY_MEDICAL_THERAPIES_GQL,
+    QUERY_MICROSOFT_CALENDARS_GQL,
     QUERY_MICROSOFT_TEAMS_CHANNELS_GQL,
     QUERY_MICROSOFT_TEAMS_TEAMS_GQL,
     QUERY_MODELS_GQL,
@@ -628,6 +638,7 @@ from .publish_contents import PublishContents
 from .publish_conversation import PublishConversation
 from .publish_text import PublishText
 from .query_alerts import QueryAlerts
+from .query_box_folders import QueryBoxFolders
 from .query_categories import QueryCategories
 from .query_collections import QueryCollections
 from .query_contents import QueryContents
@@ -636,8 +647,11 @@ from .query_contents_graph import QueryContentsGraph
 from .query_contents_observations import QueryContentsObservations
 from .query_conversations import QueryConversations
 from .query_credits import QueryCredits
+from .query_dropbox_folders import QueryDropboxFolders
 from .query_events import QueryEvents
 from .query_feeds import QueryFeeds
+from .query_google_calendars import QueryGoogleCalendars
+from .query_google_drive_folders import QueryGoogleDriveFolders
 from .query_labels import QueryLabels
 from .query_linear_projects import QueryLinearProjects
 from .query_medical_conditions import QueryMedicalConditions
@@ -651,6 +665,7 @@ from .query_medical_procedures import QueryMedicalProcedures
 from .query_medical_studies import QueryMedicalStudies
 from .query_medical_tests import QueryMedicalTests
 from .query_medical_therapies import QueryMedicalTherapies
+from .query_microsoft_calendars import QueryMicrosoftCalendars
 from .query_microsoft_teams_channels import QueryMicrosoftTeamsChannels
 from .query_microsoft_teams_teams import QueryMicrosoftTeamsTeams
 from .query_models import QueryModels
@@ -2636,6 +2651,41 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return IsFeedDone.model_validate(data)
 
+    async def query_box_folders(
+        self,
+        properties: BoxFoldersInput,
+        folder_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryBoxFolders:
+        variables: Dict[str, object] = {"properties": properties, "folderId": folder_id}
+        response = await self.execute(
+            query=QUERY_BOX_FOLDERS_GQL,
+            operation_name="QueryBoxFolders",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryBoxFolders.model_validate(data)
+
+    async def query_dropbox_folders(
+        self,
+        properties: DropboxFoldersInput,
+        folder_path: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryDropboxFolders:
+        variables: Dict[str, object] = {
+            "properties": properties,
+            "folderPath": folder_path,
+        }
+        response = await self.execute(
+            query=QUERY_DROPBOX_FOLDERS_GQL,
+            operation_name="QueryDropboxFolders",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryDropboxFolders.model_validate(data)
+
     async def query_feeds(
         self,
         filter: Union[Optional[FeedFilter], UnsetType] = UNSET,
@@ -2655,6 +2705,35 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryFeeds.model_validate(data)
 
+    async def query_google_calendars(
+        self, properties: GoogleCalendarsInput, **kwargs: Any
+    ) -> QueryGoogleCalendars:
+        variables: Dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_GOOGLE_CALENDARS_GQL,
+            operation_name="QueryGoogleCalendars",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryGoogleCalendars.model_validate(data)
+
+    async def query_google_drive_folders(
+        self,
+        properties: GoogleDriveFoldersInput,
+        folder_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryGoogleDriveFolders:
+        variables: Dict[str, object] = {"properties": properties, "folderId": folder_id}
+        response = await self.execute(
+            query=QUERY_GOOGLE_DRIVE_FOLDERS_GQL,
+            operation_name="QueryGoogleDriveFolders",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryGoogleDriveFolders.model_validate(data)
+
     async def query_linear_projects(
         self, properties: LinearProjectsInput, **kwargs: Any
     ) -> QueryLinearProjects:
@@ -2667,6 +2746,19 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryLinearProjects.model_validate(data)
+
+    async def query_microsoft_calendars(
+        self, properties: MicrosoftCalendarsInput, **kwargs: Any
+    ) -> QueryMicrosoftCalendars:
+        variables: Dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_MICROSOFT_CALENDARS_GQL,
+            operation_name="QueryMicrosoftCalendars",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMicrosoftCalendars.model_validate(data)
 
     async def query_microsoft_teams_channels(
         self, properties: MicrosoftTeamsChannelsInput, team_id: str, **kwargs: Any

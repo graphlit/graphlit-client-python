@@ -1,0 +1,8 @@
+query QueryMicrosoftCalendars($properties: MicrosoftCalendarsInput!) {
+  microsoftCalendars(properties: $properties) {
+    results {
+      calendarName
+      calendarId
+    }
+  }
+}

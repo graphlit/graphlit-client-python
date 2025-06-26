@@ -40,6 +40,7 @@ class GetFeedFeed(BaseModel):
     site: Optional["GetFeedFeedSite"]
     email: Optional["GetFeedFeedEmail"]
     issue: Optional["GetFeedFeedIssue"]
+    calendar: Optional["GetFeedFeedCalendar"]
     rss: Optional["GetFeedFeedRss"]
     web: Optional["GetFeedFeedWeb"]
     search: Optional["GetFeedFeedSearch"]
@@ -249,6 +250,32 @@ class GetFeedFeedIssueTrello(BaseModel):
     type: TrelloTypes
 
 
+class GetFeedFeedCalendar(BaseModel):
+    type: FeedServiceTypes
+    include_attachments: Optional[bool] = Field(alias="includeAttachments")
+    google: Optional["GetFeedFeedCalendarGoogle"]
+    microsoft: Optional["GetFeedFeedCalendarMicrosoft"]
+    read_limit: Optional[int] = Field(alias="readLimit")
+
+
+class GetFeedFeedCalendarGoogle(BaseModel):
+    calendar_id: Optional[str] = Field(alias="calendarId")
+    before_date: Optional[Any] = Field(alias="beforeDate")
+    after_date: Optional[Any] = Field(alias="afterDate")
+    refresh_token: str = Field(alias="refreshToken")
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
+
+
+class GetFeedFeedCalendarMicrosoft(BaseModel):
+    calendar_id: Optional[str] = Field(alias="calendarId")
+    before_date: Optional[Any] = Field(alias="beforeDate")
+    after_date: Optional[Any] = Field(alias="afterDate")
+    refresh_token: str = Field(alias="refreshToken")
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
+
+
 class GetFeedFeedRss(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     uri: Any
@@ -352,3 +379,4 @@ GetFeedFeed.model_rebuild()
 GetFeedFeedSite.model_rebuild()
 GetFeedFeedEmail.model_rebuild()
 GetFeedFeedIssue.model_rebuild()
+GetFeedFeedCalendar.model_rebuild()

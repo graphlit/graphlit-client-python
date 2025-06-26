@@ -1,0 +1,8 @@
+query QueryDropboxFolders($properties: DropboxFoldersInput!, $folderPath: String) {
+  dropboxFolders(properties: $properties, folderPath: $folderPath) {
+    results {
+      folderName
+      folderId
+    }
+  }
+}

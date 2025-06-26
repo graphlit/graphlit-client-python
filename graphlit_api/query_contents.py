@@ -7,6 +7,11 @@ from pydantic import Field
 
 from .base_model import BaseModel
 from .enums import (
+    CalendarAttendeeResponseStatus,
+    CalendarEventStatus,
+    CalendarEventVisibility,
+    CalendarRecurrencePattern,
+    CalendarReminderMethod,
     ContentTypes,
     EntityState,
     FileTypes,
@@ -43,6 +48,7 @@ class QueryContentsContentsResults(BaseModel):
     identifier: Optional[str]
     address: Optional["QueryContentsContentsResultsAddress"]
     location: Optional["QueryContentsContentsResultsLocation"]
+    features: Optional[str]
     type: Optional[ContentTypes]
     file_type: Optional[FileTypes] = Field(alias="fileType")
     mime_type: Optional[str] = Field(alias="mimeType")
@@ -70,6 +76,7 @@ class QueryContentsContentsResults(BaseModel):
     image: Optional["QueryContentsContentsResultsImage"]
     document: Optional["QueryContentsContentsResultsDocument"]
     email: Optional["QueryContentsContentsResultsEmail"]
+    event: Optional["QueryContentsContentsResultsEvent"]
     issue: Optional["QueryContentsContentsResultsIssue"]
     package: Optional["QueryContentsContentsResultsPackage"]
     language: Optional["QueryContentsContentsResultsLanguage"]
@@ -215,6 +222,61 @@ class QueryContentsContentsResultsEmailBcc(BaseModel):
     family_name: Optional[str] = Field(alias="familyName")
 
 
+class QueryContentsContentsResultsEvent(BaseModel):
+    event_identifier: Optional[str] = Field(alias="eventIdentifier")
+    calendar_identifier: Optional[str] = Field(alias="calendarIdentifier")
+    subject: Optional[str]
+    start_date_time: Optional[Any] = Field(alias="startDateTime")
+    end_date_time: Optional[Any] = Field(alias="endDateTime")
+    is_all_day: Optional[bool] = Field(alias="isAllDay")
+    timezone: Optional[str]
+    status: Optional[CalendarEventStatus]
+    visibility: Optional[CalendarEventVisibility]
+    meeting_link: Optional[str] = Field(alias="meetingLink")
+    organizer: Optional["QueryContentsContentsResultsEventOrganizer"]
+    attendees: Optional[List[Optional["QueryContentsContentsResultsEventAttendees"]]]
+    categories: Optional[List[Optional[str]]]
+    reminders: Optional[List[Optional["QueryContentsContentsResultsEventReminders"]]]
+    recurrence: Optional["QueryContentsContentsResultsEventRecurrence"]
+    recurring_event_identifier: Optional[str] = Field(alias="recurringEventIdentifier")
+    is_recurring: Optional[bool] = Field(alias="isRecurring")
+
+
+class QueryContentsContentsResultsEventOrganizer(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    is_optional: Optional[bool] = Field(alias="isOptional")
+    is_organizer: Optional[bool] = Field(alias="isOrganizer")
+    response_status: Optional[CalendarAttendeeResponseStatus] = Field(
+        alias="responseStatus"
+    )
+
+
+class QueryContentsContentsResultsEventAttendees(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    is_optional: Optional[bool] = Field(alias="isOptional")
+    is_organizer: Optional[bool] = Field(alias="isOrganizer")
+    response_status: Optional[CalendarAttendeeResponseStatus] = Field(
+        alias="responseStatus"
+    )
+
+
+class QueryContentsContentsResultsEventReminders(BaseModel):
+    minutes_before: Optional[int] = Field(alias="minutesBefore")
+    method: Optional[CalendarReminderMethod]
+
+
+class QueryContentsContentsResultsEventRecurrence(BaseModel):
+    pattern: Optional[CalendarRecurrencePattern]
+    interval: Optional[int]
+    count: Optional[int]
+    until: Optional[Any]
+    days_of_week: Optional[List[Optional[str]]] = Field(alias="daysOfWeek")
+    day_of_month: Optional[int] = Field(alias="dayOfMonth")
+    month_of_year: Optional[int] = Field(alias="monthOfYear")
+
+
 class QueryContentsContentsResultsIssue(BaseModel):
     identifier: Optional[str]
     title: Optional[str]
@@ -299,4 +361,5 @@ QueryContents.model_rebuild()
 QueryContentsContents.model_rebuild()
 QueryContentsContentsResults.model_rebuild()
 QueryContentsContentsResultsEmail.model_rebuild()
+QueryContentsContentsResultsEvent.model_rebuild()
 QueryContentsContentsResultsPages.model_rebuild()

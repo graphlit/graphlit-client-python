@@ -7,6 +7,11 @@ from pydantic import Field
 
 from .base_model import BaseModel
 from .enums import (
+    CalendarAttendeeResponseStatus,
+    CalendarEventStatus,
+    CalendarEventVisibility,
+    CalendarRecurrencePattern,
+    CalendarReminderMethod,
     ContentTypes,
     EntityState,
     FileTypes,
@@ -76,6 +81,7 @@ class GetContentContent(BaseModel):
     image: Optional["GetContentContentImage"]
     document: Optional["GetContentContentDocument"]
     email: Optional["GetContentContentEmail"]
+    event: Optional["GetContentContentEvent"]
     issue: Optional["GetContentContentIssue"]
     package: Optional["GetContentContentPackage"]
     language: Optional["GetContentContentLanguage"]
@@ -242,6 +248,61 @@ class GetContentContentEmailBcc(BaseModel):
     family_name: Optional[str] = Field(alias="familyName")
 
 
+class GetContentContentEvent(BaseModel):
+    event_identifier: Optional[str] = Field(alias="eventIdentifier")
+    calendar_identifier: Optional[str] = Field(alias="calendarIdentifier")
+    subject: Optional[str]
+    start_date_time: Optional[Any] = Field(alias="startDateTime")
+    end_date_time: Optional[Any] = Field(alias="endDateTime")
+    is_all_day: Optional[bool] = Field(alias="isAllDay")
+    timezone: Optional[str]
+    status: Optional[CalendarEventStatus]
+    visibility: Optional[CalendarEventVisibility]
+    meeting_link: Optional[str] = Field(alias="meetingLink")
+    organizer: Optional["GetContentContentEventOrganizer"]
+    attendees: Optional[List[Optional["GetContentContentEventAttendees"]]]
+    categories: Optional[List[Optional[str]]]
+    reminders: Optional[List[Optional["GetContentContentEventReminders"]]]
+    recurrence: Optional["GetContentContentEventRecurrence"]
+    recurring_event_identifier: Optional[str] = Field(alias="recurringEventIdentifier")
+    is_recurring: Optional[bool] = Field(alias="isRecurring")
+
+
+class GetContentContentEventOrganizer(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    is_optional: Optional[bool] = Field(alias="isOptional")
+    is_organizer: Optional[bool] = Field(alias="isOrganizer")
+    response_status: Optional[CalendarAttendeeResponseStatus] = Field(
+        alias="responseStatus"
+    )
+
+
+class GetContentContentEventAttendees(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    is_optional: Optional[bool] = Field(alias="isOptional")
+    is_organizer: Optional[bool] = Field(alias="isOrganizer")
+    response_status: Optional[CalendarAttendeeResponseStatus] = Field(
+        alias="responseStatus"
+    )
+
+
+class GetContentContentEventReminders(BaseModel):
+    minutes_before: Optional[int] = Field(alias="minutesBefore")
+    method: Optional[CalendarReminderMethod]
+
+
+class GetContentContentEventRecurrence(BaseModel):
+    pattern: Optional[CalendarRecurrencePattern]
+    interval: Optional[int]
+    count: Optional[int]
+    until: Optional[Any]
+    days_of_week: Optional[List[Optional[str]]] = Field(alias="daysOfWeek")
+    day_of_month: Optional[int] = Field(alias="dayOfMonth")
+    month_of_year: Optional[int] = Field(alias="monthOfYear")
+
+
 class GetContentContentIssue(BaseModel):
     identifier: Optional[str]
     title: Optional[str]
@@ -379,6 +440,7 @@ class GetContentContentFrames(BaseModel):
 GetContent.model_rebuild()
 GetContentContent.model_rebuild()
 GetContentContentEmail.model_rebuild()
+GetContentContentEvent.model_rebuild()
 GetContentContentObservations.model_rebuild()
 GetContentContentObservationsOccurrences.model_rebuild()
 GetContentContentPages.model_rebuild()

@@ -44,6 +44,7 @@ class QueryFeedsFeedsResults(BaseModel):
     site: Optional["QueryFeedsFeedsResultsSite"]
     email: Optional["QueryFeedsFeedsResultsEmail"]
     issue: Optional["QueryFeedsFeedsResultsIssue"]
+    calendar: Optional["QueryFeedsFeedsResultsCalendar"]
     rss: Optional["QueryFeedsFeedsResultsRss"]
     web: Optional["QueryFeedsFeedsResultsWeb"]
     search: Optional["QueryFeedsFeedsResultsSearch"]
@@ -261,6 +262,32 @@ class QueryFeedsFeedsResultsIssueTrello(BaseModel):
     type: TrelloTypes
 
 
+class QueryFeedsFeedsResultsCalendar(BaseModel):
+    type: FeedServiceTypes
+    include_attachments: Optional[bool] = Field(alias="includeAttachments")
+    google: Optional["QueryFeedsFeedsResultsCalendarGoogle"]
+    microsoft: Optional["QueryFeedsFeedsResultsCalendarMicrosoft"]
+    read_limit: Optional[int] = Field(alias="readLimit")
+
+
+class QueryFeedsFeedsResultsCalendarGoogle(BaseModel):
+    calendar_id: Optional[str] = Field(alias="calendarId")
+    before_date: Optional[Any] = Field(alias="beforeDate")
+    after_date: Optional[Any] = Field(alias="afterDate")
+    refresh_token: str = Field(alias="refreshToken")
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
+
+
+class QueryFeedsFeedsResultsCalendarMicrosoft(BaseModel):
+    calendar_id: Optional[str] = Field(alias="calendarId")
+    before_date: Optional[Any] = Field(alias="beforeDate")
+    after_date: Optional[Any] = Field(alias="afterDate")
+    refresh_token: str = Field(alias="refreshToken")
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
+
+
 class QueryFeedsFeedsResultsRss(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     uri: Any
@@ -365,3 +392,4 @@ QueryFeedsFeedsResults.model_rebuild()
 QueryFeedsFeedsResultsSite.model_rebuild()
 QueryFeedsFeedsResultsEmail.model_rebuild()
 QueryFeedsFeedsResultsIssue.model_rebuild()
+QueryFeedsFeedsResultsCalendar.model_rebuild()

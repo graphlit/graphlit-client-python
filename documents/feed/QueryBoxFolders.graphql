@@ -1,0 +1,8 @@
+query QueryBoxFolders($properties: BoxFoldersInput!, $folderId: ID) {
+  boxFolders(properties: $properties, folderId: $folderId) {
+    results {
+      folderName
+      folderId
+    }
+  }
+}

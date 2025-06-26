@@ -1,0 +1,8 @@
+query QueryGoogleDriveFolders($properties: GoogleDriveFoldersInput!, $folderId: ID) {
+  googleDriveFolders(properties: $properties, folderId: $folderId) {
+    results {
+      folderName
+      folderId
+    }
+  }
+}

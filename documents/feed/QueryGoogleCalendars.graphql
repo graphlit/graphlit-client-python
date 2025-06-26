@@ -1,0 +1,8 @@
+query QueryGoogleCalendars($properties: GoogleCalendarsInput!) {
+  googleCalendars(properties: $properties) {
+    results {
+      calendarName
+      calendarId
+    }
+  }
+}

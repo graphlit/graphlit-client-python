@@ -7,6 +7,11 @@ from pydantic import Field
 
 from .base_model import BaseModel
 from .enums import (
+    CalendarAttendeeResponseStatus,
+    CalendarEventStatus,
+    CalendarEventVisibility,
+    CalendarRecurrencePattern,
+    CalendarReminderMethod,
     ContentTypes,
     EntityState,
     FileTypes,
@@ -82,6 +87,7 @@ class LookupContentsLookupContentsResults(BaseModel):
     image: Optional["LookupContentsLookupContentsResultsImage"]
     document: Optional["LookupContentsLookupContentsResultsDocument"]
     email: Optional["LookupContentsLookupContentsResultsEmail"]
+    event: Optional["LookupContentsLookupContentsResultsEvent"]
     issue: Optional["LookupContentsLookupContentsResultsIssue"]
     package: Optional["LookupContentsLookupContentsResultsPackage"]
     language: Optional["LookupContentsLookupContentsResultsLanguage"]
@@ -254,6 +260,65 @@ class LookupContentsLookupContentsResultsEmailBcc(BaseModel):
     family_name: Optional[str] = Field(alias="familyName")
 
 
+class LookupContentsLookupContentsResultsEvent(BaseModel):
+    event_identifier: Optional[str] = Field(alias="eventIdentifier")
+    calendar_identifier: Optional[str] = Field(alias="calendarIdentifier")
+    subject: Optional[str]
+    start_date_time: Optional[Any] = Field(alias="startDateTime")
+    end_date_time: Optional[Any] = Field(alias="endDateTime")
+    is_all_day: Optional[bool] = Field(alias="isAllDay")
+    timezone: Optional[str]
+    status: Optional[CalendarEventStatus]
+    visibility: Optional[CalendarEventVisibility]
+    meeting_link: Optional[str] = Field(alias="meetingLink")
+    organizer: Optional["LookupContentsLookupContentsResultsEventOrganizer"]
+    attendees: Optional[
+        List[Optional["LookupContentsLookupContentsResultsEventAttendees"]]
+    ]
+    categories: Optional[List[Optional[str]]]
+    reminders: Optional[
+        List[Optional["LookupContentsLookupContentsResultsEventReminders"]]
+    ]
+    recurrence: Optional["LookupContentsLookupContentsResultsEventRecurrence"]
+    recurring_event_identifier: Optional[str] = Field(alias="recurringEventIdentifier")
+    is_recurring: Optional[bool] = Field(alias="isRecurring")
+
+
+class LookupContentsLookupContentsResultsEventOrganizer(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    is_optional: Optional[bool] = Field(alias="isOptional")
+    is_organizer: Optional[bool] = Field(alias="isOrganizer")
+    response_status: Optional[CalendarAttendeeResponseStatus] = Field(
+        alias="responseStatus"
+    )
+
+
+class LookupContentsLookupContentsResultsEventAttendees(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    is_optional: Optional[bool] = Field(alias="isOptional")
+    is_organizer: Optional[bool] = Field(alias="isOrganizer")
+    response_status: Optional[CalendarAttendeeResponseStatus] = Field(
+        alias="responseStatus"
+    )
+
+
+class LookupContentsLookupContentsResultsEventReminders(BaseModel):
+    minutes_before: Optional[int] = Field(alias="minutesBefore")
+    method: Optional[CalendarReminderMethod]
+
+
+class LookupContentsLookupContentsResultsEventRecurrence(BaseModel):
+    pattern: Optional[CalendarRecurrencePattern]
+    interval: Optional[int]
+    count: Optional[int]
+    until: Optional[Any]
+    days_of_week: Optional[List[Optional[str]]] = Field(alias="daysOfWeek")
+    day_of_month: Optional[int] = Field(alias="dayOfMonth")
+    month_of_year: Optional[int] = Field(alias="monthOfYear")
+
+
 class LookupContentsLookupContentsResultsIssue(BaseModel):
     identifier: Optional[str]
     title: Optional[str]
@@ -394,6 +459,7 @@ LookupContents.model_rebuild()
 LookupContentsLookupContents.model_rebuild()
 LookupContentsLookupContentsResults.model_rebuild()
 LookupContentsLookupContentsResultsEmail.model_rebuild()
+LookupContentsLookupContentsResultsEvent.model_rebuild()
 LookupContentsLookupContentsResultsObservations.model_rebuild()
 LookupContentsLookupContentsResultsObservationsOccurrences.model_rebuild()
 LookupContentsLookupContentsResultsPages.model_rebuild()
