@@ -658,6 +658,7 @@ from .operations import (
     UPSERT_CATEGORY_GQL,
     UPSERT_LABEL_GQL,
     UPSERT_SPECIFICATION_GQL,
+    UPSERT_VIEW_GQL,
     UPSERT_WORKFLOW_GQL,
     VIEW_EXISTS_GQL,
     WORKFLOW_EXISTS_GQL,
@@ -767,6 +768,7 @@ from .update_workflow import UpdateWorkflow
 from .upsert_category import UpsertCategory
 from .upsert_label import UpsertLabel
 from .upsert_specification import UpsertSpecification
+from .upsert_view import UpsertView
 from .upsert_workflow import UpsertWorkflow
 from .view_exists import ViewExists
 from .workflow_exists import WorkflowExists
@@ -5972,6 +5974,17 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdateView.model_validate(data)
+
+    async def upsert_view(self, view: ViewInput, **kwargs: Any) -> UpsertView:
+        variables: Dict[str, object] = {"view": view}
+        response = await self.execute(
+            query=UPSERT_VIEW_GQL,
+            operation_name="UpsertView",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpsertView.model_validate(data)
 
     async def view_exists(
         self,

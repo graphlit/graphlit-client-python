@@ -319,6 +319,7 @@ __all__ = [
     "UPSERT_CATEGORY_GQL",
     "UPSERT_LABEL_GQL",
     "UPSERT_SPECIFICATION_GQL",
+    "UPSERT_VIEW_GQL",
     "UPSERT_WORKFLOW_GQL",
     "VIEW_EXISTS_GQL",
     "WORKFLOW_EXISTS_GQL",
@@ -10971,6 +10972,183 @@ query QueryViews($filter: ViewFilter, $correlationId: String) {
 UPDATE_VIEW_GQL = """
 mutation UpdateView($view: ViewUpdateInput!) {
   updateView(view: $view) {
+    id
+    name
+    state
+    type
+    filter {
+      dateRange {
+        from
+        to
+      }
+      inLast
+      creationDateRange {
+        from
+        to
+      }
+      createdInLast
+      types
+      fileTypes
+      formats
+      fileExtensions
+      similarContents {
+        id
+      }
+      contents {
+        id
+      }
+      feeds {
+        id
+      }
+      workflows {
+        id
+      }
+      collections {
+        id
+      }
+      users {
+        id
+      }
+      observations {
+        type
+        observable {
+          id
+        }
+        states
+      }
+      or {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+      and {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+    }
+    augmentedFilter {
+      dateRange {
+        from
+        to
+      }
+      inLast
+      creationDateRange {
+        from
+        to
+      }
+      createdInLast
+      types
+      fileTypes
+      formats
+      fileExtensions
+      similarContents {
+        id
+      }
+      contents {
+        id
+      }
+      feeds {
+        id
+      }
+      workflows {
+        id
+      }
+      collections {
+        id
+      }
+      users {
+        id
+      }
+      observations {
+        type
+        observable {
+          id
+        }
+        states
+      }
+      or {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+      and {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+    }
+  }
+}
+"""
+
+UPSERT_VIEW_GQL = """
+mutation UpsertView($view: ViewInput!) {
+  upsertView(view: $view) {
     id
     name
     state
