@@ -1,0 +1,6 @@
+mutation DeleteAllViews($filter: ViewFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllViews(filter: $filter, isSynchronous: $isSynchronous, correlationId: $correlationId) {
+    id
+    state
+  }
+}

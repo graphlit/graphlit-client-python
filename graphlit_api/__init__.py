@@ -405,6 +405,7 @@ from .delete_all_specifications import (
     DeleteAllSpecifications,
     DeleteAllSpecificationsDeleteAllSpecifications,
 )
+from .delete_all_views import DeleteAllViews, DeleteAllViewsDeleteAllViews
 from .delete_all_workflows import (
     DeleteAllWorkflows,
     DeleteAllWorkflowsDeleteAllWorkflows,
@@ -541,6 +542,7 @@ from .delete_specifications import (
 )
 from .delete_user import DeleteUser, DeleteUserDeleteUser
 from .delete_view import DeleteView, DeleteViewDeleteView
+from .delete_views import DeleteViews, DeleteViewsDeleteViews
 from .delete_workflow import DeleteWorkflow, DeleteWorkflowDeleteWorkflow
 from .delete_workflows import DeleteWorkflows, DeleteWorkflowsDeleteWorkflows
 from .describe_encoded_image import (
@@ -1753,6 +1755,7 @@ from .operations import (
     DELETE_ALL_REPOS_GQL,
     DELETE_ALL_SOFTWARES_GQL,
     DELETE_ALL_SPECIFICATIONS_GQL,
+    DELETE_ALL_VIEWS_GQL,
     DELETE_ALL_WORKFLOWS_GQL,
     DELETE_CATEGORIES_GQL,
     DELETE_CATEGORY_GQL,
@@ -1808,6 +1811,7 @@ from .operations import (
     DELETE_SPECIFICATIONS_GQL,
     DELETE_USER_GQL,
     DELETE_VIEW_GQL,
+    DELETE_VIEWS_GQL,
     DELETE_WORKFLOW_GQL,
     DELETE_WORKFLOWS_GQL,
     DESCRIBE_ENCODED_IMAGE_GQL,
@@ -1974,6 +1978,7 @@ from .operations import (
     UPSERT_LABEL_GQL,
     UPSERT_SPECIFICATION_GQL,
     UPSERT_WORKFLOW_GQL,
+    VIEW_EXISTS_GQL,
     WORKFLOW_EXISTS_GQL,
 )
 from .prompt import (
@@ -2996,6 +3001,7 @@ from .upsert_workflow import (
     UpsertWorkflowUpsertWorkflowStorage,
     UpsertWorkflowUpsertWorkflowStoragePolicy,
 )
+from .view_exists import ViewExists, ViewExistsViewExists
 from .workflow_exists import WorkflowExists, WorkflowExistsWorkflowExists
 
 __all__ = [
@@ -3498,6 +3504,7 @@ __all__ = [
     "DELETE_ALL_REPOS_GQL",
     "DELETE_ALL_SOFTWARES_GQL",
     "DELETE_ALL_SPECIFICATIONS_GQL",
+    "DELETE_ALL_VIEWS_GQL",
     "DELETE_ALL_WORKFLOWS_GQL",
     "DELETE_CATEGORIES_GQL",
     "DELETE_CATEGORY_GQL",
@@ -3552,6 +3559,7 @@ __all__ = [
     "DELETE_SPECIFICATIONS_GQL",
     "DELETE_SPECIFICATION_GQL",
     "DELETE_USER_GQL",
+    "DELETE_VIEWS_GQL",
     "DELETE_VIEW_GQL",
     "DELETE_WORKFLOWS_GQL",
     "DELETE_WORKFLOW_GQL",
@@ -3623,6 +3631,8 @@ __all__ = [
     "DeleteAllSoftwaresDeleteAllSoftwares",
     "DeleteAllSpecifications",
     "DeleteAllSpecificationsDeleteAllSpecifications",
+    "DeleteAllViews",
+    "DeleteAllViewsDeleteAllViews",
     "DeleteAllWorkflows",
     "DeleteAllWorkflowsDeleteAllWorkflows",
     "DeleteCategories",
@@ -3733,6 +3743,8 @@ __all__ = [
     "DeleteUserDeleteUser",
     "DeleteView",
     "DeleteViewDeleteView",
+    "DeleteViews",
+    "DeleteViewsDeleteViews",
     "DeleteWorkflow",
     "DeleteWorkflowDeleteWorkflow",
     "DeleteWorkflows",
@@ -5725,7 +5737,10 @@ __all__ = [
     "UserInput",
     "UserTypes",
     "UserUpdateInput",
+    "VIEW_EXISTS_GQL",
     "VideoMetadataInput",
+    "ViewExists",
+    "ViewExistsViewExists",
     "ViewFilter",
     "ViewInput",
     "ViewTypes",

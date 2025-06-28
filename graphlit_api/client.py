@@ -100,6 +100,7 @@ from .delete_all_products import DeleteAllProducts
 from .delete_all_repos import DeleteAllRepos
 from .delete_all_softwares import DeleteAllSoftwares
 from .delete_all_specifications import DeleteAllSpecifications
+from .delete_all_views import DeleteAllViews
 from .delete_all_workflows import DeleteAllWorkflows
 from .delete_categories import DeleteCategories
 from .delete_category import DeleteCategory
@@ -155,6 +156,7 @@ from .delete_specification import DeleteSpecification
 from .delete_specifications import DeleteSpecifications
 from .delete_user import DeleteUser
 from .delete_view import DeleteView
+from .delete_views import DeleteViews
 from .delete_workflow import DeleteWorkflow
 from .delete_workflows import DeleteWorkflows
 from .describe_encoded_image import DescribeEncodedImage
@@ -434,6 +436,7 @@ from .operations import (
     DELETE_ALL_REPOS_GQL,
     DELETE_ALL_SOFTWARES_GQL,
     DELETE_ALL_SPECIFICATIONS_GQL,
+    DELETE_ALL_VIEWS_GQL,
     DELETE_ALL_WORKFLOWS_GQL,
     DELETE_CATEGORIES_GQL,
     DELETE_CATEGORY_GQL,
@@ -489,6 +492,7 @@ from .operations import (
     DELETE_SPECIFICATIONS_GQL,
     DELETE_USER_GQL,
     DELETE_VIEW_GQL,
+    DELETE_VIEWS_GQL,
     DELETE_WORKFLOW_GQL,
     DELETE_WORKFLOWS_GQL,
     DESCRIBE_ENCODED_IMAGE_GQL,
@@ -655,6 +659,7 @@ from .operations import (
     UPSERT_LABEL_GQL,
     UPSERT_SPECIFICATION_GQL,
     UPSERT_WORKFLOW_GQL,
+    VIEW_EXISTS_GQL,
     WORKFLOW_EXISTS_GQL,
 )
 from .prompt import Prompt
@@ -763,6 +768,7 @@ from .upsert_category import UpsertCategory
 from .upsert_label import UpsertLabel
 from .upsert_specification import UpsertSpecification
 from .upsert_workflow import UpsertWorkflow
+from .view_exists import ViewExists
 from .workflow_exists import WorkflowExists
 
 
@@ -5876,6 +5882,27 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return CreateView.model_validate(data)
 
+    async def delete_all_views(
+        self,
+        filter: Union[Optional[ViewFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllViews:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DELETE_ALL_VIEWS_GQL,
+            operation_name="DeleteAllViews",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllViews.model_validate(data)
+
     async def delete_view(self, id: str, **kwargs: Any) -> DeleteView:
         variables: Dict[str, object] = {"id": id}
         response = await self.execute(
@@ -5886,6 +5913,22 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return DeleteView.model_validate(data)
+
+    async def delete_views(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteViews:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
+        response = await self.execute(
+            query=DELETE_VIEWS_GQL,
+            operation_name="DeleteViews",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteViews.model_validate(data)
 
     async def get_view(
         self,
@@ -5929,6 +5972,25 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdateView.model_validate(data)
+
+    async def view_exists(
+        self,
+        filter: Union[Optional[ViewFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> ViewExists:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=VIEW_EXISTS_GQL,
+            operation_name="ViewExists",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return ViewExists.model_validate(data)
 
     async def count_workflows(
         self,

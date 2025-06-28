@@ -1,0 +1,6 @@
+mutation DeleteViews($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteViews(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}

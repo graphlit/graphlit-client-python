@@ -97,6 +97,7 @@ __all__ = [
     "DELETE_ALL_REPOS_GQL",
     "DELETE_ALL_SOFTWARES_GQL",
     "DELETE_ALL_SPECIFICATIONS_GQL",
+    "DELETE_ALL_VIEWS_GQL",
     "DELETE_ALL_WORKFLOWS_GQL",
     "DELETE_CATEGORIES_GQL",
     "DELETE_CATEGORY_GQL",
@@ -151,6 +152,7 @@ __all__ = [
     "DELETE_SPECIFICATIONS_GQL",
     "DELETE_SPECIFICATION_GQL",
     "DELETE_USER_GQL",
+    "DELETE_VIEWS_GQL",
     "DELETE_VIEW_GQL",
     "DELETE_WORKFLOWS_GQL",
     "DELETE_WORKFLOW_GQL",
@@ -318,6 +320,7 @@ __all__ = [
     "UPSERT_LABEL_GQL",
     "UPSERT_SPECIFICATION_GQL",
     "UPSERT_WORKFLOW_GQL",
+    "VIEW_EXISTS_GQL",
     "WORKFLOW_EXISTS_GQL",
 ]
 
@@ -10568,9 +10571,31 @@ mutation CreateView($view: ViewInput!) {
 }
 """
 
+DELETE_ALL_VIEWS_GQL = """
+mutation DeleteAllViews($filter: ViewFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllViews(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
+    id
+    state
+  }
+}
+"""
+
 DELETE_VIEW_GQL = """
 mutation DeleteView($id: ID!) {
   deleteView(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_VIEWS_GQL = """
+mutation DeleteViews($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteViews(ids: $ids, isSynchronous: $isSynchronous) {
     id
     state
   }
@@ -11116,6 +11141,14 @@ mutation UpdateView($view: ViewUpdateInput!) {
         }
       }
     }
+  }
+}
+"""
+
+VIEW_EXISTS_GQL = """
+query ViewExists($filter: ViewFilter, $correlationId: String) {
+  viewExists(filter: $filter, correlationId: $correlationId) {
+    result
   }
 }
 """

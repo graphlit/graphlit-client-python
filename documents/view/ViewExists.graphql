@@ -1,0 +1,5 @@
+query ViewExists($filter: ViewFilter, $correlationId: String) {
+  viewExists(filter: $filter, correlationId: $correlationId) {
+    result
+  }
+}
