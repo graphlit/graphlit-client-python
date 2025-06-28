@@ -273,6 +273,7 @@ __all__ = [
     "QUERY_WORKFLOWS_GQL",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
     "RETRIEVE_SOURCES_GQL",
+    "RETRIEVE_VIEW_GQL",
     "REVISE_CONTENT_GQL",
     "REVISE_ENCODED_IMAGE_GQL",
     "REVISE_IMAGE_GQL",
@@ -5921,6 +5922,32 @@ mutation RetrieveSources($prompt: String!, $filter: ContentFilter, $augmentedFil
     prompt: $prompt
     filter: $filter
     augmentedFilter: $augmentedFilter
+    retrievalStrategy: $retrievalStrategy
+    rerankingStrategy: $rerankingStrategy
+    correlationId: $correlationId
+  ) {
+    results {
+      type
+      content {
+        id
+      }
+      text
+      metadata
+      relevance
+      startTime
+      endTime
+      pageNumber
+      frameNumber
+    }
+  }
+}
+"""
+
+RETRIEVE_VIEW_GQL = """
+mutation RetrieveView($prompt: String!, $id: ID!, $retrievalStrategy: RetrievalStrategyInput, $rerankingStrategy: RerankingStrategyInput, $correlationId: String) {
+  retrieveView(
+    prompt: $prompt
+    id: $id
     retrievalStrategy: $retrievalStrategy
     rerankingStrategy: $rerankingStrategy
     correlationId: $correlationId

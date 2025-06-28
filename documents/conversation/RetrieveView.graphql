@@ -1,0 +1,17 @@
+mutation RetrieveView($prompt: String!, $id: ID!, $retrievalStrategy: RetrievalStrategyInput, $rerankingStrategy: RerankingStrategyInput, $correlationId: String) {
+  retrieveView(prompt: $prompt, id: $id, retrievalStrategy: $retrievalStrategy, rerankingStrategy: $rerankingStrategy, correlationId: $correlationId) {
+    results {
+      type
+      content {
+        id
+      }
+      text
+      metadata
+      relevance
+      startTime
+      endTime
+      pageNumber
+      frameNumber
+    }
+  }
+}

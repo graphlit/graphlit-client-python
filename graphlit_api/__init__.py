@@ -1931,6 +1931,7 @@ from .operations import (
     QUERY_WORKFLOWS_GQL,
     REMOVE_CONTENTS_FROM_COLLECTION_GQL,
     RETRIEVE_SOURCES_GQL,
+    RETRIEVE_VIEW_GQL,
     REVISE_CONTENT_GQL,
     REVISE_ENCODED_IMAGE_GQL,
     REVISE_IMAGE_GQL,
@@ -2666,6 +2667,12 @@ from .retrieve_sources import (
     RetrieveSourcesRetrieveSources,
     RetrieveSourcesRetrieveSourcesResults,
     RetrieveSourcesRetrieveSourcesResultsContent,
+)
+from .retrieve_view import (
+    RetrieveView,
+    RetrieveViewRetrieveView,
+    RetrieveViewRetrieveViewResults,
+    RetrieveViewRetrieveViewResultsContent,
 )
 from .revise_content import (
     ReviseContent,
@@ -5350,6 +5357,7 @@ __all__ = [
     "QueryWorkflowsWorkflowsResultsStoragePolicy",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
     "RETRIEVE_SOURCES_GQL",
+    "RETRIEVE_VIEW_GQL",
     "REVISE_CONTENT_GQL",
     "REVISE_ENCODED_IMAGE_GQL",
     "REVISE_IMAGE_GQL",
@@ -5389,6 +5397,10 @@ __all__ = [
     "RetrieveSourcesRetrieveSources",
     "RetrieveSourcesRetrieveSourcesResults",
     "RetrieveSourcesRetrieveSourcesResultsContent",
+    "RetrieveView",
+    "RetrieveViewRetrieveView",
+    "RetrieveViewRetrieveViewResults",
+    "RetrieveViewRetrieveViewResultsContent",
     "ReviseContent",
     "ReviseContentReviseContent",
     "ReviseContentReviseContentConversation",
