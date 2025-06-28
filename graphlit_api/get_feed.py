@@ -17,6 +17,7 @@ from .enums import (
     GoogleEmailAuthenticationTypes,
     MicrosoftCalendarAuthenticationTypes,
     MicrosoftEmailAuthenticationTypes,
+    MicrosoftTeamsAuthenticationTypes,
     NotionTypes,
     OneDriveAuthenticationTypes,
     SearchServiceTypes,
@@ -378,9 +379,13 @@ class GetFeedFeedSlack(BaseModel):
 class GetFeedFeedMicrosoftTeams(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     type: Optional[FeedListingTypes]
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-    refresh_token: str = Field(alias="refreshToken")
+    authentication_type: Optional[MicrosoftTeamsAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector_id: Optional[str] = Field(alias="connectorId")
     team_id: str = Field(alias="teamId")
     channel_id: str = Field(alias="channelId")
 

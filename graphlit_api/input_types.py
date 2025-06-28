@@ -9,6 +9,7 @@ from .base_model import BaseModel
 from .enums import (
     AlertTypes,
     AnthropicModels,
+    ArcadeProviders,
     AssemblyAIModels,
     AuthenticationServiceTypes,
     AzureDocumentIntelligenceModels,
@@ -80,6 +81,7 @@ from .enums import (
     MetadataTypes,
     MicrosoftCalendarAuthenticationTypes,
     MicrosoftEmailAuthenticationTypes,
+    MicrosoftTeamsAuthenticationTypes,
     MistralModels,
     ModelServiceTypes,
     ModelTypes,
@@ -286,7 +288,13 @@ class H3IndexFilter(BaseModel):
 
 
 class MicrosoftTeamsTeamsInput(BaseModel):
-    refresh_token: str = Field(alias="refreshToken")
+    authentication_type: Optional[MicrosoftTeamsAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
 
 
 class RetrievalStrategyUpdateInput(BaseModel):
@@ -1135,6 +1143,8 @@ class OrganizationFilter(BaseModel):
 
 class ArcadeAuthenticationPropertiesInput(BaseModel):
     authorization_id: str = Field(alias="authorizationId")
+    provider: ArcadeProviders
+    metadata: Optional[str] = None
 
 
 class ContentCriteriaLevelInput(BaseModel):
@@ -1608,9 +1618,13 @@ class ViewUpdateInput(BaseModel):
 
 
 class GoogleCalendarsInput(BaseModel):
+    authentication_type: Optional[GoogleCalendarAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
     refresh_token: str = Field(alias="refreshToken")
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
 
 
 class ConversationInput(BaseModel):
@@ -1806,13 +1820,23 @@ class MedicalTestFilter(BaseModel):
 
 
 class OneDriveFoldersInput(BaseModel):
+    authentication_type: Optional[OneDriveAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
     refresh_token: str = Field(alias="refreshToken")
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
 
 
 class MicrosoftTeamsChannelsInput(BaseModel):
-    refresh_token: str = Field(alias="refreshToken")
+    authentication_type: Optional[MicrosoftTeamsAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
 
 
 class MedicalTherapyUpdateInput(BaseModel):
@@ -2446,9 +2470,13 @@ class MicrosoftEmailFeedPropertiesInput(BaseModel):
 
 class MicrosoftTeamsFeedPropertiesUpdateInput(BaseModel):
     type: Optional[FeedListingTypes] = None
+    authentication_type: Optional[MicrosoftTeamsAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
     team_id: str = Field(alias="teamId")
     channel_id: str = Field(alias="channelId")
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
@@ -2588,9 +2616,13 @@ class OneDriveFeedPropertiesInput(BaseModel):
 
 
 class GoogleDriveFoldersInput(BaseModel):
+    authentication_type: Optional[GoogleDriveAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
     refresh_token: str = Field(alias="refreshToken")
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
 
 
 class SharePointFoldersInput(BaseModel):
@@ -2601,6 +2633,7 @@ class SharePointFoldersInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
 
 
 class SharePointLibrariesInput(BaseModel):
@@ -2611,6 +2644,7 @@ class SharePointLibrariesInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
 
 
 class ContentClassificationConnectorInput(BaseModel):
@@ -3525,9 +3559,13 @@ class MedicalDrugUpdateInput(BaseModel):
 
 class MicrosoftTeamsFeedPropertiesInput(BaseModel):
     type: Optional[FeedListingTypes] = None
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-    refresh_token: str = Field(alias="refreshToken")
+    authentication_type: Optional[MicrosoftTeamsAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
     team_id: str = Field(alias="teamId")
     channel_id: str = Field(alias="channelId")
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
@@ -3910,9 +3948,13 @@ class AlertInput(BaseModel):
 
 
 class MicrosoftCalendarsInput(BaseModel):
+    authentication_type: Optional[MicrosoftCalendarAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
     refresh_token: str = Field(alias="refreshToken")
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
 
 
 class NotionPagesInput(BaseModel):

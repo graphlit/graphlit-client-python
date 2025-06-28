@@ -244,9 +244,11 @@ query GetFeed($id: ID!, $correlationId: String) {
     microsoftTeams {
       readLimit
       type
+      authenticationType
       clientId
       clientSecret
       refreshToken
+      connectorId
       teamId
       channelId
     }

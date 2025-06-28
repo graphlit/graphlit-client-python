@@ -7,6 +7,7 @@ from pydantic import Field
 
 from .base_model import BaseModel
 from .enums import (
+    ArcadeProviders,
     AuthenticationServiceTypes,
     ConnectorTypes,
     EntityState,
@@ -58,6 +59,8 @@ class QueryConnectorsConnectorsResultsAuthenticationGoogle(BaseModel):
 
 class QueryConnectorsConnectorsResultsAuthenticationArcade(BaseModel):
     authorization_id: str = Field(alias="authorizationId")
+    provider: ArcadeProviders
+    metadata: Optional[str]
 
 
 class QueryConnectorsConnectorsResultsIntegration(BaseModel):

@@ -29,6 +29,8 @@ query GetUserByIdentifier($identifier: String!) {
         }
         arcade {
           authorizationId
+          provider
+          metadata
         }
       }
       integration {

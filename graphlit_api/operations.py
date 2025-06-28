@@ -974,6 +974,8 @@ query GetConnector($id: ID!, $correlationId: String) {
       }
       arcade {
         authorizationId
+        provider
+        metadata
       }
     }
     integration {
@@ -1025,6 +1027,8 @@ query QueryConnectors($filter: ConnectorFilter, $correlationId: String) {
         }
         arcade {
           authorizationId
+          provider
+          metadata
         }
       }
       integration {
@@ -7044,9 +7048,11 @@ query GetFeed($id: ID!, $correlationId: String) {
     microsoftTeams {
       readLimit
       type
+      authenticationType
       clientId
       clientSecret
       refreshToken
+      connectorId
       teamId
       channelId
     }
@@ -7381,9 +7387,11 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
       microsoftTeams {
         readLimit
         type
+        authenticationType
         clientId
         clientSecret
         refreshToken
+        connectorId
         teamId
         channelId
       }
@@ -10305,6 +10313,8 @@ query GetUser {
         }
         arcade {
           authorizationId
+          provider
+          metadata
         }
       }
       integration {
@@ -10363,6 +10373,8 @@ query GetUserByIdentifier($identifier: String!) {
         }
         arcade {
           authorizationId
+          provider
+          metadata
         }
       }
       integration {
@@ -10422,6 +10434,8 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
           }
           arcade {
             authorizationId
+            provider
+            metadata
           }
         }
         integration {

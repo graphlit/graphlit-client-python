@@ -23,6 +23,8 @@ query QueryConnectors($filter: ConnectorFilter, $correlationId: String) {
         }
         arcade {
           authorizationId
+          provider
+          metadata
         }
       }
       integration {

@@ -245,9 +245,11 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
       microsoftTeams {
         readLimit
         type
+        authenticationType
         clientId
         clientSecret
         refreshToken
+        connectorId
         teamId
         channelId
       }

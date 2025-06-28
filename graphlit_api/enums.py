@@ -225,6 +225,12 @@ class CerebrasModels(str, Enum):
     CUSTOM = "CUSTOM"
 
 
+class ArcadeProviders(str, Enum):
+    GOOGLE = "GOOGLE"
+    GIT_HUB = "GIT_HUB"
+    MICROSOFT = "MICROSOFT"
+
+
 class FeedConnectorTypes(str, Enum):
     GOOGLE = "GOOGLE"
     AMAZON = "AMAZON"
@@ -573,6 +579,11 @@ class GitHubAuthenticationTypes(str, Enum):
 
 class RenditionTypes(str, Enum):
     CONTENT = "CONTENT"
+
+
+class MicrosoftTeamsAuthenticationTypes(str, Enum):
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
 
 
 class ConversationSearchTypes(str, Enum):
