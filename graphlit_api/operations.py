@@ -231,6 +231,8 @@ __all__ = [
     "QUERY_CONTENTS_OBSERVATIONS_GQL",
     "QUERY_CONVERSATIONS_GQL",
     "QUERY_CREDITS_GQL",
+    "QUERY_DISCORD_CHANNELS_GQL",
+    "QUERY_DISCORD_GUILDS_GQL",
     "QUERY_DROPBOX_FOLDERS_GQL",
     "QUERY_EVENTS_GQL",
     "QUERY_FEEDS_GQL",
@@ -7069,6 +7071,28 @@ query QueryBoxFolders($properties: BoxFoldersInput!, $folderId: ID) {
     results {
       folderName
       folderId
+    }
+  }
+}
+"""
+
+QUERY_DISCORD_CHANNELS_GQL = """
+query QueryDiscordChannels($properties: DiscordChannelsInput!) {
+  discordChannels(properties: $properties) {
+    results {
+      channelName
+      channelId
+    }
+  }
+}
+"""
+
+QUERY_DISCORD_GUILDS_GQL = """
+query QueryDiscordGuilds($properties: DiscordGuildsInput!) {
+  discordGuilds(properties: $properties) {
+    results {
+      guildName
+      guildId
     }
   }
 }

@@ -1,0 +1,8 @@
+query QueryDiscordGuilds($properties: DiscordGuildsInput!) {
+  discordGuilds(properties: $properties) {
+    results {
+      guildName
+      guildId
+    }
+  }
+}

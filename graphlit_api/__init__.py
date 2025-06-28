@@ -1889,6 +1889,8 @@ from .operations import (
     QUERY_CONTENTS_OBSERVATIONS_GQL,
     QUERY_CONVERSATIONS_GQL,
     QUERY_CREDITS_GQL,
+    QUERY_DISCORD_CHANNELS_GQL,
+    QUERY_DISCORD_GUILDS_GQL,
     QUERY_DROPBOX_FOLDERS_GQL,
     QUERY_EVENTS_GQL,
     QUERY_FEEDS_GQL,
@@ -2295,6 +2297,16 @@ from .query_conversations import (
     QueryConversationsConversationsResultsSpecification,
 )
 from .query_credits import QueryCredits, QueryCreditsCredits
+from .query_discord_channels import (
+    QueryDiscordChannels,
+    QueryDiscordChannelsDiscordChannels,
+    QueryDiscordChannelsDiscordChannelsResults,
+)
+from .query_discord_guilds import (
+    QueryDiscordGuilds,
+    QueryDiscordGuildsDiscordGuilds,
+    QueryDiscordGuildsDiscordGuildsResults,
+)
 from .query_dropbox_folders import (
     QueryDropboxFolders,
     QueryDropboxFoldersDropboxFolders,
@@ -4811,6 +4823,8 @@ __all__ = [
     "QUERY_CONTENTS_OBSERVATIONS_GQL",
     "QUERY_CONVERSATIONS_GQL",
     "QUERY_CREDITS_GQL",
+    "QUERY_DISCORD_CHANNELS_GQL",
+    "QUERY_DISCORD_GUILDS_GQL",
     "QUERY_DROPBOX_FOLDERS_GQL",
     "QUERY_EVENTS_GQL",
     "QUERY_FEEDS_GQL",
@@ -5056,6 +5070,12 @@ __all__ = [
     "QueryConversationsConversationsResultsSpecification",
     "QueryCredits",
     "QueryCreditsCredits",
+    "QueryDiscordChannels",
+    "QueryDiscordChannelsDiscordChannels",
+    "QueryDiscordChannelsDiscordChannelsResults",
+    "QueryDiscordGuilds",
+    "QueryDiscordGuildsDiscordGuilds",
+    "QueryDiscordGuildsDiscordGuildsResults",
     "QueryDropboxFolders",
     "QueryDropboxFoldersDropboxFolders",
     "QueryDropboxFoldersDropboxFoldersResults",

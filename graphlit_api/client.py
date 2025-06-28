@@ -236,6 +236,8 @@ from .input_types import (
     ConversationMessageInput,
     ConversationToolResponseInput,
     ConversationUpdateInput,
+    DiscordChannelsInput,
+    DiscordGuildsInput,
     DropboxFoldersInput,
     EntityReferenceInput,
     EventFilter,
@@ -570,6 +572,8 @@ from .operations import (
     QUERY_CONTENTS_OBSERVATIONS_GQL,
     QUERY_CONVERSATIONS_GQL,
     QUERY_CREDITS_GQL,
+    QUERY_DISCORD_CHANNELS_GQL,
+    QUERY_DISCORD_GUILDS_GQL,
     QUERY_DROPBOX_FOLDERS_GQL,
     QUERY_EVENTS_GQL,
     QUERY_FEEDS_GQL,
@@ -681,6 +685,8 @@ from .query_contents_graph import QueryContentsGraph
 from .query_contents_observations import QueryContentsObservations
 from .query_conversations import QueryConversations
 from .query_credits import QueryCredits
+from .query_discord_channels import QueryDiscordChannels
+from .query_discord_guilds import QueryDiscordGuilds
 from .query_dropbox_folders import QueryDropboxFolders
 from .query_events import QueryEvents
 from .query_feeds import QueryFeeds
@@ -2822,6 +2828,32 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryBoxFolders.model_validate(data)
+
+    async def query_discord_channels(
+        self, properties: DiscordChannelsInput, **kwargs: Any
+    ) -> QueryDiscordChannels:
+        variables: Dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_DISCORD_CHANNELS_GQL,
+            operation_name="QueryDiscordChannels",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryDiscordChannels.model_validate(data)
+
+    async def query_discord_guilds(
+        self, properties: DiscordGuildsInput, **kwargs: Any
+    ) -> QueryDiscordGuilds:
+        variables: Dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_DISCORD_GUILDS_GQL,
+            operation_name="QueryDiscordGuilds",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryDiscordGuilds.model_validate(data)
 
     async def query_dropbox_folders(
         self,

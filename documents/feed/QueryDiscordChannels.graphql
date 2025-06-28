@@ -1,0 +1,8 @@
+query QueryDiscordChannels($properties: DiscordChannelsInput!) {
+  discordChannels(properties: $properties) {
+    results {
+      channelName
+      channelId
+    }
+  }
+}
