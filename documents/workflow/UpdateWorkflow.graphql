@@ -164,6 +164,8 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
         excludedLinks
         allowedFiles
         excludedFiles
+        allowedContentTypes
+        excludedContentTypes
         allowContentDomain
         maximumLinks
       }

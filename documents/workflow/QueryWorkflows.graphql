@@ -170,6 +170,8 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
           excludedLinks
           allowedFiles
           excludedFiles
+          allowedContentTypes
+          excludedContentTypes
           allowContentDomain
           maximumLinks
         }

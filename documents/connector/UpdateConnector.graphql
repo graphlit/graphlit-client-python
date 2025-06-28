@@ -1,0 +1,8 @@
+mutation UpdateConnector($connector: ConnectorUpdateInput!) {
+  updateConnector(connector: $connector) {
+    id
+    name
+    state
+    type
+  }
+}

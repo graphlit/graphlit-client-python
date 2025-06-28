@@ -1,0 +1,6 @@
+mutation DeleteView($id: ID!) {
+  deleteView(id: $id) {
+    id
+    state
+  }
+}

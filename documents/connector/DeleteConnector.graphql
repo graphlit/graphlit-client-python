@@ -1,0 +1,6 @@
+mutation DeleteConnector($id: ID!) {
+  deleteConnector(id: $id) {
+    id
+    state
+  }
+}

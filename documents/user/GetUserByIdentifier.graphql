@@ -27,6 +27,9 @@ query GetUserByIdentifier($identifier: String!) {
           clientId
           clientSecret
         }
+        arcade {
+          authorizationId
+        }
       }
       integration {
         type

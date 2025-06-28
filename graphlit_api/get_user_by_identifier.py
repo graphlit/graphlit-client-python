@@ -59,6 +59,9 @@ class GetUserByIdentifierUserByIdentifierConnectorsAuthentication(BaseModel):
     google: Optional[
         "GetUserByIdentifierUserByIdentifierConnectorsAuthenticationGoogle"
     ]
+    arcade: Optional[
+        "GetUserByIdentifierUserByIdentifierConnectorsAuthenticationArcade"
+    ]
 
 
 class GetUserByIdentifierUserByIdentifierConnectorsAuthenticationMicrosoft(BaseModel):
@@ -70,6 +73,10 @@ class GetUserByIdentifierUserByIdentifierConnectorsAuthenticationMicrosoft(BaseM
 class GetUserByIdentifierUserByIdentifierConnectorsAuthenticationGoogle(BaseModel):
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
+
+
+class GetUserByIdentifierUserByIdentifierConnectorsAuthenticationArcade(BaseModel):
+    authorization_id: str = Field(alias="authorizationId")
 
 
 class GetUserByIdentifierUserByIdentifierConnectorsIntegration(BaseModel):

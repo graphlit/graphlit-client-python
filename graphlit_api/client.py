@@ -15,6 +15,7 @@ from .continue_conversation import ContinueConversation
 from .count_alerts import CountAlerts
 from .count_categories import CountCategories
 from .count_collections import CountCollections
+from .count_connectors import CountConnectors
 from .count_contents import CountContents
 from .count_conversations import CountConversations
 from .count_events import CountEvents
@@ -39,10 +40,12 @@ from .count_repos import CountRepos
 from .count_softwares import CountSoftwares
 from .count_specifications import CountSpecifications
 from .count_users import CountUsers
+from .count_views import CountViews
 from .count_workflows import CountWorkflows
 from .create_alert import CreateAlert
 from .create_category import CreateCategory
 from .create_collection import CreateCollection
+from .create_connector import CreateConnector
 from .create_conversation import CreateConversation
 from .create_event import CreateEvent
 from .create_feed import CreateFeed
@@ -67,6 +70,7 @@ from .create_repo import CreateRepo
 from .create_software import CreateSoftware
 from .create_specification import CreateSpecification
 from .create_user import CreateUser
+from .create_view import CreateView
 from .create_workflow import CreateWorkflow
 from .delete_alert import DeleteAlert
 from .delete_alerts import DeleteAlerts
@@ -101,6 +105,7 @@ from .delete_categories import DeleteCategories
 from .delete_category import DeleteCategory
 from .delete_collection import DeleteCollection
 from .delete_collections import DeleteCollections
+from .delete_connector import DeleteConnector
 from .delete_content import DeleteContent
 from .delete_contents import DeleteContents
 from .delete_conversation import DeleteConversation
@@ -149,6 +154,7 @@ from .delete_softwares import DeleteSoftwares
 from .delete_specification import DeleteSpecification
 from .delete_specifications import DeleteSpecifications
 from .delete_user import DeleteUser
+from .delete_view import DeleteView
 from .delete_workflow import DeleteWorkflow
 from .delete_workflows import DeleteWorkflows
 from .describe_encoded_image import DescribeEncodedImage
@@ -167,6 +173,7 @@ from .format_conversation import FormatConversation
 from .get_alert import GetAlert
 from .get_category import GetCategory
 from .get_collection import GetCollection
+from .get_connector import GetConnector
 from .get_content import GetContent
 from .get_conversation import GetConversation
 from .get_event import GetEvent
@@ -194,6 +201,7 @@ from .get_software import GetSoftware
 from .get_specification import GetSpecification
 from .get_user import GetUser
 from .get_user_by_identifier import GetUserByIdentifier
+from .get_view import GetView
 from .get_workflow import GetWorkflow
 from .ingest_batch import IngestBatch
 from .ingest_encoded_file import IngestEncodedFile
@@ -213,6 +221,9 @@ from .input_types import (
     CollectionFilter,
     CollectionInput,
     CollectionUpdateInput,
+    ConnectorFilter,
+    ConnectorInput,
+    ConnectorUpdateInput,
     ContentFacetInput,
     ContentFilter,
     ContentGraphInput,
@@ -314,6 +325,9 @@ from .input_types import (
     UserFilter,
     UserInput,
     UserUpdateInput,
+    ViewFilter,
+    ViewInput,
+    ViewUpdateInput,
     WorkflowFilter,
     WorkflowInput,
     WorkflowUpdateInput,
@@ -335,6 +349,7 @@ from .operations import (
     COUNT_ALERTS_GQL,
     COUNT_CATEGORIES_GQL,
     COUNT_COLLECTIONS_GQL,
+    COUNT_CONNECTORS_GQL,
     COUNT_CONTENTS_GQL,
     COUNT_CONVERSATIONS_GQL,
     COUNT_EVENTS_GQL,
@@ -359,10 +374,12 @@ from .operations import (
     COUNT_SOFTWARES_GQL,
     COUNT_SPECIFICATIONS_GQL,
     COUNT_USERS_GQL,
+    COUNT_VIEWS_GQL,
     COUNT_WORKFLOWS_GQL,
     CREATE_ALERT_GQL,
     CREATE_CATEGORY_GQL,
     CREATE_COLLECTION_GQL,
+    CREATE_CONNECTOR_GQL,
     CREATE_CONVERSATION_GQL,
     CREATE_EVENT_GQL,
     CREATE_FEED_GQL,
@@ -387,6 +404,7 @@ from .operations import (
     CREATE_SOFTWARE_GQL,
     CREATE_SPECIFICATION_GQL,
     CREATE_USER_GQL,
+    CREATE_VIEW_GQL,
     CREATE_WORKFLOW_GQL,
     DELETE_ALERT_GQL,
     DELETE_ALERTS_GQL,
@@ -421,6 +439,7 @@ from .operations import (
     DELETE_CATEGORY_GQL,
     DELETE_COLLECTION_GQL,
     DELETE_COLLECTIONS_GQL,
+    DELETE_CONNECTOR_GQL,
     DELETE_CONTENT_GQL,
     DELETE_CONTENTS_GQL,
     DELETE_CONVERSATION_GQL,
@@ -469,6 +488,7 @@ from .operations import (
     DELETE_SPECIFICATION_GQL,
     DELETE_SPECIFICATIONS_GQL,
     DELETE_USER_GQL,
+    DELETE_VIEW_GQL,
     DELETE_WORKFLOW_GQL,
     DELETE_WORKFLOWS_GQL,
     DESCRIBE_ENCODED_IMAGE_GQL,
@@ -486,6 +506,7 @@ from .operations import (
     GET_ALERT_GQL,
     GET_CATEGORY_GQL,
     GET_COLLECTION_GQL,
+    GET_CONNECTOR_GQL,
     GET_CONTENT_GQL,
     GET_CONVERSATION_GQL,
     GET_EVENT_GQL,
@@ -513,6 +534,7 @@ from .operations import (
     GET_SPECIFICATION_GQL,
     GET_USER_BY_IDENTIFIER_GQL,
     GET_USER_GQL,
+    GET_VIEW_GQL,
     GET_WORKFLOW_GQL,
     INGEST_BATCH_GQL,
     INGEST_ENCODED_FILE_GQL,
@@ -537,6 +559,7 @@ from .operations import (
     QUERY_BOX_FOLDERS_GQL,
     QUERY_CATEGORIES_GQL,
     QUERY_COLLECTIONS_GQL,
+    QUERY_CONNECTORS_GQL,
     QUERY_CONTENTS_FACETS_GQL,
     QUERY_CONTENTS_GQL,
     QUERY_CONTENTS_GRAPH_GQL,
@@ -581,6 +604,7 @@ from .operations import (
     QUERY_TOKENS_GQL,
     QUERY_USAGE_GQL,
     QUERY_USERS_GQL,
+    QUERY_VIEWS_GQL,
     QUERY_WORKFLOWS_GQL,
     REMOVE_CONTENTS_FROM_COLLECTION_GQL,
     RETRIEVE_SOURCES_GQL,
@@ -598,6 +622,7 @@ from .operations import (
     UPDATE_ALERT_GQL,
     UPDATE_CATEGORY_GQL,
     UPDATE_COLLECTION_GQL,
+    UPDATE_CONNECTOR_GQL,
     UPDATE_CONTENT_GQL,
     UPDATE_CONVERSATION_GQL,
     UPDATE_EVENT_GQL,
@@ -624,6 +649,7 @@ from .operations import (
     UPDATE_SOFTWARE_GQL,
     UPDATE_SPECIFICATION_GQL,
     UPDATE_USER_GQL,
+    UPDATE_VIEW_GQL,
     UPDATE_WORKFLOW_GQL,
     UPSERT_CATEGORY_GQL,
     UPSERT_LABEL_GQL,
@@ -641,6 +667,7 @@ from .query_alerts import QueryAlerts
 from .query_box_folders import QueryBoxFolders
 from .query_categories import QueryCategories
 from .query_collections import QueryCollections
+from .query_connectors import QueryConnectors
 from .query_contents import QueryContents
 from .query_contents_facets import QueryContentsFacets
 from .query_contents_graph import QueryContentsGraph
@@ -685,6 +712,7 @@ from .query_specifications import QuerySpecifications
 from .query_tokens import QueryTokens
 from .query_usage import QueryUsage
 from .query_users import QueryUsers
+from .query_views import QueryViews
 from .query_workflows import QueryWorkflows
 from .remove_contents_from_collection import RemoveContentsFromCollection
 from .retrieve_sources import RetrieveSources
@@ -702,6 +730,7 @@ from .summarize_text import SummarizeText
 from .update_alert import UpdateAlert
 from .update_category import UpdateCategory
 from .update_collection import UpdateCollection
+from .update_connector import UpdateConnector
 from .update_content import UpdateContent
 from .update_conversation import UpdateConversation
 from .update_event import UpdateEvent
@@ -728,6 +757,7 @@ from .update_repo import UpdateRepo
 from .update_software import UpdateSoftware
 from .update_specification import UpdateSpecification
 from .update_user import UpdateUser
+from .update_view import UpdateView
 from .update_workflow import UpdateWorkflow
 from .upsert_category import UpsertCategory
 from .upsert_label import UpsertLabel
@@ -1195,6 +1225,97 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdateCollection.model_validate(data)
+
+    async def count_connectors(
+        self,
+        filter: Union[Optional[ConnectorFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountConnectors:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=COUNT_CONNECTORS_GQL,
+            operation_name="CountConnectors",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountConnectors.model_validate(data)
+
+    async def create_connector(
+        self, connector: ConnectorInput, **kwargs: Any
+    ) -> CreateConnector:
+        variables: Dict[str, object] = {"connector": connector}
+        response = await self.execute(
+            query=CREATE_CONNECTOR_GQL,
+            operation_name="CreateConnector",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CreateConnector.model_validate(data)
+
+    async def delete_connector(self, id: str, **kwargs: Any) -> DeleteConnector:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DELETE_CONNECTOR_GQL,
+            operation_name="DeleteConnector",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteConnector.model_validate(data)
+
+    async def get_connector(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetConnector:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
+        response = await self.execute(
+            query=GET_CONNECTOR_GQL,
+            operation_name="GetConnector",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return GetConnector.model_validate(data)
+
+    async def query_connectors(
+        self,
+        filter: Union[Optional[ConnectorFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryConnectors:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_CONNECTORS_GQL,
+            operation_name="QueryConnectors",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryConnectors.model_validate(data)
+
+    async def update_connector(
+        self, connector: ConnectorUpdateInput, **kwargs: Any
+    ) -> UpdateConnector:
+        variables: Dict[str, object] = {"connector": connector}
+        response = await self.execute(
+            query=UPDATE_CONNECTOR_GQL,
+            operation_name="UpdateConnector",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateConnector.model_validate(data)
 
     async def count_contents(
         self,
@@ -5724,6 +5845,90 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdateUser.model_validate(data)
+
+    async def count_views(
+        self,
+        filter: Union[Optional[ViewFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountViews:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=COUNT_VIEWS_GQL,
+            operation_name="CountViews",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountViews.model_validate(data)
+
+    async def create_view(self, view: ViewInput, **kwargs: Any) -> CreateView:
+        variables: Dict[str, object] = {"view": view}
+        response = await self.execute(
+            query=CREATE_VIEW_GQL,
+            operation_name="CreateView",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CreateView.model_validate(data)
+
+    async def delete_view(self, id: str, **kwargs: Any) -> DeleteView:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DELETE_VIEW_GQL,
+            operation_name="DeleteView",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteView.model_validate(data)
+
+    async def get_view(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetView:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
+        response = await self.execute(
+            query=GET_VIEW_GQL, operation_name="GetView", variables=variables, **kwargs
+        )
+        data = self.get_data(response)
+        return GetView.model_validate(data)
+
+    async def query_views(
+        self,
+        filter: Union[Optional[ViewFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryViews:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_VIEWS_GQL,
+            operation_name="QueryViews",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryViews.model_validate(data)
+
+    async def update_view(self, view: ViewUpdateInput, **kwargs: Any) -> UpdateView:
+        variables: Dict[str, object] = {"view": view}
+        response = await self.execute(
+            query=UPDATE_VIEW_GQL,
+            operation_name="UpdateView",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateView.model_validate(data)
 
     async def count_workflows(
         self,

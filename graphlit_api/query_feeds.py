@@ -12,8 +12,13 @@ from .enums import (
     FeedListingTypes,
     FeedServiceTypes,
     FeedTypes,
+    GoogleCalendarAuthenticationTypes,
     GoogleDriveAuthenticationTypes,
+    GoogleEmailAuthenticationTypes,
+    MicrosoftCalendarAuthenticationTypes,
+    MicrosoftEmailAuthenticationTypes,
     NotionTypes,
+    OneDriveAuthenticationTypes,
     SearchServiceTypes,
     SharePointAuthenticationTypes,
     SiteTypes,
@@ -127,7 +132,7 @@ class QueryFeedsFeedsResultsSiteGoogle(BaseModel):
 
 
 class QueryFeedsFeedsResultsSiteSharePoint(BaseModel):
-    authentication_type: SharePointAuthenticationTypes = Field(
+    authentication_type: Optional[SharePointAuthenticationTypes] = Field(
         alias="authenticationType"
     )
     account_name: str = Field(alias="accountName")
@@ -137,14 +142,19 @@ class QueryFeedsFeedsResultsSiteSharePoint(BaseModel):
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector_id: Optional[str] = Field(alias="connectorId")
 
 
 class QueryFeedsFeedsResultsSiteOneDrive(BaseModel):
+    authentication_type: Optional[OneDriveAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
     folder_id: Optional[str] = Field(alias="folderId")
     files: Optional[List[Optional[str]]]
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
     refresh_token: str = Field(alias="refreshToken")
+    connector_id: Optional[str] = Field(alias="connectorId")
 
 
 class QueryFeedsFeedsResultsSiteGoogleDrive(BaseModel):
@@ -157,6 +167,7 @@ class QueryFeedsFeedsResultsSiteGoogleDrive(BaseModel):
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
     service_account_json: Optional[str] = Field(alias="serviceAccountJson")
+    connector_id: Optional[str] = Field(alias="connectorId")
 
 
 class QueryFeedsFeedsResultsSiteDropbox(BaseModel):
@@ -176,11 +187,15 @@ class QueryFeedsFeedsResultsSiteBox(BaseModel):
 
 
 class QueryFeedsFeedsResultsSiteGithub(BaseModel):
+    authentication_type: Optional[OneDriveAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
     uri: Optional[Any]
     repository_owner: str = Field(alias="repositoryOwner")
     repository_name: str = Field(alias="repositoryName")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     personal_access_token: Optional[str] = Field(alias="personalAccessToken")
+    connector_id: Optional[str] = Field(alias="connectorId")
 
 
 class QueryFeedsFeedsResultsEmail(BaseModel):
@@ -197,9 +212,13 @@ class QueryFeedsFeedsResultsEmailGoogle(BaseModel):
     exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems")
     include_deleted_items: Optional[bool] = Field(alias="includeDeletedItems")
     inbox_only: Optional[bool] = Field(alias="inboxOnly")
+    authentication_type: Optional[GoogleEmailAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
     refresh_token: Optional[str] = Field(alias="refreshToken")
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
+    connector_id: Optional[str] = Field(alias="connectorId")
 
 
 class QueryFeedsFeedsResultsEmailMicrosoft(BaseModel):
@@ -208,9 +227,13 @@ class QueryFeedsFeedsResultsEmailMicrosoft(BaseModel):
     exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems")
     include_deleted_items: Optional[bool] = Field(alias="includeDeletedItems")
     inbox_only: Optional[bool] = Field(alias="inboxOnly")
+    authentication_type: Optional[MicrosoftEmailAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
     refresh_token: str = Field(alias="refreshToken")
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
+    connector_id: Optional[str] = Field(alias="connectorId")
 
 
 class QueryFeedsFeedsResultsIssue(BaseModel):
@@ -274,18 +297,26 @@ class QueryFeedsFeedsResultsCalendarGoogle(BaseModel):
     calendar_id: Optional[str] = Field(alias="calendarId")
     before_date: Optional[Any] = Field(alias="beforeDate")
     after_date: Optional[Any] = Field(alias="afterDate")
+    authentication_type: Optional[GoogleCalendarAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
     refresh_token: str = Field(alias="refreshToken")
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
+    connector_id: Optional[str] = Field(alias="connectorId")
 
 
 class QueryFeedsFeedsResultsCalendarMicrosoft(BaseModel):
     calendar_id: Optional[str] = Field(alias="calendarId")
     before_date: Optional[Any] = Field(alias="beforeDate")
     after_date: Optional[Any] = Field(alias="afterDate")
+    authentication_type: Optional[MicrosoftCalendarAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
     refresh_token: str = Field(alias="refreshToken")
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
+    connector_id: Optional[str] = Field(alias="connectorId")
 
 
 class QueryFeedsFeedsResultsRss(BaseModel):

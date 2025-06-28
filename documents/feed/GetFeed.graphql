@@ -47,13 +47,16 @@ query GetFeed($id: ID!, $correlationId: String) {
         clientId
         clientSecret
         refreshToken
+        connectorId
       }
       oneDrive {
+        authenticationType
         folderId
         files
         clientId
         clientSecret
         refreshToken
+        connectorId
       }
       googleDrive {
         authenticationType
@@ -63,6 +66,7 @@ query GetFeed($id: ID!, $correlationId: String) {
         clientId
         clientSecret
         serviceAccountJson
+        connectorId
       }
       dropbox {
         path
@@ -79,11 +83,13 @@ query GetFeed($id: ID!, $correlationId: String) {
         redirectUri
       }
       github {
+        authenticationType
         uri
         repositoryOwner
         repositoryName
         refreshToken
         personalAccessToken
+        connectorId
       }
       readLimit
     }
@@ -96,9 +102,11 @@ query GetFeed($id: ID!, $correlationId: String) {
         excludeSentItems
         includeDeletedItems
         inboxOnly
+        authenticationType
         refreshToken
         clientId
         clientSecret
+        connectorId
       }
       microsoft {
         type
@@ -106,9 +114,11 @@ query GetFeed($id: ID!, $correlationId: String) {
         excludeSentItems
         includeDeletedItems
         inboxOnly
+        authenticationType
         refreshToken
         clientId
         clientSecret
+        connectorId
       }
       readLimit
     }
@@ -155,17 +165,21 @@ query GetFeed($id: ID!, $correlationId: String) {
         calendarId
         beforeDate
         afterDate
+        authenticationType
         refreshToken
         clientId
         clientSecret
+        connectorId
       }
       microsoft {
         calendarId
         beforeDate
         afterDate
+        authenticationType
         refreshToken
         clientId
         clientSecret
+        connectorId
       }
       readLimit
     }

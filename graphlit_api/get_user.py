@@ -49,6 +49,7 @@ class GetUserUserConnectorsAuthentication(BaseModel):
     type: AuthenticationServiceTypes
     microsoft: Optional["GetUserUserConnectorsAuthenticationMicrosoft"]
     google: Optional["GetUserUserConnectorsAuthenticationGoogle"]
+    arcade: Optional["GetUserUserConnectorsAuthenticationArcade"]
 
 
 class GetUserUserConnectorsAuthenticationMicrosoft(BaseModel):
@@ -60,6 +61,10 @@ class GetUserUserConnectorsAuthenticationMicrosoft(BaseModel):
 class GetUserUserConnectorsAuthenticationGoogle(BaseModel):
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
+
+
+class GetUserUserConnectorsAuthenticationArcade(BaseModel):
+    authorization_id: str = Field(alias="authorizationId")
 
 
 class GetUserUserConnectorsIntegration(BaseModel):

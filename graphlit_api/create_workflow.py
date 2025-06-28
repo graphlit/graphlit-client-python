@@ -342,6 +342,12 @@ class CreateWorkflowCreateWorkflowEnrichmentLink(BaseModel):
     excluded_links: Optional[List[LinkTypes]] = Field(alias="excludedLinks")
     allowed_files: Optional[List[FileTypes]] = Field(alias="allowedFiles")
     excluded_files: Optional[List[FileTypes]] = Field(alias="excludedFiles")
+    allowed_content_types: Optional[List[ContentTypes]] = Field(
+        alias="allowedContentTypes"
+    )
+    excluded_content_types: Optional[List[ContentTypes]] = Field(
+        alias="excludedContentTypes"
+    )
     allow_content_domain: Optional[bool] = Field(alias="allowContentDomain")
     maximum_links: Optional[int] = Field(alias="maximumLinks")
 

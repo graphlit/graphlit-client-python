@@ -1,0 +1,8 @@
+mutation CreateConnector($connector: ConnectorInput!) {
+  createConnector(connector: $connector) {
+    id
+    name
+    state
+    type
+  }
+}

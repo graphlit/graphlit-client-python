@@ -169,6 +169,8 @@ query GetWorkflow($id: ID!, $correlationId: String) {
         excludedLinks
         allowedFiles
         excludedFiles
+        allowedContentTypes
+        excludedContentTypes
         allowContentDomain
         maximumLinks
       }

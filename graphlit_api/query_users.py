@@ -53,6 +53,7 @@ class QueryUsersUsersResultsConnectorsAuthentication(BaseModel):
     type: AuthenticationServiceTypes
     microsoft: Optional["QueryUsersUsersResultsConnectorsAuthenticationMicrosoft"]
     google: Optional["QueryUsersUsersResultsConnectorsAuthenticationGoogle"]
+    arcade: Optional["QueryUsersUsersResultsConnectorsAuthenticationArcade"]
 
 
 class QueryUsersUsersResultsConnectorsAuthenticationMicrosoft(BaseModel):
@@ -64,6 +65,10 @@ class QueryUsersUsersResultsConnectorsAuthenticationMicrosoft(BaseModel):
 class QueryUsersUsersResultsConnectorsAuthenticationGoogle(BaseModel):
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
+
+
+class QueryUsersUsersResultsConnectorsAuthenticationArcade(BaseModel):
+    authorization_id: str = Field(alias="authorizationId")
 
 
 class QueryUsersUsersResultsConnectorsIntegration(BaseModel):

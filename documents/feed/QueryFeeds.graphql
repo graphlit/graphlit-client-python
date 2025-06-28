@@ -48,13 +48,16 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           clientId
           clientSecret
           refreshToken
+          connectorId
         }
         oneDrive {
+          authenticationType
           folderId
           files
           clientId
           clientSecret
           refreshToken
+          connectorId
         }
         googleDrive {
           authenticationType
@@ -64,6 +67,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           clientId
           clientSecret
           serviceAccountJson
+          connectorId
         }
         dropbox {
           path
@@ -80,11 +84,13 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           redirectUri
         }
         github {
+          authenticationType
           uri
           repositoryOwner
           repositoryName
           refreshToken
           personalAccessToken
+          connectorId
         }
         readLimit
       }
@@ -97,9 +103,11 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           excludeSentItems
           includeDeletedItems
           inboxOnly
+          authenticationType
           refreshToken
           clientId
           clientSecret
+          connectorId
         }
         microsoft {
           type
@@ -107,9 +115,11 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           excludeSentItems
           includeDeletedItems
           inboxOnly
+          authenticationType
           refreshToken
           clientId
           clientSecret
+          connectorId
         }
         readLimit
       }
@@ -156,17 +166,21 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           calendarId
           beforeDate
           afterDate
+          authenticationType
           refreshToken
           clientId
           clientSecret
+          connectorId
         }
         microsoft {
           calendarId
           beforeDate
           afterDate
+          authenticationType
           refreshToken
           clientId
           clientSecret
+          connectorId
         }
         readLimit
       }

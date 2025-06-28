@@ -1,0 +1,5 @@
+query CountViews($filter: ViewFilter, $correlationId: String) {
+  countViews(filter: $filter, correlationId: $correlationId) {
+    count
+  }
+}

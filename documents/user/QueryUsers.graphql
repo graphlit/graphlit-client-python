@@ -28,6 +28,9 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
             clientId
             clientSecret
           }
+          arcade {
+            authorizationId
+          }
         }
         integration {
           type

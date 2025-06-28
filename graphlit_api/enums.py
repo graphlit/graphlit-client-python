@@ -38,6 +38,16 @@ class CalendarEventStatus(str, Enum):
     CANCELLED = "CANCELLED"
 
 
+class GoogleEmailAuthenticationTypes(str, Enum):
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
+
+
+class MicrosoftCalendarAuthenticationTypes(str, Enum):
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
+
+
 class MedicalIndicationFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
@@ -67,9 +77,15 @@ class OpenAIVisionDetailLevels(str, Enum):
     LOW = "LOW"
 
 
+class GoogleCalendarAuthenticationTypes(str, Enum):
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
+
+
 class GoogleDriveAuthenticationTypes(str, Enum):
     SERVICE_ACCOUNT = "SERVICE_ACCOUNT"
     USER = "USER"
+    CONNECTOR = "CONNECTOR"
 
 
 class ReductoExtractionModes(str, Enum):
@@ -404,6 +420,11 @@ class ObservableTypes(str, Enum):
     MEDICAL_PROCEDURE = "MEDICAL_PROCEDURE"
 
 
+class MicrosoftEmailAuthenticationTypes(str, Enum):
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
+
+
 class ContentPublishingServiceTypes(str, Enum):
     ELEVEN_LABS_AUDIO = "ELEVEN_LABS_AUDIO"
     OPEN_AI_IMAGE = "OPEN_AI_IMAGE"
@@ -544,6 +565,12 @@ class ConversationTypes(str, Enum):
     CONTENT = "CONTENT"
 
 
+class GitHubAuthenticationTypes(str, Enum):
+    PERSONAL_ACCESS_TOKEN = "PERSONAL_ACCESS_TOKEN"
+    O_AUTH = "O_AUTH"
+    CONNECTOR = "CONNECTOR"
+
+
 class RenditionTypes(str, Enum):
     CONTENT = "CONTENT"
 
@@ -592,6 +619,7 @@ class MedicalDeviceFacetTypes(str, Enum):
 
 
 class DeepgramModels(str, Enum):
+    NOVA3_MEDICAL = "NOVA3_MEDICAL"
     NOVA3 = "NOVA3"
     NOVA2 = "NOVA2"
     NOVA2_MEETING = "NOVA2_MEETING"
@@ -644,6 +672,7 @@ class AuthenticationServiceTypes(str, Enum):
     MICROSOFT_GRAPH = "MICROSOFT_GRAPH"
     CLERK = "CLERK"
     GOOGLE = "GOOGLE"
+    ARCADE = "ARCADE"
 
 
 class DeviceTypes(str, Enum):
@@ -655,6 +684,12 @@ class DeviceTypes(str, Enum):
     SCREEN = "SCREEN"
     GEOSPATIAL = "GEOSPATIAL"
     UNKNOWN = "UNKNOWN"
+
+
+class GitHubIssueAuthenticationTypes(str, Enum):
+    PERSONAL_ACCESS_TOKEN = "PERSONAL_ACCESS_TOKEN"
+    O_AUTH = "O_AUTH"
+    CONNECTOR = "CONNECTOR"
 
 
 class GroqModels(str, Enum):
@@ -808,6 +843,7 @@ class EntityTypes(str, Enum):
     SOFTWARE = "SOFTWARE"
     SPECIFICATION = "SPECIFICATION"
     USER = "USER"
+    VIEW = "VIEW"
     WORKFLOW = "WORKFLOW"
 
 
@@ -907,6 +943,10 @@ class TimedPolicyRecurrenceTypes(str, Enum):
     REPEAT = "REPEAT"
 
 
+class ViewTypes(str, Enum):
+    CONTENT = "CONTENT"
+
+
 class VoyageModels(str, Enum):
     VOYAGE = "VOYAGE"
     VOYAGE_3_0_LARGE = "VOYAGE_3_0_LARGE"
@@ -980,6 +1020,7 @@ class MedicalStudyFacetTypes(str, Enum):
 class SharePointAuthenticationTypes(str, Enum):
     APPLICATION = "APPLICATION"
     USER = "USER"
+    CONNECTOR = "CONNECTOR"
 
 
 class MedicalTherapyFacetTypes(str, Enum):
@@ -1140,6 +1181,11 @@ class LinkTypes(str, Enum):
     MEDIA = "MEDIA"
     WEB = "WEB"
     FILE = "FILE"
+
+
+class OneDriveAuthenticationTypes(str, Enum):
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
 
 
 class ProductFacetTypes(str, Enum):

@@ -49,7 +49,11 @@ from .enums import (
     FeedTypes,
     FilePreparationServiceTypes,
     FileTypes,
+    GitHubAuthenticationTypes,
+    GitHubIssueAuthenticationTypes,
+    GoogleCalendarAuthenticationTypes,
     GoogleDriveAuthenticationTypes,
+    GoogleEmailAuthenticationTypes,
     GoogleModels,
     GraphStrategyTypes,
     GroqModels,
@@ -74,12 +78,15 @@ from .enums import (
     MedicalTestFacetTypes,
     MedicalTherapyFacetTypes,
     MetadataTypes,
+    MicrosoftCalendarAuthenticationTypes,
+    MicrosoftEmailAuthenticationTypes,
     MistralModels,
     ModelServiceTypes,
     ModelTypes,
     NotionTypes,
     ObservableTypes,
     OccurrenceTypes,
+    OneDriveAuthenticationTypes,
     OpenAIImageModels,
     OpenAIModels,
     OpenAIReasoningEffortLevels,
@@ -118,6 +125,7 @@ from .enums import (
     TwitterListingTypes,
     UnitTypes,
     UserTypes,
+    ViewTypes,
     VoyageModels,
     YouTubeTypes,
 )
@@ -249,6 +257,12 @@ class LinkStrategyInput(BaseModel):
     excluded_files: Optional[List[FileTypes]] = Field(
         alias="excludedFiles", default=None
     )
+    allowed_content_types: Optional[List[ContentTypes]] = Field(
+        alias="allowedContentTypes", default=None
+    )
+    excluded_content_types: Optional[List[ContentTypes]] = Field(
+        alias="excludedContentTypes", default=None
+    )
     maximum_links: Optional[int] = Field(alias="maximumLinks", default=None)
 
 
@@ -308,6 +322,9 @@ class WorkflowUpdateInput(BaseModel):
 
 
 class GitHubFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[GitHubAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     repository_owner: str = Field(alias="repositoryOwner")
     repository_name: str = Field(alias="repositoryName")
     uri: Optional[Any] = None
@@ -315,6 +332,7 @@ class GitHubFeedPropertiesInput(BaseModel):
     personal_access_token: Optional[str] = Field(
         alias="personalAccessToken", default=None
     )
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
 
 
 class TrelloFeedPropertiesInput(BaseModel):
@@ -384,6 +402,10 @@ class AddressFilter(BaseModel):
     postal_code: Optional[str] = Field(alias="postalCode", default=None)
 
 
+class DiscordGuildsInput(BaseModel):
+    token: str
+
+
 class AzureFileFeedPropertiesInput(BaseModel):
     storage_access_key: str = Field(alias="storageAccessKey")
     account_name: str = Field(alias="accountName")
@@ -418,6 +440,7 @@ class GoogleDriveFeedPropertiesUpdateInput(BaseModel):
     service_account_json: Optional[str] = Field(
         alias="serviceAccountJson", default=None
     )
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
 
 
 class TrelloFeedPropertiesUpdateInput(BaseModel):
@@ -523,9 +546,13 @@ class MicrosoftEmailFeedPropertiesUpdateInput(BaseModel):
     )
     exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems", default=None)
     include_spam: Optional[bool] = Field(alias="includeSpam", default=None)
+    authentication_type: Optional[MicrosoftEmailAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
 
 
 class IntercomFeedPropertiesUpdateInput(BaseModel):
@@ -1067,6 +1094,9 @@ class AmazonFeedPropertiesUpdateInput(BaseModel):
 
 
 class GitHubFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[GitHubAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     repository_owner: Optional[str] = Field(alias="repositoryOwner", default=None)
     repository_name: Optional[str] = Field(alias="repositoryName", default=None)
     uri: Optional[Any] = None
@@ -1074,6 +1104,7 @@ class GitHubFeedPropertiesUpdateInput(BaseModel):
     personal_access_token: Optional[str] = Field(
         alias="personalAccessToken", default=None
     )
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
 
 
 class OrganizationFilter(BaseModel):
@@ -1100,6 +1131,10 @@ class OrganizationFilter(BaseModel):
     similar_organizations: Optional[List["EntityReferenceFilter"]] = Field(
         alias="similarOrganizations", default=None
     )
+
+
+class ArcadeAuthenticationPropertiesInput(BaseModel):
+    authorization_id: str = Field(alias="authorizationId")
 
 
 class ContentCriteriaLevelInput(BaseModel):
@@ -1365,6 +1400,7 @@ class SharePointFeedPropertiesUpdateInput(BaseModel):
     )
     tenant_id: Optional[str] = Field(alias="tenantId", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
     account_name: Optional[str] = Field(alias="accountName", default=None)
     library_id: Optional[str] = Field(alias="libraryId", default=None)
     folder_id: Optional[str] = Field(alias="folderId", default=None)
@@ -1559,6 +1595,16 @@ class SiteFeedPropertiesUpdateInput(BaseModel):
     dropbox: Optional["DropboxFeedPropertiesUpdateInput"] = None
     box: Optional["BoxFeedPropertiesUpdateInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class ViewUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    type: Optional[ViewTypes] = None
+    filter: Optional["ContentCriteriaInput"] = None
+    augmented_filter: Optional["ContentCriteriaInput"] = Field(
+        alias="augmentedFilter", default=None
+    )
 
 
 class GoogleCalendarsInput(BaseModel):
@@ -2035,9 +2081,13 @@ class ContentCriteriaInput(BaseModel):
 
 
 class MicrosoftCalendarFeedPropertiesUpdateInput(BaseModel):
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-    refresh_token: str = Field(alias="refreshToken")
+    authentication_type: Optional[MicrosoftCalendarAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
 
 
 class MedicalConditionFacetInput(BaseModel):
@@ -2046,6 +2096,11 @@ class MedicalConditionFacetInput(BaseModel):
     )
     time_offset: Optional[int] = Field(alias="timeOffset", default=None)
     facet: Optional[MedicalConditionFacetTypes] = None
+
+
+class DiscordChannelsInput(BaseModel):
+    token: str
+    guild_id: str = Field(alias="guildId")
 
 
 class SpecificationInput(BaseModel):
@@ -2105,9 +2160,13 @@ class GoogleEmailFeedPropertiesUpdateInput(BaseModel):
     )
     exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems", default=None)
     include_spam: Optional[bool] = Field(alias="includeSpam", default=None)
+    authentication_type: Optional[GoogleEmailAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
 
 
 class ZendeskFeedPropertiesInput(BaseModel):
@@ -2132,18 +2191,26 @@ class CategoryFilter(BaseModel):
 
 
 class GoogleCalendarFeedPropertiesUpdateInput(BaseModel):
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-    refresh_token: str = Field(alias="refreshToken")
+    authentication_type: Optional[GoogleCalendarAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
 
 
 class GoogleCalendarFeedPropertiesInput(BaseModel):
     calendar_id: Optional[str] = Field(alias="calendarId", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-    refresh_token: str = Field(alias="refreshToken")
+    authentication_type: Optional[GoogleCalendarAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
 
 
 class LabelUpdateInput(BaseModel):
@@ -2265,9 +2332,13 @@ class MicrosoftCalendarFeedPropertiesInput(BaseModel):
     calendar_id: Optional[str] = Field(alias="calendarId", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-    refresh_token: str = Field(alias="refreshToken")
+    authentication_type: Optional[MicrosoftCalendarAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
 
 
 class PlaceInput(BaseModel):
@@ -2343,6 +2414,7 @@ class AuthenticationConnectorInput(BaseModel):
     type: AuthenticationServiceTypes
     microsoft: Optional["MicrosoftAuthenticationPropertiesInput"] = None
     google: Optional["GoogleAuthenticationPropertiesInput"] = None
+    arcade: Optional["ArcadeAuthenticationPropertiesInput"] = None
 
 
 class MicrosoftEmailFeedPropertiesInput(BaseModel):
@@ -2353,9 +2425,13 @@ class MicrosoftEmailFeedPropertiesInput(BaseModel):
     )
     exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems", default=None)
     include_spam: Optional[bool] = Field(alias="includeSpam", default=None)
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-    refresh_token: str = Field(alias="refreshToken")
+    authentication_type: Optional[MicrosoftEmailAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
 
 
 class MicrosoftTeamsFeedPropertiesUpdateInput(BaseModel):
@@ -2405,6 +2481,22 @@ class ConnectorFilter(BaseModel):
         alias="creationDateRange", default=None
     )
     types: Optional[List[ConnectorTypes]] = None
+
+
+class ViewFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    types: Optional[List[Optional[ViewTypes]]] = None
 
 
 class MedicalContraindicationFilter(BaseModel):
@@ -2474,11 +2566,15 @@ class CalendarReminderInput(BaseModel):
 
 
 class OneDriveFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[OneDriveAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     files: Optional[List[Optional[str]]] = None
     folder_id: Optional[str] = Field(alias="folderId", default=None)
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-    refresh_token: str = Field(alias="refreshToken")
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
 
 
 class GoogleDriveFoldersInput(BaseModel):
@@ -2739,6 +2835,15 @@ class SearchFeedPropertiesUpdateInput(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
+class ViewInput(BaseModel):
+    name: str
+    type: Optional[ViewTypes] = None
+    filter: Optional["ContentCriteriaInput"] = None
+    augmented_filter: Optional["ContentCriteriaInput"] = Field(
+        alias="augmentedFilter", default=None
+    )
+
+
 class MedicalProcedureFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
@@ -2899,6 +3004,7 @@ class GoogleDriveFeedPropertiesInput(BaseModel):
     service_account_json: Optional[str] = Field(
         alias="serviceAccountJson", default=None
     )
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
 
 
 class EmailFeedPropertiesUpdateInput(BaseModel):
@@ -2945,6 +3051,9 @@ class EntityReferenceInput(BaseModel):
 
 
 class GitHubIssuesFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[GitHubIssueAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     repository_owner: str = Field(alias="repositoryOwner")
     repository_name: str = Field(alias="repositoryName")
     uri: Optional[Any] = None
@@ -2952,6 +3061,7 @@ class GitHubIssuesFeedPropertiesInput(BaseModel):
     personal_access_token: Optional[str] = Field(
         alias="personalAccessToken", default=None
     )
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
 
 
 class PointInput(BaseModel):
@@ -3018,11 +3128,15 @@ class MedicalGuidelineFacetInput(BaseModel):
 
 
 class OneDriveFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[OneDriveAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     files: Optional[List[Optional[str]]] = None
     folder_id: Optional[str] = Field(alias="folderId", default=None)
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
 
 
 class ProjectFilter(BaseModel):
@@ -3434,6 +3548,7 @@ class SharePointFeedPropertiesInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
     account_name: str = Field(alias="accountName")
     library_id: str = Field(alias="libraryId")
     folder_id: Optional[str] = Field(alias="folderId", default=None)
@@ -3575,9 +3690,13 @@ class GoogleEmailFeedPropertiesInput(BaseModel):
     )
     exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems", default=None)
     include_spam: Optional[bool] = Field(alias="includeSpam", default=None)
-    refresh_token: str = Field(alias="refreshToken")
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
+    authentication_type: Optional[GoogleEmailAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
 
 
 class EventFacetInput(BaseModel):
@@ -3894,6 +4013,7 @@ IngestionWorkflowStageInput.model_rebuild()
 IndexingWorkflowStageInput.model_rebuild()
 EventMetadataInput.model_rebuild()
 SiteFeedPropertiesUpdateInput.model_rebuild()
+ViewUpdateInput.model_rebuild()
 ConversationInput.model_rebuild()
 OpenAIImagePublishingPropertiesInput.model_rebuild()
 EnrichmentWorkflowStageInput.model_rebuild()
@@ -3929,6 +4049,7 @@ CollectionInput.model_rebuild()
 SoftwareFilter.model_rebuild()
 AuthenticationConnectorInput.model_rebuild()
 ConnectorFilter.model_rebuild()
+ViewFilter.model_rebuild()
 MedicalContraindicationFilter.model_rebuild()
 ContentFilterLevel.model_rebuild()
 RegexContentClassificationPropertiesInput.model_rebuild()
@@ -3944,6 +4065,7 @@ CollectionUpdateInput.model_rebuild()
 MedicalTestUpdateInput.model_rebuild()
 IndexingWorkflowJobInput.model_rebuild()
 ContentPublishingConnectorUpdateInput.model_rebuild()
+ViewInput.model_rebuild()
 MedicalProcedureFilter.model_rebuild()
 MedicalDeviceFilter.model_rebuild()
 SpecificationUpdateInput.model_rebuild()

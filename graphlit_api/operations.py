@@ -12,6 +12,7 @@ __all__ = [
     "COUNT_ALERTS_GQL",
     "COUNT_CATEGORIES_GQL",
     "COUNT_COLLECTIONS_GQL",
+    "COUNT_CONNECTORS_GQL",
     "COUNT_CONTENTS_GQL",
     "COUNT_CONVERSATIONS_GQL",
     "COUNT_EVENTS_GQL",
@@ -36,10 +37,12 @@ __all__ = [
     "COUNT_SOFTWARES_GQL",
     "COUNT_SPECIFICATIONS_GQL",
     "COUNT_USERS_GQL",
+    "COUNT_VIEWS_GQL",
     "COUNT_WORKFLOWS_GQL",
     "CREATE_ALERT_GQL",
     "CREATE_CATEGORY_GQL",
     "CREATE_COLLECTION_GQL",
+    "CREATE_CONNECTOR_GQL",
     "CREATE_CONVERSATION_GQL",
     "CREATE_EVENT_GQL",
     "CREATE_FEED_GQL",
@@ -64,6 +67,7 @@ __all__ = [
     "CREATE_SOFTWARE_GQL",
     "CREATE_SPECIFICATION_GQL",
     "CREATE_USER_GQL",
+    "CREATE_VIEW_GQL",
     "CREATE_WORKFLOW_GQL",
     "DELETE_ALERTS_GQL",
     "DELETE_ALERT_GQL",
@@ -98,6 +102,7 @@ __all__ = [
     "DELETE_CATEGORY_GQL",
     "DELETE_COLLECTIONS_GQL",
     "DELETE_COLLECTION_GQL",
+    "DELETE_CONNECTOR_GQL",
     "DELETE_CONTENTS_GQL",
     "DELETE_CONTENT_GQL",
     "DELETE_CONVERSATIONS_GQL",
@@ -146,6 +151,7 @@ __all__ = [
     "DELETE_SPECIFICATIONS_GQL",
     "DELETE_SPECIFICATION_GQL",
     "DELETE_USER_GQL",
+    "DELETE_VIEW_GQL",
     "DELETE_WORKFLOWS_GQL",
     "DELETE_WORKFLOW_GQL",
     "DESCRIBE_ENCODED_IMAGE_GQL",
@@ -163,6 +169,7 @@ __all__ = [
     "GET_ALERT_GQL",
     "GET_CATEGORY_GQL",
     "GET_COLLECTION_GQL",
+    "GET_CONNECTOR_GQL",
     "GET_CONTENT_GQL",
     "GET_CONVERSATION_GQL",
     "GET_EVENT_GQL",
@@ -190,6 +197,7 @@ __all__ = [
     "GET_SPECIFICATION_GQL",
     "GET_USER_BY_IDENTIFIER_GQL",
     "GET_USER_GQL",
+    "GET_VIEW_GQL",
     "GET_WORKFLOW_GQL",
     "INGEST_BATCH_GQL",
     "INGEST_ENCODED_FILE_GQL",
@@ -214,6 +222,7 @@ __all__ = [
     "QUERY_BOX_FOLDERS_GQL",
     "QUERY_CATEGORIES_GQL",
     "QUERY_COLLECTIONS_GQL",
+    "QUERY_CONNECTORS_GQL",
     "QUERY_CONTENTS_FACETS_GQL",
     "QUERY_CONTENTS_GQL",
     "QUERY_CONTENTS_GRAPH_GQL",
@@ -258,6 +267,7 @@ __all__ = [
     "QUERY_TOKENS_GQL",
     "QUERY_USAGE_GQL",
     "QUERY_USERS_GQL",
+    "QUERY_VIEWS_GQL",
     "QUERY_WORKFLOWS_GQL",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
     "RETRIEVE_SOURCES_GQL",
@@ -275,6 +285,7 @@ __all__ = [
     "UPDATE_ALERT_GQL",
     "UPDATE_CATEGORY_GQL",
     "UPDATE_COLLECTION_GQL",
+    "UPDATE_CONNECTOR_GQL",
     "UPDATE_CONTENT_GQL",
     "UPDATE_CONVERSATION_GQL",
     "UPDATE_EVENT_GQL",
@@ -301,6 +312,7 @@ __all__ = [
     "UPDATE_SOFTWARE_GQL",
     "UPDATE_SPECIFICATION_GQL",
     "UPDATE_USER_GQL",
+    "UPDATE_VIEW_GQL",
     "UPDATE_WORKFLOW_GQL",
     "UPSERT_CATEGORY_GQL",
     "UPSERT_LABEL_GQL",
@@ -886,6 +898,147 @@ mutation RemoveContentsFromCollection($contents: [EntityReferenceInput!]!, $coll
 UPDATE_COLLECTION_GQL = """
 mutation UpdateCollection($collection: CollectionUpdateInput!) {
   updateCollection(collection: $collection) {
+    id
+    name
+    state
+    type
+  }
+}
+"""
+
+COUNT_CONNECTORS_GQL = """
+query CountConnectors($filter: ConnectorFilter, $correlationId: String) {
+  countConnectors(filter: $filter, correlationId: $correlationId) {
+    count
+  }
+}
+"""
+
+CREATE_CONNECTOR_GQL = """
+mutation CreateConnector($connector: ConnectorInput!) {
+  createConnector(connector: $connector) {
+    id
+    name
+    state
+    type
+  }
+}
+"""
+
+DELETE_CONNECTOR_GQL = """
+mutation DeleteConnector($id: ID!) {
+  deleteConnector(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+GET_CONNECTOR_GQL = """
+query GetConnector($id: ID!, $correlationId: String) {
+  connector(id: $id, correlationId: $correlationId) {
+    id
+    name
+    creationDate
+    relevance
+    owner {
+      id
+    }
+    state
+    type
+    authentication {
+      type
+      microsoft {
+        tenantId
+        clientId
+        clientSecret
+      }
+      google {
+        clientId
+        clientSecret
+      }
+      arcade {
+        authorizationId
+      }
+    }
+    integration {
+      type
+      uri
+      slack {
+        token
+        channel
+      }
+      email {
+        from
+        subject
+        to
+      }
+      twitter {
+        consumerKey
+        consumerSecret
+        accessTokenKey
+        accessTokenSecret
+      }
+    }
+  }
+}
+"""
+
+QUERY_CONNECTORS_GQL = """
+query QueryConnectors($filter: ConnectorFilter, $correlationId: String) {
+  connectors(filter: $filter, correlationId: $correlationId) {
+    results {
+      id
+      name
+      creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      type
+      authentication {
+        type
+        microsoft {
+          tenantId
+          clientId
+          clientSecret
+        }
+        google {
+          clientId
+          clientSecret
+        }
+        arcade {
+          authorizationId
+        }
+      }
+      integration {
+        type
+        uri
+        slack {
+          token
+          channel
+        }
+        email {
+          from
+          subject
+          to
+        }
+        twitter {
+          consumerKey
+          consumerSecret
+          accessTokenKey
+          accessTokenSecret
+        }
+      }
+    }
+  }
+}
+"""
+
+UPDATE_CONNECTOR_GQL = """
+mutation UpdateConnector($connector: ConnectorUpdateInput!) {
+  updateConnector(connector: $connector) {
     id
     name
     state
@@ -6637,13 +6790,16 @@ query GetFeed($id: ID!, $correlationId: String) {
         clientId
         clientSecret
         refreshToken
+        connectorId
       }
       oneDrive {
+        authenticationType
         folderId
         files
         clientId
         clientSecret
         refreshToken
+        connectorId
       }
       googleDrive {
         authenticationType
@@ -6653,6 +6809,7 @@ query GetFeed($id: ID!, $correlationId: String) {
         clientId
         clientSecret
         serviceAccountJson
+        connectorId
       }
       dropbox {
         path
@@ -6669,11 +6826,13 @@ query GetFeed($id: ID!, $correlationId: String) {
         redirectUri
       }
       github {
+        authenticationType
         uri
         repositoryOwner
         repositoryName
         refreshToken
         personalAccessToken
+        connectorId
       }
       readLimit
     }
@@ -6686,9 +6845,11 @@ query GetFeed($id: ID!, $correlationId: String) {
         excludeSentItems
         includeDeletedItems
         inboxOnly
+        authenticationType
         refreshToken
         clientId
         clientSecret
+        connectorId
       }
       microsoft {
         type
@@ -6696,9 +6857,11 @@ query GetFeed($id: ID!, $correlationId: String) {
         excludeSentItems
         includeDeletedItems
         inboxOnly
+        authenticationType
         refreshToken
         clientId
         clientSecret
+        connectorId
       }
       readLimit
     }
@@ -6745,17 +6908,21 @@ query GetFeed($id: ID!, $correlationId: String) {
         calendarId
         beforeDate
         afterDate
+        authenticationType
         refreshToken
         clientId
         clientSecret
+        connectorId
       }
       microsoft {
         calendarId
         beforeDate
         afterDate
+        authenticationType
         refreshToken
         clientId
         clientSecret
+        connectorId
       }
       readLimit
     }
@@ -6938,13 +7105,16 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           clientId
           clientSecret
           refreshToken
+          connectorId
         }
         oneDrive {
+          authenticationType
           folderId
           files
           clientId
           clientSecret
           refreshToken
+          connectorId
         }
         googleDrive {
           authenticationType
@@ -6954,6 +7124,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           clientId
           clientSecret
           serviceAccountJson
+          connectorId
         }
         dropbox {
           path
@@ -6970,11 +7141,13 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           redirectUri
         }
         github {
+          authenticationType
           uri
           repositoryOwner
           repositoryName
           refreshToken
           personalAccessToken
+          connectorId
         }
         readLimit
       }
@@ -6987,9 +7160,11 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           excludeSentItems
           includeDeletedItems
           inboxOnly
+          authenticationType
           refreshToken
           clientId
           clientSecret
+          connectorId
         }
         microsoft {
           type
@@ -6997,9 +7172,11 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           excludeSentItems
           includeDeletedItems
           inboxOnly
+          authenticationType
           refreshToken
           clientId
           clientSecret
+          connectorId
         }
         readLimit
       }
@@ -7046,17 +7223,21 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           calendarId
           beforeDate
           afterDate
+          authenticationType
           refreshToken
           clientId
           clientSecret
+          connectorId
         }
         microsoft {
           calendarId
           beforeDate
           afterDate
+          authenticationType
           refreshToken
           clientId
           clientSecret
+          connectorId
         }
         readLimit
       }
@@ -10043,6 +10224,9 @@ query GetUser {
           clientId
           clientSecret
         }
+        arcade {
+          authorizationId
+        }
       }
       integration {
         type
@@ -10097,6 +10281,9 @@ query GetUserByIdentifier($identifier: String!) {
         google {
           clientId
           clientSecret
+        }
+        arcade {
+          authorizationId
         }
       }
       integration {
@@ -10154,6 +10341,9 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
             clientId
             clientSecret
           }
+          arcade {
+            authorizationId
+          }
         }
         integration {
           type
@@ -10189,6 +10379,743 @@ mutation UpdateUser($user: UserUpdateInput!) {
     type
     description
     identifier
+  }
+}
+"""
+
+COUNT_VIEWS_GQL = """
+query CountViews($filter: ViewFilter, $correlationId: String) {
+  countViews(filter: $filter, correlationId: $correlationId) {
+    count
+  }
+}
+"""
+
+CREATE_VIEW_GQL = """
+mutation CreateView($view: ViewInput!) {
+  createView(view: $view) {
+    id
+    name
+    state
+    type
+    filter {
+      dateRange {
+        from
+        to
+      }
+      inLast
+      creationDateRange {
+        from
+        to
+      }
+      createdInLast
+      types
+      fileTypes
+      formats
+      fileExtensions
+      similarContents {
+        id
+      }
+      contents {
+        id
+      }
+      feeds {
+        id
+      }
+      workflows {
+        id
+      }
+      collections {
+        id
+      }
+      users {
+        id
+      }
+      observations {
+        type
+        observable {
+          id
+        }
+        states
+      }
+      or {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+      and {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+    }
+    augmentedFilter {
+      dateRange {
+        from
+        to
+      }
+      inLast
+      creationDateRange {
+        from
+        to
+      }
+      createdInLast
+      types
+      fileTypes
+      formats
+      fileExtensions
+      similarContents {
+        id
+      }
+      contents {
+        id
+      }
+      feeds {
+        id
+      }
+      workflows {
+        id
+      }
+      collections {
+        id
+      }
+      users {
+        id
+      }
+      observations {
+        type
+        observable {
+          id
+        }
+        states
+      }
+      or {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+      and {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+    }
+  }
+}
+"""
+
+DELETE_VIEW_GQL = """
+mutation DeleteView($id: ID!) {
+  deleteView(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+GET_VIEW_GQL = """
+query GetView($id: ID!, $correlationId: String) {
+  view(id: $id, correlationId: $correlationId) {
+    id
+    name
+    creationDate
+    relevance
+    owner {
+      id
+    }
+    state
+    type
+    filter {
+      dateRange {
+        from
+        to
+      }
+      inLast
+      creationDateRange {
+        from
+        to
+      }
+      createdInLast
+      types
+      fileTypes
+      formats
+      fileExtensions
+      similarContents {
+        id
+      }
+      contents {
+        id
+      }
+      feeds {
+        id
+      }
+      workflows {
+        id
+      }
+      collections {
+        id
+      }
+      users {
+        id
+      }
+      observations {
+        type
+        observable {
+          id
+        }
+        states
+      }
+      or {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+      and {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+    }
+    augmentedFilter {
+      dateRange {
+        from
+        to
+      }
+      inLast
+      creationDateRange {
+        from
+        to
+      }
+      createdInLast
+      types
+      fileTypes
+      formats
+      fileExtensions
+      similarContents {
+        id
+      }
+      contents {
+        id
+      }
+      feeds {
+        id
+      }
+      workflows {
+        id
+      }
+      collections {
+        id
+      }
+      users {
+        id
+      }
+      observations {
+        type
+        observable {
+          id
+        }
+        states
+      }
+      or {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+      and {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+    }
+  }
+}
+"""
+
+QUERY_VIEWS_GQL = """
+query QueryViews($filter: ViewFilter, $correlationId: String) {
+  views(filter: $filter, correlationId: $correlationId) {
+    results {
+      id
+      name
+      creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      type
+      filter {
+        dateRange {
+          from
+          to
+        }
+        inLast
+        creationDateRange {
+          from
+          to
+        }
+        createdInLast
+        types
+        fileTypes
+        formats
+        fileExtensions
+        similarContents {
+          id
+        }
+        contents {
+          id
+        }
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+        or {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        and {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+      }
+      augmentedFilter {
+        dateRange {
+          from
+          to
+        }
+        inLast
+        creationDateRange {
+          from
+          to
+        }
+        createdInLast
+        types
+        fileTypes
+        formats
+        fileExtensions
+        similarContents {
+          id
+        }
+        contents {
+          id
+        }
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+        or {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        and {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+      }
+    }
+  }
+}
+"""
+
+UPDATE_VIEW_GQL = """
+mutation UpdateView($view: ViewUpdateInput!) {
+  updateView(view: $view) {
+    id
+    name
+    state
+    type
+    filter {
+      dateRange {
+        from
+        to
+      }
+      inLast
+      creationDateRange {
+        from
+        to
+      }
+      createdInLast
+      types
+      fileTypes
+      formats
+      fileExtensions
+      similarContents {
+        id
+      }
+      contents {
+        id
+      }
+      feeds {
+        id
+      }
+      workflows {
+        id
+      }
+      collections {
+        id
+      }
+      users {
+        id
+      }
+      observations {
+        type
+        observable {
+          id
+        }
+        states
+      }
+      or {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+      and {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+    }
+    augmentedFilter {
+      dateRange {
+        from
+        to
+      }
+      inLast
+      creationDateRange {
+        from
+        to
+      }
+      createdInLast
+      types
+      fileTypes
+      formats
+      fileExtensions
+      similarContents {
+        id
+      }
+      contents {
+        id
+      }
+      feeds {
+        id
+      }
+      workflows {
+        id
+      }
+      collections {
+        id
+      }
+      users {
+        id
+      }
+      observations {
+        type
+        observable {
+          id
+        }
+        states
+      }
+      or {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+      and {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+    }
   }
 }
 """
@@ -10368,6 +11295,8 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
         excludedLinks
         allowedFiles
         excludedFiles
+        allowedContentTypes
+        excludedContentTypes
         allowContentDomain
         maximumLinks
       }
@@ -10618,6 +11547,8 @@ query GetWorkflow($id: ID!, $correlationId: String) {
         excludedLinks
         allowedFiles
         excludedFiles
+        allowedContentTypes
+        excludedContentTypes
         allowContentDomain
         maximumLinks
       }
@@ -10838,6 +11769,8 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
           excludedLinks
           allowedFiles
           excludedFiles
+          allowedContentTypes
+          excludedContentTypes
           allowContentDomain
           maximumLinks
         }
@@ -11053,6 +11986,8 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
         excludedLinks
         allowedFiles
         excludedFiles
+        allowedContentTypes
+        excludedContentTypes
         allowContentDomain
         maximumLinks
       }
@@ -11267,6 +12202,8 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
         excludedLinks
         allowedFiles
         excludedFiles
+        allowedContentTypes
+        excludedContentTypes
         allowContentDomain
         maximumLinks
       }

@@ -1,0 +1,5 @@
+query CountConnectors($filter: ConnectorFilter, $correlationId: String) {
+  countConnectors(filter: $filter, correlationId: $correlationId) {
+    count
+  }
+}

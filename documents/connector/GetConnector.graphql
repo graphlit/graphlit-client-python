@@ -1,0 +1,47 @@
+query GetConnector($id: ID!, $correlationId: String) {
+  connector(id: $id, correlationId: $correlationId) {
+    id
+    name
+    creationDate
+    relevance
+    owner {
+      id
+    }
+    state
+    type
+    authentication {
+      type
+      microsoft {
+        tenantId
+        clientId
+        clientSecret
+      }
+      google {
+        clientId
+        clientSecret
+      }
+      arcade {
+        authorizationId
+      }
+    }
+    integration {
+      type
+      uri
+      slack {
+        token
+        channel
+      }
+      email {
+        from
+        subject
+        to
+      }
+      twitter {
+        consumerKey
+        consumerSecret
+        accessTokenKey
+        accessTokenSecret
+      }
+    }
+  }
+}

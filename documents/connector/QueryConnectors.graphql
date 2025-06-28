@@ -1,19 +1,13 @@
-query GetUser {
-  user {
-    id
-    name
-    creationDate
-    relevance
-    owner {
-      id
-    }
-    state
-    type
-    identifier
-    description
-    connectors {
+query QueryConnectors($filter: ConnectorFilter, $correlationId: String) {
+  connectors(filter: $filter, correlationId: $correlationId) {
+    results {
       id
       name
+      creationDate
+      relevance
+      owner {
+        id
+      }
       state
       type
       authentication {
