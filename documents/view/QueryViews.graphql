@@ -25,6 +25,10 @@ query QueryViews($filter: ViewFilter, $correlationId: String) {
         fileTypes
         formats
         fileExtensions
+        fileSizeRange {
+          from
+          to
+        }
         similarContents {
           id
         }
@@ -108,6 +112,10 @@ query QueryViews($filter: ViewFilter, $correlationId: String) {
         fileTypes
         formats
         fileExtensions
+        fileSizeRange {
+          from
+          to
+        }
         similarContents {
           id
         }

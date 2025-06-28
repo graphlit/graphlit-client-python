@@ -42,6 +42,9 @@ class GetViewViewFilter(BaseModel):
     file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
     formats: Optional[List[Optional[str]]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
+    file_size_range: Optional["GetViewViewFilterFileSizeRange"] = Field(
+        alias="fileSizeRange"
+    )
     similar_contents: Optional[List["GetViewViewFilterSimilarContents"]] = Field(
         alias="similarContents"
     )
@@ -61,6 +64,11 @@ class GetViewViewFilterDateRange(BaseModel):
 
 
 class GetViewViewFilterCreationDateRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class GetViewViewFilterFileSizeRange(BaseModel):
     from_: Optional[Any] = Field(alias="from")
     to: Optional[Any]
 
@@ -180,6 +188,9 @@ class GetViewViewAugmentedFilter(BaseModel):
     file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
     formats: Optional[List[Optional[str]]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
+    file_size_range: Optional["GetViewViewAugmentedFilterFileSizeRange"] = Field(
+        alias="fileSizeRange"
+    )
     similar_contents: Optional[List["GetViewViewAugmentedFilterSimilarContents"]] = (
         Field(alias="similarContents")
     )
@@ -199,6 +210,11 @@ class GetViewViewAugmentedFilterDateRange(BaseModel):
 
 
 class GetViewViewAugmentedFilterCreationDateRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class GetViewViewAugmentedFilterFileSizeRange(BaseModel):
     from_: Optional[Any] = Field(alias="from")
     to: Optional[Any]
 

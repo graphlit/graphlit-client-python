@@ -24,6 +24,10 @@ query GetView($id: ID!, $correlationId: String) {
       fileTypes
       formats
       fileExtensions
+      fileSizeRange {
+        from
+        to
+      }
       similarContents {
         id
       }
@@ -107,6 +111,10 @@ query GetView($id: ID!, $correlationId: String) {
       fileTypes
       formats
       fileExtensions
+      fileSizeRange {
+        from
+        to
+      }
       similarContents {
         id
       }

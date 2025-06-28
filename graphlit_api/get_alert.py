@@ -61,6 +61,9 @@ class GetAlertAlertFilter(BaseModel):
     file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
     formats: Optional[List[Optional[str]]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
+    file_size_range: Optional["GetAlertAlertFilterFileSizeRange"] = Field(
+        alias="fileSizeRange"
+    )
     similar_contents: Optional[List["GetAlertAlertFilterSimilarContents"]] = Field(
         alias="similarContents"
     )
@@ -80,6 +83,11 @@ class GetAlertAlertFilterDateRange(BaseModel):
 
 
 class GetAlertAlertFilterCreationDateRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class GetAlertAlertFilterFileSizeRange(BaseModel):
     from_: Optional[Any] = Field(alias="from")
     to: Optional[Any]
 

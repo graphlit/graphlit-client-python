@@ -27,6 +27,10 @@ query GetAlert($id: ID!, $correlationId: String) {
       fileTypes
       formats
       fileExtensions
+      fileSizeRange {
+        from
+        to
+      }
       similarContents {
         id
       }

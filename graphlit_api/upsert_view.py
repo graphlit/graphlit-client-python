@@ -37,6 +37,9 @@ class UpsertViewUpsertViewFilter(BaseModel):
     file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
     formats: Optional[List[Optional[str]]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
+    file_size_range: Optional["UpsertViewUpsertViewFilterFileSizeRange"] = Field(
+        alias="fileSizeRange"
+    )
     similar_contents: Optional[List["UpsertViewUpsertViewFilterSimilarContents"]] = (
         Field(alias="similarContents")
     )
@@ -56,6 +59,11 @@ class UpsertViewUpsertViewFilterDateRange(BaseModel):
 
 
 class UpsertViewUpsertViewFilterCreationDateRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class UpsertViewUpsertViewFilterFileSizeRange(BaseModel):
     from_: Optional[Any] = Field(alias="from")
     to: Optional[Any]
 
@@ -175,6 +183,9 @@ class UpsertViewUpsertViewAugmentedFilter(BaseModel):
     file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
     formats: Optional[List[Optional[str]]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
+    file_size_range: Optional["UpsertViewUpsertViewAugmentedFilterFileSizeRange"] = (
+        Field(alias="fileSizeRange")
+    )
     similar_contents: Optional[
         List["UpsertViewUpsertViewAugmentedFilterSimilarContents"]
     ] = Field(alias="similarContents")
@@ -194,6 +205,11 @@ class UpsertViewUpsertViewAugmentedFilterDateRange(BaseModel):
 
 
 class UpsertViewUpsertViewAugmentedFilterCreationDateRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class UpsertViewUpsertViewAugmentedFilterFileSizeRange(BaseModel):
     from_: Optional[Any] = Field(alias="from")
     to: Optional[Any]
 

@@ -228,6 +228,9 @@ class QueryConversationsConversationsResultsFilter(BaseModel):
     file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
     formats: Optional[List[Optional[str]]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
+    file_size_range: Optional[
+        "QueryConversationsConversationsResultsFilterFileSizeRange"
+    ] = Field(alias="fileSizeRange")
     similar_contents: Optional[
         List["QueryConversationsConversationsResultsFilterSimilarContents"]
     ] = Field(alias="similarContents")
@@ -255,6 +258,11 @@ class QueryConversationsConversationsResultsFilterDateRange(BaseModel):
 
 
 class QueryConversationsConversationsResultsFilterCreationDateRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class QueryConversationsConversationsResultsFilterFileSizeRange(BaseModel):
     from_: Optional[Any] = Field(alias="from")
     to: Optional[Any]
 
@@ -384,6 +392,9 @@ class QueryConversationsConversationsResultsAugmentedFilter(BaseModel):
     file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
     formats: Optional[List[Optional[str]]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
+    file_size_range: Optional[
+        "QueryConversationsConversationsResultsAugmentedFilterFileSizeRange"
+    ] = Field(alias="fileSizeRange")
     similar_contents: Optional[
         List["QueryConversationsConversationsResultsAugmentedFilterSimilarContents"]
     ] = Field(alias="similarContents")
@@ -415,6 +426,11 @@ class QueryConversationsConversationsResultsAugmentedFilterDateRange(BaseModel):
 
 
 class QueryConversationsConversationsResultsAugmentedFilterCreationDateRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class QueryConversationsConversationsResultsAugmentedFilterFileSizeRange(BaseModel):
     from_: Optional[Any] = Field(alias="from")
     to: Optional[Any]
 

@@ -67,6 +67,9 @@ class QueryAlertsAlertsResultsFilter(BaseModel):
     file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
     formats: Optional[List[Optional[str]]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
+    file_size_range: Optional["QueryAlertsAlertsResultsFilterFileSizeRange"] = Field(
+        alias="fileSizeRange"
+    )
     similar_contents: Optional[
         List["QueryAlertsAlertsResultsFilterSimilarContents"]
     ] = Field(alias="similarContents")
@@ -86,6 +89,11 @@ class QueryAlertsAlertsResultsFilterDateRange(BaseModel):
 
 
 class QueryAlertsAlertsResultsFilterCreationDateRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class QueryAlertsAlertsResultsFilterFileSizeRange(BaseModel):
     from_: Optional[Any] = Field(alias="from")
     to: Optional[Any]
 

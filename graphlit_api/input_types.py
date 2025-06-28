@@ -2068,6 +2068,11 @@ class ContentCriteriaInput(BaseModel):
     )
     types: Optional[List[ContentTypes]] = None
     file_types: Optional[List[FileTypes]] = Field(alias="fileTypes", default=None)
+    formats: Optional[List[Optional[str]]] = None
+    file_extensions: Optional[List[str]] = Field(alias="fileExtensions", default=None)
+    file_size_range: Optional["Int64RangeInput"] = Field(
+        alias="fileSizeRange", default=None
+    )
     similar_contents: Optional[List["EntityReferenceInput"]] = Field(
         alias="similarContents", default=None
     )
@@ -2326,6 +2331,11 @@ class PackageMetadataInput(BaseModel):
     location: Optional["PointInput"] = None
     file_count: Optional[int] = Field(alias="fileCount", default=None)
     folder_count: Optional[int] = Field(alias="folderCount", default=None)
+
+
+class Int64RangeInput(BaseModel):
+    from_: Optional[Any] = Field(alias="from", default=None)
+    to: Optional[Any] = None
 
 
 class MicrosoftCalendarFeedPropertiesInput(BaseModel):

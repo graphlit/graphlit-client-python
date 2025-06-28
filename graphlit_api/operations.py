@@ -426,6 +426,10 @@ query GetAlert($id: ID!, $correlationId: String) {
       fileTypes
       formats
       fileExtensions
+      fileSizeRange {
+        from
+        to
+      }
       similarContents {
         id
       }
@@ -569,6 +573,10 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
         fileTypes
         formats
         fileExtensions
+        fileSizeRange {
+          from
+          to
+        }
         similarContents {
           id
         }
@@ -4845,6 +4853,10 @@ query GetConversation($id: ID!, $correlationId: String) {
       fileTypes
       formats
       fileExtensions
+      fileSizeRange {
+        from
+        to
+      }
       similarContents {
         id
       }
@@ -4928,6 +4940,10 @@ query GetConversation($id: ID!, $correlationId: String) {
       fileTypes
       formats
       fileExtensions
+      fileSizeRange {
+        from
+        to
+      }
       similarContents {
         id
       }
@@ -5762,6 +5778,10 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         fileTypes
         formats
         fileExtensions
+        fileSizeRange {
+          from
+          to
+        }
         similarContents {
           id
         }
@@ -5845,6 +5865,10 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         fileTypes
         formats
         fileExtensions
+        fileSizeRange {
+          from
+          to
+        }
         similarContents {
           id
         }
@@ -10468,6 +10492,10 @@ mutation CreateView($view: ViewInput!) {
       fileTypes
       formats
       fileExtensions
+      fileSizeRange {
+        from
+        to
+      }
       similarContents {
         id
       }
@@ -10551,6 +10579,10 @@ mutation CreateView($view: ViewInput!) {
       fileTypes
       formats
       fileExtensions
+      fileSizeRange {
+        from
+        to
+      }
       similarContents {
         id
       }
@@ -10681,6 +10713,10 @@ query GetView($id: ID!, $correlationId: String) {
       fileTypes
       formats
       fileExtensions
+      fileSizeRange {
+        from
+        to
+      }
       similarContents {
         id
       }
@@ -10764,6 +10800,10 @@ query GetView($id: ID!, $correlationId: String) {
       fileTypes
       formats
       fileExtensions
+      fileSizeRange {
+        from
+        to
+      }
       similarContents {
         id
       }
@@ -10864,6 +10904,10 @@ query QueryViews($filter: ViewFilter, $correlationId: String) {
         fileTypes
         formats
         fileExtensions
+        fileSizeRange {
+          from
+          to
+        }
         similarContents {
           id
         }
@@ -10947,6 +10991,10 @@ query QueryViews($filter: ViewFilter, $correlationId: String) {
         fileTypes
         formats
         fileExtensions
+        fileSizeRange {
+          from
+          to
+        }
         similarContents {
           id
         }
@@ -11042,6 +11090,10 @@ mutation UpdateView($view: ViewUpdateInput!) {
       fileTypes
       formats
       fileExtensions
+      fileSizeRange {
+        from
+        to
+      }
       similarContents {
         id
       }
@@ -11125,6 +11177,10 @@ mutation UpdateView($view: ViewUpdateInput!) {
       fileTypes
       formats
       fileExtensions
+      fileSizeRange {
+        from
+        to
+      }
       similarContents {
         id
       }
@@ -11219,6 +11275,10 @@ mutation UpsertView($view: ViewInput!) {
       fileTypes
       formats
       fileExtensions
+      fileSizeRange {
+        from
+        to
+      }
       similarContents {
         id
       }
@@ -11302,6 +11362,10 @@ mutation UpsertView($view: ViewInput!) {
       fileTypes
       formats
       fileExtensions
+      fileSizeRange {
+        from
+        to
+      }
       similarContents {
         id
       }

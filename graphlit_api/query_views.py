@@ -48,6 +48,9 @@ class QueryViewsViewsResultsFilter(BaseModel):
     file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
     formats: Optional[List[Optional[str]]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
+    file_size_range: Optional["QueryViewsViewsResultsFilterFileSizeRange"] = Field(
+        alias="fileSizeRange"
+    )
     similar_contents: Optional[List["QueryViewsViewsResultsFilterSimilarContents"]] = (
         Field(alias="similarContents")
     )
@@ -67,6 +70,11 @@ class QueryViewsViewsResultsFilterDateRange(BaseModel):
 
 
 class QueryViewsViewsResultsFilterCreationDateRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class QueryViewsViewsResultsFilterFileSizeRange(BaseModel):
     from_: Optional[Any] = Field(alias="from")
     to: Optional[Any]
 
@@ -186,6 +194,9 @@ class QueryViewsViewsResultsAugmentedFilter(BaseModel):
     file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
     formats: Optional[List[Optional[str]]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
+    file_size_range: Optional["QueryViewsViewsResultsAugmentedFilterFileSizeRange"] = (
+        Field(alias="fileSizeRange")
+    )
     similar_contents: Optional[
         List["QueryViewsViewsResultsAugmentedFilterSimilarContents"]
     ] = Field(alias="similarContents")
@@ -207,6 +218,11 @@ class QueryViewsViewsResultsAugmentedFilterDateRange(BaseModel):
 
 
 class QueryViewsViewsResultsAugmentedFilterCreationDateRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class QueryViewsViewsResultsAugmentedFilterFileSizeRange(BaseModel):
     from_: Optional[Any] = Field(alias="from")
     to: Optional[Any]
 

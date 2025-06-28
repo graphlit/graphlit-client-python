@@ -161,6 +161,10 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         fileTypes
         formats
         fileExtensions
+        fileSizeRange {
+          from
+          to
+        }
         similarContents {
           id
         }
@@ -244,6 +248,10 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         fileTypes
         formats
         fileExtensions
+        fileSizeRange {
+          from
+          to
+        }
         similarContents {
           id
         }

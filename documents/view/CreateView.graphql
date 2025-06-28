@@ -19,6 +19,10 @@ mutation CreateView($view: ViewInput!) {
       fileTypes
       formats
       fileExtensions
+      fileSizeRange {
+        from
+        to
+      }
       similarContents {
         id
       }
@@ -102,6 +106,10 @@ mutation CreateView($view: ViewInput!) {
       fileTypes
       formats
       fileExtensions
+      fileSizeRange {
+        from
+        to
+      }
       similarContents {
         id
       }
