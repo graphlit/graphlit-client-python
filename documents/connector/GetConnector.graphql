@@ -20,6 +20,11 @@ query GetConnector($id: ID!, $correlationId: String) {
         clientId
         clientSecret
       }
+      oauth {
+        refreshToken
+        provider
+        metadata
+      }
       arcade {
         authorizationId
         provider

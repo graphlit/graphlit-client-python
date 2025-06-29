@@ -972,6 +972,11 @@ query GetConnector($id: ID!, $correlationId: String) {
         clientId
         clientSecret
       }
+      oauth {
+        refreshToken
+        provider
+        metadata
+      }
       arcade {
         authorizationId
         provider
@@ -1024,6 +1029,11 @@ query QueryConnectors($filter: ConnectorFilter, $correlationId: String) {
         google {
           clientId
           clientSecret
+        }
+        oauth {
+          refreshToken
+          provider
+          metadata
         }
         arcade {
           authorizationId
@@ -6873,14 +6883,18 @@ query GetFeed($id: ID!, $correlationId: String) {
         connectorId
       }
       dropbox {
+        authenticationType
         path
+        connectorId
         appKey
         appSecret
         refreshToken
         redirectUri
       }
       box {
+        authenticationType
         folderId
+        connectorId
         clientId
         clientSecret
         refreshToken
@@ -7212,14 +7226,18 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           connectorId
         }
         dropbox {
+          authenticationType
           path
+          connectorId
           appKey
           appSecret
           refreshToken
           redirectUri
         }
         box {
+          authenticationType
           folderId
+          connectorId
           clientId
           clientSecret
           refreshToken
@@ -10311,6 +10329,11 @@ query GetUser {
           clientId
           clientSecret
         }
+        oauth {
+          refreshToken
+          provider
+          metadata
+        }
         arcade {
           authorizationId
           provider
@@ -10370,6 +10393,11 @@ query GetUserByIdentifier($identifier: String!) {
         google {
           clientId
           clientSecret
+        }
+        oauth {
+          refreshToken
+          provider
+          metadata
         }
         arcade {
           authorizationId
@@ -10431,6 +10459,11 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
           google {
             clientId
             clientSecret
+          }
+          oauth {
+            refreshToken
+            provider
+            metadata
           }
           arcade {
             authorizationId

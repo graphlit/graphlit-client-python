@@ -69,14 +69,18 @@ query GetFeed($id: ID!, $correlationId: String) {
         connectorId
       }
       dropbox {
+        authenticationType
         path
+        connectorId
         appKey
         appSecret
         refreshToken
         redirectUri
       }
       box {
+        authenticationType
         folderId
+        connectorId
         clientId
         clientSecret
         refreshToken

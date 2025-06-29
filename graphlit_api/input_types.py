@@ -16,6 +16,7 @@ from .enums import (
     AzureDocumentIntelligenceVersions,
     AzureOpenAIModels,
     BedrockModels,
+    BoxAuthenticationTypes,
     CalendarAttendeeResponseStatus,
     CalendarEventStatus,
     CalendarEventVisibility,
@@ -38,6 +39,7 @@ from .enums import (
     ConversationTypes,
     DeepgramModels,
     DeepseekModels,
+    DropboxAuthenticationTypes,
     ElevenLabsModels,
     EmailListingTypes,
     EntityEnrichmentServiceTypes,
@@ -86,6 +88,7 @@ from .enums import (
     ModelServiceTypes,
     ModelTypes,
     NotionTypes,
+    OAuthProviders,
     ObservableTypes,
     OccurrenceTypes,
     OneDriveAuthenticationTypes,
@@ -269,7 +272,11 @@ class LinkStrategyInput(BaseModel):
 
 
 class DropboxFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[DropboxAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     path: Optional[str] = None
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
     app_key: Optional[str] = Field(alias="appKey", default=None)
     app_secret: Optional[str] = Field(alias="appSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
@@ -1377,11 +1384,15 @@ class H3Filter(BaseModel):
 
 
 class BoxFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[BoxAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     folder_id: Optional[str] = Field(alias="folderId", default=None)
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-    refresh_token: str = Field(alias="refreshToken")
-    redirect_uri: str = Field(alias="redirectUri")
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    redirect_uri: Optional[str] = Field(alias="redirectUri", default=None)
 
 
 class GroqModelPropertiesUpdateInput(BaseModel):
@@ -2449,6 +2460,7 @@ class AuthenticationConnectorInput(BaseModel):
     microsoft: Optional["MicrosoftAuthenticationPropertiesInput"] = None
     google: Optional["GoogleAuthenticationPropertiesInput"] = None
     arcade: Optional["ArcadeAuthenticationPropertiesInput"] = None
+    oauth: Optional["OAuthAuthenticationPropertiesInput"] = None
 
 
 class MicrosoftEmailFeedPropertiesInput(BaseModel):
@@ -3016,6 +3028,12 @@ class MedicalContraindicationFacetInput(BaseModel):
     facet: Optional[MedicalContraindicationFacetTypes] = None
 
 
+class OAuthAuthenticationPropertiesInput(BaseModel):
+    refresh_token: str = Field(alias="refreshToken")
+    provider: OAuthProviders
+    metadata: Optional[str] = None
+
+
 class JinaModelPropertiesInput(BaseModel):
     model: JinaModels
     model_name: Optional[str] = Field(alias="modelName", default=None)
@@ -3120,7 +3138,11 @@ class RerankingStrategyInput(BaseModel):
 
 
 class BoxFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[BoxAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     folder_id: Optional[str] = Field(alias="folderId", default=None)
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
@@ -3264,11 +3286,15 @@ class ContentGraphInput(BaseModel):
 
 
 class DropboxFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[DropboxAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     path: Optional[str] = None
-    app_key: str = Field(alias="appKey")
-    app_secret: str = Field(alias="appSecret")
-    refresh_token: str = Field(alias="refreshToken")
-    redirect_uri: str = Field(alias="redirectUri")
+    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    app_key: Optional[str] = Field(alias="appKey", default=None)
+    app_secret: Optional[str] = Field(alias="appSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    redirect_uri: Optional[str] = Field(alias="redirectUri", default=None)
 
 
 class ConversationFilter(BaseModel):

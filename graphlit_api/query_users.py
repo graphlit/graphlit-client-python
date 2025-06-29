@@ -12,6 +12,7 @@ from .enums import (
     ConnectorTypes,
     EntityState,
     IntegrationServiceTypes,
+    OAuthProviders,
     UserTypes,
 )
 
@@ -54,6 +55,7 @@ class QueryUsersUsersResultsConnectorsAuthentication(BaseModel):
     type: AuthenticationServiceTypes
     microsoft: Optional["QueryUsersUsersResultsConnectorsAuthenticationMicrosoft"]
     google: Optional["QueryUsersUsersResultsConnectorsAuthenticationGoogle"]
+    oauth: Optional["QueryUsersUsersResultsConnectorsAuthenticationOauth"]
     arcade: Optional["QueryUsersUsersResultsConnectorsAuthenticationArcade"]
 
 
@@ -66,6 +68,12 @@ class QueryUsersUsersResultsConnectorsAuthenticationMicrosoft(BaseModel):
 class QueryUsersUsersResultsConnectorsAuthenticationGoogle(BaseModel):
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
+
+
+class QueryUsersUsersResultsConnectorsAuthenticationOauth(BaseModel):
+    refresh_token: str = Field(alias="refreshToken")
+    provider: OAuthProviders
+    metadata: Optional[str]
 
 
 class QueryUsersUsersResultsConnectorsAuthenticationArcade(BaseModel):

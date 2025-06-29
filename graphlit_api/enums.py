@@ -683,6 +683,7 @@ class AuthenticationServiceTypes(str, Enum):
     MICROSOFT_GRAPH = "MICROSOFT_GRAPH"
     CLERK = "CLERK"
     GOOGLE = "GOOGLE"
+    O_AUTH = "O_AUTH"
     ARCADE = "ARCADE"
 
 
@@ -695,6 +696,11 @@ class DeviceTypes(str, Enum):
     SCREEN = "SCREEN"
     GEOSPATIAL = "GEOSPATIAL"
     UNKNOWN = "UNKNOWN"
+
+
+class DropboxAuthenticationTypes(str, Enum):
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
 
 
 class GitHubIssueAuthenticationTypes(str, Enum):
@@ -1006,6 +1012,11 @@ class UnitTypes(str, Enum):
     UNITLESS = "UNITLESS"
 
 
+class OAuthProviders(str, Enum):
+    DROPBOX = "DROPBOX"
+    BOX = "BOX"
+
+
 class DeepseekModels(str, Enum):
     REASONER = "REASONER"
     CHAT = "CHAT"
@@ -1026,6 +1037,11 @@ class RegexSourceTypes(str, Enum):
 
 class MedicalStudyFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
+
+
+class BoxAuthenticationTypes(str, Enum):
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
 
 
 class SharePointAuthenticationTypes(str, Enum):

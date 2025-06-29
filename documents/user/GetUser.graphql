@@ -27,6 +27,11 @@ query GetUser {
           clientId
           clientSecret
         }
+        oauth {
+          refreshToken
+          provider
+          metadata
+        }
         arcade {
           authorizationId
           provider

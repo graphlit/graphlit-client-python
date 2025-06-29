@@ -7,6 +7,8 @@ from pydantic import Field
 
 from .base_model import BaseModel
 from .enums import (
+    BoxAuthenticationTypes,
+    DropboxAuthenticationTypes,
     EmailListingTypes,
     EntityState,
     FeedListingTypes,
@@ -160,7 +162,11 @@ class GetFeedFeedSiteGoogleDrive(BaseModel):
 
 
 class GetFeedFeedSiteDropbox(BaseModel):
+    authentication_type: Optional[DropboxAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
     path: Optional[str]
+    connector_id: Optional[str] = Field(alias="connectorId")
     app_key: str = Field(alias="appKey")
     app_secret: str = Field(alias="appSecret")
     refresh_token: str = Field(alias="refreshToken")
@@ -168,7 +174,11 @@ class GetFeedFeedSiteDropbox(BaseModel):
 
 
 class GetFeedFeedSiteBox(BaseModel):
+    authentication_type: Optional[BoxAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
     folder_id: Optional[str] = Field(alias="folderId")
+    connector_id: Optional[str] = Field(alias="connectorId")
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
     refresh_token: str = Field(alias="refreshToken")
