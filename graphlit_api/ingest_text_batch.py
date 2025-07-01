@@ -29,6 +29,7 @@ class IngestTextBatchIngestTextBatch(BaseModel):
     file_type: Optional[FileTypes] = Field(alias="fileType")
     mime_type: Optional[str] = Field(alias="mimeType")
     uri: Optional[Any]
+    identifier: Optional[str]
     collections: Optional[List[Optional["IngestTextBatchIngestTextBatchCollections"]]]
     observations: Optional[List[Optional["IngestTextBatchIngestTextBatchObservations"]]]
 

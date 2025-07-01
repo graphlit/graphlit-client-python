@@ -29,6 +29,7 @@ class UpdateContentUpdateContent(BaseModel):
     file_type: Optional[FileTypes] = Field(alias="fileType")
     mime_type: Optional[str] = Field(alias="mimeType")
     uri: Optional[Any]
+    identifier: Optional[str]
     collections: Optional[List[Optional["UpdateContentUpdateContentCollections"]]]
     observations: Optional[List[Optional["UpdateContentUpdateContentObservations"]]]
 

@@ -1,5 +1,5 @@
-mutation IngestUri($name: String, $uri: URL!, $id: ID, $mimeType: String, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $correlationId: String) {
-  ingestUri(name: $name, uri: $uri, id: $id, mimeType: $mimeType, workflow: $workflow, collections: $collections, observations: $observations, isSynchronous: $isSynchronous, correlationId: $correlationId) {
+mutation IngestUri($name: String, $uri: URL!, $id: ID, $mimeType: String, $identifier: String, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $correlationId: String) {
+  ingestUri(name: $name, uri: $uri, id: $id, mimeType: $mimeType, workflow: $workflow, collections: $collections, observations: $observations, identifier: $identifier, isSynchronous: $isSynchronous, correlationId: $correlationId) {
     id
     name
     state
@@ -7,6 +7,7 @@ mutation IngestUri($name: String, $uri: URL!, $id: ID, $mimeType: String, $isSyn
     fileType
     mimeType
     uri
+    identifier
     collections {
       id
       name

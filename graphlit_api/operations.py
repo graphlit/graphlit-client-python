@@ -1803,6 +1803,7 @@ mutation IngestBatch($uris: [URL!]!, $workflow: EntityReferenceInput, $collectio
     fileType
     mimeType
     uri
+    identifier
     collections {
       id
       name
@@ -1840,12 +1841,13 @@ mutation IngestBatch($uris: [URL!]!, $workflow: EntityReferenceInput, $collectio
 """
 
 INGEST_ENCODED_FILE_GQL = """
-mutation IngestEncodedFile($name: String!, $data: String!, $mimeType: String!, $id: ID, $fileCreationDate: DateTime, $fileModifiedDate: DateTime, $isSynchronous: Boolean, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $workflow: EntityReferenceInput, $correlationId: String) {
+mutation IngestEncodedFile($name: String!, $data: String!, $mimeType: String!, $id: ID, $identifier: String, $fileCreationDate: DateTime, $fileModifiedDate: DateTime, $isSynchronous: Boolean, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $workflow: EntityReferenceInput, $correlationId: String) {
   ingestEncodedFile(
     name: $name
     data: $data
     mimeType: $mimeType
     id: $id
+    identifier: $identifier
     fileCreationDate: $fileCreationDate
     fileModifiedDate: $fileModifiedDate
     isSynchronous: $isSynchronous
@@ -1861,6 +1863,7 @@ mutation IngestEncodedFile($name: String!, $data: String!, $mimeType: String!, $
     fileType
     mimeType
     uri
+    identifier
     collections {
       id
       name
@@ -1898,13 +1901,14 @@ mutation IngestEncodedFile($name: String!, $data: String!, $mimeType: String!, $
 """
 
 INGEST_EVENT_GQL = """
-mutation IngestEvent($markdown: String!, $name: String, $description: String, $eventDate: DateTime, $id: ID, $collections: [EntityReferenceInput!], $correlationId: String) {
+mutation IngestEvent($markdown: String!, $name: String, $description: String, $eventDate: DateTime, $id: ID, $identifier: String, $collections: [EntityReferenceInput!], $correlationId: String) {
   ingestEvent(
     name: $name
     description: $description
     eventDate: $eventDate
     markdown: $markdown
     id: $id
+    identifier: $identifier
     collections: $collections
     correlationId: $correlationId
   ) {
@@ -1915,6 +1919,7 @@ mutation IngestEvent($markdown: String!, $name: String, $description: String, $e
     fileType
     mimeType
     uri
+    identifier
     collections {
       id
       name
@@ -1952,12 +1957,13 @@ mutation IngestEvent($markdown: String!, $name: String, $description: String, $e
 """
 
 INGEST_MEMORY_GQL = """
-mutation IngestMemory($text: String!, $name: String, $textType: TextTypes, $id: ID, $collections: [EntityReferenceInput!], $correlationId: String) {
+mutation IngestMemory($text: String!, $name: String, $textType: TextTypes, $id: ID, $identifier: String, $collections: [EntityReferenceInput!], $correlationId: String) {
   ingestMemory(
     name: $name
     text: $text
     textType: $textType
     id: $id
+    identifier: $identifier
     collections: $collections
     correlationId: $correlationId
   ) {
@@ -1968,6 +1974,7 @@ mutation IngestMemory($text: String!, $name: String, $textType: TextTypes, $id: 
     fileType
     mimeType
     uri
+    identifier
     collections {
       id
       name
@@ -2005,7 +2012,7 @@ mutation IngestMemory($text: String!, $name: String, $textType: TextTypes, $id: 
 """
 
 INGEST_TEXT_GQL = """
-mutation IngestText($text: String!, $name: String, $textType: TextTypes, $uri: URL, $id: ID, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $correlationId: String) {
+mutation IngestText($text: String!, $name: String, $textType: TextTypes, $uri: URL, $id: ID, $identifier: String, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $correlationId: String) {
   ingestText(
     name: $name
     text: $text
@@ -2014,6 +2021,7 @@ mutation IngestText($text: String!, $name: String, $textType: TextTypes, $uri: U
     id: $id
     isSynchronous: $isSynchronous
     workflow: $workflow
+    identifier: $identifier
     collections: $collections
     observations: $observations
     correlationId: $correlationId
@@ -2025,6 +2033,7 @@ mutation IngestText($text: String!, $name: String, $textType: TextTypes, $uri: U
     fileType
     mimeType
     uri
+    identifier
     collections {
       id
       name
@@ -2078,6 +2087,7 @@ mutation IngestTextBatch($batch: [TextContentInput!]!, $textType: TextTypes, $wo
     fileType
     mimeType
     uri
+    identifier
     collections {
       id
       name
@@ -2115,7 +2125,7 @@ mutation IngestTextBatch($batch: [TextContentInput!]!, $textType: TextTypes, $wo
 """
 
 INGEST_URI_GQL = """
-mutation IngestUri($name: String, $uri: URL!, $id: ID, $mimeType: String, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $correlationId: String) {
+mutation IngestUri($name: String, $uri: URL!, $id: ID, $mimeType: String, $identifier: String, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $correlationId: String) {
   ingestUri(
     name: $name
     uri: $uri
@@ -2124,6 +2134,7 @@ mutation IngestUri($name: String, $uri: URL!, $id: ID, $mimeType: String, $isSyn
     workflow: $workflow
     collections: $collections
     observations: $observations
+    identifier: $identifier
     isSynchronous: $isSynchronous
     correlationId: $correlationId
   ) {
@@ -2134,6 +2145,7 @@ mutation IngestUri($name: String, $uri: URL!, $id: ID, $mimeType: String, $isSyn
     fileType
     mimeType
     uri
+    identifier
     collections {
       id
       name
@@ -3392,6 +3404,7 @@ mutation ScreenshotPage($uri: URL!, $maximumHeight: Int, $isSynchronous: Boolean
     fileType
     mimeType
     uri
+    identifier
     collections {
       id
       name
@@ -3487,6 +3500,7 @@ mutation UpdateContent($content: ContentUpdateInput!) {
     fileType
     mimeType
     uri
+    identifier
     collections {
       id
       name

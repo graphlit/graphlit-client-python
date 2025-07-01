@@ -7,6 +7,7 @@ mutation IngestTextBatch($batch: [TextContentInput!]!, $textType: TextTypes, $wo
     fileType
     mimeType
     uri
+    identifier
     collections {
       id
       name
