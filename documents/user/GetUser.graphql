@@ -56,6 +56,10 @@ query GetUser {
           accessTokenKey
           accessTokenSecret
         }
+        mcp {
+          token
+          type
+        }
       }
     }
   }

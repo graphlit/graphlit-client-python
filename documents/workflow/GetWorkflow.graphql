@@ -212,6 +212,10 @@ query GetWorkflow($id: ID!, $correlationId: String) {
           accessTokenKey
           accessTokenSecret
         }
+        mcp {
+          token
+          type
+        }
       }
     }
   }

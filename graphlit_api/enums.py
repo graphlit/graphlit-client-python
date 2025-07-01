@@ -195,6 +195,7 @@ class IntegrationServiceTypes(str, Enum):
     WEB_HOOK = "WEB_HOOK"
     EMAIL = "EMAIL"
     TWITTER = "TWITTER"
+    MCP = "MCP"
 
 
 class TimeIntervalTypes(str, Enum):
@@ -1161,6 +1162,12 @@ class OpenAIImageModels(str, Enum):
 class ImageProjectionTypes(str, Enum):
     EQUIRECTANGULAR = "EQUIRECTANGULAR"
     CYLINDRICAL = "CYLINDRICAL"
+
+
+class MCPServerTypes(str, Enum):
+    REMOTE_SSE = "REMOTE_SSE"
+    REMOTE_HTTP = "REMOTE_HTTP"
+    LOCAL_NPX = "LOCAL_NPX"
 
 
 class LinkTypes(str, Enum):

@@ -21,6 +21,7 @@ from .enums import (
     FileTypes,
     IntegrationServiceTypes,
     LinkTypes,
+    MCPServerTypes,
     ObservableTypes,
     ReductoEnrichmentModes,
     ReductoExtractionModes,
@@ -392,6 +393,7 @@ class UpdateWorkflowUpdateWorkflowActionsConnector(BaseModel):
     slack: Optional["UpdateWorkflowUpdateWorkflowActionsConnectorSlack"]
     email: Optional["UpdateWorkflowUpdateWorkflowActionsConnectorEmail"]
     twitter: Optional["UpdateWorkflowUpdateWorkflowActionsConnectorTwitter"]
+    mcp: Optional["UpdateWorkflowUpdateWorkflowActionsConnectorMcp"]
 
 
 class UpdateWorkflowUpdateWorkflowActionsConnectorSlack(BaseModel):
@@ -410,6 +412,11 @@ class UpdateWorkflowUpdateWorkflowActionsConnectorTwitter(BaseModel):
     consumer_secret: str = Field(alias="consumerSecret")
     access_token_key: str = Field(alias="accessTokenKey")
     access_token_secret: str = Field(alias="accessTokenSecret")
+
+
+class UpdateWorkflowUpdateWorkflowActionsConnectorMcp(BaseModel):
+    token: Optional[str]
+    type: MCPServerTypes
 
 
 UpdateWorkflow.model_rebuild()

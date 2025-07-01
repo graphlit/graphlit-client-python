@@ -516,6 +516,10 @@ query GetAlert($id: ID!, $correlationId: String) {
         accessTokenKey
         accessTokenSecret
       }
+      mcp {
+        token
+        type
+      }
     }
     publishing {
       type
@@ -662,6 +666,10 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
           consumerSecret
           accessTokenKey
           accessTokenSecret
+        }
+        mcp {
+          token
+          type
         }
       }
       publishing {
@@ -1001,6 +1009,10 @@ query GetConnector($id: ID!, $correlationId: String) {
         accessTokenKey
         accessTokenSecret
       }
+      mcp {
+        token
+        type
+      }
     }
   }
 }
@@ -1058,6 +1070,10 @@ query QueryConnectors($filter: ConnectorFilter, $correlationId: String) {
           consumerSecret
           accessTokenKey
           accessTokenSecret
+        }
+        mcp {
+          token
+          type
         }
       }
     }
@@ -10358,6 +10374,10 @@ query GetUser {
           accessTokenKey
           accessTokenSecret
         }
+        mcp {
+          token
+          type
+        }
       }
     }
   }
@@ -10422,6 +10442,10 @@ query GetUserByIdentifier($identifier: String!) {
           consumerSecret
           accessTokenKey
           accessTokenSecret
+        }
+        mcp {
+          token
+          type
         }
       }
     }
@@ -10488,6 +10512,10 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
             consumerSecret
             accessTokenKey
             accessTokenSecret
+          }
+          mcp {
+            token
+            type
           }
         }
       }
@@ -11711,6 +11739,10 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
           accessTokenKey
           accessTokenSecret
         }
+        mcp {
+          token
+          type
+        }
       }
     }
   }
@@ -11963,6 +11995,10 @@ query GetWorkflow($id: ID!, $correlationId: String) {
           accessTokenKey
           accessTokenSecret
         }
+        mcp {
+          token
+          type
+        }
       }
     }
   }
@@ -12185,6 +12221,10 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
             accessTokenKey
             accessTokenSecret
           }
+          mcp {
+            token
+            type
+          }
         }
       }
     }
@@ -12402,6 +12442,10 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
           accessTokenKey
           accessTokenSecret
         }
+        mcp {
+          token
+          type
+        }
       }
     }
   }
@@ -12617,6 +12661,10 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
           consumerSecret
           accessTokenKey
           accessTokenSecret
+        }
+        mcp {
+          token
+          type
         }
       }
     }

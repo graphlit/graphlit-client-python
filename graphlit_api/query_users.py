@@ -12,6 +12,7 @@ from .enums import (
     ConnectorTypes,
     EntityState,
     IntegrationServiceTypes,
+    MCPServerTypes,
     OAuthProviders,
     UserTypes,
 )
@@ -88,6 +89,7 @@ class QueryUsersUsersResultsConnectorsIntegration(BaseModel):
     slack: Optional["QueryUsersUsersResultsConnectorsIntegrationSlack"]
     email: Optional["QueryUsersUsersResultsConnectorsIntegrationEmail"]
     twitter: Optional["QueryUsersUsersResultsConnectorsIntegrationTwitter"]
+    mcp: Optional["QueryUsersUsersResultsConnectorsIntegrationMcp"]
 
 
 class QueryUsersUsersResultsConnectorsIntegrationSlack(BaseModel):
@@ -106,6 +108,11 @@ class QueryUsersUsersResultsConnectorsIntegrationTwitter(BaseModel):
     consumer_secret: str = Field(alias="consumerSecret")
     access_token_key: str = Field(alias="accessTokenKey")
     access_token_secret: str = Field(alias="accessTokenSecret")
+
+
+class QueryUsersUsersResultsConnectorsIntegrationMcp(BaseModel):
+    token: Optional[str]
+    type: MCPServerTypes
 
 
 QueryUsers.model_rebuild()

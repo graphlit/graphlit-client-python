@@ -213,6 +213,10 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
             accessTokenKey
             accessTokenSecret
           }
+          mcp {
+            token
+            type
+          }
         }
       }
     }

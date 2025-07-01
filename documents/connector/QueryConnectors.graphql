@@ -50,6 +50,10 @@ query QueryConnectors($filter: ConnectorFilter, $correlationId: String) {
           accessTokenKey
           accessTokenSecret
         }
+        mcp {
+          token
+          type
+        }
       }
     }
   }

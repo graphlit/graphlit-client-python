@@ -207,6 +207,10 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
           accessTokenKey
           accessTokenSecret
         }
+        mcp {
+          token
+          type
+        }
       }
     }
   }

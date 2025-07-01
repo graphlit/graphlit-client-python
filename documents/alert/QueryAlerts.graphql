@@ -118,6 +118,10 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
           accessTokenKey
           accessTokenSecret
         }
+        mcp {
+          token
+          type
+        }
       }
       publishing {
         type

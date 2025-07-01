@@ -69,6 +69,7 @@ from .enums import (
     MailImportance,
     MailPriority,
     MailSensitivity,
+    MCPServerTypes,
     MedicalConditionFacetTypes,
     MedicalContraindicationFacetTypes,
     MedicalDeviceFacetTypes,
@@ -2601,6 +2602,7 @@ class IntegrationConnectorUpdateInput(BaseModel):
     slack: Optional["SlackIntegrationPropertiesInput"] = None
     email: Optional["EmailIntegrationPropertiesInput"] = None
     twitter: Optional["TwitterIntegrationPropertiesInput"] = None
+    mcp: Optional["MCPIntegrationPropertiesInput"] = None
 
 
 class ModelFilter(BaseModel):
@@ -2721,6 +2723,7 @@ class IntegrationConnectorInput(BaseModel):
     slack: Optional["SlackIntegrationPropertiesInput"] = None
     email: Optional["EmailIntegrationPropertiesInput"] = None
     twitter: Optional["TwitterIntegrationPropertiesInput"] = None
+    mcp: Optional["MCPIntegrationPropertiesInput"] = None
 
 
 class MedicalTherapyFilter(BaseModel):
@@ -3147,6 +3150,11 @@ class BoxFeedPropertiesUpdateInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     redirect_uri: Optional[str] = Field(alias="redirectUri", default=None)
+
+
+class MCPIntegrationPropertiesInput(BaseModel):
+    type: MCPServerTypes
+    token: Optional[str] = None
 
 
 class MedicalIndicationFilter(BaseModel):

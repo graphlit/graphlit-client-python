@@ -14,6 +14,7 @@ from .enums import (
     EntityState,
     FileTypes,
     IntegrationServiceTypes,
+    MCPServerTypes,
     ObservableTypes,
     OpenAIImageModels,
 )
@@ -206,6 +207,7 @@ class QueryAlertsAlertsResultsIntegration(BaseModel):
     slack: Optional["QueryAlertsAlertsResultsIntegrationSlack"]
     email: Optional["QueryAlertsAlertsResultsIntegrationEmail"]
     twitter: Optional["QueryAlertsAlertsResultsIntegrationTwitter"]
+    mcp: Optional["QueryAlertsAlertsResultsIntegrationMcp"]
 
 
 class QueryAlertsAlertsResultsIntegrationSlack(BaseModel):
@@ -224,6 +226,11 @@ class QueryAlertsAlertsResultsIntegrationTwitter(BaseModel):
     consumer_secret: str = Field(alias="consumerSecret")
     access_token_key: str = Field(alias="accessTokenKey")
     access_token_secret: str = Field(alias="accessTokenSecret")
+
+
+class QueryAlertsAlertsResultsIntegrationMcp(BaseModel):
+    token: Optional[str]
+    type: MCPServerTypes
 
 
 class QueryAlertsAlertsResultsPublishing(BaseModel):
