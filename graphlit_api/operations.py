@@ -9840,6 +9840,16 @@ query GetSpecification($id: ID!, $correlationId: String) {
       temperature
       probability
     }
+    xai {
+      tokenLimit
+      completionTokenLimit
+      model
+      key
+      modelName
+      endpoint
+      temperature
+      probability
+    }
     groq {
       tokenLimit
       completionTokenLimit
@@ -10200,6 +10210,16 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         accessKey
         secretAccessKey
         modelName
+        temperature
+        probability
+      }
+      xai {
+        tokenLimit
+        completionTokenLimit
+        model
+        key
+        modelName
+        endpoint
         temperature
         probability
       }

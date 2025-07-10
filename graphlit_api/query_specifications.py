@@ -32,6 +32,7 @@ from .enums import (
     RevisionStrategyTypes,
     SpecificationTypes,
     VoyageModels,
+    XAIModels,
 )
 
 
@@ -88,6 +89,7 @@ class QuerySpecificationsSpecificationsResults(BaseModel):
     replicate: Optional["QuerySpecificationsSpecificationsResultsReplicate"]
     mistral: Optional["QuerySpecificationsSpecificationsResultsMistral"]
     bedrock: Optional["QuerySpecificationsSpecificationsResultsBedrock"]
+    xai: Optional["QuerySpecificationsSpecificationsResultsXai"]
     groq: Optional["QuerySpecificationsSpecificationsResultsGroq"]
     cerebras: Optional["QuerySpecificationsSpecificationsResultsCerebras"]
     deepseek: Optional["QuerySpecificationsSpecificationsResultsDeepseek"]
@@ -239,6 +241,17 @@ class QuerySpecificationsSpecificationsResultsBedrock(BaseModel):
     access_key: Optional[str] = Field(alias="accessKey")
     secret_access_key: Optional[str] = Field(alias="secretAccessKey")
     model_name: Optional[str] = Field(alias="modelName")
+    temperature: Optional[float]
+    probability: Optional[float]
+
+
+class QuerySpecificationsSpecificationsResultsXai(BaseModel):
+    token_limit: Optional[int] = Field(alias="tokenLimit")
+    completion_token_limit: Optional[int] = Field(alias="completionTokenLimit")
+    model: XAIModels
+    key: Optional[str]
+    model_name: Optional[str] = Field(alias="modelName")
+    endpoint: Optional[Any]
     temperature: Optional[float]
     probability: Optional[float]
 

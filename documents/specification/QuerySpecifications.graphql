@@ -143,6 +143,16 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         temperature
         probability
       }
+      xai {
+        tokenLimit
+        completionTokenLimit
+        model
+        key
+        modelName
+        endpoint
+        temperature
+        probability
+      }
       groq {
         tokenLimit
         completionTokenLimit

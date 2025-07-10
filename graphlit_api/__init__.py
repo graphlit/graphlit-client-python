@@ -716,6 +716,7 @@ from .enums import (
     UserTypes,
     ViewTypes,
     VoyageModels,
+    XAIModels,
     YouTubeTypes,
 )
 from .exceptions import (
@@ -1065,6 +1066,7 @@ from .get_specification import (
     GetSpecificationSpecificationRevisionStrategy,
     GetSpecificationSpecificationStrategy,
     GetSpecificationSpecificationVoyage,
+    GetSpecificationSpecificationXai,
 )
 from .get_user import (
     GetUser,
@@ -1630,6 +1632,8 @@ from .input_types import (
     WorkflowFilter,
     WorkflowInput,
     WorkflowUpdateInput,
+    XAIModelPropertiesInput,
+    XAIModelPropertiesUpdateInput,
     YouTubeFeedPropertiesInput,
     YouTubeFeedPropertiesUpdateInput,
     ZendeskFeedPropertiesInput,
@@ -2567,6 +2571,7 @@ from .query_specifications import (
     QuerySpecificationsSpecificationsResultsRevisionStrategy,
     QuerySpecificationsSpecificationsResultsStrategy,
     QuerySpecificationsSpecificationsResultsVoyage,
+    QuerySpecificationsSpecificationsResultsXai,
 )
 from .query_tokens import QueryTokens, QueryTokensTokens
 from .query_usage import QueryUsage, QueryUsageUsage
@@ -4313,6 +4318,7 @@ __all__ = [
     "GetSpecificationSpecificationRevisionStrategy",
     "GetSpecificationSpecificationStrategy",
     "GetSpecificationSpecificationVoyage",
+    "GetSpecificationSpecificationXai",
     "GetUser",
     "GetUserByIdentifier",
     "GetUserByIdentifierUserByIdentifier",
@@ -5320,6 +5326,7 @@ __all__ = [
     "QuerySpecificationsSpecificationsResultsRevisionStrategy",
     "QuerySpecificationsSpecificationsResultsStrategy",
     "QuerySpecificationsSpecificationsResultsVoyage",
+    "QuerySpecificationsSpecificationsResultsXai",
     "QueryTokens",
     "QueryTokensTokens",
     "QueryUsage",
@@ -5981,6 +5988,9 @@ __all__ = [
     "WorkflowFilter",
     "WorkflowInput",
     "WorkflowUpdateInput",
+    "XAIModelPropertiesInput",
+    "XAIModelPropertiesUpdateInput",
+    "XAIModels",
     "YouTubeFeedPropertiesInput",
     "YouTubeFeedPropertiesUpdateInput",
     "YouTubeTypes",

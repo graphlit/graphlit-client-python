@@ -45,6 +45,13 @@ class GoogleEmailAuthenticationTypes(str, Enum):
     CONNECTOR = "CONNECTOR"
 
 
+class XAIModels(str, Enum):
+    GROK_4 = "GROK_4"
+    GROK_3 = "GROK_3"
+    GROK_3_MINI = "GROK_3_MINI"
+    CUSTOM = "CUSTOM"
+
+
 class MicrosoftCalendarAuthenticationTypes(str, Enum):
     USER = "USER"
     CONNECTOR = "CONNECTOR"
@@ -190,6 +197,7 @@ class ModelServiceTypes(str, Enum):
     JINA = "JINA"
     VOYAGE = "VOYAGE"
     BEDROCK = "BEDROCK"
+    XAI = "XAI"
 
 
 class IntegrationServiceTypes(str, Enum):

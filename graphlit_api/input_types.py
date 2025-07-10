@@ -133,6 +133,7 @@ from .enums import (
     UserTypes,
     ViewTypes,
     VoyageModels,
+    XAIModels,
     YouTubeTypes,
 )
 
@@ -714,6 +715,19 @@ class PersonUpdateInput(BaseModel):
     title: Optional[str] = None
     occupation: Optional[str] = None
     education: Optional[str] = None
+
+
+class XAIModelPropertiesInput(BaseModel):
+    model: XAIModels
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    endpoint: Optional[Any] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
 
 
 class PointCloudMetadataInput(BaseModel):
@@ -2186,6 +2200,7 @@ class SpecificationInput(BaseModel):
     replicate: Optional["ReplicateModelPropertiesInput"] = None
     mistral: Optional["MistralModelPropertiesInput"] = None
     bedrock: Optional["BedrockModelPropertiesInput"] = None
+    xai: Optional["XAIModelPropertiesInput"] = None
     groq: Optional["GroqModelPropertiesInput"] = None
     cerebras: Optional["CerebrasModelPropertiesInput"] = None
     deepseek: Optional["DeepseekModelPropertiesInput"] = None
@@ -2996,6 +3011,7 @@ class SpecificationUpdateInput(BaseModel):
     replicate: Optional["ReplicateModelPropertiesUpdateInput"] = None
     mistral: Optional["MistralModelPropertiesUpdateInput"] = None
     bedrock: Optional["BedrockModelPropertiesUpdateInput"] = None
+    xai: Optional["XAIModelPropertiesUpdateInput"] = None
     groq: Optional["GroqModelPropertiesUpdateInput"] = None
     cerebras: Optional["CerebrasModelPropertiesUpdateInput"] = None
     deepseek: Optional["DeepseekModelPropertiesUpdateInput"] = None
@@ -4009,6 +4025,19 @@ class AnthropicModelPropertiesUpdateInput(BaseModel):
     enable_thinking: Optional[bool] = Field(alias="enableThinking", default=None)
     thinking_token_limit: Optional[int] = Field(
         alias="thinkingTokenLimit", default=None
+    )
+
+
+class XAIModelPropertiesUpdateInput(BaseModel):
+    model: Optional[XAIModels] = None
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    endpoint: Optional[Any] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
     )
 
 
