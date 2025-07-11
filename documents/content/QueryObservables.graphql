@@ -1,0 +1,11 @@
+query QueryObservables($filter: ContentFilter, $correlationId: String) {
+  observables(filter: $filter, correlationId: $correlationId) {
+    results {
+      type
+      observable {
+        id
+        name
+      }
+    }
+  }
+}

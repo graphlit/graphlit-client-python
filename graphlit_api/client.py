@@ -598,6 +598,7 @@ from .operations import (
     QUERY_MODELS_GQL,
     QUERY_NOTION_DATABASES_GQL,
     QUERY_NOTION_PAGES_GQL,
+    QUERY_OBSERVABLES_GQL,
     QUERY_ONE_DRIVE_FOLDERS_GQL,
     QUERY_ORGANIZATIONS_GQL,
     QUERY_PERSONS_GQL,
@@ -711,6 +712,7 @@ from .query_microsoft_teams_teams import QueryMicrosoftTeamsTeams
 from .query_models import QueryModels
 from .query_notion_databases import QueryNotionDatabases
 from .query_notion_pages import QueryNotionPages
+from .query_observables import QueryObservables
 from .query_one_drive_folders import QueryOneDriveFolders
 from .query_organizations import QueryOrganizations
 from .query_persons import QueryPersons
@@ -1921,6 +1923,25 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryContentsObservations.model_validate(data)
+
+    async def query_observables(
+        self,
+        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryObservables:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_OBSERVABLES_GQL,
+            operation_name="QueryObservables",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryObservables.model_validate(data)
 
     async def screenshot_page(
         self,

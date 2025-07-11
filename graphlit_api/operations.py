@@ -257,6 +257,7 @@ __all__ = [
     "QUERY_MODELS_GQL",
     "QUERY_NOTION_DATABASES_GQL",
     "QUERY_NOTION_PAGES_GQL",
+    "QUERY_OBSERVABLES_GQL",
     "QUERY_ONE_DRIVE_FOLDERS_GQL",
     "QUERY_ORGANIZATIONS_GQL",
     "QUERY_PERSONS_GQL",
@@ -3381,6 +3382,20 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
           }
         }
         state
+      }
+    }
+  }
+}
+"""
+
+QUERY_OBSERVABLES_GQL = """
+query QueryObservables($filter: ContentFilter, $correlationId: String) {
+  observables(filter: $filter, correlationId: $correlationId) {
+    results {
+      type
+      observable {
+        id
+        name
       }
     }
   }

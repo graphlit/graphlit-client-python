@@ -1944,6 +1944,7 @@ from .operations import (
     QUERY_MODELS_GQL,
     QUERY_NOTION_DATABASES_GQL,
     QUERY_NOTION_PAGES_GQL,
+    QUERY_OBSERVABLES_GQL,
     QUERY_ONE_DRIVE_FOLDERS_GQL,
     QUERY_ORGANIZATIONS_GQL,
     QUERY_PERSONS_GQL,
@@ -2499,6 +2500,12 @@ from .query_notion_pages import (
     QueryNotionPages,
     QueryNotionPagesNotionPages,
     QueryNotionPagesNotionPagesResults,
+)
+from .query_observables import (
+    QueryObservables,
+    QueryObservablesObservables,
+    QueryObservablesObservablesResults,
+    QueryObservablesObservablesResultsObservable,
 )
 from .query_one_drive_folders import (
     QueryOneDriveFolders,
@@ -4922,6 +4929,7 @@ __all__ = [
     "QUERY_MODELS_GQL",
     "QUERY_NOTION_DATABASES_GQL",
     "QUERY_NOTION_PAGES_GQL",
+    "QUERY_OBSERVABLES_GQL",
     "QUERY_ONE_DRIVE_FOLDERS_GQL",
     "QUERY_ORGANIZATIONS_GQL",
     "QUERY_PERSONS_GQL",
@@ -5269,6 +5277,10 @@ __all__ = [
     "QueryNotionPages",
     "QueryNotionPagesNotionPages",
     "QueryNotionPagesNotionPagesResults",
+    "QueryObservables",
+    "QueryObservablesObservables",
+    "QueryObservablesObservablesResults",
+    "QueryObservablesObservablesResultsObservable",
     "QueryOneDriveFolders",
     "QueryOneDriveFoldersOneDriveFolders",
     "QueryOneDriveFoldersOneDriveFoldersResults",
