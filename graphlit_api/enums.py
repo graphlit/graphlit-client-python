@@ -231,8 +231,10 @@ class SdkTypes(str, Enum):
 
 
 class CerebrasModels(str, Enum):
+    LLAMA_4_SCOUT_17B = "LLAMA_4_SCOUT_17B"
     LLAMA_3_3_70B = "LLAMA_3_3_70B"
     LLAMA_3_1_8B = "LLAMA_3_1_8B"
+    QWEN_3_32B = "QWEN_3_32B"
     CUSTOM = "CUSTOM"
 
 
@@ -733,6 +735,8 @@ class GroqModels(str, Enum):
     LLAMA_3_1_8B = "LLAMA_3_1_8B"
     LLAMA_3_70B = "LLAMA_3_70B"
     LLAMA_3_8B = "LLAMA_3_8B"
+    KIMI_K2_32B = "KIMI_K2_32B"
+    QWEN_3_32B = "QWEN_3_32B"
     CUSTOM = "CUSTOM"
 
 
