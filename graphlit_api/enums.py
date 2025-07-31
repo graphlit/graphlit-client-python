@@ -676,6 +676,7 @@ class TextTypes(str, Enum):
 class ConnectorTypes(str, Enum):
     INTEGRATION = "INTEGRATION"
     AUTHENTICATION = "AUTHENTICATION"
+    SITE = "SITE"
 
 
 class TrelloTypes(str, Enum):

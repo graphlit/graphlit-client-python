@@ -14,6 +14,7 @@ from .enums import (
     FeedListingTypes,
     FeedServiceTypes,
     FeedTypes,
+    GitHubAuthenticationTypes,
     GoogleCalendarAuthenticationTypes,
     GoogleDriveAuthenticationTypes,
     GoogleEmailAuthenticationTypes,
@@ -142,9 +143,9 @@ class GetFeedFeedSiteOneDrive(BaseModel):
     )
     folder_id: Optional[str] = Field(alias="folderId")
     files: Optional[List[Optional[str]]]
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-    refresh_token: str = Field(alias="refreshToken")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
     connector_id: Optional[str] = Field(alias="connectorId")
 
 
@@ -167,10 +168,10 @@ class GetFeedFeedSiteDropbox(BaseModel):
     )
     path: Optional[str]
     connector_id: Optional[str] = Field(alias="connectorId")
-    app_key: str = Field(alias="appKey")
-    app_secret: str = Field(alias="appSecret")
-    refresh_token: str = Field(alias="refreshToken")
-    redirect_uri: str = Field(alias="redirectUri")
+    app_key: Optional[str] = Field(alias="appKey")
+    app_secret: Optional[str] = Field(alias="appSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    redirect_uri: Optional[str] = Field(alias="redirectUri")
 
 
 class GetFeedFeedSiteBox(BaseModel):
@@ -179,14 +180,14 @@ class GetFeedFeedSiteBox(BaseModel):
     )
     folder_id: Optional[str] = Field(alias="folderId")
     connector_id: Optional[str] = Field(alias="connectorId")
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-    refresh_token: str = Field(alias="refreshToken")
-    redirect_uri: str = Field(alias="redirectUri")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    redirect_uri: Optional[str] = Field(alias="redirectUri")
 
 
 class GetFeedFeedSiteGithub(BaseModel):
-    authentication_type: Optional[OneDriveAuthenticationTypes] = Field(
+    authentication_type: Optional[GitHubAuthenticationTypes] = Field(
         alias="authenticationType"
     )
     uri: Optional[Any]
@@ -215,8 +216,8 @@ class GetFeedFeedEmailGoogle(BaseModel):
         alias="authenticationType"
     )
     refresh_token: Optional[str] = Field(alias="refreshToken")
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
     connector_id: Optional[str] = Field(alias="connectorId")
 
 
@@ -229,9 +230,9 @@ class GetFeedFeedEmailMicrosoft(BaseModel):
     authentication_type: Optional[MicrosoftEmailAuthenticationTypes] = Field(
         alias="authenticationType"
     )
-    refresh_token: str = Field(alias="refreshToken")
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
     connector_id: Optional[str] = Field(alias="connectorId")
 
 
@@ -299,9 +300,9 @@ class GetFeedFeedCalendarGoogle(BaseModel):
     authentication_type: Optional[GoogleCalendarAuthenticationTypes] = Field(
         alias="authenticationType"
     )
-    refresh_token: str = Field(alias="refreshToken")
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
     connector_id: Optional[str] = Field(alias="connectorId")
 
 
@@ -312,9 +313,9 @@ class GetFeedFeedCalendarMicrosoft(BaseModel):
     authentication_type: Optional[MicrosoftCalendarAuthenticationTypes] = Field(
         alias="authenticationType"
     )
-    refresh_token: str = Field(alias="refreshToken")
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
     connector_id: Optional[str] = Field(alias="connectorId")
 
 
