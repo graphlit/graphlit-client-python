@@ -214,6 +214,7 @@ class GetContentContentEmail(BaseModel):
     sensitivity: Optional[MailSensitivity]
     priority: Optional[MailPriority]
     importance: Optional[MailImportance]
+    attachment_count: Optional[int] = Field(alias="attachmentCount")
     from_: Optional[List[Optional["GetContentContentEmailFrom"]]] = Field(alias="from")
     to: Optional[List[Optional["GetContentContentEmailTo"]]]
     cc: Optional[List[Optional["GetContentContentEmailCc"]]]

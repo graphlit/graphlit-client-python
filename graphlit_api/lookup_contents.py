@@ -224,6 +224,7 @@ class LookupContentsLookupContentsResultsEmail(BaseModel):
     sensitivity: Optional[MailSensitivity]
     priority: Optional[MailPriority]
     importance: Optional[MailImportance]
+    attachment_count: Optional[int] = Field(alias="attachmentCount")
     from_: Optional[List[Optional["LookupContentsLookupContentsResultsEmailFrom"]]] = (
         Field(alias="from")
     )

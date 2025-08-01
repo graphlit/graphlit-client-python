@@ -149,6 +149,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
         sensitivity
         priority
         importance
+        attachmentCount
         from {
           name
           email

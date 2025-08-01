@@ -285,9 +285,9 @@ class DropboxFeedPropertiesUpdateInput(BaseModel):
 
 
 class BoxFoldersInput(BaseModel):
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-    refresh_token: str = Field(alias="refreshToken")
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
 
 
 class H3IndexFilter(BaseModel):
@@ -1645,9 +1645,9 @@ class GoogleCalendarsInput(BaseModel):
     authentication_type: Optional[GoogleCalendarAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-    refresh_token: str = Field(alias="refreshToken")
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
@@ -1847,9 +1847,9 @@ class OneDriveFoldersInput(BaseModel):
     authentication_type: Optional[OneDriveAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-    refresh_token: str = Field(alias="refreshToken")
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
@@ -1928,9 +1928,9 @@ class ContentFacetInput(BaseModel):
 
 
 class DropboxFoldersInput(BaseModel):
-    app_key: str = Field(alias="appKey")
-    app_secret: str = Field(alias="appSecret")
-    refresh_token: str = Field(alias="refreshToken")
+    app_key: Optional[str] = Field(alias="appKey", default=None)
+    app_secret: Optional[str] = Field(alias="appSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
 
 
 class Int64RangeFilter(BaseModel):
@@ -2646,9 +2646,9 @@ class GoogleDriveFoldersInput(BaseModel):
     authentication_type: Optional[GoogleDriveAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-    refresh_token: str = Field(alias="refreshToken")
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
@@ -3415,6 +3415,7 @@ class EmailMetadataInput(BaseModel):
     importance: Optional[MailImportance] = None
     labels: Optional[List[Optional[str]]] = None
     links: Optional[List[Optional[Any]]] = None
+    attachment_count: Optional[int] = Field(alias="attachmentCount", default=None)
 
 
 class CollectionFilter(BaseModel):
@@ -3997,9 +3998,9 @@ class MicrosoftCalendarsInput(BaseModel):
     authentication_type: Optional[MicrosoftCalendarAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-    refresh_token: str = Field(alias="refreshToken")
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 

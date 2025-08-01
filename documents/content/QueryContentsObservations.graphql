@@ -125,6 +125,7 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
         sensitivity
         priority
         importance
+        attachmentCount
         from {
           name
           email

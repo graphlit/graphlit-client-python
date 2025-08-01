@@ -1609,6 +1609,7 @@ query GetContent($id: ID!, $correlationId: String) {
       sensitivity
       priority
       importance
+      attachmentCount
       from {
         name
         email
@@ -2343,6 +2344,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
         sensitivity
         priority
         importance
+        attachmentCount
         from {
           name
           email
@@ -2907,6 +2909,7 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
         sensitivity
         priority
         importance
+        attachmentCount
         from {
           name
           email
@@ -3219,6 +3222,7 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
         sensitivity
         priority
         importance
+        attachmentCount
         from {
           name
           email
