@@ -715,7 +715,6 @@ class DeviceTypes(str, Enum):
 
 class DropboxAuthenticationTypes(str, Enum):
     USER = "USER"
-    CONNECTOR = "CONNECTOR"
 
 
 class GitHubIssueAuthenticationTypes(str, Enum):
@@ -1058,7 +1057,6 @@ class MedicalStudyFacetTypes(str, Enum):
 
 class BoxAuthenticationTypes(str, Enum):
     USER = "USER"
-    CONNECTOR = "CONNECTOR"
 
 
 class SharePointAuthenticationTypes(str, Enum):

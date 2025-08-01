@@ -6906,7 +6906,7 @@ query GetFeed($id: ID!, $correlationId: String) {
         clientId
         clientSecret
         refreshToken
-        connectorId
+        authorizationId
       }
       oneDrive {
         authenticationType
@@ -6915,7 +6915,7 @@ query GetFeed($id: ID!, $correlationId: String) {
         clientId
         clientSecret
         refreshToken
-        connectorId
+        authorizationId
       }
       googleDrive {
         authenticationType
@@ -6925,12 +6925,11 @@ query GetFeed($id: ID!, $correlationId: String) {
         clientId
         clientSecret
         serviceAccountJson
-        connectorId
+        authorizationId
       }
       dropbox {
         authenticationType
         path
-        connectorId
         appKey
         appSecret
         refreshToken
@@ -6939,7 +6938,6 @@ query GetFeed($id: ID!, $correlationId: String) {
       box {
         authenticationType
         folderId
-        connectorId
         clientId
         clientSecret
         refreshToken
@@ -6952,7 +6950,7 @@ query GetFeed($id: ID!, $correlationId: String) {
         repositoryName
         refreshToken
         personalAccessToken
-        connectorId
+        authorizationId
       }
       readLimit
     }
@@ -6969,7 +6967,7 @@ query GetFeed($id: ID!, $correlationId: String) {
         refreshToken
         clientId
         clientSecret
-        connectorId
+        authorizationId
       }
       microsoft {
         type
@@ -6981,7 +6979,7 @@ query GetFeed($id: ID!, $correlationId: String) {
         refreshToken
         clientId
         clientSecret
-        connectorId
+        authorizationId
       }
       readLimit
     }
@@ -7000,11 +6998,13 @@ query GetFeed($id: ID!, $correlationId: String) {
         project
       }
       github {
+        authenticationType
         uri
         repositoryOwner
         repositoryName
         refreshToken
         personalAccessToken
+        authorizationId
       }
       intercom {
         accessToken
@@ -7032,7 +7032,7 @@ query GetFeed($id: ID!, $correlationId: String) {
         refreshToken
         clientId
         clientSecret
-        connectorId
+        authorizationId
       }
       microsoft {
         calendarId
@@ -7042,7 +7042,7 @@ query GetFeed($id: ID!, $correlationId: String) {
         refreshToken
         clientId
         clientSecret
-        connectorId
+        authorizationId
       }
       readLimit
     }
@@ -7111,7 +7111,7 @@ query GetFeed($id: ID!, $correlationId: String) {
       clientId
       clientSecret
       refreshToken
-      connectorId
+      authorizationId
       teamId
       channelId
     }
@@ -7249,7 +7249,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           clientId
           clientSecret
           refreshToken
-          connectorId
+          authorizationId
         }
         oneDrive {
           authenticationType
@@ -7258,7 +7258,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           clientId
           clientSecret
           refreshToken
-          connectorId
+          authorizationId
         }
         googleDrive {
           authenticationType
@@ -7268,12 +7268,11 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           clientId
           clientSecret
           serviceAccountJson
-          connectorId
+          authorizationId
         }
         dropbox {
           authenticationType
           path
-          connectorId
           appKey
           appSecret
           refreshToken
@@ -7282,7 +7281,6 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         box {
           authenticationType
           folderId
-          connectorId
           clientId
           clientSecret
           refreshToken
@@ -7295,7 +7293,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           repositoryName
           refreshToken
           personalAccessToken
-          connectorId
+          authorizationId
         }
         readLimit
       }
@@ -7312,7 +7310,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           refreshToken
           clientId
           clientSecret
-          connectorId
+          authorizationId
         }
         microsoft {
           type
@@ -7324,7 +7322,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           refreshToken
           clientId
           clientSecret
-          connectorId
+          authorizationId
         }
         readLimit
       }
@@ -7343,11 +7341,13 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           project
         }
         github {
+          authenticationType
           uri
           repositoryOwner
           repositoryName
           refreshToken
           personalAccessToken
+          authorizationId
         }
         intercom {
           accessToken
@@ -7375,7 +7375,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           refreshToken
           clientId
           clientSecret
-          connectorId
+          authorizationId
         }
         microsoft {
           calendarId
@@ -7385,7 +7385,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           refreshToken
           clientId
           clientSecret
-          connectorId
+          authorizationId
         }
         readLimit
       }
@@ -7454,7 +7454,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         clientId
         clientSecret
         refreshToken
-        connectorId
+        authorizationId
         teamId
         channelId
       }

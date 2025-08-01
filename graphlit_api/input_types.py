@@ -278,7 +278,6 @@ class DropboxFeedPropertiesUpdateInput(BaseModel):
         alias="authenticationType", default=None
     )
     path: Optional[str] = None
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
     app_key: Optional[str] = Field(alias="appKey", default=None)
     app_secret: Optional[str] = Field(alias="appSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
@@ -303,7 +302,7 @@ class MicrosoftTeamsTeamsInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class RetrievalStrategyUpdateInput(BaseModel):
@@ -349,7 +348,7 @@ class GitHubFeedPropertiesInput(BaseModel):
     personal_access_token: Optional[str] = Field(
         alias="personalAccessToken", default=None
     )
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class TrelloFeedPropertiesInput(BaseModel):
@@ -457,7 +456,7 @@ class GoogleDriveFeedPropertiesUpdateInput(BaseModel):
     service_account_json: Optional[str] = Field(
         alias="serviceAccountJson", default=None
     )
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class TrelloFeedPropertiesUpdateInput(BaseModel):
@@ -569,7 +568,7 @@ class MicrosoftEmailFeedPropertiesUpdateInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class IntercomFeedPropertiesUpdateInput(BaseModel):
@@ -1134,7 +1133,7 @@ class GitHubFeedPropertiesUpdateInput(BaseModel):
     personal_access_token: Optional[str] = Field(
         alias="personalAccessToken", default=None
     )
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class OrganizationFilter(BaseModel):
@@ -1403,7 +1402,6 @@ class BoxFeedPropertiesInput(BaseModel):
         alias="authenticationType", default=None
     )
     folder_id: Optional[str] = Field(alias="folderId", default=None)
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
@@ -1436,7 +1434,7 @@ class SharePointFeedPropertiesUpdateInput(BaseModel):
     )
     tenant_id: Optional[str] = Field(alias="tenantId", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
     account_name: Optional[str] = Field(alias="accountName", default=None)
     library_id: Optional[str] = Field(alias="libraryId", default=None)
     folder_id: Optional[str] = Field(alias="folderId", default=None)
@@ -1650,7 +1648,7 @@ class GoogleCalendarsInput(BaseModel):
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
     refresh_token: str = Field(alias="refreshToken")
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class ConversationInput(BaseModel):
@@ -1852,7 +1850,7 @@ class OneDriveFoldersInput(BaseModel):
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
     refresh_token: str = Field(alias="refreshToken")
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class MicrosoftTeamsChannelsInput(BaseModel):
@@ -1862,7 +1860,7 @@ class MicrosoftTeamsChannelsInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class MedicalTherapyUpdateInput(BaseModel):
@@ -2142,7 +2140,7 @@ class MicrosoftCalendarFeedPropertiesUpdateInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class MedicalConditionFacetInput(BaseModel):
@@ -2222,7 +2220,7 @@ class GoogleEmailFeedPropertiesUpdateInput(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class ZendeskFeedPropertiesInput(BaseModel):
@@ -2253,7 +2251,7 @@ class GoogleCalendarFeedPropertiesUpdateInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class GoogleCalendarFeedPropertiesInput(BaseModel):
@@ -2266,7 +2264,7 @@ class GoogleCalendarFeedPropertiesInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class LabelUpdateInput(BaseModel):
@@ -2399,7 +2397,7 @@ class MicrosoftCalendarFeedPropertiesInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class PlaceInput(BaseModel):
@@ -2493,7 +2491,7 @@ class MicrosoftEmailFeedPropertiesInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class MicrosoftTeamsFeedPropertiesUpdateInput(BaseModel):
@@ -2504,7 +2502,7 @@ class MicrosoftTeamsFeedPropertiesUpdateInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
     team_id: str = Field(alias="teamId")
     channel_id: str = Field(alias="channelId")
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
@@ -2641,7 +2639,7 @@ class OneDriveFeedPropertiesInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class GoogleDriveFoldersInput(BaseModel):
@@ -2651,7 +2649,7 @@ class GoogleDriveFoldersInput(BaseModel):
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
     refresh_token: str = Field(alias="refreshToken")
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class SharePointFoldersInput(BaseModel):
@@ -2662,7 +2660,7 @@ class SharePointFoldersInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class SharePointLibrariesInput(BaseModel):
@@ -2673,7 +2671,7 @@ class SharePointLibrariesInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class ContentClassificationConnectorInput(BaseModel):
@@ -3085,7 +3083,7 @@ class GoogleDriveFeedPropertiesInput(BaseModel):
     service_account_json: Optional[str] = Field(
         alias="serviceAccountJson", default=None
     )
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class EmailFeedPropertiesUpdateInput(BaseModel):
@@ -3142,7 +3140,7 @@ class GitHubIssuesFeedPropertiesInput(BaseModel):
     personal_access_token: Optional[str] = Field(
         alias="personalAccessToken", default=None
     )
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class PointInput(BaseModel):
@@ -3161,7 +3159,6 @@ class BoxFeedPropertiesUpdateInput(BaseModel):
         alias="authenticationType", default=None
     )
     folder_id: Optional[str] = Field(alias="folderId", default=None)
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
@@ -3226,7 +3223,7 @@ class OneDriveFeedPropertiesUpdateInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class ProjectFilter(BaseModel):
@@ -3314,7 +3311,6 @@ class DropboxFeedPropertiesInput(BaseModel):
         alias="authenticationType", default=None
     )
     path: Optional[str] = None
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
     app_key: Optional[str] = Field(alias="appKey", default=None)
     app_secret: Optional[str] = Field(alias="appSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
@@ -3615,7 +3611,7 @@ class MicrosoftTeamsFeedPropertiesInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
     team_id: str = Field(alias="teamId")
     channel_id: str = Field(alias="channelId")
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
@@ -3646,7 +3642,7 @@ class SharePointFeedPropertiesInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
     account_name: str = Field(alias="accountName")
     library_id: str = Field(alias="libraryId")
     folder_id: Optional[str] = Field(alias="folderId", default=None)
@@ -3794,7 +3790,7 @@ class GoogleEmailFeedPropertiesInput(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class EventFacetInput(BaseModel):
@@ -4004,7 +4000,7 @@ class MicrosoftCalendarsInput(BaseModel):
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
     refresh_token: str = Field(alias="refreshToken")
-    connector_id: Optional[str] = Field(alias="connectorId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class NotionPagesInput(BaseModel):

@@ -15,6 +15,7 @@ from .enums import (
     FeedServiceTypes,
     FeedTypes,
     GitHubAuthenticationTypes,
+    GitHubIssueAuthenticationTypes,
     GoogleCalendarAuthenticationTypes,
     GoogleDriveAuthenticationTypes,
     GoogleEmailAuthenticationTypes,
@@ -146,7 +147,7 @@ class QueryFeedsFeedsResultsSiteSharePoint(BaseModel):
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
-    connector_id: Optional[str] = Field(alias="connectorId")
+    authorization_id: Optional[str] = Field(alias="authorizationId")
 
 
 class QueryFeedsFeedsResultsSiteOneDrive(BaseModel):
@@ -158,7 +159,7 @@ class QueryFeedsFeedsResultsSiteOneDrive(BaseModel):
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
-    connector_id: Optional[str] = Field(alias="connectorId")
+    authorization_id: Optional[str] = Field(alias="authorizationId")
 
 
 class QueryFeedsFeedsResultsSiteGoogleDrive(BaseModel):
@@ -171,7 +172,7 @@ class QueryFeedsFeedsResultsSiteGoogleDrive(BaseModel):
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
     service_account_json: Optional[str] = Field(alias="serviceAccountJson")
-    connector_id: Optional[str] = Field(alias="connectorId")
+    authorization_id: Optional[str] = Field(alias="authorizationId")
 
 
 class QueryFeedsFeedsResultsSiteDropbox(BaseModel):
@@ -179,7 +180,6 @@ class QueryFeedsFeedsResultsSiteDropbox(BaseModel):
         alias="authenticationType"
     )
     path: Optional[str]
-    connector_id: Optional[str] = Field(alias="connectorId")
     app_key: Optional[str] = Field(alias="appKey")
     app_secret: Optional[str] = Field(alias="appSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
@@ -191,7 +191,6 @@ class QueryFeedsFeedsResultsSiteBox(BaseModel):
         alias="authenticationType"
     )
     folder_id: Optional[str] = Field(alias="folderId")
-    connector_id: Optional[str] = Field(alias="connectorId")
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
@@ -207,7 +206,7 @@ class QueryFeedsFeedsResultsSiteGithub(BaseModel):
     repository_name: str = Field(alias="repositoryName")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     personal_access_token: Optional[str] = Field(alias="personalAccessToken")
-    connector_id: Optional[str] = Field(alias="connectorId")
+    authorization_id: Optional[str] = Field(alias="authorizationId")
 
 
 class QueryFeedsFeedsResultsEmail(BaseModel):
@@ -230,7 +229,7 @@ class QueryFeedsFeedsResultsEmailGoogle(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
-    connector_id: Optional[str] = Field(alias="connectorId")
+    authorization_id: Optional[str] = Field(alias="authorizationId")
 
 
 class QueryFeedsFeedsResultsEmailMicrosoft(BaseModel):
@@ -245,7 +244,7 @@ class QueryFeedsFeedsResultsEmailMicrosoft(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
-    connector_id: Optional[str] = Field(alias="connectorId")
+    authorization_id: Optional[str] = Field(alias="authorizationId")
 
 
 class QueryFeedsFeedsResultsIssue(BaseModel):
@@ -274,11 +273,15 @@ class QueryFeedsFeedsResultsIssueLinear(BaseModel):
 
 
 class QueryFeedsFeedsResultsIssueGithub(BaseModel):
+    authentication_type: Optional[GitHubIssueAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
     uri: Optional[Any]
     repository_owner: str = Field(alias="repositoryOwner")
     repository_name: str = Field(alias="repositoryName")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     personal_access_token: Optional[str] = Field(alias="personalAccessToken")
+    authorization_id: Optional[str] = Field(alias="authorizationId")
 
 
 class QueryFeedsFeedsResultsIssueIntercom(BaseModel):
@@ -315,7 +318,7 @@ class QueryFeedsFeedsResultsCalendarGoogle(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
-    connector_id: Optional[str] = Field(alias="connectorId")
+    authorization_id: Optional[str] = Field(alias="authorizationId")
 
 
 class QueryFeedsFeedsResultsCalendarMicrosoft(BaseModel):
@@ -328,7 +331,7 @@ class QueryFeedsFeedsResultsCalendarMicrosoft(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
-    connector_id: Optional[str] = Field(alias="connectorId")
+    authorization_id: Optional[str] = Field(alias="authorizationId")
 
 
 class QueryFeedsFeedsResultsRss(BaseModel):
@@ -408,7 +411,7 @@ class QueryFeedsFeedsResultsMicrosoftTeams(BaseModel):
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
-    connector_id: Optional[str] = Field(alias="connectorId")
+    authorization_id: Optional[str] = Field(alias="authorizationId")
     team_id: str = Field(alias="teamId")
     channel_id: str = Field(alias="channelId")
 
