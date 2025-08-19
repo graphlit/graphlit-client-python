@@ -139,6 +139,8 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         model
         accessKey
         secretAccessKey
+        endpoint
+        region
         modelName
         temperature
         probability

@@ -2777,6 +2777,8 @@ class BedrockModelPropertiesInput(BaseModel):
     model_name: Optional[str] = Field(alias="modelName", default=None)
     access_key: Optional[str] = Field(alias="accessKey", default=None)
     secret_access_key: Optional[str] = Field(alias="secretAccessKey", default=None)
+    endpoint: Optional[Any] = None
+    region: Optional[str] = None
     temperature: Optional[float] = None
     probability: Optional[float] = None
     token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
@@ -3470,6 +3472,8 @@ class BedrockModelPropertiesUpdateInput(BaseModel):
     model_name: Optional[str] = Field(alias="modelName", default=None)
     access_key: Optional[str] = Field(alias="accessKey", default=None)
     secret_access_key: Optional[str] = Field(alias="secretAccessKey", default=None)
+    endpoint: Optional[Any] = None
+    region: Optional[str] = None
     temperature: Optional[float] = None
     probability: Optional[float] = None
     token_limit: Optional[int] = Field(alias="tokenLimit", default=None)

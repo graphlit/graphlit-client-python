@@ -232,6 +232,8 @@ class GetSpecificationSpecificationBedrock(BaseModel):
     model: BedrockModels
     access_key: Optional[str] = Field(alias="accessKey")
     secret_access_key: Optional[str] = Field(alias="secretAccessKey")
+    endpoint: Optional[Any]
+    region: Optional[str]
     model_name: Optional[str] = Field(alias="modelName")
     temperature: Optional[float]
     probability: Optional[float]
