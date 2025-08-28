@@ -149,6 +149,9 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
         sensitivity
         priority
         importance
+        unsubscribeUrl
+        publicationName
+        publicationUrl
         attachmentCount
         from {
           name

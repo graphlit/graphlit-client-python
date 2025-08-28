@@ -3418,6 +3418,9 @@ class EmailMetadataInput(BaseModel):
     labels: Optional[List[Optional[str]]] = None
     links: Optional[List[Optional[Any]]] = None
     attachment_count: Optional[int] = Field(alias="attachmentCount", default=None)
+    unsubscribe_url: Optional[str] = Field(alias="unsubscribeUrl", default=None)
+    publication_name: Optional[str] = Field(alias="publicationName", default=None)
+    publication_url: Optional[str] = Field(alias="publicationUrl", default=None)
 
 
 class CollectionFilter(BaseModel):

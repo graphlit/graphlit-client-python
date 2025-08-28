@@ -1609,6 +1609,9 @@ query GetContent($id: ID!, $correlationId: String) {
       sensitivity
       priority
       importance
+      unsubscribeUrl
+      publicationName
+      publicationUrl
       attachmentCount
       from {
         name
@@ -2344,6 +2347,9 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
         sensitivity
         priority
         importance
+        unsubscribeUrl
+        publicationName
+        publicationUrl
         attachmentCount
         from {
           name
@@ -2909,6 +2915,9 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
         sensitivity
         priority
         importance
+        unsubscribeUrl
+        publicationName
+        publicationUrl
         attachmentCount
         from {
           name
@@ -3222,6 +3231,9 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
         sensitivity
         priority
         importance
+        unsubscribeUrl
+        publicationName
+        publicationUrl
         attachmentCount
         from {
           name
