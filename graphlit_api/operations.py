@@ -535,6 +535,13 @@ query GetAlert($id: ID!, $correlationId: String) {
           id
         }
       }
+      googleImage {
+        model
+        count
+        seed {
+          id
+        }
+      }
     }
     summarySpecification {
       id
@@ -680,6 +687,13 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
           voice
         }
         openAIImage {
+          model
+          count
+          seed {
+            id
+          }
+        }
+        googleImage {
           model
           count
           seed {

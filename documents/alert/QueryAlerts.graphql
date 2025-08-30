@@ -136,6 +136,13 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
             id
           }
         }
+        googleImage {
+          model
+          count
+          seed {
+            id
+          }
+        }
       }
       summarySpecification {
         id

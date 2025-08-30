@@ -135,6 +135,13 @@ query GetAlert($id: ID!, $correlationId: String) {
           id
         }
       }
+      googleImage {
+        model
+        count
+        seed {
+          id
+        }
+      }
     }
     summarySpecification {
       id

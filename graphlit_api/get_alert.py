@@ -13,6 +13,7 @@ from .enums import (
     ElevenLabsModels,
     EntityState,
     FileTypes,
+    GoogleImageModels,
     IntegrationServiceTypes,
     MCPServerTypes,
     ObservableTypes,
@@ -235,6 +236,9 @@ class GetAlertAlertPublishing(BaseModel):
     open_ai_image: Optional["GetAlertAlertPublishingOpenAiImage"] = Field(
         alias="openAIImage"
     )
+    google_image: Optional["GetAlertAlertPublishingGoogleImage"] = Field(
+        alias="googleImage"
+    )
 
 
 class GetAlertAlertPublishingElevenLabs(BaseModel):
@@ -249,6 +253,16 @@ class GetAlertAlertPublishingOpenAiImage(BaseModel):
 
 
 class GetAlertAlertPublishingOpenAiImageSeed(BaseModel):
+    id: str
+
+
+class GetAlertAlertPublishingGoogleImage(BaseModel):
+    model: Optional[GoogleImageModels]
+    count: Optional[int]
+    seed: Optional["GetAlertAlertPublishingGoogleImageSeed"]
+
+
+class GetAlertAlertPublishingGoogleImageSeed(BaseModel):
     id: str
 
 
@@ -271,3 +285,4 @@ GetAlertAlertFilterAndObservations.model_rebuild()
 GetAlertAlertIntegration.model_rebuild()
 GetAlertAlertPublishing.model_rebuild()
 GetAlertAlertPublishingOpenAiImage.model_rebuild()
+GetAlertAlertPublishingGoogleImage.model_rebuild()
