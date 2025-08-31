@@ -6989,6 +6989,7 @@ query GetFeed($id: ID!, $correlationId: String) {
       includeAttachments
       google {
         type
+        filter
         includeSpam
         excludeSentItems
         includeDeletedItems
@@ -7001,6 +7002,7 @@ query GetFeed($id: ID!, $correlationId: String) {
       }
       microsoft {
         type
+        filter
         includeSpam
         excludeSentItems
         includeDeletedItems
@@ -7332,6 +7334,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         includeAttachments
         google {
           type
+          filter
           includeSpam
           excludeSentItems
           includeDeletedItems
@@ -7344,6 +7347,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         }
         microsoft {
           type
+          filter
           includeSpam
           excludeSentItems
           includeDeletedItems

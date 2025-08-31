@@ -207,6 +207,7 @@ class GetFeedFeedEmail(BaseModel):
 
 class GetFeedFeedEmailGoogle(BaseModel):
     type: Optional[EmailListingTypes]
+    filter: Optional[str]
     include_spam: Optional[bool] = Field(alias="includeSpam")
     exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems")
     include_deleted_items: Optional[bool] = Field(alias="includeDeletedItems")
@@ -222,6 +223,7 @@ class GetFeedFeedEmailGoogle(BaseModel):
 
 class GetFeedFeedEmailMicrosoft(BaseModel):
     type: Optional[EmailListingTypes]
+    filter: Optional[str]
     include_spam: Optional[bool] = Field(alias="includeSpam")
     exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems")
     include_deleted_items: Optional[bool] = Field(alias="includeDeletedItems")

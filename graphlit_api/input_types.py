@@ -549,6 +549,7 @@ class WorkflowFilter(BaseModel):
 
 class MicrosoftEmailFeedPropertiesUpdateInput(BaseModel):
     type: Optional[EmailListingTypes] = None
+    filter: Optional[str] = None
     inbox_only: Optional[bool] = Field(alias="inboxOnly", default=None)
     include_deleted_items: Optional[bool] = Field(
         alias="includeDeletedItems", default=None
@@ -1519,6 +1520,7 @@ class CalendarAttendeeInput(BaseModel):
 
 class MicrosoftEmailFeedPropertiesInput(BaseModel):
     type: Optional[EmailListingTypes] = None
+    filter: Optional[str] = None
     inbox_only: Optional[bool] = Field(alias="inboxOnly", default=None)
     include_deleted_items: Optional[bool] = Field(
         alias="includeDeletedItems", default=None
@@ -2481,6 +2483,7 @@ class GitHubFeedPropertiesUpdateInput(BaseModel):
 
 class GoogleEmailFeedPropertiesUpdateInput(BaseModel):
     type: Optional[EmailListingTypes] = None
+    filter: Optional[str] = None
     inbox_only: Optional[bool] = Field(alias="inboxOnly", default=None)
     include_deleted_items: Optional[bool] = Field(
         alias="includeDeletedItems", default=None
@@ -2867,6 +2870,7 @@ class SlackIntegrationPropertiesInput(BaseModel):
 
 class GoogleEmailFeedPropertiesInput(BaseModel):
     type: Optional[EmailListingTypes] = None
+    filter: Optional[str] = None
     inbox_only: Optional[bool] = Field(alias="inboxOnly", default=None)
     include_deleted_items: Optional[bool] = Field(
         alias="includeDeletedItems", default=None
