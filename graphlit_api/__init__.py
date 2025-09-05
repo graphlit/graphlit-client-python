@@ -811,6 +811,7 @@ from .get_alert import (
     GetAlertAlertPublishingOpenAiImage,
     GetAlertAlertPublishingOpenAiImageSeed,
     GetAlertAlertPublishSpecification,
+    GetAlertAlertSchedulePolicy,
     GetAlertAlertSummarySpecification,
 )
 from .get_category import GetCategory, GetCategoryCategory
@@ -2150,6 +2151,7 @@ from .query_alerts import (
     QueryAlertsAlertsResultsPublishingOpenAiImage,
     QueryAlertsAlertsResultsPublishingOpenAiImageSeed,
     QueryAlertsAlertsResultsPublishSpecification,
+    QueryAlertsAlertsResultsSchedulePolicy,
     QueryAlertsAlertsResultsSummarySpecification,
 )
 from .query_box_folders import (
@@ -4091,6 +4093,7 @@ __all__ = [
     "GetAlertAlertPublishingGoogleImageSeed",
     "GetAlertAlertPublishingOpenAiImage",
     "GetAlertAlertPublishingOpenAiImageSeed",
+    "GetAlertAlertSchedulePolicy",
     "GetAlertAlertSummarySpecification",
     "GetCategory",
     "GetCategoryCategory",
@@ -4998,6 +5001,7 @@ __all__ = [
     "QueryAlertsAlertsResultsPublishingGoogleImageSeed",
     "QueryAlertsAlertsResultsPublishingOpenAiImage",
     "QueryAlertsAlertsResultsPublishingOpenAiImageSeed",
+    "QueryAlertsAlertsResultsSchedulePolicy",
     "QueryAlertsAlertsResultsSummarySpecification",
     "QueryBoxFolders",
     "QueryBoxFoldersBoxFolders",

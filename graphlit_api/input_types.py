@@ -3323,6 +3323,8 @@ class AlertSchedulePolicyInput(BaseModel):
     time_type: Optional[PolicyTimeTypes] = Field(alias="timeType", default=None)
     absolute_time: Optional[Any] = Field(alias="absoluteTime", default=None)
     relative_time: Optional[Any] = Field(alias="relativeTime", default=None)
+    cron: Optional[str] = None
+    time_zone_id: Optional[str] = Field(alias="timeZoneId", default=None)
 
 
 class MedicalGuidelineUpdateInput(BaseModel):

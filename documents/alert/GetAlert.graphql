@@ -149,6 +149,12 @@ query GetAlert($id: ID!, $correlationId: String) {
     publishSpecification {
       id
     }
+    schedulePolicy {
+      recurrenceType
+      repeatInterval
+      cron
+      timeZoneId
+    }
     lastAlertDate
   }
 }

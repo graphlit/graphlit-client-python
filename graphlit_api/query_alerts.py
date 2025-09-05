@@ -18,6 +18,7 @@ from .enums import (
     MCPServerTypes,
     ObservableTypes,
     OpenAIImageModels,
+    TimedPolicyRecurrenceTypes,
 )
 
 
@@ -48,6 +49,9 @@ class QueryAlertsAlertsResults(BaseModel):
     )
     publish_specification: Optional["QueryAlertsAlertsResultsPublishSpecification"] = (
         Field(alias="publishSpecification")
+    )
+    schedule_policy: Optional["QueryAlertsAlertsResultsSchedulePolicy"] = Field(
+        alias="schedulePolicy"
     )
     last_alert_date: Optional[Any] = Field(alias="lastAlertDate")
 
@@ -278,6 +282,15 @@ class QueryAlertsAlertsResultsSummarySpecification(BaseModel):
 
 class QueryAlertsAlertsResultsPublishSpecification(BaseModel):
     id: str
+
+
+class QueryAlertsAlertsResultsSchedulePolicy(BaseModel):
+    recurrence_type: Optional[TimedPolicyRecurrenceTypes] = Field(
+        alias="recurrenceType"
+    )
+    repeat_interval: Optional[Any] = Field(alias="repeatInterval")
+    cron: Optional[str]
+    time_zone_id: Optional[str] = Field(alias="timeZoneId")
 
 
 QueryAlerts.model_rebuild()

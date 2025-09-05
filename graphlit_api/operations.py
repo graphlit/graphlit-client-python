@@ -549,6 +549,12 @@ query GetAlert($id: ID!, $correlationId: String) {
     publishSpecification {
       id
     }
+    schedulePolicy {
+      recurrenceType
+      repeatInterval
+      cron
+      timeZoneId
+    }
     lastAlertDate
   }
 }
@@ -706,6 +712,12 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
       }
       publishSpecification {
         id
+      }
+      schedulePolicy {
+        recurrenceType
+        repeatInterval
+        cron
+        timeZoneId
       }
       lastAlertDate
     }
