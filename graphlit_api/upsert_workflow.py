@@ -62,6 +62,7 @@ class UpsertWorkflowUpsertWorkflowIngestion(BaseModel):
         List[Optional["UpsertWorkflowUpsertWorkflowIngestionObservations"]]
     ]
     enable_email_collections: Optional[bool] = Field(alias="enableEmailCollections")
+    enable_folder_collections: Optional[bool] = Field(alias="enableFolderCollections")
 
 
 class UpsertWorkflowUpsertWorkflowIngestionIf(BaseModel):

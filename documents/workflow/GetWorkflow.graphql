@@ -28,6 +28,7 @@ query GetWorkflow($id: ID!, $correlationId: String) {
         }
       }
       enableEmailCollections
+      enableFolderCollections
     }
     indexing {
       jobs {

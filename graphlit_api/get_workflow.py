@@ -63,6 +63,7 @@ class GetWorkflowWorkflowIngestion(BaseModel):
     collections: Optional[List[Optional["GetWorkflowWorkflowIngestionCollections"]]]
     observations: Optional[List[Optional["GetWorkflowWorkflowIngestionObservations"]]]
     enable_email_collections: Optional[bool] = Field(alias="enableEmailCollections")
+    enable_folder_collections: Optional[bool] = Field(alias="enableFolderCollections")
 
 
 class GetWorkflowWorkflowIngestionIf(BaseModel):

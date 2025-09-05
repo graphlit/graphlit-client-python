@@ -27,6 +27,7 @@ class CollectionTypes(str, Enum):
     COLLECTION = "COLLECTION"
     THREAD = "THREAD"
     SERIES = "SERIES"
+    FOLDER = "FOLDER"
 
 
 class BedrockModels(str, Enum):

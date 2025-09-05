@@ -1657,6 +1657,9 @@ class IngestionWorkflowStageInput(BaseModel):
     enable_email_collections: Optional[bool] = Field(
         alias="enableEmailCollections", default=None
     )
+    enable_folder_collections: Optional[bool] = Field(
+        alias="enableFolderCollections", default=None
+    )
 
 
 class RSSFeedPropertiesInput(BaseModel):

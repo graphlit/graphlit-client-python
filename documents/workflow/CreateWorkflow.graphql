@@ -23,6 +23,7 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
         }
       }
       enableEmailCollections
+      enableFolderCollections
     }
     indexing {
       jobs {

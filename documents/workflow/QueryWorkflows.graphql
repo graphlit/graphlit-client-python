@@ -29,6 +29,7 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
           }
         }
         enableEmailCollections
+        enableFolderCollections
       }
       indexing {
         jobs {

@@ -11642,6 +11642,7 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
         }
       }
       enableEmailCollections
+      enableFolderCollections
     }
     indexing {
       jobs {
@@ -11898,6 +11899,7 @@ query GetWorkflow($id: ID!, $correlationId: String) {
         }
       }
       enableEmailCollections
+      enableFolderCollections
     }
     indexing {
       jobs {
@@ -12124,6 +12126,7 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
           }
         }
         enableEmailCollections
+        enableFolderCollections
       }
       indexing {
         jobs {
@@ -12345,6 +12348,7 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
         }
       }
       enableEmailCollections
+      enableFolderCollections
     }
     indexing {
       jobs {
@@ -12565,6 +12569,7 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
         }
       }
       enableEmailCollections
+      enableFolderCollections
     }
     indexing {
       jobs {
