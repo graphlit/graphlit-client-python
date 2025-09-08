@@ -806,6 +806,8 @@ class MistralModels(str, Enum):
 
 class VoyageModels(str, Enum):
     VOYAGE = "VOYAGE"
+    VOYAGE_3_5 = "VOYAGE_3_5"
+    VOYAGE_3_5_LITE = "VOYAGE_3_5_LITE"
     VOYAGE_3_0_LARGE = "VOYAGE_3_0_LARGE"
     VOYAGE_3_0 = "VOYAGE_3_0"
     VOYAGE_LITE_3_0 = "VOYAGE_LITE_3_0"
@@ -921,11 +923,6 @@ class EntityTypes(str, Enum):
     USER = "USER"
     VIEW = "VIEW"
     WORKFLOW = "WORKFLOW"
-
-
-class PolicyTimeTypes(str, Enum):
-    RELATIVE_TIME = "RELATIVE_TIME"
-    ABSOLUTE_TIME = "ABSOLUTE_TIME"
 
 
 class ContentPublishingServiceTypes(str, Enum):

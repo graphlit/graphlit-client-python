@@ -37,6 +37,7 @@ class GetAlertAlert(BaseModel):
     type: AlertTypes
     summary_prompt: Optional[str] = Field(alias="summaryPrompt")
     publish_prompt: str = Field(alias="publishPrompt")
+    view: Optional["GetAlertAlertView"]
     filter: Optional["GetAlertAlertFilter"]
     integration: "GetAlertAlertIntegration"
     publishing: "GetAlertAlertPublishing"
@@ -53,6 +54,10 @@ class GetAlertAlert(BaseModel):
 
 
 class GetAlertAlertOwner(BaseModel):
+    id: str
+
+
+class GetAlertAlertView(BaseModel):
     id: str
 
 

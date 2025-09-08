@@ -412,6 +412,9 @@ query GetAlert($id: ID!, $correlationId: String) {
     type
     summaryPrompt
     publishPrompt
+    view {
+      id
+    }
     filter {
       dateRange {
         from
@@ -576,6 +579,9 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
       type
       summaryPrompt
       publishPrompt
+      view {
+        id
+      }
       filter {
         dateRange {
           from

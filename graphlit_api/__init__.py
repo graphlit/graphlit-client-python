@@ -682,7 +682,6 @@ from .enums import (
     OrientationTypes,
     PersonFacetTypes,
     PlaceFacetTypes,
-    PolicyTimeTypes,
     ProductFacetTypes,
     PromptStrategyTypes,
     ReductoEnrichmentModes,
@@ -813,6 +812,7 @@ from .get_alert import (
     GetAlertAlertPublishSpecification,
     GetAlertAlertSchedulePolicy,
     GetAlertAlertSummarySpecification,
+    GetAlertAlertView,
 )
 from .get_category import GetCategory, GetCategoryCategory
 from .get_collection import (
@@ -2153,6 +2153,7 @@ from .query_alerts import (
     QueryAlertsAlertsResultsPublishSpecification,
     QueryAlertsAlertsResultsSchedulePolicy,
     QueryAlertsAlertsResultsSummarySpecification,
+    QueryAlertsAlertsResultsView,
 )
 from .query_box_folders import (
     QueryBoxFolders,
@@ -4095,6 +4096,7 @@ __all__ = [
     "GetAlertAlertPublishingOpenAiImageSeed",
     "GetAlertAlertSchedulePolicy",
     "GetAlertAlertSummarySpecification",
+    "GetAlertAlertView",
     "GetCategory",
     "GetCategoryCategory",
     "GetCollection",
@@ -4813,7 +4815,6 @@ __all__ = [
     "PointCloudMetadataInput",
     "PointFilter",
     "PointInput",
-    "PolicyTimeTypes",
     "PreparationWorkflowJobInput",
     "PreparationWorkflowStageInput",
     "ProductFacetInput",
@@ -5003,6 +5004,7 @@ __all__ = [
     "QueryAlertsAlertsResultsPublishingOpenAiImageSeed",
     "QueryAlertsAlertsResultsSchedulePolicy",
     "QueryAlertsAlertsResultsSummarySpecification",
+    "QueryAlertsAlertsResultsView",
     "QueryBoxFolders",
     "QueryBoxFoldersBoxFolders",
     "QueryBoxFoldersBoxFoldersResults",

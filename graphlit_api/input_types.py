@@ -104,7 +104,6 @@ from .enums import (
     OrientationTypes,
     PersonFacetTypes,
     PlaceFacetTypes,
-    PolicyTimeTypes,
     ProductFacetTypes,
     PromptStrategyTypes,
     ReductoEnrichmentModes,
@@ -1762,6 +1761,7 @@ class AlertUpdateInput(BaseModel):
     name: Optional[str] = None
     summary_prompt: Optional[str] = Field(alias="summaryPrompt", default=None)
     publish_prompt: Optional[str] = Field(alias="publishPrompt", default=None)
+    view: Optional["EntityReferenceInput"] = None
     filter: Optional["ContentCriteriaInput"] = None
     publishing: Optional["ContentPublishingConnectorUpdateInput"] = None
     integration: Optional["IntegrationConnectorUpdateInput"] = None
@@ -3204,6 +3204,7 @@ class AlertInput(BaseModel):
     type: AlertTypes
     summary_prompt: Optional[str] = Field(alias="summaryPrompt", default=None)
     publish_prompt: str = Field(alias="publishPrompt")
+    view: Optional["EntityReferenceInput"] = None
     filter: Optional["ContentCriteriaInput"] = None
     publishing: "ContentPublishingConnectorInput"
     integration: "IntegrationConnectorInput"
@@ -3317,12 +3318,7 @@ class AlertSchedulePolicyInput(BaseModel):
     recurrence_type: Optional[TimedPolicyRecurrenceTypes] = Field(
         alias="recurrenceType", default=None
     )
-    repeat_until_time: Optional[Any] = Field(alias="repeatUntilTime", default=None)
     repeat_interval: Optional[Any] = Field(alias="repeatInterval", default=None)
-    delay: Optional[Any] = None
-    time_type: Optional[PolicyTimeTypes] = Field(alias="timeType", default=None)
-    absolute_time: Optional[Any] = Field(alias="absoluteTime", default=None)
-    relative_time: Optional[Any] = Field(alias="relativeTime", default=None)
     cron: Optional[str] = None
     time_zone_id: Optional[str] = Field(alias="timeZoneId", default=None)
 

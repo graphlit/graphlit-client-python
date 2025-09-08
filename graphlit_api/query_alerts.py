@@ -41,6 +41,7 @@ class QueryAlertsAlertsResults(BaseModel):
     type: AlertTypes
     summary_prompt: Optional[str] = Field(alias="summaryPrompt")
     publish_prompt: str = Field(alias="publishPrompt")
+    view: Optional["QueryAlertsAlertsResultsView"]
     filter: Optional["QueryAlertsAlertsResultsFilter"]
     integration: "QueryAlertsAlertsResultsIntegration"
     publishing: "QueryAlertsAlertsResultsPublishing"
@@ -57,6 +58,10 @@ class QueryAlertsAlertsResults(BaseModel):
 
 
 class QueryAlertsAlertsResultsOwner(BaseModel):
+    id: str
+
+
+class QueryAlertsAlertsResultsView(BaseModel):
     id: str
 
 
