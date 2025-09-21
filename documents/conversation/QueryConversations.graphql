@@ -31,6 +31,7 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
             fileExtension
             fileName
             fileSize
+            relativeFolderPath
             masterUri
             imageUri
             textUri

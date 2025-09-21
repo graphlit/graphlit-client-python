@@ -124,6 +124,7 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
             specification {
               id
             }
+            tokenThreshold
           }
         }
       }

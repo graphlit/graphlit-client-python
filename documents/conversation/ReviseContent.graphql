@@ -23,6 +23,7 @@ mutation ReviseContent($prompt: String!, $content: EntityReferenceInput!, $id: I
           fileExtension
           fileName
           fileSize
+          relativeFolderPath
           masterUri
           imageUri
           textUri

@@ -1192,6 +1192,7 @@ mutation DescribeEncodedImage($prompt: String!, $mimeType: String!, $data: Strin
         fileExtension
         fileName
         fileSize
+        relativeFolderPath
         masterUri
         imageUri
         textUri
@@ -1329,6 +1330,7 @@ mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityRefer
         fileExtension
         fileName
         fileSize
+        relativeFolderPath
         masterUri
         imageUri
         textUri
@@ -2594,6 +2596,7 @@ mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $conne
       fileExtension
       fileName
       fileSize
+      relativeFolderPath
       masterUri
       imageUri
       textUri
@@ -2720,6 +2723,7 @@ mutation PublishText($text: String!, $textType: TextTypes, $connector: ContentPu
       fileExtension
       fileName
       fileSize
+      relativeFolderPath
       masterUri
       imageUri
       textUri
@@ -3632,6 +3636,7 @@ mutation AskGraphlit($prompt: String!, $type: SdkTypes, $id: ID, $specification:
           fileExtension
           fileName
           fileSize
+          relativeFolderPath
           masterUri
           imageUri
           textUri
@@ -3810,6 +3815,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
           fileExtension
           fileName
           fileSize
+          relativeFolderPath
           masterUri
           imageUri
           textUri
@@ -3989,6 +3995,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
             fileExtension
             fileName
             fileSize
+            relativeFolderPath
             masterUri
             imageUri
             textUri
@@ -4131,6 +4138,7 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
           fileExtension
           fileName
           fileSize
+          relativeFolderPath
           masterUri
           imageUri
           textUri
@@ -4310,6 +4318,7 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
             fileExtension
             fileName
             fileSize
+            relativeFolderPath
             masterUri
             imageUri
             textUri
@@ -4506,6 +4515,7 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
           fileExtension
           fileName
           fileSize
+          relativeFolderPath
           masterUri
           imageUri
           textUri
@@ -4685,6 +4695,7 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
             fileExtension
             fileName
             fileSize
+            relativeFolderPath
             masterUri
             imageUri
             textUri
@@ -4830,6 +4841,7 @@ query GetConversation($id: ID!, $correlationId: String) {
           fileExtension
           fileName
           fileSize
+          relativeFolderPath
           masterUri
           imageUri
           textUri
@@ -5156,6 +5168,7 @@ mutation Prompt($prompt: String, $mimeType: String, $data: String, $specificatio
           fileExtension
           fileName
           fileSize
+          relativeFolderPath
           masterUri
           imageUri
           textUri
@@ -5305,6 +5318,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
           fileExtension
           fileName
           fileSize
+          relativeFolderPath
           masterUri
           imageUri
           textUri
@@ -5484,6 +5498,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
             fileExtension
             fileName
             fileSize
+            relativeFolderPath
             masterUri
             imageUri
             textUri
@@ -5622,6 +5637,7 @@ mutation PublishConversation($id: ID!, $connector: ContentPublishingConnectorInp
       fileExtension
       fileName
       fileSize
+      relativeFolderPath
       masterUri
       imageUri
       textUri
@@ -5755,6 +5771,7 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
             fileExtension
             fileName
             fileSize
+            relativeFolderPath
             masterUri
             imageUri
             textUri
@@ -6134,6 +6151,7 @@ mutation ReviseContent($prompt: String!, $content: EntityReferenceInput!, $id: I
           fileExtension
           fileName
           fileSize
+          relativeFolderPath
           masterUri
           imageUri
           textUri
@@ -6279,6 +6297,7 @@ mutation ReviseEncodedImage($prompt: String!, $mimeType: String!, $data: String!
           fileExtension
           fileName
           fileSize
+          relativeFolderPath
           masterUri
           imageUri
           textUri
@@ -6423,6 +6442,7 @@ mutation ReviseImage($prompt: String!, $uri: URL!, $id: ID, $specification: Enti
           fileExtension
           fileName
           fileSize
+          relativeFolderPath
           masterUri
           imageUri
           textUri
@@ -6567,6 +6587,7 @@ mutation ReviseText($prompt: String!, $text: String!, $id: ID, $specification: E
           fileExtension
           fileName
           fileSize
+          relativeFolderPath
           masterUri
           imageUri
           textUri
@@ -6921,6 +6942,8 @@ query GetFeed($id: ID!, $correlationId: String) {
       siteType
       type
       isRecursive
+      allowedPaths
+      excludedPaths
       s3 {
         accessKey
         secretAccessKey
@@ -7266,6 +7289,8 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         siteType
         type
         isRecursive
+        allowedPaths
+        excludedPaths
         s3 {
           accessKey
           secretAccessKey
@@ -9990,6 +10015,7 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
           fileExtension
           fileName
           fileSize
+          relativeFolderPath
           masterUri
           imageUri
           textUri
@@ -11761,6 +11787,7 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
             specification {
               id
             }
+            tokenThreshold
           }
         }
       }
@@ -12018,6 +12045,7 @@ query GetWorkflow($id: ID!, $correlationId: String) {
             specification {
               id
             }
+            tokenThreshold
           }
         }
       }
@@ -12245,6 +12273,7 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
               specification {
                 id
               }
+              tokenThreshold
             }
           }
         }
@@ -12467,6 +12496,7 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
             specification {
               id
             }
+            tokenThreshold
           }
         }
       }
@@ -12688,6 +12718,7 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
             specification {
               id
             }
+            tokenThreshold
           }
         }
       }

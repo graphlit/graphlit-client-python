@@ -264,6 +264,7 @@ class UpdateWorkflowUpdateWorkflowExtractionJobsConnectorModelText(BaseModel):
     specification: Optional[
         "UpdateWorkflowUpdateWorkflowExtractionJobsConnectorModelTextSpecification"
     ]
+    token_threshold: Optional[int] = Field(alias="tokenThreshold")
 
 
 class UpdateWorkflowUpdateWorkflowExtractionJobsConnectorModelTextSpecification(

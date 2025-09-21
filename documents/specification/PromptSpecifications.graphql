@@ -23,6 +23,7 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
           fileExtension
           fileName
           fileSize
+          relativeFolderPath
           masterUri
           imageUri
           textUri

@@ -129,6 +129,7 @@ query GetWorkflow($id: ID!, $correlationId: String) {
             specification {
               id
             }
+            tokenThreshold
           }
         }
       }

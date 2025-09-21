@@ -273,6 +273,7 @@ class QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelText(BaseModel):
     specification: Optional[
         "QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelTextSpecification"
     ]
+    token_threshold: Optional[int] = Field(alias="tokenThreshold")
 
 
 class QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelTextSpecification(

@@ -23,6 +23,7 @@ mutation ReviseText($prompt: String!, $text: String!, $id: ID, $specification: E
           fileExtension
           fileName
           fileSize
+          relativeFolderPath
           masterUri
           imageUri
           textUri

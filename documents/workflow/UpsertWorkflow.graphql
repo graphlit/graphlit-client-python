@@ -124,6 +124,7 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
             specification {
               id
             }
+            tokenThreshold
           }
         }
       }

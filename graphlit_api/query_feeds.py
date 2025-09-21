@@ -87,6 +87,8 @@ class QueryFeedsFeedsResultsSite(BaseModel):
     site_type: SiteTypes = Field(alias="siteType")
     type: FeedServiceTypes
     is_recursive: Optional[bool] = Field(alias="isRecursive")
+    allowed_paths: Optional[List[str]] = Field(alias="allowedPaths")
+    excluded_paths: Optional[List[str]] = Field(alias="excludedPaths")
     s_3: Optional["QueryFeedsFeedsResultsSiteS3"] = Field(alias="s3")
     azure_blob: Optional["QueryFeedsFeedsResultsSiteAzureBlob"] = Field(
         alias="azureBlob"

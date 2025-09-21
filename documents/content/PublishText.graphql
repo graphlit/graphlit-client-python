@@ -16,6 +16,7 @@ mutation PublishText($text: String!, $textType: TextTypes, $connector: ContentPu
       fileExtension
       fileName
       fileSize
+      relativeFolderPath
       masterUri
       imageUri
       textUri

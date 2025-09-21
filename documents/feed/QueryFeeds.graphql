@@ -15,6 +15,8 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         siteType
         type
         isRecursive
+        allowedPaths
+        excludedPaths
         s3 {
           accessKey
           secretAccessKey

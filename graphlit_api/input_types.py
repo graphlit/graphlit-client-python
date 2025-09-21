@@ -1733,6 +1733,8 @@ class MedicalDrugUpdateInput(BaseModel):
 
 class SiteFeedPropertiesUpdateInput(BaseModel):
     is_recursive: Optional[bool] = Field(alias="isRecursive", default=None)
+    allowed_paths: Optional[List[str]] = Field(alias="allowedPaths", default=None)
+    excluded_paths: Optional[List[str]] = Field(alias="excludedPaths", default=None)
     s_3: Optional["AmazonFeedPropertiesUpdateInput"] = Field(alias="s3", default=None)
     azure_blob: Optional["AzureBlobFeedPropertiesUpdateInput"] = Field(
         alias="azureBlob", default=None
@@ -1898,6 +1900,8 @@ class ReplicateModelPropertiesInput(BaseModel):
 class SiteFeedPropertiesInput(BaseModel):
     type: FeedServiceTypes
     is_recursive: Optional[bool] = Field(alias="isRecursive", default=None)
+    allowed_paths: Optional[List[str]] = Field(alias="allowedPaths", default=None)
+    excluded_paths: Optional[List[str]] = Field(alias="excludedPaths", default=None)
     s_3: Optional["AmazonFeedPropertiesInput"] = Field(alias="s3", default=None)
     azure_blob: Optional["AzureBlobFeedPropertiesInput"] = Field(
         alias="azureBlob", default=None
@@ -1932,6 +1936,7 @@ class NotionDatabasesInput(BaseModel):
 
 class ModelTextExtractionPropertiesInput(BaseModel):
     specification: Optional["EntityReferenceInput"] = None
+    token_threshold: Optional[int] = Field(alias="tokenThreshold", default=None)
 
 
 class AtlassianJiraFeedPropertiesInput(BaseModel):

@@ -264,6 +264,7 @@ class UpsertWorkflowUpsertWorkflowExtractionJobsConnectorModelText(BaseModel):
     specification: Optional[
         "UpsertWorkflowUpsertWorkflowExtractionJobsConnectorModelTextSpecification"
     ]
+    token_threshold: Optional[int] = Field(alias="tokenThreshold")
 
 
 class UpsertWorkflowUpsertWorkflowExtractionJobsConnectorModelTextSpecification(

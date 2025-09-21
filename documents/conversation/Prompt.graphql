@@ -23,6 +23,7 @@ mutation Prompt($prompt: String, $mimeType: String, $data: String, $specificatio
           fileExtension
           fileName
           fileSize
+          relativeFolderPath
           masterUri
           imageUri
           textUri

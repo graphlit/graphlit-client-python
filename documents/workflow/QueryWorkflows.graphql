@@ -130,6 +130,7 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
               specification {
                 id
               }
+              tokenThreshold
             }
           }
         }

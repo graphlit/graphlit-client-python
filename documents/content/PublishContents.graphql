@@ -16,6 +16,7 @@ mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $conne
       fileExtension
       fileName
       fileSize
+      relativeFolderPath
       masterUri
       imageUri
       textUri
