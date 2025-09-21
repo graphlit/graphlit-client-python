@@ -35,6 +35,7 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
       fileExtension
       fileName
       fileSize
+      relativeFolderPath
       masterUri
       imageUri
       textUri

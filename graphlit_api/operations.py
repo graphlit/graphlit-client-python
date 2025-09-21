@@ -1553,6 +1553,7 @@ query GetContent($id: ID!, $correlationId: String) {
     fileExtension
     fileName
     fileSize
+    relativeFolderPath
     masterUri
     imageUri
     textUri
@@ -2291,6 +2292,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
       fileExtension
       fileName
       fileSize
+      relativeFolderPath
       masterUri
       imageUri
       textUri
@@ -2861,6 +2863,7 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
       fileExtension
       fileName
       fileSize
+      relativeFolderPath
       masterUri
       imageUri
       textUri
@@ -3177,6 +3180,7 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
       fileExtension
       fileName
       fileSize
+      relativeFolderPath
       masterUri
       imageUri
       textUri
