@@ -7131,6 +7131,7 @@ query GetFeed($id: ID!, $correlationId: String) {
       enableMeetingRecording
       meetingBotName
       google {
+        type
         calendarId
         beforeDate
         afterDate
@@ -7141,6 +7142,7 @@ query GetFeed($id: ID!, $correlationId: String) {
         authorizationId
       }
       microsoft {
+        type
         calendarId
         beforeDate
         afterDate
@@ -7481,6 +7483,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         enableMeetingRecording
         meetingBotName
         google {
+          type
           calendarId
           beforeDate
           afterDate
@@ -7491,6 +7494,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           authorizationId
         }
         microsoft {
+          type
           calendarId
           beforeDate
           afterDate

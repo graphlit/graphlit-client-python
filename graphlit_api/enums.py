@@ -384,6 +384,11 @@ class CalendarEventStatus(str, Enum):
     CANCELLED = "CANCELLED"
 
 
+class CalendarListingTypes(str, Enum):
+    PAST = "PAST"
+    NEW = "NEW"
+
+
 class OccurrenceTypes(str, Enum):
     IMAGE = "IMAGE"
     TIME = "TIME"

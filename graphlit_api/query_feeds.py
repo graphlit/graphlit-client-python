@@ -8,6 +8,7 @@ from pydantic import Field
 from .base_model import BaseModel
 from .enums import (
     BoxAuthenticationTypes,
+    CalendarListingTypes,
     DropboxAuthenticationTypes,
     EmailListingTypes,
     EntityState,
@@ -317,6 +318,7 @@ class QueryFeedsFeedsResultsCalendar(BaseModel):
 
 
 class QueryFeedsFeedsResultsCalendarGoogle(BaseModel):
+    type: Optional[CalendarListingTypes]
     calendar_id: Optional[str] = Field(alias="calendarId")
     before_date: Optional[Any] = Field(alias="beforeDate")
     after_date: Optional[Any] = Field(alias="afterDate")
@@ -330,6 +332,7 @@ class QueryFeedsFeedsResultsCalendarGoogle(BaseModel):
 
 
 class QueryFeedsFeedsResultsCalendarMicrosoft(BaseModel):
+    type: Optional[CalendarListingTypes]
     calendar_id: Optional[str] = Field(alias="calendarId")
     before_date: Optional[Any] = Field(alias="beforeDate")
     after_date: Optional[Any] = Field(alias="afterDate")

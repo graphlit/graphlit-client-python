@@ -20,6 +20,7 @@ from .enums import (
     CalendarAttendeeResponseStatus,
     CalendarEventStatus,
     CalendarEventVisibility,
+    CalendarListingTypes,
     CalendarRecurrencePattern,
     CalendarReminderMethod,
     CategoryFacetTypes,
@@ -1445,6 +1446,10 @@ class GoogleFeedPropertiesInput(BaseModel):
 
 
 class MicrosoftCalendarFeedPropertiesUpdateInput(BaseModel):
+    type: Optional[CalendarListingTypes] = None
+    calendar_id: Optional[str] = Field(alias="calendarId", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
     authentication_type: Optional[MicrosoftCalendarAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
@@ -2473,6 +2478,10 @@ class AzureBlobFeedPropertiesUpdateInput(BaseModel):
 
 
 class GoogleCalendarFeedPropertiesUpdateInput(BaseModel):
+    type: Optional[CalendarListingTypes] = None
+    calendar_id: Optional[str] = Field(alias="calendarId", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
     authentication_type: Optional[GoogleCalendarAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
@@ -2939,6 +2948,7 @@ class TwitterFeedPropertiesInput(BaseModel):
 
 
 class GoogleCalendarFeedPropertiesInput(BaseModel):
+    type: Optional[CalendarListingTypes] = None
     calendar_id: Optional[str] = Field(alias="calendarId", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
@@ -3722,6 +3732,7 @@ class EntityExtractionConnectorInput(BaseModel):
 
 
 class MicrosoftCalendarFeedPropertiesInput(BaseModel):
+    type: Optional[CalendarListingTypes] = None
     calendar_id: Optional[str] = Field(alias="calendarId", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
