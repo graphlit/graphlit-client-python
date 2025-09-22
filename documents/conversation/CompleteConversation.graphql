@@ -94,6 +94,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
             subject
             summary
             author
+            lastModifiedBy
             publisher
             description
             keywords
@@ -274,6 +275,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
               subject
               summary
               author
+              lastModifiedBy
               publisher
               description
               keywords

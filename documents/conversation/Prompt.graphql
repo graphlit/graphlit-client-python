@@ -94,6 +94,7 @@ mutation Prompt($prompt: String, $mimeType: String, $data: String, $specificatio
             subject
             summary
             author
+            lastModifiedBy
             publisher
             description
             keywords

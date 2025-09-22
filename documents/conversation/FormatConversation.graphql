@@ -94,6 +94,7 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
             subject
             summary
             author
+            lastModifiedBy
             publisher
             description
             keywords
@@ -274,6 +275,7 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
               subject
               summary
               author
+              lastModifiedBy
               publisher
               description
               keywords

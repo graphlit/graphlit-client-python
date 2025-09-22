@@ -94,6 +94,7 @@ mutation ReviseImage($prompt: String!, $uri: URL!, $id: ID, $specification: Enti
             subject
             summary
             author
+            lastModifiedBy
             publisher
             description
             keywords

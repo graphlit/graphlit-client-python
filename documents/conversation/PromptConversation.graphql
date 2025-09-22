@@ -94,6 +94,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
             subject
             summary
             author
+            lastModifiedBy
             publisher
             description
             keywords
@@ -274,6 +275,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
               subject
               summary
               author
+              lastModifiedBy
               publisher
               description
               keywords

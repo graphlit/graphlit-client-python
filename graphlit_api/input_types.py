@@ -49,6 +49,7 @@ from .enums import (
     EventFacetTypes,
     FeedListingTypes,
     FeedServiceTypes,
+    FeedSyncMode,
     FeedTypes,
     FilePreparationServiceTypes,
     FileTypes,
@@ -1154,6 +1155,7 @@ class FeedInput(BaseModel):
     name: str
     description: Optional[str] = None
     type: FeedTypes
+    sync_mode: Optional[FeedSyncMode] = Field(alias="syncMode", default=None)
     site: Optional["SiteFeedPropertiesInput"] = None
     calendar: Optional["CalendarFeedPropertiesInput"] = None
     email: Optional["EmailFeedPropertiesInput"] = None
@@ -1357,6 +1359,7 @@ class FeedUpdateInput(BaseModel):
     name: Optional[str] = None
     description: Optional[str] = None
     type: Optional[FeedTypes] = None
+    sync_mode: Optional[FeedSyncMode] = Field(alias="syncMode", default=None)
     site: Optional["SiteFeedPropertiesUpdateInput"] = None
     calendar: Optional["CalendarFeedPropertiesUpdateInput"] = None
     email: Optional["EmailFeedPropertiesUpdateInput"] = None
@@ -2323,6 +2326,10 @@ class CalendarFeedPropertiesUpdateInput(BaseModel):
     include_attachments: Optional[bool] = Field(
         alias="includeAttachments", default=None
     )
+    enable_meeting_recording: Optional[bool] = Field(
+        alias="enableMeetingRecording", default=None
+    )
+    meeting_bot_name: Optional[str] = Field(alias="meetingBotName", default=None)
     google: Optional["GoogleCalendarFeedPropertiesUpdateInput"] = None
     microsoft: Optional["MicrosoftCalendarFeedPropertiesUpdateInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
@@ -3534,6 +3541,10 @@ class CalendarFeedPropertiesInput(BaseModel):
     include_attachments: Optional[bool] = Field(
         alias="includeAttachments", default=None
     )
+    enable_meeting_recording: Optional[bool] = Field(
+        alias="enableMeetingRecording", default=None
+    )
+    meeting_bot_name: Optional[str] = Field(alias="meetingBotName", default=None)
     google: Optional["GoogleCalendarFeedPropertiesInput"] = None
     microsoft: Optional["MicrosoftCalendarFeedPropertiesInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)

@@ -90,6 +90,7 @@ mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityRefer
           subject
           summary
           author
+          lastModifiedBy
           publisher
           description
           keywords

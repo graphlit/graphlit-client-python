@@ -87,6 +87,7 @@ mutation PublishConversation($id: ID!, $connector: ContentPublishingConnectorInp
         subject
         summary
         author
+        lastModifiedBy
         publisher
         description
         keywords

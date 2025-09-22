@@ -94,6 +94,7 @@ mutation AskGraphlit($prompt: String!, $type: SdkTypes, $id: ID, $specification:
             subject
             summary
             author
+            lastModifiedBy
             publisher
             description
             keywords

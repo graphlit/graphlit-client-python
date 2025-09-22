@@ -178,6 +178,7 @@ class ContinueConversationContinueConversationMessageCitationsContentDocument(
     subject: Optional[str]
     summary: Optional[str]
     author: Optional[str]
+    last_modified_by: Optional[str] = Field(alias="lastModifiedBy")
     publisher: Optional[str]
     description: Optional[str]
     keywords: Optional[List[Optional[str]]]
@@ -423,6 +424,7 @@ class ContinueConversationContinueConversationDetailsMessagesCitationsContentDoc
     subject: Optional[str]
     summary: Optional[str]
     author: Optional[str]
+    last_modified_by: Optional[str] = Field(alias="lastModifiedBy")
     publisher: Optional[str]
     description: Optional[str]
     keywords: Optional[List[Optional[str]]]

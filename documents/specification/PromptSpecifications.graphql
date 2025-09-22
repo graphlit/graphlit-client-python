@@ -94,6 +94,7 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
             subject
             summary
             author
+            lastModifiedBy
             publisher
             description
             keywords

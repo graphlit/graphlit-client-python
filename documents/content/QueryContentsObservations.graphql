@@ -106,6 +106,7 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
         subject
         summary
         author
+        lastModifiedBy
         publisher
         description
         keywords

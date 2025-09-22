@@ -4,5 +4,6 @@ mutation UpdateFeed($feed: FeedUpdateInput!) {
     name
     state
     type
+    syncMode
   }
 }

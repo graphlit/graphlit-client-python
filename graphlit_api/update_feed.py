@@ -6,7 +6,7 @@ from typing import Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import EntityState, FeedTypes
+from .enums import EntityState, FeedSyncMode, FeedTypes
 
 
 class UpdateFeed(BaseModel):
@@ -18,6 +18,7 @@ class UpdateFeedUpdateFeed(BaseModel):
     name: str
     state: EntityState
     type: FeedTypes
+    sync_mode: Optional[FeedSyncMode] = Field(alias="syncMode")
 
 
 UpdateFeed.model_rebuild()

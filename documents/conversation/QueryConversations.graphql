@@ -102,6 +102,7 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
               subject
               summary
               author
+              lastModifiedBy
               publisher
               description
               keywords

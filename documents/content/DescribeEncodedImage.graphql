@@ -90,6 +90,7 @@ mutation DescribeEncodedImage($prompt: String!, $mimeType: String!, $data: Strin
           subject
           summary
           author
+          lastModifiedBy
           publisher
           description
           keywords

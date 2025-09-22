@@ -1263,6 +1263,7 @@ mutation DescribeEncodedImage($prompt: String!, $mimeType: String!, $data: Strin
           subject
           summary
           author
+          lastModifiedBy
           publisher
           description
           keywords
@@ -1401,6 +1402,7 @@ mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityRefer
           subject
           summary
           author
+          lastModifiedBy
           publisher
           description
           keywords
@@ -1624,6 +1626,7 @@ query GetContent($id: ID!, $correlationId: String) {
       subject
       summary
       author
+      lastModifiedBy
       publisher
       description
       keywords
@@ -2363,6 +2366,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
         subject
         summary
         author
+        lastModifiedBy
         publisher
         description
         keywords
@@ -2669,6 +2673,7 @@ mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $conne
         subject
         summary
         author
+        lastModifiedBy
         publisher
         description
         keywords
@@ -2796,6 +2801,7 @@ mutation PublishText($text: String!, $textType: TextTypes, $connector: ContentPu
         subject
         summary
         author
+        lastModifiedBy
         publisher
         description
         keywords
@@ -2934,6 +2940,7 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
         subject
         summary
         author
+        lastModifiedBy
         publisher
         description
         keywords
@@ -3251,6 +3258,7 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
         subject
         summary
         author
+        lastModifiedBy
         publisher
         description
         keywords
@@ -3711,6 +3719,7 @@ mutation AskGraphlit($prompt: String!, $type: SdkTypes, $id: ID, $specification:
             subject
             summary
             author
+            lastModifiedBy
             publisher
             description
             keywords
@@ -3890,6 +3899,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
             subject
             summary
             author
+            lastModifiedBy
             publisher
             description
             keywords
@@ -4070,6 +4080,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
               subject
               summary
               author
+              lastModifiedBy
               publisher
               description
               keywords
@@ -4213,6 +4224,7 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
             subject
             summary
             author
+            lastModifiedBy
             publisher
             description
             keywords
@@ -4393,6 +4405,7 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
               subject
               summary
               author
+              lastModifiedBy
               publisher
               description
               keywords
@@ -4590,6 +4603,7 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
             subject
             summary
             author
+            lastModifiedBy
             publisher
             description
             keywords
@@ -4770,6 +4784,7 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
               subject
               summary
               author
+              lastModifiedBy
               publisher
               description
               keywords
@@ -4916,6 +4931,7 @@ query GetConversation($id: ID!, $correlationId: String) {
             subject
             summary
             author
+            lastModifiedBy
             publisher
             description
             keywords
@@ -5243,6 +5259,7 @@ mutation Prompt($prompt: String, $mimeType: String, $data: String, $specificatio
             subject
             summary
             author
+            lastModifiedBy
             publisher
             description
             keywords
@@ -5393,6 +5410,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
             subject
             summary
             author
+            lastModifiedBy
             publisher
             description
             keywords
@@ -5573,6 +5591,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
               subject
               summary
               author
+              lastModifiedBy
               publisher
               description
               keywords
@@ -5712,6 +5731,7 @@ mutation PublishConversation($id: ID!, $connector: ContentPublishingConnectorInp
         subject
         summary
         author
+        lastModifiedBy
         publisher
         description
         keywords
@@ -5846,6 +5866,7 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
               subject
               summary
               author
+              lastModifiedBy
               publisher
               description
               keywords
@@ -6226,6 +6247,7 @@ mutation ReviseContent($prompt: String!, $content: EntityReferenceInput!, $id: I
             subject
             summary
             author
+            lastModifiedBy
             publisher
             description
             keywords
@@ -6372,6 +6394,7 @@ mutation ReviseEncodedImage($prompt: String!, $mimeType: String!, $data: String!
             subject
             summary
             author
+            lastModifiedBy
             publisher
             description
             keywords
@@ -6517,6 +6540,7 @@ mutation ReviseImage($prompt: String!, $uri: URL!, $id: ID, $specification: Enti
             subject
             summary
             author
+            lastModifiedBy
             publisher
             description
             keywords
@@ -6662,6 +6686,7 @@ mutation ReviseText($prompt: String!, $text: String!, $id: ID, $specification: E
             subject
             summary
             author
+            lastModifiedBy
             publisher
             description
             keywords
@@ -6868,6 +6893,7 @@ mutation CreateFeed($feed: FeedInput!, $correlationId: String) {
     name
     state
     type
+    syncMode
   }
 }
 """
@@ -6942,6 +6968,7 @@ query GetFeed($id: ID!, $correlationId: String) {
     state
     correlationId
     type
+    syncMode
     site {
       siteType
       type
@@ -7101,6 +7128,8 @@ query GetFeed($id: ID!, $correlationId: String) {
     calendar {
       type
       includeAttachments
+      enableMeetingRecording
+      meetingBotName
       google {
         calendarId
         beforeDate
@@ -7289,6 +7318,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
       state
       correlationId
       type
+      syncMode
       site {
         siteType
         type
@@ -7448,6 +7478,8 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
       calendar {
         type
         includeAttachments
+        enableMeetingRecording
+        meetingBotName
         google {
           calendarId
           beforeDate
@@ -7704,6 +7736,7 @@ mutation UpdateFeed($feed: FeedUpdateInput!) {
     name
     state
     type
+    syncMode
   }
 }
 """
@@ -10090,6 +10123,7 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
             subject
             summary
             author
+            lastModifiedBy
             publisher
             description
             keywords

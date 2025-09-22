@@ -94,6 +94,7 @@ mutation ReviseEncodedImage($prompt: String!, $mimeType: String!, $data: String!
             subject
             summary
             author
+            lastModifiedBy
             publisher
             description
             keywords

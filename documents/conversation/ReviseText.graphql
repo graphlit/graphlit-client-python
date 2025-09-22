@@ -94,6 +94,7 @@ mutation ReviseText($prompt: String!, $text: String!, $id: ID, $specification: E
             subject
             summary
             author
+            lastModifiedBy
             publisher
             description
             keywords

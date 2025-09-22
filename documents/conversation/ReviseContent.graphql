@@ -94,6 +94,7 @@ mutation ReviseContent($prompt: String!, $content: EntityReferenceInput!, $id: I
             subject
             summary
             author
+            lastModifiedBy
             publisher
             description
             keywords

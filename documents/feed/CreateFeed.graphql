@@ -4,5 +4,6 @@ mutation CreateFeed($feed: FeedInput!, $correlationId: String) {
     name
     state
     type
+    syncMode
   }
 }

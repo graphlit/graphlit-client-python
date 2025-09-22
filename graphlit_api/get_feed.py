@@ -13,6 +13,7 @@ from .enums import (
     EntityState,
     FeedListingTypes,
     FeedServiceTypes,
+    FeedSyncMode,
     FeedTypes,
     GitHubAuthenticationTypes,
     GitHubIssueAuthenticationTypes,
@@ -47,6 +48,7 @@ class GetFeedFeed(BaseModel):
     state: EntityState
     correlation_id: Optional[str] = Field(alias="correlationId")
     type: FeedTypes
+    sync_mode: Optional[FeedSyncMode] = Field(alias="syncMode")
     site: Optional["GetFeedFeedSite"]
     email: Optional["GetFeedFeedEmail"]
     issue: Optional["GetFeedFeedIssue"]
@@ -295,6 +297,8 @@ class GetFeedFeedIssueTrello(BaseModel):
 class GetFeedFeedCalendar(BaseModel):
     type: FeedServiceTypes
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
+    enable_meeting_recording: Optional[bool] = Field(alias="enableMeetingRecording")
+    meeting_bot_name: Optional[str] = Field(alias="meetingBotName")
     google: Optional["GetFeedFeedCalendarGoogle"]
     microsoft: Optional["GetFeedFeedCalendarMicrosoft"]
     read_limit: Optional[int] = Field(alias="readLimit")

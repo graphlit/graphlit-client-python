@@ -87,6 +87,7 @@ mutation PublishText($text: String!, $textType: TextTypes, $connector: ContentPu
         subject
         summary
         author
+        lastModifiedBy
         publisher
         description
         keywords

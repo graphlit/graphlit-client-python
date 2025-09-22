@@ -873,6 +873,11 @@ class SpecificationTypes(str, Enum):
     PREPARATION = "PREPARATION"
 
 
+class FeedSyncMode(str, Enum):
+    ARCHIVE = "ARCHIVE"
+    MIRROR = "MIRROR"
+
+
 class SiteTypes(str, Enum):
     WATCH = "WATCH"
     SWEEP = "SWEEP"

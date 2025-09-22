@@ -130,6 +130,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
         subject
         summary
         author
+        lastModifiedBy
         publisher
         description
         keywords

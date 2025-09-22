@@ -101,6 +101,7 @@ query GetConversation($id: ID!, $correlationId: String) {
             subject
             summary
             author
+            lastModifiedBy
             publisher
             description
             keywords

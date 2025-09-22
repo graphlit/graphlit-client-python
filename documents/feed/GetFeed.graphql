@@ -10,6 +10,7 @@ query GetFeed($id: ID!, $correlationId: String) {
     state
     correlationId
     type
+    syncMode
     site {
       siteType
       type
@@ -169,6 +170,8 @@ query GetFeed($id: ID!, $correlationId: String) {
     calendar {
       type
       includeAttachments
+      enableMeetingRecording
+      meetingBotName
       google {
         calendarId
         beforeDate

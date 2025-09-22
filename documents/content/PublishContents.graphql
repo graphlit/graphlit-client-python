@@ -87,6 +87,7 @@ mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $conne
         subject
         summary
         author
+        lastModifiedBy
         publisher
         description
         keywords

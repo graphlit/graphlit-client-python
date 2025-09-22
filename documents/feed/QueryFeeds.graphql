@@ -11,6 +11,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
       state
       correlationId
       type
+      syncMode
       site {
         siteType
         type
@@ -170,6 +171,8 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
       calendar {
         type
         includeAttachments
+        enableMeetingRecording
+        meetingBotName
         google {
           calendarId
           beforeDate
