@@ -233,6 +233,10 @@ query GetConversation($id: ID!, $correlationId: String) {
           states
         }
       }
+      hasObservations
+      hasFeeds
+      hasCollections
+      hasWorkflows
     }
     augmentedFilter {
       dateRange {
@@ -320,6 +324,10 @@ query GetConversation($id: ID!, $correlationId: String) {
           states
         }
       }
+      hasObservations
+      hasFeeds
+      hasCollections
+      hasWorkflows
     }
   }
 }

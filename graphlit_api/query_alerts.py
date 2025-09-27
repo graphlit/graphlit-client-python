@@ -92,6 +92,10 @@ class QueryAlertsAlertsResultsFilter(BaseModel):
     observations: Optional[List["QueryAlertsAlertsResultsFilterObservations"]]
     or_: Optional[List["QueryAlertsAlertsResultsFilterOr"]] = Field(alias="or")
     and_: Optional[List["QueryAlertsAlertsResultsFilterAnd"]] = Field(alias="and")
+    has_observations: Optional[bool] = Field(alias="hasObservations")
+    has_feeds: Optional[bool] = Field(alias="hasFeeds")
+    has_collections: Optional[bool] = Field(alias="hasCollections")
+    has_workflows: Optional[bool] = Field(alias="hasWorkflows")
 
 
 class QueryAlertsAlertsResultsFilterDateRange(BaseModel):

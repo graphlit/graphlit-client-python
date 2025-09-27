@@ -1982,6 +1982,7 @@ from .operations import (
     SUGGEST_CONVERSATION_GQL,
     SUMMARIZE_CONTENTS_GQL,
     SUMMARIZE_TEXT_GQL,
+    TRIGGER_FEED_GQL,
     UPDATE_ALERT_GQL,
     UPDATE_CATEGORY_GQL,
     UPDATE_COLLECTION_GQL,
@@ -2211,7 +2212,6 @@ from .query_contents import (
     QueryContentsContentsResultsImage,
     QueryContentsContentsResultsIssue,
     QueryContentsContentsResultsLanguage,
-    QueryContentsContentsResultsLinks,
     QueryContentsContentsResultsLocation,
     QueryContentsContentsResultsOwner,
     QueryContentsContentsResultsPackage,
@@ -2259,7 +2259,6 @@ from .query_contents_observations import (
     QueryContentsObservationsContentsResultsImage,
     QueryContentsObservationsContentsResultsIssue,
     QueryContentsObservationsContentsResultsLanguage,
-    QueryContentsObservationsContentsResultsLinks,
     QueryContentsObservationsContentsResultsLocation,
     QueryContentsObservationsContentsResultsObservations,
     QueryContentsObservationsContentsResultsObservationsObservable,
@@ -2831,6 +2830,7 @@ from .summarize_text import (
     SummarizeTextSummarizeTextItems,
     SummarizeTextSummarizeTextSpecification,
 )
+from .trigger_feed import TriggerFeed, TriggerFeedTriggerFeed
 from .update_alert import UpdateAlert, UpdateAlertUpdateAlert
 from .update_category import UpdateCategory, UpdateCategoryUpdateCategory
 from .update_collection import UpdateCollection, UpdateCollectionUpdateCollection
@@ -5054,7 +5054,6 @@ __all__ = [
     "QueryContentsContentsResultsImage",
     "QueryContentsContentsResultsIssue",
     "QueryContentsContentsResultsLanguage",
-    "QueryContentsContentsResultsLinks",
     "QueryContentsContentsResultsLocation",
     "QueryContentsContentsResultsOwner",
     "QueryContentsContentsResultsPackage",
@@ -5096,7 +5095,6 @@ __all__ = [
     "QueryContentsObservationsContentsResultsImage",
     "QueryContentsObservationsContentsResultsIssue",
     "QueryContentsObservationsContentsResultsLanguage",
-    "QueryContentsObservationsContentsResultsLinks",
     "QueryContentsObservationsContentsResultsLocation",
     "QueryContentsObservationsContentsResultsObservations",
     "QueryContentsObservationsContentsResultsObservationsObservable",
@@ -5654,6 +5652,7 @@ __all__ = [
     "SummarizeTextSummarizeTextContent",
     "SummarizeTextSummarizeTextItems",
     "SummarizeTextSummarizeTextSpecification",
+    "TRIGGER_FEED_GQL",
     "TextContentInput",
     "TextRoles",
     "TextTypes",
@@ -5663,6 +5662,8 @@ __all__ = [
     "TrelloFeedPropertiesInput",
     "TrelloFeedPropertiesUpdateInput",
     "TrelloTypes",
+    "TriggerFeed",
+    "TriggerFeedTriggerFeed",
     "TwitterFeedPropertiesInput",
     "TwitterFeedPropertiesUpdateInput",
     "TwitterIntegrationPropertiesInput",

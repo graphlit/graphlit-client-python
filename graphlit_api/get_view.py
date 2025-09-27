@@ -56,6 +56,10 @@ class GetViewViewFilter(BaseModel):
     observations: Optional[List["GetViewViewFilterObservations"]]
     or_: Optional[List["GetViewViewFilterOr"]] = Field(alias="or")
     and_: Optional[List["GetViewViewFilterAnd"]] = Field(alias="and")
+    has_observations: Optional[bool] = Field(alias="hasObservations")
+    has_feeds: Optional[bool] = Field(alias="hasFeeds")
+    has_collections: Optional[bool] = Field(alias="hasCollections")
+    has_workflows: Optional[bool] = Field(alias="hasWorkflows")
 
 
 class GetViewViewFilterDateRange(BaseModel):
@@ -202,6 +206,10 @@ class GetViewViewAugmentedFilter(BaseModel):
     observations: Optional[List["GetViewViewAugmentedFilterObservations"]]
     or_: Optional[List["GetViewViewAugmentedFilterOr"]] = Field(alias="or")
     and_: Optional[List["GetViewViewAugmentedFilterAnd"]] = Field(alias="and")
+    has_observations: Optional[bool] = Field(alias="hasObservations")
+    has_feeds: Optional[bool] = Field(alias="hasFeeds")
+    has_collections: Optional[bool] = Field(alias="hasCollections")
+    has_workflows: Optional[bool] = Field(alias="hasWorkflows")
 
 
 class GetViewViewAugmentedFilterDateRange(BaseModel):

@@ -101,6 +101,10 @@ query GetAlert($id: ID!, $correlationId: String) {
           states
         }
       }
+      hasObservations
+      hasFeeds
+      hasCollections
+      hasWorkflows
     }
     integration {
       type

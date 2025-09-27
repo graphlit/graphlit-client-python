@@ -90,6 +90,10 @@ mutation UpsertView($view: ViewInput!) {
           states
         }
       }
+      hasObservations
+      hasFeeds
+      hasCollections
+      hasWorkflows
     }
     augmentedFilter {
       dateRange {
@@ -177,6 +181,10 @@ mutation UpsertView($view: ViewInput!) {
           states
         }
       }
+      hasObservations
+      hasFeeds
+      hasCollections
+      hasWorkflows
     }
   }
 }

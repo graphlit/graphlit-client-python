@@ -252,6 +252,10 @@ class QueryConversationsConversationsResultsFilter(BaseModel):
     and_: Optional[List["QueryConversationsConversationsResultsFilterAnd"]] = Field(
         alias="and"
     )
+    has_observations: Optional[bool] = Field(alias="hasObservations")
+    has_feeds: Optional[bool] = Field(alias="hasFeeds")
+    has_collections: Optional[bool] = Field(alias="hasCollections")
+    has_workflows: Optional[bool] = Field(alias="hasWorkflows")
 
 
 class QueryConversationsConversationsResultsFilterDateRange(BaseModel):
@@ -420,6 +424,10 @@ class QueryConversationsConversationsResultsAugmentedFilter(BaseModel):
     and_: Optional[List["QueryConversationsConversationsResultsAugmentedFilterAnd"]] = (
         Field(alias="and")
     )
+    has_observations: Optional[bool] = Field(alias="hasObservations")
+    has_feeds: Optional[bool] = Field(alias="hasFeeds")
+    has_collections: Optional[bool] = Field(alias="hasCollections")
+    has_workflows: Optional[bool] = Field(alias="hasWorkflows")
 
 
 class QueryConversationsConversationsResultsAugmentedFilterDateRange(BaseModel):

@@ -43,12 +43,6 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
       transcriptUri
       summary
       customSummary
-      keywords
-      bullets
-      headlines
-      posts
-      chapters
-      questions
       quotes
       video {
         width
@@ -219,10 +213,6 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
       feed {
         id
         name
-      }
-      links {
-        uri
-        linkType
       }
       workflow {
         id

@@ -16,7 +16,6 @@ from .enums import (
     EntityState,
     FileTypes,
     ImageProjectionTypes,
-    LinkTypes,
     MailImportance,
     MailPriority,
     MailSensitivity,
@@ -67,12 +66,6 @@ class QueryContentsObservationsContentsResults(BaseModel):
     transcript_uri: Optional[Any] = Field(alias="transcriptUri")
     summary: Optional[str]
     custom_summary: Optional[str] = Field(alias="customSummary")
-    keywords: Optional[List[str]]
-    bullets: Optional[List[str]]
-    headlines: Optional[List[str]]
-    posts: Optional[List[str]]
-    chapters: Optional[List[str]]
-    questions: Optional[List[str]]
     quotes: Optional[List[str]]
     video: Optional["QueryContentsObservationsContentsResultsVideo"]
     audio: Optional["QueryContentsObservationsContentsResultsAudio"]
@@ -84,7 +77,6 @@ class QueryContentsObservationsContentsResults(BaseModel):
     package: Optional["QueryContentsObservationsContentsResultsPackage"]
     language: Optional["QueryContentsObservationsContentsResultsLanguage"]
     feed: Optional["QueryContentsObservationsContentsResultsFeed"]
-    links: Optional[List["QueryContentsObservationsContentsResultsLinks"]]
     workflow: Optional["QueryContentsObservationsContentsResultsWorkflow"]
     pages: Optional[List["QueryContentsObservationsContentsResultsPages"]]
     segments: Optional[List["QueryContentsObservationsContentsResultsSegments"]]
@@ -317,11 +309,6 @@ class QueryContentsObservationsContentsResultsLanguage(BaseModel):
 class QueryContentsObservationsContentsResultsFeed(BaseModel):
     id: str
     name: str
-
-
-class QueryContentsObservationsContentsResultsLinks(BaseModel):
-    uri: Optional[Any]
-    link_type: Optional[LinkTypes] = Field(alias="linkType")
 
 
 class QueryContentsObservationsContentsResultsWorkflow(BaseModel):

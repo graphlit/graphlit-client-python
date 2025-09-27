@@ -234,6 +234,10 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
             states
           }
         }
+        hasObservations
+        hasFeeds
+        hasCollections
+        hasWorkflows
       }
       augmentedFilter {
         dateRange {
@@ -321,6 +325,10 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
             states
           }
         }
+        hasObservations
+        hasFeeds
+        hasCollections
+        hasWorkflows
       }
     }
   }

@@ -288,6 +288,7 @@ __all__ = [
     "SUGGEST_CONVERSATION_GQL",
     "SUMMARIZE_CONTENTS_GQL",
     "SUMMARIZE_TEXT_GQL",
+    "TRIGGER_FEED_GQL",
     "UPDATE_ALERT_GQL",
     "UPDATE_CATEGORY_GQL",
     "UPDATE_COLLECTION_GQL",
@@ -501,6 +502,10 @@ query GetAlert($id: ID!, $correlationId: String) {
           states
         }
       }
+      hasObservations
+      hasFeeds
+      hasCollections
+      hasWorkflows
     }
     integration {
       type
@@ -668,6 +673,10 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
             states
           }
         }
+        hasObservations
+        hasFeeds
+        hasCollections
+        hasWorkflows
       }
       integration {
         type
@@ -2877,12 +2886,6 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
       transcriptUri
       summary
       customSummary
-      keywords
-      bullets
-      headlines
-      posts
-      chapters
-      questions
       quotes
       video {
         width
@@ -3053,10 +3056,6 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
       feed {
         id
         name
-      }
-      links {
-        uri
-        linkType
       }
       workflow {
         id
@@ -3195,12 +3194,6 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
       transcriptUri
       summary
       customSummary
-      keywords
-      bullets
-      headlines
-      posts
-      chapters
-      questions
       quotes
       video {
         width
@@ -3371,10 +3364,6 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
       feed {
         id
         name
-      }
-      links {
-        uri
-        linkType
       }
       workflow {
         id
@@ -5063,6 +5052,10 @@ query GetConversation($id: ID!, $correlationId: String) {
           states
         }
       }
+      hasObservations
+      hasFeeds
+      hasCollections
+      hasWorkflows
     }
     augmentedFilter {
       dateRange {
@@ -5150,6 +5143,10 @@ query GetConversation($id: ID!, $correlationId: String) {
           states
         }
       }
+      hasObservations
+      hasFeeds
+      hasCollections
+      hasWorkflows
     }
   }
 }
@@ -5998,6 +5995,10 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
             states
           }
         }
+        hasObservations
+        hasFeeds
+        hasCollections
+        hasWorkflows
       }
       augmentedFilter {
         dateRange {
@@ -6085,6 +6086,10 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
             states
           }
         }
+        hasObservations
+        hasFeeds
+        hasCollections
+        hasWorkflows
       }
     }
   }
@@ -7729,6 +7734,15 @@ QUERY_SLACK_CHANNELS_GQL = """
 query QuerySlackChannels($properties: SlackChannelsInput!) {
   slackChannels(properties: $properties) {
     results
+  }
+}
+"""
+
+TRIGGER_FEED_GQL = """
+mutation TriggerFeed($id: ID!) {
+  triggerFeed(id: $id) {
+    id
+    state
   }
 }
 """
@@ -10811,6 +10825,10 @@ mutation CreateView($view: ViewInput!) {
           states
         }
       }
+      hasObservations
+      hasFeeds
+      hasCollections
+      hasWorkflows
     }
     augmentedFilter {
       dateRange {
@@ -10898,6 +10916,10 @@ mutation CreateView($view: ViewInput!) {
           states
         }
       }
+      hasObservations
+      hasFeeds
+      hasCollections
+      hasWorkflows
     }
   }
 }
@@ -11032,6 +11054,10 @@ query GetView($id: ID!, $correlationId: String) {
           states
         }
       }
+      hasObservations
+      hasFeeds
+      hasCollections
+      hasWorkflows
     }
     augmentedFilter {
       dateRange {
@@ -11119,6 +11145,10 @@ query GetView($id: ID!, $correlationId: String) {
           states
         }
       }
+      hasObservations
+      hasFeeds
+      hasCollections
+      hasWorkflows
     }
   }
 }
@@ -11223,6 +11253,10 @@ query QueryViews($filter: ViewFilter, $correlationId: String) {
             states
           }
         }
+        hasObservations
+        hasFeeds
+        hasCollections
+        hasWorkflows
       }
       augmentedFilter {
         dateRange {
@@ -11310,6 +11344,10 @@ query QueryViews($filter: ViewFilter, $correlationId: String) {
             states
           }
         }
+        hasObservations
+        hasFeeds
+        hasCollections
+        hasWorkflows
       }
     }
   }
@@ -11409,6 +11447,10 @@ mutation UpdateView($view: ViewUpdateInput!) {
           states
         }
       }
+      hasObservations
+      hasFeeds
+      hasCollections
+      hasWorkflows
     }
     augmentedFilter {
       dateRange {
@@ -11496,6 +11538,10 @@ mutation UpdateView($view: ViewUpdateInput!) {
           states
         }
       }
+      hasObservations
+      hasFeeds
+      hasCollections
+      hasWorkflows
     }
   }
 }
@@ -11594,6 +11640,10 @@ mutation UpsertView($view: ViewInput!) {
           states
         }
       }
+      hasObservations
+      hasFeeds
+      hasCollections
+      hasWorkflows
     }
     augmentedFilter {
       dateRange {
@@ -11681,6 +11731,10 @@ mutation UpsertView($view: ViewInput!) {
           states
         }
       }
+      hasObservations
+      hasFeeds
+      hasCollections
+      hasWorkflows
     }
   }
 }

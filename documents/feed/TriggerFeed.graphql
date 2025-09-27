@@ -1,0 +1,6 @@
+mutation TriggerFeed($id: ID!) {
+  triggerFeed(id: $id) {
+    id
+    state
+  }
+}

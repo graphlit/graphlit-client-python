@@ -62,6 +62,10 @@ class QueryViewsViewsResultsFilter(BaseModel):
     observations: Optional[List["QueryViewsViewsResultsFilterObservations"]]
     or_: Optional[List["QueryViewsViewsResultsFilterOr"]] = Field(alias="or")
     and_: Optional[List["QueryViewsViewsResultsFilterAnd"]] = Field(alias="and")
+    has_observations: Optional[bool] = Field(alias="hasObservations")
+    has_feeds: Optional[bool] = Field(alias="hasFeeds")
+    has_collections: Optional[bool] = Field(alias="hasCollections")
+    has_workflows: Optional[bool] = Field(alias="hasWorkflows")
 
 
 class QueryViewsViewsResultsFilterDateRange(BaseModel):
@@ -210,6 +214,10 @@ class QueryViewsViewsResultsAugmentedFilter(BaseModel):
     and_: Optional[List["QueryViewsViewsResultsAugmentedFilterAnd"]] = Field(
         alias="and"
     )
+    has_observations: Optional[bool] = Field(alias="hasObservations")
+    has_feeds: Optional[bool] = Field(alias="hasFeeds")
+    has_collections: Optional[bool] = Field(alias="hasCollections")
+    has_workflows: Optional[bool] = Field(alias="hasWorkflows")
 
 
 class QueryViewsViewsResultsAugmentedFilterDateRange(BaseModel):

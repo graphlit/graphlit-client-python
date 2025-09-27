@@ -102,6 +102,10 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
             states
           }
         }
+        hasObservations
+        hasFeeds
+        hasCollections
+        hasWorkflows
       }
       integration {
         type

@@ -51,6 +51,10 @@ class UpsertViewUpsertViewFilter(BaseModel):
     observations: Optional[List["UpsertViewUpsertViewFilterObservations"]]
     or_: Optional[List["UpsertViewUpsertViewFilterOr"]] = Field(alias="or")
     and_: Optional[List["UpsertViewUpsertViewFilterAnd"]] = Field(alias="and")
+    has_observations: Optional[bool] = Field(alias="hasObservations")
+    has_feeds: Optional[bool] = Field(alias="hasFeeds")
+    has_collections: Optional[bool] = Field(alias="hasCollections")
+    has_workflows: Optional[bool] = Field(alias="hasWorkflows")
 
 
 class UpsertViewUpsertViewFilterDateRange(BaseModel):
@@ -197,6 +201,10 @@ class UpsertViewUpsertViewAugmentedFilter(BaseModel):
     observations: Optional[List["UpsertViewUpsertViewAugmentedFilterObservations"]]
     or_: Optional[List["UpsertViewUpsertViewAugmentedFilterOr"]] = Field(alias="or")
     and_: Optional[List["UpsertViewUpsertViewAugmentedFilterAnd"]] = Field(alias="and")
+    has_observations: Optional[bool] = Field(alias="hasObservations")
+    has_feeds: Optional[bool] = Field(alias="hasFeeds")
+    has_collections: Optional[bool] = Field(alias="hasCollections")
+    has_workflows: Optional[bool] = Field(alias="hasWorkflows")
 
 
 class UpsertViewUpsertViewAugmentedFilterDateRange(BaseModel):

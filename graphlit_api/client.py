@@ -629,6 +629,7 @@ from .operations import (
     SUGGEST_CONVERSATION_GQL,
     SUMMARIZE_CONTENTS_GQL,
     SUMMARIZE_TEXT_GQL,
+    TRIGGER_FEED_GQL,
     UPDATE_ALERT_GQL,
     UPDATE_CATEGORY_GQL,
     UPDATE_COLLECTION_GQL,
@@ -743,6 +744,7 @@ from .specification_exists import SpecificationExists
 from .suggest_conversation import SuggestConversation
 from .summarize_contents import SummarizeContents
 from .summarize_text import SummarizeText
+from .trigger_feed import TriggerFeed
 from .update_alert import UpdateAlert
 from .update_category import UpdateCategory
 from .update_collection import UpdateCollection
@@ -3096,6 +3098,17 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QuerySlackChannels.model_validate(data)
+
+    async def trigger_feed(self, id: str, **kwargs: Any) -> TriggerFeed:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=TRIGGER_FEED_GQL,
+            operation_name="TriggerFeed",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return TriggerFeed.model_validate(data)
 
     async def update_feed(self, feed: FeedUpdateInput, **kwargs: Any) -> UpdateFeed:
         variables: Dict[str, object] = {"feed": feed}

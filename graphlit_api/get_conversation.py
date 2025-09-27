@@ -228,6 +228,10 @@ class GetConversationConversationFilter(BaseModel):
     observations: Optional[List["GetConversationConversationFilterObservations"]]
     or_: Optional[List["GetConversationConversationFilterOr"]] = Field(alias="or")
     and_: Optional[List["GetConversationConversationFilterAnd"]] = Field(alias="and")
+    has_observations: Optional[bool] = Field(alias="hasObservations")
+    has_feeds: Optional[bool] = Field(alias="hasFeeds")
+    has_collections: Optional[bool] = Field(alias="hasCollections")
+    has_workflows: Optional[bool] = Field(alias="hasWorkflows")
 
 
 class GetConversationConversationFilterDateRange(BaseModel):
@@ -380,6 +384,10 @@ class GetConversationConversationAugmentedFilter(BaseModel):
     and_: Optional[List["GetConversationConversationAugmentedFilterAnd"]] = Field(
         alias="and"
     )
+    has_observations: Optional[bool] = Field(alias="hasObservations")
+    has_feeds: Optional[bool] = Field(alias="hasFeeds")
+    has_collections: Optional[bool] = Field(alias="hasCollections")
+    has_workflows: Optional[bool] = Field(alias="hasWorkflows")
 
 
 class GetConversationConversationAugmentedFilterDateRange(BaseModel):

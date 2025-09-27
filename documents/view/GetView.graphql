@@ -95,6 +95,10 @@ query GetView($id: ID!, $correlationId: String) {
           states
         }
       }
+      hasObservations
+      hasFeeds
+      hasCollections
+      hasWorkflows
     }
     augmentedFilter {
       dateRange {
@@ -182,6 +186,10 @@ query GetView($id: ID!, $correlationId: String) {
           states
         }
       }
+      hasObservations
+      hasFeeds
+      hasCollections
+      hasWorkflows
     }
   }
 }

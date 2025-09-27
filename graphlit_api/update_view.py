@@ -51,6 +51,10 @@ class UpdateViewUpdateViewFilter(BaseModel):
     observations: Optional[List["UpdateViewUpdateViewFilterObservations"]]
     or_: Optional[List["UpdateViewUpdateViewFilterOr"]] = Field(alias="or")
     and_: Optional[List["UpdateViewUpdateViewFilterAnd"]] = Field(alias="and")
+    has_observations: Optional[bool] = Field(alias="hasObservations")
+    has_feeds: Optional[bool] = Field(alias="hasFeeds")
+    has_collections: Optional[bool] = Field(alias="hasCollections")
+    has_workflows: Optional[bool] = Field(alias="hasWorkflows")
 
 
 class UpdateViewUpdateViewFilterDateRange(BaseModel):
@@ -197,6 +201,10 @@ class UpdateViewUpdateViewAugmentedFilter(BaseModel):
     observations: Optional[List["UpdateViewUpdateViewAugmentedFilterObservations"]]
     or_: Optional[List["UpdateViewUpdateViewAugmentedFilterOr"]] = Field(alias="or")
     and_: Optional[List["UpdateViewUpdateViewAugmentedFilterAnd"]] = Field(alias="and")
+    has_observations: Optional[bool] = Field(alias="hasObservations")
+    has_feeds: Optional[bool] = Field(alias="hasFeeds")
+    has_collections: Optional[bool] = Field(alias="hasCollections")
+    has_workflows: Optional[bool] = Field(alias="hasWorkflows")
 
 
 class UpdateViewUpdateViewAugmentedFilterDateRange(BaseModel):

@@ -1649,6 +1649,10 @@ class ContentCriteriaInput(BaseModel):
     observations: Optional[List["ObservationCriteriaInput"]] = None
     or_: Optional[List["ContentCriteriaLevelInput"]] = Field(alias="or", default=None)
     and_: Optional[List["ContentCriteriaLevelInput"]] = Field(alias="and", default=None)
+    has_observations: Optional[bool] = Field(alias="hasObservations", default=None)
+    has_feeds: Optional[bool] = Field(alias="hasFeeds", default=None)
+    has_collections: Optional[bool] = Field(alias="hasCollections", default=None)
+    has_workflows: Optional[bool] = Field(alias="hasWorkflows", default=None)
 
 
 class ObservationReferenceFilter(BaseModel):
@@ -2830,6 +2834,10 @@ class ContentFilter(BaseModel):
     collections: Optional[List["EntityReferenceFilter"]] = None
     users: Optional[List["EntityReferenceFilter"]] = None
     observations: Optional[List["ObservationReferenceFilter"]] = None
+    has_feeds: Optional[bool] = Field(alias="hasFeeds", default=None)
+    has_workflows: Optional[bool] = Field(alias="hasWorkflows", default=None)
+    has_collections: Optional[bool] = Field(alias="hasCollections", default=None)
+    has_observations: Optional[bool] = Field(alias="hasObservations", default=None)
     or_: Optional[List[Optional["ContentFilterLevel"]]] = Field(
         alias="or", default=None
     )
