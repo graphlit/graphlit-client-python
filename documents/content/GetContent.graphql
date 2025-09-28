@@ -16,6 +16,7 @@ query GetContent($id: ID!, $correlationId: String) {
     description
     identifier
     markdown
+    html
     address {
       streetAddress
       city

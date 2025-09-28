@@ -1522,6 +1522,7 @@ query GetContent($id: ID!, $correlationId: String) {
     description
     identifier
     markdown
+    html
     address {
       streetAddress
       city
@@ -2262,6 +2263,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
       description
       identifier
       markdown
+      html
       address {
         streetAddress
         city

@@ -46,6 +46,7 @@ class GetContentContent(BaseModel):
     description: Optional[str]
     identifier: Optional[str]
     markdown: Optional[str]
+    html: Optional[str]
     address: Optional["GetContentContentAddress"]
     location: Optional["GetContentContentLocation"]
     h_3: Optional["GetContentContentH3"] = Field(alias="h3")

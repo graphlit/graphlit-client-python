@@ -52,6 +52,7 @@ class LookupContentsLookupContentsResults(BaseModel):
     description: Optional[str]
     identifier: Optional[str]
     markdown: Optional[str]
+    html: Optional[str]
     address: Optional["LookupContentsLookupContentsResultsAddress"]
     location: Optional["LookupContentsLookupContentsResultsLocation"]
     h_3: Optional["LookupContentsLookupContentsResultsH3"] = Field(alias="h3")

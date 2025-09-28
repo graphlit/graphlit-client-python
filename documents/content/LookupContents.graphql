@@ -17,6 +17,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
       description
       identifier
       markdown
+      html
       address {
         streetAddress
         city
