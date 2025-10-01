@@ -1594,8 +1594,12 @@ class AnthropicModelPropertiesUpdateInput(BaseModel):
 
 
 class BoxFoldersInput(BaseModel):
+    authentication_type: Optional[BoxAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    redirect_uri: Optional[str] = Field(alias="redirectUri", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
 
 
@@ -3549,6 +3553,9 @@ class SpecificationFilter(BaseModel):
 
 
 class DropboxFoldersInput(BaseModel):
+    authentication_type: Optional[DropboxAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     app_key: Optional[str] = Field(alias="appKey", default=None)
     app_secret: Optional[str] = Field(alias="appSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
