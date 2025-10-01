@@ -7042,7 +7042,6 @@ query GetFeed($id: ID!, $correlationId: String) {
         appKey
         appSecret
         refreshToken
-        redirectUri
       }
       box {
         authenticationType
@@ -7394,7 +7393,6 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           appKey
           appSecret
           refreshToken
-          redirectUri
         }
         box {
           authenticationType

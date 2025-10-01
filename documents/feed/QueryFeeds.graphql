@@ -78,7 +78,6 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           appKey
           appSecret
           refreshToken
-          redirectUri
         }
         box {
           authenticationType

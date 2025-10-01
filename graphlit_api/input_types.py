@@ -2890,7 +2890,6 @@ class DropboxFeedPropertiesUpdateInput(BaseModel):
     app_key: Optional[str] = Field(alias="appKey", default=None)
     app_secret: Optional[str] = Field(alias="appSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    redirect_uri: Optional[str] = Field(alias="redirectUri", default=None)
 
 
 class GraphStrategyInput(BaseModel):
@@ -3867,7 +3866,6 @@ class DropboxFeedPropertiesInput(BaseModel):
     app_key: Optional[str] = Field(alias="appKey", default=None)
     app_secret: Optional[str] = Field(alias="appSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    redirect_uri: Optional[str] = Field(alias="redirectUri", default=None)
 
 
 class CalendarReminderInput(BaseModel):

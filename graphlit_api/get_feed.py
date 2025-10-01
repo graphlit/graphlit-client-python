@@ -176,7 +176,6 @@ class GetFeedFeedSiteDropbox(BaseModel):
     app_key: Optional[str] = Field(alias="appKey")
     app_secret: Optional[str] = Field(alias="appSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
-    redirect_uri: Optional[str] = Field(alias="redirectUri")
 
 
 class GetFeedFeedSiteBox(BaseModel):
