@@ -167,7 +167,7 @@ from .disable_user import DisableUser
 from .enable_alert import EnableAlert
 from .enable_feed import EnableFeed
 from .enable_user import EnableUser
-from .enums import SdkTypes, SearchServiceTypes, TextTypes
+from .enums import GitHubRepositorySortTypes, SdkTypes, SearchServiceTypes, TextTypes
 from .extract_contents import ExtractContents
 from .extract_text import ExtractText
 from .feed_exists import FeedExists
@@ -2930,9 +2930,12 @@ class Client(AsyncBaseClient):
         return QueryFeeds.model_validate(data)
 
     async def query_git_hub_repositories(
-        self, properties: GitHubRepositoriesInput, **kwargs: Any
+        self,
+        properties: GitHubRepositoriesInput,
+        sort_by: Union[Optional[GitHubRepositorySortTypes], UnsetType] = UNSET,
+        **kwargs: Any
     ) -> QueryGitHubRepositories:
-        variables: Dict[str, object] = {"properties": properties}
+        variables: Dict[str, object] = {"properties": properties, "sortBy": sort_by}
         response = await self.execute(
             query=QUERY_GIT_HUB_REPOSITORIES_GQL,
             operation_name="QueryGitHubRepositories",

@@ -7606,8 +7606,8 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
 """
 
 QUERY_GIT_HUB_REPOSITORIES_GQL = """
-query QueryGitHubRepositories($properties: GitHubRepositoriesInput!) {
-  gitHubRepositories(properties: $properties) {
+query QueryGitHubRepositories($properties: GitHubRepositoriesInput!, $sortBy: GitHubRepositorySortTypes) {
+  gitHubRepositories(properties: $properties, sortBy: $sortBy) {
     results {
       repositoryOwner
       repositoryName
