@@ -1,0 +1,17 @@
+query QueryGitHubRepositories($properties: GitHubRepositoriesInput!) {
+  gitHubRepositories(properties: $properties) {
+    results {
+      repositoryOwner
+      repositoryName
+      repositoryFullName
+      description
+      isPrivate
+      stargazersCount
+      forksCount
+      pushedAt
+      createdAt
+      isOwner
+      language
+    }
+  }
+}

@@ -17,7 +17,7 @@ class SearchWebSearchWeb(BaseModel):
 
 
 class SearchWebSearchWebResults(BaseModel):
-    uri: Any
+    uri: Optional[Any]
     text: Optional[str]
     title: Optional[str]
     score: Optional[float]

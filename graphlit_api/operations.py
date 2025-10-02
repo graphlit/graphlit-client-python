@@ -236,6 +236,7 @@ __all__ = [
     "QUERY_DROPBOX_FOLDERS_GQL",
     "QUERY_EVENTS_GQL",
     "QUERY_FEEDS_GQL",
+    "QUERY_GIT_HUB_REPOSITORIES_GQL",
     "QUERY_GOOGLE_CALENDARS_GQL",
     "QUERY_GOOGLE_DRIVE_FOLDERS_GQL",
     "QUERY_LABELS_GQL",
@@ -7599,6 +7600,26 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         recurrenceType
         repeatInterval
       }
+    }
+  }
+}
+"""
+
+QUERY_GIT_HUB_REPOSITORIES_GQL = """
+query QueryGitHubRepositories($properties: GitHubRepositoriesInput!) {
+  gitHubRepositories(properties: $properties) {
+    results {
+      repositoryOwner
+      repositoryName
+      repositoryFullName
+      description
+      isPrivate
+      stargazersCount
+      forksCount
+      pushedAt
+      createdAt
+      isOwner
+      language
     }
   }
 }

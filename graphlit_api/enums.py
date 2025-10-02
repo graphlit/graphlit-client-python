@@ -591,6 +591,7 @@ class GitHubAuthenticationTypes(str, Enum):
 class SearchServiceTypes(str, Enum):
     TAVILY = "TAVILY"
     EXA = "EXA"
+    EXA_CODE = "EXA_CODE"
     PODSCAN = "PODSCAN"
 
 
@@ -1139,6 +1140,11 @@ class EntityEnrichmentServiceTypes(str, Enum):
 
 class LabelFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
+
+
+class GitHubRepositorySortTypes(str, Enum):
+    ALPHABETICAL = "ALPHABETICAL"
+    RANKED = "RANKED"
 
 
 class DeviceTypes(str, Enum):

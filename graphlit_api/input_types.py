@@ -2181,6 +2181,16 @@ class EntityEnrichmentConnectorInput(BaseModel):
     diffbot: Optional["DiffbotEnrichmentPropertiesInput"] = None
 
 
+class GitHubRepositoriesInput(BaseModel):
+    authentication_type: GitHubAuthenticationTypes = Field(alias="authenticationType")
+    uri: Optional[str] = None
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+
+
 class NotionFeedPropertiesUpdateInput(BaseModel):
     is_recursive: Optional[bool] = Field(alias="isRecursive", default=None)
     token: str

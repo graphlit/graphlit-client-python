@@ -246,6 +246,7 @@ from .input_types import (
     FeedFilter,
     FeedInput,
     FeedUpdateInput,
+    GitHubRepositoriesInput,
     GoogleCalendarsInput,
     GoogleDriveFoldersInput,
     IntegrationConnectorInput,
@@ -577,6 +578,7 @@ from .operations import (
     QUERY_DROPBOX_FOLDERS_GQL,
     QUERY_EVENTS_GQL,
     QUERY_FEEDS_GQL,
+    QUERY_GIT_HUB_REPOSITORIES_GQL,
     QUERY_GOOGLE_CALENDARS_GQL,
     QUERY_GOOGLE_DRIVE_FOLDERS_GQL,
     QUERY_LABELS_GQL,
@@ -692,6 +694,7 @@ from .query_discord_guilds import QueryDiscordGuilds
 from .query_dropbox_folders import QueryDropboxFolders
 from .query_events import QueryEvents
 from .query_feeds import QueryFeeds
+from .query_git_hub_repositories import QueryGitHubRepositories
 from .query_google_calendars import QueryGoogleCalendars
 from .query_google_drive_folders import QueryGoogleDriveFolders
 from .query_labels import QueryLabels
@@ -2925,6 +2928,19 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryFeeds.model_validate(data)
+
+    async def query_git_hub_repositories(
+        self, properties: GitHubRepositoriesInput, **kwargs: Any
+    ) -> QueryGitHubRepositories:
+        variables: Dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_GIT_HUB_REPOSITORIES_GQL,
+            operation_name="QueryGitHubRepositories",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryGitHubRepositories.model_validate(data)
 
     async def query_google_calendars(
         self, properties: GoogleCalendarsInput, **kwargs: Any
