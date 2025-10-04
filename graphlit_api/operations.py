@@ -9897,6 +9897,7 @@ query GetSpecification($id: ID!, $correlationId: String) {
       type
       contentLimit
       disableFallback
+      expandRelatedContents
     }
     rerankingStrategy {
       serviceType
@@ -10274,6 +10275,7 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         type
         contentLimit
         disableFallback
+        expandRelatedContents
       }
       rerankingStrategy {
         serviceType

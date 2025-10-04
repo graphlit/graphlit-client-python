@@ -31,6 +31,7 @@ query GetSpecification($id: ID!, $correlationId: String) {
       type
       contentLimit
       disableFallback
+      expandRelatedContents
     }
     rerankingStrategy {
       serviceType
