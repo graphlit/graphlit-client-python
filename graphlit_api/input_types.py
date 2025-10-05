@@ -3540,9 +3540,6 @@ class RetrievalStrategyInput(BaseModel):
     type: RetrievalStrategyTypes
     content_limit: Optional[int] = Field(alias="contentLimit", default=None)
     disable_fallback: Optional[bool] = Field(alias="disableFallback", default=None)
-    expand_related_contents: Optional[bool] = Field(
-        alias="expandRelatedContents", default=None
-    )
 
 
 class SpecificationFilter(BaseModel):
@@ -3590,9 +3587,6 @@ class CalendarFeedPropertiesInput(BaseModel):
 class RetrievalStrategyUpdateInput(BaseModel):
     type: Optional[RetrievalStrategyTypes] = None
     content_limit: Optional[int] = Field(alias="contentLimit", default=None)
-    expand_related_contents: Optional[bool] = Field(
-        alias="expandRelatedContents", default=None
-    )
 
 
 class ObservationOccurrenceInput(BaseModel):

@@ -111,7 +111,6 @@ class GetSpecificationSpecificationRetrievalStrategy(BaseModel):
     type: RetrievalStrategyTypes
     content_limit: Optional[int] = Field(alias="contentLimit")
     disable_fallback: Optional[bool] = Field(alias="disableFallback")
-    expand_related_contents: Optional[bool] = Field(alias="expandRelatedContents")
 
 
 class GetSpecificationSpecificationRerankingStrategy(BaseModel):

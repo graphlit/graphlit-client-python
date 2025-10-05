@@ -32,7 +32,6 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         type
         contentLimit
         disableFallback
-        expandRelatedContents
       }
       rerankingStrategy {
         serviceType
