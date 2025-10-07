@@ -24,6 +24,7 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
       }
       enableEmailCollections
       enableFolderCollections
+      enableMessageCollections
     }
     indexing {
       jobs {
@@ -188,6 +189,7 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
       policy {
         type
         allowDuplicates
+        embeddingTypes
       }
     }
     actions {

@@ -43,6 +43,7 @@ from .enums import (
     DropboxAuthenticationTypes,
     ElevenLabsModels,
     EmailListingTypes,
+    EmbeddingTypes,
     EntityEnrichmentServiceTypes,
     EntityExtractionServiceTypes,
     EntityState,
@@ -99,6 +100,7 @@ from .enums import (
     OpenAIImageModels,
     OpenAIModels,
     OpenAIReasoningEffortLevels,
+    OpenAIVideoModels,
     OpenAIVisionDetailLevels,
     OrderByTypes,
     OrderDirectionTypes,
@@ -133,6 +135,7 @@ from .enums import (
     TwitterListingTypes,
     UnitTypes,
     UserTypes,
+    VideoSizeTypes,
     ViewTypes,
     VoyageModels,
     XAIModels,
@@ -621,6 +624,9 @@ class ContentPublishingConnectorInput(BaseModel):
     google_image: Optional["GoogleImagePublishingPropertiesInput"] = Field(
         alias="googleImage", default=None
     )
+    open_ai_video: Optional["OpenAIVideoPublishingPropertiesInput"] = Field(
+        alias="openAIVideo", default=None
+    )
 
 
 class ProjectInput(BaseModel):
@@ -984,6 +990,13 @@ class MicrosoftTeamsChannelsInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+
+
+class OpenAIVideoPublishingPropertiesInput(BaseModel):
+    model: Optional[OpenAIVideoModels] = None
+    seconds: Optional[int] = None
+    size: Optional[VideoSizeTypes] = None
+    seed: Optional["EntityReferenceInput"] = None
 
 
 class ModelDocumentPreparationPropertiesInput(BaseModel):
@@ -1518,8 +1531,11 @@ class AtlassianJiraFeedPropertiesUpdateInput(BaseModel):
 class CalendarAttendeeInput(BaseModel):
     name: Optional[str] = None
     email: Optional[str] = None
+    display_name: Optional[str] = Field(alias="displayName", default=None)
     is_optional: Optional[bool] = Field(alias="isOptional", default=None)
     is_organizer: Optional[bool] = Field(alias="isOrganizer", default=None)
+    is_required: Optional[bool] = Field(alias="isRequired", default=None)
+    is_resource: Optional[bool] = Field(alias="isResource", default=None)
     response_status: Optional[CalendarAttendeeResponseStatus] = Field(
         alias="responseStatus", default=None
     )
@@ -1674,6 +1690,9 @@ class IngestionWorkflowStageInput(BaseModel):
     )
     enable_folder_collections: Optional[bool] = Field(
         alias="enableFolderCollections", default=None
+    )
+    enable_message_collections: Optional[bool] = Field(
+        alias="enableMessageCollections", default=None
     )
 
 
@@ -2079,6 +2098,9 @@ class BoxFeedPropertiesUpdateInput(BaseModel):
 class StoragePolicyInput(BaseModel):
     type: Optional[StoragePolicyTypes] = None
     allow_duplicates: Optional[bool] = Field(alias="allowDuplicates", default=None)
+    embedding_types: Optional[List[Optional[EmbeddingTypes]]] = Field(
+        alias="embeddingTypes", default=None
+    )
 
 
 class LanguageMetadataInput(BaseModel):
@@ -2571,6 +2593,9 @@ class ContentPublishingConnectorUpdateInput(BaseModel):
     )
     google_image: Optional["GoogleImagePublishingPropertiesInput"] = Field(
         alias="googleImage", default=None
+    )
+    open_ai_video: Optional["OpenAIVideoPublishingPropertiesInput"] = Field(
+        alias="openAIVideo", default=None
     )
 
 
@@ -4144,3 +4169,153 @@ class LabelUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
     description: Optional[str] = None
+
+
+MedicalIndicationFilter.model_rebuild()
+SoftwareFilter.model_rebuild()
+MedicalTestInput.model_rebuild()
+MedicalStudyInput.model_rebuild()
+MedicalTestFilter.model_rebuild()
+MedicalStudyFilter.model_rebuild()
+ConnectorInput.model_rebuild()
+MedicalTestUpdateInput.model_rebuild()
+AlertFilter.model_rebuild()
+PreparationWorkflowStageInput.model_rebuild()
+EmailFeedPropertiesUpdateInput.model_rebuild()
+PreparationWorkflowJobInput.model_rebuild()
+ProductInput.model_rebuild()
+MedicalDrugClassInput.model_rebuild()
+MedicalTherapyUpdateInput.model_rebuild()
+MedicalIndicationUpdateInput.model_rebuild()
+MedicalProcedureUpdateInput.model_rebuild()
+H3Filter.model_rebuild()
+MedicalDrugInput.model_rebuild()
+WorkflowFilter.model_rebuild()
+ClassificationWorkflowStageInput.model_rebuild()
+ShapeMetadataInput.model_rebuild()
+ContentPublishingConnectorInput.model_rebuild()
+ProjectInput.model_rebuild()
+PlaceUpdateInput.model_rebuild()
+CollectionInput.model_rebuild()
+ImageMetadataInput.model_rebuild()
+StorageWorkflowStageInput.model_rebuild()
+ConversationUpdateInput.model_rebuild()
+MedicalDrugClassFilter.model_rebuild()
+MedicalContraindicationFilter.model_rebuild()
+MedicalConditionUpdateInput.model_rebuild()
+OpenAIImagePublishingPropertiesInput.model_rebuild()
+ViewInput.model_rebuild()
+ProductFilter.model_rebuild()
+EmailMetadataInput.model_rebuild()
+ViewUpdateInput.model_rebuild()
+PersonInput.model_rebuild()
+PackageMetadataInput.model_rebuild()
+PointCloudMetadataInput.model_rebuild()
+OpenAIVideoPublishingPropertiesInput.model_rebuild()
+ModelDocumentPreparationPropertiesInput.model_rebuild()
+ProjectFilter.model_rebuild()
+ObservationInput.model_rebuild()
+ProductUpdateInput.model_rebuild()
+MedicalTherapyFilter.model_rebuild()
+ExtractionWorkflowStageInput.model_rebuild()
+MedicalDeviceInput.model_rebuild()
+EnrichmentWorkflowStageInput.model_rebuild()
+FeedInput.model_rebuild()
+ObservationReferenceInput.model_rebuild()
+SpecificationInput.model_rebuild()
+RegexContentClassificationPropertiesInput.model_rebuild()
+WorkflowActionInput.model_rebuild()
+FeedUpdateInput.model_rebuild()
+MedicalContraindicationUpdateInput.model_rebuild()
+ModelImageExtractionPropertiesInput.model_rebuild()
+CollectionUpdateInput.model_rebuild()
+MedicalDeviceFilter.model_rebuild()
+ObservationCriteriaInput.model_rebuild()
+IntegrationConnectorUpdateInput.model_rebuild()
+ContentCriteriaLevelInput.model_rebuild()
+MedicalTherapyInput.model_rebuild()
+ContentCriteriaInput.model_rebuild()
+ObservationReferenceFilter.model_rebuild()
+IngestionWorkflowStageInput.model_rebuild()
+MedicalDrugUpdateInput.model_rebuild()
+SiteFeedPropertiesUpdateInput.model_rebuild()
+AlertUpdateInput.model_rebuild()
+ConnectorUpdateInput.model_rebuild()
+ModelContentClassificationPropertiesInput.model_rebuild()
+PersonUpdateInput.model_rebuild()
+SiteFeedPropertiesInput.model_rebuild()
+ModelTextExtractionPropertiesInput.model_rebuild()
+OrganizationUpdateInput.model_rebuild()
+UserFilter.model_rebuild()
+ConnectorFilter.model_rebuild()
+MedicalGuidelineFilter.model_rebuild()
+EntityEnrichmentConnectorInput.model_rebuild()
+EmailFeedPropertiesInput.model_rebuild()
+ExtractionWorkflowJobInput.model_rebuild()
+MedicalConditionFilter.model_rebuild()
+DrawingMetadataInput.model_rebuild()
+CalendarFeedPropertiesUpdateInput.model_rebuild()
+VideoMetadataInput.model_rebuild()
+MetadataUpdateInput.model_rebuild()
+GeometryMetadataInput.model_rebuild()
+SummarizationStrategyInput.model_rebuild()
+MedicalProcedureFilter.model_rebuild()
+PlaceInput.model_rebuild()
+MetadataInput.model_rebuild()
+ContentPublishingConnectorUpdateInput.model_rebuild()
+PersonFilter.model_rebuild()
+MetadataFilter.model_rebuild()
+ConversationFilter.model_rebuild()
+CategoryFilter.model_rebuild()
+MedicalProcedureInput.model_rebuild()
+LabelFilter.model_rebuild()
+MedicalDrugClassUpdateInput.model_rebuild()
+OrganizationInput.model_rebuild()
+ContentFilterLevel.model_rebuild()
+IssueMetadataInput.model_rebuild()
+ContentFilter.model_rebuild()
+WorkflowInput.model_rebuild()
+IssueFeedPropertiesInput.model_rebuild()
+ViewFilter.model_rebuild()
+EventInput.model_rebuild()
+GoogleImagePublishingPropertiesInput.model_rebuild()
+IntegrationConnectorInput.model_rebuild()
+ContentClassificationConnectorInput.model_rebuild()
+MedicalDeviceUpdateInput.model_rebuild()
+AudioMetadataInput.model_rebuild()
+EventMetadataInput.model_rebuild()
+FilePreparationConnectorInput.model_rebuild()
+ContentInput.model_rebuild()
+MedicalIndicationInput.model_rebuild()
+AlertInput.model_rebuild()
+DocumentMetadataInput.model_rebuild()
+AuthenticationConnectorInput.model_rebuild()
+MedicalConditionInput.model_rebuild()
+EmbeddingsStrategyInput.model_rebuild()
+MedicalGuidelineUpdateInput.model_rebuild()
+EventUpdateInput.model_rebuild()
+MedicalGuidelineInput.model_rebuild()
+RepoFilter.model_rebuild()
+MedicalDrugFilter.model_rebuild()
+SpecificationFilter.model_rebuild()
+CalendarFeedPropertiesInput.model_rebuild()
+ObservationOccurrenceInput.model_rebuild()
+IndexingWorkflowStageInput.model_rebuild()
+CollectionFilter.model_rebuild()
+EventFilter.model_rebuild()
+MedicalContraindicationInput.model_rebuild()
+EntityExtractionConnectorInput.model_rebuild()
+PlaceFilter.model_rebuild()
+IndexingWorkflowJobInput.model_rebuild()
+EnrichmentWorkflowJobInput.model_rebuild()
+MedicalStudyUpdateInput.model_rebuild()
+OrganizationFilter.model_rebuild()
+ContentUpdateInput.model_rebuild()
+ConversationInput.model_rebuild()
+WorkflowUpdateInput.model_rebuild()
+ProjectUpdateInput.model_rebuild()
+SpecificationUpdateInput.model_rebuild()
+ClassificationWorkflowJobInput.model_rebuild()
+IssueFeedPropertiesUpdateInput.model_rebuild()
+ObservationUpdateInput.model_rebuild()
+FeedFilter.model_rebuild()

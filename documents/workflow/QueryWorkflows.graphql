@@ -30,6 +30,7 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
         }
         enableEmailCollections
         enableFolderCollections
+        enableMessageCollections
       }
       indexing {
         jobs {
@@ -194,6 +195,7 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
         policy {
           type
           allowDuplicates
+          embeddingTypes
         }
       }
       actions {

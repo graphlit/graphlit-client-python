@@ -149,6 +149,14 @@ query GetAlert($id: ID!, $correlationId: String) {
           id
         }
       }
+      openAIVideo {
+        model
+        seconds
+        size
+        seed {
+          id
+        }
+      }
     }
     summarySpecification {
       id

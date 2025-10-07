@@ -18,7 +18,9 @@ from .enums import (
     MCPServerTypes,
     ObservableTypes,
     OpenAIImageModels,
+    OpenAIVideoModels,
     TimedPolicyRecurrenceTypes,
+    VideoSizeTypes,
 )
 
 
@@ -252,6 +254,9 @@ class GetAlertAlertPublishing(BaseModel):
     google_image: Optional["GetAlertAlertPublishingGoogleImage"] = Field(
         alias="googleImage"
     )
+    open_ai_video: Optional["GetAlertAlertPublishingOpenAiVideo"] = Field(
+        alias="openAIVideo"
+    )
 
 
 class GetAlertAlertPublishingElevenLabs(BaseModel):
@@ -276,6 +281,17 @@ class GetAlertAlertPublishingGoogleImage(BaseModel):
 
 
 class GetAlertAlertPublishingGoogleImageSeed(BaseModel):
+    id: str
+
+
+class GetAlertAlertPublishingOpenAiVideo(BaseModel):
+    model: Optional[OpenAIVideoModels]
+    seconds: Optional[int]
+    size: Optional[VideoSizeTypes]
+    seed: Optional["GetAlertAlertPublishingOpenAiVideoSeed"]
+
+
+class GetAlertAlertPublishingOpenAiVideoSeed(BaseModel):
     id: str
 
 
@@ -308,3 +324,4 @@ GetAlertAlertIntegration.model_rebuild()
 GetAlertAlertPublishing.model_rebuild()
 GetAlertAlertPublishingOpenAiImage.model_rebuild()
 GetAlertAlertPublishingGoogleImage.model_rebuild()
+GetAlertAlertPublishingOpenAiVideo.model_rebuild()

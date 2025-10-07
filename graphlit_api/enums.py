@@ -123,6 +123,13 @@ class MedicalIndicationFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
 
+class EmbeddingTypes(str, Enum):
+    TEXT = "TEXT"
+    IMAGE = "IMAGE"
+    AUDIO = "AUDIO"
+    VIDEO = "VIDEO"
+
+
 class CalendarReminderMethod(str, Enum):
     EMAIL = "EMAIL"
     POPUP = "POPUP"
@@ -138,6 +145,7 @@ class ContentPublishingFormats(str, Enum):
     JPEG = "JPEG"
     WEBP = "WEBP"
     MP3 = "MP3"
+    MP4 = "MP4"
     TEXT = "TEXT"
     MARKDOWN = "MARKDOWN"
     HTML = "HTML"
@@ -595,6 +603,12 @@ class SearchServiceTypes(str, Enum):
     PODSCAN = "PODSCAN"
 
 
+class OpenAIVideoModels(str, Enum):
+    SORA_2 = "SORA_2"
+    SORA_2_PRO = "SORA_2_PRO"
+    CUSTOM = "CUSTOM"
+
+
 class JinaModels(str, Enum):
     CLIP_IMAGE = "CLIP_IMAGE"
     EMBED = "EMBED"
@@ -833,6 +847,12 @@ class FacetValueTypes(str, Enum):
     OBJECT = "OBJECT"
 
 
+class VideoSizeTypes(str, Enum):
+    SIZE_1280X720 = "SIZE_1280X720"
+    SIZE_1920X1080 = "SIZE_1920X1080"
+    SIZE_1080X1920 = "SIZE_1080X1920"
+
+
 class AuthenticationServiceTypes(str, Enum):
     AUTH0 = "AUTH0"
     MICROSOFT_GRAPH = "MICROSOFT_GRAPH"
@@ -942,6 +962,7 @@ class ContentPublishingServiceTypes(str, Enum):
     ELEVEN_LABS_AUDIO = "ELEVEN_LABS_AUDIO"
     OPEN_AI_IMAGE = "OPEN_AI_IMAGE"
     GOOGLE_IMAGE = "GOOGLE_IMAGE"
+    OPEN_AI_VIDEO = "OPEN_AI_VIDEO"
     TEXT = "TEXT"
 
 
@@ -972,6 +993,7 @@ class ReductoOcrModes(str, Enum):
 
 class OpenAIImageModels(str, Enum):
     GPT_IMAGE_1 = "GPT_IMAGE_1"
+    GPT_IMAGE_1_MINI = "GPT_IMAGE_1_MINI"
     CUSTOM = "CUSTOM"
 
 

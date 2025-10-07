@@ -150,6 +150,14 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
             id
           }
         }
+        openAIVideo {
+          model
+          seconds
+          size
+          seed {
+            id
+          }
+        }
       }
       summarySpecification {
         id

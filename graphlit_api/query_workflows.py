@@ -14,6 +14,7 @@ from .enums import (
     ContentIndexingServiceTypes,
     ContentTypes,
     DeepgramModels,
+    EmbeddingTypes,
     EntityEnrichmentServiceTypes,
     EntityExtractionServiceTypes,
     EntityState,
@@ -72,6 +73,7 @@ class QueryWorkflowsWorkflowsResultsIngestion(BaseModel):
     ]
     enable_email_collections: Optional[bool] = Field(alias="enableEmailCollections")
     enable_folder_collections: Optional[bool] = Field(alias="enableFolderCollections")
+    enable_message_collections: Optional[bool] = Field(alias="enableMessageCollections")
 
 
 class QueryWorkflowsWorkflowsResultsIngestionIf(BaseModel):
@@ -392,6 +394,9 @@ class QueryWorkflowsWorkflowsResultsStorage(BaseModel):
 class QueryWorkflowsWorkflowsResultsStoragePolicy(BaseModel):
     type: Optional[StoragePolicyTypes]
     allow_duplicates: Optional[bool] = Field(alias="allowDuplicates")
+    embedding_types: Optional[List[Optional[EmbeddingTypes]]] = Field(
+        alias="embeddingTypes"
+    )
 
 
 class QueryWorkflowsWorkflowsResultsActions(BaseModel):

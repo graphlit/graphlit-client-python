@@ -551,6 +551,14 @@ query GetAlert($id: ID!, $correlationId: String) {
           id
         }
       }
+      openAIVideo {
+        model
+        seconds
+        size
+        seed {
+          id
+        }
+      }
     }
     summarySpecification {
       id
@@ -718,6 +726,14 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
         googleImage {
           model
           count
+          seed {
+            id
+          }
+        }
+        openAIVideo {
+          model
+          seconds
+          size
           seed {
             id
           }
@@ -11804,6 +11820,7 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
       }
       enableEmailCollections
       enableFolderCollections
+      enableMessageCollections
     }
     indexing {
       jobs {
@@ -11968,6 +11985,7 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
       policy {
         type
         allowDuplicates
+        embeddingTypes
       }
     }
     actions {
@@ -12062,6 +12080,7 @@ query GetWorkflow($id: ID!, $correlationId: String) {
       }
       enableEmailCollections
       enableFolderCollections
+      enableMessageCollections
     }
     indexing {
       jobs {
@@ -12226,6 +12245,7 @@ query GetWorkflow($id: ID!, $correlationId: String) {
       policy {
         type
         allowDuplicates
+        embeddingTypes
       }
     }
     actions {
@@ -12290,6 +12310,7 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
         }
         enableEmailCollections
         enableFolderCollections
+        enableMessageCollections
       }
       indexing {
         jobs {
@@ -12454,6 +12475,7 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
         policy {
           type
           allowDuplicates
+          embeddingTypes
         }
       }
       actions {
@@ -12513,6 +12535,7 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
       }
       enableEmailCollections
       enableFolderCollections
+      enableMessageCollections
     }
     indexing {
       jobs {
@@ -12677,6 +12700,7 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
       policy {
         type
         allowDuplicates
+        embeddingTypes
       }
     }
     actions {
@@ -12735,6 +12759,7 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
       }
       enableEmailCollections
       enableFolderCollections
+      enableMessageCollections
     }
     indexing {
       jobs {
@@ -12899,6 +12924,7 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
       policy {
         type
         allowDuplicates
+        embeddingTypes
       }
     }
     actions {

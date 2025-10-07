@@ -18,7 +18,9 @@ from .enums import (
     MCPServerTypes,
     ObservableTypes,
     OpenAIImageModels,
+    OpenAIVideoModels,
     TimedPolicyRecurrenceTypes,
+    VideoSizeTypes,
 )
 
 
@@ -258,6 +260,9 @@ class QueryAlertsAlertsResultsPublishing(BaseModel):
     google_image: Optional["QueryAlertsAlertsResultsPublishingGoogleImage"] = Field(
         alias="googleImage"
     )
+    open_ai_video: Optional["QueryAlertsAlertsResultsPublishingOpenAiVideo"] = Field(
+        alias="openAIVideo"
+    )
 
 
 class QueryAlertsAlertsResultsPublishingElevenLabs(BaseModel):
@@ -282,6 +287,17 @@ class QueryAlertsAlertsResultsPublishingGoogleImage(BaseModel):
 
 
 class QueryAlertsAlertsResultsPublishingGoogleImageSeed(BaseModel):
+    id: str
+
+
+class QueryAlertsAlertsResultsPublishingOpenAiVideo(BaseModel):
+    model: Optional[OpenAIVideoModels]
+    seconds: Optional[int]
+    size: Optional[VideoSizeTypes]
+    seed: Optional["QueryAlertsAlertsResultsPublishingOpenAiVideoSeed"]
+
+
+class QueryAlertsAlertsResultsPublishingOpenAiVideoSeed(BaseModel):
     id: str
 
 
@@ -315,3 +331,4 @@ QueryAlertsAlertsResultsIntegration.model_rebuild()
 QueryAlertsAlertsResultsPublishing.model_rebuild()
 QueryAlertsAlertsResultsPublishingOpenAiImage.model_rebuild()
 QueryAlertsAlertsResultsPublishingGoogleImage.model_rebuild()
+QueryAlertsAlertsResultsPublishingOpenAiVideo.model_rebuild()
