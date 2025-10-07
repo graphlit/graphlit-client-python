@@ -72,6 +72,8 @@ class QueryContentsContentsResults(BaseModel):
     email: Optional["QueryContentsContentsResultsEmail"]
     event: Optional["QueryContentsContentsResultsEvent"]
     issue: Optional["QueryContentsContentsResultsIssue"]
+    message: Optional["QueryContentsContentsResultsMessage"]
+    post: Optional["QueryContentsContentsResultsPost"]
     package: Optional["QueryContentsContentsResultsPackage"]
     language: Optional["QueryContentsContentsResultsLanguage"]
     feed: Optional["QueryContentsContentsResultsFeed"]
@@ -286,6 +288,48 @@ class QueryContentsContentsResultsIssue(BaseModel):
     labels: Optional[List[Optional[str]]]
 
 
+class QueryContentsContentsResultsMessage(BaseModel):
+    identifier: Optional[str]
+    conversation_identifier: Optional[str] = Field(alias="conversationIdentifier")
+    channel_identifier: Optional[str] = Field(alias="channelIdentifier")
+    channel_name: Optional[str] = Field(alias="channelName")
+    attachment_count: Optional[int] = Field(alias="attachmentCount")
+    links: Optional[List[Optional[Any]]]
+    author: Optional["QueryContentsContentsResultsMessageAuthor"]
+    mentions: Optional[List[Optional["QueryContentsContentsResultsMessageMentions"]]]
+
+
+class QueryContentsContentsResultsMessageAuthor(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
+class QueryContentsContentsResultsMessageMentions(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
+class QueryContentsContentsResultsPost(BaseModel):
+    identifier: Optional[str]
+    title: Optional[str]
+    author: Optional["QueryContentsContentsResultsPostAuthor"]
+    upvotes: Optional[int]
+    downvotes: Optional[int]
+    comment_count: Optional[int] = Field(alias="commentCount")
+    links: Optional[List[Optional[Any]]]
+
+
+class QueryContentsContentsResultsPostAuthor(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
 class QueryContentsContentsResultsPackage(BaseModel):
     file_count: Optional[int] = Field(alias="fileCount")
     folder_count: Optional[int] = Field(alias="folderCount")
@@ -355,4 +399,6 @@ QueryContentsContents.model_rebuild()
 QueryContentsContentsResults.model_rebuild()
 QueryContentsContentsResultsEmail.model_rebuild()
 QueryContentsContentsResultsEvent.model_rebuild()
+QueryContentsContentsResultsMessage.model_rebuild()
+QueryContentsContentsResultsPost.model_rebuild()
 QueryContentsContentsResultsPages.model_rebuild()

@@ -91,6 +91,8 @@ class LookupContentsLookupContentsResults(BaseModel):
     email: Optional["LookupContentsLookupContentsResultsEmail"]
     event: Optional["LookupContentsLookupContentsResultsEvent"]
     issue: Optional["LookupContentsLookupContentsResultsIssue"]
+    message: Optional["LookupContentsLookupContentsResultsMessage"]
+    post: Optional["LookupContentsLookupContentsResultsPost"]
     package: Optional["LookupContentsLookupContentsResultsPackage"]
     language: Optional["LookupContentsLookupContentsResultsLanguage"]
     parent: Optional["LookupContentsLookupContentsResultsParent"]
@@ -337,6 +339,50 @@ class LookupContentsLookupContentsResultsIssue(BaseModel):
     labels: Optional[List[Optional[str]]]
 
 
+class LookupContentsLookupContentsResultsMessage(BaseModel):
+    identifier: Optional[str]
+    conversation_identifier: Optional[str] = Field(alias="conversationIdentifier")
+    channel_identifier: Optional[str] = Field(alias="channelIdentifier")
+    channel_name: Optional[str] = Field(alias="channelName")
+    attachment_count: Optional[int] = Field(alias="attachmentCount")
+    links: Optional[List[Optional[Any]]]
+    author: Optional["LookupContentsLookupContentsResultsMessageAuthor"]
+    mentions: Optional[
+        List[Optional["LookupContentsLookupContentsResultsMessageMentions"]]
+    ]
+
+
+class LookupContentsLookupContentsResultsMessageAuthor(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
+class LookupContentsLookupContentsResultsMessageMentions(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
+class LookupContentsLookupContentsResultsPost(BaseModel):
+    identifier: Optional[str]
+    title: Optional[str]
+    author: Optional["LookupContentsLookupContentsResultsPostAuthor"]
+    upvotes: Optional[int]
+    downvotes: Optional[int]
+    comment_count: Optional[int] = Field(alias="commentCount")
+    links: Optional[List[Optional[Any]]]
+
+
+class LookupContentsLookupContentsResultsPostAuthor(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
 class LookupContentsLookupContentsResultsPackage(BaseModel):
     file_count: Optional[int] = Field(alias="fileCount")
     folder_count: Optional[int] = Field(alias="folderCount")
@@ -467,6 +513,8 @@ LookupContentsLookupContents.model_rebuild()
 LookupContentsLookupContentsResults.model_rebuild()
 LookupContentsLookupContentsResultsEmail.model_rebuild()
 LookupContentsLookupContentsResultsEvent.model_rebuild()
+LookupContentsLookupContentsResultsMessage.model_rebuild()
+LookupContentsLookupContentsResultsPost.model_rebuild()
 LookupContentsLookupContentsResultsObservations.model_rebuild()
 LookupContentsLookupContentsResultsObservationsOccurrences.model_rebuild()
 LookupContentsLookupContentsResultsPages.model_rebuild()

@@ -1755,6 +1755,40 @@ query GetContent($id: ID!, $correlationId: String) {
       type
       labels
     }
+    message {
+      identifier
+      conversationIdentifier
+      channelIdentifier
+      channelName
+      attachmentCount
+      links
+      author {
+        name
+        email
+        givenName
+        familyName
+      }
+      mentions {
+        name
+        email
+        givenName
+        familyName
+      }
+    }
+    post {
+      identifier
+      title
+      author {
+        name
+        email
+        givenName
+        familyName
+      }
+      upvotes
+      downvotes
+      commentCount
+      links
+    }
     package {
       fileCount
       folderCount
@@ -2496,6 +2530,40 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
         type
         labels
       }
+      message {
+        identifier
+        conversationIdentifier
+        channelIdentifier
+        channelName
+        attachmentCount
+        links
+        author {
+          name
+          email
+          givenName
+          familyName
+        }
+        mentions {
+          name
+          email
+          givenName
+          familyName
+        }
+      }
+      post {
+        identifier
+        title
+        author {
+          name
+          email
+          givenName
+          familyName
+        }
+        upvotes
+        downvotes
+        commentCount
+        links
+      }
       package {
         fileCount
         folderCount
@@ -3064,6 +3132,40 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
         type
         labels
       }
+      message {
+        identifier
+        conversationIdentifier
+        channelIdentifier
+        channelName
+        attachmentCount
+        links
+        author {
+          name
+          email
+          givenName
+          familyName
+        }
+        mentions {
+          name
+          email
+          givenName
+          familyName
+        }
+      }
+      post {
+        identifier
+        title
+        author {
+          name
+          email
+          givenName
+          familyName
+        }
+        upvotes
+        downvotes
+        commentCount
+        links
+      }
       package {
         fileCount
         folderCount
@@ -3371,6 +3473,40 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
         priority
         type
         labels
+      }
+      message {
+        identifier
+        conversationIdentifier
+        channelIdentifier
+        channelName
+        attachmentCount
+        links
+        author {
+          name
+          email
+          givenName
+          familyName
+        }
+        mentions {
+          name
+          email
+          givenName
+          familyName
+        }
+      }
+      post {
+        identifier
+        title
+        author {
+          name
+          email
+          givenName
+          familyName
+        }
+        upvotes
+        downvotes
+        commentCount
+        links
       }
       package {
         fileCount

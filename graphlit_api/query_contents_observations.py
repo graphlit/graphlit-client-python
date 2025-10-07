@@ -74,6 +74,8 @@ class QueryContentsObservationsContentsResults(BaseModel):
     email: Optional["QueryContentsObservationsContentsResultsEmail"]
     event: Optional["QueryContentsObservationsContentsResultsEvent"]
     issue: Optional["QueryContentsObservationsContentsResultsIssue"]
+    message: Optional["QueryContentsObservationsContentsResultsMessage"]
+    post: Optional["QueryContentsObservationsContentsResultsPost"]
     package: Optional["QueryContentsObservationsContentsResultsPackage"]
     language: Optional["QueryContentsObservationsContentsResultsLanguage"]
     feed: Optional["QueryContentsObservationsContentsResultsFeed"]
@@ -296,6 +298,50 @@ class QueryContentsObservationsContentsResultsIssue(BaseModel):
     labels: Optional[List[Optional[str]]]
 
 
+class QueryContentsObservationsContentsResultsMessage(BaseModel):
+    identifier: Optional[str]
+    conversation_identifier: Optional[str] = Field(alias="conversationIdentifier")
+    channel_identifier: Optional[str] = Field(alias="channelIdentifier")
+    channel_name: Optional[str] = Field(alias="channelName")
+    attachment_count: Optional[int] = Field(alias="attachmentCount")
+    links: Optional[List[Optional[Any]]]
+    author: Optional["QueryContentsObservationsContentsResultsMessageAuthor"]
+    mentions: Optional[
+        List[Optional["QueryContentsObservationsContentsResultsMessageMentions"]]
+    ]
+
+
+class QueryContentsObservationsContentsResultsMessageAuthor(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
+class QueryContentsObservationsContentsResultsMessageMentions(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
+class QueryContentsObservationsContentsResultsPost(BaseModel):
+    identifier: Optional[str]
+    title: Optional[str]
+    author: Optional["QueryContentsObservationsContentsResultsPostAuthor"]
+    upvotes: Optional[int]
+    downvotes: Optional[int]
+    comment_count: Optional[int] = Field(alias="commentCount")
+    links: Optional[List[Optional[Any]]]
+
+
+class QueryContentsObservationsContentsResultsPostAuthor(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
 class QueryContentsObservationsContentsResultsPackage(BaseModel):
     file_count: Optional[int] = Field(alias="fileCount")
     folder_count: Optional[int] = Field(alias="folderCount")
@@ -414,6 +460,8 @@ QueryContentsObservationsContents.model_rebuild()
 QueryContentsObservationsContentsResults.model_rebuild()
 QueryContentsObservationsContentsResultsEmail.model_rebuild()
 QueryContentsObservationsContentsResultsEvent.model_rebuild()
+QueryContentsObservationsContentsResultsMessage.model_rebuild()
+QueryContentsObservationsContentsResultsPost.model_rebuild()
 QueryContentsObservationsContentsResultsPages.model_rebuild()
 QueryContentsObservationsContentsResultsObservations.model_rebuild()
 QueryContentsObservationsContentsResultsObservationsOccurrences.model_rebuild()

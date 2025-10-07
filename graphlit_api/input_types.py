@@ -1206,6 +1206,19 @@ class ModelFilter(BaseModel):
     )
 
 
+class PostMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    identifier: Optional[str] = None
+    title: Optional[str] = None
+    author: Optional["PersonReferenceInput"] = None
+    upvotes: Optional[int] = None
+    downvotes: Optional[int] = None
+    comment_count: Optional[int] = Field(alias="commentCount", default=None)
+    links: Optional[List[Optional["LinkReferenceInput"]]] = None
+
+
 class ReductoDocumentPreparationPropertiesInput(BaseModel):
     ocr_mode: Optional[ReductoOcrModes] = Field(alias="ocrMode", default=None)
     ocr_system: Optional[ReductoOcrSystems] = Field(alias="ocrSystem", default=None)
@@ -1972,6 +1985,13 @@ class NotionDatabasesInput(BaseModel):
 class ModelTextExtractionPropertiesInput(BaseModel):
     specification: Optional["EntityReferenceInput"] = None
     token_threshold: Optional[int] = Field(alias="tokenThreshold", default=None)
+
+
+class PersonReferenceInput(BaseModel):
+    name: Optional[str] = None
+    given_name: Optional[str] = Field(alias="givenName", default=None)
+    family_name: Optional[str] = Field(alias="familyName", default=None)
+    email: Optional[str] = None
 
 
 class AtlassianJiraFeedPropertiesInput(BaseModel):
@@ -3401,6 +3421,22 @@ class MedicalGuidelineUpdateInput(BaseModel):
     boundary: Optional[str] = None
 
 
+class MessageMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    identifier: Optional[str] = None
+    conversation_identifier: Optional[str] = Field(
+        alias="conversationIdentifier", default=None
+    )
+    channel_identifier: Optional[str] = Field(alias="channelIdentifier", default=None)
+    channel_name: Optional[str] = Field(alias="channelName", default=None)
+    attachment_count: Optional[int] = Field(alias="attachmentCount", default=None)
+    links: Optional[List[Optional["LinkReferenceInput"]]] = None
+    author: Optional["PersonReferenceInput"] = None
+    mentions: Optional[List[Optional["PersonReferenceInput"]]] = None
+
+
 class EventUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
@@ -3983,6 +4019,8 @@ class ContentUpdateInput(BaseModel):
     email: Optional["EmailMetadataInput"] = None
     event: Optional["EventMetadataInput"] = None
     issue: Optional["IssueMetadataInput"] = None
+    message: Optional["MessageMetadataInput"] = None
+    post: Optional["PostMetadataInput"] = None
     drawing: Optional["DrawingMetadataInput"] = None
     shape: Optional["ShapeMetadataInput"] = None
     geometry: Optional["GeometryMetadataInput"] = None
@@ -4222,6 +4260,7 @@ MedicalDeviceInput.model_rebuild()
 EnrichmentWorkflowStageInput.model_rebuild()
 FeedInput.model_rebuild()
 ObservationReferenceInput.model_rebuild()
+PostMetadataInput.model_rebuild()
 SpecificationInput.model_rebuild()
 RegexContentClassificationPropertiesInput.model_rebuild()
 WorkflowActionInput.model_rebuild()
@@ -4293,6 +4332,7 @@ AuthenticationConnectorInput.model_rebuild()
 MedicalConditionInput.model_rebuild()
 EmbeddingsStrategyInput.model_rebuild()
 MedicalGuidelineUpdateInput.model_rebuild()
+MessageMetadataInput.model_rebuild()
 EventUpdateInput.model_rebuild()
 MedicalGuidelineInput.model_rebuild()
 RepoFilter.model_rebuild()

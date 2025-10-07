@@ -85,6 +85,8 @@ class GetContentContent(BaseModel):
     email: Optional["GetContentContentEmail"]
     event: Optional["GetContentContentEvent"]
     issue: Optional["GetContentContentIssue"]
+    message: Optional["GetContentContentMessage"]
+    post: Optional["GetContentContentPost"]
     package: Optional["GetContentContentPackage"]
     language: Optional["GetContentContentLanguage"]
     parent: Optional["GetContentContentParent"]
@@ -321,6 +323,48 @@ class GetContentContentIssue(BaseModel):
     labels: Optional[List[Optional[str]]]
 
 
+class GetContentContentMessage(BaseModel):
+    identifier: Optional[str]
+    conversation_identifier: Optional[str] = Field(alias="conversationIdentifier")
+    channel_identifier: Optional[str] = Field(alias="channelIdentifier")
+    channel_name: Optional[str] = Field(alias="channelName")
+    attachment_count: Optional[int] = Field(alias="attachmentCount")
+    links: Optional[List[Optional[Any]]]
+    author: Optional["GetContentContentMessageAuthor"]
+    mentions: Optional[List[Optional["GetContentContentMessageMentions"]]]
+
+
+class GetContentContentMessageAuthor(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
+class GetContentContentMessageMentions(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
+class GetContentContentPost(BaseModel):
+    identifier: Optional[str]
+    title: Optional[str]
+    author: Optional["GetContentContentPostAuthor"]
+    upvotes: Optional[int]
+    downvotes: Optional[int]
+    comment_count: Optional[int] = Field(alias="commentCount")
+    links: Optional[List[Optional[Any]]]
+
+
+class GetContentContentPostAuthor(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
 class GetContentContentPackage(BaseModel):
     file_count: Optional[int] = Field(alias="fileCount")
     folder_count: Optional[int] = Field(alias="folderCount")
@@ -448,6 +492,8 @@ GetContent.model_rebuild()
 GetContentContent.model_rebuild()
 GetContentContentEmail.model_rebuild()
 GetContentContentEvent.model_rebuild()
+GetContentContentMessage.model_rebuild()
+GetContentContentPost.model_rebuild()
 GetContentContentObservations.model_rebuild()
 GetContentContentObservationsOccurrences.model_rebuild()
 GetContentContentPages.model_rebuild()
