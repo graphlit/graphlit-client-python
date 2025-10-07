@@ -848,9 +848,10 @@ class FacetValueTypes(str, Enum):
 
 
 class VideoSizeTypes(str, Enum):
-    SIZE_1280X720 = "SIZE_1280X720"
-    SIZE_1920X1080 = "SIZE_1920X1080"
-    SIZE_1080X1920 = "SIZE_1080X1920"
+    HD_PORTRAIT = "HD_PORTRAIT"
+    HD_LANDSCAPE = "HD_LANDSCAPE"
+    FULL_HD_PORTRAIT = "FULL_HD_PORTRAIT"
+    FULL_HD_LANDSCAPE = "FULL_HD_LANDSCAPE"
 
 
 class AuthenticationServiceTypes(str, Enum):
