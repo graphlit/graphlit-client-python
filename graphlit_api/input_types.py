@@ -1584,6 +1584,7 @@ class ObservationCriteriaInput(BaseModel):
 
 
 class IntegrationConnectorUpdateInput(BaseModel):
+    service_type: IntegrationServiceTypes = Field(alias="serviceType")
     uri: Optional[str] = None
     slack: Optional["SlackIntegrationPropertiesInput"] = None
     email: Optional["EmailIntegrationPropertiesInput"] = None
@@ -2603,8 +2604,8 @@ class RevisionStrategyUpdateInput(BaseModel):
 
 
 class ContentPublishingConnectorUpdateInput(BaseModel):
-    type: Optional[ContentPublishingServiceTypes] = None
-    format: Optional[ContentPublishingFormats] = None
+    type: ContentPublishingServiceTypes
+    format: ContentPublishingFormats
     eleven_labs: Optional["ElevenLabsPublishingPropertiesInput"] = Field(
         alias="elevenLabs", default=None
     )

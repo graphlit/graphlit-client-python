@@ -664,6 +664,7 @@ from .operations import (
     UPDATE_USER_GQL,
     UPDATE_VIEW_GQL,
     UPDATE_WORKFLOW_GQL,
+    UPSERT_ALERT_GQL,
     UPSERT_CATEGORY_GQL,
     UPSERT_LABEL_GQL,
     UPSERT_SPECIFICATION_GQL,
@@ -780,6 +781,7 @@ from .update_specification import UpdateSpecification
 from .update_user import UpdateUser
 from .update_view import UpdateView
 from .update_workflow import UpdateWorkflow
+from .upsert_alert import UpsertAlert
 from .upsert_category import UpsertCategory
 from .upsert_label import UpsertLabel
 from .upsert_specification import UpsertSpecification
@@ -944,6 +946,17 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdateAlert.model_validate(data)
+
+    async def upsert_alert(self, alert: AlertInput, **kwargs: Any) -> UpsertAlert:
+        variables: Dict[str, object] = {"alert": alert}
+        response = await self.execute(
+            query=UPSERT_ALERT_GQL,
+            operation_name="UpsertAlert",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpsertAlert.model_validate(data)
 
     async def count_categories(
         self,

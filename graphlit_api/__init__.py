@@ -2037,6 +2037,7 @@ from .operations import (
     UPDATE_USER_GQL,
     UPDATE_VIEW_GQL,
     UPDATE_WORKFLOW_GQL,
+    UPSERT_ALERT_GQL,
     UPSERT_CATEGORY_GQL,
     UPSERT_LABEL_GQL,
     UPSERT_SPECIFICATION_GQL,
@@ -3059,6 +3060,7 @@ from .update_workflow import (
     UpdateWorkflowUpdateWorkflowStorage,
     UpdateWorkflowUpdateWorkflowStoragePolicy,
 )
+from .upsert_alert import UpsertAlert, UpsertAlertUpsertAlert
 from .upsert_category import UpsertCategory, UpsertCategoryUpsertCategory
 from .upsert_label import UpsertLabel, UpsertLabelUpsertLabel
 from .upsert_specification import (
@@ -5775,6 +5777,7 @@ __all__ = [
     "UPDATE_USER_GQL",
     "UPDATE_VIEW_GQL",
     "UPDATE_WORKFLOW_GQL",
+    "UPSERT_ALERT_GQL",
     "UPSERT_CATEGORY_GQL",
     "UPSERT_LABEL_GQL",
     "UPSERT_SPECIFICATION_GQL",
@@ -5958,6 +5961,8 @@ __all__ = [
     "UpdateWorkflowUpdateWorkflowStorage",
     "UpdateWorkflowUpdateWorkflowStoragePolicy",
     "Upload",
+    "UpsertAlert",
+    "UpsertAlertUpsertAlert",
     "UpsertCategory",
     "UpsertCategoryUpsertCategory",
     "UpsertLabel",

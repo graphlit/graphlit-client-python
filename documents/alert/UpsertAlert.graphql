@@ -1,0 +1,8 @@
+mutation UpsertAlert($alert: AlertInput!) {
+  upsertAlert(alert: $alert) {
+    id
+    name
+    state
+    type
+  }
+}

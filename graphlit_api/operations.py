@@ -322,6 +322,7 @@ __all__ = [
     "UPDATE_USER_GQL",
     "UPDATE_VIEW_GQL",
     "UPDATE_WORKFLOW_GQL",
+    "UPSERT_ALERT_GQL",
     "UPSERT_CATEGORY_GQL",
     "UPSERT_LABEL_GQL",
     "UPSERT_SPECIFICATION_GQL",
@@ -760,6 +761,17 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
 UPDATE_ALERT_GQL = """
 mutation UpdateAlert($alert: AlertUpdateInput!) {
   updateAlert(alert: $alert) {
+    id
+    name
+    state
+    type
+  }
+}
+"""
+
+UPSERT_ALERT_GQL = """
+mutation UpsertAlert($alert: AlertInput!) {
+  upsertAlert(alert: $alert) {
     id
     name
     state
