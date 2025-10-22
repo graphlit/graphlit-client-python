@@ -29,6 +29,8 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
           textUri
           audioUri
           transcriptUri
+          snapshotsUri
+          snapshotCount
           summary
           customSummary
           keywords
@@ -210,6 +212,8 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
             textUri
             audioUri
             transcriptUri
+            snapshotsUri
+            snapshotCount
             summary
             customSummary
             keywords

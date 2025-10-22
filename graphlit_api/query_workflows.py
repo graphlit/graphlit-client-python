@@ -372,9 +372,7 @@ class QueryWorkflowsWorkflowsResultsEnrichmentJobs(BaseModel):
 
 class QueryWorkflowsWorkflowsResultsEnrichmentJobsConnector(BaseModel):
     type: Optional[EntityEnrichmentServiceTypes]
-    enriched_types: Optional[List[Optional[ObservableTypes]]] = Field(
-        alias="enrichedTypes"
-    )
+    enriched_types: Optional[List[ObservableTypes]] = Field(alias="enrichedTypes")
     fhir: Optional["QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorFhir"]
     diffbot: Optional["QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorDiffbot"]
 
@@ -394,9 +392,9 @@ class QueryWorkflowsWorkflowsResultsStorage(BaseModel):
 class QueryWorkflowsWorkflowsResultsStoragePolicy(BaseModel):
     type: Optional[StoragePolicyTypes]
     allow_duplicates: Optional[bool] = Field(alias="allowDuplicates")
-    embedding_types: Optional[List[Optional[EmbeddingTypes]]] = Field(
-        alias="embeddingTypes"
-    )
+    embedding_types: Optional[List[EmbeddingTypes]] = Field(alias="embeddingTypes")
+    enable_snapshots: Optional[bool] = Field(alias="enableSnapshots")
+    snapshot_count: Optional[int] = Field(alias="snapshotCount")
 
 
 class QueryWorkflowsWorkflowsResultsActions(BaseModel):

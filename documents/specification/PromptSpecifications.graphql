@@ -29,6 +29,8 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
           textUri
           audioUri
           transcriptUri
+          snapshotsUri
+          snapshotCount
           summary
           customSummary
           keywords

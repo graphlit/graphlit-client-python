@@ -45,8 +45,8 @@ class QueryViewsViewsResultsFilter(BaseModel):
     )
     created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
-    file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
-    formats: Optional[List[Optional[str]]]
+    file_types: Optional[List[FileTypes]] = Field(alias="fileTypes")
+    formats: Optional[List[str]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
     file_size_range: Optional["QueryViewsViewsResultsFilterFileSizeRange"] = Field(
         alias="fileSizeRange"
@@ -110,7 +110,7 @@ class QueryViewsViewsResultsFilterUsers(BaseModel):
 class QueryViewsViewsResultsFilterObservations(BaseModel):
     type: ObservableTypes
     observable: "QueryViewsViewsResultsFilterObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class QueryViewsViewsResultsFilterObservationsObservable(BaseModel):
@@ -144,7 +144,7 @@ class QueryViewsViewsResultsFilterOrUsers(BaseModel):
 class QueryViewsViewsResultsFilterOrObservations(BaseModel):
     type: ObservableTypes
     observable: "QueryViewsViewsResultsFilterOrObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class QueryViewsViewsResultsFilterOrObservationsObservable(BaseModel):
@@ -178,7 +178,7 @@ class QueryViewsViewsResultsFilterAndUsers(BaseModel):
 class QueryViewsViewsResultsFilterAndObservations(BaseModel):
     type: ObservableTypes
     observable: "QueryViewsViewsResultsFilterAndObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class QueryViewsViewsResultsFilterAndObservationsObservable(BaseModel):
@@ -195,8 +195,8 @@ class QueryViewsViewsResultsAugmentedFilter(BaseModel):
     ] = Field(alias="creationDateRange")
     created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
-    file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
-    formats: Optional[List[Optional[str]]]
+    file_types: Optional[List[FileTypes]] = Field(alias="fileTypes")
+    formats: Optional[List[str]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
     file_size_range: Optional["QueryViewsViewsResultsAugmentedFilterFileSizeRange"] = (
         Field(alias="fileSizeRange")
@@ -262,7 +262,7 @@ class QueryViewsViewsResultsAugmentedFilterUsers(BaseModel):
 class QueryViewsViewsResultsAugmentedFilterObservations(BaseModel):
     type: ObservableTypes
     observable: "QueryViewsViewsResultsAugmentedFilterObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class QueryViewsViewsResultsAugmentedFilterObservationsObservable(BaseModel):
@@ -296,7 +296,7 @@ class QueryViewsViewsResultsAugmentedFilterOrUsers(BaseModel):
 class QueryViewsViewsResultsAugmentedFilterOrObservations(BaseModel):
     type: ObservableTypes
     observable: "QueryViewsViewsResultsAugmentedFilterOrObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class QueryViewsViewsResultsAugmentedFilterOrObservationsObservable(BaseModel):
@@ -330,7 +330,7 @@ class QueryViewsViewsResultsAugmentedFilterAndUsers(BaseModel):
 class QueryViewsViewsResultsAugmentedFilterAndObservations(BaseModel):
     type: ObservableTypes
     observable: "QueryViewsViewsResultsAugmentedFilterAndObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class QueryViewsViewsResultsAugmentedFilterAndObservationsObservable(BaseModel):

@@ -190,6 +190,8 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
         type
         allowDuplicates
         embeddingTypes
+        enableSnapshots
+        snapshotCount
       }
     }
     actions {

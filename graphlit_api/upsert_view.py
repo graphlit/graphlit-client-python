@@ -34,8 +34,8 @@ class UpsertViewUpsertViewFilter(BaseModel):
     )
     created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
-    file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
-    formats: Optional[List[Optional[str]]]
+    file_types: Optional[List[FileTypes]] = Field(alias="fileTypes")
+    formats: Optional[List[str]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
     file_size_range: Optional["UpsertViewUpsertViewFilterFileSizeRange"] = Field(
         alias="fileSizeRange"
@@ -99,7 +99,7 @@ class UpsertViewUpsertViewFilterUsers(BaseModel):
 class UpsertViewUpsertViewFilterObservations(BaseModel):
     type: ObservableTypes
     observable: "UpsertViewUpsertViewFilterObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class UpsertViewUpsertViewFilterObservationsObservable(BaseModel):
@@ -133,7 +133,7 @@ class UpsertViewUpsertViewFilterOrUsers(BaseModel):
 class UpsertViewUpsertViewFilterOrObservations(BaseModel):
     type: ObservableTypes
     observable: "UpsertViewUpsertViewFilterOrObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class UpsertViewUpsertViewFilterOrObservationsObservable(BaseModel):
@@ -167,7 +167,7 @@ class UpsertViewUpsertViewFilterAndUsers(BaseModel):
 class UpsertViewUpsertViewFilterAndObservations(BaseModel):
     type: ObservableTypes
     observable: "UpsertViewUpsertViewFilterAndObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class UpsertViewUpsertViewFilterAndObservationsObservable(BaseModel):
@@ -184,8 +184,8 @@ class UpsertViewUpsertViewAugmentedFilter(BaseModel):
     ] = Field(alias="creationDateRange")
     created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
-    file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
-    formats: Optional[List[Optional[str]]]
+    file_types: Optional[List[FileTypes]] = Field(alias="fileTypes")
+    formats: Optional[List[str]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
     file_size_range: Optional["UpsertViewUpsertViewAugmentedFilterFileSizeRange"] = (
         Field(alias="fileSizeRange")
@@ -249,7 +249,7 @@ class UpsertViewUpsertViewAugmentedFilterUsers(BaseModel):
 class UpsertViewUpsertViewAugmentedFilterObservations(BaseModel):
     type: ObservableTypes
     observable: "UpsertViewUpsertViewAugmentedFilterObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class UpsertViewUpsertViewAugmentedFilterObservationsObservable(BaseModel):
@@ -283,7 +283,7 @@ class UpsertViewUpsertViewAugmentedFilterOrUsers(BaseModel):
 class UpsertViewUpsertViewAugmentedFilterOrObservations(BaseModel):
     type: ObservableTypes
     observable: "UpsertViewUpsertViewAugmentedFilterOrObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class UpsertViewUpsertViewAugmentedFilterOrObservationsObservable(BaseModel):
@@ -317,7 +317,7 @@ class UpsertViewUpsertViewAugmentedFilterAndUsers(BaseModel):
 class UpsertViewUpsertViewAugmentedFilterAndObservations(BaseModel):
     type: ObservableTypes
     observable: "UpsertViewUpsertViewAugmentedFilterAndObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class UpsertViewUpsertViewAugmentedFilterAndObservationsObservable(BaseModel):

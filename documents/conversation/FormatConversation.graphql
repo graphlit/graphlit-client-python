@@ -29,6 +29,8 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
           textUri
           audioUri
           transcriptUri
+          snapshotsUri
+          snapshotCount
           summary
           customSummary
           keywords
@@ -210,6 +212,8 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
             textUri
             audioUri
             transcriptUri
+            snapshotsUri
+            snapshotCount
             summary
             customSummary
             keywords

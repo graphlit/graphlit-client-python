@@ -37,6 +37,8 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
             textUri
             audioUri
             transcriptUri
+            snapshotsUri
+            snapshotCount
             summary
             customSummary
             keywords

@@ -105,6 +105,8 @@ class QueryConversationsConversationsResultsMessagesCitationsContent(BaseModel):
     text_uri: Optional[Any] = Field(alias="textUri")
     audio_uri: Optional[Any] = Field(alias="audioUri")
     transcript_uri: Optional[Any] = Field(alias="transcriptUri")
+    snapshots_uri: Optional[Any] = Field(alias="snapshotsUri")
+    snapshot_count: Optional[int] = Field(alias="snapshotCount")
     summary: Optional[str]
     custom_summary: Optional[str] = Field(alias="customSummary")
     keywords: Optional[List[str]]
@@ -227,8 +229,8 @@ class QueryConversationsConversationsResultsFilter(BaseModel):
     ] = Field(alias="creationDateRange")
     created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
-    file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
-    formats: Optional[List[Optional[str]]]
+    file_types: Optional[List[FileTypes]] = Field(alias="fileTypes")
+    formats: Optional[List[str]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
     file_size_range: Optional[
         "QueryConversationsConversationsResultsFilterFileSizeRange"
@@ -300,7 +302,7 @@ class QueryConversationsConversationsResultsFilterUsers(BaseModel):
 class QueryConversationsConversationsResultsFilterObservations(BaseModel):
     type: ObservableTypes
     observable: "QueryConversationsConversationsResultsFilterObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class QueryConversationsConversationsResultsFilterObservationsObservable(BaseModel):
@@ -338,7 +340,7 @@ class QueryConversationsConversationsResultsFilterOrUsers(BaseModel):
 class QueryConversationsConversationsResultsFilterOrObservations(BaseModel):
     type: ObservableTypes
     observable: "QueryConversationsConversationsResultsFilterOrObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class QueryConversationsConversationsResultsFilterOrObservationsObservable(BaseModel):
@@ -378,7 +380,7 @@ class QueryConversationsConversationsResultsFilterAndUsers(BaseModel):
 class QueryConversationsConversationsResultsFilterAndObservations(BaseModel):
     type: ObservableTypes
     observable: "QueryConversationsConversationsResultsFilterAndObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class QueryConversationsConversationsResultsFilterAndObservationsObservable(BaseModel):
@@ -395,8 +397,8 @@ class QueryConversationsConversationsResultsAugmentedFilter(BaseModel):
     ] = Field(alias="creationDateRange")
     created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
-    file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
-    formats: Optional[List[Optional[str]]]
+    file_types: Optional[List[FileTypes]] = Field(alias="fileTypes")
+    formats: Optional[List[str]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
     file_size_range: Optional[
         "QueryConversationsConversationsResultsAugmentedFilterFileSizeRange"
@@ -474,7 +476,7 @@ class QueryConversationsConversationsResultsAugmentedFilterObservations(BaseMode
     observable: (
         "QueryConversationsConversationsResultsAugmentedFilterObservationsObservable"
     )
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class QueryConversationsConversationsResultsAugmentedFilterObservationsObservable(
@@ -522,7 +524,7 @@ class QueryConversationsConversationsResultsAugmentedFilterOrObservations(BaseMo
     observable: (
         "QueryConversationsConversationsResultsAugmentedFilterOrObservationsObservable"
     )
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class QueryConversationsConversationsResultsAugmentedFilterOrObservationsObservable(
@@ -570,7 +572,7 @@ class QueryConversationsConversationsResultsAugmentedFilterAndObservations(BaseM
     observable: (
         "QueryConversationsConversationsResultsAugmentedFilterAndObservationsObservable"
     )
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class QueryConversationsConversationsResultsAugmentedFilterAndObservationsObservable(

@@ -22,6 +22,8 @@ mutation PublishText($text: String!, $textType: TextTypes, $connector: ContentPu
       textUri
       audioUri
       transcriptUri
+      snapshotsUri
+      snapshotCount
       summary
       customSummary
       keywords

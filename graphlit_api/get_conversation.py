@@ -97,6 +97,8 @@ class GetConversationConversationMessagesCitationsContent(BaseModel):
     text_uri: Optional[Any] = Field(alias="textUri")
     audio_uri: Optional[Any] = Field(alias="audioUri")
     transcript_uri: Optional[Any] = Field(alias="transcriptUri")
+    snapshots_uri: Optional[Any] = Field(alias="snapshotsUri")
+    snapshot_count: Optional[int] = Field(alias="snapshotCount")
     summary: Optional[str]
     custom_summary: Optional[str] = Field(alias="customSummary")
     keywords: Optional[List[str]]
@@ -211,8 +213,8 @@ class GetConversationConversationFilter(BaseModel):
     ] = Field(alias="creationDateRange")
     created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
-    file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
-    formats: Optional[List[Optional[str]]]
+    file_types: Optional[List[FileTypes]] = Field(alias="fileTypes")
+    formats: Optional[List[str]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
     file_size_range: Optional["GetConversationConversationFilterFileSizeRange"] = Field(
         alias="fileSizeRange"
@@ -276,7 +278,7 @@ class GetConversationConversationFilterUsers(BaseModel):
 class GetConversationConversationFilterObservations(BaseModel):
     type: ObservableTypes
     observable: "GetConversationConversationFilterObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class GetConversationConversationFilterObservationsObservable(BaseModel):
@@ -310,7 +312,7 @@ class GetConversationConversationFilterOrUsers(BaseModel):
 class GetConversationConversationFilterOrObservations(BaseModel):
     type: ObservableTypes
     observable: "GetConversationConversationFilterOrObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class GetConversationConversationFilterOrObservationsObservable(BaseModel):
@@ -344,7 +346,7 @@ class GetConversationConversationFilterAndUsers(BaseModel):
 class GetConversationConversationFilterAndObservations(BaseModel):
     type: ObservableTypes
     observable: "GetConversationConversationFilterAndObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class GetConversationConversationFilterAndObservationsObservable(BaseModel):
@@ -361,8 +363,8 @@ class GetConversationConversationAugmentedFilter(BaseModel):
     ] = Field(alias="creationDateRange")
     created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
-    file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
-    formats: Optional[List[Optional[str]]]
+    file_types: Optional[List[FileTypes]] = Field(alias="fileTypes")
+    formats: Optional[List[str]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
     file_size_range: Optional[
         "GetConversationConversationAugmentedFilterFileSizeRange"
@@ -432,7 +434,7 @@ class GetConversationConversationAugmentedFilterUsers(BaseModel):
 class GetConversationConversationAugmentedFilterObservations(BaseModel):
     type: ObservableTypes
     observable: "GetConversationConversationAugmentedFilterObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class GetConversationConversationAugmentedFilterObservationsObservable(BaseModel):
@@ -470,7 +472,7 @@ class GetConversationConversationAugmentedFilterOrUsers(BaseModel):
 class GetConversationConversationAugmentedFilterOrObservations(BaseModel):
     type: ObservableTypes
     observable: "GetConversationConversationAugmentedFilterOrObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class GetConversationConversationAugmentedFilterOrObservationsObservable(BaseModel):
@@ -508,7 +510,7 @@ class GetConversationConversationAugmentedFilterAndUsers(BaseModel):
 class GetConversationConversationAugmentedFilterAndObservations(BaseModel):
     type: ObservableTypes
     observable: "GetConversationConversationAugmentedFilterAndObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class GetConversationConversationAugmentedFilterAndObservationsObservable(BaseModel):

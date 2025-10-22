@@ -22,6 +22,8 @@ mutation PublishConversation($id: ID!, $connector: ContentPublishingConnectorInp
       textUri
       audioUri
       transcriptUri
+      snapshotsUri
+      snapshotCount
       summary
       customSummary
       keywords

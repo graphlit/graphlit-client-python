@@ -29,6 +29,8 @@ mutation AskGraphlit($prompt: String!, $type: SdkTypes, $id: ID, $specification:
           textUri
           audioUri
           transcriptUri
+          snapshotsUri
+          snapshotCount
           summary
           customSummary
           keywords

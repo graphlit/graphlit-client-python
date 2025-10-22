@@ -41,6 +41,8 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
       textUri
       audioUri
       transcriptUri
+      snapshotsUri
+      snapshotCount
       summary
       customSummary
       quotes

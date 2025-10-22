@@ -25,6 +25,8 @@ mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityRefer
         textUri
         audioUri
         transcriptUri
+        snapshotsUri
+        snapshotCount
         summary
         customSummary
         keywords

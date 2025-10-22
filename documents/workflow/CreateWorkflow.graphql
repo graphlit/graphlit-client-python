@@ -190,6 +190,8 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
         type
         allowDuplicates
         embeddingTypes
+        enableSnapshots
+        snapshotCount
       }
     }
     actions {

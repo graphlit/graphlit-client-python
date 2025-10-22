@@ -29,6 +29,8 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
           textUri
           audioUri
           transcriptUri
+          snapshotsUri
+          snapshotCount
           summary
           customSummary
           keywords
@@ -210,6 +212,8 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
             textUri
             audioUri
             transcriptUri
+            snapshotsUri
+            snapshotCount
             summary
             customSummary
             keywords

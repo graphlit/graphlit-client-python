@@ -29,6 +29,8 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
           textUri
           audioUri
           transcriptUri
+          snapshotsUri
+          snapshotCount
           summary
           customSummary
           keywords
@@ -210,6 +212,8 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
             textUri
             audioUri
             transcriptUri
+            snapshotsUri
+            snapshotCount
             summary
             customSummary
             keywords

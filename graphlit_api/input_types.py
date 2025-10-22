@@ -358,7 +358,7 @@ class AlertFilter(BaseModel):
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
-    types: Optional[List[Optional[AlertTypes]]] = None
+    types: Optional[List[AlertTypes]] = None
 
 
 class BoundingBoxInput(BaseModel):
@@ -1200,8 +1200,8 @@ class ObservationReferenceInput(BaseModel):
 
 
 class ModelFilter(BaseModel):
-    types: Optional[List[Optional[ModelTypes]]] = None
-    service_types: Optional[List[Optional[ModelServiceTypes]]] = Field(
+    types: Optional[List[ModelTypes]] = None
+    service_types: Optional[List[ModelServiceTypes]] = Field(
         alias="serviceTypes", default=None
     )
 
@@ -1580,7 +1580,7 @@ class Int64RangeInput(BaseModel):
 class ObservationCriteriaInput(BaseModel):
     type: Optional[ObservableTypes] = None
     observable: Optional["EntityReferenceInput"] = None
-    states: Optional[List[Optional[EntityState]]] = None
+    states: Optional[List[EntityState]] = None
 
 
 class IntegrationConnectorUpdateInput(BaseModel):
@@ -1692,7 +1692,7 @@ class ContentCriteriaInput(BaseModel):
 class ObservationReferenceFilter(BaseModel):
     type: ObservableTypes
     observable: "EntityReferenceFilter"
-    states: Optional[List[Optional[EntityState]]] = None
+    states: Optional[List[EntityState]] = None
 
 
 class IngestionWorkflowStageInput(BaseModel):
@@ -2119,9 +2119,11 @@ class BoxFeedPropertiesUpdateInput(BaseModel):
 class StoragePolicyInput(BaseModel):
     type: Optional[StoragePolicyTypes] = None
     allow_duplicates: Optional[bool] = Field(alias="allowDuplicates", default=None)
-    embedding_types: Optional[List[Optional[EmbeddingTypes]]] = Field(
+    embedding_types: Optional[List[EmbeddingTypes]] = Field(
         alias="embeddingTypes", default=None
     )
+    enable_snapshots: Optional[bool] = Field(alias="enableSnapshots", default=None)
+    snapshot_count: Optional[int] = Field(alias="snapshotCount", default=None)
 
 
 class LanguageMetadataInput(BaseModel):
@@ -2217,7 +2219,7 @@ class OAuthAuthenticationPropertiesInput(BaseModel):
 
 class EntityEnrichmentConnectorInput(BaseModel):
     type: EntityEnrichmentServiceTypes
-    enriched_types: Optional[List[Optional[ObservableTypes]]] = Field(
+    enriched_types: Optional[List[ObservableTypes]] = Field(
         alias="enrichedTypes", default=None
     )
     fhir: Optional["FHIREnrichmentPropertiesInput"] = None
@@ -2687,7 +2689,7 @@ class MetadataFilter(BaseModel):
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
-    metadata_types: Optional[List[Optional[MetadataTypes]]] = Field(
+    metadata_types: Optional[List[MetadataTypes]] = Field(
         alias="metadataTypes", default=None
     )
     content: Optional["EntityReferenceFilter"] = None
@@ -3246,7 +3248,7 @@ class DiffbotEnrichmentPropertiesInput(BaseModel):
 
 
 class ContentGraphInput(BaseModel):
-    types: Optional[List[Optional[ObservableTypes]]] = None
+    types: Optional[List[ObservableTypes]] = None
 
 
 class AddressFilter(BaseModel):
@@ -3617,8 +3619,8 @@ class SpecificationFilter(BaseModel):
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
-    types: Optional[List[Optional[SpecificationTypes]]] = None
-    service_types: Optional[List[Optional[ModelServiceTypes]]] = Field(
+    types: Optional[List[SpecificationTypes]] = None
+    service_types: Optional[List[ModelServiceTypes]] = Field(
         alias="serviceTypes", default=None
     )
 
@@ -4201,7 +4203,7 @@ class FeedFilter(BaseModel):
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
-    types: Optional[List[Optional[FeedTypes]]] = None
+    types: Optional[List[FeedTypes]] = None
 
 
 class LabelUpdateInput(BaseModel):

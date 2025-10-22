@@ -39,8 +39,8 @@ class GetViewViewFilter(BaseModel):
     )
     created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
-    file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
-    formats: Optional[List[Optional[str]]]
+    file_types: Optional[List[FileTypes]] = Field(alias="fileTypes")
+    formats: Optional[List[str]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
     file_size_range: Optional["GetViewViewFilterFileSizeRange"] = Field(
         alias="fileSizeRange"
@@ -104,7 +104,7 @@ class GetViewViewFilterUsers(BaseModel):
 class GetViewViewFilterObservations(BaseModel):
     type: ObservableTypes
     observable: "GetViewViewFilterObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class GetViewViewFilterObservationsObservable(BaseModel):
@@ -138,7 +138,7 @@ class GetViewViewFilterOrUsers(BaseModel):
 class GetViewViewFilterOrObservations(BaseModel):
     type: ObservableTypes
     observable: "GetViewViewFilterOrObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class GetViewViewFilterOrObservationsObservable(BaseModel):
@@ -172,7 +172,7 @@ class GetViewViewFilterAndUsers(BaseModel):
 class GetViewViewFilterAndObservations(BaseModel):
     type: ObservableTypes
     observable: "GetViewViewFilterAndObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class GetViewViewFilterAndObservationsObservable(BaseModel):
@@ -189,8 +189,8 @@ class GetViewViewAugmentedFilter(BaseModel):
     )
     created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
-    file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
-    formats: Optional[List[Optional[str]]]
+    file_types: Optional[List[FileTypes]] = Field(alias="fileTypes")
+    formats: Optional[List[str]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
     file_size_range: Optional["GetViewViewAugmentedFilterFileSizeRange"] = Field(
         alias="fileSizeRange"
@@ -254,7 +254,7 @@ class GetViewViewAugmentedFilterUsers(BaseModel):
 class GetViewViewAugmentedFilterObservations(BaseModel):
     type: ObservableTypes
     observable: "GetViewViewAugmentedFilterObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class GetViewViewAugmentedFilterObservationsObservable(BaseModel):
@@ -288,7 +288,7 @@ class GetViewViewAugmentedFilterOrUsers(BaseModel):
 class GetViewViewAugmentedFilterOrObservations(BaseModel):
     type: ObservableTypes
     observable: "GetViewViewAugmentedFilterOrObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class GetViewViewAugmentedFilterOrObservationsObservable(BaseModel):
@@ -322,7 +322,7 @@ class GetViewViewAugmentedFilterAndUsers(BaseModel):
 class GetViewViewAugmentedFilterAndObservations(BaseModel):
     type: ObservableTypes
     observable: "GetViewViewAugmentedFilterAndObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class GetViewViewAugmentedFilterAndObservationsObservable(BaseModel):

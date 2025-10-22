@@ -34,8 +34,8 @@ class CreateViewCreateViewFilter(BaseModel):
     )
     created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
-    file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
-    formats: Optional[List[Optional[str]]]
+    file_types: Optional[List[FileTypes]] = Field(alias="fileTypes")
+    formats: Optional[List[str]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
     file_size_range: Optional["CreateViewCreateViewFilterFileSizeRange"] = Field(
         alias="fileSizeRange"
@@ -99,7 +99,7 @@ class CreateViewCreateViewFilterUsers(BaseModel):
 class CreateViewCreateViewFilterObservations(BaseModel):
     type: ObservableTypes
     observable: "CreateViewCreateViewFilterObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class CreateViewCreateViewFilterObservationsObservable(BaseModel):
@@ -133,7 +133,7 @@ class CreateViewCreateViewFilterOrUsers(BaseModel):
 class CreateViewCreateViewFilterOrObservations(BaseModel):
     type: ObservableTypes
     observable: "CreateViewCreateViewFilterOrObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class CreateViewCreateViewFilterOrObservationsObservable(BaseModel):
@@ -167,7 +167,7 @@ class CreateViewCreateViewFilterAndUsers(BaseModel):
 class CreateViewCreateViewFilterAndObservations(BaseModel):
     type: ObservableTypes
     observable: "CreateViewCreateViewFilterAndObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class CreateViewCreateViewFilterAndObservationsObservable(BaseModel):
@@ -184,8 +184,8 @@ class CreateViewCreateViewAugmentedFilter(BaseModel):
     ] = Field(alias="creationDateRange")
     created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
-    file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
-    formats: Optional[List[Optional[str]]]
+    file_types: Optional[List[FileTypes]] = Field(alias="fileTypes")
+    formats: Optional[List[str]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
     file_size_range: Optional["CreateViewCreateViewAugmentedFilterFileSizeRange"] = (
         Field(alias="fileSizeRange")
@@ -249,7 +249,7 @@ class CreateViewCreateViewAugmentedFilterUsers(BaseModel):
 class CreateViewCreateViewAugmentedFilterObservations(BaseModel):
     type: ObservableTypes
     observable: "CreateViewCreateViewAugmentedFilterObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class CreateViewCreateViewAugmentedFilterObservationsObservable(BaseModel):
@@ -283,7 +283,7 @@ class CreateViewCreateViewAugmentedFilterOrUsers(BaseModel):
 class CreateViewCreateViewAugmentedFilterOrObservations(BaseModel):
     type: ObservableTypes
     observable: "CreateViewCreateViewAugmentedFilterOrObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class CreateViewCreateViewAugmentedFilterOrObservationsObservable(BaseModel):
@@ -317,7 +317,7 @@ class CreateViewCreateViewAugmentedFilterAndUsers(BaseModel):
 class CreateViewCreateViewAugmentedFilterAndObservations(BaseModel):
     type: ObservableTypes
     observable: "CreateViewCreateViewAugmentedFilterAndObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class CreateViewCreateViewAugmentedFilterAndObservationsObservable(BaseModel):

@@ -1236,6 +1236,8 @@ mutation DescribeEncodedImage($prompt: String!, $mimeType: String!, $data: Strin
         textUri
         audioUri
         transcriptUri
+        snapshotsUri
+        snapshotCount
         summary
         customSummary
         keywords
@@ -1375,6 +1377,8 @@ mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityRefer
         textUri
         audioUri
         transcriptUri
+        snapshotsUri
+        snapshotCount
         summary
         customSummary
         keywords
@@ -1600,6 +1604,8 @@ query GetContent($id: ID!, $correlationId: String) {
     textUri
     audioUri
     transcriptUri
+    snapshotsUri
+    snapshotCount
     summary
     customSummary
     keywords
@@ -2375,6 +2381,8 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
       textUri
       audioUri
       transcriptUri
+      snapshotsUri
+      snapshotCount
       summary
       customSummary
       keywords
@@ -2716,6 +2724,8 @@ mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $conne
       textUri
       audioUri
       transcriptUri
+      snapshotsUri
+      snapshotCount
       summary
       customSummary
       keywords
@@ -2844,6 +2854,8 @@ mutation PublishText($text: String!, $textType: TextTypes, $connector: ContentPu
       textUri
       audioUri
       transcriptUri
+      snapshotsUri
+      snapshotCount
       summary
       customSummary
       keywords
@@ -2983,6 +2995,8 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
       textUri
       audioUri
       transcriptUri
+      snapshotsUri
+      snapshotCount
       summary
       customSummary
       quotes
@@ -3325,6 +3339,8 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
       textUri
       audioUri
       transcriptUri
+      snapshotsUri
+      snapshotCount
       summary
       customSummary
       quotes
@@ -3810,6 +3826,8 @@ mutation AskGraphlit($prompt: String!, $type: SdkTypes, $id: ID, $specification:
           textUri
           audioUri
           transcriptUri
+          snapshotsUri
+          snapshotCount
           summary
           customSummary
           keywords
@@ -3990,6 +4008,8 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
           textUri
           audioUri
           transcriptUri
+          snapshotsUri
+          snapshotCount
           summary
           customSummary
           keywords
@@ -4171,6 +4191,8 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
             textUri
             audioUri
             transcriptUri
+            snapshotsUri
+            snapshotCount
             summary
             customSummary
             keywords
@@ -4315,6 +4337,8 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
           textUri
           audioUri
           transcriptUri
+          snapshotsUri
+          snapshotCount
           summary
           customSummary
           keywords
@@ -4496,6 +4520,8 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
             textUri
             audioUri
             transcriptUri
+            snapshotsUri
+            snapshotCount
             summary
             customSummary
             keywords
@@ -4694,6 +4720,8 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
           textUri
           audioUri
           transcriptUri
+          snapshotsUri
+          snapshotCount
           summary
           customSummary
           keywords
@@ -4875,6 +4903,8 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
             textUri
             audioUri
             transcriptUri
+            snapshotsUri
+            snapshotCount
             summary
             customSummary
             keywords
@@ -5022,6 +5052,8 @@ query GetConversation($id: ID!, $correlationId: String) {
           textUri
           audioUri
           transcriptUri
+          snapshotsUri
+          snapshotCount
           summary
           customSummary
           keywords
@@ -5358,6 +5390,8 @@ mutation Prompt($prompt: String, $mimeType: String, $data: String, $specificatio
           textUri
           audioUri
           transcriptUri
+          snapshotsUri
+          snapshotCount
           summary
           customSummary
           keywords
@@ -5509,6 +5543,8 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
           textUri
           audioUri
           transcriptUri
+          snapshotsUri
+          snapshotCount
           summary
           customSummary
           keywords
@@ -5690,6 +5726,8 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
             textUri
             audioUri
             transcriptUri
+            snapshotsUri
+            snapshotCount
             summary
             customSummary
             keywords
@@ -5830,6 +5868,8 @@ mutation PublishConversation($id: ID!, $connector: ContentPublishingConnectorInp
       textUri
       audioUri
       transcriptUri
+      snapshotsUri
+      snapshotCount
       summary
       customSummary
       keywords
@@ -5965,6 +6005,8 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
             textUri
             audioUri
             transcriptUri
+            snapshotsUri
+            snapshotCount
             summary
             customSummary
             keywords
@@ -6354,6 +6396,8 @@ mutation ReviseContent($prompt: String!, $content: EntityReferenceInput!, $id: I
           textUri
           audioUri
           transcriptUri
+          snapshotsUri
+          snapshotCount
           summary
           customSummary
           keywords
@@ -6501,6 +6545,8 @@ mutation ReviseEncodedImage($prompt: String!, $mimeType: String!, $data: String!
           textUri
           audioUri
           transcriptUri
+          snapshotsUri
+          snapshotCount
           summary
           customSummary
           keywords
@@ -6647,6 +6693,8 @@ mutation ReviseImage($prompt: String!, $uri: URL!, $id: ID, $specification: Enti
           textUri
           audioUri
           transcriptUri
+          snapshotsUri
+          snapshotCount
           summary
           customSummary
           keywords
@@ -6793,6 +6841,8 @@ mutation ReviseText($prompt: String!, $text: String!, $id: ID, $specification: E
           textUri
           audioUri
           transcriptUri
+          snapshotsUri
+          snapshotCount
           summary
           customSummary
           keywords
@@ -10261,6 +10311,8 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
           textUri
           audioUri
           transcriptUri
+          snapshotsUri
+          snapshotCount
           summary
           customSummary
           keywords
@@ -12134,6 +12186,8 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
         type
         allowDuplicates
         embeddingTypes
+        enableSnapshots
+        snapshotCount
       }
     }
     actions {
@@ -12394,6 +12448,8 @@ query GetWorkflow($id: ID!, $correlationId: String) {
         type
         allowDuplicates
         embeddingTypes
+        enableSnapshots
+        snapshotCount
       }
     }
     actions {
@@ -12624,6 +12680,8 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
           type
           allowDuplicates
           embeddingTypes
+          enableSnapshots
+          snapshotCount
         }
       }
       actions {
@@ -12849,6 +12907,8 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
         type
         allowDuplicates
         embeddingTypes
+        enableSnapshots
+        snapshotCount
       }
     }
     actions {
@@ -13073,6 +13133,8 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
         type
         allowDuplicates
         embeddingTypes
+        enableSnapshots
+        snapshotCount
       }
     }
     actions {

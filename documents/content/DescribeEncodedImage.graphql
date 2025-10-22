@@ -25,6 +25,8 @@ mutation DescribeEncodedImage($prompt: String!, $mimeType: String!, $data: Strin
         textUri
         audioUri
         transcriptUri
+        snapshotsUri
+        snapshotCount
         summary
         customSummary
         keywords

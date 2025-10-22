@@ -29,6 +29,8 @@ mutation Prompt($prompt: String, $mimeType: String, $data: String, $specificatio
           textUri
           audioUri
           transcriptUri
+          snapshotsUri
+          snapshotCount
           summary
           customSummary
           keywords

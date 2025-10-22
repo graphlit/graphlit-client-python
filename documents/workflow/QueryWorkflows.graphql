@@ -196,6 +196,8 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
           type
           allowDuplicates
           embeddingTypes
+          enableSnapshots
+          snapshotCount
         }
       }
       actions {

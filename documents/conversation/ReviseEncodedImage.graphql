@@ -29,6 +29,8 @@ mutation ReviseEncodedImage($prompt: String!, $mimeType: String!, $data: String!
           textUri
           audioUri
           transcriptUri
+          snapshotsUri
+          snapshotCount
           summary
           customSummary
           keywords

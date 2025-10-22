@@ -71,8 +71,8 @@ class GetAlertAlertFilter(BaseModel):
     )
     created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
-    file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
-    formats: Optional[List[Optional[str]]]
+    file_types: Optional[List[FileTypes]] = Field(alias="fileTypes")
+    formats: Optional[List[str]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
     file_size_range: Optional["GetAlertAlertFilterFileSizeRange"] = Field(
         alias="fileSizeRange"
@@ -136,7 +136,7 @@ class GetAlertAlertFilterUsers(BaseModel):
 class GetAlertAlertFilterObservations(BaseModel):
     type: ObservableTypes
     observable: "GetAlertAlertFilterObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class GetAlertAlertFilterObservationsObservable(BaseModel):
@@ -170,7 +170,7 @@ class GetAlertAlertFilterOrUsers(BaseModel):
 class GetAlertAlertFilterOrObservations(BaseModel):
     type: ObservableTypes
     observable: "GetAlertAlertFilterOrObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class GetAlertAlertFilterOrObservationsObservable(BaseModel):
@@ -204,7 +204,7 @@ class GetAlertAlertFilterAndUsers(BaseModel):
 class GetAlertAlertFilterAndObservations(BaseModel):
     type: ObservableTypes
     observable: "GetAlertAlertFilterAndObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class GetAlertAlertFilterAndObservationsObservable(BaseModel):

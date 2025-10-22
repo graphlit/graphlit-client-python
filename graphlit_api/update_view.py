@@ -34,8 +34,8 @@ class UpdateViewUpdateViewFilter(BaseModel):
     )
     created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
-    file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
-    formats: Optional[List[Optional[str]]]
+    file_types: Optional[List[FileTypes]] = Field(alias="fileTypes")
+    formats: Optional[List[str]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
     file_size_range: Optional["UpdateViewUpdateViewFilterFileSizeRange"] = Field(
         alias="fileSizeRange"
@@ -99,7 +99,7 @@ class UpdateViewUpdateViewFilterUsers(BaseModel):
 class UpdateViewUpdateViewFilterObservations(BaseModel):
     type: ObservableTypes
     observable: "UpdateViewUpdateViewFilterObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class UpdateViewUpdateViewFilterObservationsObservable(BaseModel):
@@ -133,7 +133,7 @@ class UpdateViewUpdateViewFilterOrUsers(BaseModel):
 class UpdateViewUpdateViewFilterOrObservations(BaseModel):
     type: ObservableTypes
     observable: "UpdateViewUpdateViewFilterOrObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class UpdateViewUpdateViewFilterOrObservationsObservable(BaseModel):
@@ -167,7 +167,7 @@ class UpdateViewUpdateViewFilterAndUsers(BaseModel):
 class UpdateViewUpdateViewFilterAndObservations(BaseModel):
     type: ObservableTypes
     observable: "UpdateViewUpdateViewFilterAndObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class UpdateViewUpdateViewFilterAndObservationsObservable(BaseModel):
@@ -184,8 +184,8 @@ class UpdateViewUpdateViewAugmentedFilter(BaseModel):
     ] = Field(alias="creationDateRange")
     created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
-    file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
-    formats: Optional[List[Optional[str]]]
+    file_types: Optional[List[FileTypes]] = Field(alias="fileTypes")
+    formats: Optional[List[str]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
     file_size_range: Optional["UpdateViewUpdateViewAugmentedFilterFileSizeRange"] = (
         Field(alias="fileSizeRange")
@@ -249,7 +249,7 @@ class UpdateViewUpdateViewAugmentedFilterUsers(BaseModel):
 class UpdateViewUpdateViewAugmentedFilterObservations(BaseModel):
     type: ObservableTypes
     observable: "UpdateViewUpdateViewAugmentedFilterObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class UpdateViewUpdateViewAugmentedFilterObservationsObservable(BaseModel):
@@ -283,7 +283,7 @@ class UpdateViewUpdateViewAugmentedFilterOrUsers(BaseModel):
 class UpdateViewUpdateViewAugmentedFilterOrObservations(BaseModel):
     type: ObservableTypes
     observable: "UpdateViewUpdateViewAugmentedFilterOrObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class UpdateViewUpdateViewAugmentedFilterOrObservationsObservable(BaseModel):
@@ -317,7 +317,7 @@ class UpdateViewUpdateViewAugmentedFilterAndUsers(BaseModel):
 class UpdateViewUpdateViewAugmentedFilterAndObservations(BaseModel):
     type: ObservableTypes
     observable: "UpdateViewUpdateViewAugmentedFilterAndObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class UpdateViewUpdateViewAugmentedFilterAndObservationsObservable(BaseModel):

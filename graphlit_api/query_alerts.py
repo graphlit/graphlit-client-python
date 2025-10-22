@@ -77,8 +77,8 @@ class QueryAlertsAlertsResultsFilter(BaseModel):
     )
     created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[List[ContentTypes]]
-    file_types: Optional[List[Optional[FileTypes]]] = Field(alias="fileTypes")
-    formats: Optional[List[Optional[str]]]
+    file_types: Optional[List[FileTypes]] = Field(alias="fileTypes")
+    formats: Optional[List[str]]
     file_extensions: Optional[List[str]] = Field(alias="fileExtensions")
     file_size_range: Optional["QueryAlertsAlertsResultsFilterFileSizeRange"] = Field(
         alias="fileSizeRange"
@@ -142,7 +142,7 @@ class QueryAlertsAlertsResultsFilterUsers(BaseModel):
 class QueryAlertsAlertsResultsFilterObservations(BaseModel):
     type: ObservableTypes
     observable: "QueryAlertsAlertsResultsFilterObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class QueryAlertsAlertsResultsFilterObservationsObservable(BaseModel):
@@ -176,7 +176,7 @@ class QueryAlertsAlertsResultsFilterOrUsers(BaseModel):
 class QueryAlertsAlertsResultsFilterOrObservations(BaseModel):
     type: ObservableTypes
     observable: "QueryAlertsAlertsResultsFilterOrObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class QueryAlertsAlertsResultsFilterOrObservationsObservable(BaseModel):
@@ -210,7 +210,7 @@ class QueryAlertsAlertsResultsFilterAndUsers(BaseModel):
 class QueryAlertsAlertsResultsFilterAndObservations(BaseModel):
     type: ObservableTypes
     observable: "QueryAlertsAlertsResultsFilterAndObservationsObservable"
-    states: Optional[List[Optional[EntityState]]]
+    states: Optional[List[EntityState]]
 
 
 class QueryAlertsAlertsResultsFilterAndObservationsObservable(BaseModel):

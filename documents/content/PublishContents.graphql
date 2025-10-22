@@ -22,6 +22,8 @@ mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $conne
       textUri
       audioUri
       transcriptUri
+      snapshotsUri
+      snapshotCount
       summary
       customSummary
       keywords

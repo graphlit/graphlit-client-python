@@ -29,6 +29,8 @@ mutation ReviseContent($prompt: String!, $content: EntityReferenceInput!, $id: I
           textUri
           audioUri
           transcriptUri
+          snapshotsUri
+          snapshotCount
           summary
           customSummary
           keywords
