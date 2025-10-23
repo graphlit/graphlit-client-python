@@ -207,6 +207,10 @@ class MedicalIndicationFilter(BaseModel):
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -231,6 +235,10 @@ class SoftwareFilter(BaseModel):
     created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
     )
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -287,6 +295,10 @@ class MedicalTestFilter(BaseModel):
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -315,6 +327,10 @@ class MedicalStudyFilter(BaseModel):
     created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
     )
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -357,6 +373,10 @@ class AlertFilter(BaseModel):
     created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
     )
     types: Optional[List[AlertTypes]] = None
 
@@ -548,6 +568,10 @@ class WorkflowFilter(BaseModel):
     created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
     )
 
 
@@ -747,6 +771,10 @@ class MedicalDrugClassFilter(BaseModel):
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -787,6 +815,10 @@ class MedicalContraindicationFilter(BaseModel):
     created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
     )
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -880,6 +912,10 @@ class ProductFilter(BaseModel):
     created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
     )
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -1016,6 +1052,10 @@ class ProjectFilter(BaseModel):
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
 
 
 class ToolDefinitionInput(BaseModel):
@@ -1091,6 +1131,10 @@ class MedicalTherapyFilter(BaseModel):
     created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
     )
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -1505,6 +1549,10 @@ class MedicalDeviceFilter(BaseModel):
     created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
     )
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -2042,6 +2090,10 @@ class UserFilter(BaseModel):
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
     identifier: Optional[str] = None
 
 
@@ -2176,6 +2228,10 @@ class ConnectorFilter(BaseModel):
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
     types: Optional[List[ConnectorTypes]] = None
 
 
@@ -2191,6 +2247,10 @@ class MedicalGuidelineFilter(BaseModel):
     created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
     )
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -2276,6 +2336,10 @@ class MedicalConditionFilter(BaseModel):
     created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
     )
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -2501,6 +2565,10 @@ class MedicalProcedureFilter(BaseModel):
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -2652,6 +2720,10 @@ class PersonFilter(BaseModel):
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -2689,6 +2761,10 @@ class MetadataFilter(BaseModel):
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
     metadata_types: Optional[List[MetadataTypes]] = Field(
         alias="metadataTypes", default=None
     )
@@ -2713,6 +2789,10 @@ class ConversationFilter(BaseModel):
     created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
     )
     types: Optional[List[ConversationTypes]] = None
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
@@ -2749,6 +2829,10 @@ class CategoryFilter(BaseModel):
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
 
 
 class EmailIntegrationPropertiesInput(BaseModel):
@@ -2778,6 +2862,10 @@ class LabelFilter(BaseModel):
     created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
     )
 
 
@@ -2861,6 +2949,10 @@ class ContentFilter(BaseModel):
     created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
     )
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
@@ -3043,6 +3135,10 @@ class ViewFilter(BaseModel):
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
     types: Optional[List[Optional[ViewTypes]]] = None
 
 
@@ -3224,6 +3320,8 @@ class ContentInput(BaseModel):
     identifier: Optional[str] = None
     file_creation_date: Optional[Any] = Field(alias="fileCreationDate", default=None)
     file_modified_date: Optional[Any] = Field(alias="fileModifiedDate", default=None)
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
     workflow: Optional["EntityReferenceInput"] = None
 
 
@@ -3522,6 +3620,10 @@ class RepoFilter(BaseModel):
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -3546,6 +3648,10 @@ class MedicalDrugFilter(BaseModel):
     created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
     )
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -3618,6 +3724,10 @@ class SpecificationFilter(BaseModel):
     created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
     )
     types: Optional[List[SpecificationTypes]] = None
     service_types: Optional[List[ModelServiceTypes]] = Field(
@@ -3705,6 +3815,10 @@ class CollectionFilter(BaseModel):
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
     types: Optional[List[CollectionTypes]] = None
     disable_inheritance: Optional[bool] = Field(
         alias="disableInheritance", default=None
@@ -3731,6 +3845,10 @@ class EventFilter(BaseModel):
     created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
     )
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -3845,6 +3963,10 @@ class PlaceFilter(BaseModel):
     created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
     )
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -3986,6 +4108,10 @@ class OrganizationFilter(BaseModel):
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
     )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -4006,6 +4132,8 @@ class ContentUpdateInput(BaseModel):
     identifier: Optional[str] = None
     file_creation_date: Optional[Any] = Field(alias="fileCreationDate", default=None)
     file_modified_date: Optional[Any] = Field(alias="fileModifiedDate", default=None)
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
     summary: Optional[str] = None
     custom_summary: Optional[str] = Field(alias="customSummary", default=None)
     keywords: Optional[List[str]] = None
@@ -4202,6 +4330,10 @@ class FeedFilter(BaseModel):
     created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeFilter"] = Field(
         alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
     )
     types: Optional[List[FeedTypes]] = None
 
