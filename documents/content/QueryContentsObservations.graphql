@@ -204,6 +204,39 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
         type
         labels
       }
+      commit {
+        sha
+        message
+        project
+        team
+        branch
+        parentShas
+        filesChanged
+        additions
+        deletions
+        pullRequestNumber
+        authorDate
+        committerDate
+        labels
+      }
+      pullRequest {
+        identifier
+        title
+        project
+        team
+        status
+        type
+        baseBranch
+        headBranch
+        isDraft
+        isMergeable
+        mergeCommitSha
+        mergedAt
+        filesChanged
+        additions
+        deletions
+        labels
+      }
       message {
         identifier
         conversationIdentifier

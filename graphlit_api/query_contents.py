@@ -74,6 +74,10 @@ class QueryContentsContentsResults(BaseModel):
     email: Optional["QueryContentsContentsResultsEmail"]
     event: Optional["QueryContentsContentsResultsEvent"]
     issue: Optional["QueryContentsContentsResultsIssue"]
+    commit: Optional["QueryContentsContentsResultsCommit"]
+    pull_request: Optional["QueryContentsContentsResultsPullRequest"] = Field(
+        alias="pullRequest"
+    )
     message: Optional["QueryContentsContentsResultsMessage"]
     post: Optional["QueryContentsContentsResultsPost"]
     package: Optional["QueryContentsContentsResultsPackage"]
@@ -287,6 +291,41 @@ class QueryContentsContentsResultsIssue(BaseModel):
     status: Optional[str]
     priority: Optional[str]
     type: Optional[str]
+    labels: Optional[List[Optional[str]]]
+
+
+class QueryContentsContentsResultsCommit(BaseModel):
+    sha: Optional[str]
+    message: Optional[str]
+    project: Optional[str]
+    team: Optional[str]
+    branch: Optional[str]
+    parent_shas: Optional[List[Optional[str]]] = Field(alias="parentShas")
+    files_changed: Optional[int] = Field(alias="filesChanged")
+    additions: Optional[int]
+    deletions: Optional[int]
+    pull_request_number: Optional[str] = Field(alias="pullRequestNumber")
+    author_date: Optional[Any] = Field(alias="authorDate")
+    committer_date: Optional[Any] = Field(alias="committerDate")
+    labels: Optional[List[Optional[str]]]
+
+
+class QueryContentsContentsResultsPullRequest(BaseModel):
+    identifier: Optional[str]
+    title: Optional[str]
+    project: Optional[str]
+    team: Optional[str]
+    status: Optional[str]
+    type: Optional[str]
+    base_branch: Optional[str] = Field(alias="baseBranch")
+    head_branch: Optional[str] = Field(alias="headBranch")
+    is_draft: Optional[bool] = Field(alias="isDraft")
+    is_mergeable: Optional[bool] = Field(alias="isMergeable")
+    merge_commit_sha: Optional[str] = Field(alias="mergeCommitSha")
+    merged_at: Optional[Any] = Field(alias="mergedAt")
+    files_changed: Optional[int] = Field(alias="filesChanged")
+    additions: Optional[int]
+    deletions: Optional[int]
     labels: Optional[List[Optional[str]]]
 
 

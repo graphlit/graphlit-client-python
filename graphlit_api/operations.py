@@ -1773,6 +1773,39 @@ query GetContent($id: ID!, $correlationId: String) {
       type
       labels
     }
+    commit {
+      sha
+      message
+      project
+      team
+      branch
+      parentShas
+      filesChanged
+      additions
+      deletions
+      pullRequestNumber
+      authorDate
+      committerDate
+      labels
+    }
+    pullRequest {
+      identifier
+      title
+      project
+      team
+      status
+      type
+      baseBranch
+      headBranch
+      isDraft
+      isMergeable
+      mergeCommitSha
+      mergedAt
+      filesChanged
+      additions
+      deletions
+      labels
+    }
     message {
       identifier
       conversationIdentifier
@@ -2550,6 +2583,39 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
         type
         labels
       }
+      commit {
+        sha
+        message
+        project
+        team
+        branch
+        parentShas
+        filesChanged
+        additions
+        deletions
+        pullRequestNumber
+        authorDate
+        committerDate
+        labels
+      }
+      pullRequest {
+        identifier
+        title
+        project
+        team
+        status
+        type
+        baseBranch
+        headBranch
+        isDraft
+        isMergeable
+        mergeCommitSha
+        mergedAt
+        filesChanged
+        additions
+        deletions
+        labels
+      }
       message {
         identifier
         conversationIdentifier
@@ -3158,6 +3224,39 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
         type
         labels
       }
+      commit {
+        sha
+        message
+        project
+        team
+        branch
+        parentShas
+        filesChanged
+        additions
+        deletions
+        pullRequestNumber
+        authorDate
+        committerDate
+        labels
+      }
+      pullRequest {
+        identifier
+        title
+        project
+        team
+        status
+        type
+        baseBranch
+        headBranch
+        isDraft
+        isMergeable
+        mergeCommitSha
+        mergedAt
+        filesChanged
+        additions
+        deletions
+        labels
+      }
       message {
         identifier
         conversationIdentifier
@@ -3500,6 +3599,39 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
         status
         priority
         type
+        labels
+      }
+      commit {
+        sha
+        message
+        project
+        team
+        branch
+        parentShas
+        filesChanged
+        additions
+        deletions
+        pullRequestNumber
+        authorDate
+        committerDate
+        labels
+      }
+      pullRequest {
+        identifier
+        title
+        project
+        team
+        status
+        type
+        baseBranch
+        headBranch
+        isDraft
+        isMergeable
+        mergeCommitSha
+        mergedAt
+        filesChanged
+        additions
+        deletions
         labels
       }
       message {

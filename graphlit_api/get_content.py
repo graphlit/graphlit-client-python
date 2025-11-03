@@ -87,6 +87,8 @@ class GetContentContent(BaseModel):
     email: Optional["GetContentContentEmail"]
     event: Optional["GetContentContentEvent"]
     issue: Optional["GetContentContentIssue"]
+    commit: Optional["GetContentContentCommit"]
+    pull_request: Optional["GetContentContentPullRequest"] = Field(alias="pullRequest")
     message: Optional["GetContentContentMessage"]
     post: Optional["GetContentContentPost"]
     package: Optional["GetContentContentPackage"]
@@ -322,6 +324,41 @@ class GetContentContentIssue(BaseModel):
     status: Optional[str]
     priority: Optional[str]
     type: Optional[str]
+    labels: Optional[List[Optional[str]]]
+
+
+class GetContentContentCommit(BaseModel):
+    sha: Optional[str]
+    message: Optional[str]
+    project: Optional[str]
+    team: Optional[str]
+    branch: Optional[str]
+    parent_shas: Optional[List[Optional[str]]] = Field(alias="parentShas")
+    files_changed: Optional[int] = Field(alias="filesChanged")
+    additions: Optional[int]
+    deletions: Optional[int]
+    pull_request_number: Optional[str] = Field(alias="pullRequestNumber")
+    author_date: Optional[Any] = Field(alias="authorDate")
+    committer_date: Optional[Any] = Field(alias="committerDate")
+    labels: Optional[List[Optional[str]]]
+
+
+class GetContentContentPullRequest(BaseModel):
+    identifier: Optional[str]
+    title: Optional[str]
+    project: Optional[str]
+    team: Optional[str]
+    status: Optional[str]
+    type: Optional[str]
+    base_branch: Optional[str] = Field(alias="baseBranch")
+    head_branch: Optional[str] = Field(alias="headBranch")
+    is_draft: Optional[bool] = Field(alias="isDraft")
+    is_mergeable: Optional[bool] = Field(alias="isMergeable")
+    merge_commit_sha: Optional[str] = Field(alias="mergeCommitSha")
+    merged_at: Optional[Any] = Field(alias="mergedAt")
+    files_changed: Optional[int] = Field(alias="filesChanged")
+    additions: Optional[int]
+    deletions: Optional[int]
     labels: Optional[List[Optional[str]]]
 
 
