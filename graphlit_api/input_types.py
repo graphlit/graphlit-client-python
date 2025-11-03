@@ -56,6 +56,7 @@ from .enums import (
     FilePreparationServiceTypes,
     FileTypes,
     GitHubAuthenticationTypes,
+    GitHubCommitAuthenticationTypes,
     GitHubIssueAuthenticationTypes,
     GitHubPullRequestAuthenticationTypes,
     GoogleCalendarAuthenticationTypes,
@@ -1396,6 +1397,21 @@ class SpecificationInput(BaseModel):
     voyage: Optional["VoyageModelPropertiesInput"] = None
 
 
+class GitHubCommitsFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[GitHubCommitAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    repository_owner: str = Field(alias="repositoryOwner")
+    repository_name: str = Field(alias="repositoryName")
+    branch: Optional[str] = None
+    uri: Optional[Any] = None
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+
+
 class ProjectQuotaInput(BaseModel):
     storage: Optional[Any] = None
     contents: Optional[int] = None
@@ -1632,7 +1648,7 @@ class CalendarAttendeeInput(BaseModel):
 
 class CommitFeedPropertiesInput(BaseModel):
     type: FeedServiceTypes
-    github: Optional["GitHubIssuesFeedPropertiesInput"] = None
+    github: Optional["GitHubCommitsFeedPropertiesInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -2323,6 +2339,21 @@ class OAuthAuthenticationPropertiesInput(BaseModel):
     refresh_token: str = Field(alias="refreshToken")
     provider: OAuthProviders
     metadata: Optional[str] = None
+
+
+class GitHubCommitsFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[GitHubCommitAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    repository_owner: Optional[str] = Field(alias="repositoryOwner", default=None)
+    repository_name: Optional[str] = Field(alias="repositoryName", default=None)
+    branch: Optional[str] = None
+    uri: Optional[Any] = None
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class EntityEnrichmentConnectorInput(BaseModel):
@@ -3240,7 +3271,7 @@ class MedicalGuidelineFacetInput(BaseModel):
 
 
 class CommitFeedPropertiesUpdateInput(BaseModel):
-    github: Optional["GitHubIssuesFeedPropertiesUpdateInput"] = None
+    github: Optional["GitHubCommitsFeedPropertiesUpdateInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
