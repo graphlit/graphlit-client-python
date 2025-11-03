@@ -7346,6 +7346,32 @@ query GetFeed($id: ID!, $correlationId: String) {
       }
       readLimit
     }
+    commit {
+      type
+      github {
+        authenticationType
+        uri
+        repositoryOwner
+        repositoryName
+        refreshToken
+        personalAccessToken
+        authorizationId
+      }
+      readLimit
+    }
+    pullRequest {
+      type
+      github {
+        authenticationType
+        uri
+        repositoryOwner
+        repositoryName
+        refreshToken
+        personalAccessToken
+        authorizationId
+      }
+      readLimit
+    }
     calendar {
       type
       includeAttachments
@@ -7694,6 +7720,32 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           token
           identifiers
           type
+        }
+        readLimit
+      }
+      commit {
+        type
+        github {
+          authenticationType
+          uri
+          repositoryOwner
+          repositoryName
+          refreshToken
+          personalAccessToken
+          authorizationId
+        }
+        readLimit
+      }
+      pullRequest {
+        type
+        github {
+          authenticationType
+          uri
+          repositoryOwner
+          repositoryName
+          refreshToken
+          personalAccessToken
+          authorizationId
         }
         readLimit
       }

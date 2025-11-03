@@ -17,7 +17,9 @@ from .enums import (
     FeedSyncMode,
     FeedTypes,
     GitHubAuthenticationTypes,
+    GitHubCommitAuthenticationTypes,
     GitHubIssueAuthenticationTypes,
+    GitHubPullRequestAuthenticationTypes,
     GoogleCalendarAuthenticationTypes,
     GoogleDriveAuthenticationTypes,
     GoogleEmailAuthenticationTypes,
@@ -57,6 +59,10 @@ class QueryFeedsFeedsResults(BaseModel):
     site: Optional["QueryFeedsFeedsResultsSite"]
     email: Optional["QueryFeedsFeedsResultsEmail"]
     issue: Optional["QueryFeedsFeedsResultsIssue"]
+    commit: Optional["QueryFeedsFeedsResultsCommit"]
+    pull_request: Optional["QueryFeedsFeedsResultsPullRequest"] = Field(
+        alias="pullRequest"
+    )
     calendar: Optional["QueryFeedsFeedsResultsCalendar"]
     rss: Optional["QueryFeedsFeedsResultsRss"]
     web: Optional["QueryFeedsFeedsResultsWeb"]
@@ -306,6 +312,42 @@ class QueryFeedsFeedsResultsIssueTrello(BaseModel):
     type: TrelloTypes
 
 
+class QueryFeedsFeedsResultsCommit(BaseModel):
+    type: FeedServiceTypes
+    github: Optional["QueryFeedsFeedsResultsCommitGithub"]
+    read_limit: Optional[int] = Field(alias="readLimit")
+
+
+class QueryFeedsFeedsResultsCommitGithub(BaseModel):
+    authentication_type: Optional[GitHubCommitAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    uri: Optional[Any]
+    repository_owner: str = Field(alias="repositoryOwner")
+    repository_name: str = Field(alias="repositoryName")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    personal_access_token: Optional[str] = Field(alias="personalAccessToken")
+    authorization_id: Optional[str] = Field(alias="authorizationId")
+
+
+class QueryFeedsFeedsResultsPullRequest(BaseModel):
+    type: FeedServiceTypes
+    github: Optional["QueryFeedsFeedsResultsPullRequestGithub"]
+    read_limit: Optional[int] = Field(alias="readLimit")
+
+
+class QueryFeedsFeedsResultsPullRequestGithub(BaseModel):
+    authentication_type: Optional[GitHubPullRequestAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    uri: Optional[Any]
+    repository_owner: str = Field(alias="repositoryOwner")
+    repository_name: str = Field(alias="repositoryName")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    personal_access_token: Optional[str] = Field(alias="personalAccessToken")
+    authorization_id: Optional[str] = Field(alias="authorizationId")
+
+
 class QueryFeedsFeedsResultsCalendar(BaseModel):
     type: FeedServiceTypes
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
@@ -452,4 +494,6 @@ QueryFeedsFeedsResults.model_rebuild()
 QueryFeedsFeedsResultsSite.model_rebuild()
 QueryFeedsFeedsResultsEmail.model_rebuild()
 QueryFeedsFeedsResultsIssue.model_rebuild()
+QueryFeedsFeedsResultsCommit.model_rebuild()
+QueryFeedsFeedsResultsPullRequest.model_rebuild()
 QueryFeedsFeedsResultsCalendar.model_rebuild()

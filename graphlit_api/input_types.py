@@ -57,6 +57,7 @@ from .enums import (
     FileTypes,
     GitHubAuthenticationTypes,
     GitHubIssueAuthenticationTypes,
+    GitHubPullRequestAuthenticationTypes,
     GoogleCalendarAuthenticationTypes,
     GoogleDriveAuthenticationTypes,
     GoogleEmailAuthenticationTypes,
@@ -259,6 +260,11 @@ class MedicalTestInput(BaseModel):
     description: Optional[str] = None
     location: Optional["PointInput"] = None
     boundary: Optional[str] = None
+
+
+class PullRequestFeedPropertiesUpdateInput(BaseModel):
+    github: Optional["GitHubPullRequestsFeedPropertiesUpdateInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class MedicalStudyInput(BaseModel):
@@ -1069,6 +1075,20 @@ class H3IndexFilter(BaseModel):
     key: Optional[str] = None
 
 
+class GitHubPullRequestsFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[GitHubPullRequestAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    repository_owner: str = Field(alias="repositoryOwner")
+    repository_name: str = Field(alias="repositoryName")
+    uri: Optional[Any] = None
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+
+
 class AzureAIModelPropertiesUpdateInput(BaseModel):
     key: Optional[str] = None
     endpoint: Optional[Any] = None
@@ -1218,6 +1238,10 @@ class FeedInput(BaseModel):
     calendar: Optional["CalendarFeedPropertiesInput"] = None
     email: Optional["EmailFeedPropertiesInput"] = None
     issue: Optional["IssueFeedPropertiesInput"] = None
+    pull_request: Optional["PullRequestFeedPropertiesInput"] = Field(
+        alias="pullRequest", default=None
+    )
+    commit: Optional["CommitFeedPropertiesInput"] = None
     rss: Optional["RSSFeedPropertiesInput"] = None
     web: Optional["WebFeedPropertiesInput"] = None
     search: Optional["SearchFeedPropertiesInput"] = None
@@ -1435,6 +1459,10 @@ class FeedUpdateInput(BaseModel):
     calendar: Optional["CalendarFeedPropertiesUpdateInput"] = None
     email: Optional["EmailFeedPropertiesUpdateInput"] = None
     issue: Optional["IssueFeedPropertiesUpdateInput"] = None
+    pull_request: Optional["PullRequestFeedPropertiesUpdateInput"] = Field(
+        alias="pullRequest", default=None
+    )
+    commit: Optional["CommitFeedPropertiesUpdateInput"] = None
     rss: Optional["RSSFeedPropertiesUpdateInput"] = None
     web: Optional["WebFeedPropertiesUpdateInput"] = None
     search: Optional["SearchFeedPropertiesUpdateInput"] = None
@@ -1602,6 +1630,12 @@ class CalendarAttendeeInput(BaseModel):
     )
 
 
+class CommitFeedPropertiesInput(BaseModel):
+    type: FeedServiceTypes
+    github: Optional["GitHubIssuesFeedPropertiesInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
 class MicrosoftEmailFeedPropertiesInput(BaseModel):
     type: Optional[EmailListingTypes] = None
     filter: Optional[str] = None
@@ -1617,6 +1651,20 @@ class MicrosoftEmailFeedPropertiesInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+
+
+class GitHubPullRequestsFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[GitHubPullRequestAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    repository_owner: Optional[str] = Field(alias="repositoryOwner", default=None)
+    repository_name: Optional[str] = Field(alias="repositoryName", default=None)
+    uri: Optional[Any] = None
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
     authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
@@ -3191,6 +3239,11 @@ class MedicalGuidelineFacetInput(BaseModel):
     facet: Optional[MedicalGuidelineFacetTypes] = None
 
 
+class CommitFeedPropertiesUpdateInput(BaseModel):
+    github: Optional["GitHubIssuesFeedPropertiesUpdateInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
 class RepoInput(BaseModel):
     name: str
     uri: Optional[Any] = None
@@ -3994,6 +4047,12 @@ class MistralModelPropertiesUpdateInput(BaseModel):
     chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
 
 
+class PullRequestFeedPropertiesInput(BaseModel):
+    type: FeedServiceTypes
+    github: Optional["GitHubPullRequestsFeedPropertiesInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
 class TrelloFeedPropertiesUpdateInput(BaseModel):
     key: Optional[str] = None
     token: Optional[str] = None
@@ -4347,6 +4406,7 @@ class LabelUpdateInput(BaseModel):
 MedicalIndicationFilter.model_rebuild()
 SoftwareFilter.model_rebuild()
 MedicalTestInput.model_rebuild()
+PullRequestFeedPropertiesUpdateInput.model_rebuild()
 MedicalStudyInput.model_rebuild()
 MedicalTestFilter.model_rebuild()
 MedicalStudyFilter.model_rebuild()
@@ -4404,6 +4464,7 @@ MedicalContraindicationUpdateInput.model_rebuild()
 ModelImageExtractionPropertiesInput.model_rebuild()
 CollectionUpdateInput.model_rebuild()
 MedicalDeviceFilter.model_rebuild()
+CommitFeedPropertiesInput.model_rebuild()
 ObservationCriteriaInput.model_rebuild()
 IntegrationConnectorUpdateInput.model_rebuild()
 ContentCriteriaLevelInput.model_rebuild()
@@ -4454,6 +4515,7 @@ ViewFilter.model_rebuild()
 EventInput.model_rebuild()
 GoogleImagePublishingPropertiesInput.model_rebuild()
 IntegrationConnectorInput.model_rebuild()
+CommitFeedPropertiesUpdateInput.model_rebuild()
 ContentClassificationConnectorInput.model_rebuild()
 MedicalDeviceUpdateInput.model_rebuild()
 AudioMetadataInput.model_rebuild()
@@ -4481,6 +4543,7 @@ EventFilter.model_rebuild()
 MedicalContraindicationInput.model_rebuild()
 EntityExtractionConnectorInput.model_rebuild()
 PlaceFilter.model_rebuild()
+PullRequestFeedPropertiesInput.model_rebuild()
 IndexingWorkflowJobInput.model_rebuild()
 EnrichmentWorkflowJobInput.model_rebuild()
 MedicalStudyUpdateInput.model_rebuild()

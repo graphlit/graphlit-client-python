@@ -20,6 +20,8 @@ class ContentTypes(str, Enum):
     EMAIL = "EMAIL"
     EVENT = "EVENT"
     ISSUE = "ISSUE"
+    PULL_REQUEST = "PULL_REQUEST"
+    COMMIT = "COMMIT"
     MEMORY = "MEMORY"
 
 
@@ -333,6 +335,12 @@ class LinkTypes(str, Enum):
     FILE = "FILE"
 
 
+class GitHubCommitAuthenticationTypes(str, Enum):
+    PERSONAL_ACCESS_TOKEN = "PERSONAL_ACCESS_TOKEN"
+    O_AUTH = "O_AUTH"
+    CONNECTOR = "CONNECTOR"
+
+
 class ViewTypes(str, Enum):
     CONTENT = "CONTENT"
 
@@ -549,6 +557,8 @@ class FeedServiceTypes(str, Enum):
     TRELLO = "TRELLO"
     LINEAR = "LINEAR"
     GIT_HUB_ISSUES = "GIT_HUB_ISSUES"
+    GIT_HUB_PULL_REQUESTS = "GIT_HUB_PULL_REQUESTS"
+    GIT_HUB_COMMITS = "GIT_HUB_COMMITS"
     GIT_HUB = "GIT_HUB"
     INTERCOM_ARTICLES = "INTERCOM_ARTICLES"
     ZENDESK_ARTICLES = "ZENDESK_ARTICLES"
@@ -989,6 +999,12 @@ class SearchTypes(str, Enum):
     HYBRID = "HYBRID"
 
 
+class GitHubPullRequestAuthenticationTypes(str, Enum):
+    PERSONAL_ACCESS_TOKEN = "PERSONAL_ACCESS_TOKEN"
+    O_AUTH = "O_AUTH"
+    CONNECTOR = "CONNECTOR"
+
+
 class ReductoOcrModes(str, Enum):
     STANDARD = "STANDARD"
     AGENTIC = "AGENTIC"
@@ -1025,6 +1041,8 @@ class FeedTypes(str, Enum):
     YOU_TUBE = "YOU_TUBE"
     EMAIL = "EMAIL"
     ISSUE = "ISSUE"
+    PULL_REQUEST = "PULL_REQUEST"
+    COMMIT = "COMMIT"
     SEARCH = "SEARCH"
     CALENDAR = "CALENDAR"
 

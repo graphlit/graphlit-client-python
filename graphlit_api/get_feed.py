@@ -17,7 +17,9 @@ from .enums import (
     FeedSyncMode,
     FeedTypes,
     GitHubAuthenticationTypes,
+    GitHubCommitAuthenticationTypes,
     GitHubIssueAuthenticationTypes,
+    GitHubPullRequestAuthenticationTypes,
     GoogleCalendarAuthenticationTypes,
     GoogleDriveAuthenticationTypes,
     GoogleEmailAuthenticationTypes,
@@ -53,6 +55,8 @@ class GetFeedFeed(BaseModel):
     site: Optional["GetFeedFeedSite"]
     email: Optional["GetFeedFeedEmail"]
     issue: Optional["GetFeedFeedIssue"]
+    commit: Optional["GetFeedFeedCommit"]
+    pull_request: Optional["GetFeedFeedPullRequest"] = Field(alias="pullRequest")
     calendar: Optional["GetFeedFeedCalendar"]
     rss: Optional["GetFeedFeedRss"]
     web: Optional["GetFeedFeedWeb"]
@@ -294,6 +298,42 @@ class GetFeedFeedIssueTrello(BaseModel):
     type: TrelloTypes
 
 
+class GetFeedFeedCommit(BaseModel):
+    type: FeedServiceTypes
+    github: Optional["GetFeedFeedCommitGithub"]
+    read_limit: Optional[int] = Field(alias="readLimit")
+
+
+class GetFeedFeedCommitGithub(BaseModel):
+    authentication_type: Optional[GitHubCommitAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    uri: Optional[Any]
+    repository_owner: str = Field(alias="repositoryOwner")
+    repository_name: str = Field(alias="repositoryName")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    personal_access_token: Optional[str] = Field(alias="personalAccessToken")
+    authorization_id: Optional[str] = Field(alias="authorizationId")
+
+
+class GetFeedFeedPullRequest(BaseModel):
+    type: FeedServiceTypes
+    github: Optional["GetFeedFeedPullRequestGithub"]
+    read_limit: Optional[int] = Field(alias="readLimit")
+
+
+class GetFeedFeedPullRequestGithub(BaseModel):
+    authentication_type: Optional[GitHubPullRequestAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    uri: Optional[Any]
+    repository_owner: str = Field(alias="repositoryOwner")
+    repository_name: str = Field(alias="repositoryName")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    personal_access_token: Optional[str] = Field(alias="personalAccessToken")
+    authorization_id: Optional[str] = Field(alias="authorizationId")
+
+
 class GetFeedFeedCalendar(BaseModel):
     type: FeedServiceTypes
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
@@ -439,4 +479,6 @@ GetFeedFeed.model_rebuild()
 GetFeedFeedSite.model_rebuild()
 GetFeedFeedEmail.model_rebuild()
 GetFeedFeedIssue.model_rebuild()
+GetFeedFeedCommit.model_rebuild()
+GetFeedFeedPullRequest.model_rebuild()
 GetFeedFeedCalendar.model_rebuild()
