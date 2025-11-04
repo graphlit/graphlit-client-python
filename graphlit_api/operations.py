@@ -1786,7 +1786,20 @@ query GetContent($id: ID!, $correlationId: String) {
       pullRequestNumber
       authorDate
       committerDate
+      authors {
+        name
+        email
+        givenName
+        familyName
+      }
+      committers {
+        name
+        email
+        givenName
+        familyName
+      }
       labels
+      links
     }
     pullRequest {
       identifier
@@ -1804,7 +1817,20 @@ query GetContent($id: ID!, $correlationId: String) {
       filesChanged
       additions
       deletions
+      authors {
+        name
+        email
+        givenName
+        familyName
+      }
+      reviewers {
+        name
+        email
+        givenName
+        familyName
+      }
       labels
+      links
     }
     message {
       identifier
@@ -2596,7 +2622,20 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
         pullRequestNumber
         authorDate
         committerDate
+        authors {
+          name
+          email
+          givenName
+          familyName
+        }
+        committers {
+          name
+          email
+          givenName
+          familyName
+        }
         labels
+        links
       }
       pullRequest {
         identifier
@@ -2614,7 +2653,20 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
         filesChanged
         additions
         deletions
+        authors {
+          name
+          email
+          givenName
+          familyName
+        }
+        reviewers {
+          name
+          email
+          givenName
+          familyName
+        }
         labels
+        links
       }
       message {
         identifier
@@ -3237,7 +3289,20 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
         pullRequestNumber
         authorDate
         committerDate
+        authors {
+          name
+          email
+          givenName
+          familyName
+        }
+        committers {
+          name
+          email
+          givenName
+          familyName
+        }
         labels
+        links
       }
       pullRequest {
         identifier
@@ -3255,7 +3320,20 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
         filesChanged
         additions
         deletions
+        authors {
+          name
+          email
+          givenName
+          familyName
+        }
+        reviewers {
+          name
+          email
+          givenName
+          familyName
+        }
         labels
+        links
       }
       message {
         identifier
@@ -3614,7 +3692,20 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
         pullRequestNumber
         authorDate
         committerDate
+        authors {
+          name
+          email
+          givenName
+          familyName
+        }
+        committers {
+          name
+          email
+          givenName
+          familyName
+        }
         labels
+        links
       }
       pullRequest {
         identifier
@@ -3632,7 +3723,20 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
         filesChanged
         additions
         deletions
+        authors {
+          name
+          email
+          givenName
+          familyName
+        }
+        reviewers {
+          name
+          email
+          givenName
+          familyName
+        }
         labels
+        links
       }
       message {
         identifier

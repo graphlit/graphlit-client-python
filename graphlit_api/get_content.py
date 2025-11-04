@@ -340,7 +340,24 @@ class GetContentContentCommit(BaseModel):
     pull_request_number: Optional[str] = Field(alias="pullRequestNumber")
     author_date: Optional[Any] = Field(alias="authorDate")
     committer_date: Optional[Any] = Field(alias="committerDate")
+    authors: Optional[List[Optional["GetContentContentCommitAuthors"]]]
+    committers: Optional[List[Optional["GetContentContentCommitCommitters"]]]
     labels: Optional[List[Optional[str]]]
+    links: Optional[List[Optional[Any]]]
+
+
+class GetContentContentCommitAuthors(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
+class GetContentContentCommitCommitters(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
 
 
 class GetContentContentPullRequest(BaseModel):
@@ -359,7 +376,24 @@ class GetContentContentPullRequest(BaseModel):
     files_changed: Optional[int] = Field(alias="filesChanged")
     additions: Optional[int]
     deletions: Optional[int]
+    authors: Optional[List[Optional["GetContentContentPullRequestAuthors"]]]
+    reviewers: Optional[List[Optional["GetContentContentPullRequestReviewers"]]]
     labels: Optional[List[Optional[str]]]
+    links: Optional[List[Optional[Any]]]
+
+
+class GetContentContentPullRequestAuthors(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
+class GetContentContentPullRequestReviewers(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
 
 
 class GetContentContentMessage(BaseModel):
@@ -531,6 +565,8 @@ GetContent.model_rebuild()
 GetContentContent.model_rebuild()
 GetContentContentEmail.model_rebuild()
 GetContentContentEvent.model_rebuild()
+GetContentContentCommit.model_rebuild()
+GetContentContentPullRequest.model_rebuild()
 GetContentContentMessage.model_rebuild()
 GetContentContentPost.model_rebuild()
 GetContentContentObservations.model_rebuild()

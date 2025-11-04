@@ -248,7 +248,20 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
         pullRequestNumber
         authorDate
         committerDate
+        authors {
+          name
+          email
+          givenName
+          familyName
+        }
+        committers {
+          name
+          email
+          givenName
+          familyName
+        }
         labels
+        links
       }
       pullRequest {
         identifier
@@ -266,7 +279,20 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
         filesChanged
         additions
         deletions
+        authors {
+          name
+          email
+          givenName
+          familyName
+        }
+        reviewers {
+          name
+          email
+          givenName
+          familyName
+        }
         labels
+        links
       }
       message {
         identifier

@@ -317,7 +317,28 @@ class QueryContentsObservationsContentsResultsCommit(BaseModel):
     pull_request_number: Optional[str] = Field(alias="pullRequestNumber")
     author_date: Optional[Any] = Field(alias="authorDate")
     committer_date: Optional[Any] = Field(alias="committerDate")
+    authors: Optional[
+        List[Optional["QueryContentsObservationsContentsResultsCommitAuthors"]]
+    ]
+    committers: Optional[
+        List[Optional["QueryContentsObservationsContentsResultsCommitCommitters"]]
+    ]
     labels: Optional[List[Optional[str]]]
+    links: Optional[List[Optional[Any]]]
+
+
+class QueryContentsObservationsContentsResultsCommitAuthors(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
+class QueryContentsObservationsContentsResultsCommitCommitters(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
 
 
 class QueryContentsObservationsContentsResultsPullRequest(BaseModel):
@@ -336,7 +357,28 @@ class QueryContentsObservationsContentsResultsPullRequest(BaseModel):
     files_changed: Optional[int] = Field(alias="filesChanged")
     additions: Optional[int]
     deletions: Optional[int]
+    authors: Optional[
+        List[Optional["QueryContentsObservationsContentsResultsPullRequestAuthors"]]
+    ]
+    reviewers: Optional[
+        List[Optional["QueryContentsObservationsContentsResultsPullRequestReviewers"]]
+    ]
     labels: Optional[List[Optional[str]]]
+    links: Optional[List[Optional[Any]]]
+
+
+class QueryContentsObservationsContentsResultsPullRequestAuthors(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
+class QueryContentsObservationsContentsResultsPullRequestReviewers(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
 
 
 class QueryContentsObservationsContentsResultsMessage(BaseModel):
@@ -501,6 +543,8 @@ QueryContentsObservationsContents.model_rebuild()
 QueryContentsObservationsContentsResults.model_rebuild()
 QueryContentsObservationsContentsResultsEmail.model_rebuild()
 QueryContentsObservationsContentsResultsEvent.model_rebuild()
+QueryContentsObservationsContentsResultsCommit.model_rebuild()
+QueryContentsObservationsContentsResultsPullRequest.model_rebuild()
 QueryContentsObservationsContentsResultsMessage.model_rebuild()
 QueryContentsObservationsContentsResultsPost.model_rebuild()
 QueryContentsObservationsContentsResultsPages.model_rebuild()

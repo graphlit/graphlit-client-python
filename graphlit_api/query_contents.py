@@ -307,7 +307,24 @@ class QueryContentsContentsResultsCommit(BaseModel):
     pull_request_number: Optional[str] = Field(alias="pullRequestNumber")
     author_date: Optional[Any] = Field(alias="authorDate")
     committer_date: Optional[Any] = Field(alias="committerDate")
+    authors: Optional[List[Optional["QueryContentsContentsResultsCommitAuthors"]]]
+    committers: Optional[List[Optional["QueryContentsContentsResultsCommitCommitters"]]]
     labels: Optional[List[Optional[str]]]
+    links: Optional[List[Optional[Any]]]
+
+
+class QueryContentsContentsResultsCommitAuthors(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
+class QueryContentsContentsResultsCommitCommitters(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
 
 
 class QueryContentsContentsResultsPullRequest(BaseModel):
@@ -326,7 +343,26 @@ class QueryContentsContentsResultsPullRequest(BaseModel):
     files_changed: Optional[int] = Field(alias="filesChanged")
     additions: Optional[int]
     deletions: Optional[int]
+    authors: Optional[List[Optional["QueryContentsContentsResultsPullRequestAuthors"]]]
+    reviewers: Optional[
+        List[Optional["QueryContentsContentsResultsPullRequestReviewers"]]
+    ]
     labels: Optional[List[Optional[str]]]
+    links: Optional[List[Optional[Any]]]
+
+
+class QueryContentsContentsResultsPullRequestAuthors(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
+class QueryContentsContentsResultsPullRequestReviewers(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
 
 
 class QueryContentsContentsResultsMessage(BaseModel):
@@ -440,6 +476,8 @@ QueryContentsContents.model_rebuild()
 QueryContentsContentsResults.model_rebuild()
 QueryContentsContentsResultsEmail.model_rebuild()
 QueryContentsContentsResultsEvent.model_rebuild()
+QueryContentsContentsResultsCommit.model_rebuild()
+QueryContentsContentsResultsPullRequest.model_rebuild()
 QueryContentsContentsResultsMessage.model_rebuild()
 QueryContentsContentsResultsPost.model_rebuild()
 QueryContentsContentsResultsPages.model_rebuild()

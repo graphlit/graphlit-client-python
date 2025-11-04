@@ -358,7 +358,28 @@ class LookupContentsLookupContentsResultsCommit(BaseModel):
     pull_request_number: Optional[str] = Field(alias="pullRequestNumber")
     author_date: Optional[Any] = Field(alias="authorDate")
     committer_date: Optional[Any] = Field(alias="committerDate")
+    authors: Optional[
+        List[Optional["LookupContentsLookupContentsResultsCommitAuthors"]]
+    ]
+    committers: Optional[
+        List[Optional["LookupContentsLookupContentsResultsCommitCommitters"]]
+    ]
     labels: Optional[List[Optional[str]]]
+    links: Optional[List[Optional[Any]]]
+
+
+class LookupContentsLookupContentsResultsCommitAuthors(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
+class LookupContentsLookupContentsResultsCommitCommitters(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
 
 
 class LookupContentsLookupContentsResultsPullRequest(BaseModel):
@@ -377,7 +398,28 @@ class LookupContentsLookupContentsResultsPullRequest(BaseModel):
     files_changed: Optional[int] = Field(alias="filesChanged")
     additions: Optional[int]
     deletions: Optional[int]
+    authors: Optional[
+        List[Optional["LookupContentsLookupContentsResultsPullRequestAuthors"]]
+    ]
+    reviewers: Optional[
+        List[Optional["LookupContentsLookupContentsResultsPullRequestReviewers"]]
+    ]
     labels: Optional[List[Optional[str]]]
+    links: Optional[List[Optional[Any]]]
+
+
+class LookupContentsLookupContentsResultsPullRequestAuthors(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
+class LookupContentsLookupContentsResultsPullRequestReviewers(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
 
 
 class LookupContentsLookupContentsResultsMessage(BaseModel):
@@ -554,6 +596,8 @@ LookupContentsLookupContents.model_rebuild()
 LookupContentsLookupContentsResults.model_rebuild()
 LookupContentsLookupContentsResultsEmail.model_rebuild()
 LookupContentsLookupContentsResultsEvent.model_rebuild()
+LookupContentsLookupContentsResultsCommit.model_rebuild()
+LookupContentsLookupContentsResultsPullRequest.model_rebuild()
 LookupContentsLookupContentsResultsMessage.model_rebuild()
 LookupContentsLookupContentsResultsPost.model_rebuild()
 LookupContentsLookupContentsResultsObservations.model_rebuild()
