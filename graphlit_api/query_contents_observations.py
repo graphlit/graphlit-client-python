@@ -344,6 +344,7 @@ class QueryContentsObservationsContentsResultsCommitCommitters(BaseModel):
 class QueryContentsObservationsContentsResultsPullRequest(BaseModel):
     identifier: Optional[str]
     title: Optional[str]
+    description: Optional[str]
     project: Optional[str]
     team: Optional[str]
     status: Optional[str]

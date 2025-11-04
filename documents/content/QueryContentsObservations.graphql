@@ -235,6 +235,7 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
       pullRequest {
         identifier
         title
+        description
         project
         team
         status

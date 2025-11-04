@@ -1804,6 +1804,7 @@ query GetContent($id: ID!, $correlationId: String) {
     pullRequest {
       identifier
       title
+      description
       project
       team
       status
@@ -2640,6 +2641,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
       pullRequest {
         identifier
         title
+        description
         project
         team
         status
@@ -3307,6 +3309,7 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
       pullRequest {
         identifier
         title
+        description
         project
         team
         status
@@ -3710,6 +3713,7 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
       pullRequest {
         identifier
         title
+        description
         project
         team
         status

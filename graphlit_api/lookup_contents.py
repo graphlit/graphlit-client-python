@@ -385,6 +385,7 @@ class LookupContentsLookupContentsResultsCommitCommitters(BaseModel):
 class LookupContentsLookupContentsResultsPullRequest(BaseModel):
     identifier: Optional[str]
     title: Optional[str]
+    description: Optional[str]
     project: Optional[str]
     team: Optional[str]
     status: Optional[str]
