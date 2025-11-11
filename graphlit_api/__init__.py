@@ -2104,6 +2104,7 @@ from .operations import (
     QUERY_WORKFLOWS_GQL,
     REMOVE_CONTENTS_FROM_COLLECTION_GQL,
     RESEARCH_CONTENTS_GQL,
+    RETRIEVE_SOURCES_GQL,
     RETRIEVE_VIEW_GQL,
     REVISE_CONTENT_GQL,
     REVISE_ENCODED_IMAGE_GQL,
@@ -2928,6 +2929,12 @@ from .remove_contents_from_collection import (
     RemoveContentsFromCollectionRemoveContentsFromCollectionContents,
 )
 from .research_contents import ResearchContents, ResearchContentsResearchContents
+from .retrieve_sources import (
+    RetrieveSources,
+    RetrieveSourcesRetrieveSources,
+    RetrieveSourcesRetrieveSourcesResults,
+    RetrieveSourcesRetrieveSourcesResultsContent,
+)
 from .retrieve_view import (
     RetrieveView,
     RetrieveViewRetrieveView,
@@ -5865,6 +5872,7 @@ __all__ = [
     "QueryWorkflowsWorkflowsResultsStoragePolicy",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
     "RESEARCH_CONTENTS_GQL",
+    "RETRIEVE_SOURCES_GQL",
     "RETRIEVE_VIEW_GQL",
     "REVISE_CONTENT_GQL",
     "REVISE_ENCODED_IMAGE_GQL",
@@ -5905,6 +5913,10 @@ __all__ = [
     "RetrievalStrategyInput",
     "RetrievalStrategyTypes",
     "RetrievalStrategyUpdateInput",
+    "RetrieveSources",
+    "RetrieveSourcesRetrieveSources",
+    "RetrieveSourcesRetrieveSourcesResults",
+    "RetrieveSourcesRetrieveSourcesResultsContent",
     "RetrieveView",
     "RetrieveViewRetrieveView",
     "RetrieveViewRetrieveViewResults",

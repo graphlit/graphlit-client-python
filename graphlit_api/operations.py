@@ -292,6 +292,7 @@ __all__ = [
     "QUERY_WORKFLOWS_GQL",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
     "RESEARCH_CONTENTS_GQL",
+    "RETRIEVE_SOURCES_GQL",
     "RETRIEVE_VIEW_GQL",
     "REVISE_CONTENT_GQL",
     "REVISE_ENCODED_IMAGE_GQL",
@@ -6615,6 +6616,33 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         hasCollections
         hasWorkflows
       }
+    }
+  }
+}
+"""
+
+RETRIEVE_SOURCES_GQL = """
+mutation RetrieveSources($prompt: String!, $filter: ContentFilter, $augmentedFilter: ContentFilter, $retrievalStrategy: RetrievalStrategyInput, $rerankingStrategy: RerankingStrategyInput, $correlationId: String) {
+  retrieveSources(
+    prompt: $prompt
+    filter: $filter
+    augmentedFilter: $augmentedFilter
+    retrievalStrategy: $retrievalStrategy
+    rerankingStrategy: $rerankingStrategy
+    correlationId: $correlationId
+  ) {
+    results {
+      type
+      content {
+        id
+      }
+      text
+      metadata
+      relevance
+      startTime
+      endTime
+      pageNumber
+      frameNumber
     }
   }
 }
