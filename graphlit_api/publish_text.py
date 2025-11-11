@@ -41,6 +41,7 @@ class PublishTextPublishTextContents(BaseModel):
     file_extension: Optional[str] = Field(alias="fileExtension")
     file_name: Optional[str] = Field(alias="fileName")
     file_size: Optional[Any] = Field(alias="fileSize")
+    file_metadata: Optional[str] = Field(alias="fileMetadata")
     relative_folder_path: Optional[str] = Field(alias="relativeFolderPath")
     master_uri: Optional[Any] = Field(alias="masterUri")
     image_uri: Optional[Any] = Field(alias="imageUri")

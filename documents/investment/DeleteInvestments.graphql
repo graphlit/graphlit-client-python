@@ -1,0 +1,6 @@
+mutation DeleteInvestments($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteInvestments(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}

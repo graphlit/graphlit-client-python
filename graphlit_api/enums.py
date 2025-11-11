@@ -107,6 +107,12 @@ class SoftwareFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
 
+class ParallelGenerators(str, Enum):
+    BASE = "BASE"
+    CORE = "CORE"
+    PRO = "PRO"
+
+
 class BoxAuthenticationTypes(str, Enum):
     USER = "USER"
 
@@ -178,6 +184,14 @@ class DeepseekModels(str, Enum):
 
 class MedicalDrugClassFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
+
+
+class ParallelProcessors(str, Enum):
+    PRO = "PRO"
+    ULTRA = "ULTRA"
+    ULTRA2X = "ULTRA2X"
+    ULTRA4X = "ULTRA4X"
+    ULTRA8X = "ULTRA8X"
 
 
 class FileTypes(str, Enum):
@@ -365,6 +379,8 @@ class ObservableTypes(str, Enum):
     CATEGORY = "CATEGORY"
     LABEL = "LABEL"
     EVENT = "EVENT"
+    INVESTMENT = "INVESTMENT"
+    INVESTMENT_FUND = "INVESTMENT_FUND"
     ORGANIZATION = "ORGANIZATION"
     PERSON = "PERSON"
     PLACE = "PLACE"
@@ -566,6 +582,10 @@ class FeedServiceTypes(str, Enum):
     ZENDESK_TICKETS = "ZENDESK_TICKETS"
     GOOGLE_CALENDAR = "GOOGLE_CALENDAR"
     MICROSOFT_CALENDAR = "MICROSOFT_CALENDAR"
+    ATTIO_OBJECTS = "ATTIO_OBJECTS"
+    ATTIO_TASKS = "ATTIO_TASKS"
+    ATTIO_NOTES = "ATTIO_NOTES"
+    PARALLEL = "PARALLEL"
 
 
 class EntityState(str, Enum):
@@ -609,9 +629,11 @@ class GitHubAuthenticationTypes(str, Enum):
 
 
 class SearchServiceTypes(str, Enum):
+    PARALLEL = "PARALLEL"
     TAVILY = "TAVILY"
     EXA = "EXA"
     EXA_CODE = "EXA_CODE"
+    PERPLEXITY = "PERPLEXITY"
     PODSCAN = "PODSCAN"
 
 
@@ -646,6 +668,10 @@ class MedicalTherapyFacetTypes(str, Enum):
 
 class DropboxAuthenticationTypes(str, Enum):
     USER = "USER"
+
+
+class InvestmentFundFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
 
 
 class TrelloTypes(str, Enum):
@@ -821,9 +847,17 @@ class GoogleCalendarAuthenticationTypes(str, Enum):
     CONNECTOR = "CONNECTOR"
 
 
+class AttioAuthenticationTypes(str, Enum):
+    API_KEY = "API_KEY"
+
+
 class GoogleEmailAuthenticationTypes(str, Enum):
     USER = "USER"
     CONNECTOR = "CONNECTOR"
+
+
+class InvestmentFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
 
 
 class MistralModels(str, Enum):
@@ -941,6 +975,8 @@ class EntityTypes(str, Enum):
     CONVERSATION = "CONVERSATION"
     EVENT = "EVENT"
     FEED = "FEED"
+    INVESTMENT = "INVESTMENT"
+    INVESTMENT_FUND = "INVESTMENT_FUND"
     JOB = "JOB"
     LABEL = "LABEL"
     METADATA = "METADATA"
@@ -977,6 +1013,7 @@ class ContentPublishingServiceTypes(str, Enum):
     GOOGLE_IMAGE = "GOOGLE_IMAGE"
     OPEN_AI_VIDEO = "OPEN_AI_VIDEO"
     TEXT = "TEXT"
+    PARALLEL_RESEARCH = "PARALLEL_RESEARCH"
 
 
 class MedicalContraindicationFacetTypes(str, Enum):
@@ -1045,6 +1082,10 @@ class FeedTypes(str, Enum):
     COMMIT = "COMMIT"
     SEARCH = "SEARCH"
     CALENDAR = "CALENDAR"
+    CRM = "CRM"
+    RESEARCH = "RESEARCH"
+    ENTITY = "ENTITY"
+    ATTIO = "ATTIO"
 
 
 class StoragePolicyTypes(str, Enum):
@@ -1070,6 +1111,8 @@ class FeedConnectorTypes(str, Enum):
     ZENDESK = "ZENDESK"
     GOOGLE_CALENDAR = "GOOGLE_CALENDAR"
     MICROSOFT_CALENDAR = "MICROSOFT_CALENDAR"
+    ATTIO = "ATTIO"
+    PARALLEL = "PARALLEL"
 
 
 class MedicalDrugFacetTypes(str, Enum):
@@ -1175,6 +1218,7 @@ class AzureDocumentIntelligenceVersions(str, Enum):
 
 
 class EntityEnrichmentServiceTypes(str, Enum):
+    PARALLEL = "PARALLEL"
     DIFFBOT = "DIFFBOT"
     WIKIPEDIA = "WIKIPEDIA"
     CRUNCHBASE = "CRUNCHBASE"

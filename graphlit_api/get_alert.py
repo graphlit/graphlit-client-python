@@ -19,6 +19,7 @@ from .enums import (
     ObservableTypes,
     OpenAIImageModels,
     OpenAIVideoModels,
+    ParallelProcessors,
     TimedPolicyRecurrenceTypes,
     VideoSizeTypes,
 )
@@ -257,6 +258,7 @@ class GetAlertAlertPublishing(BaseModel):
     open_ai_video: Optional["GetAlertAlertPublishingOpenAiVideo"] = Field(
         alias="openAIVideo"
     )
+    parallel: Optional["GetAlertAlertPublishingParallel"]
 
 
 class GetAlertAlertPublishingElevenLabs(BaseModel):
@@ -293,6 +295,10 @@ class GetAlertAlertPublishingOpenAiVideo(BaseModel):
 
 class GetAlertAlertPublishingOpenAiVideoSeed(BaseModel):
     id: str
+
+
+class GetAlertAlertPublishingParallel(BaseModel):
+    processor: Optional[ParallelProcessors]
 
 
 class GetAlertAlertSummarySpecification(BaseModel):

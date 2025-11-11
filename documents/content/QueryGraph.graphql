@@ -1,0 +1,14 @@
+query QueryGraph($filter: GraphFilter, $graph: GraphInput, $correlationId: String) {
+  graph(filter: $filter, graph: $graph, correlationId: $correlationId) {
+    nodes {
+      id
+      name
+      type
+    }
+    edges {
+      from
+      to
+      relation
+    }
+  }
+}

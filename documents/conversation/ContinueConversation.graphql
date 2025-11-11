@@ -23,6 +23,7 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
           fileExtension
           fileName
           fileSize
+          fileMetadata
           relativeFolderPath
           masterUri
           imageUri
@@ -206,6 +207,7 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
             fileExtension
             fileName
             fileSize
+            fileMetadata
             relativeFolderPath
             masterUri
             imageUri

@@ -16,6 +16,7 @@ mutation PublishConversation($id: ID!, $connector: ContentPublishingConnectorInp
       fileExtension
       fileName
       fileSize
+      fileMetadata
       relativeFolderPath
       masterUri
       imageUri

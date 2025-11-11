@@ -59,6 +59,7 @@ query GetContent($id: ID!, $correlationId: String) {
     fileExtension
     fileName
     fileSize
+    fileMetadata
     relativeFolderPath
     masterUri
     imageUri

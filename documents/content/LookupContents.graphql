@@ -60,6 +60,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
       fileExtension
       fileName
       fileSize
+      fileMetadata
       relativeFolderPath
       masterUri
       imageUri

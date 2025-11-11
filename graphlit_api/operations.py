@@ -17,6 +17,8 @@ __all__ = [
     "COUNT_CONVERSATIONS_GQL",
     "COUNT_EVENTS_GQL",
     "COUNT_FEEDS_GQL",
+    "COUNT_INVESTMENTS_GQL",
+    "COUNT_INVESTMENT_FUNDS_GQL",
     "COUNT_LABELS_GQL",
     "COUNT_MEDICAL_CONDITIONS_GQL",
     "COUNT_MEDICAL_CONTRAINDICATIONS_GQL",
@@ -46,6 +48,8 @@ __all__ = [
     "CREATE_CONVERSATION_GQL",
     "CREATE_EVENT_GQL",
     "CREATE_FEED_GQL",
+    "CREATE_INVESTMENT_FUND_GQL",
+    "CREATE_INVESTMENT_GQL",
     "CREATE_LABEL_GQL",
     "CREATE_MEDICAL_CONDITION_GQL",
     "CREATE_MEDICAL_CONTRAINDICATION_GQL",
@@ -78,6 +82,8 @@ __all__ = [
     "DELETE_ALL_CONVERSATIONS_GQL",
     "DELETE_ALL_EVENTS_GQL",
     "DELETE_ALL_FEEDS_GQL",
+    "DELETE_ALL_INVESTMENTS_GQL",
+    "DELETE_ALL_INVESTMENT_FUNDS_GQL",
     "DELETE_ALL_LABELS_GQL",
     "DELETE_ALL_MEDICAL_CONDITIONS_GQL",
     "DELETE_ALL_MEDICAL_CONTRAINDICATIONS_GQL",
@@ -112,6 +118,10 @@ __all__ = [
     "DELETE_EVENT_GQL",
     "DELETE_FEEDS_GQL",
     "DELETE_FEED_GQL",
+    "DELETE_INVESTMENTS_GQL",
+    "DELETE_INVESTMENT_FUNDS_GQL",
+    "DELETE_INVESTMENT_FUND_GQL",
+    "DELETE_INVESTMENT_GQL",
     "DELETE_LABELS_GQL",
     "DELETE_LABEL_GQL",
     "DELETE_MEDICAL_CONDITIONS_GQL",
@@ -176,6 +186,8 @@ __all__ = [
     "GET_CONVERSATION_GQL",
     "GET_EVENT_GQL",
     "GET_FEED_GQL",
+    "GET_INVESTMENT_FUND_GQL",
+    "GET_INVESTMENT_GQL",
     "GET_LABEL_GQL",
     "GET_MEDICAL_CONDITION_GQL",
     "GET_MEDICAL_CONTRAINDICATION_GQL",
@@ -239,6 +251,9 @@ __all__ = [
     "QUERY_GIT_HUB_REPOSITORIES_GQL",
     "QUERY_GOOGLE_CALENDARS_GQL",
     "QUERY_GOOGLE_DRIVE_FOLDERS_GQL",
+    "QUERY_GRAPH_GQL",
+    "QUERY_INVESTMENTS_GQL",
+    "QUERY_INVESTMENT_FUNDS_GQL",
     "QUERY_LABELS_GQL",
     "QUERY_LINEAR_PROJECTS_GQL",
     "QUERY_MEDICAL_CONDITIONS_GQL",
@@ -276,7 +291,7 @@ __all__ = [
     "QUERY_VIEWS_GQL",
     "QUERY_WORKFLOWS_GQL",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
-    "RETRIEVE_SOURCES_GQL",
+    "RESEARCH_CONTENTS_GQL",
     "RETRIEVE_VIEW_GQL",
     "REVISE_CONTENT_GQL",
     "REVISE_ENCODED_IMAGE_GQL",
@@ -298,6 +313,8 @@ __all__ = [
     "UPDATE_CONVERSATION_GQL",
     "UPDATE_EVENT_GQL",
     "UPDATE_FEED_GQL",
+    "UPDATE_INVESTMENT_FUND_GQL",
+    "UPDATE_INVESTMENT_GQL",
     "UPDATE_LABEL_GQL",
     "UPDATE_MEDICAL_CONDITION_GQL",
     "UPDATE_MEDICAL_CONTRAINDICATION_GQL",
@@ -560,6 +577,9 @@ query GetAlert($id: ID!, $correlationId: String) {
           id
         }
       }
+      parallel {
+        processor
+      }
     }
     summarySpecification {
       id
@@ -738,6 +758,9 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
           seed {
             id
           }
+        }
+        parallel {
+          processor
         }
       }
       summarySpecification {
@@ -1230,6 +1253,7 @@ mutation DescribeEncodedImage($prompt: String!, $mimeType: String!, $data: Strin
         fileExtension
         fileName
         fileSize
+        fileMetadata
         relativeFolderPath
         masterUri
         imageUri
@@ -1371,6 +1395,7 @@ mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityRefer
         fileExtension
         fileName
         fileSize
+        fileMetadata
         relativeFolderPath
         masterUri
         imageUri
@@ -1598,6 +1623,7 @@ query GetContent($id: ID!, $correlationId: String) {
     fileExtension
     fileName
     fileSize
+    fileMetadata
     relativeFolderPath
     masterUri
     imageUri
@@ -2435,6 +2461,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
       fileExtension
       fileName
       fileSize
+      fileMetadata
       relativeFolderPath
       masterUri
       imageUri
@@ -2838,6 +2865,7 @@ mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $conne
       fileExtension
       fileName
       fileSize
+      fileMetadata
       relativeFolderPath
       masterUri
       imageUri
@@ -2968,6 +2996,7 @@ mutation PublishText($text: String!, $textType: TextTypes, $connector: ContentPu
       fileExtension
       fileName
       fileSize
+      fileMetadata
       relativeFolderPath
       masterUri
       imageUri
@@ -3864,6 +3893,23 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
 }
 """
 
+QUERY_GRAPH_GQL = """
+query QueryGraph($filter: GraphFilter, $graph: GraphInput, $correlationId: String) {
+  graph(filter: $filter, graph: $graph, correlationId: $correlationId) {
+    nodes {
+      id
+      name
+      type
+    }
+    edges {
+      from
+      to
+      relation
+    }
+  }
+}
+"""
+
 QUERY_OBSERVABLES_GQL = """
 query QueryObservables($filter: ContentFilter, $correlationId: String) {
   observables(filter: $filter, correlationId: $correlationId) {
@@ -3874,6 +3920,22 @@ query QueryObservables($filter: ContentFilter, $correlationId: String) {
         name
       }
     }
+  }
+}
+"""
+
+RESEARCH_CONTENTS_GQL = """
+mutation ResearchContents($connector: ContentPublishingConnectorInput!, $filter: ContentFilter, $name: String, $summarySpecification: EntityReferenceInput, $publishSpecification: EntityReferenceInput, $workflow: EntityReferenceInput, $correlationId: String) {
+  researchContents(
+    connector: $connector
+    filter: $filter
+    name: $name
+    summarySpecification: $summarySpecification
+    publishSpecification: $publishSpecification
+    workflow: $workflow
+    correlationId: $correlationId
+  ) {
+    result
   }
 }
 """
@@ -4060,6 +4122,7 @@ mutation AskGraphlit($prompt: String!, $type: SdkTypes, $id: ID, $specification:
           fileExtension
           fileName
           fileSize
+          fileMetadata
           relativeFolderPath
           masterUri
           imageUri
@@ -4242,6 +4305,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
           fileExtension
           fileName
           fileSize
+          fileMetadata
           relativeFolderPath
           masterUri
           imageUri
@@ -4425,6 +4489,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
             fileExtension
             fileName
             fileSize
+            fileMetadata
             relativeFolderPath
             masterUri
             imageUri
@@ -4571,6 +4636,7 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
           fileExtension
           fileName
           fileSize
+          fileMetadata
           relativeFolderPath
           masterUri
           imageUri
@@ -4754,6 +4820,7 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
             fileExtension
             fileName
             fileSize
+            fileMetadata
             relativeFolderPath
             masterUri
             imageUri
@@ -4954,6 +5021,7 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
           fileExtension
           fileName
           fileSize
+          fileMetadata
           relativeFolderPath
           masterUri
           imageUri
@@ -5137,6 +5205,7 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
             fileExtension
             fileName
             fileSize
+            fileMetadata
             relativeFolderPath
             masterUri
             imageUri
@@ -5286,6 +5355,7 @@ query GetConversation($id: ID!, $correlationId: String) {
           fileExtension
           fileName
           fileSize
+          fileMetadata
           relativeFolderPath
           masterUri
           imageUri
@@ -5624,6 +5694,7 @@ mutation Prompt($prompt: String, $mimeType: String, $data: String, $specificatio
           fileExtension
           fileName
           fileSize
+          fileMetadata
           relativeFolderPath
           masterUri
           imageUri
@@ -5777,6 +5848,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
           fileExtension
           fileName
           fileSize
+          fileMetadata
           relativeFolderPath
           masterUri
           imageUri
@@ -5960,6 +6032,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
             fileExtension
             fileName
             fileSize
+            fileMetadata
             relativeFolderPath
             masterUri
             imageUri
@@ -6102,6 +6175,7 @@ mutation PublishConversation($id: ID!, $connector: ContentPublishingConnectorInp
       fileExtension
       fileName
       fileSize
+      fileMetadata
       relativeFolderPath
       masterUri
       imageUri
@@ -6239,6 +6313,7 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
             fileExtension
             fileName
             fileSize
+            fileMetadata
             relativeFolderPath
             masterUri
             imageUri
@@ -6545,33 +6620,6 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
 }
 """
 
-RETRIEVE_SOURCES_GQL = """
-mutation RetrieveSources($prompt: String!, $filter: ContentFilter, $augmentedFilter: ContentFilter, $retrievalStrategy: RetrievalStrategyInput, $rerankingStrategy: RerankingStrategyInput, $correlationId: String) {
-  retrieveSources(
-    prompt: $prompt
-    filter: $filter
-    augmentedFilter: $augmentedFilter
-    retrievalStrategy: $retrievalStrategy
-    rerankingStrategy: $rerankingStrategy
-    correlationId: $correlationId
-  ) {
-    results {
-      type
-      content {
-        id
-      }
-      text
-      metadata
-      relevance
-      startTime
-      endTime
-      pageNumber
-      frameNumber
-    }
-  }
-}
-"""
-
 RETRIEVE_VIEW_GQL = """
 mutation RetrieveView($prompt: String!, $id: ID!, $retrievalStrategy: RetrievalStrategyInput, $rerankingStrategy: RerankingStrategyInput, $correlationId: String) {
   retrieveView(
@@ -6630,6 +6678,7 @@ mutation ReviseContent($prompt: String!, $content: EntityReferenceInput!, $id: I
           fileExtension
           fileName
           fileSize
+          fileMetadata
           relativeFolderPath
           masterUri
           imageUri
@@ -6779,6 +6828,7 @@ mutation ReviseEncodedImage($prompt: String!, $mimeType: String!, $data: String!
           fileExtension
           fileName
           fileSize
+          fileMetadata
           relativeFolderPath
           masterUri
           imageUri
@@ -6927,6 +6977,7 @@ mutation ReviseImage($prompt: String!, $uri: URL!, $id: ID, $specification: Enti
           fileExtension
           fileName
           fileSize
+          fileMetadata
           relativeFolderPath
           masterUri
           imageUri
@@ -7075,6 +7126,7 @@ mutation ReviseText($prompt: String!, $text: String!, $id: ID, $specification: E
           fileExtension
           fileName
           fileSize
+          fileMetadata
           relativeFolderPath
           masterUri
           imageUri
@@ -7584,6 +7636,9 @@ query GetFeed($id: ID!, $correlationId: String) {
         identifiers
         type
       }
+      attio {
+        apiKey
+      }
       readLimit
     }
     commit {
@@ -7609,6 +7664,14 @@ query GetFeed($id: ID!, $correlationId: String) {
         refreshToken
         personalAccessToken
         authorizationId
+      }
+      readLimit
+    }
+    crm {
+      type
+      attio {
+        authenticationType
+        apiKey
       }
       readLimit
     }
@@ -7716,6 +7779,26 @@ query GetFeed($id: ID!, $correlationId: String) {
       token
       channel
       includeAttachments
+    }
+    attio {
+      readLimit
+      apiKey
+    }
+    research {
+      readLimit
+      type
+      query
+      parallel {
+        processor
+      }
+    }
+    entity {
+      type
+      query
+      readLimit
+      parallel {
+        generator
+      }
     }
     error
     lastPostDate
@@ -7961,6 +8044,9 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           identifiers
           type
         }
+        attio {
+          apiKey
+        }
         readLimit
       }
       commit {
@@ -7986,6 +8072,14 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           refreshToken
           personalAccessToken
           authorizationId
+        }
+        readLimit
+      }
+      crm {
+        type
+        attio {
+          authenticationType
+          apiKey
         }
         readLimit
       }
@@ -8093,6 +8187,26 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         token
         channel
         includeAttachments
+      }
+      attio {
+        readLimit
+        apiKey
+      }
+      research {
+        readLimit
+        type
+        query
+        parallel {
+          processor
+        }
+      }
+      entity {
+        type
+        query
+        readLimit
+        parallel {
+          generator
+        }
       }
       error
       lastPostDate
@@ -8282,6 +8396,188 @@ mutation UpdateFeed($feed: FeedUpdateInput!) {
     state
     type
     syncMode
+  }
+}
+"""
+
+COUNT_INVESTMENTS_GQL = """
+query CountInvestments($filter: InvestmentFilter, $correlationId: String) {
+  countInvestments(filter: $filter, correlationId: $correlationId) {
+    count
+  }
+}
+"""
+
+CREATE_INVESTMENT_GQL = """
+mutation CreateInvestment($investment: InvestmentInput!) {
+  createInvestment(investment: $investment) {
+    id
+    name
+  }
+}
+"""
+
+DELETE_ALL_INVESTMENTS_GQL = """
+mutation DeleteAllInvestments($filter: InvestmentFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllInvestments(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_INVESTMENT_GQL = """
+mutation DeleteInvestment($id: ID!) {
+  deleteInvestment(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_INVESTMENTS_GQL = """
+mutation DeleteInvestments($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteInvestments(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}
+"""
+
+GET_INVESTMENT_GQL = """
+query GetInvestment($id: ID!, $correlationId: String) {
+  investment(id: $id, correlationId: $correlationId) {
+    id
+    name
+    alternateNames
+    creationDate
+    uri
+    description
+    identifier
+    thing
+    relevance
+  }
+}
+"""
+
+QUERY_INVESTMENTS_GQL = """
+query QueryInvestments($filter: InvestmentFilter, $correlationId: String) {
+  investments(filter: $filter, correlationId: $correlationId) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      uri
+      description
+      identifier
+      thing
+      relevance
+    }
+  }
+}
+"""
+
+UPDATE_INVESTMENT_GQL = """
+mutation UpdateInvestment($investment: InvestmentUpdateInput!) {
+  updateInvestment(investment: $investment) {
+    id
+    name
+  }
+}
+"""
+
+COUNT_INVESTMENT_FUNDS_GQL = """
+query CountInvestmentFunds($filter: InvestmentFundFilter, $correlationId: String) {
+  countInvestmentFunds(filter: $filter, correlationId: $correlationId) {
+    count
+  }
+}
+"""
+
+CREATE_INVESTMENT_FUND_GQL = """
+mutation CreateInvestmentFund($investmentFund: InvestmentFundInput!) {
+  createInvestmentFund(investmentFund: $investmentFund) {
+    id
+    name
+  }
+}
+"""
+
+DELETE_ALL_INVESTMENT_FUNDS_GQL = """
+mutation DeleteAllInvestmentFunds($filter: InvestmentFundFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllInvestmentFunds(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_INVESTMENT_FUND_GQL = """
+mutation DeleteInvestmentFund($id: ID!) {
+  deleteInvestmentFund(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_INVESTMENT_FUNDS_GQL = """
+mutation DeleteInvestmentFunds($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteInvestmentFunds(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}
+"""
+
+GET_INVESTMENT_FUND_GQL = """
+query GetInvestmentFund($id: ID!, $correlationId: String) {
+  investmentFund(id: $id, correlationId: $correlationId) {
+    id
+    name
+    alternateNames
+    creationDate
+    uri
+    description
+    identifier
+    thing
+    relevance
+  }
+}
+"""
+
+QUERY_INVESTMENT_FUNDS_GQL = """
+query QueryInvestmentFunds($filter: InvestmentFundFilter, $correlationId: String) {
+  investmentFunds(filter: $filter, correlationId: $correlationId) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      uri
+      description
+      identifier
+      thing
+      relevance
+    }
+  }
+}
+"""
+
+UPDATE_INVESTMENT_FUND_GQL = """
+mutation UpdateInvestmentFund($investmentFund: InvestmentFundUpdateInput!) {
+  updateInvestmentFund(investmentFund: $investmentFund) {
+    id
+    name
   }
 }
 """
@@ -10597,6 +10893,7 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
           fileExtension
           fileName
           fileSize
+          fileMetadata
           relativeFolderPath
           masterUri
           imageUri

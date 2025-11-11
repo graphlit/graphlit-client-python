@@ -11,6 +11,7 @@ from .enums import (
     AnthropicModels,
     ArcadeProviders,
     AssemblyAIModels,
+    AttioAuthenticationTypes,
     AuthenticationServiceTypes,
     AzureDocumentIntelligenceModels,
     AzureDocumentIntelligenceVersions,
@@ -69,6 +70,8 @@ from .enums import (
     H3ResolutionTypes,
     ImageProjectionTypes,
     IntegrationServiceTypes,
+    InvestmentFacetTypes,
+    InvestmentFundFacetTypes,
     JinaModels,
     LabelFacetTypes,
     LinkTypes,
@@ -108,6 +111,8 @@ from .enums import (
     OrderDirectionTypes,
     OrganizationFacetTypes,
     OrientationTypes,
+    ParallelGenerators,
+    ParallelProcessors,
     PersonFacetTypes,
     PlaceFacetTypes,
     ProductFacetTypes,
@@ -155,6 +160,13 @@ class AzureTextExtractionPropertiesInput(BaseModel):
 class PromptClassificationRuleInput(BaseModel):
     if_: Optional[str] = Field(alias="if", default=None)
     then: Optional[str] = None
+
+
+class AttioCRMFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[AttioAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
 
 
 class PlaceFacetInput(BaseModel):
@@ -213,10 +225,11 @@ class MedicalIndicationFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[str]]] = None
+    boundaries: Optional[List[str]] = None
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
@@ -242,10 +255,11 @@ class SoftwareFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[str]]] = None
+    boundaries: Optional[List[str]] = None
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
@@ -306,10 +320,11 @@ class MedicalTestFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[str]]] = None
+    boundaries: Optional[List[str]] = None
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
@@ -339,10 +354,11 @@ class MedicalStudyFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[str]]] = None
+    boundaries: Optional[List[str]] = None
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
@@ -366,6 +382,36 @@ class MedicalTestUpdateInput(BaseModel):
     description: Optional[str] = None
     location: Optional["PointInput"] = None
     boundary: Optional[str] = None
+
+
+class InvestmentFundFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    feeds: Optional[List["EntityReferenceFilter"]] = None
+    address: Optional["AddressFilter"] = None
+    location: Optional["PointFilter"] = None
+    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
+    boundaries: Optional[List[str]] = None
+    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
+    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
+    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
+    similar_investment_funds: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="similarInvestmentFunds", default=None
+    )
 
 
 class AlertFilter(BaseModel):
@@ -511,6 +557,11 @@ class MedicalIndicationUpdateInput(BaseModel):
     boundary: Optional[str] = None
 
 
+class AttioFeedPropertiesUpdateInput(BaseModel):
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
 class MedicalProcedureUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
@@ -536,6 +587,10 @@ class CerebrasModelPropertiesUpdateInput(BaseModel):
 
 class H3Filter(BaseModel):
     indexes: Optional[List["H3IndexFilter"]] = None
+
+
+class ParallelPublishingPropertiesInput(BaseModel):
+    processor: Optional[ParallelProcessors] = None
 
 
 class CategoryFacetInput(BaseModel):
@@ -612,12 +667,46 @@ class ClassificationWorkflowStageInput(BaseModel):
     jobs: Optional[List[Optional["ClassificationWorkflowJobInput"]]] = None
 
 
+class ParallelFeedPropertiesUpdateInput(BaseModel):
+    processor: Optional[ParallelProcessors] = None
+
+
 class ShapeMetadataInput(BaseModel):
     creation_date: Optional[Any] = Field(alias="creationDate", default=None)
     modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
     location: Optional["PointInput"] = None
     feature_count: Optional[int] = Field(alias="featureCount", default=None)
     attribute_count: Optional[int] = Field(alias="attributeCount", default=None)
+
+
+class InvestmentFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[List[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    feeds: Optional[List["EntityReferenceFilter"]] = None
+    address: Optional["AddressFilter"] = None
+    location: Optional["PointFilter"] = None
+    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
+    boundaries: Optional[List[str]] = None
+    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
+    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
+    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
+    similar_investments: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="similarInvestments", default=None
+    )
 
 
 class SharePointFoldersInput(BaseModel):
@@ -658,6 +747,7 @@ class ContentPublishingConnectorInput(BaseModel):
     open_ai_video: Optional["OpenAIVideoPublishingPropertiesInput"] = Field(
         alias="openAIVideo", default=None
     )
+    parallel: Optional["ParallelPublishingPropertiesInput"] = None
 
 
 class ProjectInput(BaseModel):
@@ -668,6 +758,14 @@ class ProjectInput(BaseModel):
     jwt_secret: str = Field(alias="jwtSecret")
     quota: Optional["ProjectQuotaInput"] = None
     callback_uri: Optional[Any] = Field(alias="callbackUri", default=None)
+
+
+class InvestmentFundFacetInput(BaseModel):
+    time_interval: Optional[TimeIntervalTypes] = Field(
+        alias="timeInterval", default=None
+    )
+    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
+    facet: Optional[InvestmentFundFacetTypes] = None
 
 
 class PlaceUpdateInput(BaseModel):
@@ -782,10 +880,11 @@ class MedicalDrugClassFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[str]]] = None
+    boundaries: Optional[List[str]] = None
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
@@ -827,10 +926,11 @@ class MedicalContraindicationFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[str]]] = None
+    boundaries: Optional[List[str]] = None
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
@@ -924,10 +1024,11 @@ class ProductFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[str]]] = None
+    boundaries: Optional[List[str]] = None
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
@@ -1025,6 +1126,13 @@ class PointCloudMetadataInput(BaseModel):
     point_count: Optional[Any] = Field(alias="pointCount", default=None)
 
 
+class AttioCRMFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[AttioAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+
+
 class MicrosoftTeamsChannelsInput(BaseModel):
     authentication_type: Optional[MicrosoftTeamsAuthenticationTypes] = Field(
         alias="authenticationType", default=None
@@ -1033,6 +1141,15 @@ class MicrosoftTeamsChannelsInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+
+
+class InvestmentFundInput(BaseModel):
+    name: str
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
 
 
 class OpenAIVideoPublishingPropertiesInput(BaseModel):
@@ -1122,6 +1239,10 @@ class ObservationInput(BaseModel):
     occurrences: List["ObservationOccurrenceInput"]
 
 
+class AttioTasksFeedPropertiesUpdateInput(BaseModel):
+    api_key: str = Field(alias="apiKey")
+
+
 class ProductUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
@@ -1157,10 +1278,11 @@ class MedicalTherapyFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[str]]] = None
+    boundaries: Optional[List[str]] = None
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
@@ -1182,6 +1304,16 @@ class GoogleDriveFeedPropertiesInput(BaseModel):
         alias="serviceAccountJson", default=None
     )
     authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+
+
+class InvestmentFundUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
 
 
 class ExtractionWorkflowStageInput(BaseModel):
@@ -1238,6 +1370,7 @@ class FeedInput(BaseModel):
     site: Optional["SiteFeedPropertiesInput"] = None
     calendar: Optional["CalendarFeedPropertiesInput"] = None
     email: Optional["EmailFeedPropertiesInput"] = None
+    crm: Optional["CRMFeedPropertiesInput"] = None
     issue: Optional["IssueFeedPropertiesInput"] = None
     pull_request: Optional["PullRequestFeedPropertiesInput"] = Field(
         alias="pullRequest", default=None
@@ -1255,8 +1388,11 @@ class FeedInput(BaseModel):
         alias="microsoftTeams", default=None
     )
     discord: Optional["DiscordFeedPropertiesInput"] = None
+    attio: Optional["AttioFeedPropertiesInput"] = None
     intercom: Optional["IntercomFeedPropertiesInput"] = None
     zendesk: Optional["ZendeskFeedPropertiesInput"] = None
+    research: Optional["ResearchFeedPropertiesInput"] = None
+    entity: Optional["EntityFeedPropertiesInput"] = None
     schedule_policy: Optional["FeedSchedulePolicyInput"] = Field(
         alias="schedulePolicy", default=None
     )
@@ -1474,6 +1610,7 @@ class FeedUpdateInput(BaseModel):
     site: Optional["SiteFeedPropertiesUpdateInput"] = None
     calendar: Optional["CalendarFeedPropertiesUpdateInput"] = None
     email: Optional["EmailFeedPropertiesUpdateInput"] = None
+    crm: Optional["CRMFeedPropertiesUpdateInput"] = None
     issue: Optional["IssueFeedPropertiesUpdateInput"] = None
     pull_request: Optional["PullRequestFeedPropertiesUpdateInput"] = Field(
         alias="pullRequest", default=None
@@ -1491,8 +1628,11 @@ class FeedUpdateInput(BaseModel):
         alias="microsoftTeams", default=None
     )
     discord: Optional["DiscordFeedPropertiesUpdateInput"] = None
+    attio: Optional["AttioFeedPropertiesUpdateInput"] = None
     intercom: Optional["IntercomFeedPropertiesUpdateInput"] = None
     zendesk: Optional["ZendeskFeedPropertiesUpdateInput"] = None
+    research: Optional["ResearchFeedPropertiesUpdateInput"] = None
+    entity: Optional["EntityFeedPropertiesUpdateInput"] = None
     schedule_policy: Optional["FeedSchedulePolicyInput"] = Field(
         alias="schedulePolicy", default=None
     )
@@ -1553,6 +1693,10 @@ class ModelImageExtractionPropertiesInput(BaseModel):
     specification: Optional["EntityReferenceInput"] = None
 
 
+class ParallelFeedPropertiesInput(BaseModel):
+    processor: Optional[ParallelProcessors] = None
+
+
 class GoogleFeedPropertiesInput(BaseModel):
     credentials: str
     container_name: str = Field(alias="containerName")
@@ -1581,6 +1725,12 @@ class CollectionUpdateInput(BaseModel):
     expected_count: Optional[int] = Field(alias="expectedCount", default=None)
 
 
+class EntityFeedPropertiesUpdateInput(BaseModel):
+    query: Optional[str] = None
+    parallel: Optional["ParallelEntityFeedPropertiesUpdateInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
 class MedicalDeviceFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
@@ -1598,10 +1748,11 @@ class MedicalDeviceFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[str]]] = None
+    boundaries: Optional[List[str]] = None
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
@@ -1670,6 +1821,10 @@ class MicrosoftEmailFeedPropertiesInput(BaseModel):
     authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
+class ParallelEntityFeedPropertiesInput(BaseModel):
+    generator: Optional[ParallelGenerators] = None
+
+
 class GitHubPullRequestsFeedPropertiesUpdateInput(BaseModel):
     authentication_type: Optional[GitHubPullRequestAuthenticationTypes] = Field(
         alias="authenticationType", default=None
@@ -1682,6 +1837,14 @@ class GitHubPullRequestsFeedPropertiesUpdateInput(BaseModel):
         alias="personalAccessToken", default=None
     )
     authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+
+
+class InvestmentFacetInput(BaseModel):
+    time_interval: Optional[TimeIntervalTypes] = Field(
+        alias="timeInterval", default=None
+    )
+    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
+    facet: Optional[InvestmentFacetTypes] = None
 
 
 class Int64RangeInput(BaseModel):
@@ -1880,6 +2043,11 @@ class GoogleModelPropertiesInput(BaseModel):
     thinking_token_limit: Optional[int] = Field(
         alias="thinkingTokenLimit", default=None
     )
+
+
+class CRMFeedPropertiesUpdateInput(BaseModel):
+    attio: Optional["AttioCRMFeedPropertiesUpdateInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class MedicalDrugUpdateInput(BaseModel):
@@ -2115,6 +2283,13 @@ class AtlassianJiraFeedPropertiesInput(BaseModel):
     offset: Optional[Any] = None
 
 
+class ResearchFeedPropertiesUpdateInput(BaseModel):
+    type: Optional[FeedServiceTypes] = None
+    query: Optional[str] = None
+    parallel: Optional["ParallelFeedPropertiesUpdateInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
 class OrganizationUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
@@ -2316,10 +2491,11 @@ class MedicalGuidelineFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[str]]] = None
+    boundaries: Optional[List[str]] = None
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
@@ -2397,6 +2573,10 @@ class ExtractionWorkflowJobInput(BaseModel):
     connector: Optional["EntityExtractionConnectorInput"] = None
 
 
+class GraphInput(BaseModel):
+    types: Optional[List[ObservableTypes]] = None
+
+
 class ZendeskFeedPropertiesInput(BaseModel):
     subdomain: str
     access_token: str = Field(alias="accessToken")
@@ -2420,10 +2600,11 @@ class MedicalConditionFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[str]]] = None
+    boundaries: Optional[List[str]] = None
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
@@ -2509,6 +2690,15 @@ class MicrosoftTeamsTeamsInput(BaseModel):
     authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
+class InvestmentInput(BaseModel):
+    name: str
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+
+
 class TwitterIntegrationPropertiesInput(BaseModel):
     consumer_key: str = Field(alias="consumerKey")
     consumer_secret: str = Field(alias="consumerSecret")
@@ -2564,6 +2754,10 @@ class VideoMetadataInput(BaseModel):
     software: Optional[str] = None
     make: Optional[str] = None
     model: Optional[str] = None
+
+
+class ParallelEntityFeedPropertiesUpdateInput(BaseModel):
+    generator: Optional[ParallelGenerators] = None
 
 
 class LabelFacetInput(BaseModel):
@@ -2648,10 +2842,11 @@ class MedicalProcedureFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[str]]] = None
+    boundaries: Optional[List[str]] = None
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
@@ -2767,6 +2962,7 @@ class ContentPublishingConnectorUpdateInput(BaseModel):
     open_ai_video: Optional["OpenAIVideoPublishingPropertiesInput"] = Field(
         alias="openAIVideo", default=None
     )
+    parallel: Optional["ParallelPublishingPropertiesInput"] = None
 
 
 class GroqModelPropertiesUpdateInput(BaseModel):
@@ -2803,10 +2999,11 @@ class PersonFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[str]]] = None
+    boundaries: Optional[List[str]] = None
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
@@ -2912,6 +3109,13 @@ class CategoryFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+
+
+class ResearchFeedPropertiesInput(BaseModel):
+    type: Optional[FeedServiceTypes] = None
+    query: str
+    parallel: Optional["ParallelFeedPropertiesInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class EmailIntegrationPropertiesInput(BaseModel):
@@ -3173,6 +3377,7 @@ class IssueFeedPropertiesInput(BaseModel):
     intercom: Optional["IntercomTicketsFeedPropertiesInput"] = None
     zendesk: Optional["ZendeskTicketsFeedPropertiesInput"] = None
     trello: Optional["TrelloFeedPropertiesInput"] = None
+    attio: Optional["AttioTasksFeedPropertiesInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -3433,12 +3638,34 @@ class ContentGraphInput(BaseModel):
     types: Optional[List[ObservableTypes]] = None
 
 
+class GraphFilter(BaseModel):
+    types: Optional[List[ObservableTypes]] = None
+    feeds: Optional[List["EntityReferenceFilter"]] = None
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    location: Optional["PointFilter"] = None
+    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
+    boundaries: Optional[List[Optional[str]]] = None
+    search: Optional[str] = None
+    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+
+
 class AddressFilter(BaseModel):
     street_address: Optional[str] = Field(alias="streetAddress", default=None)
     city: Optional[str] = None
     region: Optional[str] = None
     country: Optional[str] = None
     postal_code: Optional[str] = Field(alias="postalCode", default=None)
+
+
+class CRMFeedPropertiesInput(BaseModel):
+    type: FeedServiceTypes
+    attio: Optional["AttioCRMFeedPropertiesInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class MedicalIndicationInput(BaseModel):
@@ -3708,10 +3935,11 @@ class RepoFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[str]]] = None
+    boundaries: Optional[List[str]] = None
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
@@ -3737,10 +3965,11 @@ class MedicalDrugFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[str]]] = None
+    boundaries: Optional[List[str]] = None
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
@@ -3858,6 +4087,13 @@ class ObservationOccurrenceInput(BaseModel):
     end_time: Optional[Any] = Field(alias="endTime", default=None)
 
 
+class EntityFeedPropertiesInput(BaseModel):
+    type: FeedServiceTypes
+    query: str
+    parallel: Optional["ParallelEntityFeedPropertiesInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
 class MCPIntegrationPropertiesInput(BaseModel):
     type: MCPServerTypes
     token: Optional[str] = None
@@ -3934,10 +4170,11 @@ class EventFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[str]]] = None
+    boundaries: Optional[List[str]] = None
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
@@ -4052,10 +4289,11 @@ class PlaceFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[str]]] = None
+    boundaries: Optional[List[str]] = None
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
@@ -4082,6 +4320,10 @@ class PullRequestFeedPropertiesInput(BaseModel):
     type: FeedServiceTypes
     github: Optional["GitHubPullRequestsFeedPropertiesInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class AttioTasksFeedPropertiesInput(BaseModel):
+    api_key: str = Field(alias="apiKey")
 
 
 class TrelloFeedPropertiesUpdateInput(BaseModel):
@@ -4185,6 +4427,16 @@ class FeedSchedulePolicyInput(BaseModel):
     repeat_interval: Optional[Any] = Field(alias="repeatInterval", default=None)
 
 
+class InvestmentUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+
+
 class OrganizationFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
@@ -4202,10 +4454,11 @@ class OrganizationFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[List[Optional[str]]] = None
+    boundaries: Optional[List[str]] = None
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
@@ -4385,6 +4638,7 @@ class IssueFeedPropertiesUpdateInput(BaseModel):
     intercom: Optional["IntercomTicketsFeedPropertiesUpdateInput"] = None
     zendesk: Optional["ZendeskTicketsFeedPropertiesUpdateInput"] = None
     trello: Optional["TrelloFeedPropertiesUpdateInput"] = None
+    attio: Optional["AttioTasksFeedPropertiesUpdateInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -4434,6 +4688,11 @@ class LabelUpdateInput(BaseModel):
     description: Optional[str] = None
 
 
+class AttioFeedPropertiesInput(BaseModel):
+    api_key: str = Field(alias="apiKey")
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
 MedicalIndicationFilter.model_rebuild()
 SoftwareFilter.model_rebuild()
 MedicalTestInput.model_rebuild()
@@ -4443,6 +4702,7 @@ MedicalTestFilter.model_rebuild()
 MedicalStudyFilter.model_rebuild()
 ConnectorInput.model_rebuild()
 MedicalTestUpdateInput.model_rebuild()
+InvestmentFundFilter.model_rebuild()
 AlertFilter.model_rebuild()
 PreparationWorkflowStageInput.model_rebuild()
 EmailFeedPropertiesUpdateInput.model_rebuild()
@@ -4457,6 +4717,7 @@ MedicalDrugInput.model_rebuild()
 WorkflowFilter.model_rebuild()
 ClassificationWorkflowStageInput.model_rebuild()
 ShapeMetadataInput.model_rebuild()
+InvestmentFilter.model_rebuild()
 ContentPublishingConnectorInput.model_rebuild()
 ProjectInput.model_rebuild()
 PlaceUpdateInput.model_rebuild()
@@ -4475,12 +4736,14 @@ ViewUpdateInput.model_rebuild()
 PersonInput.model_rebuild()
 PackageMetadataInput.model_rebuild()
 PointCloudMetadataInput.model_rebuild()
+InvestmentFundInput.model_rebuild()
 OpenAIVideoPublishingPropertiesInput.model_rebuild()
 ModelDocumentPreparationPropertiesInput.model_rebuild()
 ProjectFilter.model_rebuild()
 ObservationInput.model_rebuild()
 ProductUpdateInput.model_rebuild()
 MedicalTherapyFilter.model_rebuild()
+InvestmentFundUpdateInput.model_rebuild()
 ExtractionWorkflowStageInput.model_rebuild()
 MedicalDeviceInput.model_rebuild()
 EnrichmentWorkflowStageInput.model_rebuild()
@@ -4494,6 +4757,7 @@ FeedUpdateInput.model_rebuild()
 MedicalContraindicationUpdateInput.model_rebuild()
 ModelImageExtractionPropertiesInput.model_rebuild()
 CollectionUpdateInput.model_rebuild()
+EntityFeedPropertiesUpdateInput.model_rebuild()
 MedicalDeviceFilter.model_rebuild()
 CommitFeedPropertiesInput.model_rebuild()
 ObservationCriteriaInput.model_rebuild()
@@ -4503,6 +4767,7 @@ MedicalTherapyInput.model_rebuild()
 ContentCriteriaInput.model_rebuild()
 ObservationReferenceFilter.model_rebuild()
 IngestionWorkflowStageInput.model_rebuild()
+CRMFeedPropertiesUpdateInput.model_rebuild()
 MedicalDrugUpdateInput.model_rebuild()
 SiteFeedPropertiesUpdateInput.model_rebuild()
 AlertUpdateInput.model_rebuild()
@@ -4511,6 +4776,7 @@ ModelContentClassificationPropertiesInput.model_rebuild()
 PersonUpdateInput.model_rebuild()
 SiteFeedPropertiesInput.model_rebuild()
 ModelTextExtractionPropertiesInput.model_rebuild()
+ResearchFeedPropertiesUpdateInput.model_rebuild()
 OrganizationUpdateInput.model_rebuild()
 UserFilter.model_rebuild()
 ConnectorFilter.model_rebuild()
@@ -4520,6 +4786,7 @@ EmailFeedPropertiesInput.model_rebuild()
 ExtractionWorkflowJobInput.model_rebuild()
 MedicalConditionFilter.model_rebuild()
 DrawingMetadataInput.model_rebuild()
+InvestmentInput.model_rebuild()
 CalendarFeedPropertiesUpdateInput.model_rebuild()
 VideoMetadataInput.model_rebuild()
 MetadataUpdateInput.model_rebuild()
@@ -4533,6 +4800,7 @@ PersonFilter.model_rebuild()
 MetadataFilter.model_rebuild()
 ConversationFilter.model_rebuild()
 CategoryFilter.model_rebuild()
+ResearchFeedPropertiesInput.model_rebuild()
 MedicalProcedureInput.model_rebuild()
 LabelFilter.model_rebuild()
 MedicalDrugClassUpdateInput.model_rebuild()
@@ -4553,6 +4821,8 @@ AudioMetadataInput.model_rebuild()
 EventMetadataInput.model_rebuild()
 FilePreparationConnectorInput.model_rebuild()
 ContentInput.model_rebuild()
+GraphFilter.model_rebuild()
+CRMFeedPropertiesInput.model_rebuild()
 MedicalIndicationInput.model_rebuild()
 AlertInput.model_rebuild()
 DocumentMetadataInput.model_rebuild()
@@ -4568,6 +4838,7 @@ MedicalDrugFilter.model_rebuild()
 SpecificationFilter.model_rebuild()
 CalendarFeedPropertiesInput.model_rebuild()
 ObservationOccurrenceInput.model_rebuild()
+EntityFeedPropertiesInput.model_rebuild()
 IndexingWorkflowStageInput.model_rebuild()
 CollectionFilter.model_rebuild()
 EventFilter.model_rebuild()
@@ -4578,6 +4849,7 @@ PullRequestFeedPropertiesInput.model_rebuild()
 IndexingWorkflowJobInput.model_rebuild()
 EnrichmentWorkflowJobInput.model_rebuild()
 MedicalStudyUpdateInput.model_rebuild()
+InvestmentUpdateInput.model_rebuild()
 OrganizationFilter.model_rebuild()
 ContentUpdateInput.model_rebuild()
 ConversationInput.model_rebuild()

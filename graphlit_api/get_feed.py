@@ -7,6 +7,7 @@ from pydantic import Field
 
 from .base_model import BaseModel
 from .enums import (
+    AttioAuthenticationTypes,
     BoxAuthenticationTypes,
     CalendarListingTypes,
     DropboxAuthenticationTypes,
@@ -28,6 +29,8 @@ from .enums import (
     MicrosoftTeamsAuthenticationTypes,
     NotionTypes,
     OneDriveAuthenticationTypes,
+    ParallelGenerators,
+    ParallelProcessors,
     SearchServiceTypes,
     SharePointAuthenticationTypes,
     SiteTypes,
@@ -57,6 +60,7 @@ class GetFeedFeed(BaseModel):
     issue: Optional["GetFeedFeedIssue"]
     commit: Optional["GetFeedFeedCommit"]
     pull_request: Optional["GetFeedFeedPullRequest"] = Field(alias="pullRequest")
+    crm: Optional["GetFeedFeedCrm"]
     calendar: Optional["GetFeedFeedCalendar"]
     rss: Optional["GetFeedFeedRss"]
     web: Optional["GetFeedFeedWeb"]
@@ -72,6 +76,9 @@ class GetFeedFeed(BaseModel):
         alias="microsoftTeams"
     )
     discord: Optional["GetFeedFeedDiscord"]
+    attio: Optional["GetFeedFeedAttio"]
+    research: Optional["GetFeedFeedResearch"]
+    entity: Optional["GetFeedFeedEntity"]
     error: Optional[str]
     last_post_date: Optional[Any] = Field(alias="lastPostDate")
     last_read_date: Optional[Any] = Field(alias="lastReadDate")
@@ -254,6 +261,7 @@ class GetFeedFeedIssue(BaseModel):
     intercom: Optional["GetFeedFeedIssueIntercom"]
     zendesk: Optional["GetFeedFeedIssueZendesk"]
     trello: Optional["GetFeedFeedIssueTrello"]
+    attio: Optional["GetFeedFeedIssueAttio"]
     read_limit: Optional[int] = Field(alias="readLimit")
 
 
@@ -298,6 +306,10 @@ class GetFeedFeedIssueTrello(BaseModel):
     type: TrelloTypes
 
 
+class GetFeedFeedIssueAttio(BaseModel):
+    api_key: str = Field(alias="apiKey")
+
+
 class GetFeedFeedCommit(BaseModel):
     type: FeedServiceTypes
     github: Optional["GetFeedFeedCommitGithub"]
@@ -332,6 +344,19 @@ class GetFeedFeedPullRequestGithub(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
     personal_access_token: Optional[str] = Field(alias="personalAccessToken")
     authorization_id: Optional[str] = Field(alias="authorizationId")
+
+
+class GetFeedFeedCrm(BaseModel):
+    type: FeedServiceTypes
+    attio: Optional["GetFeedFeedCrmAttio"]
+    read_limit: Optional[int] = Field(alias="readLimit")
+
+
+class GetFeedFeedCrmAttio(BaseModel):
+    authentication_type: Optional[AttioAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    api_key: Optional[str] = Field(alias="apiKey")
 
 
 class GetFeedFeedCalendar(BaseModel):
@@ -462,6 +487,33 @@ class GetFeedFeedDiscord(BaseModel):
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
 
 
+class GetFeedFeedAttio(BaseModel):
+    read_limit: Optional[int] = Field(alias="readLimit")
+    api_key: str = Field(alias="apiKey")
+
+
+class GetFeedFeedResearch(BaseModel):
+    read_limit: Optional[int] = Field(alias="readLimit")
+    type: Optional[FeedServiceTypes]
+    query: str
+    parallel: Optional["GetFeedFeedResearchParallel"]
+
+
+class GetFeedFeedResearchParallel(BaseModel):
+    processor: Optional[ParallelProcessors]
+
+
+class GetFeedFeedEntity(BaseModel):
+    type: FeedServiceTypes
+    query: str
+    read_limit: Optional[int] = Field(alias="readLimit")
+    parallel: Optional["GetFeedFeedEntityParallel"]
+
+
+class GetFeedFeedEntityParallel(BaseModel):
+    generator: Optional[ParallelGenerators]
+
+
 class GetFeedFeedWorkflow(BaseModel):
     id: str
     name: str
@@ -481,4 +533,7 @@ GetFeedFeedEmail.model_rebuild()
 GetFeedFeedIssue.model_rebuild()
 GetFeedFeedCommit.model_rebuild()
 GetFeedFeedPullRequest.model_rebuild()
+GetFeedFeedCrm.model_rebuild()
 GetFeedFeedCalendar.model_rebuild()
+GetFeedFeedResearch.model_rebuild()
+GetFeedFeedEntity.model_rebuild()

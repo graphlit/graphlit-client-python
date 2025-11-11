@@ -157,6 +157,9 @@ query GetAlert($id: ID!, $correlationId: String) {
           id
         }
       }
+      parallel {
+        processor
+      }
     }
     summarySpecification {
       id

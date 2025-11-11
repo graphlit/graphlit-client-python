@@ -23,6 +23,7 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
           fileExtension
           fileName
           fileSize
+          fileMetadata
           relativeFolderPath
           masterUri
           imageUri
@@ -206,6 +207,7 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
             fileExtension
             fileName
             fileSize
+            fileMetadata
             relativeFolderPath
             masterUri
             imageUri

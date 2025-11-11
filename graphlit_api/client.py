@@ -20,6 +20,8 @@ from .count_contents import CountContents
 from .count_conversations import CountConversations
 from .count_events import CountEvents
 from .count_feeds import CountFeeds
+from .count_investment_funds import CountInvestmentFunds
+from .count_investments import CountInvestments
 from .count_labels import CountLabels
 from .count_medical_conditions import CountMedicalConditions
 from .count_medical_contraindications import CountMedicalContraindications
@@ -49,6 +51,8 @@ from .create_connector import CreateConnector
 from .create_conversation import CreateConversation
 from .create_event import CreateEvent
 from .create_feed import CreateFeed
+from .create_investment import CreateInvestment
+from .create_investment_fund import CreateInvestmentFund
 from .create_label import CreateLabel
 from .create_medical_condition import CreateMedicalCondition
 from .create_medical_contraindication import CreateMedicalContraindication
@@ -81,6 +85,8 @@ from .delete_all_contents import DeleteAllContents
 from .delete_all_conversations import DeleteAllConversations
 from .delete_all_events import DeleteAllEvents
 from .delete_all_feeds import DeleteAllFeeds
+from .delete_all_investment_funds import DeleteAllInvestmentFunds
+from .delete_all_investments import DeleteAllInvestments
 from .delete_all_labels import DeleteAllLabels
 from .delete_all_medical_conditions import DeleteAllMedicalConditions
 from .delete_all_medical_contraindications import DeleteAllMedicalContraindications
@@ -115,6 +121,10 @@ from .delete_event import DeleteEvent
 from .delete_events import DeleteEvents
 from .delete_feed import DeleteFeed
 from .delete_feeds import DeleteFeeds
+from .delete_investment import DeleteInvestment
+from .delete_investment_fund import DeleteInvestmentFund
+from .delete_investment_funds import DeleteInvestmentFunds
+from .delete_investments import DeleteInvestments
 from .delete_label import DeleteLabel
 from .delete_labels import DeleteLabels
 from .delete_medical_condition import DeleteMedicalCondition
@@ -180,6 +190,8 @@ from .get_content import GetContent
 from .get_conversation import GetConversation
 from .get_event import GetEvent
 from .get_feed import GetFeed
+from .get_investment import GetInvestment
+from .get_investment_fund import GetInvestmentFund
 from .get_label import GetLabel
 from .get_medical_condition import GetMedicalCondition
 from .get_medical_contraindication import GetMedicalContraindication
@@ -249,7 +261,15 @@ from .input_types import (
     GitHubRepositoriesInput,
     GoogleCalendarsInput,
     GoogleDriveFoldersInput,
+    GraphFilter,
+    GraphInput,
     IntegrationConnectorInput,
+    InvestmentFilter,
+    InvestmentFundFilter,
+    InvestmentFundInput,
+    InvestmentFundUpdateInput,
+    InvestmentInput,
+    InvestmentUpdateInput,
     LabelFilter,
     LabelInput,
     LabelUpdateInput,
@@ -359,6 +379,8 @@ from .operations import (
     COUNT_CONVERSATIONS_GQL,
     COUNT_EVENTS_GQL,
     COUNT_FEEDS_GQL,
+    COUNT_INVESTMENT_FUNDS_GQL,
+    COUNT_INVESTMENTS_GQL,
     COUNT_LABELS_GQL,
     COUNT_MEDICAL_CONDITIONS_GQL,
     COUNT_MEDICAL_CONTRAINDICATIONS_GQL,
@@ -388,6 +410,8 @@ from .operations import (
     CREATE_CONVERSATION_GQL,
     CREATE_EVENT_GQL,
     CREATE_FEED_GQL,
+    CREATE_INVESTMENT_FUND_GQL,
+    CREATE_INVESTMENT_GQL,
     CREATE_LABEL_GQL,
     CREATE_MEDICAL_CONDITION_GQL,
     CREATE_MEDICAL_CONTRAINDICATION_GQL,
@@ -420,6 +444,8 @@ from .operations import (
     DELETE_ALL_CONVERSATIONS_GQL,
     DELETE_ALL_EVENTS_GQL,
     DELETE_ALL_FEEDS_GQL,
+    DELETE_ALL_INVESTMENT_FUNDS_GQL,
+    DELETE_ALL_INVESTMENTS_GQL,
     DELETE_ALL_LABELS_GQL,
     DELETE_ALL_MEDICAL_CONDITIONS_GQL,
     DELETE_ALL_MEDICAL_CONTRAINDICATIONS_GQL,
@@ -454,6 +480,10 @@ from .operations import (
     DELETE_EVENTS_GQL,
     DELETE_FEED_GQL,
     DELETE_FEEDS_GQL,
+    DELETE_INVESTMENT_FUND_GQL,
+    DELETE_INVESTMENT_FUNDS_GQL,
+    DELETE_INVESTMENT_GQL,
+    DELETE_INVESTMENTS_GQL,
     DELETE_LABEL_GQL,
     DELETE_LABELS_GQL,
     DELETE_MEDICAL_CONDITION_GQL,
@@ -518,6 +548,8 @@ from .operations import (
     GET_CONVERSATION_GQL,
     GET_EVENT_GQL,
     GET_FEED_GQL,
+    GET_INVESTMENT_FUND_GQL,
+    GET_INVESTMENT_GQL,
     GET_LABEL_GQL,
     GET_MEDICAL_CONDITION_GQL,
     GET_MEDICAL_CONTRAINDICATION_GQL,
@@ -581,6 +613,9 @@ from .operations import (
     QUERY_GIT_HUB_REPOSITORIES_GQL,
     QUERY_GOOGLE_CALENDARS_GQL,
     QUERY_GOOGLE_DRIVE_FOLDERS_GQL,
+    QUERY_GRAPH_GQL,
+    QUERY_INVESTMENT_FUNDS_GQL,
+    QUERY_INVESTMENTS_GQL,
     QUERY_LABELS_GQL,
     QUERY_LINEAR_PROJECTS_GQL,
     QUERY_MEDICAL_CONDITIONS_GQL,
@@ -618,7 +653,7 @@ from .operations import (
     QUERY_VIEWS_GQL,
     QUERY_WORKFLOWS_GQL,
     REMOVE_CONTENTS_FROM_COLLECTION_GQL,
-    RETRIEVE_SOURCES_GQL,
+    RESEARCH_CONTENTS_GQL,
     RETRIEVE_VIEW_GQL,
     REVISE_CONTENT_GQL,
     REVISE_ENCODED_IMAGE_GQL,
@@ -640,6 +675,8 @@ from .operations import (
     UPDATE_CONVERSATION_GQL,
     UPDATE_EVENT_GQL,
     UPDATE_FEED_GQL,
+    UPDATE_INVESTMENT_FUND_GQL,
+    UPDATE_INVESTMENT_GQL,
     UPDATE_LABEL_GQL,
     UPDATE_MEDICAL_CONDITION_GQL,
     UPDATE_MEDICAL_CONTRAINDICATION_GQL,
@@ -698,6 +735,9 @@ from .query_feeds import QueryFeeds
 from .query_git_hub_repositories import QueryGitHubRepositories
 from .query_google_calendars import QueryGoogleCalendars
 from .query_google_drive_folders import QueryGoogleDriveFolders
+from .query_graph import QueryGraph
+from .query_investment_funds import QueryInvestmentFunds
+from .query_investments import QueryInvestments
 from .query_labels import QueryLabels
 from .query_linear_projects import QueryLinearProjects
 from .query_medical_conditions import QueryMedicalConditions
@@ -735,7 +775,7 @@ from .query_users import QueryUsers
 from .query_views import QueryViews
 from .query_workflows import QueryWorkflows
 from .remove_contents_from_collection import RemoveContentsFromCollection
-from .retrieve_sources import RetrieveSources
+from .research_contents import ResearchContents
 from .retrieve_view import RetrieveView
 from .revise_content import ReviseContent
 from .revise_encoded_image import ReviseEncodedImage
@@ -757,6 +797,8 @@ from .update_content import UpdateContent
 from .update_conversation import UpdateConversation
 from .update_event import UpdateEvent
 from .update_feed import UpdateFeed
+from .update_investment import UpdateInvestment
+from .update_investment_fund import UpdateInvestmentFund
 from .update_label import UpdateLabel
 from .update_medical_condition import UpdateMedicalCondition
 from .update_medical_contraindication import UpdateMedicalContraindication
@@ -1942,6 +1984,27 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryContentsObservations.model_validate(data)
 
+    async def query_graph(
+        self,
+        filter: Union[Optional[GraphFilter], UnsetType] = UNSET,
+        graph: Union[Optional[GraphInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryGraph:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "graph": graph,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_GRAPH_GQL,
+            operation_name="QueryGraph",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryGraph.model_validate(data)
+
     async def query_observables(
         self,
         filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
@@ -1960,6 +2023,35 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryObservables.model_validate(data)
+
+    async def research_contents(
+        self,
+        connector: ContentPublishingConnectorInput,
+        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        name: Union[Optional[str], UnsetType] = UNSET,
+        summary_specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        publish_specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> ResearchContents:
+        variables: Dict[str, object] = {
+            "connector": connector,
+            "filter": filter,
+            "name": name,
+            "summarySpecification": summary_specification,
+            "publishSpecification": publish_specification,
+            "workflow": workflow,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=RESEARCH_CONTENTS_GQL,
+            operation_name="ResearchContents",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return ResearchContents.model_validate(data)
 
     async def screenshot_page(
         self,
@@ -2386,33 +2478,6 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryConversations.model_validate(data)
-
-    async def retrieve_sources(
-        self,
-        prompt: str,
-        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
-        augmented_filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
-        retrieval_strategy: Union[Optional[RetrievalStrategyInput], UnsetType] = UNSET,
-        reranking_strategy: Union[Optional[RerankingStrategyInput], UnsetType] = UNSET,
-        correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
-    ) -> RetrieveSources:
-        variables: Dict[str, object] = {
-            "prompt": prompt,
-            "filter": filter,
-            "augmentedFilter": augmented_filter,
-            "retrievalStrategy": retrieval_strategy,
-            "rerankingStrategy": reranking_strategy,
-            "correlationId": correlation_id,
-        }
-        response = await self.execute(
-            query=RETRIEVE_SOURCES_GQL,
-            operation_name="RetrieveSources",
-            variables=variables,
-            **kwargs
-        )
-        data = self.get_data(response)
-        return RetrieveSources.model_validate(data)
 
     async def retrieve_view(
         self,
@@ -3152,6 +3217,264 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdateFeed.model_validate(data)
+
+    async def count_investments(
+        self,
+        filter: Union[Optional[InvestmentFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountInvestments:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=COUNT_INVESTMENTS_GQL,
+            operation_name="CountInvestments",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountInvestments.model_validate(data)
+
+    async def create_investment(
+        self, investment: InvestmentInput, **kwargs: Any
+    ) -> CreateInvestment:
+        variables: Dict[str, object] = {"investment": investment}
+        response = await self.execute(
+            query=CREATE_INVESTMENT_GQL,
+            operation_name="CreateInvestment",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CreateInvestment.model_validate(data)
+
+    async def delete_all_investments(
+        self,
+        filter: Union[Optional[InvestmentFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllInvestments:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DELETE_ALL_INVESTMENTS_GQL,
+            operation_name="DeleteAllInvestments",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllInvestments.model_validate(data)
+
+    async def delete_investment(self, id: str, **kwargs: Any) -> DeleteInvestment:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DELETE_INVESTMENT_GQL,
+            operation_name="DeleteInvestment",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteInvestment.model_validate(data)
+
+    async def delete_investments(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteInvestments:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
+        response = await self.execute(
+            query=DELETE_INVESTMENTS_GQL,
+            operation_name="DeleteInvestments",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteInvestments.model_validate(data)
+
+    async def get_investment(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetInvestment:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
+        response = await self.execute(
+            query=GET_INVESTMENT_GQL,
+            operation_name="GetInvestment",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return GetInvestment.model_validate(data)
+
+    async def query_investments(
+        self,
+        filter: Union[Optional[InvestmentFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryInvestments:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_INVESTMENTS_GQL,
+            operation_name="QueryInvestments",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryInvestments.model_validate(data)
+
+    async def update_investment(
+        self, investment: InvestmentUpdateInput, **kwargs: Any
+    ) -> UpdateInvestment:
+        variables: Dict[str, object] = {"investment": investment}
+        response = await self.execute(
+            query=UPDATE_INVESTMENT_GQL,
+            operation_name="UpdateInvestment",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateInvestment.model_validate(data)
+
+    async def count_investment_funds(
+        self,
+        filter: Union[Optional[InvestmentFundFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountInvestmentFunds:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=COUNT_INVESTMENT_FUNDS_GQL,
+            operation_name="CountInvestmentFunds",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountInvestmentFunds.model_validate(data)
+
+    async def create_investment_fund(
+        self, investment_fund: InvestmentFundInput, **kwargs: Any
+    ) -> CreateInvestmentFund:
+        variables: Dict[str, object] = {"investmentFund": investment_fund}
+        response = await self.execute(
+            query=CREATE_INVESTMENT_FUND_GQL,
+            operation_name="CreateInvestmentFund",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CreateInvestmentFund.model_validate(data)
+
+    async def delete_all_investment_funds(
+        self,
+        filter: Union[Optional[InvestmentFundFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllInvestmentFunds:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DELETE_ALL_INVESTMENT_FUNDS_GQL,
+            operation_name="DeleteAllInvestmentFunds",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllInvestmentFunds.model_validate(data)
+
+    async def delete_investment_fund(
+        self, id: str, **kwargs: Any
+    ) -> DeleteInvestmentFund:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DELETE_INVESTMENT_FUND_GQL,
+            operation_name="DeleteInvestmentFund",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteInvestmentFund.model_validate(data)
+
+    async def delete_investment_funds(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteInvestmentFunds:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
+        response = await self.execute(
+            query=DELETE_INVESTMENT_FUNDS_GQL,
+            operation_name="DeleteInvestmentFunds",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteInvestmentFunds.model_validate(data)
+
+    async def get_investment_fund(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetInvestmentFund:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
+        response = await self.execute(
+            query=GET_INVESTMENT_FUND_GQL,
+            operation_name="GetInvestmentFund",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return GetInvestmentFund.model_validate(data)
+
+    async def query_investment_funds(
+        self,
+        filter: Union[Optional[InvestmentFundFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryInvestmentFunds:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_INVESTMENT_FUNDS_GQL,
+            operation_name="QueryInvestmentFunds",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryInvestmentFunds.model_validate(data)
+
+    async def update_investment_fund(
+        self, investment_fund: InvestmentFundUpdateInput, **kwargs: Any
+    ) -> UpdateInvestmentFund:
+        variables: Dict[str, object] = {"investmentFund": investment_fund}
+        response = await self.execute(
+            query=UPDATE_INVESTMENT_FUND_GQL,
+            operation_name="UpdateInvestmentFund",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateInvestmentFund.model_validate(data)
 
     async def count_labels(
         self,

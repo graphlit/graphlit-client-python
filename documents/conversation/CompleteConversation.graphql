@@ -23,6 +23,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
           fileExtension
           fileName
           fileSize
+          fileMetadata
           relativeFolderPath
           masterUri
           imageUri
@@ -206,6 +207,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
             fileExtension
             fileName
             fileSize
+            fileMetadata
             relativeFolderPath
             masterUri
             imageUri

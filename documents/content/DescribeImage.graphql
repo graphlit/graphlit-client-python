@@ -19,6 +19,7 @@ mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityRefer
         fileExtension
         fileName
         fileSize
+        fileMetadata
         relativeFolderPath
         masterUri
         imageUri

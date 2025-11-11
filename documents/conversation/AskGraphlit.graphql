@@ -23,6 +23,7 @@ mutation AskGraphlit($prompt: String!, $type: SdkTypes, $id: ID, $specification:
           fileExtension
           fileName
           fileSize
+          fileMetadata
           relativeFolderPath
           masterUri
           imageUri

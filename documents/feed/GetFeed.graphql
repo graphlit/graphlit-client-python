@@ -164,6 +164,9 @@ query GetFeed($id: ID!, $correlationId: String) {
         identifiers
         type
       }
+      attio {
+        apiKey
+      }
       readLimit
     }
     commit {
@@ -189,6 +192,14 @@ query GetFeed($id: ID!, $correlationId: String) {
         refreshToken
         personalAccessToken
         authorizationId
+      }
+      readLimit
+    }
+    crm {
+      type
+      attio {
+        authenticationType
+        apiKey
       }
       readLimit
     }
@@ -296,6 +307,26 @@ query GetFeed($id: ID!, $correlationId: String) {
       token
       channel
       includeAttachments
+    }
+    attio {
+      readLimit
+      apiKey
+    }
+    research {
+      readLimit
+      type
+      query
+      parallel {
+        processor
+      }
+    }
+    entity {
+      type
+      query
+      readLimit
+      parallel {
+        generator
+      }
     }
     error
     lastPostDate

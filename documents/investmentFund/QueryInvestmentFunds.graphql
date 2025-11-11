@@ -1,0 +1,15 @@
+query QueryInvestmentFunds($filter: InvestmentFundFilter, $correlationId: String) {
+  investmentFunds(filter: $filter, correlationId: $correlationId) {
+    results {
+      id
+      name
+      alternateNames
+      creationDate
+      uri
+      description
+      identifier
+      thing
+      relevance
+    }
+  }
+}

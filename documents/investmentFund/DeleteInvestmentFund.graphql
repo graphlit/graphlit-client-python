@@ -1,0 +1,6 @@
+mutation DeleteInvestmentFund($id: ID!) {
+  deleteInvestmentFund(id: $id) {
+    id
+    state
+  }
+}

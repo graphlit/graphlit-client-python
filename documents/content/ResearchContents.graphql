@@ -1,0 +1,5 @@
+mutation ResearchContents($connector: ContentPublishingConnectorInput!, $filter: ContentFilter, $name: String, $summarySpecification: EntityReferenceInput, $publishSpecification: EntityReferenceInput, $workflow: EntityReferenceInput, $correlationId: String) {
+  researchContents(connector: $connector, filter: $filter, name: $name, summarySpecification: $summarySpecification, publishSpecification: $publishSpecification, workflow: $workflow, correlationId: $correlationId) {
+    result
+  }
+}

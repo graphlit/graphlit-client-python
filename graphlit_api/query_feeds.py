@@ -7,6 +7,7 @@ from pydantic import Field
 
 from .base_model import BaseModel
 from .enums import (
+    AttioAuthenticationTypes,
     BoxAuthenticationTypes,
     CalendarListingTypes,
     DropboxAuthenticationTypes,
@@ -28,6 +29,8 @@ from .enums import (
     MicrosoftTeamsAuthenticationTypes,
     NotionTypes,
     OneDriveAuthenticationTypes,
+    ParallelGenerators,
+    ParallelProcessors,
     SearchServiceTypes,
     SharePointAuthenticationTypes,
     SiteTypes,
@@ -63,6 +66,7 @@ class QueryFeedsFeedsResults(BaseModel):
     pull_request: Optional["QueryFeedsFeedsResultsPullRequest"] = Field(
         alias="pullRequest"
     )
+    crm: Optional["QueryFeedsFeedsResultsCrm"]
     calendar: Optional["QueryFeedsFeedsResultsCalendar"]
     rss: Optional["QueryFeedsFeedsResultsRss"]
     web: Optional["QueryFeedsFeedsResultsWeb"]
@@ -78,6 +82,9 @@ class QueryFeedsFeedsResults(BaseModel):
         alias="microsoftTeams"
     )
     discord: Optional["QueryFeedsFeedsResultsDiscord"]
+    attio: Optional["QueryFeedsFeedsResultsAttio"]
+    research: Optional["QueryFeedsFeedsResultsResearch"]
+    entity: Optional["QueryFeedsFeedsResultsEntity"]
     error: Optional[str]
     last_post_date: Optional[Any] = Field(alias="lastPostDate")
     last_read_date: Optional[Any] = Field(alias="lastReadDate")
@@ -268,6 +275,7 @@ class QueryFeedsFeedsResultsIssue(BaseModel):
     intercom: Optional["QueryFeedsFeedsResultsIssueIntercom"]
     zendesk: Optional["QueryFeedsFeedsResultsIssueZendesk"]
     trello: Optional["QueryFeedsFeedsResultsIssueTrello"]
+    attio: Optional["QueryFeedsFeedsResultsIssueAttio"]
     read_limit: Optional[int] = Field(alias="readLimit")
 
 
@@ -312,6 +320,10 @@ class QueryFeedsFeedsResultsIssueTrello(BaseModel):
     type: TrelloTypes
 
 
+class QueryFeedsFeedsResultsIssueAttio(BaseModel):
+    api_key: str = Field(alias="apiKey")
+
+
 class QueryFeedsFeedsResultsCommit(BaseModel):
     type: FeedServiceTypes
     github: Optional["QueryFeedsFeedsResultsCommitGithub"]
@@ -346,6 +358,19 @@ class QueryFeedsFeedsResultsPullRequestGithub(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
     personal_access_token: Optional[str] = Field(alias="personalAccessToken")
     authorization_id: Optional[str] = Field(alias="authorizationId")
+
+
+class QueryFeedsFeedsResultsCrm(BaseModel):
+    type: FeedServiceTypes
+    attio: Optional["QueryFeedsFeedsResultsCrmAttio"]
+    read_limit: Optional[int] = Field(alias="readLimit")
+
+
+class QueryFeedsFeedsResultsCrmAttio(BaseModel):
+    authentication_type: Optional[AttioAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    api_key: Optional[str] = Field(alias="apiKey")
 
 
 class QueryFeedsFeedsResultsCalendar(BaseModel):
@@ -476,6 +501,33 @@ class QueryFeedsFeedsResultsDiscord(BaseModel):
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
 
 
+class QueryFeedsFeedsResultsAttio(BaseModel):
+    read_limit: Optional[int] = Field(alias="readLimit")
+    api_key: str = Field(alias="apiKey")
+
+
+class QueryFeedsFeedsResultsResearch(BaseModel):
+    read_limit: Optional[int] = Field(alias="readLimit")
+    type: Optional[FeedServiceTypes]
+    query: str
+    parallel: Optional["QueryFeedsFeedsResultsResearchParallel"]
+
+
+class QueryFeedsFeedsResultsResearchParallel(BaseModel):
+    processor: Optional[ParallelProcessors]
+
+
+class QueryFeedsFeedsResultsEntity(BaseModel):
+    type: FeedServiceTypes
+    query: str
+    read_limit: Optional[int] = Field(alias="readLimit")
+    parallel: Optional["QueryFeedsFeedsResultsEntityParallel"]
+
+
+class QueryFeedsFeedsResultsEntityParallel(BaseModel):
+    generator: Optional[ParallelGenerators]
+
+
 class QueryFeedsFeedsResultsWorkflow(BaseModel):
     id: str
     name: str
@@ -496,4 +548,7 @@ QueryFeedsFeedsResultsEmail.model_rebuild()
 QueryFeedsFeedsResultsIssue.model_rebuild()
 QueryFeedsFeedsResultsCommit.model_rebuild()
 QueryFeedsFeedsResultsPullRequest.model_rebuild()
+QueryFeedsFeedsResultsCrm.model_rebuild()
 QueryFeedsFeedsResultsCalendar.model_rebuild()
+QueryFeedsFeedsResultsResearch.model_rebuild()
+QueryFeedsFeedsResultsEntity.model_rebuild()

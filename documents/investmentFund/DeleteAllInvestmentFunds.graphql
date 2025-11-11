@@ -1,0 +1,6 @@
+mutation DeleteAllInvestmentFunds($filter: InvestmentFundFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllInvestmentFunds(filter: $filter, isSynchronous: $isSynchronous, correlationId: $correlationId) {
+    id
+    state
+  }
+}

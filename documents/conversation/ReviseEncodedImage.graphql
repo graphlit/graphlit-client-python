@@ -23,6 +23,7 @@ mutation ReviseEncodedImage($prompt: String!, $mimeType: String!, $data: String!
           fileExtension
           fileName
           fileSize
+          fileMetadata
           relativeFolderPath
           masterUri
           imageUri

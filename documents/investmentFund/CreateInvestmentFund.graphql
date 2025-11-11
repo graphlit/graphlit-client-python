@@ -1,0 +1,6 @@
+mutation CreateInvestmentFund($investmentFund: InvestmentFundInput!) {
+  createInvestmentFund(investmentFund: $investmentFund) {
+    id
+    name
+  }
+}

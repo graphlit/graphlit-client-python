@@ -1,0 +1,13 @@
+query GetInvestmentFund($id: ID!, $correlationId: String) {
+  investmentFund(id: $id, correlationId: $correlationId) {
+    id
+    name
+    alternateNames
+    creationDate
+    uri
+    description
+    identifier
+    thing
+    relevance
+  }
+}

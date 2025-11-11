@@ -1,0 +1,5 @@
+query CountInvestments($filter: InvestmentFilter, $correlationId: String) {
+  countInvestments(filter: $filter, correlationId: $correlationId) {
+    count
+  }
+}

@@ -158,6 +158,9 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
             id
           }
         }
+        parallel {
+          processor
+        }
       }
       summarySpecification {
         id
