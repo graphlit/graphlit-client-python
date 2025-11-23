@@ -3,7 +3,6 @@ query GetWorkflow($id: ID!, $correlationId: String) {
     id
     name
     creationDate
-    relevance
     owner {
       id
     }
@@ -131,6 +130,8 @@ query GetWorkflow($id: ID!, $correlationId: String) {
               id
             }
             tokenThreshold
+            timeBudget
+            entityBudget
           }
         }
       }
@@ -186,6 +187,10 @@ query GetWorkflow($id: ID!, $correlationId: String) {
           }
           diffbot {
             key
+          }
+          parallel {
+            processor
+            isSynchronous
           }
         }
       }

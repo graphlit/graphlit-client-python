@@ -1,0 +1,6 @@
+mutation EnrichPlaces($filter: PlaceFilter, $connector: EntityEnrichmentConnectorInput!, $correlationId: String) {
+  enrichPlaces(filter: $filter, connector: $connector, correlationId: $correlationId) {
+    id
+    name
+  }
+}

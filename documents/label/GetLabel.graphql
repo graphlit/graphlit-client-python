@@ -4,6 +4,9 @@ query GetLabel($id: ID!, $correlationId: String) {
     name
     description
     creationDate
-    relevance
+    feeds {
+      id
+      name
+    }
   }
 }

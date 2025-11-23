@@ -2,13 +2,20 @@ query GetMedicalStudy($id: ID!, $correlationId: String) {
   medicalStudy(id: $id, correlationId: $correlationId) {
     id
     name
-    alternateNames
     creationDate
+    owner {
+      id
+    }
+    state
+    alternateNames
     uri
     description
     identifier
     thing
-    relevance
+    feeds {
+      id
+      name
+    }
     address {
       streetAddress
       city

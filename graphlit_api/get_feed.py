@@ -22,9 +22,11 @@ from .enums import (
     GitHubIssueAuthenticationTypes,
     GitHubPullRequestAuthenticationTypes,
     GoogleCalendarAuthenticationTypes,
+    GoogleContactsAuthenticationTypes,
     GoogleDriveAuthenticationTypes,
     GoogleEmailAuthenticationTypes,
     MicrosoftCalendarAuthenticationTypes,
+    MicrosoftContactsAuthenticationTypes,
     MicrosoftEmailAuthenticationTypes,
     MicrosoftTeamsAuthenticationTypes,
     NotionTypes,
@@ -49,7 +51,6 @@ class GetFeedFeed(BaseModel):
     id: str
     name: str
     creation_date: Any = Field(alias="creationDate")
-    relevance: Optional[float]
     owner: "GetFeedFeedOwner"
     state: EntityState
     correlation_id: Optional[str] = Field(alias="correlationId")
@@ -349,6 +350,12 @@ class GetFeedFeedPullRequestGithub(BaseModel):
 class GetFeedFeedCrm(BaseModel):
     type: FeedServiceTypes
     attio: Optional["GetFeedFeedCrmAttio"]
+    google_contacts: Optional["GetFeedFeedCrmGoogleContacts"] = Field(
+        alias="googleContacts"
+    )
+    microsoft_contacts: Optional["GetFeedFeedCrmMicrosoftContacts"] = Field(
+        alias="microsoftContacts"
+    )
     read_limit: Optional[int] = Field(alias="readLimit")
 
 
@@ -357,6 +364,27 @@ class GetFeedFeedCrmAttio(BaseModel):
         alias="authenticationType"
     )
     api_key: Optional[str] = Field(alias="apiKey")
+
+
+class GetFeedFeedCrmGoogleContacts(BaseModel):
+    authentication_type: Optional[GoogleContactsAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    authorization_id: Optional[str] = Field(alias="authorizationId")
+
+
+class GetFeedFeedCrmMicrosoftContacts(BaseModel):
+    authentication_type: Optional[MicrosoftContactsAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    tenant_id: Optional[str] = Field(alias="tenantId")
+    authorization_id: Optional[str] = Field(alias="authorizationId")
 
 
 class GetFeedFeedCalendar(BaseModel):

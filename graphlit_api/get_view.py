@@ -17,7 +17,6 @@ class GetViewView(BaseModel):
     id: str
     name: str
     creation_date: Any = Field(alias="creationDate")
-    relevance: Optional[float]
     owner: "GetViewViewOwner"
     state: EntityState
     type: Optional[ViewTypes]

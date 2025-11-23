@@ -6,6 +6,7 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
+from .enums import EntityState
 
 
 class QueryPersons(BaseModel):
@@ -19,13 +20,16 @@ class QueryPersonsPersons(BaseModel):
 class QueryPersonsPersonsResults(BaseModel):
     id: str
     name: str
-    alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     creation_date: Any = Field(alias="creationDate")
+    relevance: Optional[float]
+    owner: "QueryPersonsPersonsResultsOwner"
+    state: EntityState
+    alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     uri: Optional[Any]
     description: Optional[str]
     identifier: Optional[str]
     thing: Optional[str]
-    relevance: Optional[float]
+    feeds: Optional[List[Optional["QueryPersonsPersonsResultsFeeds"]]]
     address: Optional["QueryPersonsPersonsResultsAddress"]
     email: Optional[str]
     given_name: Optional[str] = Field(alias="givenName")
@@ -35,6 +39,15 @@ class QueryPersonsPersonsResults(BaseModel):
     title: Optional[str]
     occupation: Optional[str]
     education: Optional[str]
+
+
+class QueryPersonsPersonsResultsOwner(BaseModel):
+    id: str
+
+
+class QueryPersonsPersonsResultsFeeds(BaseModel):
+    id: str
+    name: str
 
 
 class QueryPersonsPersonsResultsAddress(BaseModel):

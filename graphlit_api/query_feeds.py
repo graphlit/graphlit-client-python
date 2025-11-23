@@ -22,9 +22,11 @@ from .enums import (
     GitHubIssueAuthenticationTypes,
     GitHubPullRequestAuthenticationTypes,
     GoogleCalendarAuthenticationTypes,
+    GoogleContactsAuthenticationTypes,
     GoogleDriveAuthenticationTypes,
     GoogleEmailAuthenticationTypes,
     MicrosoftCalendarAuthenticationTypes,
+    MicrosoftContactsAuthenticationTypes,
     MicrosoftEmailAuthenticationTypes,
     MicrosoftTeamsAuthenticationTypes,
     NotionTypes,
@@ -363,6 +365,12 @@ class QueryFeedsFeedsResultsPullRequestGithub(BaseModel):
 class QueryFeedsFeedsResultsCrm(BaseModel):
     type: FeedServiceTypes
     attio: Optional["QueryFeedsFeedsResultsCrmAttio"]
+    google_contacts: Optional["QueryFeedsFeedsResultsCrmGoogleContacts"] = Field(
+        alias="googleContacts"
+    )
+    microsoft_contacts: Optional["QueryFeedsFeedsResultsCrmMicrosoftContacts"] = Field(
+        alias="microsoftContacts"
+    )
     read_limit: Optional[int] = Field(alias="readLimit")
 
 
@@ -371,6 +379,27 @@ class QueryFeedsFeedsResultsCrmAttio(BaseModel):
         alias="authenticationType"
     )
     api_key: Optional[str] = Field(alias="apiKey")
+
+
+class QueryFeedsFeedsResultsCrmGoogleContacts(BaseModel):
+    authentication_type: Optional[GoogleContactsAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    authorization_id: Optional[str] = Field(alias="authorizationId")
+
+
+class QueryFeedsFeedsResultsCrmMicrosoftContacts(BaseModel):
+    authentication_type: Optional[MicrosoftContactsAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    tenant_id: Optional[str] = Field(alias="tenantId")
+    authorization_id: Optional[str] = Field(alias="authorizationId")
 
 
 class QueryFeedsFeedsResultsCalendar(BaseModel):

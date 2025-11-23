@@ -3,13 +3,21 @@ query QueryMedicalDrugClasses($filter: MedicalDrugClassFilter, $correlationId: S
     results {
       id
       name
-      alternateNames
       creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
       uri
       description
       identifier
       thing
-      relevance
+      feeds {
+        id
+        name
+      }
     }
   }
 }

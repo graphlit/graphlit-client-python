@@ -126,6 +126,8 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
               id
             }
             tokenThreshold
+            timeBudget
+            entityBudget
           }
         }
       }
@@ -181,6 +183,10 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
           }
           diffbot {
             key
+          }
+          parallel {
+            processor
+            isSynchronous
           }
         }
       }

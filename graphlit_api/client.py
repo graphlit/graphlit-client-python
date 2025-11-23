@@ -177,6 +177,10 @@ from .disable_user import DisableUser
 from .enable_alert import EnableAlert
 from .enable_feed import EnableFeed
 from .enable_user import EnableUser
+from .enrich_organizations import EnrichOrganizations
+from .enrich_persons import EnrichPersons
+from .enrich_places import EnrichPlaces
+from .enrich_products import EnrichProducts
 from .enums import GitHubRepositorySortTypes, SdkTypes, SearchServiceTypes, TextTypes
 from .extract_contents import ExtractContents
 from .extract_text import ExtractText
@@ -251,6 +255,7 @@ from .input_types import (
     DiscordChannelsInput,
     DiscordGuildsInput,
     DropboxFoldersInput,
+    EntityEnrichmentConnectorInput,
     EntityReferenceInput,
     EventFilter,
     EventInput,
@@ -536,6 +541,10 @@ from .operations import (
     ENABLE_ALERT_GQL,
     ENABLE_FEED_GQL,
     ENABLE_USER_GQL,
+    ENRICH_ORGANIZATIONS_GQL,
+    ENRICH_PERSONS_GQL,
+    ENRICH_PLACES_GQL,
+    ENRICH_PRODUCTS_GQL,
     EXTRACT_CONTENTS_GQL,
     EXTRACT_TEXT_GQL,
     FEED_EXISTS_GQL,
@@ -4687,9 +4696,13 @@ class Client(AsyncBaseClient):
     async def count_medical_studies(
         self,
         filter: Union[Optional[MedicalStudyFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> CountMedicalStudies:
-        variables: Dict[str, object] = {"filter": filter}
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
         response = await self.execute(
             query=COUNT_MEDICAL_STUDIES_GQL,
             operation_name="CountMedicalStudies",
@@ -5204,6 +5217,27 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteOrganizations.model_validate(data)
 
+    async def enrich_organizations(
+        self,
+        connector: EntityEnrichmentConnectorInput,
+        filter: Union[Optional[OrganizationFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> EnrichOrganizations:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "connector": connector,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=ENRICH_ORGANIZATIONS_GQL,
+            operation_name="EnrichOrganizations",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return EnrichOrganizations.model_validate(data)
+
     async def get_organization(
         self,
         id: str,
@@ -5329,6 +5363,27 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return DeletePersons.model_validate(data)
+
+    async def enrich_persons(
+        self,
+        connector: EntityEnrichmentConnectorInput,
+        filter: Union[Optional[PersonFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> EnrichPersons:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "connector": connector,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=ENRICH_PERSONS_GQL,
+            operation_name="EnrichPersons",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return EnrichPersons.model_validate(data)
 
     async def get_person(
         self,
@@ -5456,6 +5511,27 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeletePlaces.model_validate(data)
 
+    async def enrich_places(
+        self,
+        connector: EntityEnrichmentConnectorInput,
+        filter: Union[Optional[PlaceFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> EnrichPlaces:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "connector": connector,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=ENRICH_PLACES_GQL,
+            operation_name="EnrichPlaces",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return EnrichPlaces.model_validate(data)
+
     async def get_place(
         self,
         id: str,
@@ -5581,6 +5657,27 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return DeleteProducts.model_validate(data)
+
+    async def enrich_products(
+        self,
+        connector: EntityEnrichmentConnectorInput,
+        filter: Union[Optional[ProductFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> EnrichProducts:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "connector": connector,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=ENRICH_PRODUCTS_GQL,
+            operation_name="EnrichProducts",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return EnrichProducts.model_validate(data)
 
     async def get_product(
         self,

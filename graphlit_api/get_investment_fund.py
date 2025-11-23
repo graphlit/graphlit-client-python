@@ -6,6 +6,7 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
+from .enums import EntityState
 
 
 class GetInvestmentFund(BaseModel):
@@ -17,13 +18,25 @@ class GetInvestmentFund(BaseModel):
 class GetInvestmentFundInvestmentFund(BaseModel):
     id: str
     name: str
-    alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     creation_date: Any = Field(alias="creationDate")
+    owner: "GetInvestmentFundInvestmentFundOwner"
+    state: EntityState
+    alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     uri: Optional[Any]
     description: Optional[str]
     identifier: Optional[str]
     thing: Optional[str]
-    relevance: Optional[float]
+    feeds: Optional[List[Optional["GetInvestmentFundInvestmentFundFeeds"]]]
+
+
+class GetInvestmentFundInvestmentFundOwner(BaseModel):
+    id: str
+
+
+class GetInvestmentFundInvestmentFundFeeds(BaseModel):
+    id: str
+    name: str
 
 
 GetInvestmentFund.model_rebuild()
+GetInvestmentFundInvestmentFund.model_rebuild()

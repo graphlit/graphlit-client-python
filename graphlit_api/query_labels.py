@@ -22,7 +22,14 @@ class QueryLabelsLabelsResults(BaseModel):
     description: Optional[str]
     creation_date: Any = Field(alias="creationDate")
     relevance: Optional[float]
+    feeds: Optional[List[Optional["QueryLabelsLabelsResultsFeeds"]]]
+
+
+class QueryLabelsLabelsResultsFeeds(BaseModel):
+    id: str
+    name: str
 
 
 QueryLabels.model_rebuild()
 QueryLabelsLabels.model_rebuild()
+QueryLabelsLabelsResults.model_rebuild()

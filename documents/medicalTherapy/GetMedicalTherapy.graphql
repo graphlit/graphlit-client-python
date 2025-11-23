@@ -2,12 +2,19 @@ query GetMedicalTherapy($id: ID!, $correlationId: String) {
   medicalTherapy(id: $id, correlationId: $correlationId) {
     id
     name
-    alternateNames
     creationDate
+    owner {
+      id
+    }
+    state
+    alternateNames
     uri
     description
     identifier
     thing
-    relevance
+    feeds {
+      id
+      name
+    }
   }
 }

@@ -33,7 +33,6 @@ class GetAlertAlert(BaseModel):
     id: str
     name: str
     creation_date: Any = Field(alias="creationDate")
-    relevance: Optional[float]
     owner: "GetAlertAlertOwner"
     state: EntityState
     correlation_id: Optional[str] = Field(alias="correlationId")

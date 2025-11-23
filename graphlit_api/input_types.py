@@ -61,6 +61,7 @@ from .enums import (
     GitHubIssueAuthenticationTypes,
     GitHubPullRequestAuthenticationTypes,
     GoogleCalendarAuthenticationTypes,
+    GoogleContactsAuthenticationTypes,
     GoogleDriveAuthenticationTypes,
     GoogleEmailAuthenticationTypes,
     GoogleImageModels,
@@ -92,6 +93,7 @@ from .enums import (
     MedicalTherapyFacetTypes,
     MetadataTypes,
     MicrosoftCalendarAuthenticationTypes,
+    MicrosoftContactsAuthenticationTypes,
     MicrosoftEmailAuthenticationTypes,
     MicrosoftTeamsAuthenticationTypes,
     MistralModels,
@@ -225,6 +227,9 @@ class MedicalIndicationFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
     feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -235,6 +240,9 @@ class MedicalIndicationFilter(BaseModel):
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
     similar_indications: Optional[List["EntityReferenceFilter"]] = Field(
         alias="similarIndications", default=None
+    )
+    medical_indications: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="medicalIndications", default=None
     )
 
 
@@ -255,6 +263,9 @@ class SoftwareFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
     feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -266,6 +277,7 @@ class SoftwareFilter(BaseModel):
     similar_softwares: Optional[List["EntityReferenceFilter"]] = Field(
         alias="similarSoftwares", default=None
     )
+    softwares: Optional[List["EntityReferenceFilter"]] = None
 
 
 class MedicalTestInput(BaseModel):
@@ -320,6 +332,9 @@ class MedicalTestFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
     feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -330,6 +345,9 @@ class MedicalTestFilter(BaseModel):
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
     similar_tests: Optional[List["EntityReferenceFilter"]] = Field(
         alias="similarTests", default=None
+    )
+    medical_tests: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="medicalTests", default=None
     )
 
 
@@ -354,6 +372,9 @@ class MedicalStudyFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
     feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -364,6 +385,9 @@ class MedicalStudyFilter(BaseModel):
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
     similar_studies: Optional[List["EntityReferenceFilter"]] = Field(
         alias="similarStudies", default=None
+    )
+    medical_studies: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="medicalStudies", default=None
     )
 
 
@@ -401,6 +425,9 @@ class InvestmentFundFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
     feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -411,6 +438,9 @@ class InvestmentFundFilter(BaseModel):
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
     similar_investment_funds: Optional[List["EntityReferenceFilter"]] = Field(
         alias="similarInvestmentFunds", default=None
+    )
+    investment_funds: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="investmentFunds", default=None
     )
 
 
@@ -525,6 +555,17 @@ class MedicalDrugClassInput(BaseModel):
     boundary: Optional[str] = None
 
 
+class MicrosoftContactsCRMFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[MicrosoftContactsAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    tenant_id: Optional[str] = Field(alias="tenantId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+
+
 class RSSFeedPropertiesUpdateInput(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
@@ -618,6 +659,11 @@ class PersonFacetInput(BaseModel):
     facet: Optional[PersonFacetTypes] = None
 
 
+class ParallelEnrichmentPropertiesInput(BaseModel):
+    processor: Optional[ParallelProcessors] = None
+    is_synchronous: Optional[bool] = Field(alias="isSynchronous", default=None)
+
+
 class WorkflowFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
@@ -696,6 +742,9 @@ class InvestmentFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
     feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -707,6 +756,7 @@ class InvestmentFilter(BaseModel):
     similar_investments: Optional[List["EntityReferenceFilter"]] = Field(
         alias="similarInvestments", default=None
     )
+    investments: Optional[List["EntityReferenceFilter"]] = None
 
 
 class SharePointFoldersInput(BaseModel):
@@ -790,6 +840,16 @@ class CollectionInput(BaseModel):
     type: Optional[CollectionTypes] = None
     contents: Optional[List["EntityReferenceInput"]] = None
     expected_count: Optional[int] = Field(alias="expectedCount", default=None)
+
+
+class GoogleContactsCRMFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[GoogleContactsAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class EntityReferenceInput(BaseModel):
@@ -880,6 +940,9 @@ class MedicalDrugClassFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
     feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -890,6 +953,9 @@ class MedicalDrugClassFilter(BaseModel):
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
     similar_classes: Optional[List["EntityReferenceFilter"]] = Field(
         alias="similarClasses", default=None
+    )
+    medical_drug_classes: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="medicalDrugClasses", default=None
     )
 
 
@@ -926,6 +992,9 @@ class MedicalContraindicationFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
     feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -936,6 +1005,9 @@ class MedicalContraindicationFilter(BaseModel):
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
     similar_contraindications: Optional[List["EntityReferenceFilter"]] = Field(
         alias="similarContraindications", default=None
+    )
+    medical_contraindications: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="medicalContraindications", default=None
     )
 
 
@@ -1024,6 +1096,9 @@ class ProductFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
     feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -1046,6 +1121,7 @@ class ProductFilter(BaseModel):
     similar_products: Optional[List["EntityReferenceFilter"]] = Field(
         alias="similarProducts", default=None
     )
+    products: Optional[List["EntityReferenceFilter"]] = None
 
 
 class JinaModelPropertiesInput(BaseModel):
@@ -1150,6 +1226,8 @@ class InvestmentFundInput(BaseModel):
     description: Optional[str] = None
     location: Optional["PointInput"] = None
     boundary: Optional[str] = None
+    amount_currency: Optional[str] = Field(alias="amountCurrency", default=None)
+    amount: Optional[Any] = None
 
 
 class OpenAIVideoPublishingPropertiesInput(BaseModel):
@@ -1278,6 +1356,9 @@ class MedicalTherapyFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
     feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -1288,6 +1369,9 @@ class MedicalTherapyFilter(BaseModel):
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
     similar_therapies: Optional[List["EntityReferenceFilter"]] = Field(
         alias="similarTherapies", default=None
+    )
+    medical_therapies: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="medicalTherapies", default=None
     )
 
 
@@ -1314,6 +1398,8 @@ class InvestmentFundUpdateInput(BaseModel):
     description: Optional[str] = None
     location: Optional["PointInput"] = None
     boundary: Optional[str] = None
+    amount_currency: Optional[str] = Field(alias="amountCurrency", default=None)
+    amount: Optional[Any] = None
 
 
 class ExtractionWorkflowStageInput(BaseModel):
@@ -1748,6 +1834,9 @@ class MedicalDeviceFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
     feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -1758,6 +1847,9 @@ class MedicalDeviceFilter(BaseModel):
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
     similar_devices: Optional[List["EntityReferenceFilter"]] = Field(
         alias="similarDevices", default=None
+    )
+    medical_devices: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="medicalDevices", default=None
     )
 
 
@@ -2047,6 +2139,12 @@ class GoogleModelPropertiesInput(BaseModel):
 
 class CRMFeedPropertiesUpdateInput(BaseModel):
     attio: Optional["AttioCRMFeedPropertiesUpdateInput"] = None
+    google_contacts: Optional["GoogleContactsCRMFeedPropertiesUpdateInput"] = Field(
+        alias="googleContacts", default=None
+    )
+    microsoft_contacts: Optional["MicrosoftContactsCRMFeedPropertiesUpdateInput"] = (
+        Field(alias="microsoftContacts", default=None)
+    )
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -2266,6 +2364,8 @@ class NotionDatabasesInput(BaseModel):
 class ModelTextExtractionPropertiesInput(BaseModel):
     specification: Optional["EntityReferenceInput"] = None
     token_threshold: Optional[int] = Field(alias="tokenThreshold", default=None)
+    time_budget: Optional[Any] = Field(alias="timeBudget", default=None)
+    entity_budget: Optional[int] = Field(alias="entityBudget", default=None)
 
 
 class PersonReferenceInput(BaseModel):
@@ -2491,6 +2591,9 @@ class MedicalGuidelineFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
     feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -2501,6 +2604,9 @@ class MedicalGuidelineFilter(BaseModel):
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
     similar_guidelines: Optional[List["EntityReferenceFilter"]] = Field(
         alias="similarGuidelines", default=None
+    )
+    medical_guidelines: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="medicalGuidelines", default=None
     )
 
 
@@ -2537,6 +2643,7 @@ class EntityEnrichmentConnectorInput(BaseModel):
     enriched_types: Optional[List[ObservableTypes]] = Field(
         alias="enrichedTypes", default=None
     )
+    parallel: Optional["ParallelEnrichmentPropertiesInput"] = None
     fhir: Optional["FHIREnrichmentPropertiesInput"] = None
     diffbot: Optional["DiffbotEnrichmentPropertiesInput"] = None
 
@@ -2583,6 +2690,16 @@ class ZendeskFeedPropertiesInput(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
+class GoogleContactsCRMFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[GoogleContactsAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+
+
 class MedicalConditionFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
@@ -2600,6 +2717,9 @@ class MedicalConditionFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
     feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -2610,6 +2730,9 @@ class MedicalConditionFilter(BaseModel):
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
     similar_conditions: Optional[List["EntityReferenceFilter"]] = Field(
         alias="similarConditions", default=None
+    )
+    medical_conditions: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="medicalConditions", default=None
     )
 
 
@@ -2697,6 +2820,8 @@ class InvestmentInput(BaseModel):
     description: Optional[str] = None
     location: Optional["PointInput"] = None
     boundary: Optional[str] = None
+    amount_currency: Optional[str] = Field(alias="amountCurrency", default=None)
+    amount: Optional[Any] = None
 
 
 class TwitterIntegrationPropertiesInput(BaseModel):
@@ -2790,6 +2915,17 @@ class TextContentInput(BaseModel):
     text: str
 
 
+class MicrosoftContactsCRMFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[MicrosoftContactsAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    tenant_id: Optional[str] = Field(alias="tenantId", default=None)
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+
+
 class ElevenLabsPublishingPropertiesInput(BaseModel):
     model: Optional[ElevenLabsModels] = None
     voice: Optional[str] = None
@@ -2842,6 +2978,9 @@ class MedicalProcedureFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
     feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -2852,6 +2991,9 @@ class MedicalProcedureFilter(BaseModel):
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
     similar_procedures: Optional[List["EntityReferenceFilter"]] = Field(
         alias="similarProcedures", default=None
+    )
+    medical_procedures: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="medicalProcedures", default=None
     )
 
 
@@ -2999,6 +3141,9 @@ class PersonFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
     feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -3015,6 +3160,7 @@ class PersonFilter(BaseModel):
     similar_persons: Optional[List["EntityReferenceFilter"]] = Field(
         alias="similarPersons", default=None
     )
+    persons: Optional[List["EntityReferenceFilter"]] = None
 
 
 class RerankingStrategyUpdateInput(BaseModel):
@@ -3109,6 +3255,10 @@ class CategoryFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
+    feeds: Optional[List["EntityReferenceFilter"]] = None
 
 
 class ResearchFeedPropertiesInput(BaseModel):
@@ -3150,6 +3300,10 @@ class LabelFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
+    feeds: Optional[List["EntityReferenceFilter"]] = None
 
 
 class AmazonFeedPropertiesUpdateInput(BaseModel):
@@ -3665,6 +3819,12 @@ class AddressFilter(BaseModel):
 class CRMFeedPropertiesInput(BaseModel):
     type: FeedServiceTypes
     attio: Optional["AttioCRMFeedPropertiesInput"] = None
+    google_contacts: Optional["GoogleContactsCRMFeedPropertiesInput"] = Field(
+        alias="googleContacts", default=None
+    )
+    microsoft_contacts: Optional["MicrosoftContactsCRMFeedPropertiesInput"] = Field(
+        alias="microsoftContacts", default=None
+    )
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -3935,6 +4095,9 @@ class RepoFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
     feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -3946,6 +4109,7 @@ class RepoFilter(BaseModel):
     similar_repos: Optional[List["EntityReferenceFilter"]] = Field(
         alias="similarRepos", default=None
     )
+    repos: Optional[List["EntityReferenceFilter"]] = None
 
 
 class MedicalDrugFilter(BaseModel):
@@ -3965,6 +4129,9 @@ class MedicalDrugFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
     feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -3975,6 +4142,9 @@ class MedicalDrugFilter(BaseModel):
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
     similar_drugs: Optional[List["EntityReferenceFilter"]] = Field(
         alias="similarDrugs", default=None
+    )
+    medical_drugs: Optional[List["EntityReferenceFilter"]] = Field(
+        alias="medicalDrugs", default=None
     )
 
 
@@ -4170,6 +4340,9 @@ class EventFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
     feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -4201,6 +4374,7 @@ class EventFilter(BaseModel):
     similar_events: Optional[List["EntityReferenceFilter"]] = Field(
         alias="similarEvents", default=None
     )
+    events: Optional[List["EntityReferenceFilter"]] = None
 
 
 class MedicalContraindicationInput(BaseModel):
@@ -4289,6 +4463,9 @@ class PlaceFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
     feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -4300,6 +4477,7 @@ class PlaceFilter(BaseModel):
     similar_places: Optional[List["EntityReferenceFilter"]] = Field(
         alias="similarPlaces", default=None
     )
+    places: Optional[List["EntityReferenceFilter"]] = None
 
 
 class MistralModelPropertiesUpdateInput(BaseModel):
@@ -4435,6 +4613,8 @@ class InvestmentUpdateInput(BaseModel):
     description: Optional[str] = None
     location: Optional["PointInput"] = None
     boundary: Optional[str] = None
+    amount_currency: Optional[str] = Field(alias="amountCurrency", default=None)
+    amount: Optional[Any] = None
 
 
 class OrganizationFilter(BaseModel):
@@ -4454,6 +4634,9 @@ class OrganizationFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
     feeds: Optional[List["EntityReferenceFilter"]] = None
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
@@ -4466,6 +4649,7 @@ class OrganizationFilter(BaseModel):
     similar_organizations: Optional[List["EntityReferenceFilter"]] = Field(
         alias="similarOrganizations", default=None
     )
+    organizations: Optional[List["EntityReferenceFilter"]] = None
 
 
 class ContentUpdateInput(BaseModel):

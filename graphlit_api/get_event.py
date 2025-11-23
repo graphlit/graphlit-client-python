@@ -6,6 +6,7 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
+from .enums import EntityState
 
 
 class GetEvent(BaseModel):
@@ -15,13 +16,15 @@ class GetEvent(BaseModel):
 class GetEventEvent(BaseModel):
     id: str
     name: str
-    alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     creation_date: Any = Field(alias="creationDate")
+    owner: "GetEventEventOwner"
+    state: EntityState
+    alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     uri: Optional[Any]
     description: Optional[str]
     identifier: Optional[str]
     thing: Optional[str]
-    relevance: Optional[float]
+    feeds: Optional[List[Optional["GetEventEventFeeds"]]]
     address: Optional["GetEventEventAddress"]
     start_date: Optional[Any] = Field(alias="startDate")
     end_date: Optional[Any] = Field(alias="endDate")
@@ -33,6 +36,15 @@ class GetEventEvent(BaseModel):
     price_currency: Optional[str] = Field(alias="priceCurrency")
     is_accessible_for_free: Optional[bool] = Field(alias="isAccessibleForFree")
     typical_age_range: Optional[str] = Field(alias="typicalAgeRange")
+
+
+class GetEventEventOwner(BaseModel):
+    id: str
+
+
+class GetEventEventFeeds(BaseModel):
+    id: str
+    name: str
 
 
 class GetEventEventAddress(BaseModel):

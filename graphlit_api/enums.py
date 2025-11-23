@@ -148,6 +148,11 @@ class PlaceFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
 
+class GoogleContactsAuthenticationTypes(str, Enum):
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
+
+
 class ContentPublishingFormats(str, Enum):
     PNG = "PNG"
     JPEG = "JPEG"
@@ -187,6 +192,8 @@ class MedicalDrugClassFacetTypes(str, Enum):
 
 
 class ParallelProcessors(str, Enum):
+    BASE = "BASE"
+    CORE = "CORE"
     PRO = "PRO"
     ULTRA = "ULTRA"
     ULTRA2X = "ULTRA2X"
@@ -449,6 +456,11 @@ class CategoryFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
 
+class MicrosoftContactsAuthenticationTypes(str, Enum):
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
+
+
 class ResourceConnectorTypes(str, Enum):
     AMAZON = "AMAZON"
     AZURE = "AZURE"
@@ -582,6 +594,8 @@ class FeedServiceTypes(str, Enum):
     ZENDESK_TICKETS = "ZENDESK_TICKETS"
     GOOGLE_CALENDAR = "GOOGLE_CALENDAR"
     MICROSOFT_CALENDAR = "MICROSOFT_CALENDAR"
+    GOOGLE_CONTACTS = "GOOGLE_CONTACTS"
+    MICROSOFT_CONTACTS = "MICROSOFT_CONTACTS"
     ATTIO_OBJECTS = "ATTIO_OBJECTS"
     ATTIO_TASKS = "ATTIO_TASKS"
     ATTIO_NOTES = "ATTIO_NOTES"
@@ -797,6 +811,7 @@ class DeepgramModels(str, Enum):
 class TimedPolicyRecurrenceTypes(str, Enum):
     ONCE = "ONCE"
     REPEAT = "REPEAT"
+    MONITOR = "MONITOR"
 
 
 class ConversationTypes(str, Enum):
@@ -829,6 +844,7 @@ class SharePointAuthenticationTypes(str, Enum):
 
 class GoogleImageModels(str, Enum):
     GEMINI_2_5_FLASH_IMAGE_PREVIEW = "GEMINI_2_5_FLASH_IMAGE_PREVIEW"
+    GEMINI_3_PRO_IMAGE_PREVIEW = "GEMINI_3_PRO_IMAGE_PREVIEW"
     CUSTOM = "CUSTOM"
 
 
@@ -1111,6 +1127,8 @@ class FeedConnectorTypes(str, Enum):
     ZENDESK = "ZENDESK"
     GOOGLE_CALENDAR = "GOOGLE_CALENDAR"
     MICROSOFT_CALENDAR = "MICROSOFT_CALENDAR"
+    GOOGLE_CONTACTS = "GOOGLE_CONTACTS"
+    MICROSOFT_CONTACTS = "MICROSOFT_CONTACTS"
     ATTIO = "ATTIO"
     PARALLEL = "PARALLEL"
 
@@ -1141,6 +1159,7 @@ class GoogleModels(str, Enum):
     GEMINI_2_5_PRO = "GEMINI_2_5_PRO"
     GEMINI_2_5_PRO_PREVIEW = "GEMINI_2_5_PRO_PREVIEW"
     GEMINI_2_5_PRO_EXPERIMENTAL = "GEMINI_2_5_PRO_EXPERIMENTAL"
+    GEMINI_3_PRO_PREVIEW = "GEMINI_3_PRO_PREVIEW"
     GEMINI_2_5_FLASH = "GEMINI_2_5_FLASH"
     GEMINI_FLASH_LATEST = "GEMINI_FLASH_LATEST"
     GEMINI_2_5_FLASH_PREVIEW = "GEMINI_2_5_FLASH_PREVIEW"

@@ -3,13 +3,21 @@ query QueryPlaces($filter: PlaceFilter, $correlationId: String) {
     results {
       id
       name
-      alternateNames
       creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
       uri
       description
       identifier
       thing
-      relevance
+      feeds {
+        id
+        name
+      }
       address {
         streetAddress
         city

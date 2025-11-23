@@ -6,6 +6,7 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
+from .enums import EntityState
 
 
 class QueryMedicalContraindications(BaseModel):
@@ -23,14 +24,33 @@ class QueryMedicalContraindicationsMedicalContraindications(BaseModel):
 class QueryMedicalContraindicationsMedicalContraindicationsResults(BaseModel):
     id: str
     name: str
-    alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     creation_date: Any = Field(alias="creationDate")
+    relevance: Optional[float]
+    owner: "QueryMedicalContraindicationsMedicalContraindicationsResultsOwner"
+    state: EntityState
+    alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     uri: Optional[Any]
     description: Optional[str]
     identifier: Optional[str]
     thing: Optional[str]
-    relevance: Optional[float]
+    feeds: Optional[
+        List[
+            Optional[
+                "QueryMedicalContraindicationsMedicalContraindicationsResultsFeeds"
+            ]
+        ]
+    ]
+
+
+class QueryMedicalContraindicationsMedicalContraindicationsResultsOwner(BaseModel):
+    id: str
+
+
+class QueryMedicalContraindicationsMedicalContraindicationsResultsFeeds(BaseModel):
+    id: str
+    name: str
 
 
 QueryMedicalContraindications.model_rebuild()
 QueryMedicalContraindicationsMedicalContraindications.model_rebuild()
+QueryMedicalContraindicationsMedicalContraindicationsResults.model_rebuild()

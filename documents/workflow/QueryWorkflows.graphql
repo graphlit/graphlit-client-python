@@ -132,6 +132,8 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
                 id
               }
               tokenThreshold
+              timeBudget
+              entityBudget
             }
           }
         }
@@ -187,6 +189,10 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
             }
             diffbot {
               key
+            }
+            parallel {
+              processor
+              isSynchronous
             }
           }
         }

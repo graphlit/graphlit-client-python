@@ -22,7 +22,14 @@ class QueryCategoriesCategoriesResults(BaseModel):
     description: Optional[str]
     creation_date: Any = Field(alias="creationDate")
     relevance: Optional[float]
+    feeds: Optional[List[Optional["QueryCategoriesCategoriesResultsFeeds"]]]
+
+
+class QueryCategoriesCategoriesResultsFeeds(BaseModel):
+    id: str
+    name: str
 
 
 QueryCategories.model_rebuild()
 QueryCategoriesCategories.model_rebuild()
+QueryCategoriesCategoriesResults.model_rebuild()

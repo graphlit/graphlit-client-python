@@ -3,13 +3,21 @@ query QueryMedicalProcedures($filter: MedicalProcedureFilter, $correlationId: St
     results {
       id
       name
-      alternateNames
       creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
       uri
       description
       identifier
       thing
-      relevance
+      feeds {
+        id
+        name
+      }
     }
   }
 }

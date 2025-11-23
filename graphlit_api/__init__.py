@@ -303,6 +303,7 @@ from .create_workflow import (
     CreateWorkflowCreateWorkflowEnrichmentJobsConnector,
     CreateWorkflowCreateWorkflowEnrichmentJobsConnectorDiffbot,
     CreateWorkflowCreateWorkflowEnrichmentJobsConnectorFhir,
+    CreateWorkflowCreateWorkflowEnrichmentJobsConnectorParallel,
     CreateWorkflowCreateWorkflowEnrichmentLink,
     CreateWorkflowCreateWorkflowExtraction,
     CreateWorkflowCreateWorkflowExtractionJobs,
@@ -604,6 +605,13 @@ from .disable_user import DisableUser, DisableUserDisableUser
 from .enable_alert import EnableAlert, EnableAlertEnableAlert
 from .enable_feed import EnableFeed, EnableFeedEnableFeed
 from .enable_user import EnableUser, EnableUserEnableUser
+from .enrich_organizations import (
+    EnrichOrganizations,
+    EnrichOrganizationsEnrichOrganizations,
+)
+from .enrich_persons import EnrichPersons, EnrichPersonsEnrichPersons
+from .enrich_places import EnrichPlaces, EnrichPlacesEnrichPlaces
+from .enrich_products import EnrichProducts, EnrichProductsEnrichProducts
 from .enums import (
     AlertTypes,
     AnthropicModels,
@@ -667,6 +675,7 @@ from .enums import (
     GitHubPullRequestAuthenticationTypes,
     GitHubRepositorySortTypes,
     GoogleCalendarAuthenticationTypes,
+    GoogleContactsAuthenticationTypes,
     GoogleDriveAuthenticationTypes,
     GoogleEmailAuthenticationTypes,
     GoogleImageModels,
@@ -698,6 +707,7 @@ from .enums import (
     MedicalTherapyFacetTypes,
     MetadataTypes,
     MicrosoftCalendarAuthenticationTypes,
+    MicrosoftContactsAuthenticationTypes,
     MicrosoftEmailAuthenticationTypes,
     MicrosoftTeamsAuthenticationTypes,
     MistralModels,
@@ -858,7 +868,7 @@ from .get_alert import (
     GetAlertAlertSummarySpecification,
     GetAlertAlertView,
 )
-from .get_category import GetCategory, GetCategoryCategory
+from .get_category import GetCategory, GetCategoryCategory, GetCategoryCategoryFeeds
 from .get_collection import (
     GetCollection,
     GetCollectionCollection,
@@ -999,7 +1009,13 @@ from .get_conversation import (
     GetConversationConversationOwner,
     GetConversationConversationSpecification,
 )
-from .get_event import GetEvent, GetEventEvent, GetEventEventAddress
+from .get_event import (
+    GetEvent,
+    GetEventEvent,
+    GetEventEventAddress,
+    GetEventEventFeeds,
+    GetEventEventOwner,
+)
 from .get_feed import (
     GetFeed,
     GetFeedFeed,
@@ -1011,6 +1027,8 @@ from .get_feed import (
     GetFeedFeedCommitGithub,
     GetFeedFeedCrm,
     GetFeedFeedCrmAttio,
+    GetFeedFeedCrmGoogleContacts,
+    GetFeedFeedCrmMicrosoftContacts,
     GetFeedFeedDiscord,
     GetFeedFeedEmail,
     GetFeedFeedEmailGoogle,
@@ -1055,50 +1073,114 @@ from .get_feed import (
     GetFeedFeedYoutube,
     GetFeedFeedZendesk,
 )
-from .get_investment import GetInvestment, GetInvestmentInvestment
-from .get_investment_fund import GetInvestmentFund, GetInvestmentFundInvestmentFund
-from .get_label import GetLabel, GetLabelLabel
+from .get_investment import (
+    GetInvestment,
+    GetInvestmentInvestment,
+    GetInvestmentInvestmentFeeds,
+    GetInvestmentInvestmentOwner,
+)
+from .get_investment_fund import (
+    GetInvestmentFund,
+    GetInvestmentFundInvestmentFund,
+    GetInvestmentFundInvestmentFundFeeds,
+    GetInvestmentFundInvestmentFundOwner,
+)
+from .get_label import GetLabel, GetLabelLabel, GetLabelLabelFeeds
 from .get_medical_condition import (
     GetMedicalCondition,
     GetMedicalConditionMedicalCondition,
+    GetMedicalConditionMedicalConditionFeeds,
+    GetMedicalConditionMedicalConditionOwner,
 )
 from .get_medical_contraindication import (
     GetMedicalContraindication,
     GetMedicalContraindicationMedicalContraindication,
+    GetMedicalContraindicationMedicalContraindicationFeeds,
+    GetMedicalContraindicationMedicalContraindicationOwner,
 )
-from .get_medical_device import GetMedicalDevice, GetMedicalDeviceMedicalDevice
-from .get_medical_drug import GetMedicalDrug, GetMedicalDrugMedicalDrug
+from .get_medical_device import (
+    GetMedicalDevice,
+    GetMedicalDeviceMedicalDevice,
+    GetMedicalDeviceMedicalDeviceFeeds,
+    GetMedicalDeviceMedicalDeviceOwner,
+)
+from .get_medical_drug import (
+    GetMedicalDrug,
+    GetMedicalDrugMedicalDrug,
+    GetMedicalDrugMedicalDrugFeeds,
+    GetMedicalDrugMedicalDrugOwner,
+)
 from .get_medical_drug_class import (
     GetMedicalDrugClass,
     GetMedicalDrugClassMedicalDrugClass,
+    GetMedicalDrugClassMedicalDrugClassFeeds,
+    GetMedicalDrugClassMedicalDrugClassOwner,
 )
 from .get_medical_guideline import (
     GetMedicalGuideline,
     GetMedicalGuidelineMedicalGuideline,
+    GetMedicalGuidelineMedicalGuidelineFeeds,
+    GetMedicalGuidelineMedicalGuidelineOwner,
 )
 from .get_medical_indication import (
     GetMedicalIndication,
     GetMedicalIndicationMedicalIndication,
+    GetMedicalIndicationMedicalIndicationFeeds,
+    GetMedicalIndicationMedicalIndicationOwner,
 )
 from .get_medical_procedure import (
     GetMedicalProcedure,
     GetMedicalProcedureMedicalProcedure,
+    GetMedicalProcedureMedicalProcedureFeeds,
+    GetMedicalProcedureMedicalProcedureOwner,
 )
 from .get_medical_study import (
     GetMedicalStudy,
     GetMedicalStudyMedicalStudy,
     GetMedicalStudyMedicalStudyAddress,
+    GetMedicalStudyMedicalStudyFeeds,
+    GetMedicalStudyMedicalStudyOwner,
 )
-from .get_medical_test import GetMedicalTest, GetMedicalTestMedicalTest
-from .get_medical_therapy import GetMedicalTherapy, GetMedicalTherapyMedicalTherapy
+from .get_medical_test import (
+    GetMedicalTest,
+    GetMedicalTestMedicalTest,
+    GetMedicalTestMedicalTestFeeds,
+    GetMedicalTestMedicalTestOwner,
+)
+from .get_medical_therapy import (
+    GetMedicalTherapy,
+    GetMedicalTherapyMedicalTherapy,
+    GetMedicalTherapyMedicalTherapyFeeds,
+    GetMedicalTherapyMedicalTherapyOwner,
+)
 from .get_organization import (
     GetOrganization,
     GetOrganizationOrganization,
     GetOrganizationOrganizationAddress,
+    GetOrganizationOrganizationFeeds,
+    GetOrganizationOrganizationOwner,
 )
-from .get_person import GetPerson, GetPersonPerson, GetPersonPersonAddress
-from .get_place import GetPlace, GetPlacePlace, GetPlacePlaceAddress
-from .get_product import GetProduct, GetProductProduct, GetProductProductAddress
+from .get_person import (
+    GetPerson,
+    GetPersonPerson,
+    GetPersonPersonAddress,
+    GetPersonPersonFeeds,
+    GetPersonPersonOwner,
+)
+from .get_place import (
+    GetPlace,
+    GetPlacePlace,
+    GetPlacePlaceAddress,
+    GetPlacePlaceFeeds,
+    GetPlacePlaceOwner,
+)
+from .get_product import (
+    GetProduct,
+    GetProductProduct,
+    GetProductProductAddress,
+    GetProductProductFeeds,
+    GetProductProductOwner,
+)
 from .get_project import (
     GetProject,
     GetProjectProject,
@@ -1109,12 +1191,17 @@ from .get_project import (
     GetProjectProjectSpecification,
     GetProjectProjectWorkflow,
 )
-from .get_repo import GetRepo, GetRepoRepo
+from .get_repo import GetRepo, GetRepoRepo, GetRepoRepoFeeds, GetRepoRepoOwner
 from .get_share_point_consent_uri import (
     GetSharePointConsentUri,
     GetSharePointConsentUriSharePointConsentUri,
 )
-from .get_software import GetSoftware, GetSoftwareSoftware
+from .get_software import (
+    GetSoftware,
+    GetSoftwareSoftware,
+    GetSoftwareSoftwareFeeds,
+    GetSoftwareSoftwareOwner,
+)
 from .get_specification import (
     GetSpecification,
     GetSpecificationSpecification,
@@ -1252,6 +1339,7 @@ from .get_workflow import (
     GetWorkflowWorkflowEnrichmentJobsConnector,
     GetWorkflowWorkflowEnrichmentJobsConnectorDiffbot,
     GetWorkflowWorkflowEnrichmentJobsConnectorFhir,
+    GetWorkflowWorkflowEnrichmentJobsConnectorParallel,
     GetWorkflowWorkflowEnrichmentLink,
     GetWorkflowWorkflowExtraction,
     GetWorkflowWorkflowExtractionJobs,
@@ -1501,6 +1589,8 @@ from .input_types import (
     GoogleCalendarFeedPropertiesInput,
     GoogleCalendarFeedPropertiesUpdateInput,
     GoogleCalendarsInput,
+    GoogleContactsCRMFeedPropertiesInput,
+    GoogleContactsCRMFeedPropertiesUpdateInput,
     GoogleDriveFeedPropertiesInput,
     GoogleDriveFeedPropertiesUpdateInput,
     GoogleDriveFoldersInput,
@@ -1608,6 +1698,8 @@ from .input_types import (
     MicrosoftCalendarFeedPropertiesInput,
     MicrosoftCalendarFeedPropertiesUpdateInput,
     MicrosoftCalendarsInput,
+    MicrosoftContactsCRMFeedPropertiesInput,
+    MicrosoftContactsCRMFeedPropertiesUpdateInput,
     MicrosoftEmailFeedPropertiesInput,
     MicrosoftEmailFeedPropertiesUpdateInput,
     MicrosoftTeamsChannelsInput,
@@ -1647,6 +1739,7 @@ from .input_types import (
     OrganizationUpdateInput,
     PackageMetadataInput,
     PagePreparationPropertiesInput,
+    ParallelEnrichmentPropertiesInput,
     ParallelEntityFeedPropertiesInput,
     ParallelEntityFeedPropertiesUpdateInput,
     ParallelFeedPropertiesInput,
@@ -1986,6 +2079,10 @@ from .operations import (
     ENABLE_ALERT_GQL,
     ENABLE_FEED_GQL,
     ENABLE_USER_GQL,
+    ENRICH_ORGANIZATIONS_GQL,
+    ENRICH_PERSONS_GQL,
+    ENRICH_PLACES_GQL,
+    ENRICH_PRODUCTS_GQL,
     EXTRACT_CONTENTS_GQL,
     EXTRACT_TEXT_GQL,
     FEED_EXISTS_GQL,
@@ -2308,6 +2405,7 @@ from .query_categories import (
     QueryCategories,
     QueryCategoriesCategories,
     QueryCategoriesCategoriesResults,
+    QueryCategoriesCategoriesResultsFeeds,
 )
 from .query_collections import (
     QueryCollections,
@@ -2526,6 +2624,8 @@ from .query_events import (
     QueryEventsEvents,
     QueryEventsEventsResults,
     QueryEventsEventsResultsAddress,
+    QueryEventsEventsResultsFeeds,
+    QueryEventsEventsResultsOwner,
 )
 from .query_feeds import (
     QueryFeeds,
@@ -2539,6 +2639,8 @@ from .query_feeds import (
     QueryFeedsFeedsResultsCommitGithub,
     QueryFeedsFeedsResultsCrm,
     QueryFeedsFeedsResultsCrmAttio,
+    QueryFeedsFeedsResultsCrmGoogleContacts,
+    QueryFeedsFeedsResultsCrmMicrosoftContacts,
     QueryFeedsFeedsResultsDiscord,
     QueryFeedsFeedsResultsEmail,
     QueryFeedsFeedsResultsEmailGoogle,
@@ -2608,13 +2710,22 @@ from .query_investment_funds import (
     QueryInvestmentFunds,
     QueryInvestmentFundsInvestmentFunds,
     QueryInvestmentFundsInvestmentFundsResults,
+    QueryInvestmentFundsInvestmentFundsResultsFeeds,
+    QueryInvestmentFundsInvestmentFundsResultsOwner,
 )
 from .query_investments import (
     QueryInvestments,
     QueryInvestmentsInvestments,
     QueryInvestmentsInvestmentsResults,
+    QueryInvestmentsInvestmentsResultsFeeds,
+    QueryInvestmentsInvestmentsResultsOwner,
 )
-from .query_labels import QueryLabels, QueryLabelsLabels, QueryLabelsLabelsResults
+from .query_labels import (
+    QueryLabels,
+    QueryLabelsLabels,
+    QueryLabelsLabelsResults,
+    QueryLabelsLabelsResultsFeeds,
+)
 from .query_linear_projects import (
     QueryLinearProjects,
     QueryLinearProjectsLinearProjects,
@@ -2623,57 +2734,79 @@ from .query_medical_conditions import (
     QueryMedicalConditions,
     QueryMedicalConditionsMedicalConditions,
     QueryMedicalConditionsMedicalConditionsResults,
+    QueryMedicalConditionsMedicalConditionsResultsFeeds,
+    QueryMedicalConditionsMedicalConditionsResultsOwner,
 )
 from .query_medical_contraindications import (
     QueryMedicalContraindications,
     QueryMedicalContraindicationsMedicalContraindications,
     QueryMedicalContraindicationsMedicalContraindicationsResults,
+    QueryMedicalContraindicationsMedicalContraindicationsResultsFeeds,
+    QueryMedicalContraindicationsMedicalContraindicationsResultsOwner,
 )
 from .query_medical_devices import (
     QueryMedicalDevices,
     QueryMedicalDevicesMedicalDevices,
     QueryMedicalDevicesMedicalDevicesResults,
+    QueryMedicalDevicesMedicalDevicesResultsFeeds,
+    QueryMedicalDevicesMedicalDevicesResultsOwner,
 )
 from .query_medical_drug_classes import (
     QueryMedicalDrugClasses,
     QueryMedicalDrugClassesMedicalDrugClasses,
     QueryMedicalDrugClassesMedicalDrugClassesResults,
+    QueryMedicalDrugClassesMedicalDrugClassesResultsFeeds,
+    QueryMedicalDrugClassesMedicalDrugClassesResultsOwner,
 )
 from .query_medical_drugs import (
     QueryMedicalDrugs,
     QueryMedicalDrugsMedicalDrugs,
     QueryMedicalDrugsMedicalDrugsResults,
+    QueryMedicalDrugsMedicalDrugsResultsFeeds,
+    QueryMedicalDrugsMedicalDrugsResultsOwner,
 )
 from .query_medical_guidelines import (
     QueryMedicalGuidelines,
     QueryMedicalGuidelinesMedicalGuidelines,
     QueryMedicalGuidelinesMedicalGuidelinesResults,
+    QueryMedicalGuidelinesMedicalGuidelinesResultsFeeds,
+    QueryMedicalGuidelinesMedicalGuidelinesResultsOwner,
 )
 from .query_medical_indications import (
     QueryMedicalIndications,
     QueryMedicalIndicationsMedicalIndications,
     QueryMedicalIndicationsMedicalIndicationsResults,
+    QueryMedicalIndicationsMedicalIndicationsResultsFeeds,
+    QueryMedicalIndicationsMedicalIndicationsResultsOwner,
 )
 from .query_medical_procedures import (
     QueryMedicalProcedures,
     QueryMedicalProceduresMedicalProcedures,
     QueryMedicalProceduresMedicalProceduresResults,
+    QueryMedicalProceduresMedicalProceduresResultsFeeds,
+    QueryMedicalProceduresMedicalProceduresResultsOwner,
 )
 from .query_medical_studies import (
     QueryMedicalStudies,
     QueryMedicalStudiesMedicalStudies,
     QueryMedicalStudiesMedicalStudiesResults,
     QueryMedicalStudiesMedicalStudiesResultsAddress,
+    QueryMedicalStudiesMedicalStudiesResultsFeeds,
+    QueryMedicalStudiesMedicalStudiesResultsOwner,
 )
 from .query_medical_tests import (
     QueryMedicalTests,
     QueryMedicalTestsMedicalTests,
     QueryMedicalTestsMedicalTestsResults,
+    QueryMedicalTestsMedicalTestsResultsFeeds,
+    QueryMedicalTestsMedicalTestsResultsOwner,
 )
 from .query_medical_therapies import (
     QueryMedicalTherapies,
     QueryMedicalTherapiesMedicalTherapies,
     QueryMedicalTherapiesMedicalTherapiesResults,
+    QueryMedicalTherapiesMedicalTherapiesResultsFeeds,
+    QueryMedicalTherapiesMedicalTherapiesResultsOwner,
 )
 from .query_microsoft_calendars import (
     QueryMicrosoftCalendars,
@@ -2723,26 +2856,40 @@ from .query_organizations import (
     QueryOrganizationsOrganizations,
     QueryOrganizationsOrganizationsResults,
     QueryOrganizationsOrganizationsResultsAddress,
+    QueryOrganizationsOrganizationsResultsFeeds,
+    QueryOrganizationsOrganizationsResultsOwner,
 )
 from .query_persons import (
     QueryPersons,
     QueryPersonsPersons,
     QueryPersonsPersonsResults,
     QueryPersonsPersonsResultsAddress,
+    QueryPersonsPersonsResultsFeeds,
+    QueryPersonsPersonsResultsOwner,
 )
 from .query_places import (
     QueryPlaces,
     QueryPlacesPlaces,
     QueryPlacesPlacesResults,
     QueryPlacesPlacesResultsAddress,
+    QueryPlacesPlacesResultsFeeds,
+    QueryPlacesPlacesResultsOwner,
 )
 from .query_products import (
     QueryProducts,
     QueryProductsProducts,
     QueryProductsProductsResults,
     QueryProductsProductsResultsAddress,
+    QueryProductsProductsResultsFeeds,
+    QueryProductsProductsResultsOwner,
 )
-from .query_repos import QueryRepos, QueryReposRepos, QueryReposReposResults
+from .query_repos import (
+    QueryRepos,
+    QueryReposRepos,
+    QueryReposReposResults,
+    QueryReposReposResultsFeeds,
+    QueryReposReposResultsOwner,
+)
 from .query_share_point_folders import (
     QuerySharePointFolders,
     QuerySharePointFoldersSharePointFolders,
@@ -2758,6 +2905,8 @@ from .query_softwares import (
     QuerySoftwares,
     QuerySoftwaresSoftwares,
     QuerySoftwaresSoftwaresResults,
+    QuerySoftwaresSoftwaresResultsFeeds,
+    QuerySoftwaresSoftwaresResultsOwner,
 )
 from .query_specifications import (
     QuerySpecifications,
@@ -2886,6 +3035,7 @@ from .query_workflows import (
     QueryWorkflowsWorkflowsResultsEnrichmentJobsConnector,
     QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorDiffbot,
     QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorFhir,
+    QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorParallel,
     QueryWorkflowsWorkflowsResultsEnrichmentLink,
     QueryWorkflowsWorkflowsResultsExtraction,
     QueryWorkflowsWorkflowsResultsExtractionJobs,
@@ -3186,6 +3336,7 @@ from .update_workflow import (
     UpdateWorkflowUpdateWorkflowEnrichmentJobsConnector,
     UpdateWorkflowUpdateWorkflowEnrichmentJobsConnectorDiffbot,
     UpdateWorkflowUpdateWorkflowEnrichmentJobsConnectorFhir,
+    UpdateWorkflowUpdateWorkflowEnrichmentJobsConnectorParallel,
     UpdateWorkflowUpdateWorkflowEnrichmentLink,
     UpdateWorkflowUpdateWorkflowExtraction,
     UpdateWorkflowUpdateWorkflowExtractionJobs,
@@ -3307,6 +3458,7 @@ from .upsert_workflow import (
     UpsertWorkflowUpsertWorkflowEnrichmentJobsConnector,
     UpsertWorkflowUpsertWorkflowEnrichmentJobsConnectorDiffbot,
     UpsertWorkflowUpsertWorkflowEnrichmentJobsConnectorFhir,
+    UpsertWorkflowUpsertWorkflowEnrichmentJobsConnectorParallel,
     UpsertWorkflowUpsertWorkflowEnrichmentLink,
     UpsertWorkflowUpsertWorkflowExtraction,
     UpsertWorkflowUpsertWorkflowExtractionJobs,
@@ -3812,6 +3964,7 @@ __all__ = [
     "CreateWorkflowCreateWorkflowEnrichmentJobsConnector",
     "CreateWorkflowCreateWorkflowEnrichmentJobsConnectorDiffbot",
     "CreateWorkflowCreateWorkflowEnrichmentJobsConnectorFhir",
+    "CreateWorkflowCreateWorkflowEnrichmentJobsConnectorParallel",
     "CreateWorkflowCreateWorkflowEnrichmentLink",
     "CreateWorkflowCreateWorkflowExtraction",
     "CreateWorkflowCreateWorkflowExtractionJobs",
@@ -4178,6 +4331,10 @@ __all__ = [
     "ENABLE_ALERT_GQL",
     "ENABLE_FEED_GQL",
     "ENABLE_USER_GQL",
+    "ENRICH_ORGANIZATIONS_GQL",
+    "ENRICH_PERSONS_GQL",
+    "ENRICH_PLACES_GQL",
+    "ENRICH_PRODUCTS_GQL",
     "EXTRACT_CONTENTS_GQL",
     "EXTRACT_TEXT_GQL",
     "ElevenLabsModels",
@@ -4196,6 +4353,14 @@ __all__ = [
     "EnableFeedEnableFeed",
     "EnableUser",
     "EnableUserEnableUser",
+    "EnrichOrganizations",
+    "EnrichOrganizationsEnrichOrganizations",
+    "EnrichPersons",
+    "EnrichPersonsEnrichPersons",
+    "EnrichPlaces",
+    "EnrichPlacesEnrichPlaces",
+    "EnrichProducts",
+    "EnrichProductsEnrichProducts",
     "EnrichmentWorkflowJobInput",
     "EnrichmentWorkflowStageInput",
     "EntityEnrichmentConnectorInput",
@@ -4355,6 +4520,7 @@ __all__ = [
     "GetAlertAlertView",
     "GetCategory",
     "GetCategoryCategory",
+    "GetCategoryCategoryFeeds",
     "GetCollection",
     "GetCollectionCollection",
     "GetCollectionCollectionContents",
@@ -4490,6 +4656,8 @@ __all__ = [
     "GetEvent",
     "GetEventEvent",
     "GetEventEventAddress",
+    "GetEventEventFeeds",
+    "GetEventEventOwner",
     "GetFeed",
     "GetFeedFeed",
     "GetFeedFeedAttio",
@@ -4500,6 +4668,8 @@ __all__ = [
     "GetFeedFeedCommitGithub",
     "GetFeedFeedCrm",
     "GetFeedFeedCrmAttio",
+    "GetFeedFeedCrmGoogleContacts",
+    "GetFeedFeedCrmMicrosoftContacts",
     "GetFeedFeedDiscord",
     "GetFeedFeedEmail",
     "GetFeedFeedEmailGoogle",
@@ -4546,44 +4716,79 @@ __all__ = [
     "GetInvestment",
     "GetInvestmentFund",
     "GetInvestmentFundInvestmentFund",
+    "GetInvestmentFundInvestmentFundFeeds",
+    "GetInvestmentFundInvestmentFundOwner",
     "GetInvestmentInvestment",
+    "GetInvestmentInvestmentFeeds",
+    "GetInvestmentInvestmentOwner",
     "GetLabel",
     "GetLabelLabel",
+    "GetLabelLabelFeeds",
     "GetMedicalCondition",
     "GetMedicalConditionMedicalCondition",
+    "GetMedicalConditionMedicalConditionFeeds",
+    "GetMedicalConditionMedicalConditionOwner",
     "GetMedicalContraindication",
     "GetMedicalContraindicationMedicalContraindication",
+    "GetMedicalContraindicationMedicalContraindicationFeeds",
+    "GetMedicalContraindicationMedicalContraindicationOwner",
     "GetMedicalDevice",
     "GetMedicalDeviceMedicalDevice",
+    "GetMedicalDeviceMedicalDeviceFeeds",
+    "GetMedicalDeviceMedicalDeviceOwner",
     "GetMedicalDrug",
     "GetMedicalDrugClass",
     "GetMedicalDrugClassMedicalDrugClass",
+    "GetMedicalDrugClassMedicalDrugClassFeeds",
+    "GetMedicalDrugClassMedicalDrugClassOwner",
     "GetMedicalDrugMedicalDrug",
+    "GetMedicalDrugMedicalDrugFeeds",
+    "GetMedicalDrugMedicalDrugOwner",
     "GetMedicalGuideline",
     "GetMedicalGuidelineMedicalGuideline",
+    "GetMedicalGuidelineMedicalGuidelineFeeds",
+    "GetMedicalGuidelineMedicalGuidelineOwner",
     "GetMedicalIndication",
     "GetMedicalIndicationMedicalIndication",
+    "GetMedicalIndicationMedicalIndicationFeeds",
+    "GetMedicalIndicationMedicalIndicationOwner",
     "GetMedicalProcedure",
     "GetMedicalProcedureMedicalProcedure",
+    "GetMedicalProcedureMedicalProcedureFeeds",
+    "GetMedicalProcedureMedicalProcedureOwner",
     "GetMedicalStudy",
     "GetMedicalStudyMedicalStudy",
     "GetMedicalStudyMedicalStudyAddress",
+    "GetMedicalStudyMedicalStudyFeeds",
+    "GetMedicalStudyMedicalStudyOwner",
     "GetMedicalTest",
     "GetMedicalTestMedicalTest",
+    "GetMedicalTestMedicalTestFeeds",
+    "GetMedicalTestMedicalTestOwner",
     "GetMedicalTherapy",
     "GetMedicalTherapyMedicalTherapy",
+    "GetMedicalTherapyMedicalTherapyFeeds",
+    "GetMedicalTherapyMedicalTherapyOwner",
     "GetOrganization",
     "GetOrganizationOrganization",
     "GetOrganizationOrganizationAddress",
+    "GetOrganizationOrganizationFeeds",
+    "GetOrganizationOrganizationOwner",
     "GetPerson",
     "GetPersonPerson",
     "GetPersonPersonAddress",
+    "GetPersonPersonFeeds",
+    "GetPersonPersonOwner",
     "GetPlace",
     "GetPlacePlace",
     "GetPlacePlaceAddress",
+    "GetPlacePlaceFeeds",
+    "GetPlacePlaceOwner",
     "GetProduct",
     "GetProductProduct",
     "GetProductProductAddress",
+    "GetProductProductFeeds",
+    "GetProductProductOwner",
     "GetProject",
     "GetProjectProject",
     "GetProjectProjectEmbeddings",
@@ -4594,10 +4799,14 @@ __all__ = [
     "GetProjectProjectWorkflow",
     "GetRepo",
     "GetRepoRepo",
+    "GetRepoRepoFeeds",
+    "GetRepoRepoOwner",
     "GetSharePointConsentUri",
     "GetSharePointConsentUriSharePointConsentUri",
     "GetSoftware",
     "GetSoftwareSoftware",
+    "GetSoftwareSoftwareFeeds",
+    "GetSoftwareSoftwareOwner",
     "GetSpecification",
     "GetSpecificationSpecification",
     "GetSpecificationSpecificationAnthropic",
@@ -4726,6 +4935,7 @@ __all__ = [
     "GetWorkflowWorkflowEnrichmentJobsConnector",
     "GetWorkflowWorkflowEnrichmentJobsConnectorDiffbot",
     "GetWorkflowWorkflowEnrichmentJobsConnectorFhir",
+    "GetWorkflowWorkflowEnrichmentJobsConnectorParallel",
     "GetWorkflowWorkflowEnrichmentLink",
     "GetWorkflowWorkflowExtraction",
     "GetWorkflowWorkflowExtractionJobs",
@@ -4781,6 +4991,9 @@ __all__ = [
     "GoogleCalendarFeedPropertiesInput",
     "GoogleCalendarFeedPropertiesUpdateInput",
     "GoogleCalendarsInput",
+    "GoogleContactsAuthenticationTypes",
+    "GoogleContactsCRMFeedPropertiesInput",
+    "GoogleContactsCRMFeedPropertiesUpdateInput",
     "GoogleDriveAuthenticationTypes",
     "GoogleDriveFeedPropertiesInput",
     "GoogleDriveFeedPropertiesUpdateInput",
@@ -5054,6 +5267,9 @@ __all__ = [
     "MicrosoftCalendarFeedPropertiesInput",
     "MicrosoftCalendarFeedPropertiesUpdateInput",
     "MicrosoftCalendarsInput",
+    "MicrosoftContactsAuthenticationTypes",
+    "MicrosoftContactsCRMFeedPropertiesInput",
+    "MicrosoftContactsCRMFeedPropertiesUpdateInput",
     "MicrosoftEmailAuthenticationTypes",
     "MicrosoftEmailFeedPropertiesInput",
     "MicrosoftEmailFeedPropertiesUpdateInput",
@@ -5119,6 +5335,7 @@ __all__ = [
     "PUBLISH_TEXT_GQL",
     "PackageMetadataInput",
     "PagePreparationPropertiesInput",
+    "ParallelEnrichmentPropertiesInput",
     "ParallelEntityFeedPropertiesInput",
     "ParallelEntityFeedPropertiesUpdateInput",
     "ParallelFeedPropertiesInput",
@@ -5346,6 +5563,7 @@ __all__ = [
     "QueryCategories",
     "QueryCategoriesCategories",
     "QueryCategoriesCategoriesResults",
+    "QueryCategoriesCategoriesResultsFeeds",
     "QueryCollections",
     "QueryCollectionsCollections",
     "QueryCollectionsCollectionsResults",
@@ -5543,6 +5761,8 @@ __all__ = [
     "QueryEventsEvents",
     "QueryEventsEventsResults",
     "QueryEventsEventsResultsAddress",
+    "QueryEventsEventsResultsFeeds",
+    "QueryEventsEventsResultsOwner",
     "QueryFeeds",
     "QueryFeedsFeeds",
     "QueryFeedsFeedsResults",
@@ -5554,6 +5774,8 @@ __all__ = [
     "QueryFeedsFeedsResultsCommitGithub",
     "QueryFeedsFeedsResultsCrm",
     "QueryFeedsFeedsResultsCrmAttio",
+    "QueryFeedsFeedsResultsCrmGoogleContacts",
+    "QueryFeedsFeedsResultsCrmMicrosoftContacts",
     "QueryFeedsFeedsResultsDiscord",
     "QueryFeedsFeedsResultsEmail",
     "QueryFeedsFeedsResultsEmailGoogle",
@@ -5613,48 +5835,75 @@ __all__ = [
     "QueryInvestmentFunds",
     "QueryInvestmentFundsInvestmentFunds",
     "QueryInvestmentFundsInvestmentFundsResults",
+    "QueryInvestmentFundsInvestmentFundsResultsFeeds",
+    "QueryInvestmentFundsInvestmentFundsResultsOwner",
     "QueryInvestments",
     "QueryInvestmentsInvestments",
     "QueryInvestmentsInvestmentsResults",
+    "QueryInvestmentsInvestmentsResultsFeeds",
+    "QueryInvestmentsInvestmentsResultsOwner",
     "QueryLabels",
     "QueryLabelsLabels",
     "QueryLabelsLabelsResults",
+    "QueryLabelsLabelsResultsFeeds",
     "QueryLinearProjects",
     "QueryLinearProjectsLinearProjects",
     "QueryMedicalConditions",
     "QueryMedicalConditionsMedicalConditions",
     "QueryMedicalConditionsMedicalConditionsResults",
+    "QueryMedicalConditionsMedicalConditionsResultsFeeds",
+    "QueryMedicalConditionsMedicalConditionsResultsOwner",
     "QueryMedicalContraindications",
     "QueryMedicalContraindicationsMedicalContraindications",
     "QueryMedicalContraindicationsMedicalContraindicationsResults",
+    "QueryMedicalContraindicationsMedicalContraindicationsResultsFeeds",
+    "QueryMedicalContraindicationsMedicalContraindicationsResultsOwner",
     "QueryMedicalDevices",
     "QueryMedicalDevicesMedicalDevices",
     "QueryMedicalDevicesMedicalDevicesResults",
+    "QueryMedicalDevicesMedicalDevicesResultsFeeds",
+    "QueryMedicalDevicesMedicalDevicesResultsOwner",
     "QueryMedicalDrugClasses",
     "QueryMedicalDrugClassesMedicalDrugClasses",
     "QueryMedicalDrugClassesMedicalDrugClassesResults",
+    "QueryMedicalDrugClassesMedicalDrugClassesResultsFeeds",
+    "QueryMedicalDrugClassesMedicalDrugClassesResultsOwner",
     "QueryMedicalDrugs",
     "QueryMedicalDrugsMedicalDrugs",
     "QueryMedicalDrugsMedicalDrugsResults",
+    "QueryMedicalDrugsMedicalDrugsResultsFeeds",
+    "QueryMedicalDrugsMedicalDrugsResultsOwner",
     "QueryMedicalGuidelines",
     "QueryMedicalGuidelinesMedicalGuidelines",
     "QueryMedicalGuidelinesMedicalGuidelinesResults",
+    "QueryMedicalGuidelinesMedicalGuidelinesResultsFeeds",
+    "QueryMedicalGuidelinesMedicalGuidelinesResultsOwner",
     "QueryMedicalIndications",
     "QueryMedicalIndicationsMedicalIndications",
     "QueryMedicalIndicationsMedicalIndicationsResults",
+    "QueryMedicalIndicationsMedicalIndicationsResultsFeeds",
+    "QueryMedicalIndicationsMedicalIndicationsResultsOwner",
     "QueryMedicalProcedures",
     "QueryMedicalProceduresMedicalProcedures",
     "QueryMedicalProceduresMedicalProceduresResults",
+    "QueryMedicalProceduresMedicalProceduresResultsFeeds",
+    "QueryMedicalProceduresMedicalProceduresResultsOwner",
     "QueryMedicalStudies",
     "QueryMedicalStudiesMedicalStudies",
     "QueryMedicalStudiesMedicalStudiesResults",
     "QueryMedicalStudiesMedicalStudiesResultsAddress",
+    "QueryMedicalStudiesMedicalStudiesResultsFeeds",
+    "QueryMedicalStudiesMedicalStudiesResultsOwner",
     "QueryMedicalTests",
     "QueryMedicalTestsMedicalTests",
     "QueryMedicalTestsMedicalTestsResults",
+    "QueryMedicalTestsMedicalTestsResultsFeeds",
+    "QueryMedicalTestsMedicalTestsResultsOwner",
     "QueryMedicalTherapies",
     "QueryMedicalTherapiesMedicalTherapies",
     "QueryMedicalTherapiesMedicalTherapiesResults",
+    "QueryMedicalTherapiesMedicalTherapiesResultsFeeds",
+    "QueryMedicalTherapiesMedicalTherapiesResultsOwner",
     "QueryMicrosoftCalendars",
     "QueryMicrosoftCalendarsMicrosoftCalendars",
     "QueryMicrosoftCalendarsMicrosoftCalendarsResults",
@@ -5686,21 +5935,31 @@ __all__ = [
     "QueryOrganizationsOrganizations",
     "QueryOrganizationsOrganizationsResults",
     "QueryOrganizationsOrganizationsResultsAddress",
+    "QueryOrganizationsOrganizationsResultsFeeds",
+    "QueryOrganizationsOrganizationsResultsOwner",
     "QueryPersons",
     "QueryPersonsPersons",
     "QueryPersonsPersonsResults",
     "QueryPersonsPersonsResultsAddress",
+    "QueryPersonsPersonsResultsFeeds",
+    "QueryPersonsPersonsResultsOwner",
     "QueryPlaces",
     "QueryPlacesPlaces",
     "QueryPlacesPlacesResults",
     "QueryPlacesPlacesResultsAddress",
+    "QueryPlacesPlacesResultsFeeds",
+    "QueryPlacesPlacesResultsOwner",
     "QueryProducts",
     "QueryProductsProducts",
     "QueryProductsProductsResults",
     "QueryProductsProductsResultsAddress",
+    "QueryProductsProductsResultsFeeds",
+    "QueryProductsProductsResultsOwner",
     "QueryRepos",
     "QueryReposRepos",
     "QueryReposReposResults",
+    "QueryReposReposResultsFeeds",
+    "QueryReposReposResultsOwner",
     "QuerySharePointFolders",
     "QuerySharePointFoldersSharePointFolders",
     "QuerySharePointFoldersSharePointFoldersResults",
@@ -5712,6 +5971,8 @@ __all__ = [
     "QuerySoftwares",
     "QuerySoftwaresSoftwares",
     "QuerySoftwaresSoftwaresResults",
+    "QuerySoftwaresSoftwaresResultsFeeds",
+    "QuerySoftwaresSoftwaresResultsOwner",
     "QuerySpecifications",
     "QuerySpecificationsSpecifications",
     "QuerySpecificationsSpecificationsResults",
@@ -5834,6 +6095,7 @@ __all__ = [
     "QueryWorkflowsWorkflowsResultsEnrichmentJobsConnector",
     "QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorDiffbot",
     "QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorFhir",
+    "QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorParallel",
     "QueryWorkflowsWorkflowsResultsEnrichmentLink",
     "QueryWorkflowsWorkflowsResultsExtraction",
     "QueryWorkflowsWorkflowsResultsExtractionJobs",
@@ -6237,6 +6499,7 @@ __all__ = [
     "UpdateWorkflowUpdateWorkflowEnrichmentJobsConnector",
     "UpdateWorkflowUpdateWorkflowEnrichmentJobsConnectorDiffbot",
     "UpdateWorkflowUpdateWorkflowEnrichmentJobsConnectorFhir",
+    "UpdateWorkflowUpdateWorkflowEnrichmentJobsConnectorParallel",
     "UpdateWorkflowUpdateWorkflowEnrichmentLink",
     "UpdateWorkflowUpdateWorkflowExtraction",
     "UpdateWorkflowUpdateWorkflowExtractionJobs",
@@ -6356,6 +6619,7 @@ __all__ = [
     "UpsertWorkflowUpsertWorkflowEnrichmentJobsConnector",
     "UpsertWorkflowUpsertWorkflowEnrichmentJobsConnectorDiffbot",
     "UpsertWorkflowUpsertWorkflowEnrichmentJobsConnectorFhir",
+    "UpsertWorkflowUpsertWorkflowEnrichmentJobsConnectorParallel",
     "UpsertWorkflowUpsertWorkflowEnrichmentLink",
     "UpsertWorkflowUpsertWorkflowExtraction",
     "UpsertWorkflowUpsertWorkflowExtractionJobs",

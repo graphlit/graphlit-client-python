@@ -24,6 +24,7 @@ from .enums import (
     LinkTypes,
     MCPServerTypes,
     ObservableTypes,
+    ParallelProcessors,
     ReductoEnrichmentModes,
     ReductoExtractionModes,
     ReductoOcrModes,
@@ -276,6 +277,8 @@ class QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelText(BaseModel):
         "QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelTextSpecification"
     ]
     token_threshold: Optional[int] = Field(alias="tokenThreshold")
+    time_budget: Optional[Any] = Field(alias="timeBudget")
+    entity_budget: Optional[int] = Field(alias="entityBudget")
 
 
 class QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelTextSpecification(
@@ -375,6 +378,7 @@ class QueryWorkflowsWorkflowsResultsEnrichmentJobsConnector(BaseModel):
     enriched_types: Optional[List[ObservableTypes]] = Field(alias="enrichedTypes")
     fhir: Optional["QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorFhir"]
     diffbot: Optional["QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorDiffbot"]
+    parallel: Optional["QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorParallel"]
 
 
 class QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorFhir(BaseModel):
@@ -383,6 +387,11 @@ class QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorFhir(BaseModel):
 
 class QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorDiffbot(BaseModel):
     key: Optional[Any]
+
+
+class QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorParallel(BaseModel):
+    processor: Optional[ParallelProcessors]
+    is_synchronous: Optional[bool] = Field(alias="isSynchronous")
 
 
 class QueryWorkflowsWorkflowsResultsStorage(BaseModel):

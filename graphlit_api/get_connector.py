@@ -25,7 +25,6 @@ class GetConnectorConnector(BaseModel):
     id: str
     name: str
     creation_date: Any = Field(alias="creationDate")
-    relevance: Optional[float]
     owner: "GetConnectorConnectorOwner"
     state: EntityState
     type: Optional[ConnectorTypes]

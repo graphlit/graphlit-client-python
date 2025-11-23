@@ -6,6 +6,7 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
+from .enums import EntityState
 
 
 class QueryRepos(BaseModel):
@@ -19,14 +20,27 @@ class QueryReposRepos(BaseModel):
 class QueryReposReposResults(BaseModel):
     id: str
     name: str
-    alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     creation_date: Any = Field(alias="creationDate")
+    relevance: Optional[float]
+    owner: "QueryReposReposResultsOwner"
+    state: EntityState
+    alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     uri: Optional[Any]
     description: Optional[str]
     identifier: Optional[str]
     thing: Optional[str]
-    relevance: Optional[float]
+    feeds: Optional[List[Optional["QueryReposReposResultsFeeds"]]]
+
+
+class QueryReposReposResultsOwner(BaseModel):
+    id: str
+
+
+class QueryReposReposResultsFeeds(BaseModel):
+    id: str
+    name: str
 
 
 QueryRepos.model_rebuild()
 QueryReposRepos.model_rebuild()
+QueryReposReposResults.model_rebuild()

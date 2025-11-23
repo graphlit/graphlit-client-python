@@ -1,0 +1,6 @@
+mutation EnrichPersons($filter: PersonFilter, $connector: EntityEnrichmentConnectorInput!, $correlationId: String) {
+  enrichPersons(filter: $filter, connector: $connector, correlationId: $correlationId) {
+    id
+    name
+  }
+}

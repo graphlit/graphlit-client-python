@@ -24,6 +24,7 @@ from .enums import (
     LinkTypes,
     MCPServerTypes,
     ObservableTypes,
+    ParallelProcessors,
     ReductoEnrichmentModes,
     ReductoExtractionModes,
     ReductoOcrModes,
@@ -267,6 +268,8 @@ class CreateWorkflowCreateWorkflowExtractionJobsConnectorModelText(BaseModel):
         "CreateWorkflowCreateWorkflowExtractionJobsConnectorModelTextSpecification"
     ]
     token_threshold: Optional[int] = Field(alias="tokenThreshold")
+    time_budget: Optional[Any] = Field(alias="timeBudget")
+    entity_budget: Optional[int] = Field(alias="entityBudget")
 
 
 class CreateWorkflowCreateWorkflowExtractionJobsConnectorModelTextSpecification(
@@ -366,6 +369,7 @@ class CreateWorkflowCreateWorkflowEnrichmentJobsConnector(BaseModel):
     enriched_types: Optional[List[ObservableTypes]] = Field(alias="enrichedTypes")
     fhir: Optional["CreateWorkflowCreateWorkflowEnrichmentJobsConnectorFhir"]
     diffbot: Optional["CreateWorkflowCreateWorkflowEnrichmentJobsConnectorDiffbot"]
+    parallel: Optional["CreateWorkflowCreateWorkflowEnrichmentJobsConnectorParallel"]
 
 
 class CreateWorkflowCreateWorkflowEnrichmentJobsConnectorFhir(BaseModel):
@@ -374,6 +378,11 @@ class CreateWorkflowCreateWorkflowEnrichmentJobsConnectorFhir(BaseModel):
 
 class CreateWorkflowCreateWorkflowEnrichmentJobsConnectorDiffbot(BaseModel):
     key: Optional[Any]
+
+
+class CreateWorkflowCreateWorkflowEnrichmentJobsConnectorParallel(BaseModel):
+    processor: Optional[ParallelProcessors]
+    is_synchronous: Optional[bool] = Field(alias="isSynchronous")
 
 
 class CreateWorkflowCreateWorkflowStorage(BaseModel):

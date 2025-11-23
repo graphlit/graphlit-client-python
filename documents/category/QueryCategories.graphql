@@ -6,6 +6,10 @@ query QueryCategories($filter: CategoryFilter, $correlationId: String) {
       description
       creationDate
       relevance
+      feeds {
+        id
+        name
+      }
     }
   }
 }

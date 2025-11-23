@@ -3,7 +3,6 @@ query GetFeed($id: ID!, $correlationId: String) {
     id
     name
     creationDate
-    relevance
     owner {
       id
     }
@@ -200,6 +199,21 @@ query GetFeed($id: ID!, $correlationId: String) {
       attio {
         authenticationType
         apiKey
+      }
+      googleContacts {
+        authenticationType
+        clientId
+        clientSecret
+        refreshToken
+        authorizationId
+      }
+      microsoftContacts {
+        authenticationType
+        clientId
+        clientSecret
+        refreshToken
+        tenantId
+        authorizationId
       }
       readLimit
     }

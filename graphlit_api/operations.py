@@ -174,6 +174,10 @@ __all__ = [
     "ENABLE_ALERT_GQL",
     "ENABLE_FEED_GQL",
     "ENABLE_USER_GQL",
+    "ENRICH_ORGANIZATIONS_GQL",
+    "ENRICH_PERSONS_GQL",
+    "ENRICH_PLACES_GQL",
+    "ENRICH_PRODUCTS_GQL",
     "EXTRACT_CONTENTS_GQL",
     "EXTRACT_TEXT_GQL",
     "FEED_EXISTS_GQL",
@@ -424,7 +428,6 @@ query GetAlert($id: ID!, $correlationId: String) {
     id
     name
     creationDate
-    relevance
     owner {
       id
     }
@@ -859,7 +862,10 @@ query GetCategory($id: ID!, $correlationId: String) {
     name
     description
     creationDate
-    relevance
+    feeds {
+      id
+      name
+    }
   }
 }
 """
@@ -873,6 +879,10 @@ query QueryCategories($filter: CategoryFilter, $correlationId: String) {
       description
       creationDate
       relevance
+      feeds {
+        id
+        name
+      }
     }
   }
 }
@@ -1058,7 +1068,6 @@ query GetConnector($id: ID!, $correlationId: String) {
     id
     name
     creationDate
-    relevance
     owner {
       id
     }
@@ -5329,7 +5338,6 @@ query GetConversation($id: ID!, $correlationId: String) {
     id
     name
     creationDate
-    relevance
     owner {
       id
     }
@@ -7348,13 +7356,20 @@ query GetEvent($id: ID!, $correlationId: String) {
   event(id: $id, correlationId: $correlationId) {
     id
     name
-    alternateNames
     creationDate
+    owner {
+      id
+    }
+    state
+    alternateNames
     uri
     description
     identifier
     thing
-    relevance
+    feeds {
+      id
+      name
+    }
     address {
       streetAddress
       city
@@ -7382,13 +7397,21 @@ query QueryEvents($filter: EventFilter, $correlationId: String) {
     results {
       id
       name
-      alternateNames
       creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
       uri
       description
       identifier
       thing
-      relevance
+      feeds {
+        id
+        name
+      }
       address {
         streetAddress
         city
@@ -7503,7 +7526,6 @@ query GetFeed($id: ID!, $correlationId: String) {
     id
     name
     creationDate
-    relevance
     owner {
       id
     }
@@ -7700,6 +7722,21 @@ query GetFeed($id: ID!, $correlationId: String) {
       attio {
         authenticationType
         apiKey
+      }
+      googleContacts {
+        authenticationType
+        clientId
+        clientSecret
+        refreshToken
+        authorizationId
+      }
+      microsoftContacts {
+        authenticationType
+        clientId
+        clientSecret
+        refreshToken
+        tenantId
+        authorizationId
       }
       readLimit
     }
@@ -8109,6 +8146,21 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           authenticationType
           apiKey
         }
+        googleContacts {
+          authenticationType
+          clientId
+          clientSecret
+          refreshToken
+          authorizationId
+        }
+        microsoftContacts {
+          authenticationType
+          clientId
+          clientSecret
+          refreshToken
+          tenantId
+          authorizationId
+        }
         readLimit
       }
       calendar {
@@ -8481,13 +8533,20 @@ query GetInvestment($id: ID!, $correlationId: String) {
   investment(id: $id, correlationId: $correlationId) {
     id
     name
-    alternateNames
     creationDate
+    owner {
+      id
+    }
+    state
+    alternateNames
     uri
     description
     identifier
     thing
-    relevance
+    feeds {
+      id
+      name
+    }
   }
 }
 """
@@ -8498,13 +8557,21 @@ query QueryInvestments($filter: InvestmentFilter, $correlationId: String) {
     results {
       id
       name
-      alternateNames
       creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
       uri
       description
       identifier
       thing
-      relevance
+      feeds {
+        id
+        name
+      }
     }
   }
 }
@@ -8572,13 +8639,20 @@ query GetInvestmentFund($id: ID!, $correlationId: String) {
   investmentFund(id: $id, correlationId: $correlationId) {
     id
     name
-    alternateNames
     creationDate
+    owner {
+      id
+    }
+    state
+    alternateNames
     uri
     description
     identifier
     thing
-    relevance
+    feeds {
+      id
+      name
+    }
   }
 }
 """
@@ -8589,13 +8663,21 @@ query QueryInvestmentFunds($filter: InvestmentFundFilter, $correlationId: String
     results {
       id
       name
-      alternateNames
       creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
       uri
       description
       identifier
       thing
-      relevance
+      feeds {
+        id
+        name
+      }
     }
   }
 }
@@ -8665,7 +8747,10 @@ query GetLabel($id: ID!, $correlationId: String) {
     name
     description
     creationDate
-    relevance
+    feeds {
+      id
+      name
+    }
   }
 }
 """
@@ -8679,6 +8764,10 @@ query QueryLabels($filter: LabelFilter, $correlationId: String) {
       description
       creationDate
       relevance
+      feeds {
+        id
+        name
+      }
     }
   }
 }
@@ -8755,13 +8844,20 @@ query GetMedicalCondition($id: ID!, $correlationId: String) {
   medicalCondition(id: $id, correlationId: $correlationId) {
     id
     name
-    alternateNames
     creationDate
+    owner {
+      id
+    }
+    state
+    alternateNames
     uri
     description
     identifier
     thing
-    relevance
+    feeds {
+      id
+      name
+    }
   }
 }
 """
@@ -8772,13 +8868,21 @@ query QueryMedicalConditions($filter: MedicalConditionFilter, $correlationId: St
     results {
       id
       name
-      alternateNames
       creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
       uri
       description
       identifier
       thing
-      relevance
+      feeds {
+        id
+        name
+      }
     }
   }
 }
@@ -8846,13 +8950,20 @@ query GetMedicalContraindication($id: ID!, $correlationId: String) {
   medicalContraindication(id: $id, correlationId: $correlationId) {
     id
     name
-    alternateNames
     creationDate
+    owner {
+      id
+    }
+    state
+    alternateNames
     uri
     description
     identifier
     thing
-    relevance
+    feeds {
+      id
+      name
+    }
   }
 }
 """
@@ -8863,13 +8974,21 @@ query QueryMedicalContraindications($filter: MedicalContraindicationFilter, $cor
     results {
       id
       name
-      alternateNames
       creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
       uri
       description
       identifier
       thing
-      relevance
+      feeds {
+        id
+        name
+      }
     }
   }
 }
@@ -8937,13 +9056,20 @@ query GetMedicalDevice($id: ID!, $correlationId: String) {
   medicalDevice(id: $id, correlationId: $correlationId) {
     id
     name
-    alternateNames
     creationDate
+    owner {
+      id
+    }
+    state
+    alternateNames
     uri
     description
     identifier
     thing
-    relevance
+    feeds {
+      id
+      name
+    }
   }
 }
 """
@@ -8954,13 +9080,21 @@ query QueryMedicalDevices($filter: MedicalDeviceFilter, $correlationId: String) 
     results {
       id
       name
-      alternateNames
       creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
       uri
       description
       identifier
       thing
-      relevance
+      feeds {
+        id
+        name
+      }
     }
   }
 }
@@ -9028,13 +9162,20 @@ query GetMedicalDrug($id: ID!, $correlationId: String) {
   medicalDrug(id: $id, correlationId: $correlationId) {
     id
     name
-    alternateNames
     creationDate
+    owner {
+      id
+    }
+    state
+    alternateNames
     uri
     description
     identifier
     thing
-    relevance
+    feeds {
+      id
+      name
+    }
   }
 }
 """
@@ -9045,13 +9186,21 @@ query QueryMedicalDrugs($filter: MedicalDrugFilter, $correlationId: String) {
     results {
       id
       name
-      alternateNames
       creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
       uri
       description
       identifier
       thing
-      relevance
+      feeds {
+        id
+        name
+      }
     }
   }
 }
@@ -9119,13 +9268,20 @@ query GetMedicalDrugClass($id: ID!, $correlationId: String) {
   medicalDrugClass(id: $id, correlationId: $correlationId) {
     id
     name
-    alternateNames
     creationDate
+    owner {
+      id
+    }
+    state
+    alternateNames
     uri
     description
     identifier
     thing
-    relevance
+    feeds {
+      id
+      name
+    }
   }
 }
 """
@@ -9136,13 +9292,21 @@ query QueryMedicalDrugClasses($filter: MedicalDrugClassFilter, $correlationId: S
     results {
       id
       name
-      alternateNames
       creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
       uri
       description
       identifier
       thing
-      relevance
+      feeds {
+        id
+        name
+      }
     }
   }
 }
@@ -9210,13 +9374,20 @@ query GetMedicalGuideline($id: ID!, $correlationId: String) {
   medicalGuideline(id: $id, correlationId: $correlationId) {
     id
     name
-    alternateNames
     creationDate
+    owner {
+      id
+    }
+    state
+    alternateNames
     uri
     description
     identifier
     thing
-    relevance
+    feeds {
+      id
+      name
+    }
   }
 }
 """
@@ -9227,13 +9398,21 @@ query QueryMedicalGuidelines($filter: MedicalGuidelineFilter, $correlationId: St
     results {
       id
       name
-      alternateNames
       creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
       uri
       description
       identifier
       thing
-      relevance
+      feeds {
+        id
+        name
+      }
     }
   }
 }
@@ -9301,13 +9480,20 @@ query GetMedicalIndication($id: ID!, $correlationId: String) {
   medicalIndication(id: $id, correlationId: $correlationId) {
     id
     name
-    alternateNames
     creationDate
+    owner {
+      id
+    }
+    state
+    alternateNames
     uri
     description
     identifier
     thing
-    relevance
+    feeds {
+      id
+      name
+    }
   }
 }
 """
@@ -9318,13 +9504,21 @@ query QueryMedicalIndications($filter: MedicalIndicationFilter, $correlationId: 
     results {
       id
       name
-      alternateNames
       creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
       uri
       description
       identifier
       thing
-      relevance
+      feeds {
+        id
+        name
+      }
     }
   }
 }
@@ -9392,13 +9586,20 @@ query GetMedicalProcedure($id: ID!, $correlationId: String) {
   medicalProcedure(id: $id, correlationId: $correlationId) {
     id
     name
-    alternateNames
     creationDate
+    owner {
+      id
+    }
+    state
+    alternateNames
     uri
     description
     identifier
     thing
-    relevance
+    feeds {
+      id
+      name
+    }
   }
 }
 """
@@ -9409,13 +9610,21 @@ query QueryMedicalProcedures($filter: MedicalProcedureFilter, $correlationId: St
     results {
       id
       name
-      alternateNames
       creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
       uri
       description
       identifier
       thing
-      relevance
+      feeds {
+        id
+        name
+      }
     }
   }
 }
@@ -9431,8 +9640,8 @@ mutation UpdateMedicalProcedure($medicalProcedure: MedicalProcedureUpdateInput!)
 """
 
 COUNT_MEDICAL_STUDIES_GQL = """
-query CountMedicalStudies($filter: MedicalStudyFilter) {
-  countMedicalStudies(filter: $filter) {
+query CountMedicalStudies($filter: MedicalStudyFilter, $correlationId: String) {
+  countMedicalStudies(filter: $filter, correlationId: $correlationId) {
     count
   }
 }
@@ -9483,13 +9692,20 @@ query GetMedicalStudy($id: ID!, $correlationId: String) {
   medicalStudy(id: $id, correlationId: $correlationId) {
     id
     name
-    alternateNames
     creationDate
+    owner {
+      id
+    }
+    state
+    alternateNames
     uri
     description
     identifier
     thing
-    relevance
+    feeds {
+      id
+      name
+    }
     address {
       streetAddress
       city
@@ -9507,13 +9723,21 @@ query QueryMedicalStudies($filter: MedicalStudyFilter, $correlationId: String) {
     results {
       id
       name
-      alternateNames
       creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
       uri
       description
       identifier
       thing
-      relevance
+      feeds {
+        id
+        name
+      }
       address {
         streetAddress
         city
@@ -9588,13 +9812,20 @@ query GetMedicalTest($id: ID!, $correlationId: String) {
   medicalTest(id: $id, correlationId: $correlationId) {
     id
     name
-    alternateNames
     creationDate
+    owner {
+      id
+    }
+    state
+    alternateNames
     uri
     description
     identifier
     thing
-    relevance
+    feeds {
+      id
+      name
+    }
   }
 }
 """
@@ -9605,13 +9836,21 @@ query QueryMedicalTests($filter: MedicalTestFilter, $correlationId: String) {
     results {
       id
       name
-      alternateNames
       creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
       uri
       description
       identifier
       thing
-      relevance
+      feeds {
+        id
+        name
+      }
     }
   }
 }
@@ -9679,13 +9918,20 @@ query GetMedicalTherapy($id: ID!, $correlationId: String) {
   medicalTherapy(id: $id, correlationId: $correlationId) {
     id
     name
-    alternateNames
     creationDate
+    owner {
+      id
+    }
+    state
+    alternateNames
     uri
     description
     identifier
     thing
-    relevance
+    feeds {
+      id
+      name
+    }
   }
 }
 """
@@ -9696,13 +9942,21 @@ query QueryMedicalTherapies($filter: MedicalTherapyFilter, $correlationId: Strin
     results {
       id
       name
-      alternateNames
       creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
       uri
       description
       identifier
       thing
-      relevance
+      feeds {
+        id
+        name
+      }
     }
   }
 }
@@ -9800,18 +10054,38 @@ mutation DeleteOrganizations($ids: [ID!]!, $isSynchronous: Boolean) {
 }
 """
 
+ENRICH_ORGANIZATIONS_GQL = """
+mutation EnrichOrganizations($filter: OrganizationFilter, $connector: EntityEnrichmentConnectorInput!, $correlationId: String) {
+  enrichOrganizations(
+    filter: $filter
+    connector: $connector
+    correlationId: $correlationId
+  ) {
+    id
+    name
+  }
+}
+"""
+
 GET_ORGANIZATION_GQL = """
 query GetOrganization($id: ID!, $correlationId: String) {
   organization(id: $id, correlationId: $correlationId) {
     id
     name
-    alternateNames
     creationDate
+    owner {
+      id
+    }
+    state
+    alternateNames
     uri
     description
     identifier
     thing
-    relevance
+    feeds {
+      id
+      name
+    }
     address {
       streetAddress
       city
@@ -9835,13 +10109,21 @@ query QueryOrganizations($filter: OrganizationFilter, $correlationId: String) {
     results {
       id
       name
-      alternateNames
       creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
       uri
       description
       identifier
       thing
-      relevance
+      feeds {
+        id
+        name
+      }
       address {
         streetAddress
         city
@@ -9917,18 +10199,38 @@ mutation DeletePersons($ids: [ID!]!, $isSynchronous: Boolean) {
 }
 """
 
+ENRICH_PERSONS_GQL = """
+mutation EnrichPersons($filter: PersonFilter, $connector: EntityEnrichmentConnectorInput!, $correlationId: String) {
+  enrichPersons(
+    filter: $filter
+    connector: $connector
+    correlationId: $correlationId
+  ) {
+    id
+    name
+  }
+}
+"""
+
 GET_PERSON_GQL = """
 query GetPerson($id: ID!, $correlationId: String) {
   person(id: $id, correlationId: $correlationId) {
     id
     name
-    alternateNames
     creationDate
+    owner {
+      id
+    }
+    state
+    alternateNames
     uri
     description
     identifier
     thing
-    relevance
+    feeds {
+      id
+      name
+    }
     address {
       streetAddress
       city
@@ -9954,13 +10256,21 @@ query QueryPersons($filter: PersonFilter, $correlationId: String) {
     results {
       id
       name
-      alternateNames
       creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
       uri
       description
       identifier
       thing
-      relevance
+      feeds {
+        id
+        name
+      }
       address {
         streetAddress
         city
@@ -10038,18 +10348,38 @@ mutation DeletePlaces($ids: [ID!]!, $isSynchronous: Boolean) {
 }
 """
 
+ENRICH_PLACES_GQL = """
+mutation EnrichPlaces($filter: PlaceFilter, $connector: EntityEnrichmentConnectorInput!, $correlationId: String) {
+  enrichPlaces(
+    filter: $filter
+    connector: $connector
+    correlationId: $correlationId
+  ) {
+    id
+    name
+  }
+}
+"""
+
 GET_PLACE_GQL = """
 query GetPlace($id: ID!, $correlationId: String) {
   place(id: $id, correlationId: $correlationId) {
     id
     name
-    alternateNames
     creationDate
+    owner {
+      id
+    }
+    state
+    alternateNames
     uri
     description
     identifier
     thing
-    relevance
+    feeds {
+      id
+      name
+    }
     address {
       streetAddress
       city
@@ -10067,13 +10397,21 @@ query QueryPlaces($filter: PlaceFilter, $correlationId: String) {
     results {
       id
       name
-      alternateNames
       creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
       uri
       description
       identifier
       thing
-      relevance
+      feeds {
+        id
+        name
+      }
       address {
         streetAddress
         city
@@ -10143,18 +10481,38 @@ mutation DeleteProducts($ids: [ID!]!, $isSynchronous: Boolean) {
 }
 """
 
+ENRICH_PRODUCTS_GQL = """
+mutation EnrichProducts($filter: ProductFilter, $connector: EntityEnrichmentConnectorInput!, $correlationId: String) {
+  enrichProducts(
+    filter: $filter
+    connector: $connector
+    correlationId: $correlationId
+  ) {
+    id
+    name
+  }
+}
+"""
+
 GET_PRODUCT_GQL = """
 query GetProduct($id: ID!, $correlationId: String) {
   product(id: $id, correlationId: $correlationId) {
     id
     name
-    alternateNames
     creationDate
+    owner {
+      id
+    }
+    state
+    alternateNames
     uri
     description
     identifier
     thing
-    relevance
+    feeds {
+      id
+      name
+    }
     address {
       streetAddress
       city
@@ -10179,13 +10537,21 @@ query QueryProducts($filter: ProductFilter, $correlationId: String) {
     results {
       id
       name
-      alternateNames
       creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
       uri
       description
       identifier
       thing
-      relevance
+      feeds {
+        id
+        name
+      }
       address {
         streetAddress
         city
@@ -10478,13 +10844,20 @@ query GetRepo($id: ID!, $correlationId: String) {
   repo(id: $id, correlationId: $correlationId) {
     id
     name
-    alternateNames
     creationDate
+    owner {
+      id
+    }
+    state
+    alternateNames
     uri
     description
     identifier
     thing
-    relevance
+    feeds {
+      id
+      name
+    }
   }
 }
 """
@@ -10495,13 +10868,21 @@ query QueryRepos($filter: RepoFilter, $correlationId: String) {
     results {
       id
       name
-      alternateNames
       creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
       uri
       description
       identifier
       thing
-      relevance
+      feeds {
+        id
+        name
+      }
     }
   }
 }
@@ -10600,13 +10981,20 @@ query GetSoftware($id: ID!, $correlationId: String) {
   software(id: $id, correlationId: $correlationId) {
     id
     name
-    alternateNames
     creationDate
+    owner {
+      id
+    }
+    state
+    alternateNames
     uri
     description
     identifier
     thing
-    relevance
+    feeds {
+      id
+      name
+    }
     releaseDate
     developer
   }
@@ -10619,13 +11007,21 @@ query QuerySoftwares($filter: SoftwareFilter, $correlationId: String) {
     results {
       id
       name
-      alternateNames
       creationDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
       uri
       description
       identifier
       thing
-      relevance
+      feeds {
+        id
+        name
+      }
       releaseDate
       developer
     }
@@ -10699,7 +11095,6 @@ query GetSpecification($id: ID!, $correlationId: String) {
     id
     name
     creationDate
-    relevance
     owner {
       id
     }
@@ -11816,7 +12211,6 @@ query GetView($id: ID!, $correlationId: String) {
     id
     name
     creationDate
-    relevance
     owner {
       id
     }
@@ -12739,6 +13133,8 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
               id
             }
             tokenThreshold
+            timeBudget
+            entityBudget
           }
         }
       }
@@ -12794,6 +13190,10 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
           }
           diffbot {
             key
+          }
+          parallel {
+            processor
+            isSynchronous
           }
         }
       }
@@ -12873,7 +13273,6 @@ query GetWorkflow($id: ID!, $correlationId: String) {
     id
     name
     creationDate
-    relevance
     owner {
       id
     }
@@ -13001,6 +13400,8 @@ query GetWorkflow($id: ID!, $correlationId: String) {
               id
             }
             tokenThreshold
+            timeBudget
+            entityBudget
           }
         }
       }
@@ -13056,6 +13457,10 @@ query GetWorkflow($id: ID!, $correlationId: String) {
           }
           diffbot {
             key
+          }
+          parallel {
+            processor
+            isSynchronous
           }
         }
       }
@@ -13233,6 +13638,8 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
                 id
               }
               tokenThreshold
+              timeBudget
+              entityBudget
             }
           }
         }
@@ -13288,6 +13695,10 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
             }
             diffbot {
               key
+            }
+            parallel {
+              processor
+              isSynchronous
             }
           }
         }
@@ -13460,6 +13871,8 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
               id
             }
             tokenThreshold
+            timeBudget
+            entityBudget
           }
         }
       }
@@ -13515,6 +13928,10 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
           }
           diffbot {
             key
+          }
+          parallel {
+            processor
+            isSynchronous
           }
         }
       }
@@ -13686,6 +14103,8 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
               id
             }
             tokenThreshold
+            timeBudget
+            entityBudget
           }
         }
       }
@@ -13741,6 +14160,10 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
           }
           diffbot {
             key
+          }
+          parallel {
+            processor
+            isSynchronous
           }
         }
       }

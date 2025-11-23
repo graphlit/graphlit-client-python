@@ -6,6 +6,7 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
+from .enums import EntityState
 
 
 class GetMedicalTest(BaseModel):
@@ -15,13 +16,25 @@ class GetMedicalTest(BaseModel):
 class GetMedicalTestMedicalTest(BaseModel):
     id: str
     name: str
-    alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     creation_date: Any = Field(alias="creationDate")
+    owner: "GetMedicalTestMedicalTestOwner"
+    state: EntityState
+    alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     uri: Optional[Any]
     description: Optional[str]
     identifier: Optional[str]
     thing: Optional[str]
-    relevance: Optional[float]
+    feeds: Optional[List[Optional["GetMedicalTestMedicalTestFeeds"]]]
+
+
+class GetMedicalTestMedicalTestOwner(BaseModel):
+    id: str
+
+
+class GetMedicalTestMedicalTestFeeds(BaseModel):
+    id: str
+    name: str
 
 
 GetMedicalTest.model_rebuild()
+GetMedicalTestMedicalTest.model_rebuild()
