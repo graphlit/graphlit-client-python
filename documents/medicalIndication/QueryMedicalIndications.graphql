@@ -4,6 +4,7 @@ query QueryMedicalIndications($filter: MedicalIndicationFilter, $correlationId: 
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id

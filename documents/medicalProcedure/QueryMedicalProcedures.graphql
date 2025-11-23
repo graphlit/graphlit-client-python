@@ -4,6 +4,7 @@ query QueryMedicalProcedures($filter: MedicalProcedureFilter, $correlationId: St
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id

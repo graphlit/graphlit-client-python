@@ -4,6 +4,7 @@ query QueryOrganizations($filter: OrganizationFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id

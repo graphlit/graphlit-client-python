@@ -4,6 +4,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       owner {
         id
       }

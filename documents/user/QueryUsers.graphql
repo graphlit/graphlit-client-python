@@ -4,6 +4,7 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id

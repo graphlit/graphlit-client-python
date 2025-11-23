@@ -4,6 +4,7 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id

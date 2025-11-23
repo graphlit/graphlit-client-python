@@ -3,6 +3,7 @@ query GetUserByIdentifier($identifier: String!) {
     id
     name
     creationDate
+    modifiedDate
     relevance
     owner {
       id

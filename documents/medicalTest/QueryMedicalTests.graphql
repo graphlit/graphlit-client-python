@@ -4,6 +4,7 @@ query QueryMedicalTests($filter: MedicalTestFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id

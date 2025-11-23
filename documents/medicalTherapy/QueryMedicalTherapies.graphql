@@ -4,6 +4,7 @@ query QueryMedicalTherapies($filter: MedicalTherapyFilter, $correlationId: Strin
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id

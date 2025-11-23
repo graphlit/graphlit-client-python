@@ -4,6 +4,7 @@ query QueryMedicalContraindications($filter: MedicalContraindicationFilter, $cor
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id

@@ -428,6 +428,7 @@ query GetAlert($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -609,6 +610,7 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -977,6 +979,7 @@ query GetCollection($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -997,6 +1000,7 @@ query QueryCollections($filter: CollectionFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -1068,6 +1072,7 @@ query GetConnector($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -1129,6 +1134,7 @@ query QueryConnectors($filter: ConnectorFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -1577,6 +1583,7 @@ query GetContent($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -2415,6 +2422,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       owner {
         id
       }
@@ -3117,6 +3125,7 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -3521,6 +3530,7 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -5338,6 +5348,7 @@ query GetConversation($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -6295,6 +6306,7 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -7357,6 +7369,7 @@ query GetEvent($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -7398,6 +7411,7 @@ query QueryEvents($filter: EventFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -7526,6 +7540,7 @@ query GetFeed($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -7948,6 +7963,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -8534,6 +8550,7 @@ query GetInvestment($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -8558,6 +8575,7 @@ query QueryInvestments($filter: InvestmentFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -8640,6 +8658,7 @@ query GetInvestmentFund($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -8664,6 +8683,7 @@ query QueryInvestmentFunds($filter: InvestmentFundFilter, $correlationId: String
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -8845,6 +8865,7 @@ query GetMedicalCondition($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -8869,6 +8890,7 @@ query QueryMedicalConditions($filter: MedicalConditionFilter, $correlationId: St
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -8951,6 +8973,7 @@ query GetMedicalContraindication($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -8975,6 +8998,7 @@ query QueryMedicalContraindications($filter: MedicalContraindicationFilter, $cor
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -9057,6 +9081,7 @@ query GetMedicalDevice($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -9081,6 +9106,7 @@ query QueryMedicalDevices($filter: MedicalDeviceFilter, $correlationId: String) 
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -9163,6 +9189,7 @@ query GetMedicalDrug($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -9187,6 +9214,7 @@ query QueryMedicalDrugs($filter: MedicalDrugFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -9269,6 +9297,7 @@ query GetMedicalDrugClass($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -9293,6 +9322,7 @@ query QueryMedicalDrugClasses($filter: MedicalDrugClassFilter, $correlationId: S
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -9375,6 +9405,7 @@ query GetMedicalGuideline($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -9399,6 +9430,7 @@ query QueryMedicalGuidelines($filter: MedicalGuidelineFilter, $correlationId: St
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -9481,6 +9513,7 @@ query GetMedicalIndication($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -9505,6 +9538,7 @@ query QueryMedicalIndications($filter: MedicalIndicationFilter, $correlationId: 
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -9587,6 +9621,7 @@ query GetMedicalProcedure($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -9611,6 +9646,7 @@ query QueryMedicalProcedures($filter: MedicalProcedureFilter, $correlationId: St
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -9693,6 +9729,7 @@ query GetMedicalStudy($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -9724,6 +9761,7 @@ query QueryMedicalStudies($filter: MedicalStudyFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -9813,6 +9851,7 @@ query GetMedicalTest($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -9837,6 +9876,7 @@ query QueryMedicalTests($filter: MedicalTestFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -9919,6 +9959,7 @@ query GetMedicalTherapy($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -9943,6 +9984,7 @@ query QueryMedicalTherapies($filter: MedicalTherapyFilter, $correlationId: Strin
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -10073,6 +10115,7 @@ query GetOrganization($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -10110,6 +10153,7 @@ query QueryOrganizations($filter: OrganizationFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -10218,6 +10262,7 @@ query GetPerson($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -10257,6 +10302,7 @@ query QueryPersons($filter: PersonFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -10367,6 +10413,7 @@ query GetPlace($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -10398,6 +10445,7 @@ query QueryPlaces($filter: PlaceFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -10500,6 +10548,7 @@ query GetProduct($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -10538,6 +10587,7 @@ query QueryProducts($filter: ProductFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -10845,6 +10895,7 @@ query GetRepo($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -10869,6 +10920,7 @@ query QueryRepos($filter: RepoFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -10982,6 +11034,7 @@ query GetSoftware($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -11008,6 +11061,7 @@ query QuerySoftwares($filter: SoftwareFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -11095,6 +11149,7 @@ query GetSpecification($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -11474,6 +11529,7 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -11757,6 +11813,7 @@ query GetUser {
     id
     name
     creationDate
+    modifiedDate
     relevance
     owner {
       id
@@ -11826,6 +11883,7 @@ query GetUserByIdentifier($identifier: String!) {
     id
     name
     creationDate
+    modifiedDate
     relevance
     owner {
       id
@@ -11896,6 +11954,7 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -12211,6 +12270,7 @@ query GetView($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -12409,6 +12469,7 @@ query QueryViews($filter: ViewFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
@@ -13273,6 +13334,7 @@ query GetWorkflow($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }
@@ -13510,6 +13572,7 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id

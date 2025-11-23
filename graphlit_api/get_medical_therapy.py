@@ -19,6 +19,7 @@ class GetMedicalTherapyMedicalTherapy(BaseModel):
     id: str
     name: str
     creation_date: Any = Field(alias="creationDate")
+    modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetMedicalTherapyMedicalTherapyOwner"
     state: EntityState
     alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")

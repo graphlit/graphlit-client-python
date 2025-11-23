@@ -4,6 +4,7 @@ query QueryInvestments($filter: InvestmentFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id

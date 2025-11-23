@@ -4,6 +4,7 @@ query QueryConnectors($filter: ConnectorFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id

@@ -4,6 +4,7 @@ query QueryViews($filter: ViewFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id

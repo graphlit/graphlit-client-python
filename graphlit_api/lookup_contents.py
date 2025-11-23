@@ -41,6 +41,7 @@ class LookupContentsLookupContentsResults(BaseModel):
     id: str
     name: str
     creation_date: Any = Field(alias="creationDate")
+    modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "LookupContentsLookupContentsResultsOwner"
     state: EntityState
     original_date: Optional[Any] = Field(alias="originalDate")

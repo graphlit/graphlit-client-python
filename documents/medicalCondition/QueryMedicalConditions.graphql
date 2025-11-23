@@ -4,6 +4,7 @@ query QueryMedicalConditions($filter: MedicalConditionFilter, $correlationId: St
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id

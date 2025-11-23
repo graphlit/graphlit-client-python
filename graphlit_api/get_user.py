@@ -26,6 +26,7 @@ class GetUserUser(BaseModel):
     id: str
     name: str
     creation_date: Any = Field(alias="creationDate")
+    modified_date: Optional[Any] = Field(alias="modifiedDate")
     relevance: Optional[float]
     owner: "GetUserUserOwner"
     state: EntityState

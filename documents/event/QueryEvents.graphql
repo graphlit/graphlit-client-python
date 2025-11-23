@@ -4,6 +4,7 @@ query QueryEvents($filter: EventFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id

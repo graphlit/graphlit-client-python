@@ -3,6 +3,7 @@ query GetMedicalTherapy($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }

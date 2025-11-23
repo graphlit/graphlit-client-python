@@ -4,6 +4,7 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id

@@ -3,6 +3,7 @@ query GetInvestment($id: ID!, $correlationId: String) {
     id
     name
     creationDate
+    modifiedDate
     owner {
       id
     }

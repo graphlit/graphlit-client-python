@@ -4,6 +4,7 @@ query QueryMedicalStudies($filter: MedicalStudyFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id

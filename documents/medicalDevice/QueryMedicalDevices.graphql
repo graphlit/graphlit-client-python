@@ -4,6 +4,7 @@ query QueryMedicalDevices($filter: MedicalDeviceFilter, $correlationId: String) 
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id

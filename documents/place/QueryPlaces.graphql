@@ -4,6 +4,7 @@ query QueryPlaces($filter: PlaceFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id

@@ -4,6 +4,7 @@ query QueryMedicalGuidelines($filter: MedicalGuidelineFilter, $correlationId: St
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id

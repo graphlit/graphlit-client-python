@@ -4,6 +4,7 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id

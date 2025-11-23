@@ -3,6 +3,7 @@ query GetUser {
     id
     name
     creationDate
+    modifiedDate
     relevance
     owner {
       id

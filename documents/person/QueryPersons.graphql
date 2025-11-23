@@ -4,6 +4,7 @@ query QueryPersons($filter: PersonFilter, $correlationId: String) {
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id

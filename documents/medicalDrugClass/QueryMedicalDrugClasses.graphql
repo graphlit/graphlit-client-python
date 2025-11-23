@@ -4,6 +4,7 @@ query QueryMedicalDrugClasses($filter: MedicalDrugClassFilter, $correlationId: S
       id
       name
       creationDate
+      modifiedDate
       relevance
       owner {
         id
