@@ -17,5 +17,14 @@ query GetInvestment($id: ID!, $correlationId: String) {
       id
       name
     }
+    links {
+      uri
+      linkType
+      excerpts
+    }
+    workflow {
+      id
+      name
+    }
   }
 }

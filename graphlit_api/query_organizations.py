@@ -6,7 +6,7 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import EntityState
+from .enums import EntityState, LinkTypes
 
 
 class QueryOrganizations(BaseModel):
@@ -31,8 +31,13 @@ class QueryOrganizationsOrganizationsResults(BaseModel):
     identifier: Optional[str]
     thing: Optional[str]
     feeds: Optional[List[Optional["QueryOrganizationsOrganizationsResultsFeeds"]]]
+    links: Optional[List[Optional["QueryOrganizationsOrganizationsResultsLinks"]]]
+    workflow: Optional["QueryOrganizationsOrganizationsResultsWorkflow"]
     address: Optional["QueryOrganizationsOrganizationsResultsAddress"]
     founding_date: Optional[Any] = Field(alias="foundingDate")
+    email: Optional[str]
+    telephone: Optional[str]
+    legal_name: Optional[str] = Field(alias="legalName")
     industries: Optional[List[Optional[str]]]
     revenue: Optional[Any]
     revenue_currency: Optional[str] = Field(alias="revenueCurrency")
@@ -45,6 +50,17 @@ class QueryOrganizationsOrganizationsResultsOwner(BaseModel):
 
 
 class QueryOrganizationsOrganizationsResultsFeeds(BaseModel):
+    id: str
+    name: str
+
+
+class QueryOrganizationsOrganizationsResultsLinks(BaseModel):
+    uri: Optional[Any]
+    link_type: Optional[LinkTypes] = Field(alias="linkType")
+    excerpts: Optional[str]
+
+
+class QueryOrganizationsOrganizationsResultsWorkflow(BaseModel):
     id: str
     name: str
 

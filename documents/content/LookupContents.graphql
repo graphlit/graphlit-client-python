@@ -358,6 +358,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
       links {
         uri
         linkType
+        excerpts
       }
       observations {
         id

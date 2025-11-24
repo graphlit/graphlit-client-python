@@ -6,7 +6,7 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import EntityState
+from .enums import EntityState, LinkTypes
 
 
 class GetRepo(BaseModel):
@@ -26,6 +26,8 @@ class GetRepoRepo(BaseModel):
     identifier: Optional[str]
     thing: Optional[str]
     feeds: Optional[List[Optional["GetRepoRepoFeeds"]]]
+    links: Optional[List[Optional["GetRepoRepoLinks"]]]
+    workflow: Optional["GetRepoRepoWorkflow"]
 
 
 class GetRepoRepoOwner(BaseModel):
@@ -33,6 +35,17 @@ class GetRepoRepoOwner(BaseModel):
 
 
 class GetRepoRepoFeeds(BaseModel):
+    id: str
+    name: str
+
+
+class GetRepoRepoLinks(BaseModel):
+    uri: Optional[Any]
+    link_type: Optional[LinkTypes] = Field(alias="linkType")
+    excerpts: Optional[str]
+
+
+class GetRepoRepoWorkflow(BaseModel):
     id: str
     name: str
 

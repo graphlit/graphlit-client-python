@@ -6,7 +6,7 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import EntityState
+from .enums import EntityState, LinkTypes
 
 
 class GetEvent(BaseModel):
@@ -26,6 +26,8 @@ class GetEventEvent(BaseModel):
     identifier: Optional[str]
     thing: Optional[str]
     feeds: Optional[List[Optional["GetEventEventFeeds"]]]
+    links: Optional[List[Optional["GetEventEventLinks"]]]
+    workflow: Optional["GetEventEventWorkflow"]
     address: Optional["GetEventEventAddress"]
     start_date: Optional[Any] = Field(alias="startDate")
     end_date: Optional[Any] = Field(alias="endDate")
@@ -37,6 +39,10 @@ class GetEventEvent(BaseModel):
     price_currency: Optional[str] = Field(alias="priceCurrency")
     is_accessible_for_free: Optional[bool] = Field(alias="isAccessibleForFree")
     typical_age_range: Optional[str] = Field(alias="typicalAgeRange")
+    organizer: Optional[str]
+    performer: Optional[str]
+    sponsor: Optional[str]
+    event_status: Optional[str] = Field(alias="eventStatus")
 
 
 class GetEventEventOwner(BaseModel):
@@ -44,6 +50,17 @@ class GetEventEventOwner(BaseModel):
 
 
 class GetEventEventFeeds(BaseModel):
+    id: str
+    name: str
+
+
+class GetEventEventLinks(BaseModel):
+    uri: Optional[Any]
+    link_type: Optional[LinkTypes] = Field(alias="linkType")
+    excerpts: Optional[str]
+
+
+class GetEventEventWorkflow(BaseModel):
     id: str
     name: str
 

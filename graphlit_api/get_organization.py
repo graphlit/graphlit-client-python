@@ -6,7 +6,7 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import EntityState
+from .enums import EntityState, LinkTypes
 
 
 class GetOrganization(BaseModel):
@@ -26,8 +26,13 @@ class GetOrganizationOrganization(BaseModel):
     identifier: Optional[str]
     thing: Optional[str]
     feeds: Optional[List[Optional["GetOrganizationOrganizationFeeds"]]]
+    links: Optional[List[Optional["GetOrganizationOrganizationLinks"]]]
+    workflow: Optional["GetOrganizationOrganizationWorkflow"]
     address: Optional["GetOrganizationOrganizationAddress"]
     founding_date: Optional[Any] = Field(alias="foundingDate")
+    email: Optional[str]
+    telephone: Optional[str]
+    legal_name: Optional[str] = Field(alias="legalName")
     industries: Optional[List[Optional[str]]]
     revenue: Optional[Any]
     revenue_currency: Optional[str] = Field(alias="revenueCurrency")
@@ -40,6 +45,17 @@ class GetOrganizationOrganizationOwner(BaseModel):
 
 
 class GetOrganizationOrganizationFeeds(BaseModel):
+    id: str
+    name: str
+
+
+class GetOrganizationOrganizationLinks(BaseModel):
+    uri: Optional[Any]
+    link_type: Optional[LinkTypes] = Field(alias="linkType")
+    excerpts: Optional[str]
+
+
+class GetOrganizationOrganizationWorkflow(BaseModel):
     id: str
     name: str
 

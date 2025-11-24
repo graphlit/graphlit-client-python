@@ -19,6 +19,15 @@ query QueryMedicalDrugClasses($filter: MedicalDrugClassFilter, $correlationId: S
         id
         name
       }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
     }
   }
 }

@@ -6,7 +6,7 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import EntityState
+from .enums import EntityState, LinkTypes
 
 
 class GetMedicalGuideline(BaseModel):
@@ -28,6 +28,8 @@ class GetMedicalGuidelineMedicalGuideline(BaseModel):
     identifier: Optional[str]
     thing: Optional[str]
     feeds: Optional[List[Optional["GetMedicalGuidelineMedicalGuidelineFeeds"]]]
+    links: Optional[List[Optional["GetMedicalGuidelineMedicalGuidelineLinks"]]]
+    workflow: Optional["GetMedicalGuidelineMedicalGuidelineWorkflow"]
 
 
 class GetMedicalGuidelineMedicalGuidelineOwner(BaseModel):
@@ -35,6 +37,17 @@ class GetMedicalGuidelineMedicalGuidelineOwner(BaseModel):
 
 
 class GetMedicalGuidelineMedicalGuidelineFeeds(BaseModel):
+    id: str
+    name: str
+
+
+class GetMedicalGuidelineMedicalGuidelineLinks(BaseModel):
+    uri: Optional[Any]
+    link_type: Optional[LinkTypes] = Field(alias="linkType")
+    excerpts: Optional[str]
+
+
+class GetMedicalGuidelineMedicalGuidelineWorkflow(BaseModel):
     id: str
     name: str
 

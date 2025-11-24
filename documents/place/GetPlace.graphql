@@ -17,6 +17,15 @@ query GetPlace($id: ID!, $correlationId: String) {
       id
       name
     }
+    links {
+      uri
+      linkType
+      excerpts
+    }
+    workflow {
+      id
+      name
+    }
     address {
       streetAddress
       city
@@ -24,5 +33,8 @@ query GetPlace($id: ID!, $correlationId: String) {
       country
       postalCode
     }
+    telephone
+    openingHours
+    priceRange
   }
 }

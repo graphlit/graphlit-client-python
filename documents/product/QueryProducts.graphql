@@ -19,6 +19,15 @@ query QueryProducts($filter: ProductFilter, $correlationId: String) {
         id
         name
       }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
       address {
         streetAddress
         city
@@ -31,6 +40,8 @@ query QueryProducts($filter: ProductFilter, $correlationId: String) {
       brand
       upc
       sku
+      gtin
+      mpn
       releaseDate
       productionDate
     }

@@ -19,6 +19,15 @@ query QueryMedicalTherapies($filter: MedicalTherapyFilter, $correlationId: Strin
         id
         name
       }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
     }
   }
 }

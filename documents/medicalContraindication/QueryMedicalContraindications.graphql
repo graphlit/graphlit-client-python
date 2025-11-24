@@ -19,6 +19,15 @@ query QueryMedicalContraindications($filter: MedicalContraindicationFilter, $cor
         id
         name
       }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
     }
   }
 }

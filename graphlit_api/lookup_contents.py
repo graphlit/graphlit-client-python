@@ -502,6 +502,7 @@ class LookupContentsLookupContentsResultsCollections(BaseModel):
 class LookupContentsLookupContentsResultsLinks(BaseModel):
     uri: Optional[Any]
     link_type: Optional[LinkTypes] = Field(alias="linkType")
+    excerpts: Optional[str]
 
 
 class LookupContentsLookupContentsResultsObservations(BaseModel):

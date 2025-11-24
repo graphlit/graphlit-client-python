@@ -1937,6 +1937,7 @@ query GetContent($id: ID!, $correlationId: String) {
     links {
       uri
       linkType
+      excerpts
     }
     observations {
       id
@@ -2776,6 +2777,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
       links {
         uri
         linkType
+        excerpts
       }
       observations {
         id
@@ -7383,6 +7385,15 @@ query GetEvent($id: ID!, $correlationId: String) {
       id
       name
     }
+    links {
+      uri
+      linkType
+      excerpts
+    }
+    workflow {
+      id
+      name
+    }
     address {
       streetAddress
       city
@@ -7400,6 +7411,10 @@ query GetEvent($id: ID!, $correlationId: String) {
     priceCurrency
     isAccessibleForFree
     typicalAgeRange
+    organizer
+    performer
+    sponsor
+    eventStatus
   }
 }
 """
@@ -7426,6 +7441,15 @@ query QueryEvents($filter: EventFilter, $correlationId: String) {
         id
         name
       }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
       address {
         streetAddress
         city
@@ -7443,6 +7467,10 @@ query QueryEvents($filter: EventFilter, $correlationId: String) {
       priceCurrency
       isAccessibleForFree
       typicalAgeRange
+      organizer
+      performer
+      sponsor
+      eventStatus
     }
   }
 }
@@ -8564,6 +8592,15 @@ query GetInvestment($id: ID!, $correlationId: String) {
       id
       name
     }
+    links {
+      uri
+      linkType
+      excerpts
+    }
+    workflow {
+      id
+      name
+    }
   }
 }
 """
@@ -8587,6 +8624,15 @@ query QueryInvestments($filter: InvestmentFilter, $correlationId: String) {
       identifier
       thing
       feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
         id
         name
       }
@@ -8672,6 +8718,15 @@ query GetInvestmentFund($id: ID!, $correlationId: String) {
       id
       name
     }
+    links {
+      uri
+      linkType
+      excerpts
+    }
+    workflow {
+      id
+      name
+    }
   }
 }
 """
@@ -8695,6 +8750,15 @@ query QueryInvestmentFunds($filter: InvestmentFundFilter, $correlationId: String
       identifier
       thing
       feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
         id
         name
       }
@@ -8879,6 +8943,15 @@ query GetMedicalCondition($id: ID!, $correlationId: String) {
       id
       name
     }
+    links {
+      uri
+      linkType
+      excerpts
+    }
+    workflow {
+      id
+      name
+    }
   }
 }
 """
@@ -8902,6 +8975,15 @@ query QueryMedicalConditions($filter: MedicalConditionFilter, $correlationId: St
       identifier
       thing
       feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
         id
         name
       }
@@ -8987,6 +9069,15 @@ query GetMedicalContraindication($id: ID!, $correlationId: String) {
       id
       name
     }
+    links {
+      uri
+      linkType
+      excerpts
+    }
+    workflow {
+      id
+      name
+    }
   }
 }
 """
@@ -9010,6 +9101,15 @@ query QueryMedicalContraindications($filter: MedicalContraindicationFilter, $cor
       identifier
       thing
       feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
         id
         name
       }
@@ -9095,6 +9195,15 @@ query GetMedicalDevice($id: ID!, $correlationId: String) {
       id
       name
     }
+    links {
+      uri
+      linkType
+      excerpts
+    }
+    workflow {
+      id
+      name
+    }
   }
 }
 """
@@ -9118,6 +9227,15 @@ query QueryMedicalDevices($filter: MedicalDeviceFilter, $correlationId: String) 
       identifier
       thing
       feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
         id
         name
       }
@@ -9203,6 +9321,15 @@ query GetMedicalDrug($id: ID!, $correlationId: String) {
       id
       name
     }
+    links {
+      uri
+      linkType
+      excerpts
+    }
+    workflow {
+      id
+      name
+    }
   }
 }
 """
@@ -9226,6 +9353,15 @@ query QueryMedicalDrugs($filter: MedicalDrugFilter, $correlationId: String) {
       identifier
       thing
       feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
         id
         name
       }
@@ -9311,6 +9447,15 @@ query GetMedicalDrugClass($id: ID!, $correlationId: String) {
       id
       name
     }
+    links {
+      uri
+      linkType
+      excerpts
+    }
+    workflow {
+      id
+      name
+    }
   }
 }
 """
@@ -9334,6 +9479,15 @@ query QueryMedicalDrugClasses($filter: MedicalDrugClassFilter, $correlationId: S
       identifier
       thing
       feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
         id
         name
       }
@@ -9419,6 +9573,15 @@ query GetMedicalGuideline($id: ID!, $correlationId: String) {
       id
       name
     }
+    links {
+      uri
+      linkType
+      excerpts
+    }
+    workflow {
+      id
+      name
+    }
   }
 }
 """
@@ -9442,6 +9605,15 @@ query QueryMedicalGuidelines($filter: MedicalGuidelineFilter, $correlationId: St
       identifier
       thing
       feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
         id
         name
       }
@@ -9527,6 +9699,15 @@ query GetMedicalIndication($id: ID!, $correlationId: String) {
       id
       name
     }
+    links {
+      uri
+      linkType
+      excerpts
+    }
+    workflow {
+      id
+      name
+    }
   }
 }
 """
@@ -9550,6 +9731,15 @@ query QueryMedicalIndications($filter: MedicalIndicationFilter, $correlationId: 
       identifier
       thing
       feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
         id
         name
       }
@@ -9635,6 +9825,15 @@ query GetMedicalProcedure($id: ID!, $correlationId: String) {
       id
       name
     }
+    links {
+      uri
+      linkType
+      excerpts
+    }
+    workflow {
+      id
+      name
+    }
   }
 }
 """
@@ -9658,6 +9857,15 @@ query QueryMedicalProcedures($filter: MedicalProcedureFilter, $correlationId: St
       identifier
       thing
       feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
         id
         name
       }
@@ -9743,6 +9951,15 @@ query GetMedicalStudy($id: ID!, $correlationId: String) {
       id
       name
     }
+    links {
+      uri
+      linkType
+      excerpts
+    }
+    workflow {
+      id
+      name
+    }
     address {
       streetAddress
       city
@@ -9773,6 +9990,15 @@ query QueryMedicalStudies($filter: MedicalStudyFilter, $correlationId: String) {
       identifier
       thing
       feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
         id
         name
       }
@@ -9865,6 +10091,15 @@ query GetMedicalTest($id: ID!, $correlationId: String) {
       id
       name
     }
+    links {
+      uri
+      linkType
+      excerpts
+    }
+    workflow {
+      id
+      name
+    }
   }
 }
 """
@@ -9888,6 +10123,15 @@ query QueryMedicalTests($filter: MedicalTestFilter, $correlationId: String) {
       identifier
       thing
       feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
         id
         name
       }
@@ -9973,6 +10217,15 @@ query GetMedicalTherapy($id: ID!, $correlationId: String) {
       id
       name
     }
+    links {
+      uri
+      linkType
+      excerpts
+    }
+    workflow {
+      id
+      name
+    }
   }
 }
 """
@@ -9996,6 +10249,15 @@ query QueryMedicalTherapies($filter: MedicalTherapyFilter, $correlationId: Strin
       identifier
       thing
       feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
         id
         name
       }
@@ -10129,6 +10391,15 @@ query GetOrganization($id: ID!, $correlationId: String) {
       id
       name
     }
+    links {
+      uri
+      linkType
+      excerpts
+    }
+    workflow {
+      id
+      name
+    }
     address {
       streetAddress
       city
@@ -10137,6 +10408,9 @@ query GetOrganization($id: ID!, $correlationId: String) {
       postalCode
     }
     foundingDate
+    email
+    telephone
+    legalName
     industries
     revenue
     revenueCurrency
@@ -10168,6 +10442,15 @@ query QueryOrganizations($filter: OrganizationFilter, $correlationId: String) {
         id
         name
       }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
       address {
         streetAddress
         city
@@ -10176,6 +10459,9 @@ query QueryOrganizations($filter: OrganizationFilter, $correlationId: String) {
         postalCode
       }
       foundingDate
+      email
+      telephone
+      legalName
       industries
       revenue
       revenueCurrency
@@ -10276,6 +10562,15 @@ query GetPerson($id: ID!, $correlationId: String) {
       id
       name
     }
+    links {
+      uri
+      linkType
+      excerpts
+    }
+    workflow {
+      id
+      name
+    }
     address {
       streetAddress
       city
@@ -10314,6 +10609,15 @@ query QueryPersons($filter: PersonFilter, $correlationId: String) {
       identifier
       thing
       feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
         id
         name
       }
@@ -10427,6 +10731,15 @@ query GetPlace($id: ID!, $correlationId: String) {
       id
       name
     }
+    links {
+      uri
+      linkType
+      excerpts
+    }
+    workflow {
+      id
+      name
+    }
     address {
       streetAddress
       city
@@ -10434,6 +10747,9 @@ query GetPlace($id: ID!, $correlationId: String) {
       country
       postalCode
     }
+    telephone
+    openingHours
+    priceRange
   }
 }
 """
@@ -10460,6 +10776,15 @@ query QueryPlaces($filter: PlaceFilter, $correlationId: String) {
         id
         name
       }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
       address {
         streetAddress
         city
@@ -10467,6 +10792,9 @@ query QueryPlaces($filter: PlaceFilter, $correlationId: String) {
         country
         postalCode
       }
+      telephone
+      openingHours
+      priceRange
     }
   }
 }
@@ -10562,6 +10890,15 @@ query GetProduct($id: ID!, $correlationId: String) {
       id
       name
     }
+    links {
+      uri
+      linkType
+      excerpts
+    }
+    workflow {
+      id
+      name
+    }
     address {
       streetAddress
       city
@@ -10574,6 +10911,8 @@ query GetProduct($id: ID!, $correlationId: String) {
     brand
     upc
     sku
+    gtin
+    mpn
     releaseDate
     productionDate
   }
@@ -10602,6 +10941,15 @@ query QueryProducts($filter: ProductFilter, $correlationId: String) {
         id
         name
       }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
       address {
         streetAddress
         city
@@ -10614,6 +10962,8 @@ query QueryProducts($filter: ProductFilter, $correlationId: String) {
       brand
       upc
       sku
+      gtin
+      mpn
       releaseDate
       productionDate
     }
@@ -10909,6 +11259,15 @@ query GetRepo($id: ID!, $correlationId: String) {
       id
       name
     }
+    links {
+      uri
+      linkType
+      excerpts
+    }
+    workflow {
+      id
+      name
+    }
   }
 }
 """
@@ -10932,6 +11291,15 @@ query QueryRepos($filter: RepoFilter, $correlationId: String) {
       identifier
       thing
       feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
         id
         name
       }
@@ -11048,6 +11416,15 @@ query GetSoftware($id: ID!, $correlationId: String) {
       id
       name
     }
+    links {
+      uri
+      linkType
+      excerpts
+    }
+    workflow {
+      id
+      name
+    }
     releaseDate
     developer
   }
@@ -11073,6 +11450,15 @@ query QuerySoftwares($filter: SoftwareFilter, $correlationId: String) {
       identifier
       thing
       feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
         id
         name
       }

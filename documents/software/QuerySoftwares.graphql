@@ -19,6 +19,15 @@ query QuerySoftwares($filter: SoftwareFilter, $correlationId: String) {
         id
         name
       }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
       releaseDate
       developer
     }

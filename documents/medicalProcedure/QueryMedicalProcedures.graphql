@@ -19,6 +19,15 @@ query QueryMedicalProcedures($filter: MedicalProcedureFilter, $correlationId: St
         id
         name
       }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
     }
   }
 }

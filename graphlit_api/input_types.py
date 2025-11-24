@@ -544,6 +544,8 @@ class ProductInput(BaseModel):
     manufacturer: Optional[str] = None
     brand: Optional[str] = None
     model: Optional[str] = None
+    gtin: Optional[str] = None
+    mpn: Optional[str] = None
 
 
 class MedicalDrugClassInput(BaseModel):
@@ -827,6 +829,9 @@ class PlaceUpdateInput(BaseModel):
     location: Optional["PointInput"] = None
     boundary: Optional[str] = None
     address: Optional["AddressInput"] = None
+    telephone: Optional[str] = None
+    opening_hours: Optional[str] = Field(alias="openingHours", default=None)
+    price_range: Optional[str] = Field(alias="priceRange", default=None)
 
 
 class GoogleFeedPropertiesUpdateInput(BaseModel):
@@ -1337,6 +1342,8 @@ class ProductUpdateInput(BaseModel):
     manufacturer: Optional[str] = None
     brand: Optional[str] = None
     model: Optional[str] = None
+    gtin: Optional[str] = None
+    mpn: Optional[str] = None
 
 
 class MedicalTherapyFilter(BaseModel):
@@ -2400,6 +2407,9 @@ class OrganizationUpdateInput(BaseModel):
     boundary: Optional[str] = None
     address: Optional["AddressInput"] = None
     founding_date: Optional[Any] = Field(alias="foundingDate", default=None)
+    email: Optional[str] = None
+    telephone: Optional[str] = None
+    legal_name: Optional[str] = Field(alias="legalName", default=None)
     industries: Optional[List[Optional[str]]] = None
     revenue_currency: Optional[str] = Field(alias="revenueCurrency", default=None)
     revenue: Optional[Any] = None
@@ -3015,6 +3025,9 @@ class PlaceInput(BaseModel):
     location: Optional["PointInput"] = None
     boundary: Optional[str] = None
     address: Optional["AddressInput"] = None
+    telephone: Optional[str] = None
+    opening_hours: Optional[str] = Field(alias="openingHours", default=None)
+    price_range: Optional[str] = Field(alias="priceRange", default=None)
 
 
 class AzureBlobFeedPropertiesUpdateInput(BaseModel):
@@ -3333,6 +3346,9 @@ class OrganizationInput(BaseModel):
     boundary: Optional[str] = None
     address: Optional["AddressInput"] = None
     founding_date: Optional[Any] = Field(alias="foundingDate", default=None)
+    email: Optional[str] = None
+    telephone: Optional[str] = None
+    legal_name: Optional[str] = Field(alias="legalName", default=None)
     industries: Optional[List[Optional[str]]] = None
     revenue_currency: Optional[str] = Field(alias="revenueCurrency", default=None)
     revenue: Optional[Any] = None
@@ -3604,6 +3620,10 @@ class EventInput(BaseModel):
         alias="isAccessibleForFree", default=None
     )
     typical_age_range: Optional[str] = Field(alias="typicalAgeRange", default=None)
+    organizer: Optional[str] = None
+    performer: Optional[str] = None
+    sponsor: Optional[str] = None
+    event_status: Optional[str] = Field(alias="eventStatus", default=None)
 
 
 class GoogleImagePublishingPropertiesInput(BaseModel):
@@ -4034,11 +4054,16 @@ class EventUpdateInput(BaseModel):
         alias="isAccessibleForFree", default=None
     )
     typical_age_range: Optional[str] = Field(alias="typicalAgeRange", default=None)
+    organizer: Optional[str] = None
+    performer: Optional[str] = None
+    sponsor: Optional[str] = None
+    event_status: Optional[str] = Field(alias="eventStatus", default=None)
 
 
 class LinkReferenceInput(BaseModel):
     uri: Optional[Any] = None
     link_type: Optional[LinkTypes] = Field(alias="linkType", default=None)
+    excerpts: Optional[str] = None
 
 
 class GoogleDriveFeedPropertiesUpdateInput(BaseModel):

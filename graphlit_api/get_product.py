@@ -6,7 +6,7 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import EntityState
+from .enums import EntityState, LinkTypes
 
 
 class GetProduct(BaseModel):
@@ -26,12 +26,16 @@ class GetProductProduct(BaseModel):
     identifier: Optional[str]
     thing: Optional[str]
     feeds: Optional[List[Optional["GetProductProductFeeds"]]]
+    links: Optional[List[Optional["GetProductProductLinks"]]]
+    workflow: Optional["GetProductProductWorkflow"]
     address: Optional["GetProductProductAddress"]
     manufacturer: Optional[str]
     model: Optional[str]
     brand: Optional[str]
     upc: Optional[str]
     sku: Optional[str]
+    gtin: Optional[str]
+    mpn: Optional[str]
     release_date: Optional[Any] = Field(alias="releaseDate")
     production_date: Optional[Any] = Field(alias="productionDate")
 
@@ -41,6 +45,17 @@ class GetProductProductOwner(BaseModel):
 
 
 class GetProductProductFeeds(BaseModel):
+    id: str
+    name: str
+
+
+class GetProductProductLinks(BaseModel):
+    uri: Optional[Any]
+    link_type: Optional[LinkTypes] = Field(alias="linkType")
+    excerpts: Optional[str]
+
+
+class GetProductProductWorkflow(BaseModel):
     id: str
     name: str
 

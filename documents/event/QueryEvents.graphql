@@ -19,6 +19,15 @@ query QueryEvents($filter: EventFilter, $correlationId: String) {
         id
         name
       }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
       address {
         streetAddress
         city
@@ -36,6 +45,10 @@ query QueryEvents($filter: EventFilter, $correlationId: String) {
       priceCurrency
       isAccessibleForFree
       typicalAgeRange
+      organizer
+      performer
+      sponsor
+      eventStatus
     }
   }
 }

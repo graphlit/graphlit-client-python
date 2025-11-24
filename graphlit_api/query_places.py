@@ -6,7 +6,7 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import EntityState
+from .enums import EntityState, LinkTypes
 
 
 class QueryPlaces(BaseModel):
@@ -31,7 +31,12 @@ class QueryPlacesPlacesResults(BaseModel):
     identifier: Optional[str]
     thing: Optional[str]
     feeds: Optional[List[Optional["QueryPlacesPlacesResultsFeeds"]]]
+    links: Optional[List[Optional["QueryPlacesPlacesResultsLinks"]]]
+    workflow: Optional["QueryPlacesPlacesResultsWorkflow"]
     address: Optional["QueryPlacesPlacesResultsAddress"]
+    telephone: Optional[str]
+    opening_hours: Optional[str] = Field(alias="openingHours")
+    price_range: Optional[str] = Field(alias="priceRange")
 
 
 class QueryPlacesPlacesResultsOwner(BaseModel):
@@ -39,6 +44,17 @@ class QueryPlacesPlacesResultsOwner(BaseModel):
 
 
 class QueryPlacesPlacesResultsFeeds(BaseModel):
+    id: str
+    name: str
+
+
+class QueryPlacesPlacesResultsLinks(BaseModel):
+    uri: Optional[Any]
+    link_type: Optional[LinkTypes] = Field(alias="linkType")
+    excerpts: Optional[str]
+
+
+class QueryPlacesPlacesResultsWorkflow(BaseModel):
     id: str
     name: str
 

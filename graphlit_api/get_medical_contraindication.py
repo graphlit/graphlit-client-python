@@ -6,7 +6,7 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import EntityState
+from .enums import EntityState, LinkTypes
 
 
 class GetMedicalContraindication(BaseModel):
@@ -30,6 +30,10 @@ class GetMedicalContraindicationMedicalContraindication(BaseModel):
     feeds: Optional[
         List[Optional["GetMedicalContraindicationMedicalContraindicationFeeds"]]
     ]
+    links: Optional[
+        List[Optional["GetMedicalContraindicationMedicalContraindicationLinks"]]
+    ]
+    workflow: Optional["GetMedicalContraindicationMedicalContraindicationWorkflow"]
 
 
 class GetMedicalContraindicationMedicalContraindicationOwner(BaseModel):
@@ -37,6 +41,17 @@ class GetMedicalContraindicationMedicalContraindicationOwner(BaseModel):
 
 
 class GetMedicalContraindicationMedicalContraindicationFeeds(BaseModel):
+    id: str
+    name: str
+
+
+class GetMedicalContraindicationMedicalContraindicationLinks(BaseModel):
+    uri: Optional[Any]
+    link_type: Optional[LinkTypes] = Field(alias="linkType")
+    excerpts: Optional[str]
+
+
+class GetMedicalContraindicationMedicalContraindicationWorkflow(BaseModel):
     id: str
     name: str
 

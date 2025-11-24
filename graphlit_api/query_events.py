@@ -6,7 +6,7 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import EntityState
+from .enums import EntityState, LinkTypes
 
 
 class QueryEvents(BaseModel):
@@ -31,6 +31,8 @@ class QueryEventsEventsResults(BaseModel):
     identifier: Optional[str]
     thing: Optional[str]
     feeds: Optional[List[Optional["QueryEventsEventsResultsFeeds"]]]
+    links: Optional[List[Optional["QueryEventsEventsResultsLinks"]]]
+    workflow: Optional["QueryEventsEventsResultsWorkflow"]
     address: Optional["QueryEventsEventsResultsAddress"]
     start_date: Optional[Any] = Field(alias="startDate")
     end_date: Optional[Any] = Field(alias="endDate")
@@ -42,6 +44,10 @@ class QueryEventsEventsResults(BaseModel):
     price_currency: Optional[str] = Field(alias="priceCurrency")
     is_accessible_for_free: Optional[bool] = Field(alias="isAccessibleForFree")
     typical_age_range: Optional[str] = Field(alias="typicalAgeRange")
+    organizer: Optional[str]
+    performer: Optional[str]
+    sponsor: Optional[str]
+    event_status: Optional[str] = Field(alias="eventStatus")
 
 
 class QueryEventsEventsResultsOwner(BaseModel):
@@ -49,6 +55,17 @@ class QueryEventsEventsResultsOwner(BaseModel):
 
 
 class QueryEventsEventsResultsFeeds(BaseModel):
+    id: str
+    name: str
+
+
+class QueryEventsEventsResultsLinks(BaseModel):
+    uri: Optional[Any]
+    link_type: Optional[LinkTypes] = Field(alias="linkType")
+    excerpts: Optional[str]
+
+
+class QueryEventsEventsResultsWorkflow(BaseModel):
     id: str
     name: str
 

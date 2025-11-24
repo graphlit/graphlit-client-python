@@ -19,6 +19,15 @@ query QueryMedicalGuidelines($filter: MedicalGuidelineFilter, $correlationId: St
         id
         name
       }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
     }
   }
 }

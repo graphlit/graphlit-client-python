@@ -357,6 +357,7 @@ query GetContent($id: ID!, $correlationId: String) {
     links {
       uri
       linkType
+      excerpts
     }
     observations {
       id

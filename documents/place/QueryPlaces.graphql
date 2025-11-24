@@ -19,6 +19,15 @@ query QueryPlaces($filter: PlaceFilter, $correlationId: String) {
         id
         name
       }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
       address {
         streetAddress
         city
@@ -26,6 +35,9 @@ query QueryPlaces($filter: PlaceFilter, $correlationId: String) {
         country
         postalCode
       }
+      telephone
+      openingHours
+      priceRange
     }
   }
 }

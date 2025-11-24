@@ -474,6 +474,7 @@ class GetContentContentCollections(BaseModel):
 class GetContentContentLinks(BaseModel):
     uri: Optional[Any]
     link_type: Optional[LinkTypes] = Field(alias="linkType")
+    excerpts: Optional[str]
 
 
 class GetContentContentObservations(BaseModel):
