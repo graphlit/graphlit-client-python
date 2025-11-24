@@ -1233,6 +1233,12 @@ class InvestmentFundInput(BaseModel):
     boundary: Optional[str] = None
     amount_currency: Optional[str] = Field(alias="amountCurrency", default=None)
     amount: Optional[Any] = None
+    fund_type: Optional[str] = Field(alias="fundType", default=None)
+    vintage: Optional[int] = None
+    target_size: Optional[Any] = Field(alias="targetSize", default=None)
+    target_size_currency: Optional[str] = Field(
+        alias="targetSizeCurrency", default=None
+    )
 
 
 class OpenAIVideoPublishingPropertiesInput(BaseModel):
@@ -1407,6 +1413,12 @@ class InvestmentFundUpdateInput(BaseModel):
     boundary: Optional[str] = None
     amount_currency: Optional[str] = Field(alias="amountCurrency", default=None)
     amount: Optional[Any] = None
+    fund_type: Optional[str] = Field(alias="fundType", default=None)
+    vintage: Optional[int] = None
+    target_size: Optional[Any] = Field(alias="targetSize", default=None)
+    target_size_currency: Optional[str] = Field(
+        alias="targetSizeCurrency", default=None
+    )
 
 
 class ExtractionWorkflowStageInput(BaseModel):
@@ -2832,6 +2844,25 @@ class InvestmentInput(BaseModel):
     boundary: Optional[str] = None
     amount_currency: Optional[str] = Field(alias="amountCurrency", default=None)
     amount: Optional[Any] = None
+    status: Optional[str] = None
+    stage: Optional[str] = None
+    investment_date: Optional[Any] = Field(alias="investmentDate", default=None)
+    round_size: Optional[Any] = Field(alias="roundSize", default=None)
+    round_size_currency: Optional[str] = Field(alias="roundSizeCurrency", default=None)
+    post_valuation: Optional[Any] = Field(alias="postValuation", default=None)
+    post_valuation_currency: Optional[str] = Field(
+        alias="postValuationCurrency", default=None
+    )
+    shares_owned: Optional[Any] = Field(alias="sharesOwned", default=None)
+    vehicle: Optional[str] = None
+    entry_price_per_share: Optional[Any] = Field(
+        alias="entryPricePerShare", default=None
+    )
+    current_price_per_share: Optional[Any] = Field(
+        alias="currentPricePerShare", default=None
+    )
+    discount_percent: Optional[Any] = Field(alias="discountPercent", default=None)
+    pro_rata_rights: Optional[bool] = Field(alias="proRataRights", default=None)
 
 
 class TwitterIntegrationPropertiesInput(BaseModel):
@@ -4640,6 +4671,25 @@ class InvestmentUpdateInput(BaseModel):
     boundary: Optional[str] = None
     amount_currency: Optional[str] = Field(alias="amountCurrency", default=None)
     amount: Optional[Any] = None
+    status: Optional[str] = None
+    stage: Optional[str] = None
+    investment_date: Optional[Any] = Field(alias="investmentDate", default=None)
+    round_size: Optional[Any] = Field(alias="roundSize", default=None)
+    round_size_currency: Optional[str] = Field(alias="roundSizeCurrency", default=None)
+    post_valuation: Optional[Any] = Field(alias="postValuation", default=None)
+    post_valuation_currency: Optional[str] = Field(
+        alias="postValuationCurrency", default=None
+    )
+    shares_owned: Optional[Any] = Field(alias="sharesOwned", default=None)
+    vehicle: Optional[str] = None
+    entry_price_per_share: Optional[Any] = Field(
+        alias="entryPricePerShare", default=None
+    )
+    current_price_per_share: Optional[Any] = Field(
+        alias="currentPricePerShare", default=None
+    )
+    discount_percent: Optional[Any] = Field(alias="discountPercent", default=None)
+    pro_rata_rights: Optional[bool] = Field(alias="proRataRights", default=None)
 
 
 class OrganizationFilter(BaseModel):
