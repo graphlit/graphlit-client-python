@@ -65,27 +65,35 @@ query GetPerson($id: ID!, $correlationId: String) {
     education
     worksFor {
       id
+      name
     }
     affiliation {
       id
+      name
     }
     memberOf {
       id
+      name
     }
     alumniOf {
       id
+      name
     }
     birthPlace {
       id
+      name
     }
     deathPlace {
       id
+      name
     }
     homeLocation {
       id
+      name
     }
     workLocation {
       id
+      name
     }
   }
 }

@@ -95,10 +95,12 @@ class GetInvestmentInvestmentH3(BaseModel):
 
 class GetInvestmentInvestmentInvestor(BaseModel):
     id: str
+    name: str
 
 
 class GetInvestmentInvestmentOrganization(BaseModel):
     id: str
+    name: str
 
 
 GetInvestment.model_rebuild()

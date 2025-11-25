@@ -65,9 +65,11 @@ query GetInvestment($id: ID!, $correlationId: String) {
     proRataRights
     investor {
       id
+      name
     }
     organization {
       id
+      name
     }
   }
 }

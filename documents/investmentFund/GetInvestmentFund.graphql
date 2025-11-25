@@ -56,15 +56,19 @@ query GetInvestmentFund($id: ID!, $correlationId: String) {
     targetSizeCurrency
     organizations {
       id
+      name
     }
     investments {
       id
+      name
     }
     parentFund {
       id
+      name
     }
     childFunds {
       id
+      name
     }
   }
 }

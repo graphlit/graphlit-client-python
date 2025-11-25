@@ -113,34 +113,42 @@ class GetPersonPersonAddress(BaseModel):
 
 class GetPersonPersonWorksFor(BaseModel):
     id: str
+    name: str
 
 
 class GetPersonPersonAffiliation(BaseModel):
     id: str
+    name: str
 
 
 class GetPersonPersonMemberOf(BaseModel):
     id: str
+    name: str
 
 
 class GetPersonPersonAlumniOf(BaseModel):
     id: str
+    name: str
 
 
 class GetPersonPersonBirthPlace(BaseModel):
     id: str
+    name: str
 
 
 class GetPersonPersonDeathPlace(BaseModel):
     id: str
+    name: str
 
 
 class GetPersonPersonHomeLocation(BaseModel):
     id: str
+    name: str
 
 
 class GetPersonPersonWorkLocation(BaseModel):
     id: str
+    name: str
 
 
 GetPerson.model_rebuild()

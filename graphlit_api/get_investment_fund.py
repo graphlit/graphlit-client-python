@@ -96,18 +96,22 @@ class GetInvestmentFundInvestmentFundH3(BaseModel):
 
 class GetInvestmentFundInvestmentFundOrganizations(BaseModel):
     id: str
+    name: str
 
 
 class GetInvestmentFundInvestmentFundInvestments(BaseModel):
     id: str
+    name: str
 
 
 class GetInvestmentFundInvestmentFundParentFund(BaseModel):
     id: str
+    name: str
 
 
 class GetInvestmentFundInvestmentFundChildFunds(BaseModel):
     id: str
+    name: str
 
 
 GetInvestmentFund.model_rebuild()

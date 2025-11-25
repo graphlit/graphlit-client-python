@@ -8684,9 +8684,11 @@ query GetInvestment($id: ID!, $correlationId: String) {
     proRataRights
     investor {
       id
+      name
     }
     organization {
       id
+      name
     }
   }
 }
@@ -8871,15 +8873,19 @@ query GetInvestmentFund($id: ID!, $correlationId: String) {
     targetSizeCurrency
     organizations {
       id
+      name
     }
     investments {
       id
+      name
     }
     parentFund {
       id
+      name
     }
     childFunds {
       id
+      name
     }
   }
 }
@@ -11102,30 +11108,39 @@ query GetOrganization($id: ID!, $correlationId: String) {
     investmentCurrency
     founders {
       id
+      name
     }
     employees {
       id
+      name
     }
     members {
       id
+      name
     }
     parentOrganization {
       id
+      name
     }
     memberOf {
       id
+      name
     }
     subOrganizations {
       id
+      name
     }
     locations {
       id
+      name
     }
     investmentsReceived {
       id
+      name
     }
     investorFunds {
       id
+      name
     }
   }
 }
@@ -11343,27 +11358,35 @@ query GetPerson($id: ID!, $correlationId: String) {
     education
     worksFor {
       id
+      name
     }
     affiliation {
       id
+      name
     }
     memberOf {
       id
+      name
     }
     alumniOf {
       id
+      name
     }
     birthPlace {
       id
+      name
     }
     deathPlace {
       id
+      name
     }
     homeLocation {
       id
+      name
     }
     workLocation {
       id
+      name
     }
   }
 }

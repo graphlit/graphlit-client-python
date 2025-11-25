@@ -115,38 +115,47 @@ class GetOrganizationOrganizationAddress(BaseModel):
 
 class GetOrganizationOrganizationFounders(BaseModel):
     id: str
+    name: str
 
 
 class GetOrganizationOrganizationEmployees(BaseModel):
     id: str
+    name: str
 
 
 class GetOrganizationOrganizationMembers(BaseModel):
     id: str
+    name: str
 
 
 class GetOrganizationOrganizationParentOrganization(BaseModel):
     id: str
+    name: str
 
 
 class GetOrganizationOrganizationMemberOf(BaseModel):
     id: str
+    name: str
 
 
 class GetOrganizationOrganizationSubOrganizations(BaseModel):
     id: str
+    name: str
 
 
 class GetOrganizationOrganizationLocations(BaseModel):
     id: str
+    name: str
 
 
 class GetOrganizationOrganizationInvestmentsReceived(BaseModel):
     id: str
+    name: str
 
 
 class GetOrganizationOrganizationInvestorFunds(BaseModel):
     id: str
+    name: str
 
 
 GetOrganization.model_rebuild()
