@@ -6,7 +6,7 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import EntityState, LinkTypes
+from .enums import LinkTypes
 
 
 class QueryRepos(BaseModel):
@@ -18,13 +18,6 @@ class QueryReposRepos(BaseModel):
 
 
 class QueryReposReposResults(BaseModel):
-    id: str
-    name: str
-    creation_date: Any = Field(alias="creationDate")
-    modified_date: Optional[Any] = Field(alias="modifiedDate")
-    relevance: Optional[float]
-    owner: "QueryReposReposResultsOwner"
-    state: EntityState
     alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     uri: Optional[Any]
     description: Optional[str]
@@ -33,10 +26,6 @@ class QueryReposReposResults(BaseModel):
     feeds: Optional[List[Optional["QueryReposReposResultsFeeds"]]]
     links: Optional[List[Optional["QueryReposReposResultsLinks"]]]
     workflow: Optional["QueryReposReposResultsWorkflow"]
-
-
-class QueryReposReposResultsOwner(BaseModel):
-    id: str
 
 
 class QueryReposReposResultsFeeds(BaseModel):

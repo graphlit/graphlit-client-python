@@ -7394,6 +7394,28 @@ query GetEvent($id: ID!, $correlationId: String) {
       id
       name
     }
+    location {
+      latitude
+      longitude
+    }
+    h3 {
+      h3r0
+      h3r1
+      h3r2
+      h3r3
+      h3r4
+      h3r5
+      h3r6
+      h3r7
+      h3r8
+      h3r9
+      h3r10
+      h3r11
+      h3r12
+      h3r13
+      h3r14
+      h3r15
+    }
     address {
       streetAddress
       city
@@ -7449,6 +7471,28 @@ query QueryEvents($filter: EventFilter, $correlationId: String) {
       workflow {
         id
         name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
       }
       address {
         streetAddress
@@ -8601,6 +8645,49 @@ query GetInvestment($id: ID!, $correlationId: String) {
       id
       name
     }
+    location {
+      latitude
+      longitude
+    }
+    h3 {
+      h3r0
+      h3r1
+      h3r2
+      h3r3
+      h3r4
+      h3r5
+      h3r6
+      h3r7
+      h3r8
+      h3r9
+      h3r10
+      h3r11
+      h3r12
+      h3r13
+      h3r14
+      h3r15
+    }
+    amount
+    amountCurrency
+    status
+    stage
+    investmentDate
+    roundSize
+    roundSizeCurrency
+    postValuation
+    postValuationCurrency
+    sharesOwned
+    vehicle
+    entryPricePerShare
+    currentPricePerShare
+    discountPercent
+    proRataRights
+    investor {
+      id
+    }
+    organization {
+      id
+    }
   }
 }
 """
@@ -8636,6 +8723,33 @@ query QueryInvestments($filter: InvestmentFilter, $correlationId: String) {
         id
         name
       }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+      amount
+      amountCurrency
+      status
+      stage
+      investmentDate
     }
   }
 }
@@ -8727,6 +8841,46 @@ query GetInvestmentFund($id: ID!, $correlationId: String) {
       id
       name
     }
+    location {
+      latitude
+      longitude
+    }
+    h3 {
+      h3r0
+      h3r1
+      h3r2
+      h3r3
+      h3r4
+      h3r5
+      h3r6
+      h3r7
+      h3r8
+      h3r9
+      h3r10
+      h3r11
+      h3r12
+      h3r13
+      h3r14
+      h3r15
+    }
+    amount
+    amountCurrency
+    fundType
+    vintage
+    targetSize
+    targetSizeCurrency
+    organizations {
+      id
+    }
+    investments {
+      id
+    }
+    parentFund {
+      id
+    }
+    childFunds {
+      id
+    }
   }
 }
 """
@@ -8762,6 +8916,30 @@ query QueryInvestmentFunds($filter: InvestmentFundFilter, $correlationId: String
         id
         name
       }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+      amount
+      amountCurrency
     }
   }
 }
@@ -8952,6 +9130,28 @@ query GetMedicalCondition($id: ID!, $correlationId: String) {
       id
       name
     }
+    location {
+      latitude
+      longitude
+    }
+    h3 {
+      h3r0
+      h3r1
+      h3r2
+      h3r3
+      h3r4
+      h3r5
+      h3r6
+      h3r7
+      h3r8
+      h3r9
+      h3r10
+      h3r11
+      h3r12
+      h3r13
+      h3r14
+      h3r15
+    }
   }
 }
 """
@@ -8986,6 +9186,28 @@ query QueryMedicalConditions($filter: MedicalConditionFilter, $correlationId: St
       workflow {
         id
         name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
       }
     }
   }
@@ -9078,6 +9300,28 @@ query GetMedicalContraindication($id: ID!, $correlationId: String) {
       id
       name
     }
+    location {
+      latitude
+      longitude
+    }
+    h3 {
+      h3r0
+      h3r1
+      h3r2
+      h3r3
+      h3r4
+      h3r5
+      h3r6
+      h3r7
+      h3r8
+      h3r9
+      h3r10
+      h3r11
+      h3r12
+      h3r13
+      h3r14
+      h3r15
+    }
   }
 }
 """
@@ -9112,6 +9356,28 @@ query QueryMedicalContraindications($filter: MedicalContraindicationFilter, $cor
       workflow {
         id
         name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
       }
     }
   }
@@ -9204,6 +9470,28 @@ query GetMedicalDevice($id: ID!, $correlationId: String) {
       id
       name
     }
+    location {
+      latitude
+      longitude
+    }
+    h3 {
+      h3r0
+      h3r1
+      h3r2
+      h3r3
+      h3r4
+      h3r5
+      h3r6
+      h3r7
+      h3r8
+      h3r9
+      h3r10
+      h3r11
+      h3r12
+      h3r13
+      h3r14
+      h3r15
+    }
   }
 }
 """
@@ -9238,6 +9526,28 @@ query QueryMedicalDevices($filter: MedicalDeviceFilter, $correlationId: String) 
       workflow {
         id
         name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
       }
     }
   }
@@ -9330,6 +9640,28 @@ query GetMedicalDrug($id: ID!, $correlationId: String) {
       id
       name
     }
+    location {
+      latitude
+      longitude
+    }
+    h3 {
+      h3r0
+      h3r1
+      h3r2
+      h3r3
+      h3r4
+      h3r5
+      h3r6
+      h3r7
+      h3r8
+      h3r9
+      h3r10
+      h3r11
+      h3r12
+      h3r13
+      h3r14
+      h3r15
+    }
   }
 }
 """
@@ -9364,6 +9696,28 @@ query QueryMedicalDrugs($filter: MedicalDrugFilter, $correlationId: String) {
       workflow {
         id
         name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
       }
     }
   }
@@ -9456,6 +9810,28 @@ query GetMedicalDrugClass($id: ID!, $correlationId: String) {
       id
       name
     }
+    location {
+      latitude
+      longitude
+    }
+    h3 {
+      h3r0
+      h3r1
+      h3r2
+      h3r3
+      h3r4
+      h3r5
+      h3r6
+      h3r7
+      h3r8
+      h3r9
+      h3r10
+      h3r11
+      h3r12
+      h3r13
+      h3r14
+      h3r15
+    }
   }
 }
 """
@@ -9490,6 +9866,28 @@ query QueryMedicalDrugClasses($filter: MedicalDrugClassFilter, $correlationId: S
       workflow {
         id
         name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
       }
     }
   }
@@ -9582,6 +9980,28 @@ query GetMedicalGuideline($id: ID!, $correlationId: String) {
       id
       name
     }
+    location {
+      latitude
+      longitude
+    }
+    h3 {
+      h3r0
+      h3r1
+      h3r2
+      h3r3
+      h3r4
+      h3r5
+      h3r6
+      h3r7
+      h3r8
+      h3r9
+      h3r10
+      h3r11
+      h3r12
+      h3r13
+      h3r14
+      h3r15
+    }
   }
 }
 """
@@ -9616,6 +10036,28 @@ query QueryMedicalGuidelines($filter: MedicalGuidelineFilter, $correlationId: St
       workflow {
         id
         name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
       }
     }
   }
@@ -9708,6 +10150,28 @@ query GetMedicalIndication($id: ID!, $correlationId: String) {
       id
       name
     }
+    location {
+      latitude
+      longitude
+    }
+    h3 {
+      h3r0
+      h3r1
+      h3r2
+      h3r3
+      h3r4
+      h3r5
+      h3r6
+      h3r7
+      h3r8
+      h3r9
+      h3r10
+      h3r11
+      h3r12
+      h3r13
+      h3r14
+      h3r15
+    }
   }
 }
 """
@@ -9742,6 +10206,28 @@ query QueryMedicalIndications($filter: MedicalIndicationFilter, $correlationId: 
       workflow {
         id
         name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
       }
     }
   }
@@ -9834,6 +10320,28 @@ query GetMedicalProcedure($id: ID!, $correlationId: String) {
       id
       name
     }
+    location {
+      latitude
+      longitude
+    }
+    h3 {
+      h3r0
+      h3r1
+      h3r2
+      h3r3
+      h3r4
+      h3r5
+      h3r6
+      h3r7
+      h3r8
+      h3r9
+      h3r10
+      h3r11
+      h3r12
+      h3r13
+      h3r14
+      h3r15
+    }
   }
 }
 """
@@ -9868,6 +10376,28 @@ query QueryMedicalProcedures($filter: MedicalProcedureFilter, $correlationId: St
       workflow {
         id
         name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
       }
     }
   }
@@ -9960,6 +10490,28 @@ query GetMedicalStudy($id: ID!, $correlationId: String) {
       id
       name
     }
+    location {
+      latitude
+      longitude
+    }
+    h3 {
+      h3r0
+      h3r1
+      h3r2
+      h3r3
+      h3r4
+      h3r5
+      h3r6
+      h3r7
+      h3r8
+      h3r9
+      h3r10
+      h3r11
+      h3r12
+      h3r13
+      h3r14
+      h3r15
+    }
     address {
       streetAddress
       city
@@ -10001,6 +10553,28 @@ query QueryMedicalStudies($filter: MedicalStudyFilter, $correlationId: String) {
       workflow {
         id
         name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
       }
       address {
         streetAddress
@@ -10100,6 +10674,28 @@ query GetMedicalTest($id: ID!, $correlationId: String) {
       id
       name
     }
+    location {
+      latitude
+      longitude
+    }
+    h3 {
+      h3r0
+      h3r1
+      h3r2
+      h3r3
+      h3r4
+      h3r5
+      h3r6
+      h3r7
+      h3r8
+      h3r9
+      h3r10
+      h3r11
+      h3r12
+      h3r13
+      h3r14
+      h3r15
+    }
   }
 }
 """
@@ -10134,6 +10730,28 @@ query QueryMedicalTests($filter: MedicalTestFilter, $correlationId: String) {
       workflow {
         id
         name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
       }
     }
   }
@@ -10226,6 +10844,28 @@ query GetMedicalTherapy($id: ID!, $correlationId: String) {
       id
       name
     }
+    location {
+      latitude
+      longitude
+    }
+    h3 {
+      h3r0
+      h3r1
+      h3r2
+      h3r3
+      h3r4
+      h3r5
+      h3r6
+      h3r7
+      h3r8
+      h3r9
+      h3r10
+      h3r11
+      h3r12
+      h3r13
+      h3r14
+      h3r15
+    }
   }
 }
 """
@@ -10260,6 +10900,28 @@ query QueryMedicalTherapies($filter: MedicalTherapyFilter, $correlationId: Strin
       workflow {
         id
         name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
       }
     }
   }
@@ -10400,6 +11062,28 @@ query GetOrganization($id: ID!, $correlationId: String) {
       id
       name
     }
+    location {
+      latitude
+      longitude
+    }
+    h3 {
+      h3r0
+      h3r1
+      h3r2
+      h3r3
+      h3r4
+      h3r5
+      h3r6
+      h3r7
+      h3r8
+      h3r9
+      h3r10
+      h3r11
+      h3r12
+      h3r13
+      h3r14
+      h3r15
+    }
     address {
       streetAddress
       city
@@ -10416,6 +11100,33 @@ query GetOrganization($id: ID!, $correlationId: String) {
     revenueCurrency
     investment
     investmentCurrency
+    founders {
+      id
+    }
+    employees {
+      id
+    }
+    members {
+      id
+    }
+    parentOrganization {
+      id
+    }
+    memberOf {
+      id
+    }
+    subOrganizations {
+      id
+    }
+    locations {
+      id
+    }
+    investmentsReceived {
+      id
+    }
+    investorFunds {
+      id
+    }
   }
 }
 """
@@ -10450,6 +11161,28 @@ query QueryOrganizations($filter: OrganizationFilter, $correlationId: String) {
       workflow {
         id
         name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
       }
       address {
         streetAddress
@@ -10571,6 +11304,28 @@ query GetPerson($id: ID!, $correlationId: String) {
       id
       name
     }
+    location {
+      latitude
+      longitude
+    }
+    h3 {
+      h3r0
+      h3r1
+      h3r2
+      h3r3
+      h3r4
+      h3r5
+      h3r6
+      h3r7
+      h3r8
+      h3r9
+      h3r10
+      h3r11
+      h3r12
+      h3r13
+      h3r14
+      h3r15
+    }
     address {
       streetAddress
       city
@@ -10586,6 +11341,30 @@ query GetPerson($id: ID!, $correlationId: String) {
     title
     occupation
     education
+    worksFor {
+      id
+    }
+    affiliation {
+      id
+    }
+    memberOf {
+      id
+    }
+    alumniOf {
+      id
+    }
+    birthPlace {
+      id
+    }
+    deathPlace {
+      id
+    }
+    homeLocation {
+      id
+    }
+    workLocation {
+      id
+    }
   }
 }
 """
@@ -10620,6 +11399,28 @@ query QueryPersons($filter: PersonFilter, $correlationId: String) {
       workflow {
         id
         name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
       }
       address {
         streetAddress
@@ -10740,6 +11541,28 @@ query GetPlace($id: ID!, $correlationId: String) {
       id
       name
     }
+    location {
+      latitude
+      longitude
+    }
+    h3 {
+      h3r0
+      h3r1
+      h3r2
+      h3r3
+      h3r4
+      h3r5
+      h3r6
+      h3r7
+      h3r8
+      h3r9
+      h3r10
+      h3r11
+      h3r12
+      h3r13
+      h3r14
+      h3r15
+    }
     address {
       streetAddress
       city
@@ -10784,6 +11607,28 @@ query QueryPlaces($filter: PlaceFilter, $correlationId: String) {
       workflow {
         id
         name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
       }
       address {
         streetAddress
@@ -10899,6 +11744,28 @@ query GetProduct($id: ID!, $correlationId: String) {
       id
       name
     }
+    location {
+      latitude
+      longitude
+    }
+    h3 {
+      h3r0
+      h3r1
+      h3r2
+      h3r3
+      h3r4
+      h3r5
+      h3r6
+      h3r7
+      h3r8
+      h3r9
+      h3r10
+      h3r11
+      h3r12
+      h3r13
+      h3r14
+      h3r15
+    }
     address {
       streetAddress
       city
@@ -10949,6 +11816,28 @@ query QueryProducts($filter: ProductFilter, $correlationId: String) {
       workflow {
         id
         name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
       }
       address {
         streetAddress
@@ -11242,14 +12131,6 @@ mutation DeleteRepos($ids: [ID!]!, $isSynchronous: Boolean) {
 GET_REPO_GQL = """
 query GetRepo($id: ID!, $correlationId: String) {
   repo(id: $id, correlationId: $correlationId) {
-    id
-    name
-    creationDate
-    modifiedDate
-    owner {
-      id
-    }
-    state
     alternateNames
     uri
     description
@@ -11276,15 +12157,6 @@ QUERY_REPOS_GQL = """
 query QueryRepos($filter: RepoFilter, $correlationId: String) {
   repos(filter: $filter, correlationId: $correlationId) {
     results {
-      id
-      name
-      creationDate
-      modifiedDate
-      relevance
-      owner {
-        id
-      }
-      state
       alternateNames
       uri
       description
@@ -11399,14 +12271,8 @@ mutation DeleteSoftwares($ids: [ID!]!, $isSynchronous: Boolean) {
 GET_SOFTWARE_GQL = """
 query GetSoftware($id: ID!, $correlationId: String) {
   software(id: $id, correlationId: $correlationId) {
-    id
-    name
-    creationDate
-    modifiedDate
-    owner {
-      id
-    }
-    state
+    releaseDate
+    developer
     alternateNames
     uri
     description
@@ -11425,8 +12291,6 @@ query GetSoftware($id: ID!, $correlationId: String) {
       id
       name
     }
-    releaseDate
-    developer
   }
 }
 """
@@ -11435,15 +12299,8 @@ QUERY_SOFTWARES_GQL = """
 query QuerySoftwares($filter: SoftwareFilter, $correlationId: String) {
   softwares(filter: $filter, correlationId: $correlationId) {
     results {
-      id
-      name
-      creationDate
-      modifiedDate
-      relevance
-      owner {
-        id
-      }
-      state
+      releaseDate
+      developer
       alternateNames
       uri
       description
@@ -11462,8 +12319,6 @@ query QuerySoftwares($filter: SoftwareFilter, $correlationId: String) {
         id
         name
       }
-      releaseDate
-      developer
     }
   }
 }

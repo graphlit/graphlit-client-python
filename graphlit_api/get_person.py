@@ -28,6 +28,8 @@ class GetPersonPerson(BaseModel):
     feeds: Optional[List[Optional["GetPersonPersonFeeds"]]]
     links: Optional[List[Optional["GetPersonPersonLinks"]]]
     workflow: Optional["GetPersonPersonWorkflow"]
+    location: Optional["GetPersonPersonLocation"]
+    h_3: Optional["GetPersonPersonH3"] = Field(alias="h3")
     address: Optional["GetPersonPersonAddress"]
     email: Optional[str]
     given_name: Optional[str] = Field(alias="givenName")
@@ -37,6 +39,24 @@ class GetPersonPerson(BaseModel):
     title: Optional[str]
     occupation: Optional[str]
     education: Optional[str]
+    works_for: Optional[List[Optional["GetPersonPersonWorksFor"]]] = Field(
+        alias="worksFor"
+    )
+    affiliation: Optional[List[Optional["GetPersonPersonAffiliation"]]]
+    member_of: Optional[List[Optional["GetPersonPersonMemberOf"]]] = Field(
+        alias="memberOf"
+    )
+    alumni_of: Optional[List[Optional["GetPersonPersonAlumniOf"]]] = Field(
+        alias="alumniOf"
+    )
+    birth_place: Optional["GetPersonPersonBirthPlace"] = Field(alias="birthPlace")
+    death_place: Optional["GetPersonPersonDeathPlace"] = Field(alias="deathPlace")
+    home_location: Optional[List[Optional["GetPersonPersonHomeLocation"]]] = Field(
+        alias="homeLocation"
+    )
+    work_location: Optional[List[Optional["GetPersonPersonWorkLocation"]]] = Field(
+        alias="workLocation"
+    )
 
 
 class GetPersonPersonOwner(BaseModel):
@@ -59,12 +79,68 @@ class GetPersonPersonWorkflow(BaseModel):
     name: str
 
 
+class GetPersonPersonLocation(BaseModel):
+    latitude: Optional[float]
+    longitude: Optional[float]
+
+
+class GetPersonPersonH3(BaseModel):
+    h_3_r_0: Optional[str] = Field(alias="h3r0")
+    h_3_r_1: Optional[str] = Field(alias="h3r1")
+    h_3_r_2: Optional[str] = Field(alias="h3r2")
+    h_3_r_3: Optional[str] = Field(alias="h3r3")
+    h_3_r_4: Optional[str] = Field(alias="h3r4")
+    h_3_r_5: Optional[str] = Field(alias="h3r5")
+    h_3_r_6: Optional[str] = Field(alias="h3r6")
+    h_3_r_7: Optional[str] = Field(alias="h3r7")
+    h_3_r_8: Optional[str] = Field(alias="h3r8")
+    h_3_r_9: Optional[str] = Field(alias="h3r9")
+    h_3_r_10: Optional[str] = Field(alias="h3r10")
+    h_3_r_11: Optional[str] = Field(alias="h3r11")
+    h_3_r_12: Optional[str] = Field(alias="h3r12")
+    h_3_r_13: Optional[str] = Field(alias="h3r13")
+    h_3_r_14: Optional[str] = Field(alias="h3r14")
+    h_3_r_15: Optional[str] = Field(alias="h3r15")
+
+
 class GetPersonPersonAddress(BaseModel):
     street_address: Optional[str] = Field(alias="streetAddress")
     city: Optional[str]
     region: Optional[str]
     country: Optional[str]
     postal_code: Optional[str] = Field(alias="postalCode")
+
+
+class GetPersonPersonWorksFor(BaseModel):
+    id: str
+
+
+class GetPersonPersonAffiliation(BaseModel):
+    id: str
+
+
+class GetPersonPersonMemberOf(BaseModel):
+    id: str
+
+
+class GetPersonPersonAlumniOf(BaseModel):
+    id: str
+
+
+class GetPersonPersonBirthPlace(BaseModel):
+    id: str
+
+
+class GetPersonPersonDeathPlace(BaseModel):
+    id: str
+
+
+class GetPersonPersonHomeLocation(BaseModel):
+    id: str
+
+
+class GetPersonPersonWorkLocation(BaseModel):
+    id: str
 
 
 GetPerson.model_rebuild()

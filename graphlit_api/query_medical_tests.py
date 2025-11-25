@@ -35,6 +35,8 @@ class QueryMedicalTestsMedicalTestsResults(BaseModel):
     feeds: Optional[List[Optional["QueryMedicalTestsMedicalTestsResultsFeeds"]]]
     links: Optional[List[Optional["QueryMedicalTestsMedicalTestsResultsLinks"]]]
     workflow: Optional["QueryMedicalTestsMedicalTestsResultsWorkflow"]
+    location: Optional["QueryMedicalTestsMedicalTestsResultsLocation"]
+    h_3: Optional["QueryMedicalTestsMedicalTestsResultsH3"] = Field(alias="h3")
 
 
 class QueryMedicalTestsMedicalTestsResultsOwner(BaseModel):
@@ -55,6 +57,30 @@ class QueryMedicalTestsMedicalTestsResultsLinks(BaseModel):
 class QueryMedicalTestsMedicalTestsResultsWorkflow(BaseModel):
     id: str
     name: str
+
+
+class QueryMedicalTestsMedicalTestsResultsLocation(BaseModel):
+    latitude: Optional[float]
+    longitude: Optional[float]
+
+
+class QueryMedicalTestsMedicalTestsResultsH3(BaseModel):
+    h_3_r_0: Optional[str] = Field(alias="h3r0")
+    h_3_r_1: Optional[str] = Field(alias="h3r1")
+    h_3_r_2: Optional[str] = Field(alias="h3r2")
+    h_3_r_3: Optional[str] = Field(alias="h3r3")
+    h_3_r_4: Optional[str] = Field(alias="h3r4")
+    h_3_r_5: Optional[str] = Field(alias="h3r5")
+    h_3_r_6: Optional[str] = Field(alias="h3r6")
+    h_3_r_7: Optional[str] = Field(alias="h3r7")
+    h_3_r_8: Optional[str] = Field(alias="h3r8")
+    h_3_r_9: Optional[str] = Field(alias="h3r9")
+    h_3_r_10: Optional[str] = Field(alias="h3r10")
+    h_3_r_11: Optional[str] = Field(alias="h3r11")
+    h_3_r_12: Optional[str] = Field(alias="h3r12")
+    h_3_r_13: Optional[str] = Field(alias="h3r13")
+    h_3_r_14: Optional[str] = Field(alias="h3r14")
+    h_3_r_15: Optional[str] = Field(alias="h3r15")
 
 
 QueryMedicalTests.model_rebuild()

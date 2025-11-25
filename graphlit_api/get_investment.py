@@ -28,6 +28,25 @@ class GetInvestmentInvestment(BaseModel):
     feeds: Optional[List[Optional["GetInvestmentInvestmentFeeds"]]]
     links: Optional[List[Optional["GetInvestmentInvestmentLinks"]]]
     workflow: Optional["GetInvestmentInvestmentWorkflow"]
+    location: Optional["GetInvestmentInvestmentLocation"]
+    h_3: Optional["GetInvestmentInvestmentH3"] = Field(alias="h3")
+    amount: Optional[Any]
+    amount_currency: Optional[str] = Field(alias="amountCurrency")
+    status: Optional[str]
+    stage: Optional[str]
+    investment_date: Optional[Any] = Field(alias="investmentDate")
+    round_size: Optional[Any] = Field(alias="roundSize")
+    round_size_currency: Optional[str] = Field(alias="roundSizeCurrency")
+    post_valuation: Optional[Any] = Field(alias="postValuation")
+    post_valuation_currency: Optional[str] = Field(alias="postValuationCurrency")
+    shares_owned: Optional[Any] = Field(alias="sharesOwned")
+    vehicle: Optional[str]
+    entry_price_per_share: Optional[Any] = Field(alias="entryPricePerShare")
+    current_price_per_share: Optional[Any] = Field(alias="currentPricePerShare")
+    discount_percent: Optional[Any] = Field(alias="discountPercent")
+    pro_rata_rights: Optional[bool] = Field(alias="proRataRights")
+    investor: Optional["GetInvestmentInvestmentInvestor"]
+    organization: Optional["GetInvestmentInvestmentOrganization"]
 
 
 class GetInvestmentInvestmentOwner(BaseModel):
@@ -48,6 +67,38 @@ class GetInvestmentInvestmentLinks(BaseModel):
 class GetInvestmentInvestmentWorkflow(BaseModel):
     id: str
     name: str
+
+
+class GetInvestmentInvestmentLocation(BaseModel):
+    latitude: Optional[float]
+    longitude: Optional[float]
+
+
+class GetInvestmentInvestmentH3(BaseModel):
+    h_3_r_0: Optional[str] = Field(alias="h3r0")
+    h_3_r_1: Optional[str] = Field(alias="h3r1")
+    h_3_r_2: Optional[str] = Field(alias="h3r2")
+    h_3_r_3: Optional[str] = Field(alias="h3r3")
+    h_3_r_4: Optional[str] = Field(alias="h3r4")
+    h_3_r_5: Optional[str] = Field(alias="h3r5")
+    h_3_r_6: Optional[str] = Field(alias="h3r6")
+    h_3_r_7: Optional[str] = Field(alias="h3r7")
+    h_3_r_8: Optional[str] = Field(alias="h3r8")
+    h_3_r_9: Optional[str] = Field(alias="h3r9")
+    h_3_r_10: Optional[str] = Field(alias="h3r10")
+    h_3_r_11: Optional[str] = Field(alias="h3r11")
+    h_3_r_12: Optional[str] = Field(alias="h3r12")
+    h_3_r_13: Optional[str] = Field(alias="h3r13")
+    h_3_r_14: Optional[str] = Field(alias="h3r14")
+    h_3_r_15: Optional[str] = Field(alias="h3r15")
+
+
+class GetInvestmentInvestmentInvestor(BaseModel):
+    id: str
+
+
+class GetInvestmentInvestmentOrganization(BaseModel):
+    id: str
 
 
 GetInvestment.model_rebuild()

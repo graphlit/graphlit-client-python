@@ -1,13 +1,5 @@
 query GetRepo($id: ID!, $correlationId: String) {
   repo(id: $id, correlationId: $correlationId) {
-    id
-    name
-    creationDate
-    modifiedDate
-    owner {
-      id
-    }
-    state
     alternateNames
     uri
     description

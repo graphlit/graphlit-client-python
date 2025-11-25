@@ -2863,6 +2863,8 @@ class InvestmentInput(BaseModel):
     )
     discount_percent: Optional[Any] = Field(alias="discountPercent", default=None)
     pro_rata_rights: Optional[bool] = Field(alias="proRataRights", default=None)
+    investor: Optional["EntityReferenceInput"] = None
+    organization: Optional["EntityReferenceInput"] = None
 
 
 class TwitterIntegrationPropertiesInput(BaseModel):
@@ -4690,6 +4692,8 @@ class InvestmentUpdateInput(BaseModel):
     )
     discount_percent: Optional[Any] = Field(alias="discountPercent", default=None)
     pro_rata_rights: Optional[bool] = Field(alias="proRataRights", default=None)
+    investor: Optional["EntityReferenceInput"] = None
+    organization: Optional["EntityReferenceInput"] = None
 
 
 class OrganizationFilter(BaseModel):

@@ -1,15 +1,8 @@
 query QuerySoftwares($filter: SoftwareFilter, $correlationId: String) {
   softwares(filter: $filter, correlationId: $correlationId) {
     results {
-      id
-      name
-      creationDate
-      modifiedDate
-      relevance
-      owner {
-        id
-      }
-      state
+      releaseDate
+      developer
       alternateNames
       uri
       description
@@ -28,8 +21,6 @@ query QuerySoftwares($filter: SoftwareFilter, $correlationId: String) {
         id
         name
       }
-      releaseDate
-      developer
     }
   }
 }

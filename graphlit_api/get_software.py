@@ -6,7 +6,7 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import EntityState, LinkTypes
+from .enums import LinkTypes
 
 
 class GetSoftware(BaseModel):
@@ -14,12 +14,8 @@ class GetSoftware(BaseModel):
 
 
 class GetSoftwareSoftware(BaseModel):
-    id: str
-    name: str
-    creation_date: Any = Field(alias="creationDate")
-    modified_date: Optional[Any] = Field(alias="modifiedDate")
-    owner: "GetSoftwareSoftwareOwner"
-    state: EntityState
+    release_date: Optional[Any] = Field(alias="releaseDate")
+    developer: Optional[str]
     alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     uri: Optional[Any]
     description: Optional[str]
@@ -28,12 +24,6 @@ class GetSoftwareSoftware(BaseModel):
     feeds: Optional[List[Optional["GetSoftwareSoftwareFeeds"]]]
     links: Optional[List[Optional["GetSoftwareSoftwareLinks"]]]
     workflow: Optional["GetSoftwareSoftwareWorkflow"]
-    release_date: Optional[Any] = Field(alias="releaseDate")
-    developer: Optional[str]
-
-
-class GetSoftwareSoftwareOwner(BaseModel):
-    id: str
 
 
 class GetSoftwareSoftwareFeeds(BaseModel):

@@ -1,15 +1,6 @@
 query QueryRepos($filter: RepoFilter, $correlationId: String) {
   repos(filter: $filter, correlationId: $correlationId) {
     results {
-      id
-      name
-      creationDate
-      modifiedDate
-      relevance
-      owner {
-        id
-      }
-      state
       alternateNames
       uri
       description

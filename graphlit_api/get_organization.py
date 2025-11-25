@@ -28,6 +28,8 @@ class GetOrganizationOrganization(BaseModel):
     feeds: Optional[List[Optional["GetOrganizationOrganizationFeeds"]]]
     links: Optional[List[Optional["GetOrganizationOrganizationLinks"]]]
     workflow: Optional["GetOrganizationOrganizationWorkflow"]
+    location: Optional["GetOrganizationOrganizationLocation"]
+    h_3: Optional["GetOrganizationOrganizationH3"] = Field(alias="h3")
     address: Optional["GetOrganizationOrganizationAddress"]
     founding_date: Optional[Any] = Field(alias="foundingDate")
     email: Optional[str]
@@ -38,6 +40,25 @@ class GetOrganizationOrganization(BaseModel):
     revenue_currency: Optional[str] = Field(alias="revenueCurrency")
     investment: Optional[Any]
     investment_currency: Optional[str] = Field(alias="investmentCurrency")
+    founders: Optional[List[Optional["GetOrganizationOrganizationFounders"]]]
+    employees: Optional[List[Optional["GetOrganizationOrganizationEmployees"]]]
+    members: Optional[List[Optional["GetOrganizationOrganizationMembers"]]]
+    parent_organization: Optional["GetOrganizationOrganizationParentOrganization"] = (
+        Field(alias="parentOrganization")
+    )
+    member_of: Optional[List[Optional["GetOrganizationOrganizationMemberOf"]]] = Field(
+        alias="memberOf"
+    )
+    sub_organizations: Optional[
+        List[Optional["GetOrganizationOrganizationSubOrganizations"]]
+    ] = Field(alias="subOrganizations")
+    locations: Optional[List[Optional["GetOrganizationOrganizationLocations"]]]
+    investments_received: Optional[
+        List[Optional["GetOrganizationOrganizationInvestmentsReceived"]]
+    ] = Field(alias="investmentsReceived")
+    investor_funds: Optional[
+        List[Optional["GetOrganizationOrganizationInvestorFunds"]]
+    ] = Field(alias="investorFunds")
 
 
 class GetOrganizationOrganizationOwner(BaseModel):
@@ -60,12 +81,72 @@ class GetOrganizationOrganizationWorkflow(BaseModel):
     name: str
 
 
+class GetOrganizationOrganizationLocation(BaseModel):
+    latitude: Optional[float]
+    longitude: Optional[float]
+
+
+class GetOrganizationOrganizationH3(BaseModel):
+    h_3_r_0: Optional[str] = Field(alias="h3r0")
+    h_3_r_1: Optional[str] = Field(alias="h3r1")
+    h_3_r_2: Optional[str] = Field(alias="h3r2")
+    h_3_r_3: Optional[str] = Field(alias="h3r3")
+    h_3_r_4: Optional[str] = Field(alias="h3r4")
+    h_3_r_5: Optional[str] = Field(alias="h3r5")
+    h_3_r_6: Optional[str] = Field(alias="h3r6")
+    h_3_r_7: Optional[str] = Field(alias="h3r7")
+    h_3_r_8: Optional[str] = Field(alias="h3r8")
+    h_3_r_9: Optional[str] = Field(alias="h3r9")
+    h_3_r_10: Optional[str] = Field(alias="h3r10")
+    h_3_r_11: Optional[str] = Field(alias="h3r11")
+    h_3_r_12: Optional[str] = Field(alias="h3r12")
+    h_3_r_13: Optional[str] = Field(alias="h3r13")
+    h_3_r_14: Optional[str] = Field(alias="h3r14")
+    h_3_r_15: Optional[str] = Field(alias="h3r15")
+
+
 class GetOrganizationOrganizationAddress(BaseModel):
     street_address: Optional[str] = Field(alias="streetAddress")
     city: Optional[str]
     region: Optional[str]
     country: Optional[str]
     postal_code: Optional[str] = Field(alias="postalCode")
+
+
+class GetOrganizationOrganizationFounders(BaseModel):
+    id: str
+
+
+class GetOrganizationOrganizationEmployees(BaseModel):
+    id: str
+
+
+class GetOrganizationOrganizationMembers(BaseModel):
+    id: str
+
+
+class GetOrganizationOrganizationParentOrganization(BaseModel):
+    id: str
+
+
+class GetOrganizationOrganizationMemberOf(BaseModel):
+    id: str
+
+
+class GetOrganizationOrganizationSubOrganizations(BaseModel):
+    id: str
+
+
+class GetOrganizationOrganizationLocations(BaseModel):
+    id: str
+
+
+class GetOrganizationOrganizationInvestmentsReceived(BaseModel):
+    id: str
+
+
+class GetOrganizationOrganizationInvestorFunds(BaseModel):
+    id: str
 
 
 GetOrganization.model_rebuild()

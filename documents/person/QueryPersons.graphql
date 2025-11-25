@@ -28,6 +28,28 @@ query QueryPersons($filter: PersonFilter, $correlationId: String) {
         id
         name
       }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
       address {
         streetAddress
         city
