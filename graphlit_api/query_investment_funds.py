@@ -39,6 +39,10 @@ class QueryInvestmentFundsInvestmentFundsResults(BaseModel):
     h_3: Optional["QueryInvestmentFundsInvestmentFundsResultsH3"] = Field(alias="h3")
     amount: Optional[Any]
     amount_currency: Optional[str] = Field(alias="amountCurrency")
+    fund_type: Optional[str] = Field(alias="fundType")
+    vintage: Optional[int]
+    target_size: Optional[Any] = Field(alias="targetSize")
+    target_size_currency: Optional[str] = Field(alias="targetSizeCurrency")
 
 
 class QueryInvestmentFundsInvestmentFundsResultsOwner(BaseModel):

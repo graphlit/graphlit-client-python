@@ -55,6 +55,16 @@ query QueryInvestments($filter: InvestmentFilter, $correlationId: String) {
       status
       stage
       investmentDate
+      roundSize
+      roundSizeCurrency
+      postValuation
+      postValuationCurrency
+      sharesOwned
+      vehicle
+      entryPricePerShare
+      currentPricePerShare
+      discountPercent
+      proRataRights
     }
   }
 }

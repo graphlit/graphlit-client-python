@@ -1,4 +1,4 @@
-query QueryInvestmentFunds($filter: InvestmentFundFilter, $correlationId: String) {
+query QueryInvestmentFundsExpanded($filter: InvestmentFundFilter, $correlationId: String) {
   investmentFunds(filter: $filter, correlationId: $correlationId) {
     results {
       id
@@ -56,6 +56,22 @@ query QueryInvestmentFunds($filter: InvestmentFundFilter, $correlationId: String
       vintage
       targetSize
       targetSizeCurrency
+      organizations {
+        id
+        name
+      }
+      investments {
+        id
+        name
+      }
+      parentFund {
+        id
+        name
+      }
+      childFunds {
+        id
+        name
+      }
     }
   }
 }

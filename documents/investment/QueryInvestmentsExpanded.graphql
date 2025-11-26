@@ -1,5 +1,5 @@
-query QueryInvestmentFunds($filter: InvestmentFundFilter, $correlationId: String) {
-  investmentFunds(filter: $filter, correlationId: $correlationId) {
+query QueryInvestmentsExpanded($filter: InvestmentFilter, $correlationId: String) {
+  investments(filter: $filter, correlationId: $correlationId) {
     results {
       id
       name
@@ -52,10 +52,27 @@ query QueryInvestmentFunds($filter: InvestmentFundFilter, $correlationId: String
       }
       amount
       amountCurrency
-      fundType
-      vintage
-      targetSize
-      targetSizeCurrency
+      status
+      stage
+      investmentDate
+      roundSize
+      roundSizeCurrency
+      postValuation
+      postValuationCurrency
+      sharesOwned
+      vehicle
+      entryPricePerShare
+      currentPricePerShare
+      discountPercent
+      proRataRights
+      investor {
+        id
+        name
+      }
+      organization {
+        id
+        name
+      }
     }
   }
 }

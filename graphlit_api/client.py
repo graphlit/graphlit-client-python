@@ -623,7 +623,9 @@ from .operations import (
     QUERY_GOOGLE_CALENDARS_GQL,
     QUERY_GOOGLE_DRIVE_FOLDERS_GQL,
     QUERY_GRAPH_GQL,
+    QUERY_INVESTMENT_FUNDS_EXPANDED_GQL,
     QUERY_INVESTMENT_FUNDS_GQL,
+    QUERY_INVESTMENTS_EXPANDED_GQL,
     QUERY_INVESTMENTS_GQL,
     QUERY_LABELS_GQL,
     QUERY_LINEAR_PROJECTS_GQL,
@@ -646,7 +648,9 @@ from .operations import (
     QUERY_NOTION_PAGES_GQL,
     QUERY_OBSERVABLES_GQL,
     QUERY_ONE_DRIVE_FOLDERS_GQL,
+    QUERY_ORGANIZATIONS_EXPANDED_GQL,
     QUERY_ORGANIZATIONS_GQL,
+    QUERY_PERSONS_EXPANDED_GQL,
     QUERY_PERSONS_GQL,
     QUERY_PLACES_GQL,
     QUERY_PRODUCTS_GQL,
@@ -747,7 +751,9 @@ from .query_google_calendars import QueryGoogleCalendars
 from .query_google_drive_folders import QueryGoogleDriveFolders
 from .query_graph import QueryGraph
 from .query_investment_funds import QueryInvestmentFunds
+from .query_investment_funds_expanded import QueryInvestmentFundsExpanded
 from .query_investments import QueryInvestments
+from .query_investments_expanded import QueryInvestmentsExpanded
 from .query_labels import QueryLabels
 from .query_linear_projects import QueryLinearProjects
 from .query_medical_conditions import QueryMedicalConditions
@@ -770,7 +776,9 @@ from .query_notion_pages import QueryNotionPages
 from .query_observables import QueryObservables
 from .query_one_drive_folders import QueryOneDriveFolders
 from .query_organizations import QueryOrganizations
+from .query_organizations_expanded import QueryOrganizationsExpanded
 from .query_persons import QueryPersons
+from .query_persons_expanded import QueryPersonsExpanded
 from .query_places import QueryPlaces
 from .query_products import QueryProducts
 from .query_repos import QueryRepos
@@ -3371,6 +3379,25 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryInvestments.model_validate(data)
 
+    async def query_investments_expanded(
+        self,
+        filter: Union[Optional[InvestmentFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryInvestmentsExpanded:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_INVESTMENTS_EXPANDED_GQL,
+            operation_name="QueryInvestmentsExpanded",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryInvestmentsExpanded.model_validate(data)
+
     async def update_investment(
         self, investment: InvestmentUpdateInput, **kwargs: Any
     ) -> UpdateInvestment:
@@ -3500,6 +3527,25 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryInvestmentFunds.model_validate(data)
+
+    async def query_investment_funds_expanded(
+        self,
+        filter: Union[Optional[InvestmentFundFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryInvestmentFundsExpanded:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_INVESTMENT_FUNDS_EXPANDED_GQL,
+            operation_name="QueryInvestmentFundsExpanded",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryInvestmentFundsExpanded.model_validate(data)
 
     async def update_investment_fund(
         self, investment_fund: InvestmentFundUpdateInput, **kwargs: Any
@@ -5273,6 +5319,25 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryOrganizations.model_validate(data)
 
+    async def query_organizations_expanded(
+        self,
+        filter: Union[Optional[OrganizationFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryOrganizationsExpanded:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_ORGANIZATIONS_EXPANDED_GQL,
+            operation_name="QueryOrganizationsExpanded",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryOrganizationsExpanded.model_validate(data)
+
     async def update_organization(
         self, organization: OrganizationUpdateInput, **kwargs: Any
     ) -> UpdateOrganization:
@@ -5419,6 +5484,25 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryPersons.model_validate(data)
+
+    async def query_persons_expanded(
+        self,
+        filter: Union[Optional[PersonFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryPersonsExpanded:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_PERSONS_EXPANDED_GQL,
+            operation_name="QueryPersonsExpanded",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryPersonsExpanded.model_validate(data)
 
     async def update_person(
         self, person: PersonUpdateInput, **kwargs: Any

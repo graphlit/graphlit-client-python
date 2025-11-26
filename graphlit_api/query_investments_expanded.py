@@ -9,32 +9,32 @@ from .base_model import BaseModel
 from .enums import EntityState, LinkTypes
 
 
-class QueryInvestments(BaseModel):
-    investments: Optional["QueryInvestmentsInvestments"]
+class QueryInvestmentsExpanded(BaseModel):
+    investments: Optional["QueryInvestmentsExpandedInvestments"]
 
 
-class QueryInvestmentsInvestments(BaseModel):
-    results: Optional[List[Optional["QueryInvestmentsInvestmentsResults"]]]
+class QueryInvestmentsExpandedInvestments(BaseModel):
+    results: Optional[List[Optional["QueryInvestmentsExpandedInvestmentsResults"]]]
 
 
-class QueryInvestmentsInvestmentsResults(BaseModel):
+class QueryInvestmentsExpandedInvestmentsResults(BaseModel):
     id: str
     name: str
     creation_date: Any = Field(alias="creationDate")
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     relevance: Optional[float]
-    owner: "QueryInvestmentsInvestmentsResultsOwner"
+    owner: "QueryInvestmentsExpandedInvestmentsResultsOwner"
     state: EntityState
     alternate_names: Optional[List[Optional[str]]] = Field(alias="alternateNames")
     uri: Optional[Any]
     description: Optional[str]
     identifier: Optional[str]
     thing: Optional[str]
-    feeds: Optional[List[Optional["QueryInvestmentsInvestmentsResultsFeeds"]]]
-    links: Optional[List[Optional["QueryInvestmentsInvestmentsResultsLinks"]]]
-    workflow: Optional["QueryInvestmentsInvestmentsResultsWorkflow"]
-    location: Optional["QueryInvestmentsInvestmentsResultsLocation"]
-    h_3: Optional["QueryInvestmentsInvestmentsResultsH3"] = Field(alias="h3")
+    feeds: Optional[List[Optional["QueryInvestmentsExpandedInvestmentsResultsFeeds"]]]
+    links: Optional[List[Optional["QueryInvestmentsExpandedInvestmentsResultsLinks"]]]
+    workflow: Optional["QueryInvestmentsExpandedInvestmentsResultsWorkflow"]
+    location: Optional["QueryInvestmentsExpandedInvestmentsResultsLocation"]
+    h_3: Optional["QueryInvestmentsExpandedInvestmentsResultsH3"] = Field(alias="h3")
     amount: Optional[Any]
     amount_currency: Optional[str] = Field(alias="amountCurrency")
     status: Optional[str]
@@ -50,34 +50,36 @@ class QueryInvestmentsInvestmentsResults(BaseModel):
     current_price_per_share: Optional[Any] = Field(alias="currentPricePerShare")
     discount_percent: Optional[Any] = Field(alias="discountPercent")
     pro_rata_rights: Optional[bool] = Field(alias="proRataRights")
+    investor: Optional["QueryInvestmentsExpandedInvestmentsResultsInvestor"]
+    organization: Optional["QueryInvestmentsExpandedInvestmentsResultsOrganization"]
 
 
-class QueryInvestmentsInvestmentsResultsOwner(BaseModel):
+class QueryInvestmentsExpandedInvestmentsResultsOwner(BaseModel):
     id: str
 
 
-class QueryInvestmentsInvestmentsResultsFeeds(BaseModel):
+class QueryInvestmentsExpandedInvestmentsResultsFeeds(BaseModel):
     id: str
     name: str
 
 
-class QueryInvestmentsInvestmentsResultsLinks(BaseModel):
+class QueryInvestmentsExpandedInvestmentsResultsLinks(BaseModel):
     uri: Optional[Any]
     link_type: Optional[LinkTypes] = Field(alias="linkType")
     excerpts: Optional[str]
 
 
-class QueryInvestmentsInvestmentsResultsWorkflow(BaseModel):
+class QueryInvestmentsExpandedInvestmentsResultsWorkflow(BaseModel):
     id: str
     name: str
 
 
-class QueryInvestmentsInvestmentsResultsLocation(BaseModel):
+class QueryInvestmentsExpandedInvestmentsResultsLocation(BaseModel):
     latitude: Optional[float]
     longitude: Optional[float]
 
 
-class QueryInvestmentsInvestmentsResultsH3(BaseModel):
+class QueryInvestmentsExpandedInvestmentsResultsH3(BaseModel):
     h_3_r_0: Optional[str] = Field(alias="h3r0")
     h_3_r_1: Optional[str] = Field(alias="h3r1")
     h_3_r_2: Optional[str] = Field(alias="h3r2")
@@ -96,6 +98,16 @@ class QueryInvestmentsInvestmentsResultsH3(BaseModel):
     h_3_r_15: Optional[str] = Field(alias="h3r15")
 
 
-QueryInvestments.model_rebuild()
-QueryInvestmentsInvestments.model_rebuild()
-QueryInvestmentsInvestmentsResults.model_rebuild()
+class QueryInvestmentsExpandedInvestmentsResultsInvestor(BaseModel):
+    id: str
+    name: str
+
+
+class QueryInvestmentsExpandedInvestmentsResultsOrganization(BaseModel):
+    id: str
+    name: str
+
+
+QueryInvestmentsExpanded.model_rebuild()
+QueryInvestmentsExpandedInvestments.model_rebuild()
+QueryInvestmentsExpandedInvestmentsResults.model_rebuild()

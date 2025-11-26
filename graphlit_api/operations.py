@@ -256,7 +256,9 @@ __all__ = [
     "QUERY_GOOGLE_CALENDARS_GQL",
     "QUERY_GOOGLE_DRIVE_FOLDERS_GQL",
     "QUERY_GRAPH_GQL",
+    "QUERY_INVESTMENTS_EXPANDED_GQL",
     "QUERY_INVESTMENTS_GQL",
+    "QUERY_INVESTMENT_FUNDS_EXPANDED_GQL",
     "QUERY_INVESTMENT_FUNDS_GQL",
     "QUERY_LABELS_GQL",
     "QUERY_LINEAR_PROJECTS_GQL",
@@ -279,7 +281,9 @@ __all__ = [
     "QUERY_NOTION_PAGES_GQL",
     "QUERY_OBSERVABLES_GQL",
     "QUERY_ONE_DRIVE_FOLDERS_GQL",
+    "QUERY_ORGANIZATIONS_EXPANDED_GQL",
     "QUERY_ORGANIZATIONS_GQL",
+    "QUERY_PERSONS_EXPANDED_GQL",
     "QUERY_PERSONS_GQL",
     "QUERY_PLACES_GQL",
     "QUERY_PRODUCTS_GQL",
@@ -8752,6 +8756,97 @@ query QueryInvestments($filter: InvestmentFilter, $correlationId: String) {
       status
       stage
       investmentDate
+      roundSize
+      roundSizeCurrency
+      postValuation
+      postValuationCurrency
+      sharesOwned
+      vehicle
+      entryPricePerShare
+      currentPricePerShare
+      discountPercent
+      proRataRights
+    }
+  }
+}
+"""
+
+QUERY_INVESTMENTS_EXPANDED_GQL = """
+query QueryInvestmentsExpanded($filter: InvestmentFilter, $correlationId: String) {
+  investments(filter: $filter, correlationId: $correlationId) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+      amount
+      amountCurrency
+      status
+      stage
+      investmentDate
+      roundSize
+      roundSizeCurrency
+      postValuation
+      postValuationCurrency
+      sharesOwned
+      vehicle
+      entryPricePerShare
+      currentPricePerShare
+      discountPercent
+      proRataRights
+      investor {
+        id
+        name
+      }
+      organization {
+        id
+        name
+      }
     }
   }
 }
@@ -8946,6 +9041,90 @@ query QueryInvestmentFunds($filter: InvestmentFundFilter, $correlationId: String
       }
       amount
       amountCurrency
+      fundType
+      vintage
+      targetSize
+      targetSizeCurrency
+    }
+  }
+}
+"""
+
+QUERY_INVESTMENT_FUNDS_EXPANDED_GQL = """
+query QueryInvestmentFundsExpanded($filter: InvestmentFundFilter, $correlationId: String) {
+  investmentFunds(filter: $filter, correlationId: $correlationId) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+      amount
+      amountCurrency
+      fundType
+      vintage
+      targetSize
+      targetSizeCurrency
+      organizations {
+        id
+        name
+      }
+      investments {
+        id
+        name
+      }
+      parentFund {
+        id
+        name
+      }
+      childFunds {
+        id
+        name
+      }
     }
   }
 }
@@ -11220,6 +11399,116 @@ query QueryOrganizations($filter: OrganizationFilter, $correlationId: String) {
 }
 """
 
+QUERY_ORGANIZATIONS_EXPANDED_GQL = """
+query QueryOrganizationsExpanded($filter: OrganizationFilter, $correlationId: String) {
+  organizations(filter: $filter, correlationId: $correlationId) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+      address {
+        streetAddress
+        city
+        region
+        country
+        postalCode
+      }
+      foundingDate
+      email
+      telephone
+      legalName
+      industries
+      revenue
+      revenueCurrency
+      investment
+      investmentCurrency
+      founders {
+        id
+        name
+      }
+      employees {
+        id
+        name
+      }
+      members {
+        id
+        name
+      }
+      parentOrganization {
+        id
+        name
+      }
+      memberOf {
+        id
+        name
+      }
+      subOrganizations {
+        id
+        name
+      }
+      locations {
+        id
+        name
+      }
+      investmentsReceived {
+        id
+        name
+      }
+      investorFunds {
+        id
+        name
+      }
+    }
+  }
+}
+"""
+
 UPDATE_ORGANIZATION_GQL = """
 mutation UpdateOrganization($organization: OrganizationUpdateInput!) {
   updateOrganization(organization: $organization) {
@@ -11460,6 +11749,111 @@ query QueryPersons($filter: PersonFilter, $correlationId: String) {
       title
       occupation
       education
+    }
+  }
+}
+"""
+
+QUERY_PERSONS_EXPANDED_GQL = """
+query QueryPersonsExpanded($filter: PersonFilter, $correlationId: String) {
+  persons(filter: $filter, correlationId: $correlationId) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+      address {
+        streetAddress
+        city
+        region
+        country
+        postalCode
+      }
+      email
+      givenName
+      familyName
+      phoneNumber
+      birthDate
+      title
+      occupation
+      education
+      worksFor {
+        id
+        name
+      }
+      affiliation {
+        id
+        name
+      }
+      memberOf {
+        id
+        name
+      }
+      alumniOf {
+        id
+        name
+      }
+      birthPlace {
+        id
+        name
+      }
+      deathPlace {
+        id
+        name
+      }
+      homeLocation {
+        id
+        name
+      }
+      workLocation {
+        id
+        name
+      }
     }
   }
 }

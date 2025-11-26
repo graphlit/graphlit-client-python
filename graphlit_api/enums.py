@@ -1244,6 +1244,7 @@ class EntityEnrichmentServiceTypes(str, Enum):
     WIKIPEDIA = "WIKIPEDIA"
     CRUNCHBASE = "CRUNCHBASE"
     FHIR = "FHIR"
+    RADAR = "RADAR"
 
 
 class LabelFacetTypes(str, Enum):
