@@ -22,6 +22,7 @@ class QueryGraphGraphNodes(BaseModel):
     id: str
     name: str
     type: EntityTypes
+    metadata: Optional[str]
 
 
 class QueryGraphGraphEdges(BaseModel):

@@ -3926,6 +3926,7 @@ query QueryGraph($filter: GraphFilter, $graph: GraphInput, $correlationId: Strin
       id
       name
       type
+      metadata
     }
     edges {
       from
