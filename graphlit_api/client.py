@@ -181,8 +181,15 @@ from .enrich_organizations import EnrichOrganizations
 from .enrich_persons import EnrichPersons
 from .enrich_places import EnrichPlaces
 from .enrich_products import EnrichProducts
-from .enums import GitHubRepositorySortTypes, SdkTypes, SearchServiceTypes, TextTypes
+from .enums import (
+    GitHubRepositorySortTypes,
+    ObservableTypes,
+    SdkTypes,
+    SearchServiceTypes,
+    TextTypes,
+)
 from .extract_contents import ExtractContents
+from .extract_observables import ExtractObservables
 from .extract_text import ExtractText
 from .feed_exists import FeedExists
 from .format_conversation import FormatConversation
@@ -255,8 +262,10 @@ from .input_types import (
     DiscordChannelsInput,
     DiscordGuildsInput,
     DropboxFoldersInput,
+    EntityClustersInput,
     EntityEnrichmentConnectorInput,
     EntityReferenceInput,
+    EntityRelationshipsFilter,
     EventFilter,
     EventInput,
     EventUpdateInput,
@@ -318,6 +327,7 @@ from .input_types import (
     ModelFilter,
     NotionDatabasesInput,
     NotionPagesInput,
+    ObservableInput,
     ObservationInput,
     ObservationReferenceInput,
     ObservationUpdateInput,
@@ -366,8 +376,10 @@ from .is_content_done import IsContentDone
 from .is_feed_done import IsFeedDone
 from .lookup_contents import LookupContents
 from .lookup_credits import LookupCredits
+from .lookup_entity import LookupEntity
 from .lookup_usage import LookupUsage
 from .map_web import MapWeb
+from .match_entity import MatchEntity
 from .operations import (
     ADD_CONTENTS_TO_COLLECTIONS_GQL,
     ASK_GRAPHLIT_GQL,
@@ -546,6 +558,7 @@ from .operations import (
     ENRICH_PLACES_GQL,
     ENRICH_PRODUCTS_GQL,
     EXTRACT_CONTENTS_GQL,
+    EXTRACT_OBSERVABLES_GQL,
     EXTRACT_TEXT_GQL,
     FEED_EXISTS_GQL,
     FORMAT_CONVERSATION_GQL,
@@ -595,8 +608,10 @@ from .operations import (
     IS_FEED_DONE_GQL,
     LOOKUP_CONTENTS_GQL,
     LOOKUP_CREDITS_GQL,
+    LOOKUP_ENTITY_GQL,
     LOOKUP_USAGE_GQL,
     MAP_WEB_GQL,
+    MATCH_ENTITY_GQL,
     PROMPT_CONVERSATION_GQL,
     PROMPT_GQL,
     PROMPT_SPECIFICATIONS_GQL,
@@ -617,28 +632,42 @@ from .operations import (
     QUERY_DISCORD_CHANNELS_GQL,
     QUERY_DISCORD_GUILDS_GQL,
     QUERY_DROPBOX_FOLDERS_GQL,
+    QUERY_EVENTS_CLUSTERS_GQL,
     QUERY_EVENTS_GQL,
     QUERY_FEEDS_GQL,
     QUERY_GIT_HUB_REPOSITORIES_GQL,
     QUERY_GOOGLE_CALENDARS_GQL,
     QUERY_GOOGLE_DRIVE_FOLDERS_GQL,
     QUERY_GRAPH_GQL,
+    QUERY_INVESTMENT_FUNDS_CLUSTERS_GQL,
     QUERY_INVESTMENT_FUNDS_EXPANDED_GQL,
     QUERY_INVESTMENT_FUNDS_GQL,
+    QUERY_INVESTMENTS_CLUSTERS_GQL,
     QUERY_INVESTMENTS_EXPANDED_GQL,
     QUERY_INVESTMENTS_GQL,
     QUERY_LABELS_GQL,
     QUERY_LINEAR_PROJECTS_GQL,
+    QUERY_MEDICAL_CONDITIONS_CLUSTERS_GQL,
     QUERY_MEDICAL_CONDITIONS_GQL,
+    QUERY_MEDICAL_CONTRAINDICATIONS_CLUSTERS_GQL,
     QUERY_MEDICAL_CONTRAINDICATIONS_GQL,
+    QUERY_MEDICAL_DEVICES_CLUSTERS_GQL,
     QUERY_MEDICAL_DEVICES_GQL,
+    QUERY_MEDICAL_DRUG_CLASSES_CLUSTERS_GQL,
     QUERY_MEDICAL_DRUG_CLASSES_GQL,
+    QUERY_MEDICAL_DRUGS_CLUSTERS_GQL,
     QUERY_MEDICAL_DRUGS_GQL,
+    QUERY_MEDICAL_GUIDELINES_CLUSTERS_GQL,
     QUERY_MEDICAL_GUIDELINES_GQL,
+    QUERY_MEDICAL_INDICATIONS_CLUSTERS_GQL,
     QUERY_MEDICAL_INDICATIONS_GQL,
+    QUERY_MEDICAL_PROCEDURES_CLUSTERS_GQL,
     QUERY_MEDICAL_PROCEDURES_GQL,
+    QUERY_MEDICAL_STUDIES_CLUSTERS_GQL,
     QUERY_MEDICAL_STUDIES_GQL,
+    QUERY_MEDICAL_TESTS_CLUSTERS_GQL,
     QUERY_MEDICAL_TESTS_GQL,
+    QUERY_MEDICAL_THERAPIES_CLUSTERS_GQL,
     QUERY_MEDICAL_THERAPIES_GQL,
     QUERY_MICROSOFT_CALENDARS_GQL,
     QUERY_MICROSOFT_TEAMS_CHANNELS_GQL,
@@ -648,16 +677,22 @@ from .operations import (
     QUERY_NOTION_PAGES_GQL,
     QUERY_OBSERVABLES_GQL,
     QUERY_ONE_DRIVE_FOLDERS_GQL,
+    QUERY_ORGANIZATIONS_CLUSTERS_GQL,
     QUERY_ORGANIZATIONS_EXPANDED_GQL,
     QUERY_ORGANIZATIONS_GQL,
+    QUERY_PERSONS_CLUSTERS_GQL,
     QUERY_PERSONS_EXPANDED_GQL,
     QUERY_PERSONS_GQL,
+    QUERY_PLACES_CLUSTERS_GQL,
     QUERY_PLACES_GQL,
+    QUERY_PRODUCTS_CLUSTERS_GQL,
     QUERY_PRODUCTS_GQL,
+    QUERY_REPOS_CLUSTERS_GQL,
     QUERY_REPOS_GQL,
     QUERY_SHARE_POINT_FOLDERS_GQL,
     QUERY_SHARE_POINT_LIBRARIES_GQL,
     QUERY_SLACK_CHANNELS_GQL,
+    QUERY_SOFTWARES_CLUSTERS_GQL,
     QUERY_SOFTWARES_GQL,
     QUERY_SPECIFICATIONS_GQL,
     QUERY_TOKENS_GQL,
@@ -667,6 +702,8 @@ from .operations import (
     QUERY_WORKFLOWS_GQL,
     REMOVE_CONTENTS_FROM_COLLECTION_GQL,
     RESEARCH_CONTENTS_GQL,
+    RESOLVE_ENTITIES_GQL,
+    RESOLVE_ENTITY_GQL,
     RETRIEVE_SOURCES_GQL,
     RETRIEVE_VIEW_GQL,
     REVISE_CONTENT_GQL,
@@ -745,28 +782,44 @@ from .query_discord_channels import QueryDiscordChannels
 from .query_discord_guilds import QueryDiscordGuilds
 from .query_dropbox_folders import QueryDropboxFolders
 from .query_events import QueryEvents
+from .query_events_clusters import QueryEventsClusters
 from .query_feeds import QueryFeeds
 from .query_git_hub_repositories import QueryGitHubRepositories
 from .query_google_calendars import QueryGoogleCalendars
 from .query_google_drive_folders import QueryGoogleDriveFolders
 from .query_graph import QueryGraph
 from .query_investment_funds import QueryInvestmentFunds
+from .query_investment_funds_clusters import QueryInvestmentFundsClusters
 from .query_investment_funds_expanded import QueryInvestmentFundsExpanded
 from .query_investments import QueryInvestments
+from .query_investments_clusters import QueryInvestmentsClusters
 from .query_investments_expanded import QueryInvestmentsExpanded
 from .query_labels import QueryLabels
 from .query_linear_projects import QueryLinearProjects
 from .query_medical_conditions import QueryMedicalConditions
+from .query_medical_conditions_clusters import QueryMedicalConditionsClusters
 from .query_medical_contraindications import QueryMedicalContraindications
+from .query_medical_contraindications_clusters import (
+    QueryMedicalContraindicationsClusters,
+)
 from .query_medical_devices import QueryMedicalDevices
+from .query_medical_devices_clusters import QueryMedicalDevicesClusters
 from .query_medical_drug_classes import QueryMedicalDrugClasses
+from .query_medical_drug_classes_clusters import QueryMedicalDrugClassesClusters
 from .query_medical_drugs import QueryMedicalDrugs
+from .query_medical_drugs_clusters import QueryMedicalDrugsClusters
 from .query_medical_guidelines import QueryMedicalGuidelines
+from .query_medical_guidelines_clusters import QueryMedicalGuidelinesClusters
 from .query_medical_indications import QueryMedicalIndications
+from .query_medical_indications_clusters import QueryMedicalIndicationsClusters
 from .query_medical_procedures import QueryMedicalProcedures
+from .query_medical_procedures_clusters import QueryMedicalProceduresClusters
 from .query_medical_studies import QueryMedicalStudies
+from .query_medical_studies_clusters import QueryMedicalStudiesClusters
 from .query_medical_tests import QueryMedicalTests
+from .query_medical_tests_clusters import QueryMedicalTestsClusters
 from .query_medical_therapies import QueryMedicalTherapies
+from .query_medical_therapies_clusters import QueryMedicalTherapiesClusters
 from .query_microsoft_calendars import QueryMicrosoftCalendars
 from .query_microsoft_teams_channels import QueryMicrosoftTeamsChannels
 from .query_microsoft_teams_teams import QueryMicrosoftTeamsTeams
@@ -776,16 +829,22 @@ from .query_notion_pages import QueryNotionPages
 from .query_observables import QueryObservables
 from .query_one_drive_folders import QueryOneDriveFolders
 from .query_organizations import QueryOrganizations
+from .query_organizations_clusters import QueryOrganizationsClusters
 from .query_organizations_expanded import QueryOrganizationsExpanded
 from .query_persons import QueryPersons
+from .query_persons_clusters import QueryPersonsClusters
 from .query_persons_expanded import QueryPersonsExpanded
 from .query_places import QueryPlaces
+from .query_places_clusters import QueryPlacesClusters
 from .query_products import QueryProducts
+from .query_products_clusters import QueryProductsClusters
 from .query_repos import QueryRepos
+from .query_repos_clusters import QueryReposClusters
 from .query_share_point_folders import QuerySharePointFolders
 from .query_share_point_libraries import QuerySharePointLibraries
 from .query_slack_channels import QuerySlackChannels
 from .query_softwares import QuerySoftwares
+from .query_softwares_clusters import QuerySoftwaresClusters
 from .query_specifications import QuerySpecifications
 from .query_tokens import QueryTokens
 from .query_usage import QueryUsage
@@ -794,6 +853,8 @@ from .query_views import QueryViews
 from .query_workflows import QueryWorkflows
 from .remove_contents_from_collection import RemoveContentsFromCollection
 from .research_contents import ResearchContents
+from .resolve_entities import ResolveEntities
+from .resolve_entity import ResolveEntity
 from .retrieve_sources import RetrieveSources
 from .retrieve_view import RetrieveView
 from .revise_content import ReviseContent
@@ -1554,6 +1615,31 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return ExtractContents.model_validate(data)
 
+    async def extract_observables(
+        self,
+        text: str,
+        text_type: Union[Optional[TextTypes], UnsetType] = UNSET,
+        specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        observable_types: Union[Optional[List[ObservableTypes]], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> ExtractObservables:
+        variables: Dict[str, object] = {
+            "text": text,
+            "textType": text_type,
+            "specification": specification,
+            "observableTypes": observable_types,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=EXTRACT_OBSERVABLES_GQL,
+            operation_name="ExtractObservables",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return ExtractObservables.model_validate(data)
+
     async def extract_text(
         self,
         prompt: str,
@@ -1856,6 +1942,25 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return LookupContents.model_validate(data)
+
+    async def lookup_entity(
+        self,
+        filter: EntityRelationshipsFilter,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> LookupEntity:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=LOOKUP_ENTITY_GQL,
+            operation_name="LookupEntity",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return LookupEntity.model_validate(data)
 
     async def publish_contents(
         self,
@@ -2801,6 +2906,27 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryEvents.model_validate(data)
 
+    async def query_events_clusters(
+        self,
+        filter: Union[Optional[EventFilter], UnsetType] = UNSET,
+        clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryEventsClusters:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "clusters": clusters,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_EVENTS_CLUSTERS_GQL,
+            operation_name="QueryEventsClusters",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryEventsClusters.model_validate(data)
+
     async def update_event(self, event: EventUpdateInput, **kwargs: Any) -> UpdateEvent:
         variables: Dict[str, object] = {"event": event}
         response = await self.execute(
@@ -3379,6 +3505,27 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryInvestments.model_validate(data)
 
+    async def query_investments_clusters(
+        self,
+        filter: Union[Optional[InvestmentFilter], UnsetType] = UNSET,
+        clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryInvestmentsClusters:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "clusters": clusters,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_INVESTMENTS_CLUSTERS_GQL,
+            operation_name="QueryInvestmentsClusters",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryInvestmentsClusters.model_validate(data)
+
     async def query_investments_expanded(
         self,
         filter: Union[Optional[InvestmentFilter], UnsetType] = UNSET,
@@ -3527,6 +3674,27 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryInvestmentFunds.model_validate(data)
+
+    async def query_investment_funds_clusters(
+        self,
+        filter: Union[Optional[InvestmentFundFilter], UnsetType] = UNSET,
+        clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryInvestmentFundsClusters:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "clusters": clusters,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_INVESTMENT_FUNDS_CLUSTERS_GQL,
+            operation_name="QueryInvestmentFundsClusters",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryInvestmentFundsClusters.model_validate(data)
 
     async def query_investment_funds_expanded(
         self,
@@ -3812,6 +3980,27 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryMedicalConditions.model_validate(data)
 
+    async def query_medical_conditions_clusters(
+        self,
+        filter: Union[Optional[MedicalConditionFilter], UnsetType] = UNSET,
+        clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryMedicalConditionsClusters:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "clusters": clusters,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_MEDICAL_CONDITIONS_CLUSTERS_GQL,
+            operation_name="QueryMedicalConditionsClusters",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMedicalConditionsClusters.model_validate(data)
+
     async def update_medical_condition(
         self, medical_condition: MedicalConditionUpdateInput, **kwargs: Any
     ) -> UpdateMedicalCondition:
@@ -3943,6 +4132,27 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryMedicalContraindications.model_validate(data)
+
+    async def query_medical_contraindications_clusters(
+        self,
+        filter: Union[Optional[MedicalContraindicationFilter], UnsetType] = UNSET,
+        clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryMedicalContraindicationsClusters:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "clusters": clusters,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_MEDICAL_CONTRAINDICATIONS_CLUSTERS_GQL,
+            operation_name="QueryMedicalContraindicationsClusters",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMedicalContraindicationsClusters.model_validate(data)
 
     async def update_medical_contraindication(
         self,
@@ -4078,6 +4288,27 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryMedicalDevices.model_validate(data)
 
+    async def query_medical_devices_clusters(
+        self,
+        filter: Union[Optional[MedicalDeviceFilter], UnsetType] = UNSET,
+        clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryMedicalDevicesClusters:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "clusters": clusters,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_MEDICAL_DEVICES_CLUSTERS_GQL,
+            operation_name="QueryMedicalDevicesClusters",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMedicalDevicesClusters.model_validate(data)
+
     async def update_medical_device(
         self, medical_device: MedicalDeviceUpdateInput, **kwargs: Any
     ) -> UpdateMedicalDevice:
@@ -4205,6 +4436,27 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryMedicalDrugs.model_validate(data)
+
+    async def query_medical_drugs_clusters(
+        self,
+        filter: Union[Optional[MedicalDrugFilter], UnsetType] = UNSET,
+        clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryMedicalDrugsClusters:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "clusters": clusters,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_MEDICAL_DRUGS_CLUSTERS_GQL,
+            operation_name="QueryMedicalDrugsClusters",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMedicalDrugsClusters.model_validate(data)
 
     async def update_medical_drug(
         self, medical_drug: MedicalDrugUpdateInput, **kwargs: Any
@@ -4336,6 +4588,27 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryMedicalDrugClasses.model_validate(data)
 
+    async def query_medical_drug_classes_clusters(
+        self,
+        filter: Union[Optional[MedicalDrugClassFilter], UnsetType] = UNSET,
+        clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryMedicalDrugClassesClusters:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "clusters": clusters,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_MEDICAL_DRUG_CLASSES_CLUSTERS_GQL,
+            operation_name="QueryMedicalDrugClassesClusters",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMedicalDrugClassesClusters.model_validate(data)
+
     async def update_medical_drug_class(
         self, medical_drug_class: MedicalDrugClassUpdateInput, **kwargs: Any
     ) -> UpdateMedicalDrugClass:
@@ -4465,6 +4738,27 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryMedicalGuidelines.model_validate(data)
+
+    async def query_medical_guidelines_clusters(
+        self,
+        filter: Union[Optional[MedicalGuidelineFilter], UnsetType] = UNSET,
+        clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryMedicalGuidelinesClusters:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "clusters": clusters,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_MEDICAL_GUIDELINES_CLUSTERS_GQL,
+            operation_name="QueryMedicalGuidelinesClusters",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMedicalGuidelinesClusters.model_validate(data)
 
     async def update_medical_guideline(
         self, medical_guideline: MedicalGuidelineUpdateInput, **kwargs: Any
@@ -4596,6 +4890,27 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryMedicalIndications.model_validate(data)
 
+    async def query_medical_indications_clusters(
+        self,
+        filter: Union[Optional[MedicalIndicationFilter], UnsetType] = UNSET,
+        clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryMedicalIndicationsClusters:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "clusters": clusters,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_MEDICAL_INDICATIONS_CLUSTERS_GQL,
+            operation_name="QueryMedicalIndicationsClusters",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMedicalIndicationsClusters.model_validate(data)
+
     async def update_medical_indication(
         self, medical_indication: MedicalIndicationUpdateInput, **kwargs: Any
     ) -> UpdateMedicalIndication:
@@ -4726,6 +5041,27 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryMedicalProcedures.model_validate(data)
 
+    async def query_medical_procedures_clusters(
+        self,
+        filter: Union[Optional[MedicalProcedureFilter], UnsetType] = UNSET,
+        clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryMedicalProceduresClusters:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "clusters": clusters,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_MEDICAL_PROCEDURES_CLUSTERS_GQL,
+            operation_name="QueryMedicalProceduresClusters",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMedicalProceduresClusters.model_validate(data)
+
     async def update_medical_procedure(
         self, medical_procedure: MedicalProcedureUpdateInput, **kwargs: Any
     ) -> UpdateMedicalProcedure:
@@ -4854,6 +5190,27 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryMedicalStudies.model_validate(data)
 
+    async def query_medical_studies_clusters(
+        self,
+        filter: Union[Optional[MedicalStudyFilter], UnsetType] = UNSET,
+        clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryMedicalStudiesClusters:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "clusters": clusters,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_MEDICAL_STUDIES_CLUSTERS_GQL,
+            operation_name="QueryMedicalStudiesClusters",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMedicalStudiesClusters.model_validate(data)
+
     async def update_medical_study(
         self, medical_study: MedicalStudyUpdateInput, **kwargs: Any
     ) -> UpdateMedicalStudy:
@@ -4981,6 +5338,27 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryMedicalTests.model_validate(data)
+
+    async def query_medical_tests_clusters(
+        self,
+        filter: Union[Optional[MedicalTestFilter], UnsetType] = UNSET,
+        clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryMedicalTestsClusters:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "clusters": clusters,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_MEDICAL_TESTS_CLUSTERS_GQL,
+            operation_name="QueryMedicalTestsClusters",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMedicalTestsClusters.model_validate(data)
 
     async def update_medical_test(
         self, medical_test: MedicalTestUpdateInput, **kwargs: Any
@@ -5112,6 +5490,27 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryMedicalTherapies.model_validate(data)
 
+    async def query_medical_therapies_clusters(
+        self,
+        filter: Union[Optional[MedicalTherapyFilter], UnsetType] = UNSET,
+        clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryMedicalTherapiesClusters:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "clusters": clusters,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_MEDICAL_THERAPIES_CLUSTERS_GQL,
+            operation_name="QueryMedicalTherapiesClusters",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMedicalTherapiesClusters.model_validate(data)
+
     async def update_medical_therapy(
         self, medical_therapy: MedicalTherapyUpdateInput, **kwargs: Any
     ) -> UpdateMedicalTherapy:
@@ -5169,6 +5568,79 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return DeleteObservation.model_validate(data)
+
+    async def match_entity(
+        self,
+        observable: ObservableInput,
+        candidates: List[EntityReferenceInput],
+        specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> MatchEntity:
+        variables: Dict[str, object] = {
+            "observable": observable,
+            "candidates": candidates,
+            "specification": specification,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=MATCH_ENTITY_GQL,
+            operation_name="MatchEntity",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return MatchEntity.model_validate(data)
+
+    async def resolve_entities(
+        self,
+        type: ObservableTypes,
+        entities: List[EntityReferenceInput],
+        threshold: Union[Optional[float], UnsetType] = UNSET,
+        specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> ResolveEntities:
+        variables: Dict[str, object] = {
+            "type": type,
+            "entities": entities,
+            "threshold": threshold,
+            "specification": specification,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=RESOLVE_ENTITIES_GQL,
+            operation_name="ResolveEntities",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return ResolveEntities.model_validate(data)
+
+    async def resolve_entity(
+        self,
+        type: ObservableTypes,
+        source: EntityReferenceInput,
+        target: EntityReferenceInput,
+        specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> ResolveEntity:
+        variables: Dict[str, object] = {
+            "type": type,
+            "source": source,
+            "target": target,
+            "specification": specification,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=RESOLVE_ENTITY_GQL,
+            operation_name="ResolveEntity",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return ResolveEntity.model_validate(data)
 
     async def update_observation(
         self, observation: ObservationUpdateInput, **kwargs: Any
@@ -5318,6 +5790,27 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryOrganizations.model_validate(data)
+
+    async def query_organizations_clusters(
+        self,
+        filter: Union[Optional[OrganizationFilter], UnsetType] = UNSET,
+        clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryOrganizationsClusters:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "clusters": clusters,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_ORGANIZATIONS_CLUSTERS_GQL,
+            operation_name="QueryOrganizationsClusters",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryOrganizationsClusters.model_validate(data)
 
     async def query_organizations_expanded(
         self,
@@ -5485,6 +5978,27 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryPersons.model_validate(data)
 
+    async def query_persons_clusters(
+        self,
+        filter: Union[Optional[PersonFilter], UnsetType] = UNSET,
+        clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryPersonsClusters:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "clusters": clusters,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_PERSONS_CLUSTERS_GQL,
+            operation_name="QueryPersonsClusters",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryPersonsClusters.model_validate(data)
+
     async def query_persons_expanded(
         self,
         filter: Union[Optional[PersonFilter], UnsetType] = UNSET,
@@ -5651,6 +6165,27 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryPlaces.model_validate(data)
 
+    async def query_places_clusters(
+        self,
+        filter: Union[Optional[PlaceFilter], UnsetType] = UNSET,
+        clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryPlacesClusters:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "clusters": clusters,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_PLACES_CLUSTERS_GQL,
+            operation_name="QueryPlacesClusters",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryPlacesClusters.model_validate(data)
+
     async def update_place(self, place: PlaceUpdateInput, **kwargs: Any) -> UpdatePlace:
         variables: Dict[str, object] = {"place": place}
         response = await self.execute(
@@ -5797,6 +6332,27 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryProducts.model_validate(data)
+
+    async def query_products_clusters(
+        self,
+        filter: Union[Optional[ProductFilter], UnsetType] = UNSET,
+        clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryProductsClusters:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "clusters": clusters,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_PRODUCTS_CLUSTERS_GQL,
+            operation_name="QueryProductsClusters",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryProductsClusters.model_validate(data)
 
     async def update_product(
         self, product: ProductUpdateInput, **kwargs: Any
@@ -6040,6 +6596,27 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryRepos.model_validate(data)
 
+    async def query_repos_clusters(
+        self,
+        filter: Union[Optional[RepoFilter], UnsetType] = UNSET,
+        clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryReposClusters:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "clusters": clusters,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_REPOS_CLUSTERS_GQL,
+            operation_name="QueryReposClusters",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryReposClusters.model_validate(data)
+
     async def update_repo(self, repo: RepoUpdateInput, **kwargs: Any) -> UpdateRepo:
         variables: Dict[str, object] = {"repo": repo}
         response = await self.execute(
@@ -6208,6 +6785,27 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QuerySoftwares.model_validate(data)
+
+    async def query_softwares_clusters(
+        self,
+        filter: Union[Optional[SoftwareFilter], UnsetType] = UNSET,
+        clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QuerySoftwaresClusters:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "clusters": clusters,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_SOFTWARES_CLUSTERS_GQL,
+            operation_name="QuerySoftwaresClusters",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QuerySoftwaresClusters.model_validate(data)
 
     async def update_software(
         self, software: SoftwareUpdateInput, **kwargs: Any

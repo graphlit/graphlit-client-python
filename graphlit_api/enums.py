@@ -629,6 +629,7 @@ class EntityState(str, Enum):
     SUBSCRIBED = "SUBSCRIBED"
     ERRORED = "ERRORED"
     ENABLED = "ENABLED"
+    RESOLVED = "RESOLVED"
     DISABLED = "DISABLED"
     DELETED = "DELETED"
 
@@ -642,6 +643,11 @@ class GitHubAuthenticationTypes(str, Enum):
     PERSONAL_ACCESS_TOKEN = "PERSONAL_ACCESS_TOKEN"
     O_AUTH = "O_AUTH"
     CONNECTOR = "CONNECTOR"
+
+
+class RelationshipDirections(str, Enum):
+    INCOMING = "INCOMING"
+    OUTGOING = "OUTGOING"
 
 
 class SearchServiceTypes(str, Enum):
@@ -1046,6 +1052,11 @@ class SdkTypes(str, Enum):
 
 class MedicalProcedureFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
+
+
+class EntityResolutionStrategyTypes(str, Enum):
+    NONE = "NONE"
+    AUTOMATIC = "AUTOMATIC"
 
 
 class SearchTypes(str, Enum):

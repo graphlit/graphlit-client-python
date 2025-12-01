@@ -179,6 +179,7 @@ __all__ = [
     "ENRICH_PLACES_GQL",
     "ENRICH_PRODUCTS_GQL",
     "EXTRACT_CONTENTS_GQL",
+    "EXTRACT_OBSERVABLES_GQL",
     "EXTRACT_TEXT_GQL",
     "FEED_EXISTS_GQL",
     "FORMAT_CONVERSATION_GQL",
@@ -228,8 +229,10 @@ __all__ = [
     "IS_FEED_DONE_GQL",
     "LOOKUP_CONTENTS_GQL",
     "LOOKUP_CREDITS_GQL",
+    "LOOKUP_ENTITY_GQL",
     "LOOKUP_USAGE_GQL",
     "MAP_WEB_GQL",
+    "MATCH_ENTITY_GQL",
     "PROMPT_CONVERSATION_GQL",
     "PROMPT_GQL",
     "PROMPT_SPECIFICATIONS_GQL",
@@ -250,28 +253,42 @@ __all__ = [
     "QUERY_DISCORD_CHANNELS_GQL",
     "QUERY_DISCORD_GUILDS_GQL",
     "QUERY_DROPBOX_FOLDERS_GQL",
+    "QUERY_EVENTS_CLUSTERS_GQL",
     "QUERY_EVENTS_GQL",
     "QUERY_FEEDS_GQL",
     "QUERY_GIT_HUB_REPOSITORIES_GQL",
     "QUERY_GOOGLE_CALENDARS_GQL",
     "QUERY_GOOGLE_DRIVE_FOLDERS_GQL",
     "QUERY_GRAPH_GQL",
+    "QUERY_INVESTMENTS_CLUSTERS_GQL",
     "QUERY_INVESTMENTS_EXPANDED_GQL",
     "QUERY_INVESTMENTS_GQL",
+    "QUERY_INVESTMENT_FUNDS_CLUSTERS_GQL",
     "QUERY_INVESTMENT_FUNDS_EXPANDED_GQL",
     "QUERY_INVESTMENT_FUNDS_GQL",
     "QUERY_LABELS_GQL",
     "QUERY_LINEAR_PROJECTS_GQL",
+    "QUERY_MEDICAL_CONDITIONS_CLUSTERS_GQL",
     "QUERY_MEDICAL_CONDITIONS_GQL",
+    "QUERY_MEDICAL_CONTRAINDICATIONS_CLUSTERS_GQL",
     "QUERY_MEDICAL_CONTRAINDICATIONS_GQL",
+    "QUERY_MEDICAL_DEVICES_CLUSTERS_GQL",
     "QUERY_MEDICAL_DEVICES_GQL",
+    "QUERY_MEDICAL_DRUGS_CLUSTERS_GQL",
     "QUERY_MEDICAL_DRUGS_GQL",
+    "QUERY_MEDICAL_DRUG_CLASSES_CLUSTERS_GQL",
     "QUERY_MEDICAL_DRUG_CLASSES_GQL",
+    "QUERY_MEDICAL_GUIDELINES_CLUSTERS_GQL",
     "QUERY_MEDICAL_GUIDELINES_GQL",
+    "QUERY_MEDICAL_INDICATIONS_CLUSTERS_GQL",
     "QUERY_MEDICAL_INDICATIONS_GQL",
+    "QUERY_MEDICAL_PROCEDURES_CLUSTERS_GQL",
     "QUERY_MEDICAL_PROCEDURES_GQL",
+    "QUERY_MEDICAL_STUDIES_CLUSTERS_GQL",
     "QUERY_MEDICAL_STUDIES_GQL",
+    "QUERY_MEDICAL_TESTS_CLUSTERS_GQL",
     "QUERY_MEDICAL_TESTS_GQL",
+    "QUERY_MEDICAL_THERAPIES_CLUSTERS_GQL",
     "QUERY_MEDICAL_THERAPIES_GQL",
     "QUERY_MICROSOFT_CALENDARS_GQL",
     "QUERY_MICROSOFT_TEAMS_CHANNELS_GQL",
@@ -281,16 +298,22 @@ __all__ = [
     "QUERY_NOTION_PAGES_GQL",
     "QUERY_OBSERVABLES_GQL",
     "QUERY_ONE_DRIVE_FOLDERS_GQL",
+    "QUERY_ORGANIZATIONS_CLUSTERS_GQL",
     "QUERY_ORGANIZATIONS_EXPANDED_GQL",
     "QUERY_ORGANIZATIONS_GQL",
+    "QUERY_PERSONS_CLUSTERS_GQL",
     "QUERY_PERSONS_EXPANDED_GQL",
     "QUERY_PERSONS_GQL",
+    "QUERY_PLACES_CLUSTERS_GQL",
     "QUERY_PLACES_GQL",
+    "QUERY_PRODUCTS_CLUSTERS_GQL",
     "QUERY_PRODUCTS_GQL",
+    "QUERY_REPOS_CLUSTERS_GQL",
     "QUERY_REPOS_GQL",
     "QUERY_SHARE_POINT_FOLDERS_GQL",
     "QUERY_SHARE_POINT_LIBRARIES_GQL",
     "QUERY_SLACK_CHANNELS_GQL",
+    "QUERY_SOFTWARES_CLUSTERS_GQL",
     "QUERY_SOFTWARES_GQL",
     "QUERY_SPECIFICATIONS_GQL",
     "QUERY_TOKENS_GQL",
@@ -300,6 +323,8 @@ __all__ = [
     "QUERY_WORKFLOWS_GQL",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
     "RESEARCH_CONTENTS_GQL",
+    "RESOLVE_ENTITIES_GQL",
+    "RESOLVE_ENTITY_GQL",
     "RETRIEVE_SOURCES_GQL",
     "RETRIEVE_VIEW_GQL",
     "REVISE_CONTENT_GQL",
@@ -1551,6 +1576,107 @@ mutation ExtractContents($prompt: String!, $filter: ContentFilter, $specificatio
     endTime
     pageNumber
     error
+  }
+}
+"""
+
+EXTRACT_OBSERVABLES_GQL = """
+mutation ExtractObservables($text: String!, $textType: TextTypes, $specification: EntityReferenceInput, $observableTypes: [ObservableTypes!], $correlationId: String) {
+  extractObservables(
+    text: $text
+    textType: $textType
+    specification: $specification
+    observableTypes: $observableTypes
+    correlationId: $correlationId
+  ) {
+    labels {
+      name
+      metadata
+    }
+    categories {
+      name
+      metadata
+    }
+    persons {
+      name
+      metadata
+    }
+    organizations {
+      name
+      metadata
+    }
+    places {
+      name
+      metadata
+    }
+    events {
+      name
+      metadata
+    }
+    products {
+      name
+      metadata
+    }
+    softwares {
+      name
+      metadata
+    }
+    repos {
+      name
+      metadata
+    }
+    investments {
+      name
+      metadata
+    }
+    investmentFunds {
+      name
+      metadata
+    }
+    medicalStudies {
+      name
+      metadata
+    }
+    medicalConditions {
+      name
+      metadata
+    }
+    medicalGuidelines {
+      name
+      metadata
+    }
+    medicalDrugs {
+      name
+      metadata
+    }
+    medicalDrugClasses {
+      name
+      metadata
+    }
+    medicalIndications {
+      name
+      metadata
+    }
+    medicalContraindications {
+      name
+      metadata
+    }
+    medicalProcedures {
+      name
+      metadata
+    }
+    medicalTherapies {
+      name
+      metadata
+    }
+    medicalDevices {
+      name
+      metadata
+    }
+    medicalTests {
+      name
+      metadata
+    }
   }
 }
 """
@@ -2854,6 +2980,30 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
       }
       error
     }
+  }
+}
+"""
+
+LOOKUP_ENTITY_GQL = """
+query LookupEntity($filter: EntityRelationshipsFilter!, $correlationId: String) {
+  lookupEntity(filter: $filter, correlationId: $correlationId) {
+    entity {
+      id
+      name
+      type
+      metadata
+    }
+    relationships {
+      relation
+      direction
+      entity {
+        id
+        name
+        type
+        metadata
+      }
+    }
+    totalCount
   }
 }
 """
@@ -7525,6 +7675,94 @@ query QueryEvents($filter: EventFilter, $correlationId: String) {
 }
 """
 
+QUERY_EVENTS_CLUSTERS_GQL = """
+query QueryEventsClusters($filter: EventFilter, $clusters: EntityClustersInput, $correlationId: String) {
+  events(filter: $filter, clusters: $clusters, correlationId: $correlationId) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+      address {
+        streetAddress
+        city
+        region
+        country
+        postalCode
+      }
+      startDate
+      endDate
+      availabilityStartDate
+      availabilityEndDate
+      price
+      minPrice
+      maxPrice
+      priceCurrency
+      isAccessibleForFree
+      typicalAgeRange
+      organizer
+      performer
+      sponsor
+      eventStatus
+    }
+    clusters {
+      clusters {
+        entities {
+          id
+          name
+        }
+        similarity
+      }
+    }
+  }
+}
+"""
+
 UPDATE_EVENT_GQL = """
 mutation UpdateEvent($event: EventUpdateInput!) {
   updateEvent(event: $event) {
@@ -8772,6 +9010,96 @@ query QueryInvestments($filter: InvestmentFilter, $correlationId: String) {
 }
 """
 
+QUERY_INVESTMENTS_CLUSTERS_GQL = """
+query QueryInvestmentsClusters($filter: InvestmentFilter, $clusters: EntityClustersInput, $correlationId: String) {
+  investments(filter: $filter, clusters: $clusters, correlationId: $correlationId) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+      amount
+      amountCurrency
+      status
+      stage
+      investmentDate
+      roundSize
+      roundSizeCurrency
+      postValuation
+      postValuationCurrency
+      sharesOwned
+      vehicle
+      entryPricePerShare
+      currentPricePerShare
+      discountPercent
+      proRataRights
+      investor {
+        id
+        name
+      }
+      organization {
+        id
+        name
+      }
+    }
+    clusters {
+      clusters {
+        entities {
+          id
+          name
+        }
+        similarity
+      }
+    }
+  }
+}
+"""
+
 QUERY_INVESTMENTS_EXPANDED_GQL = """
 query QueryInvestmentsExpanded($filter: InvestmentFilter, $correlationId: String) {
   investments(filter: $filter, correlationId: $correlationId) {
@@ -9046,6 +9374,99 @@ query QueryInvestmentFunds($filter: InvestmentFundFilter, $correlationId: String
       vintage
       targetSize
       targetSizeCurrency
+    }
+  }
+}
+"""
+
+QUERY_INVESTMENT_FUNDS_CLUSTERS_GQL = """
+query QueryInvestmentFundsClusters($filter: InvestmentFundFilter, $clusters: EntityClustersInput, $correlationId: String) {
+  investmentFunds(
+    filter: $filter
+    clusters: $clusters
+    correlationId: $correlationId
+  ) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+      amount
+      amountCurrency
+      fundType
+      vintage
+      targetSize
+      targetSizeCurrency
+      organizations {
+        id
+        name
+      }
+      investments {
+        id
+        name
+      }
+      parentFund {
+        id
+        name
+      }
+      childFunds {
+        id
+        name
+      }
+    }
+    clusters {
+      clusters {
+        entities {
+          id
+          name
+        }
+        similarity
+      }
     }
   }
 }
@@ -9400,6 +9821,77 @@ query QueryMedicalConditions($filter: MedicalConditionFilter, $correlationId: St
 }
 """
 
+QUERY_MEDICAL_CONDITIONS_CLUSTERS_GQL = """
+query QueryMedicalConditionsClusters($filter: MedicalConditionFilter, $clusters: EntityClustersInput, $correlationId: String) {
+  medicalConditions(
+    filter: $filter
+    clusters: $clusters
+    correlationId: $correlationId
+  ) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+    }
+    clusters {
+      clusters {
+        entities {
+          id
+          name
+        }
+        similarity
+      }
+    }
+  }
+}
+"""
+
 UPDATE_MEDICAL_CONDITION_GQL = """
 mutation UpdateMedicalCondition($medicalCondition: MedicalConditionUpdateInput!) {
   updateMedicalCondition(medicalCondition: $medicalCondition) {
@@ -9564,6 +10056,77 @@ query QueryMedicalContraindications($filter: MedicalContraindicationFilter, $cor
         h3r13
         h3r14
         h3r15
+      }
+    }
+  }
+}
+"""
+
+QUERY_MEDICAL_CONTRAINDICATIONS_CLUSTERS_GQL = """
+query QueryMedicalContraindicationsClusters($filter: MedicalContraindicationFilter, $clusters: EntityClustersInput, $correlationId: String) {
+  medicalContraindications(
+    filter: $filter
+    clusters: $clusters
+    correlationId: $correlationId
+  ) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+    }
+    clusters {
+      clusters {
+        entities {
+          id
+          name
+        }
+        similarity
       }
     }
   }
@@ -9740,6 +10303,77 @@ query QueryMedicalDevices($filter: MedicalDeviceFilter, $correlationId: String) 
 }
 """
 
+QUERY_MEDICAL_DEVICES_CLUSTERS_GQL = """
+query QueryMedicalDevicesClusters($filter: MedicalDeviceFilter, $clusters: EntityClustersInput, $correlationId: String) {
+  medicalDevices(
+    filter: $filter
+    clusters: $clusters
+    correlationId: $correlationId
+  ) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+    }
+    clusters {
+      clusters {
+        entities {
+          id
+          name
+        }
+        similarity
+      }
+    }
+  }
+}
+"""
+
 UPDATE_MEDICAL_DEVICE_GQL = """
 mutation UpdateMedicalDevice($medicalDevice: MedicalDeviceUpdateInput!) {
   updateMedicalDevice(medicalDevice: $medicalDevice) {
@@ -9904,6 +10538,77 @@ query QueryMedicalDrugs($filter: MedicalDrugFilter, $correlationId: String) {
         h3r13
         h3r14
         h3r15
+      }
+    }
+  }
+}
+"""
+
+QUERY_MEDICAL_DRUGS_CLUSTERS_GQL = """
+query QueryMedicalDrugsClusters($filter: MedicalDrugFilter, $clusters: EntityClustersInput, $correlationId: String) {
+  medicalDrugs(
+    filter: $filter
+    clusters: $clusters
+    correlationId: $correlationId
+  ) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+    }
+    clusters {
+      clusters {
+        entities {
+          id
+          name
+        }
+        similarity
       }
     }
   }
@@ -10080,6 +10785,77 @@ query QueryMedicalDrugClasses($filter: MedicalDrugClassFilter, $correlationId: S
 }
 """
 
+QUERY_MEDICAL_DRUG_CLASSES_CLUSTERS_GQL = """
+query QueryMedicalDrugClassesClusters($filter: MedicalDrugClassFilter, $clusters: EntityClustersInput, $correlationId: String) {
+  medicalDrugClasses(
+    filter: $filter
+    clusters: $clusters
+    correlationId: $correlationId
+  ) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+    }
+    clusters {
+      clusters {
+        entities {
+          id
+          name
+        }
+        similarity
+      }
+    }
+  }
+}
+"""
+
 UPDATE_MEDICAL_DRUG_CLASS_GQL = """
 mutation UpdateMedicalDrugClass($medicalDrugClass: MedicalDrugClassUpdateInput!) {
   updateMedicalDrugClass(medicalDrugClass: $medicalDrugClass) {
@@ -10244,6 +11020,77 @@ query QueryMedicalGuidelines($filter: MedicalGuidelineFilter, $correlationId: St
         h3r13
         h3r14
         h3r15
+      }
+    }
+  }
+}
+"""
+
+QUERY_MEDICAL_GUIDELINES_CLUSTERS_GQL = """
+query QueryMedicalGuidelinesClusters($filter: MedicalGuidelineFilter, $clusters: EntityClustersInput, $correlationId: String) {
+  medicalGuidelines(
+    filter: $filter
+    clusters: $clusters
+    correlationId: $correlationId
+  ) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+    }
+    clusters {
+      clusters {
+        entities {
+          id
+          name
+        }
+        similarity
       }
     }
   }
@@ -10420,6 +11267,77 @@ query QueryMedicalIndications($filter: MedicalIndicationFilter, $correlationId: 
 }
 """
 
+QUERY_MEDICAL_INDICATIONS_CLUSTERS_GQL = """
+query QueryMedicalIndicationsClusters($filter: MedicalIndicationFilter, $clusters: EntityClustersInput, $correlationId: String) {
+  medicalIndications(
+    filter: $filter
+    clusters: $clusters
+    correlationId: $correlationId
+  ) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+    }
+    clusters {
+      clusters {
+        entities {
+          id
+          name
+        }
+        similarity
+      }
+    }
+  }
+}
+"""
+
 UPDATE_MEDICAL_INDICATION_GQL = """
 mutation UpdateMedicalIndication($medicalIndication: MedicalIndicationUpdateInput!) {
   updateMedicalIndication(medicalIndication: $medicalIndication) {
@@ -10584,6 +11502,77 @@ query QueryMedicalProcedures($filter: MedicalProcedureFilter, $correlationId: St
         h3r13
         h3r14
         h3r15
+      }
+    }
+  }
+}
+"""
+
+QUERY_MEDICAL_PROCEDURES_CLUSTERS_GQL = """
+query QueryMedicalProceduresClusters($filter: MedicalProcedureFilter, $clusters: EntityClustersInput, $correlationId: String) {
+  medicalProcedures(
+    filter: $filter
+    clusters: $clusters
+    correlationId: $correlationId
+  ) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+    }
+    clusters {
+      clusters {
+        entities {
+          id
+          name
+        }
+        similarity
       }
     }
   }
@@ -10774,6 +11763,84 @@ query QueryMedicalStudies($filter: MedicalStudyFilter, $correlationId: String) {
 }
 """
 
+QUERY_MEDICAL_STUDIES_CLUSTERS_GQL = """
+query QueryMedicalStudiesClusters($filter: MedicalStudyFilter, $clusters: EntityClustersInput, $correlationId: String) {
+  medicalStudies(
+    filter: $filter
+    clusters: $clusters
+    correlationId: $correlationId
+  ) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+      address {
+        streetAddress
+        city
+        region
+        country
+        postalCode
+      }
+    }
+    clusters {
+      clusters {
+        entities {
+          id
+          name
+        }
+        similarity
+      }
+    }
+  }
+}
+"""
+
 UPDATE_MEDICAL_STUDY_GQL = """
 mutation UpdateMedicalStudy($medicalStudy: MedicalStudyUpdateInput!) {
   updateMedicalStudy(medicalStudy: $medicalStudy) {
@@ -10938,6 +12005,77 @@ query QueryMedicalTests($filter: MedicalTestFilter, $correlationId: String) {
         h3r13
         h3r14
         h3r15
+      }
+    }
+  }
+}
+"""
+
+QUERY_MEDICAL_TESTS_CLUSTERS_GQL = """
+query QueryMedicalTestsClusters($filter: MedicalTestFilter, $clusters: EntityClustersInput, $correlationId: String) {
+  medicalTests(
+    filter: $filter
+    clusters: $clusters
+    correlationId: $correlationId
+  ) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+    }
+    clusters {
+      clusters {
+        entities {
+          id
+          name
+        }
+        similarity
       }
     }
   }
@@ -11114,6 +12252,77 @@ query QueryMedicalTherapies($filter: MedicalTherapyFilter, $correlationId: Strin
 }
 """
 
+QUERY_MEDICAL_THERAPIES_CLUSTERS_GQL = """
+query QueryMedicalTherapiesClusters($filter: MedicalTherapyFilter, $clusters: EntityClustersInput, $correlationId: String) {
+  medicalTherapies(
+    filter: $filter
+    clusters: $clusters
+    correlationId: $correlationId
+  ) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+    }
+    clusters {
+      clusters {
+        entities {
+          id
+          name
+        }
+        similarity
+      }
+    }
+  }
+}
+"""
+
 UPDATE_MEDICAL_THERAPY_GQL = """
 mutation UpdateMedicalTherapy($medicalTherapy: MedicalTherapyUpdateInput!) {
   updateMedicalTherapy(medicalTherapy: $medicalTherapy) {
@@ -11145,6 +12354,85 @@ mutation DeleteObservation($id: ID!) {
   deleteObservation(id: $id) {
     id
     state
+  }
+}
+"""
+
+MATCH_ENTITY_GQL = """
+mutation MatchEntity($observable: ObservableInput!, $candidates: [EntityReferenceInput!]!, $specification: EntityReferenceInput, $correlationId: String) {
+  matchEntity(
+    observable: $observable
+    candidates: $candidates
+    specification: $specification
+    correlationId: $correlationId
+  ) {
+    reference {
+      type
+      observable {
+        id
+        name
+      }
+    }
+    relevance
+    reasoning
+  }
+}
+"""
+
+RESOLVE_ENTITIES_GQL = """
+mutation ResolveEntities($type: ObservableTypes!, $entities: [EntityReferenceInput!]!, $threshold: Float, $specification: EntityReferenceInput, $correlationId: String) {
+  resolveEntities(
+    type: $type
+    entities: $entities
+    threshold: $threshold
+    specification: $specification
+    correlationId: $correlationId
+  ) {
+    type
+    primary {
+      id
+    }
+    resolved {
+      id
+    }
+    relevance
+    reasoning
+    primaryCluster {
+      entities {
+        id
+        name
+      }
+      similarity
+    }
+    outlierClusters {
+      entities {
+        id
+        name
+      }
+      similarity
+    }
+  }
+}
+"""
+
+RESOLVE_ENTITY_GQL = """
+mutation ResolveEntity($type: ObservableTypes!, $source: EntityReferenceInput!, $target: EntityReferenceInput!, $specification: EntityReferenceInput, $correlationId: String) {
+  resolveEntity(
+    type: $type
+    source: $source
+    target: $target
+    specification: $specification
+    correlationId: $correlationId
+  ) {
+    reference {
+      type
+      observable {
+        id
+        name
+      }
+    }
+    relevance
+    reasoning
   }
 }
 """
@@ -11395,6 +12683,129 @@ query QueryOrganizations($filter: OrganizationFilter, $correlationId: String) {
       revenueCurrency
       investment
       investmentCurrency
+    }
+  }
+}
+"""
+
+QUERY_ORGANIZATIONS_CLUSTERS_GQL = """
+query QueryOrganizationsClusters($filter: OrganizationFilter, $clusters: EntityClustersInput, $correlationId: String) {
+  organizations(
+    filter: $filter
+    clusters: $clusters
+    correlationId: $correlationId
+  ) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+      address {
+        streetAddress
+        city
+        region
+        country
+        postalCode
+      }
+      foundingDate
+      email
+      telephone
+      legalName
+      industries
+      revenue
+      revenueCurrency
+      investment
+      investmentCurrency
+      founders {
+        id
+        name
+      }
+      employees {
+        id
+        name
+      }
+      members {
+        id
+        name
+      }
+      parentOrganization {
+        id
+        name
+      }
+      memberOf {
+        id
+        name
+      }
+      subOrganizations {
+        id
+        name
+      }
+      locations {
+        id
+        name
+      }
+      investmentsReceived {
+        id
+        name
+      }
+      investorFunds {
+        id
+        name
+      }
+    }
+    clusters {
+      clusters {
+        entities {
+          id
+          name
+        }
+        similarity
+      }
     }
   }
 }
@@ -11755,6 +13166,120 @@ query QueryPersons($filter: PersonFilter, $correlationId: String) {
 }
 """
 
+QUERY_PERSONS_CLUSTERS_GQL = """
+query QueryPersonsClusters($filter: PersonFilter, $clusters: EntityClustersInput, $correlationId: String) {
+  persons(filter: $filter, clusters: $clusters, correlationId: $correlationId) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+      address {
+        streetAddress
+        city
+        region
+        country
+        postalCode
+      }
+      email
+      givenName
+      familyName
+      phoneNumber
+      birthDate
+      title
+      occupation
+      education
+      worksFor {
+        id
+        name
+      }
+      affiliation {
+        id
+        name
+      }
+      memberOf {
+        id
+        name
+      }
+      alumniOf {
+        id
+        name
+      }
+      birthPlace {
+        id
+        name
+      }
+      deathPlace {
+        id
+        name
+      }
+      homeLocation {
+        id
+        name
+      }
+      workLocation {
+        id
+        name
+      }
+    }
+    clusters {
+      clusters {
+        entities {
+          id
+          name
+        }
+        similarity
+      }
+    }
+  }
+}
+"""
+
 QUERY_PERSONS_EXPANDED_GQL = """
 query QueryPersonsExpanded($filter: PersonFilter, $correlationId: String) {
   persons(filter: $filter, correlationId: $correlationId) {
@@ -12063,6 +13588,83 @@ query QueryPlaces($filter: PlaceFilter, $correlationId: String) {
 }
 """
 
+QUERY_PLACES_CLUSTERS_GQL = """
+query QueryPlacesClusters($filter: PlaceFilter, $clusters: EntityClustersInput, $correlationId: String) {
+  places(filter: $filter, clusters: $clusters, correlationId: $correlationId) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+      address {
+        streetAddress
+        city
+        region
+        country
+        postalCode
+      }
+      telephone
+      openingHours
+      priceRange
+    }
+    clusters {
+      clusters {
+        entities {
+          id
+          name
+        }
+        similarity
+      }
+    }
+  }
+}
+"""
+
 UPDATE_PLACE_GQL = """
 mutation UpdatePlace($place: PlaceUpdateInput!) {
   updatePlace(place: $place) {
@@ -12273,6 +13875,89 @@ query QueryProducts($filter: ProductFilter, $correlationId: String) {
       mpn
       releaseDate
       productionDate
+    }
+  }
+}
+"""
+
+QUERY_PRODUCTS_CLUSTERS_GQL = """
+query QueryProductsClusters($filter: ProductFilter, $clusters: EntityClustersInput, $correlationId: String) {
+  products(filter: $filter, clusters: $clusters, correlationId: $correlationId) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+      address {
+        streetAddress
+        city
+        region
+        country
+        postalCode
+      }
+      manufacturer
+      model
+      brand
+      upc
+      sku
+      gtin
+      mpn
+      releaseDate
+      productionDate
+    }
+    clusters {
+      clusters {
+        entities {
+          id
+          name
+        }
+        similarity
+      }
     }
   }
 }
@@ -12549,6 +14234,14 @@ mutation DeleteRepos($ids: [ID!]!, $isSynchronous: Boolean) {
 GET_REPO_GQL = """
 query GetRepo($id: ID!, $correlationId: String) {
   repo(id: $id, correlationId: $correlationId) {
+    id
+    name
+    creationDate
+    modifiedDate
+    owner {
+      id
+    }
+    state
     alternateNames
     uri
     description
@@ -12567,6 +14260,28 @@ query GetRepo($id: ID!, $correlationId: String) {
       id
       name
     }
+    location {
+      latitude
+      longitude
+    }
+    h3 {
+      h3r0
+      h3r1
+      h3r2
+      h3r3
+      h3r4
+      h3r5
+      h3r6
+      h3r7
+      h3r8
+      h3r9
+      h3r10
+      h3r11
+      h3r12
+      h3r13
+      h3r14
+      h3r15
+    }
   }
 }
 """
@@ -12575,6 +14290,15 @@ QUERY_REPOS_GQL = """
 query QueryRepos($filter: RepoFilter, $correlationId: String) {
   repos(filter: $filter, correlationId: $correlationId) {
     results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
       alternateNames
       uri
       description
@@ -12592,6 +14316,95 @@ query QueryRepos($filter: RepoFilter, $correlationId: String) {
       workflow {
         id
         name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+    }
+  }
+}
+"""
+
+QUERY_REPOS_CLUSTERS_GQL = """
+query QueryReposClusters($filter: RepoFilter, $clusters: EntityClustersInput, $correlationId: String) {
+  repos(filter: $filter, clusters: $clusters, correlationId: $correlationId) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+    }
+    clusters {
+      clusters {
+        entities {
+          id
+          name
+        }
+        similarity
       }
     }
   }
@@ -12689,8 +14502,14 @@ mutation DeleteSoftwares($ids: [ID!]!, $isSynchronous: Boolean) {
 GET_SOFTWARE_GQL = """
 query GetSoftware($id: ID!, $correlationId: String) {
   software(id: $id, correlationId: $correlationId) {
-    releaseDate
-    developer
+    id
+    name
+    creationDate
+    modifiedDate
+    owner {
+      id
+    }
+    state
     alternateNames
     uri
     description
@@ -12709,6 +14528,30 @@ query GetSoftware($id: ID!, $correlationId: String) {
       id
       name
     }
+    location {
+      latitude
+      longitude
+    }
+    h3 {
+      h3r0
+      h3r1
+      h3r2
+      h3r3
+      h3r4
+      h3r5
+      h3r6
+      h3r7
+      h3r8
+      h3r9
+      h3r10
+      h3r11
+      h3r12
+      h3r13
+      h3r14
+      h3r15
+    }
+    releaseDate
+    developer
   }
 }
 """
@@ -12717,8 +14560,15 @@ QUERY_SOFTWARES_GQL = """
 query QuerySoftwares($filter: SoftwareFilter, $correlationId: String) {
   softwares(filter: $filter, correlationId: $correlationId) {
     results {
-      releaseDate
-      developer
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
       alternateNames
       uri
       description
@@ -12736,6 +14586,99 @@ query QuerySoftwares($filter: SoftwareFilter, $correlationId: String) {
       workflow {
         id
         name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+      releaseDate
+      developer
+    }
+  }
+}
+"""
+
+QUERY_SOFTWARES_CLUSTERS_GQL = """
+query QuerySoftwaresClusters($filter: SoftwareFilter, $clusters: EntityClustersInput, $correlationId: String) {
+  softwares(filter: $filter, clusters: $clusters, correlationId: $correlationId) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+      releaseDate
+      developer
+    }
+    clusters {
+      clusters {
+        entities {
+          id
+          name
+        }
+        similarity
       }
     }
   }
@@ -14917,6 +16860,13 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
           }
         }
       }
+      entityResolution {
+        strategy
+        threshold
+        specification {
+          id
+        }
+      }
     }
     storage {
       policy {
@@ -15185,6 +17135,13 @@ query GetWorkflow($id: ID!, $correlationId: String) {
           }
         }
       }
+      entityResolution {
+        strategy
+        threshold
+        specification {
+          id
+        }
+      }
     }
     storage {
       policy {
@@ -15424,6 +17381,13 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
             }
           }
         }
+        entityResolution {
+          strategy
+          threshold
+          specification {
+            id
+          }
+        }
       }
       storage {
         policy {
@@ -15657,6 +17621,13 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
           }
         }
       }
+      entityResolution {
+        strategy
+        threshold
+        specification {
+          id
+        }
+      }
     }
     storage {
       policy {
@@ -15887,6 +17858,13 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
             processor
             isSynchronous
           }
+        }
+      }
+      entityResolution {
+        strategy
+        threshold
+        specification {
+          id
         }
       }
     }

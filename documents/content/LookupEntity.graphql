@@ -1,0 +1,21 @@
+query LookupEntity($filter: EntityRelationshipsFilter!, $correlationId: String) {
+  lookupEntity(filter: $filter, correlationId: $correlationId) {
+    entity {
+      id
+      name
+      type
+      metadata
+    }
+    relationships {
+      relation
+      direction
+      entity {
+        id
+        name
+        type
+        metadata
+      }
+    }
+    totalCount
+  }
+}

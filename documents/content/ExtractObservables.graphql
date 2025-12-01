@@ -1,0 +1,92 @@
+mutation ExtractObservables($text: String!, $textType: TextTypes, $specification: EntityReferenceInput, $observableTypes: [ObservableTypes!], $correlationId: String) {
+  extractObservables(text: $text, textType: $textType, specification: $specification, observableTypes: $observableTypes, correlationId: $correlationId) {
+    labels {
+      name
+      metadata
+    }
+    categories {
+      name
+      metadata
+    }
+    persons {
+      name
+      metadata
+    }
+    organizations {
+      name
+      metadata
+    }
+    places {
+      name
+      metadata
+    }
+    events {
+      name
+      metadata
+    }
+    products {
+      name
+      metadata
+    }
+    softwares {
+      name
+      metadata
+    }
+    repos {
+      name
+      metadata
+    }
+    investments {
+      name
+      metadata
+    }
+    investmentFunds {
+      name
+      metadata
+    }
+    medicalStudies {
+      name
+      metadata
+    }
+    medicalConditions {
+      name
+      metadata
+    }
+    medicalGuidelines {
+      name
+      metadata
+    }
+    medicalDrugs {
+      name
+      metadata
+    }
+    medicalDrugClasses {
+      name
+      metadata
+    }
+    medicalIndications {
+      name
+      metadata
+    }
+    medicalContraindications {
+      name
+      metadata
+    }
+    medicalProcedures {
+      name
+      metadata
+    }
+    medicalTherapies {
+      name
+      metadata
+    }
+    medicalDevices {
+      name
+      metadata
+    }
+    medicalTests {
+      name
+      metadata
+    }
+  }
+}

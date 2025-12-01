@@ -47,6 +47,7 @@ from .enums import (
     EmbeddingTypes,
     EntityEnrichmentServiceTypes,
     EntityExtractionServiceTypes,
+    EntityResolutionStrategyTypes,
     EntityState,
     EnvironmentTypes,
     EventFacetTypes,
@@ -578,6 +579,8 @@ class RepoUpdateInput(BaseModel):
     uri: Optional[Any] = None
     identifier: Optional[str] = None
     description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
 
 
 class MedicalTherapyUpdateInput(BaseModel):
@@ -855,6 +858,10 @@ class GoogleContactsCRMFeedPropertiesUpdateInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+
+
+class EntityClustersInput(BaseModel):
+    threshold: Optional[float] = None
 
 
 class EntityReferenceInput(BaseModel):
@@ -1465,6 +1472,9 @@ class OpenAIModelPropertiesUpdateInput(BaseModel):
 class EnrichmentWorkflowStageInput(BaseModel):
     link: Optional["LinkStrategyInput"] = None
     jobs: Optional[List[Optional["EnrichmentWorkflowJobInput"]]] = None
+    entity_resolution: Optional["EntityResolutionStrategyInput"] = Field(
+        alias="entityResolution", default=None
+    )
 
 
 class FeedInput(BaseModel):
@@ -1584,6 +1594,8 @@ class SoftwareUpdateInput(BaseModel):
     uri: Optional[Any] = None
     identifier: Optional[str] = None
     description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
     developer: Optional[str] = None
     release_date: Optional[Any] = Field(alias="releaseDate", default=None)
 
@@ -2503,6 +2515,12 @@ class OpenAIModelPropertiesInput(BaseModel):
     )
 
 
+class EntityResolutionStrategyInput(BaseModel):
+    strategy: Optional[EntityResolutionStrategyTypes] = None
+    threshold: Optional[float] = None
+    specification: Optional["EntityReferenceInput"] = None
+
+
 class BedrockModelPropertiesUpdateInput(BaseModel):
     model: Optional[BedrockModels] = None
     model_name: Optional[str] = Field(alias="modelName", default=None)
@@ -2982,6 +3000,18 @@ class GeometryMetadataInput(BaseModel):
     vertex_count: Optional[Any] = Field(alias="vertexCount", default=None)
 
 
+class EntityRelationshipsFilter(BaseModel):
+    id: str
+    limit: Optional[int] = None
+    relationship_types: Optional[List[str]] = Field(
+        alias="relationshipTypes", default=None
+    )
+    include_metadata: Optional[bool] = Field(alias="includeMetadata", default=None)
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
+
+
 class DiscordGuildsInput(BaseModel):
     token: str
 
@@ -3133,6 +3163,12 @@ class RevisionStrategyUpdateInput(BaseModel):
     type: Optional[RevisionStrategyTypes] = None
     custom_revision: Optional[str] = Field(alias="customRevision", default=None)
     count: Optional[int] = None
+
+
+class ObservableInput(BaseModel):
+    name: str
+    type: ObservableTypes
+    metadata: Optional[str] = None
 
 
 class ContentPublishingConnectorUpdateInput(BaseModel):
@@ -3692,6 +3728,8 @@ class RepoInput(BaseModel):
     uri: Optional[Any] = None
     identifier: Optional[str] = None
     description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
 
 
 class SearchFeedPropertiesInput(BaseModel):
@@ -3859,6 +3897,9 @@ class GraphFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     offset: Optional[int] = None
     limit: Optional[int] = None
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
 
 
 class AddressFilter(BaseModel):
@@ -4346,6 +4387,8 @@ class SoftwareInput(BaseModel):
     uri: Optional[Any] = None
     identifier: Optional[str] = None
     description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
     developer: Optional[str] = None
     release_date: Optional[Any] = Field(alias="releaseDate", default=None)
 
@@ -4972,6 +5015,7 @@ EmailFeedPropertiesUpdateInput.model_rebuild()
 PreparationWorkflowJobInput.model_rebuild()
 ProductInput.model_rebuild()
 MedicalDrugClassInput.model_rebuild()
+RepoUpdateInput.model_rebuild()
 MedicalTherapyUpdateInput.model_rebuild()
 MedicalIndicationUpdateInput.model_rebuild()
 MedicalProcedureUpdateInput.model_rebuild()
@@ -5013,6 +5057,7 @@ EnrichmentWorkflowStageInput.model_rebuild()
 FeedInput.model_rebuild()
 ObservationReferenceInput.model_rebuild()
 PostMetadataInput.model_rebuild()
+SoftwareUpdateInput.model_rebuild()
 SpecificationInput.model_rebuild()
 RegexContentClassificationPropertiesInput.model_rebuild()
 WorkflowActionInput.model_rebuild()
@@ -5042,6 +5087,7 @@ ModelTextExtractionPropertiesInput.model_rebuild()
 ResearchFeedPropertiesUpdateInput.model_rebuild()
 OrganizationUpdateInput.model_rebuild()
 UserFilter.model_rebuild()
+EntityResolutionStrategyInput.model_rebuild()
 ConnectorFilter.model_rebuild()
 MedicalGuidelineFilter.model_rebuild()
 EntityEnrichmentConnectorInput.model_rebuild()
@@ -5078,6 +5124,7 @@ EventInput.model_rebuild()
 GoogleImagePublishingPropertiesInput.model_rebuild()
 IntegrationConnectorInput.model_rebuild()
 CommitFeedPropertiesUpdateInput.model_rebuild()
+RepoInput.model_rebuild()
 ContentClassificationConnectorInput.model_rebuild()
 MedicalDeviceUpdateInput.model_rebuild()
 AudioMetadataInput.model_rebuild()
@@ -5103,6 +5150,7 @@ CalendarFeedPropertiesInput.model_rebuild()
 ObservationOccurrenceInput.model_rebuild()
 EntityFeedPropertiesInput.model_rebuild()
 IndexingWorkflowStageInput.model_rebuild()
+SoftwareInput.model_rebuild()
 CollectionFilter.model_rebuild()
 EventFilter.model_rebuild()
 MedicalContraindicationInput.model_rebuild()

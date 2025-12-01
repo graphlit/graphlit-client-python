@@ -197,6 +197,13 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
             }
           }
         }
+        entityResolution {
+          strategy
+          threshold
+          specification {
+            id
+          }
+        }
       }
       storage {
         policy {

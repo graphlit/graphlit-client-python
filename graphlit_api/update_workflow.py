@@ -17,6 +17,7 @@ from .enums import (
     EmbeddingTypes,
     EntityEnrichmentServiceTypes,
     EntityExtractionServiceTypes,
+    EntityResolutionStrategyTypes,
     EntityState,
     FilePreparationServiceTypes,
     FileTypes,
@@ -338,6 +339,9 @@ class UpdateWorkflowUpdateWorkflowClassificationJobsConnectorRegexRules(BaseMode
 class UpdateWorkflowUpdateWorkflowEnrichment(BaseModel):
     link: Optional["UpdateWorkflowUpdateWorkflowEnrichmentLink"]
     jobs: Optional[List[Optional["UpdateWorkflowUpdateWorkflowEnrichmentJobs"]]]
+    entity_resolution: Optional[
+        "UpdateWorkflowUpdateWorkflowEnrichmentEntityResolution"
+    ] = Field(alias="entityResolution")
 
 
 class UpdateWorkflowUpdateWorkflowEnrichmentLink(BaseModel):
@@ -383,6 +387,18 @@ class UpdateWorkflowUpdateWorkflowEnrichmentJobsConnectorDiffbot(BaseModel):
 class UpdateWorkflowUpdateWorkflowEnrichmentJobsConnectorParallel(BaseModel):
     processor: Optional[ParallelProcessors]
     is_synchronous: Optional[bool] = Field(alias="isSynchronous")
+
+
+class UpdateWorkflowUpdateWorkflowEnrichmentEntityResolution(BaseModel):
+    strategy: Optional[EntityResolutionStrategyTypes]
+    threshold: Optional[float]
+    specification: Optional[
+        "UpdateWorkflowUpdateWorkflowEnrichmentEntityResolutionSpecification"
+    ]
+
+
+class UpdateWorkflowUpdateWorkflowEnrichmentEntityResolutionSpecification(BaseModel):
+    id: str
 
 
 class UpdateWorkflowUpdateWorkflowStorage(BaseModel):
@@ -457,6 +473,7 @@ UpdateWorkflowUpdateWorkflowClassificationJobsConnectorRegex.model_rebuild()
 UpdateWorkflowUpdateWorkflowEnrichment.model_rebuild()
 UpdateWorkflowUpdateWorkflowEnrichmentJobs.model_rebuild()
 UpdateWorkflowUpdateWorkflowEnrichmentJobsConnector.model_rebuild()
+UpdateWorkflowUpdateWorkflowEnrichmentEntityResolution.model_rebuild()
 UpdateWorkflowUpdateWorkflowStorage.model_rebuild()
 UpdateWorkflowUpdateWorkflowActions.model_rebuild()
 UpdateWorkflowUpdateWorkflowActionsConnector.model_rebuild()

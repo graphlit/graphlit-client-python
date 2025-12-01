@@ -1,0 +1,27 @@
+mutation ResolveEntities($type: ObservableTypes!, $entities: [EntityReferenceInput!]!, $threshold: Float, $specification: EntityReferenceInput, $correlationId: String) {
+  resolveEntities(type: $type, entities: $entities, threshold: $threshold, specification: $specification, correlationId: $correlationId) {
+    type
+    primary {
+      id
+    }
+    resolved {
+      id
+    }
+    relevance
+    reasoning
+    primaryCluster {
+      entities {
+        id
+        name
+      }
+      similarity
+    }
+    outlierClusters {
+      entities {
+        id
+        name
+      }
+      similarity
+    }
+  }
+}

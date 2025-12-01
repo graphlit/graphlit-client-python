@@ -17,6 +17,7 @@ from .enums import (
     EmbeddingTypes,
     EntityEnrichmentServiceTypes,
     EntityExtractionServiceTypes,
+    EntityResolutionStrategyTypes,
     EntityState,
     FilePreparationServiceTypes,
     FileTypes,
@@ -348,6 +349,9 @@ class QueryWorkflowsWorkflowsResultsClassificationJobsConnectorRegexRules(BaseMo
 class QueryWorkflowsWorkflowsResultsEnrichment(BaseModel):
     link: Optional["QueryWorkflowsWorkflowsResultsEnrichmentLink"]
     jobs: Optional[List[Optional["QueryWorkflowsWorkflowsResultsEnrichmentJobs"]]]
+    entity_resolution: Optional[
+        "QueryWorkflowsWorkflowsResultsEnrichmentEntityResolution"
+    ] = Field(alias="entityResolution")
 
 
 class QueryWorkflowsWorkflowsResultsEnrichmentLink(BaseModel):
@@ -393,6 +397,18 @@ class QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorDiffbot(BaseModel):
 class QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorParallel(BaseModel):
     processor: Optional[ParallelProcessors]
     is_synchronous: Optional[bool] = Field(alias="isSynchronous")
+
+
+class QueryWorkflowsWorkflowsResultsEnrichmentEntityResolution(BaseModel):
+    strategy: Optional[EntityResolutionStrategyTypes]
+    threshold: Optional[float]
+    specification: Optional[
+        "QueryWorkflowsWorkflowsResultsEnrichmentEntityResolutionSpecification"
+    ]
+
+
+class QueryWorkflowsWorkflowsResultsEnrichmentEntityResolutionSpecification(BaseModel):
+    id: str
 
 
 class QueryWorkflowsWorkflowsResultsStorage(BaseModel):
@@ -468,6 +484,7 @@ QueryWorkflowsWorkflowsResultsClassificationJobsConnectorRegex.model_rebuild()
 QueryWorkflowsWorkflowsResultsEnrichment.model_rebuild()
 QueryWorkflowsWorkflowsResultsEnrichmentJobs.model_rebuild()
 QueryWorkflowsWorkflowsResultsEnrichmentJobsConnector.model_rebuild()
+QueryWorkflowsWorkflowsResultsEnrichmentEntityResolution.model_rebuild()
 QueryWorkflowsWorkflowsResultsStorage.model_rebuild()
 QueryWorkflowsWorkflowsResultsActions.model_rebuild()
 QueryWorkflowsWorkflowsResultsActionsConnector.model_rebuild()

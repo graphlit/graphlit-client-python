@@ -1,0 +1,87 @@
+query QueryInvestmentsClusters($filter: InvestmentFilter, $clusters: EntityClustersInput, $correlationId: String) {
+  investments(filter: $filter, clusters: $clusters, correlationId: $correlationId) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      alternateNames
+      uri
+      description
+      identifier
+      thing
+      feeds {
+        id
+        name
+      }
+      links {
+        uri
+        linkType
+        excerpts
+      }
+      workflow {
+        id
+        name
+      }
+      location {
+        latitude
+        longitude
+      }
+      h3 {
+        h3r0
+        h3r1
+        h3r2
+        h3r3
+        h3r4
+        h3r5
+        h3r6
+        h3r7
+        h3r8
+        h3r9
+        h3r10
+        h3r11
+        h3r12
+        h3r13
+        h3r14
+        h3r15
+      }
+      amount
+      amountCurrency
+      status
+      stage
+      investmentDate
+      roundSize
+      roundSizeCurrency
+      postValuation
+      postValuationCurrency
+      sharesOwned
+      vehicle
+      entryPricePerShare
+      currentPricePerShare
+      discountPercent
+      proRataRights
+      investor {
+        id
+        name
+      }
+      organization {
+        id
+        name
+      }
+    }
+    clusters {
+      clusters {
+        entities {
+          id
+          name
+        }
+        similarity
+      }
+    }
+  }
+}

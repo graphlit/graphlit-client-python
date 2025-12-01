@@ -190,6 +190,13 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
           }
         }
       }
+      entityResolution {
+        strategy
+        threshold
+        specification {
+          id
+        }
+      }
     }
     storage {
       policy {

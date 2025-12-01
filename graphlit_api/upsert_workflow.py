@@ -17,6 +17,7 @@ from .enums import (
     EmbeddingTypes,
     EntityEnrichmentServiceTypes,
     EntityExtractionServiceTypes,
+    EntityResolutionStrategyTypes,
     EntityState,
     FilePreparationServiceTypes,
     FileTypes,
@@ -338,6 +339,9 @@ class UpsertWorkflowUpsertWorkflowClassificationJobsConnectorRegexRules(BaseMode
 class UpsertWorkflowUpsertWorkflowEnrichment(BaseModel):
     link: Optional["UpsertWorkflowUpsertWorkflowEnrichmentLink"]
     jobs: Optional[List[Optional["UpsertWorkflowUpsertWorkflowEnrichmentJobs"]]]
+    entity_resolution: Optional[
+        "UpsertWorkflowUpsertWorkflowEnrichmentEntityResolution"
+    ] = Field(alias="entityResolution")
 
 
 class UpsertWorkflowUpsertWorkflowEnrichmentLink(BaseModel):
@@ -383,6 +387,18 @@ class UpsertWorkflowUpsertWorkflowEnrichmentJobsConnectorDiffbot(BaseModel):
 class UpsertWorkflowUpsertWorkflowEnrichmentJobsConnectorParallel(BaseModel):
     processor: Optional[ParallelProcessors]
     is_synchronous: Optional[bool] = Field(alias="isSynchronous")
+
+
+class UpsertWorkflowUpsertWorkflowEnrichmentEntityResolution(BaseModel):
+    strategy: Optional[EntityResolutionStrategyTypes]
+    threshold: Optional[float]
+    specification: Optional[
+        "UpsertWorkflowUpsertWorkflowEnrichmentEntityResolutionSpecification"
+    ]
+
+
+class UpsertWorkflowUpsertWorkflowEnrichmentEntityResolutionSpecification(BaseModel):
+    id: str
 
 
 class UpsertWorkflowUpsertWorkflowStorage(BaseModel):
@@ -457,6 +473,7 @@ UpsertWorkflowUpsertWorkflowClassificationJobsConnectorRegex.model_rebuild()
 UpsertWorkflowUpsertWorkflowEnrichment.model_rebuild()
 UpsertWorkflowUpsertWorkflowEnrichmentJobs.model_rebuild()
 UpsertWorkflowUpsertWorkflowEnrichmentJobsConnector.model_rebuild()
+UpsertWorkflowUpsertWorkflowEnrichmentEntityResolution.model_rebuild()
 UpsertWorkflowUpsertWorkflowStorage.model_rebuild()
 UpsertWorkflowUpsertWorkflowActions.model_rebuild()
 UpsertWorkflowUpsertWorkflowActionsConnector.model_rebuild()

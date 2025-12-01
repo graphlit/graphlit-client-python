@@ -1,0 +1,13 @@
+mutation ResolveEntity($type: ObservableTypes!, $source: EntityReferenceInput!, $target: EntityReferenceInput!, $specification: EntityReferenceInput, $correlationId: String) {
+  resolveEntity(type: $type, source: $source, target: $target, specification: $specification, correlationId: $correlationId) {
+    reference {
+      type
+      observable {
+        id
+        name
+      }
+    }
+    relevance
+    reasoning
+  }
+}

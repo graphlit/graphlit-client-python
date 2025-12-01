@@ -17,6 +17,7 @@ from .enums import (
     EmbeddingTypes,
     EntityEnrichmentServiceTypes,
     EntityExtractionServiceTypes,
+    EntityResolutionStrategyTypes,
     EntityState,
     FilePreparationServiceTypes,
     FileTypes,
@@ -321,6 +322,9 @@ class GetWorkflowWorkflowClassificationJobsConnectorRegexRules(BaseModel):
 class GetWorkflowWorkflowEnrichment(BaseModel):
     link: Optional["GetWorkflowWorkflowEnrichmentLink"]
     jobs: Optional[List[Optional["GetWorkflowWorkflowEnrichmentJobs"]]]
+    entity_resolution: Optional["GetWorkflowWorkflowEnrichmentEntityResolution"] = (
+        Field(alias="entityResolution")
+    )
 
 
 class GetWorkflowWorkflowEnrichmentLink(BaseModel):
@@ -366,6 +370,18 @@ class GetWorkflowWorkflowEnrichmentJobsConnectorDiffbot(BaseModel):
 class GetWorkflowWorkflowEnrichmentJobsConnectorParallel(BaseModel):
     processor: Optional[ParallelProcessors]
     is_synchronous: Optional[bool] = Field(alias="isSynchronous")
+
+
+class GetWorkflowWorkflowEnrichmentEntityResolution(BaseModel):
+    strategy: Optional[EntityResolutionStrategyTypes]
+    threshold: Optional[float]
+    specification: Optional[
+        "GetWorkflowWorkflowEnrichmentEntityResolutionSpecification"
+    ]
+
+
+class GetWorkflowWorkflowEnrichmentEntityResolutionSpecification(BaseModel):
+    id: str
 
 
 class GetWorkflowWorkflowStorage(BaseModel):
@@ -440,6 +456,7 @@ GetWorkflowWorkflowClassificationJobsConnectorRegex.model_rebuild()
 GetWorkflowWorkflowEnrichment.model_rebuild()
 GetWorkflowWorkflowEnrichmentJobs.model_rebuild()
 GetWorkflowWorkflowEnrichmentJobsConnector.model_rebuild()
+GetWorkflowWorkflowEnrichmentEntityResolution.model_rebuild()
 GetWorkflowWorkflowStorage.model_rebuild()
 GetWorkflowWorkflowActions.model_rebuild()
 GetWorkflowWorkflowActionsConnector.model_rebuild()

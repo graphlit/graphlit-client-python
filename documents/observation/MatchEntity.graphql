@@ -1,0 +1,13 @@
+mutation MatchEntity($observable: ObservableInput!, $candidates: [EntityReferenceInput!]!, $specification: EntityReferenceInput, $correlationId: String) {
+  matchEntity(observable: $observable, candidates: $candidates, specification: $specification, correlationId: $correlationId) {
+    reference {
+      type
+      observable {
+        id
+        name
+      }
+    }
+    relevance
+    reasoning
+  }
+}
