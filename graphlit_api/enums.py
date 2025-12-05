@@ -67,6 +67,12 @@ class ModelServiceTypes(str, Enum):
     XAI = "XAI"
 
 
+class FilterMode(str, Enum):
+    ANY = "ANY"
+    ONLY = "ONLY"
+    ALL = "ALL"
+
+
 class RenditionTypes(str, Enum):
     CONTENT = "CONTENT"
 
@@ -716,6 +722,11 @@ class MedicalConditionFacetTypes(str, Enum):
 class OAuthProviders(str, Enum):
     DROPBOX = "DROPBOX"
     BOX = "BOX"
+
+
+class BlobListingTypes(str, Enum):
+    PAST = "PAST"
+    NEW = "NEW"
 
 
 class OrganizationFacetTypes(str, Enum):

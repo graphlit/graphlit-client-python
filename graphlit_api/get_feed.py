@@ -8,6 +8,7 @@ from pydantic import Field
 from .base_model import BaseModel
 from .enums import (
     AttioAuthenticationTypes,
+    BlobListingTypes,
     BoxAuthenticationTypes,
     CalendarListingTypes,
     DropboxAuthenticationTypes,
@@ -127,6 +128,7 @@ class GetFeedFeedSiteAzureBlob(BaseModel):
     account_name: Optional[str] = Field(alias="accountName")
     container_name: Optional[str] = Field(alias="containerName")
     prefix: Optional[str]
+    list_type: Optional[BlobListingTypes] = Field(alias="listType")
 
 
 class GetFeedFeedSiteAzureFile(BaseModel):

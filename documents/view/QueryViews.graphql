@@ -101,6 +101,8 @@ query QueryViews($filter: ViewFilter, $correlationId: String) {
         hasFeeds
         hasCollections
         hasWorkflows
+        collectionMode
+        observationMode
       }
       augmentedFilter {
         dateRange {
@@ -192,6 +194,8 @@ query QueryViews($filter: ViewFilter, $correlationId: String) {
         hasFeeds
         hasCollections
         hasWorkflows
+        collectionMode
+        observationMode
       }
     }
   }

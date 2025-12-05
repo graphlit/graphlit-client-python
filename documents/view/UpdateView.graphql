@@ -94,6 +94,8 @@ mutation UpdateView($view: ViewUpdateInput!) {
       hasFeeds
       hasCollections
       hasWorkflows
+      collectionMode
+      observationMode
     }
     augmentedFilter {
       dateRange {
@@ -185,6 +187,8 @@ mutation UpdateView($view: ViewUpdateInput!) {
       hasFeeds
       hasCollections
       hasWorkflows
+      collectionMode
+      observationMode
     }
   }
 }

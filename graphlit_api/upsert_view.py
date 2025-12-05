@@ -6,7 +6,14 @@ from typing import Any, List, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import ContentTypes, EntityState, FileTypes, ObservableTypes, ViewTypes
+from .enums import (
+    ContentTypes,
+    EntityState,
+    FileTypes,
+    FilterMode,
+    ObservableTypes,
+    ViewTypes,
+)
 
 
 class UpsertView(BaseModel):
@@ -55,6 +62,8 @@ class UpsertViewUpsertViewFilter(BaseModel):
     has_feeds: Optional[bool] = Field(alias="hasFeeds")
     has_collections: Optional[bool] = Field(alias="hasCollections")
     has_workflows: Optional[bool] = Field(alias="hasWorkflows")
+    collection_mode: Optional[FilterMode] = Field(alias="collectionMode")
+    observation_mode: Optional[FilterMode] = Field(alias="observationMode")
 
 
 class UpsertViewUpsertViewFilterDateRange(BaseModel):
@@ -205,6 +214,8 @@ class UpsertViewUpsertViewAugmentedFilter(BaseModel):
     has_feeds: Optional[bool] = Field(alias="hasFeeds")
     has_collections: Optional[bool] = Field(alias="hasCollections")
     has_workflows: Optional[bool] = Field(alias="hasWorkflows")
+    collection_mode: Optional[FilterMode] = Field(alias="collectionMode")
+    observation_mode: Optional[FilterMode] = Field(alias="observationMode")
 
 
 class UpsertViewUpsertViewAugmentedFilterDateRange(BaseModel):

@@ -13,6 +13,7 @@ from .enums import (
     ElevenLabsModels,
     EntityState,
     FileTypes,
+    FilterMode,
     GoogleImageModels,
     IntegrationServiceTypes,
     MCPServerTypes,
@@ -100,6 +101,8 @@ class QueryAlertsAlertsResultsFilter(BaseModel):
     has_feeds: Optional[bool] = Field(alias="hasFeeds")
     has_collections: Optional[bool] = Field(alias="hasCollections")
     has_workflows: Optional[bool] = Field(alias="hasWorkflows")
+    collection_mode: Optional[FilterMode] = Field(alias="collectionMode")
+    observation_mode: Optional[FilterMode] = Field(alias="observationMode")
 
 
 class QueryAlertsAlertsResultsFilterDateRange(BaseModel):

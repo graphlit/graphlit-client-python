@@ -559,6 +559,8 @@ query GetAlert($id: ID!, $correlationId: String) {
       hasFeeds
       hasCollections
       hasWorkflows
+      collectionMode
+      observationMode
     }
     integration {
       type
@@ -742,6 +744,8 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
         hasFeeds
         hasCollections
         hasWorkflows
+        collectionMode
+        observationMode
       }
       integration {
         type
@@ -5742,6 +5746,8 @@ query GetConversation($id: ID!, $correlationId: String) {
       hasFeeds
       hasCollections
       hasWorkflows
+      collectionMode
+      observationMode
     }
     augmentedFilter {
       dateRange {
@@ -5833,6 +5839,8 @@ query GetConversation($id: ID!, $correlationId: String) {
       hasFeeds
       hasCollections
       hasWorkflows
+      collectionMode
+      observationMode
     }
   }
 }
@@ -6701,6 +6709,8 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         hasFeeds
         hasCollections
         hasWorkflows
+        collectionMode
+        observationMode
       }
       augmentedFilter {
         dateRange {
@@ -6792,6 +6802,8 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         hasFeeds
         hasCollections
         hasWorkflows
+        collectionMode
+        observationMode
       }
     }
   }
@@ -7881,6 +7893,7 @@ query GetFeed($id: ID!, $correlationId: String) {
         accountName
         containerName
         prefix
+        listType
       }
       azureFile {
         storageAccessKey
@@ -8305,6 +8318,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           accountName
           containerName
           prefix
+          listType
         }
         azureFile {
           storageAccessKey
@@ -15739,6 +15753,8 @@ mutation CreateView($view: ViewInput!) {
       hasFeeds
       hasCollections
       hasWorkflows
+      collectionMode
+      observationMode
     }
     augmentedFilter {
       dateRange {
@@ -15830,6 +15846,8 @@ mutation CreateView($view: ViewInput!) {
       hasFeeds
       hasCollections
       hasWorkflows
+      collectionMode
+      observationMode
     }
   }
 }
@@ -15968,6 +15986,8 @@ query GetView($id: ID!, $correlationId: String) {
       hasFeeds
       hasCollections
       hasWorkflows
+      collectionMode
+      observationMode
     }
     augmentedFilter {
       dateRange {
@@ -16059,6 +16079,8 @@ query GetView($id: ID!, $correlationId: String) {
       hasFeeds
       hasCollections
       hasWorkflows
+      collectionMode
+      observationMode
     }
   }
 }
@@ -16168,6 +16190,8 @@ query QueryViews($filter: ViewFilter, $correlationId: String) {
         hasFeeds
         hasCollections
         hasWorkflows
+        collectionMode
+        observationMode
       }
       augmentedFilter {
         dateRange {
@@ -16259,6 +16283,8 @@ query QueryViews($filter: ViewFilter, $correlationId: String) {
         hasFeeds
         hasCollections
         hasWorkflows
+        collectionMode
+        observationMode
       }
     }
   }
@@ -16362,6 +16388,8 @@ mutation UpdateView($view: ViewUpdateInput!) {
       hasFeeds
       hasCollections
       hasWorkflows
+      collectionMode
+      observationMode
     }
     augmentedFilter {
       dateRange {
@@ -16453,6 +16481,8 @@ mutation UpdateView($view: ViewUpdateInput!) {
       hasFeeds
       hasCollections
       hasWorkflows
+      collectionMode
+      observationMode
     }
   }
 }
@@ -16555,6 +16585,8 @@ mutation UpsertView($view: ViewInput!) {
       hasFeeds
       hasCollections
       hasWorkflows
+      collectionMode
+      observationMode
     }
     augmentedFilter {
       dateRange {
@@ -16646,6 +16678,8 @@ mutation UpsertView($view: ViewInput!) {
       hasFeeds
       hasCollections
       hasWorkflows
+      collectionMode
+      observationMode
     }
   }
 }

@@ -107,6 +107,8 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
         hasFeeds
         hasCollections
         hasWorkflows
+        collectionMode
+        observationMode
       }
       integration {
         type

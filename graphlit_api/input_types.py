@@ -17,6 +17,7 @@ from .enums import (
     AzureDocumentIntelligenceVersions,
     AzureOpenAIModels,
     BedrockModels,
+    BlobListingTypes,
     BoxAuthenticationTypes,
     CalendarAttendeeResponseStatus,
     CalendarEventStatus,
@@ -57,6 +58,7 @@ from .enums import (
     FeedTypes,
     FilePreparationServiceTypes,
     FileTypes,
+    FilterMode,
     GitHubAuthenticationTypes,
     GitHubCommitAuthenticationTypes,
     GitHubIssueAuthenticationTypes,
@@ -232,6 +234,7 @@ class MedicalIndicationFilter(BaseModel):
         alias="disableInheritance", default=None
     )
     feeds: Optional[List["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -268,6 +271,7 @@ class SoftwareFilter(BaseModel):
         alias="disableInheritance", default=None
     )
     feeds: Optional[List["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -337,6 +341,7 @@ class MedicalTestFilter(BaseModel):
         alias="disableInheritance", default=None
     )
     feeds: Optional[List["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -377,6 +382,7 @@ class MedicalStudyFilter(BaseModel):
         alias="disableInheritance", default=None
     )
     feeds: Optional[List["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -430,6 +436,7 @@ class InvestmentFundFilter(BaseModel):
         alias="disableInheritance", default=None
     )
     feeds: Optional[List["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -751,6 +758,7 @@ class InvestmentFilter(BaseModel):
         alias="disableInheritance", default=None
     )
     feeds: Optional[List["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -956,6 +964,7 @@ class MedicalDrugClassFilter(BaseModel):
         alias="disableInheritance", default=None
     )
     feeds: Optional[List["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -1008,6 +1017,7 @@ class MedicalContraindicationFilter(BaseModel):
         alias="disableInheritance", default=None
     )
     feeds: Optional[List["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -1112,6 +1122,7 @@ class ProductFilter(BaseModel):
         alias="disableInheritance", default=None
     )
     feeds: Optional[List["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -1380,6 +1391,7 @@ class MedicalTherapyFilter(BaseModel):
         alias="disableInheritance", default=None
     )
     feeds: Optional[List["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -1869,6 +1881,7 @@ class MedicalDeviceFilter(BaseModel):
         alias="disableInheritance", default=None
     )
     feeds: Optional[List["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -2085,6 +2098,10 @@ class ContentCriteriaInput(BaseModel):
     has_feeds: Optional[bool] = Field(alias="hasFeeds", default=None)
     has_collections: Optional[bool] = Field(alias="hasCollections", default=None)
     has_workflows: Optional[bool] = Field(alias="hasWorkflows", default=None)
+    collection_mode: Optional[FilterMode] = Field(alias="collectionMode", default=None)
+    observation_mode: Optional[FilterMode] = Field(
+        alias="observationMode", default=None
+    )
 
 
 class ObservationReferenceFilter(BaseModel):
@@ -2635,6 +2652,7 @@ class MedicalGuidelineFilter(BaseModel):
         alias="disableInheritance", default=None
     )
     feeds: Optional[List["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -2761,6 +2779,7 @@ class MedicalConditionFilter(BaseModel):
         alias="disableInheritance", default=None
     )
     feeds: Optional[List["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -2815,6 +2834,7 @@ class AzureBlobFeedPropertiesInput(BaseModel):
     account_name: str = Field(alias="accountName")
     container_name: str = Field(alias="containerName")
     prefix: Optional[str] = None
+    list_type: Optional[BlobListingTypes] = Field(alias="listType", default=None)
 
 
 class LinkStrategyInput(BaseModel):
@@ -3055,6 +3075,7 @@ class MedicalProcedureFilter(BaseModel):
         alias="disableInheritance", default=None
     )
     feeds: Optional[List["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -3098,6 +3119,7 @@ class AzureBlobFeedPropertiesUpdateInput(BaseModel):
     account_name: Optional[str] = Field(alias="accountName", default=None)
     container_name: Optional[str] = Field(alias="containerName", default=None)
     prefix: Optional[str] = None
+    list_type: Optional[BlobListingTypes] = Field(alias="listType", default=None)
 
 
 class GoogleCalendarFeedPropertiesUpdateInput(BaseModel):
@@ -3227,6 +3249,7 @@ class PersonFilter(BaseModel):
         alias="disableInheritance", default=None
     )
     feeds: Optional[List["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -3514,6 +3537,10 @@ class ContentFilter(BaseModel):
     has_workflows: Optional[bool] = Field(alias="hasWorkflows", default=None)
     has_collections: Optional[bool] = Field(alias="hasCollections", default=None)
     has_observations: Optional[bool] = Field(alias="hasObservations", default=None)
+    collection_mode: Optional[FilterMode] = Field(alias="collectionMode", default=None)
+    observation_mode: Optional[FilterMode] = Field(
+        alias="observationMode", default=None
+    )
     or_: Optional[List[Optional["ContentFilterLevel"]]] = Field(
         alias="or", default=None
     )
@@ -4198,6 +4225,7 @@ class RepoFilter(BaseModel):
         alias="disableInheritance", default=None
     )
     feeds: Optional[List["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -4232,6 +4260,7 @@ class MedicalDrugFilter(BaseModel):
         alias="disableInheritance", default=None
     )
     feeds: Optional[List["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -4445,6 +4474,7 @@ class EventFilter(BaseModel):
         alias="disableInheritance", default=None
     )
     feeds: Optional[List["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -4568,6 +4598,7 @@ class PlaceFilter(BaseModel):
         alias="disableInheritance", default=None
     )
     feeds: Optional[List["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
@@ -4760,6 +4791,7 @@ class OrganizationFilter(BaseModel):
         alias="disableInheritance", default=None
     )
     feeds: Optional[List["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
     address: Optional["AddressFilter"] = None
     location: Optional["PointFilter"] = None
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)

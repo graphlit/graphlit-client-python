@@ -29,6 +29,7 @@ query GetFeed($id: ID!, $correlationId: String) {
         accountName
         containerName
         prefix
+        listType
       }
       azureFile {
         storageAccessKey
