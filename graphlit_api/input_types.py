@@ -219,6 +219,9 @@ class MedicalIndicationFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -256,6 +259,9 @@ class SoftwareFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -326,6 +332,9 @@ class MedicalTestFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -367,6 +376,9 @@ class MedicalStudyFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -421,6 +433,9 @@ class InvestmentFundFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -458,6 +473,9 @@ class AlertFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -682,6 +700,9 @@ class WorkflowFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -743,6 +764,9 @@ class InvestmentFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -949,6 +973,9 @@ class MedicalDrugClassFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -1002,6 +1029,9 @@ class MedicalContraindicationFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -1107,6 +1137,9 @@ class ProductFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -1276,6 +1309,9 @@ class ProjectFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -1376,6 +1412,9 @@ class MedicalTherapyFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -1866,6 +1905,9 @@ class MedicalDeviceFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -2473,6 +2515,9 @@ class UserFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -2617,6 +2662,9 @@ class ConnectorFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -2637,6 +2685,9 @@ class MedicalGuidelineFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -2764,6 +2815,9 @@ class MedicalConditionFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -3060,6 +3114,9 @@ class MedicalProcedureFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -3234,6 +3291,9 @@ class PersonFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -3281,6 +3341,9 @@ class MetadataFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -3310,6 +3373,9 @@ class ConversationFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -3349,6 +3415,9 @@ class CategoryFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -3394,6 +3463,9 @@ class LabelFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -3488,6 +3560,9 @@ class ContentFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -3678,6 +3753,9 @@ class ViewFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -4210,6 +4288,9 @@ class RepoFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -4245,6 +4326,9 @@ class MedicalDrugFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -4329,6 +4413,9 @@ class SpecificationFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -4428,6 +4515,9 @@ class CollectionFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -4459,6 +4549,9 @@ class EventFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -4583,6 +4676,9 @@ class PlaceFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -4776,6 +4872,9 @@ class OrganizationFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None
@@ -5006,6 +5105,9 @@ class FeedFilter(BaseModel):
     direction: Optional[OrderDirectionTypes] = None
     offset: Optional[int] = None
     limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
     id: Optional[str] = None
     name: Optional[str] = None
     states: Optional[List[EntityState]] = None

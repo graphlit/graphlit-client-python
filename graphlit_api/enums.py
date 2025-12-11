@@ -722,6 +722,9 @@ class MedicalConditionFacetTypes(str, Enum):
 class OAuthProviders(str, Enum):
     DROPBOX = "DROPBOX"
     BOX = "BOX"
+    GOOGLE = "GOOGLE"
+    MICROSOFT = "MICROSOFT"
+    GIT_HUB = "GIT_HUB"
 
 
 class BlobListingTypes(str, Enum):
