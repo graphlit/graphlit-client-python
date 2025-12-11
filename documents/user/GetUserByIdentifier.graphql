@@ -29,8 +29,10 @@ query GetUserByIdentifier($identifier: String!) {
           clientSecret
         }
         oauth {
-          refreshToken
           provider
+          clientId
+          clientSecret
+          refreshToken
           metadata
         }
         arcade {

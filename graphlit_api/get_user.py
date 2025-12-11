@@ -69,8 +69,10 @@ class GetUserUserConnectorsAuthenticationGoogle(BaseModel):
 
 
 class GetUserUserConnectorsAuthenticationOauth(BaseModel):
-    refresh_token: str = Field(alias="refreshToken")
     provider: OAuthProviders
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
+    refresh_token: str = Field(alias="refreshToken")
     metadata: Optional[str]
 
 

@@ -30,8 +30,10 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
             clientSecret
           }
           oauth {
-            refreshToken
             provider
+            clientId
+            clientSecret
+            refreshToken
             metadata
           }
           arcade {

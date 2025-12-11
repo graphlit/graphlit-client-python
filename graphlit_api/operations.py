@@ -1123,8 +1123,10 @@ query GetConnector($id: ID!, $correlationId: String) {
         clientSecret
       }
       oauth {
-        refreshToken
         provider
+        clientId
+        clientSecret
+        refreshToken
         metadata
       }
       arcade {
@@ -1186,8 +1188,10 @@ query QueryConnectors($filter: ConnectorFilter, $correlationId: String) {
           clientSecret
         }
         oauth {
-          refreshToken
           provider
+          clientId
+          clientSecret
+          refreshToken
           metadata
         }
         arcade {
@@ -15455,8 +15459,10 @@ query GetUser {
           clientSecret
         }
         oauth {
-          refreshToken
           provider
+          clientId
+          clientSecret
+          refreshToken
           metadata
         }
         arcade {
@@ -15525,8 +15531,10 @@ query GetUserByIdentifier($identifier: String!) {
           clientSecret
         }
         oauth {
-          refreshToken
           provider
+          clientId
+          clientSecret
+          refreshToken
           metadata
         }
         arcade {
@@ -15596,8 +15604,10 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
             clientSecret
           }
           oauth {
-            refreshToken
             provider
+            clientId
+            clientSecret
+            refreshToken
             metadata
           }
           arcade {

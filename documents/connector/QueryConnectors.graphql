@@ -23,8 +23,10 @@ query QueryConnectors($filter: ConnectorFilter, $correlationId: String) {
           clientSecret
         }
         oauth {
-          refreshToken
           provider
+          clientId
+          clientSecret
+          refreshToken
           metadata
         }
         arcade {
