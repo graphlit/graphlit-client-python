@@ -7919,7 +7919,9 @@ query GetFeed($id: ID!, $correlationId: String) {
         clientId
         clientSecret
         refreshToken
-        authorizationId
+        connector {
+          id
+        }
       }
       oneDrive {
         authenticationType
@@ -7928,7 +7930,9 @@ query GetFeed($id: ID!, $correlationId: String) {
         clientId
         clientSecret
         refreshToken
-        authorizationId
+        connector {
+          id
+        }
       }
       googleDrive {
         authenticationType
@@ -7938,7 +7942,9 @@ query GetFeed($id: ID!, $correlationId: String) {
         clientId
         clientSecret
         serviceAccountJson
-        authorizationId
+        connector {
+          id
+        }
       }
       dropbox {
         authenticationType
@@ -7962,7 +7968,9 @@ query GetFeed($id: ID!, $correlationId: String) {
         repositoryName
         refreshToken
         personalAccessToken
-        authorizationId
+        connector {
+          id
+        }
       }
       readLimit
     }
@@ -7980,7 +7988,9 @@ query GetFeed($id: ID!, $correlationId: String) {
         refreshToken
         clientId
         clientSecret
-        authorizationId
+        connector {
+          id
+        }
       }
       microsoft {
         type
@@ -7993,7 +8003,9 @@ query GetFeed($id: ID!, $correlationId: String) {
         refreshToken
         clientId
         clientSecret
-        authorizationId
+        connector {
+          id
+        }
       }
       readLimit
     }
@@ -8018,7 +8030,9 @@ query GetFeed($id: ID!, $correlationId: String) {
         repositoryName
         refreshToken
         personalAccessToken
-        authorizationId
+        connector {
+          id
+        }
       }
       intercom {
         accessToken
@@ -8047,7 +8061,9 @@ query GetFeed($id: ID!, $correlationId: String) {
         repositoryName
         refreshToken
         personalAccessToken
-        authorizationId
+        connector {
+          id
+        }
       }
       readLimit
     }
@@ -8060,7 +8076,9 @@ query GetFeed($id: ID!, $correlationId: String) {
         repositoryName
         refreshToken
         personalAccessToken
-        authorizationId
+        connector {
+          id
+        }
       }
       readLimit
     }
@@ -8075,7 +8093,9 @@ query GetFeed($id: ID!, $correlationId: String) {
         clientId
         clientSecret
         refreshToken
-        authorizationId
+        connector {
+          id
+        }
       }
       microsoftContacts {
         authenticationType
@@ -8083,7 +8103,9 @@ query GetFeed($id: ID!, $correlationId: String) {
         clientSecret
         refreshToken
         tenantId
-        authorizationId
+        connector {
+          id
+        }
       }
       readLimit
     }
@@ -8101,7 +8123,9 @@ query GetFeed($id: ID!, $correlationId: String) {
         refreshToken
         clientId
         clientSecret
-        authorizationId
+        connector {
+          id
+        }
       }
       microsoft {
         type
@@ -8112,7 +8136,9 @@ query GetFeed($id: ID!, $correlationId: String) {
         refreshToken
         clientId
         clientSecret
-        authorizationId
+        connector {
+          id
+        }
       }
       readLimit
     }
@@ -8181,7 +8207,9 @@ query GetFeed($id: ID!, $correlationId: String) {
       clientId
       clientSecret
       refreshToken
-      authorizationId
+      connector {
+        id
+      }
       teamId
       channelId
     }
@@ -8344,7 +8372,9 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           clientId
           clientSecret
           refreshToken
-          authorizationId
+          connector {
+            id
+          }
         }
         oneDrive {
           authenticationType
@@ -8353,7 +8383,9 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           clientId
           clientSecret
           refreshToken
-          authorizationId
+          connector {
+            id
+          }
         }
         googleDrive {
           authenticationType
@@ -8363,7 +8395,9 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           clientId
           clientSecret
           serviceAccountJson
-          authorizationId
+          connector {
+            id
+          }
         }
         dropbox {
           authenticationType
@@ -8387,7 +8421,9 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           repositoryName
           refreshToken
           personalAccessToken
-          authorizationId
+          connector {
+            id
+          }
         }
         readLimit
       }
@@ -8405,7 +8441,9 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           refreshToken
           clientId
           clientSecret
-          authorizationId
+          connector {
+            id
+          }
         }
         microsoft {
           type
@@ -8418,7 +8456,9 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           refreshToken
           clientId
           clientSecret
-          authorizationId
+          connector {
+            id
+          }
         }
         readLimit
       }
@@ -8443,7 +8483,9 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           repositoryName
           refreshToken
           personalAccessToken
-          authorizationId
+          connector {
+            id
+          }
         }
         intercom {
           accessToken
@@ -8472,7 +8514,9 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           repositoryName
           refreshToken
           personalAccessToken
-          authorizationId
+          connector {
+            id
+          }
         }
         readLimit
       }
@@ -8485,7 +8529,9 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           repositoryName
           refreshToken
           personalAccessToken
-          authorizationId
+          connector {
+            id
+          }
         }
         readLimit
       }
@@ -8500,7 +8546,9 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           clientId
           clientSecret
           refreshToken
-          authorizationId
+          connector {
+            id
+          }
         }
         microsoftContacts {
           authenticationType
@@ -8508,7 +8556,9 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           clientSecret
           refreshToken
           tenantId
-          authorizationId
+          connector {
+            id
+          }
         }
         readLimit
       }
@@ -8526,7 +8576,9 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           refreshToken
           clientId
           clientSecret
-          authorizationId
+          connector {
+            id
+          }
         }
         microsoft {
           type
@@ -8537,7 +8589,9 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           refreshToken
           clientId
           clientSecret
-          authorizationId
+          connector {
+            id
+          }
         }
         readLimit
       }
@@ -8606,7 +8660,9 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         clientId
         clientSecret
         refreshToken
-        authorizationId
+        connector {
+          id
+        }
         teamId
         channelId
       }

@@ -170,7 +170,11 @@ class QueryFeedsFeedsResultsSiteSharePoint(BaseModel):
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["QueryFeedsFeedsResultsSiteSharePointConnector"]
+
+
+class QueryFeedsFeedsResultsSiteSharePointConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsSiteOneDrive(BaseModel):
@@ -182,7 +186,11 @@ class QueryFeedsFeedsResultsSiteOneDrive(BaseModel):
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["QueryFeedsFeedsResultsSiteOneDriveConnector"]
+
+
+class QueryFeedsFeedsResultsSiteOneDriveConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsSiteGoogleDrive(BaseModel):
@@ -195,7 +203,11 @@ class QueryFeedsFeedsResultsSiteGoogleDrive(BaseModel):
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
     service_account_json: Optional[str] = Field(alias="serviceAccountJson")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["QueryFeedsFeedsResultsSiteGoogleDriveConnector"]
+
+
+class QueryFeedsFeedsResultsSiteGoogleDriveConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsSiteDropbox(BaseModel):
@@ -228,7 +240,11 @@ class QueryFeedsFeedsResultsSiteGithub(BaseModel):
     repository_name: str = Field(alias="repositoryName")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     personal_access_token: Optional[str] = Field(alias="personalAccessToken")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["QueryFeedsFeedsResultsSiteGithubConnector"]
+
+
+class QueryFeedsFeedsResultsSiteGithubConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsEmail(BaseModel):
@@ -252,7 +268,11 @@ class QueryFeedsFeedsResultsEmailGoogle(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["QueryFeedsFeedsResultsEmailGoogleConnector"]
+
+
+class QueryFeedsFeedsResultsEmailGoogleConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsEmailMicrosoft(BaseModel):
@@ -268,7 +288,11 @@ class QueryFeedsFeedsResultsEmailMicrosoft(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["QueryFeedsFeedsResultsEmailMicrosoftConnector"]
+
+
+class QueryFeedsFeedsResultsEmailMicrosoftConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsIssue(BaseModel):
@@ -306,7 +330,11 @@ class QueryFeedsFeedsResultsIssueGithub(BaseModel):
     repository_name: str = Field(alias="repositoryName")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     personal_access_token: Optional[str] = Field(alias="personalAccessToken")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["QueryFeedsFeedsResultsIssueGithubConnector"]
+
+
+class QueryFeedsFeedsResultsIssueGithubConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsIssueIntercom(BaseModel):
@@ -344,7 +372,11 @@ class QueryFeedsFeedsResultsCommitGithub(BaseModel):
     repository_name: str = Field(alias="repositoryName")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     personal_access_token: Optional[str] = Field(alias="personalAccessToken")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["QueryFeedsFeedsResultsCommitGithubConnector"]
+
+
+class QueryFeedsFeedsResultsCommitGithubConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsPullRequest(BaseModel):
@@ -362,7 +394,11 @@ class QueryFeedsFeedsResultsPullRequestGithub(BaseModel):
     repository_name: str = Field(alias="repositoryName")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     personal_access_token: Optional[str] = Field(alias="personalAccessToken")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["QueryFeedsFeedsResultsPullRequestGithubConnector"]
+
+
+class QueryFeedsFeedsResultsPullRequestGithubConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsCrm(BaseModel):
@@ -391,7 +427,11 @@ class QueryFeedsFeedsResultsCrmGoogleContacts(BaseModel):
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["QueryFeedsFeedsResultsCrmGoogleContactsConnector"]
+
+
+class QueryFeedsFeedsResultsCrmGoogleContactsConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsCrmMicrosoftContacts(BaseModel):
@@ -402,7 +442,11 @@ class QueryFeedsFeedsResultsCrmMicrosoftContacts(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     tenant_id: Optional[str] = Field(alias="tenantId")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["QueryFeedsFeedsResultsCrmMicrosoftContactsConnector"]
+
+
+class QueryFeedsFeedsResultsCrmMicrosoftContactsConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsCalendar(BaseModel):
@@ -426,7 +470,11 @@ class QueryFeedsFeedsResultsCalendarGoogle(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["QueryFeedsFeedsResultsCalendarGoogleConnector"]
+
+
+class QueryFeedsFeedsResultsCalendarGoogleConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsCalendarMicrosoft(BaseModel):
@@ -440,7 +488,11 @@ class QueryFeedsFeedsResultsCalendarMicrosoft(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["QueryFeedsFeedsResultsCalendarMicrosoftConnector"]
+
+
+class QueryFeedsFeedsResultsCalendarMicrosoftConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsRss(BaseModel):
@@ -520,9 +572,13 @@ class QueryFeedsFeedsResultsMicrosoftTeams(BaseModel):
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["QueryFeedsFeedsResultsMicrosoftTeamsConnector"]
     team_id: str = Field(alias="teamId")
     channel_id: str = Field(alias="channelId")
+
+
+class QueryFeedsFeedsResultsMicrosoftTeamsConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsDiscord(BaseModel):
@@ -576,11 +632,25 @@ QueryFeeds.model_rebuild()
 QueryFeedsFeeds.model_rebuild()
 QueryFeedsFeedsResults.model_rebuild()
 QueryFeedsFeedsResultsSite.model_rebuild()
+QueryFeedsFeedsResultsSiteSharePoint.model_rebuild()
+QueryFeedsFeedsResultsSiteOneDrive.model_rebuild()
+QueryFeedsFeedsResultsSiteGoogleDrive.model_rebuild()
+QueryFeedsFeedsResultsSiteGithub.model_rebuild()
 QueryFeedsFeedsResultsEmail.model_rebuild()
+QueryFeedsFeedsResultsEmailGoogle.model_rebuild()
+QueryFeedsFeedsResultsEmailMicrosoft.model_rebuild()
 QueryFeedsFeedsResultsIssue.model_rebuild()
+QueryFeedsFeedsResultsIssueGithub.model_rebuild()
 QueryFeedsFeedsResultsCommit.model_rebuild()
+QueryFeedsFeedsResultsCommitGithub.model_rebuild()
 QueryFeedsFeedsResultsPullRequest.model_rebuild()
+QueryFeedsFeedsResultsPullRequestGithub.model_rebuild()
 QueryFeedsFeedsResultsCrm.model_rebuild()
+QueryFeedsFeedsResultsCrmGoogleContacts.model_rebuild()
+QueryFeedsFeedsResultsCrmMicrosoftContacts.model_rebuild()
 QueryFeedsFeedsResultsCalendar.model_rebuild()
+QueryFeedsFeedsResultsCalendarGoogle.model_rebuild()
+QueryFeedsFeedsResultsCalendarMicrosoft.model_rebuild()
+QueryFeedsFeedsResultsMicrosoftTeams.model_rebuild()
 QueryFeedsFeedsResultsResearch.model_rebuild()
 QueryFeedsFeedsResultsEntity.model_rebuild()

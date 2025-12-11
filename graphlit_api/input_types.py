@@ -591,7 +591,7 @@ class MicrosoftContactsCRMFeedPropertiesInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     tenant_id: Optional[str] = Field(alias="tenantId", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class RSSFeedPropertiesUpdateInput(BaseModel):
@@ -731,7 +731,7 @@ class MicrosoftEmailFeedPropertiesUpdateInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class MedicalTherapyFacetInput(BaseModel):
@@ -804,7 +804,7 @@ class SharePointFoldersInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class SharePointFeedPropertiesUpdateInput(BaseModel):
@@ -813,7 +813,7 @@ class SharePointFeedPropertiesUpdateInput(BaseModel):
     )
     tenant_id: Optional[str] = Field(alias="tenantId", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
     account_name: Optional[str] = Field(alias="accountName", default=None)
     library_id: Optional[str] = Field(alias="libraryId", default=None)
     folder_id: Optional[str] = Field(alias="folderId", default=None)
@@ -889,7 +889,7 @@ class GoogleContactsCRMFeedPropertiesUpdateInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class EntityClustersInput(BaseModel):
@@ -1020,7 +1020,7 @@ class SharePointLibrariesInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class MedicalContraindicationFilter(BaseModel):
@@ -1074,7 +1074,7 @@ class GitHubFeedPropertiesInput(BaseModel):
     personal_access_token: Optional[str] = Field(
         alias="personalAccessToken", default=None
     )
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class DeepgramAudioPreparationPropertiesInput(BaseModel):
@@ -1272,7 +1272,7 @@ class MicrosoftTeamsChannelsInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class InvestmentFundInput(BaseModel):
@@ -1347,7 +1347,7 @@ class GitHubPullRequestsFeedPropertiesInput(BaseModel):
     personal_access_token: Optional[str] = Field(
         alias="personalAccessToken", default=None
     )
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class AzureAIModelPropertiesUpdateInput(BaseModel):
@@ -1369,7 +1369,7 @@ class MicrosoftCalendarsInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class ObservationInput(BaseModel):
@@ -1458,7 +1458,7 @@ class GoogleDriveFeedPropertiesInput(BaseModel):
     service_account_json: Optional[str] = Field(
         alias="serviceAccountJson", default=None
     )
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class InvestmentFundUpdateInput(BaseModel):
@@ -1713,7 +1713,7 @@ class GitHubCommitsFeedPropertiesInput(BaseModel):
     personal_access_token: Optional[str] = Field(
         alias="personalAccessToken", default=None
     )
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class ProjectQuotaInput(BaseModel):
@@ -1831,7 +1831,7 @@ class SharePointFeedPropertiesInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
     account_name: str = Field(alias="accountName")
     library_id: str = Field(alias="libraryId")
     folder_id: Optional[str] = Field(alias="folderId", default=None)
@@ -1882,7 +1882,7 @@ class MicrosoftCalendarFeedPropertiesUpdateInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class CollectionUpdateInput(BaseModel):
@@ -1996,7 +1996,7 @@ class MicrosoftEmailFeedPropertiesInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class ParallelEntityFeedPropertiesInput(BaseModel):
@@ -2014,7 +2014,7 @@ class GitHubPullRequestsFeedPropertiesUpdateInput(BaseModel):
     personal_access_token: Optional[str] = Field(
         alias="personalAccessToken", default=None
     )
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class InvestmentFacetInput(BaseModel):
@@ -2053,7 +2053,7 @@ class MicrosoftTeamsFeedPropertiesUpdateInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
     team_id: str = Field(alias="teamId")
     channel_id: str = Field(alias="channelId")
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
@@ -2100,7 +2100,7 @@ class OneDriveFoldersInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class MedicalTherapyInput(BaseModel):
@@ -2187,7 +2187,7 @@ class OneDriveFeedPropertiesInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class MicrosoftTeamsFeedPropertiesInput(BaseModel):
@@ -2198,7 +2198,7 @@ class MicrosoftTeamsFeedPropertiesInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
     team_id: str = Field(alias="teamId")
     channel_id: str = Field(alias="channelId")
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
@@ -2374,7 +2374,7 @@ class GoogleCalendarsInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class PersonUpdateInput(BaseModel):
@@ -2746,7 +2746,7 @@ class GitHubCommitsFeedPropertiesUpdateInput(BaseModel):
     personal_access_token: Optional[str] = Field(
         alias="personalAccessToken", default=None
     )
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class EntityEnrichmentConnectorInput(BaseModel):
@@ -2766,7 +2766,7 @@ class GitHubRepositoriesInput(BaseModel):
         alias="personalAccessToken", default=None
     )
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class NotionFeedPropertiesUpdateInput(BaseModel):
@@ -2808,7 +2808,7 @@ class GoogleContactsCRMFeedPropertiesInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class MedicalConditionFilter(BaseModel):
@@ -2865,7 +2865,7 @@ class OneDriveFeedPropertiesUpdateInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class NamedEntityReferenceInput(BaseModel):
@@ -2926,7 +2926,7 @@ class MicrosoftTeamsTeamsInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class InvestmentInput(BaseModel):
@@ -3060,7 +3060,7 @@ class MicrosoftContactsCRMFeedPropertiesUpdateInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     tenant_id: Optional[str] = Field(alias="tenantId", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class ElevenLabsPublishingPropertiesInput(BaseModel):
@@ -3192,7 +3192,7 @@ class GoogleCalendarFeedPropertiesUpdateInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class GitHubFeedPropertiesUpdateInput(BaseModel):
@@ -3206,7 +3206,7 @@ class GitHubFeedPropertiesUpdateInput(BaseModel):
     personal_access_token: Optional[str] = Field(
         alias="personalAccessToken", default=None
     )
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class GoogleEmailFeedPropertiesUpdateInput(BaseModel):
@@ -3224,7 +3224,7 @@ class GoogleEmailFeedPropertiesUpdateInput(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class PointInput(BaseModel):
@@ -3694,7 +3694,7 @@ class GoogleEmailFeedPropertiesInput(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class WorkflowInput(BaseModel):
@@ -3746,7 +3746,7 @@ class GoogleCalendarFeedPropertiesInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class ViewFilter(BaseModel):
@@ -4057,7 +4057,7 @@ class GitHubIssuesFeedPropertiesInput(BaseModel):
     personal_access_token: Optional[str] = Field(
         alias="personalAccessToken", default=None
     )
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class AlertInput(BaseModel):
@@ -4259,7 +4259,7 @@ class GoogleDriveFeedPropertiesUpdateInput(BaseModel):
     service_account_json: Optional[str] = Field(
         alias="serviceAccountJson", default=None
     )
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class CohereModelPropertiesUpdateInput(BaseModel):
@@ -4669,7 +4669,7 @@ class MicrosoftCalendarFeedPropertiesInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class PlaceFilter(BaseModel):
@@ -4827,7 +4827,7 @@ class GoogleDriveFoldersInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class FeedSchedulePolicyInput(BaseModel):
@@ -5151,6 +5151,7 @@ EmailFeedPropertiesUpdateInput.model_rebuild()
 PreparationWorkflowJobInput.model_rebuild()
 ProductInput.model_rebuild()
 MedicalDrugClassInput.model_rebuild()
+MicrosoftContactsCRMFeedPropertiesInput.model_rebuild()
 RepoUpdateInput.model_rebuild()
 MedicalTherapyUpdateInput.model_rebuild()
 MedicalIndicationUpdateInput.model_rebuild()
@@ -5158,18 +5159,24 @@ MedicalProcedureUpdateInput.model_rebuild()
 H3Filter.model_rebuild()
 MedicalDrugInput.model_rebuild()
 WorkflowFilter.model_rebuild()
+MicrosoftEmailFeedPropertiesUpdateInput.model_rebuild()
 ClassificationWorkflowStageInput.model_rebuild()
 ShapeMetadataInput.model_rebuild()
 InvestmentFilter.model_rebuild()
+SharePointFoldersInput.model_rebuild()
+SharePointFeedPropertiesUpdateInput.model_rebuild()
 ContentPublishingConnectorInput.model_rebuild()
 ProjectInput.model_rebuild()
 PlaceUpdateInput.model_rebuild()
 CollectionInput.model_rebuild()
+GoogleContactsCRMFeedPropertiesUpdateInput.model_rebuild()
 ImageMetadataInput.model_rebuild()
 StorageWorkflowStageInput.model_rebuild()
 ConversationUpdateInput.model_rebuild()
 MedicalDrugClassFilter.model_rebuild()
+SharePointLibrariesInput.model_rebuild()
 MedicalContraindicationFilter.model_rebuild()
+GitHubFeedPropertiesInput.model_rebuild()
 MedicalConditionUpdateInput.model_rebuild()
 OpenAIImagePublishingPropertiesInput.model_rebuild()
 ViewInput.model_rebuild()
@@ -5179,13 +5186,17 @@ ViewUpdateInput.model_rebuild()
 PersonInput.model_rebuild()
 PackageMetadataInput.model_rebuild()
 PointCloudMetadataInput.model_rebuild()
+MicrosoftTeamsChannelsInput.model_rebuild()
 InvestmentFundInput.model_rebuild()
 OpenAIVideoPublishingPropertiesInput.model_rebuild()
 ModelDocumentPreparationPropertiesInput.model_rebuild()
 ProjectFilter.model_rebuild()
+GitHubPullRequestsFeedPropertiesInput.model_rebuild()
+MicrosoftCalendarsInput.model_rebuild()
 ObservationInput.model_rebuild()
 ProductUpdateInput.model_rebuild()
 MedicalTherapyFilter.model_rebuild()
+GoogleDriveFeedPropertiesInput.model_rebuild()
 InvestmentFundUpdateInput.model_rebuild()
 ExtractionWorkflowStageInput.model_rebuild()
 MedicalDeviceInput.model_rebuild()
@@ -5195,28 +5206,38 @@ ObservationReferenceInput.model_rebuild()
 PostMetadataInput.model_rebuild()
 SoftwareUpdateInput.model_rebuild()
 SpecificationInput.model_rebuild()
+GitHubCommitsFeedPropertiesInput.model_rebuild()
 RegexContentClassificationPropertiesInput.model_rebuild()
 WorkflowActionInput.model_rebuild()
 FeedUpdateInput.model_rebuild()
+SharePointFeedPropertiesInput.model_rebuild()
 MedicalContraindicationUpdateInput.model_rebuild()
 ModelImageExtractionPropertiesInput.model_rebuild()
+MicrosoftCalendarFeedPropertiesUpdateInput.model_rebuild()
 CollectionUpdateInput.model_rebuild()
 EntityFeedPropertiesUpdateInput.model_rebuild()
 MedicalDeviceFilter.model_rebuild()
 CommitFeedPropertiesInput.model_rebuild()
+MicrosoftEmailFeedPropertiesInput.model_rebuild()
+GitHubPullRequestsFeedPropertiesUpdateInput.model_rebuild()
 ObservationCriteriaInput.model_rebuild()
 IntegrationConnectorUpdateInput.model_rebuild()
+MicrosoftTeamsFeedPropertiesUpdateInput.model_rebuild()
 ContentCriteriaLevelInput.model_rebuild()
+OneDriveFoldersInput.model_rebuild()
 MedicalTherapyInput.model_rebuild()
 ContentCriteriaInput.model_rebuild()
 ObservationReferenceFilter.model_rebuild()
 IngestionWorkflowStageInput.model_rebuild()
+OneDriveFeedPropertiesInput.model_rebuild()
+MicrosoftTeamsFeedPropertiesInput.model_rebuild()
 CRMFeedPropertiesUpdateInput.model_rebuild()
 MedicalDrugUpdateInput.model_rebuild()
 SiteFeedPropertiesUpdateInput.model_rebuild()
 AlertUpdateInput.model_rebuild()
 ConnectorUpdateInput.model_rebuild()
 ModelContentClassificationPropertiesInput.model_rebuild()
+GoogleCalendarsInput.model_rebuild()
 PersonUpdateInput.model_rebuild()
 SiteFeedPropertiesInput.model_rebuild()
 ModelTextExtractionPropertiesInput.model_rebuild()
@@ -5226,19 +5247,28 @@ UserFilter.model_rebuild()
 EntityResolutionStrategyInput.model_rebuild()
 ConnectorFilter.model_rebuild()
 MedicalGuidelineFilter.model_rebuild()
+GitHubCommitsFeedPropertiesUpdateInput.model_rebuild()
 EntityEnrichmentConnectorInput.model_rebuild()
+GitHubRepositoriesInput.model_rebuild()
 EmailFeedPropertiesInput.model_rebuild()
 ExtractionWorkflowJobInput.model_rebuild()
+GoogleContactsCRMFeedPropertiesInput.model_rebuild()
 MedicalConditionFilter.model_rebuild()
+OneDriveFeedPropertiesUpdateInput.model_rebuild()
 DrawingMetadataInput.model_rebuild()
+MicrosoftTeamsTeamsInput.model_rebuild()
 InvestmentInput.model_rebuild()
 CalendarFeedPropertiesUpdateInput.model_rebuild()
 VideoMetadataInput.model_rebuild()
 MetadataUpdateInput.model_rebuild()
+MicrosoftContactsCRMFeedPropertiesUpdateInput.model_rebuild()
 GeometryMetadataInput.model_rebuild()
 SummarizationStrategyInput.model_rebuild()
 MedicalProcedureFilter.model_rebuild()
 PlaceInput.model_rebuild()
+GoogleCalendarFeedPropertiesUpdateInput.model_rebuild()
+GitHubFeedPropertiesUpdateInput.model_rebuild()
+GoogleEmailFeedPropertiesUpdateInput.model_rebuild()
 MetadataInput.model_rebuild()
 ContentPublishingConnectorUpdateInput.model_rebuild()
 PersonFilter.model_rebuild()
@@ -5253,8 +5283,10 @@ OrganizationInput.model_rebuild()
 ContentFilterLevel.model_rebuild()
 IssueMetadataInput.model_rebuild()
 ContentFilter.model_rebuild()
+GoogleEmailFeedPropertiesInput.model_rebuild()
 WorkflowInput.model_rebuild()
 IssueFeedPropertiesInput.model_rebuild()
+GoogleCalendarFeedPropertiesInput.model_rebuild()
 ViewFilter.model_rebuild()
 EventInput.model_rebuild()
 GoogleImagePublishingPropertiesInput.model_rebuild()
@@ -5270,6 +5302,7 @@ ContentInput.model_rebuild()
 GraphFilter.model_rebuild()
 CRMFeedPropertiesInput.model_rebuild()
 MedicalIndicationInput.model_rebuild()
+GitHubIssuesFeedPropertiesInput.model_rebuild()
 AlertInput.model_rebuild()
 DocumentMetadataInput.model_rebuild()
 AuthenticationConnectorInput.model_rebuild()
@@ -5278,6 +5311,7 @@ EmbeddingsStrategyInput.model_rebuild()
 MedicalGuidelineUpdateInput.model_rebuild()
 MessageMetadataInput.model_rebuild()
 EventUpdateInput.model_rebuild()
+GoogleDriveFeedPropertiesUpdateInput.model_rebuild()
 MedicalGuidelineInput.model_rebuild()
 RepoFilter.model_rebuild()
 MedicalDrugFilter.model_rebuild()
@@ -5291,11 +5325,13 @@ CollectionFilter.model_rebuild()
 EventFilter.model_rebuild()
 MedicalContraindicationInput.model_rebuild()
 EntityExtractionConnectorInput.model_rebuild()
+MicrosoftCalendarFeedPropertiesInput.model_rebuild()
 PlaceFilter.model_rebuild()
 PullRequestFeedPropertiesInput.model_rebuild()
 IndexingWorkflowJobInput.model_rebuild()
 EnrichmentWorkflowJobInput.model_rebuild()
 MedicalStudyUpdateInput.model_rebuild()
+GoogleDriveFoldersInput.model_rebuild()
 InvestmentUpdateInput.model_rebuild()
 OrganizationFilter.model_rebuild()
 ContentUpdateInput.model_rebuild()

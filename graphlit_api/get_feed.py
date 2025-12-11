@@ -155,7 +155,11 @@ class GetFeedFeedSiteSharePoint(BaseModel):
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["GetFeedFeedSiteSharePointConnector"]
+
+
+class GetFeedFeedSiteSharePointConnector(BaseModel):
+    id: str
 
 
 class GetFeedFeedSiteOneDrive(BaseModel):
@@ -167,7 +171,11 @@ class GetFeedFeedSiteOneDrive(BaseModel):
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["GetFeedFeedSiteOneDriveConnector"]
+
+
+class GetFeedFeedSiteOneDriveConnector(BaseModel):
+    id: str
 
 
 class GetFeedFeedSiteGoogleDrive(BaseModel):
@@ -180,7 +188,11 @@ class GetFeedFeedSiteGoogleDrive(BaseModel):
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
     service_account_json: Optional[str] = Field(alias="serviceAccountJson")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["GetFeedFeedSiteGoogleDriveConnector"]
+
+
+class GetFeedFeedSiteGoogleDriveConnector(BaseModel):
+    id: str
 
 
 class GetFeedFeedSiteDropbox(BaseModel):
@@ -213,7 +225,11 @@ class GetFeedFeedSiteGithub(BaseModel):
     repository_name: str = Field(alias="repositoryName")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     personal_access_token: Optional[str] = Field(alias="personalAccessToken")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["GetFeedFeedSiteGithubConnector"]
+
+
+class GetFeedFeedSiteGithubConnector(BaseModel):
+    id: str
 
 
 class GetFeedFeedEmail(BaseModel):
@@ -237,7 +253,11 @@ class GetFeedFeedEmailGoogle(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["GetFeedFeedEmailGoogleConnector"]
+
+
+class GetFeedFeedEmailGoogleConnector(BaseModel):
+    id: str
 
 
 class GetFeedFeedEmailMicrosoft(BaseModel):
@@ -253,7 +273,11 @@ class GetFeedFeedEmailMicrosoft(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["GetFeedFeedEmailMicrosoftConnector"]
+
+
+class GetFeedFeedEmailMicrosoftConnector(BaseModel):
+    id: str
 
 
 class GetFeedFeedIssue(BaseModel):
@@ -291,7 +315,11 @@ class GetFeedFeedIssueGithub(BaseModel):
     repository_name: str = Field(alias="repositoryName")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     personal_access_token: Optional[str] = Field(alias="personalAccessToken")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["GetFeedFeedIssueGithubConnector"]
+
+
+class GetFeedFeedIssueGithubConnector(BaseModel):
+    id: str
 
 
 class GetFeedFeedIssueIntercom(BaseModel):
@@ -329,7 +357,11 @@ class GetFeedFeedCommitGithub(BaseModel):
     repository_name: str = Field(alias="repositoryName")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     personal_access_token: Optional[str] = Field(alias="personalAccessToken")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["GetFeedFeedCommitGithubConnector"]
+
+
+class GetFeedFeedCommitGithubConnector(BaseModel):
+    id: str
 
 
 class GetFeedFeedPullRequest(BaseModel):
@@ -347,7 +379,11 @@ class GetFeedFeedPullRequestGithub(BaseModel):
     repository_name: str = Field(alias="repositoryName")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     personal_access_token: Optional[str] = Field(alias="personalAccessToken")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["GetFeedFeedPullRequestGithubConnector"]
+
+
+class GetFeedFeedPullRequestGithubConnector(BaseModel):
+    id: str
 
 
 class GetFeedFeedCrm(BaseModel):
@@ -376,7 +412,11 @@ class GetFeedFeedCrmGoogleContacts(BaseModel):
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["GetFeedFeedCrmGoogleContactsConnector"]
+
+
+class GetFeedFeedCrmGoogleContactsConnector(BaseModel):
+    id: str
 
 
 class GetFeedFeedCrmMicrosoftContacts(BaseModel):
@@ -387,7 +427,11 @@ class GetFeedFeedCrmMicrosoftContacts(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     tenant_id: Optional[str] = Field(alias="tenantId")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["GetFeedFeedCrmMicrosoftContactsConnector"]
+
+
+class GetFeedFeedCrmMicrosoftContactsConnector(BaseModel):
+    id: str
 
 
 class GetFeedFeedCalendar(BaseModel):
@@ -411,7 +455,11 @@ class GetFeedFeedCalendarGoogle(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["GetFeedFeedCalendarGoogleConnector"]
+
+
+class GetFeedFeedCalendarGoogleConnector(BaseModel):
+    id: str
 
 
 class GetFeedFeedCalendarMicrosoft(BaseModel):
@@ -425,7 +473,11 @@ class GetFeedFeedCalendarMicrosoft(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["GetFeedFeedCalendarMicrosoftConnector"]
+
+
+class GetFeedFeedCalendarMicrosoftConnector(BaseModel):
+    id: str
 
 
 class GetFeedFeedRss(BaseModel):
@@ -505,9 +557,13 @@ class GetFeedFeedMicrosoftTeams(BaseModel):
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
-    authorization_id: Optional[str] = Field(alias="authorizationId")
+    connector: Optional["GetFeedFeedMicrosoftTeamsConnector"]
     team_id: str = Field(alias="teamId")
     channel_id: str = Field(alias="channelId")
+
+
+class GetFeedFeedMicrosoftTeamsConnector(BaseModel):
+    id: str
 
 
 class GetFeedFeedDiscord(BaseModel):
@@ -560,11 +616,25 @@ class GetFeedFeedSchedulePolicy(BaseModel):
 GetFeed.model_rebuild()
 GetFeedFeed.model_rebuild()
 GetFeedFeedSite.model_rebuild()
+GetFeedFeedSiteSharePoint.model_rebuild()
+GetFeedFeedSiteOneDrive.model_rebuild()
+GetFeedFeedSiteGoogleDrive.model_rebuild()
+GetFeedFeedSiteGithub.model_rebuild()
 GetFeedFeedEmail.model_rebuild()
+GetFeedFeedEmailGoogle.model_rebuild()
+GetFeedFeedEmailMicrosoft.model_rebuild()
 GetFeedFeedIssue.model_rebuild()
+GetFeedFeedIssueGithub.model_rebuild()
 GetFeedFeedCommit.model_rebuild()
+GetFeedFeedCommitGithub.model_rebuild()
 GetFeedFeedPullRequest.model_rebuild()
+GetFeedFeedPullRequestGithub.model_rebuild()
 GetFeedFeedCrm.model_rebuild()
+GetFeedFeedCrmGoogleContacts.model_rebuild()
+GetFeedFeedCrmMicrosoftContacts.model_rebuild()
 GetFeedFeedCalendar.model_rebuild()
+GetFeedFeedCalendarGoogle.model_rebuild()
+GetFeedFeedCalendarMicrosoft.model_rebuild()
+GetFeedFeedMicrosoftTeams.model_rebuild()
 GetFeedFeedResearch.model_rebuild()
 GetFeedFeedEntity.model_rebuild()
