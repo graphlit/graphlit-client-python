@@ -1093,6 +1093,7 @@ class ReductoOcrModes(str, Enum):
 class OpenAIImageModels(str, Enum):
     GPT_IMAGE_1 = "GPT_IMAGE_1"
     GPT_IMAGE_1_MINI = "GPT_IMAGE_1_MINI"
+    GPT_IMAGE_1_5 = "GPT_IMAGE_1_5"
     CUSTOM = "CUSTOM"
 
 
