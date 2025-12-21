@@ -1070,6 +1070,8 @@ class GitHubFeedPropertiesInput(BaseModel):
     repository_owner: str = Field(alias="repositoryOwner")
     repository_name: str = Field(alias="repositoryName")
     uri: Optional[Any] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     personal_access_token: Optional[str] = Field(
         alias="personalAccessToken", default=None
@@ -1343,6 +1345,8 @@ class GitHubPullRequestsFeedPropertiesInput(BaseModel):
     repository_owner: str = Field(alias="repositoryOwner")
     repository_name: str = Field(alias="repositoryName")
     uri: Optional[Any] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     personal_access_token: Optional[str] = Field(
         alias="personalAccessToken", default=None
@@ -1709,6 +1713,8 @@ class GitHubCommitsFeedPropertiesInput(BaseModel):
     repository_name: str = Field(alias="repositoryName")
     branch: Optional[str] = None
     uri: Optional[Any] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     personal_access_token: Optional[str] = Field(
         alias="personalAccessToken", default=None
@@ -1943,6 +1949,8 @@ class GitHubIssuesFeedPropertiesUpdateInput(BaseModel):
     repository_owner: Optional[str] = Field(alias="repositoryOwner", default=None)
     repository_name: Optional[str] = Field(alias="repositoryName", default=None)
     uri: Optional[Any] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     personal_access_token: Optional[str] = Field(
         alias="personalAccessToken", default=None
@@ -2010,6 +2018,8 @@ class GitHubPullRequestsFeedPropertiesUpdateInput(BaseModel):
     repository_owner: Optional[str] = Field(alias="repositoryOwner", default=None)
     repository_name: Optional[str] = Field(alias="repositoryName", default=None)
     uri: Optional[Any] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     personal_access_token: Optional[str] = Field(
         alias="personalAccessToken", default=None
@@ -2742,6 +2752,8 @@ class GitHubCommitsFeedPropertiesUpdateInput(BaseModel):
     repository_name: Optional[str] = Field(alias="repositoryName", default=None)
     branch: Optional[str] = None
     uri: Optional[Any] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     personal_access_token: Optional[str] = Field(
         alias="personalAccessToken", default=None
@@ -3202,6 +3214,8 @@ class GitHubFeedPropertiesUpdateInput(BaseModel):
     repository_owner: Optional[str] = Field(alias="repositoryOwner", default=None)
     repository_name: Optional[str] = Field(alias="repositoryName", default=None)
     uri: Optional[Any] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     personal_access_token: Optional[str] = Field(
         alias="personalAccessToken", default=None
@@ -4053,6 +4067,8 @@ class GitHubIssuesFeedPropertiesInput(BaseModel):
     repository_owner: str = Field(alias="repositoryOwner")
     repository_name: str = Field(alias="repositoryName")
     uri: Optional[Any] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     personal_access_token: Optional[str] = Field(
         alias="personalAccessToken", default=None

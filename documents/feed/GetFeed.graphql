@@ -98,6 +98,8 @@ query GetFeed($id: ID!, $correlationId: String) {
         uri
         repositoryOwner
         repositoryName
+        clientId
+        clientSecret
         refreshToken
         personalAccessToken
         connector {

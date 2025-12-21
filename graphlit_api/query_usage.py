@@ -33,17 +33,12 @@ class QueryUsageUsage(BaseModel):
     model_service: Optional[str] = Field(alias="modelService")
     model_name: Optional[str] = Field(alias="modelName")
     processor_name: Optional[str] = Field(alias="processorName")
-    prompt: Optional[str]
     prompt_tokens: Optional[int] = Field(alias="promptTokens")
-    completion: Optional[str]
     completion_tokens: Optional[int] = Field(alias="completionTokens")
     tokens: Optional[int]
     count: Optional[int]
     operation: Optional[str]
     operation_type: Optional[OperationTypes] = Field(alias="operationType")
-    request: Optional[str]
-    variables: Optional[str]
-    response: Optional[str]
 
 
 QueryUsage.model_rebuild()

@@ -19,16 +19,11 @@ query QueryUsage($startDate: DateTime!, $duration: TimeSpan!, $names: [String!],
     modelService
     modelName
     processorName
-    prompt
     promptTokens
-    completion
     completionTokens
     tokens
     count
     operation
     operationType
-    request
-    variables
-    response
   }
 }

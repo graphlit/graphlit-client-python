@@ -19,16 +19,11 @@ query LookupUsage($correlationId: String!, $startDate: DateTime, $duration: Time
     modelService
     modelName
     processorName
-    prompt
     promptTokens
-    completion
     completionTokens
     tokens
     count
     operation
     operationType
-    request
-    variables
-    response
   }
 }

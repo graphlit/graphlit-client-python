@@ -7966,6 +7966,8 @@ query GetFeed($id: ID!, $correlationId: String) {
         uri
         repositoryOwner
         repositoryName
+        clientId
+        clientSecret
         refreshToken
         personalAccessToken
         connector {
@@ -8419,6 +8421,8 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           uri
           repositoryOwner
           repositoryName
+          clientId
+          clientSecret
           refreshToken
           personalAccessToken
           connector {
@@ -14142,17 +14146,12 @@ query LookupUsage($correlationId: String!, $startDate: DateTime, $duration: Time
     modelService
     modelName
     processorName
-    prompt
     promptTokens
-    completion
     completionTokens
     tokens
     count
     operation
     operationType
-    request
-    variables
-    response
   }
 }
 """
@@ -14233,17 +14232,12 @@ query QueryUsage($startDate: DateTime!, $duration: TimeSpan!, $names: [String!],
     modelService
     modelName
     processorName
-    prompt
     promptTokens
-    completion
     completionTokens
     tokens
     count
     operation
     operationType
-    request
-    variables
-    response
   }
 }
 """
