@@ -2066,6 +2066,9 @@ class MicrosoftTeamsFeedPropertiesUpdateInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
     team_id: str = Field(alias="teamId")
     channel_id: str = Field(alias="channelId")
+    include_attachments: Optional[bool] = Field(
+        alias="includeAttachments", default=None
+    )
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -2211,6 +2214,9 @@ class MicrosoftTeamsFeedPropertiesInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
     team_id: str = Field(alias="teamId")
     channel_id: str = Field(alias="channelId")
+    include_attachments: Optional[bool] = Field(
+        alias="includeAttachments", default=None
+    )
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
