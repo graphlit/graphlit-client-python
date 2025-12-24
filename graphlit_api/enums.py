@@ -978,6 +978,7 @@ class AzureDocumentIntelligenceModels(str, Enum):
 
 class SpecificationTypes(str, Enum):
     COMPLETION = "COMPLETION"
+    AGENTIC = "AGENTIC"
     TEXT_EMBEDDING = "TEXT_EMBEDDING"
     IMAGE_EMBEDDING = "IMAGE_EMBEDDING"
     EXTRACTION = "EXTRACTION"
