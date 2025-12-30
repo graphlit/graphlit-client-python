@@ -1,0 +1,6 @@
+mutation DeleteAllFacts($filter: FactFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllFacts(filter: $filter, isSynchronous: $isSynchronous, correlationId: $correlationId) {
+    id
+    state
+  }
+}

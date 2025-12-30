@@ -1,0 +1,6 @@
+mutation DeleteFacts($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteFacts(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}

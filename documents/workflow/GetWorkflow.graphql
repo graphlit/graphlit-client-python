@@ -133,6 +133,7 @@ query GetWorkflow($id: ID!, $correlationId: String) {
             tokenThreshold
             timeBudget
             entityBudget
+            extractionType
           }
         }
       }

@@ -135,6 +135,7 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
               tokenThreshold
               timeBudget
               entityBudget
+              extractionType
             }
           }
         }

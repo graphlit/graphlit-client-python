@@ -162,6 +162,8 @@ query GetFeed($id: ID!, $correlationId: String) {
         uri
         repositoryOwner
         repositoryName
+        clientId
+        clientSecret
         refreshToken
         personalAccessToken
         connector {
@@ -193,6 +195,8 @@ query GetFeed($id: ID!, $correlationId: String) {
         uri
         repositoryOwner
         repositoryName
+        clientId
+        clientSecret
         refreshToken
         personalAccessToken
         connector {
@@ -208,6 +212,8 @@ query GetFeed($id: ID!, $correlationId: String) {
         uri
         repositoryOwner
         repositoryName
+        clientId
+        clientSecret
         refreshToken
         personalAccessToken
         connector {
@@ -346,6 +352,7 @@ query GetFeed($id: ID!, $correlationId: String) {
       }
       teamId
       channelId
+      includeAttachments
     }
     discord {
       readLimit

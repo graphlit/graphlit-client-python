@@ -1,0 +1,46 @@
+query QueryFacts($filter: FactFilter, $correlationId: String) {
+  facts(filter: $filter, correlationId: $correlationId) {
+    results {
+      id
+      creationDate
+      owner {
+        id
+      }
+      text
+      validAt
+      invalidAt
+      relevance
+      mentions {
+        type
+        observable {
+          id
+          name
+        }
+        start
+        end
+      }
+      assertions {
+        text
+        mentions {
+          type
+          observable {
+            id
+            name
+          }
+          start
+          end
+        }
+      }
+      feeds {
+        id
+        name
+      }
+      content {
+        id
+        name
+      }
+      category
+      confidence
+    }
+  }
+}

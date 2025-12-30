@@ -19,6 +19,7 @@ from .enums import (
     EntityExtractionServiceTypes,
     EntityResolutionStrategyTypes,
     EntityState,
+    ExtractionTypes,
     FilePreparationServiceTypes,
     FileTypes,
     IntegrationServiceTypes,
@@ -281,6 +282,7 @@ class QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelText(BaseModel):
     token_threshold: Optional[int] = Field(alias="tokenThreshold")
     time_budget: Optional[Any] = Field(alias="timeBudget")
     entity_budget: Optional[int] = Field(alias="entityBudget")
+    extraction_type: Optional[ExtractionTypes] = Field(alias="extractionType")
 
 
 class QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelTextSpecification(

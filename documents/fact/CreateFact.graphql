@@ -1,0 +1,6 @@
+mutation CreateFact($fact: FactInput!) {
+  createFact(fact: $fact) {
+    id
+    state
+  }
+}

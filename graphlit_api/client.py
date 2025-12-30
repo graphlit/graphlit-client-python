@@ -19,6 +19,7 @@ from .count_connectors import CountConnectors
 from .count_contents import CountContents
 from .count_conversations import CountConversations
 from .count_events import CountEvents
+from .count_facts import CountFacts
 from .count_feeds import CountFeeds
 from .count_investment_funds import CountInvestmentFunds
 from .count_investments import CountInvestments
@@ -50,6 +51,7 @@ from .create_collection import CreateCollection
 from .create_connector import CreateConnector
 from .create_conversation import CreateConversation
 from .create_event import CreateEvent
+from .create_fact import CreateFact
 from .create_feed import CreateFeed
 from .create_investment import CreateInvestment
 from .create_investment_fund import CreateInvestmentFund
@@ -84,6 +86,7 @@ from .delete_all_collections import DeleteAllCollections
 from .delete_all_contents import DeleteAllContents
 from .delete_all_conversations import DeleteAllConversations
 from .delete_all_events import DeleteAllEvents
+from .delete_all_facts import DeleteAllFacts
 from .delete_all_feeds import DeleteAllFeeds
 from .delete_all_investment_funds import DeleteAllInvestmentFunds
 from .delete_all_investments import DeleteAllInvestments
@@ -119,6 +122,8 @@ from .delete_conversation import DeleteConversation
 from .delete_conversations import DeleteConversations
 from .delete_event import DeleteEvent
 from .delete_events import DeleteEvents
+from .delete_fact import DeleteFact
+from .delete_facts import DeleteFacts
 from .delete_feed import DeleteFeed
 from .delete_feeds import DeleteFeeds
 from .delete_investment import DeleteInvestment
@@ -186,6 +191,7 @@ from .enums import (
     ObservableTypes,
     SdkTypes,
     SearchServiceTypes,
+    SearchTypes,
     TextTypes,
 )
 from .extract_contents import ExtractContents
@@ -200,6 +206,7 @@ from .get_connector import GetConnector
 from .get_content import GetContent
 from .get_conversation import GetConversation
 from .get_event import GetEvent
+from .get_fact import GetFact
 from .get_feed import GetFeed
 from .get_investment import GetInvestment
 from .get_investment_fund import GetInvestmentFund
@@ -269,6 +276,10 @@ from .input_types import (
     EventFilter,
     EventInput,
     EventUpdateInput,
+    FactFilter,
+    FactGraphInput,
+    FactInput,
+    FactUpdateInput,
     FeedFilter,
     FeedInput,
     FeedUpdateInput,
@@ -395,6 +406,7 @@ from .operations import (
     COUNT_CONTENTS_GQL,
     COUNT_CONVERSATIONS_GQL,
     COUNT_EVENTS_GQL,
+    COUNT_FACTS_GQL,
     COUNT_FEEDS_GQL,
     COUNT_INVESTMENT_FUNDS_GQL,
     COUNT_INVESTMENTS_GQL,
@@ -426,6 +438,7 @@ from .operations import (
     CREATE_CONNECTOR_GQL,
     CREATE_CONVERSATION_GQL,
     CREATE_EVENT_GQL,
+    CREATE_FACT_GQL,
     CREATE_FEED_GQL,
     CREATE_INVESTMENT_FUND_GQL,
     CREATE_INVESTMENT_GQL,
@@ -460,6 +473,7 @@ from .operations import (
     DELETE_ALL_CONTENTS_GQL,
     DELETE_ALL_CONVERSATIONS_GQL,
     DELETE_ALL_EVENTS_GQL,
+    DELETE_ALL_FACTS_GQL,
     DELETE_ALL_FEEDS_GQL,
     DELETE_ALL_INVESTMENT_FUNDS_GQL,
     DELETE_ALL_INVESTMENTS_GQL,
@@ -495,6 +509,8 @@ from .operations import (
     DELETE_CONVERSATIONS_GQL,
     DELETE_EVENT_GQL,
     DELETE_EVENTS_GQL,
+    DELETE_FACT_GQL,
+    DELETE_FACTS_GQL,
     DELETE_FEED_GQL,
     DELETE_FEEDS_GQL,
     DELETE_INVESTMENT_FUND_GQL,
@@ -569,6 +585,7 @@ from .operations import (
     GET_CONTENT_GQL,
     GET_CONVERSATION_GQL,
     GET_EVENT_GQL,
+    GET_FACT_GQL,
     GET_FEED_GQL,
     GET_INVESTMENT_FUND_GQL,
     GET_INVESTMENT_GQL,
@@ -634,6 +651,9 @@ from .operations import (
     QUERY_DROPBOX_FOLDERS_GQL,
     QUERY_EVENTS_CLUSTERS_GQL,
     QUERY_EVENTS_GQL,
+    QUERY_FACTS_CLUSTERS_GQL,
+    QUERY_FACTS_GQL,
+    QUERY_FACTS_GRAPH_GQL,
     QUERY_FEEDS_GQL,
     QUERY_GIT_HUB_REPOSITORIES_GQL,
     QUERY_GOOGLE_CALENDARS_GQL,
@@ -704,6 +724,8 @@ from .operations import (
     RESEARCH_CONTENTS_GQL,
     RESOLVE_ENTITIES_GQL,
     RESOLVE_ENTITY_GQL,
+    RETRIEVE_ENTITIES_GQL,
+    RETRIEVE_FACTS_GQL,
     RETRIEVE_SOURCES_GQL,
     RETRIEVE_VIEW_GQL,
     REVISE_CONTENT_GQL,
@@ -725,6 +747,7 @@ from .operations import (
     UPDATE_CONTENT_GQL,
     UPDATE_CONVERSATION_GQL,
     UPDATE_EVENT_GQL,
+    UPDATE_FACT_GQL,
     UPDATE_FEED_GQL,
     UPDATE_INVESTMENT_FUND_GQL,
     UPDATE_INVESTMENT_GQL,
@@ -783,6 +806,9 @@ from .query_discord_guilds import QueryDiscordGuilds
 from .query_dropbox_folders import QueryDropboxFolders
 from .query_events import QueryEvents
 from .query_events_clusters import QueryEventsClusters
+from .query_facts import QueryFacts
+from .query_facts_clusters import QueryFactsClusters
+from .query_facts_graph import QueryFactsGraph
 from .query_feeds import QueryFeeds
 from .query_git_hub_repositories import QueryGitHubRepositories
 from .query_google_calendars import QueryGoogleCalendars
@@ -855,6 +881,8 @@ from .remove_contents_from_collection import RemoveContentsFromCollection
 from .research_contents import ResearchContents
 from .resolve_entities import ResolveEntities
 from .resolve_entity import ResolveEntity
+from .retrieve_entities import RetrieveEntities
+from .retrieve_facts import RetrieveFacts
 from .retrieve_sources import RetrieveSources
 from .retrieve_view import RetrieveView
 from .revise_content import ReviseContent
@@ -876,6 +904,7 @@ from .update_connector import UpdateConnector
 from .update_content import UpdateContent
 from .update_conversation import UpdateConversation
 from .update_event import UpdateEvent
+from .update_fact import UpdateFact
 from .update_feed import UpdateFeed
 from .update_investment import UpdateInvestment
 from .update_investment_fund import UpdateInvestmentFund
@@ -2603,6 +2632,52 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryConversations.model_validate(data)
 
+    async def retrieve_entities(
+        self,
+        prompt: str,
+        types: Union[Optional[List[ObservableTypes]], UnsetType] = UNSET,
+        search_type: Union[Optional[SearchTypes], UnsetType] = UNSET,
+        limit: Union[Optional[int], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> RetrieveEntities:
+        variables: Dict[str, object] = {
+            "prompt": prompt,
+            "types": types,
+            "searchType": search_type,
+            "limit": limit,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=RETRIEVE_ENTITIES_GQL,
+            operation_name="RetrieveEntities",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return RetrieveEntities.model_validate(data)
+
+    async def retrieve_facts(
+        self,
+        prompt: str,
+        filter: Union[Optional[FactFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> RetrieveFacts:
+        variables: Dict[str, object] = {
+            "prompt": prompt,
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=RETRIEVE_FACTS_GQL,
+            operation_name="RetrieveFacts",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return RetrieveFacts.model_validate(data)
+
     async def retrieve_sources(
         self,
         prompt: str,
@@ -2937,6 +3012,169 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdateEvent.model_validate(data)
+
+    async def count_facts(
+        self,
+        filter: Union[Optional[FactFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountFacts:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=COUNT_FACTS_GQL,
+            operation_name="CountFacts",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountFacts.model_validate(data)
+
+    async def create_fact(self, fact: FactInput, **kwargs: Any) -> CreateFact:
+        variables: Dict[str, object] = {"fact": fact}
+        response = await self.execute(
+            query=CREATE_FACT_GQL,
+            operation_name="CreateFact",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CreateFact.model_validate(data)
+
+    async def delete_all_facts(
+        self,
+        filter: Union[Optional[FactFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllFacts:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DELETE_ALL_FACTS_GQL,
+            operation_name="DeleteAllFacts",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllFacts.model_validate(data)
+
+    async def delete_fact(self, id: str, **kwargs: Any) -> DeleteFact:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DELETE_FACT_GQL,
+            operation_name="DeleteFact",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteFact.model_validate(data)
+
+    async def delete_facts(
+        self,
+        ids: List[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteFacts:
+        variables: Dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
+        response = await self.execute(
+            query=DELETE_FACTS_GQL,
+            operation_name="DeleteFacts",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteFacts.model_validate(data)
+
+    async def get_fact(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetFact:
+        variables: Dict[str, object] = {"id": id, "correlationId": correlation_id}
+        response = await self.execute(
+            query=GET_FACT_GQL, operation_name="GetFact", variables=variables, **kwargs
+        )
+        data = self.get_data(response)
+        return GetFact.model_validate(data)
+
+    async def query_facts(
+        self,
+        filter: Union[Optional[FactFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryFacts:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_FACTS_GQL,
+            operation_name="QueryFacts",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryFacts.model_validate(data)
+
+    async def query_facts_clusters(
+        self,
+        filter: Union[Optional[FactFilter], UnsetType] = UNSET,
+        clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryFactsClusters:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "clusters": clusters,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_FACTS_CLUSTERS_GQL,
+            operation_name="QueryFactsClusters",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryFactsClusters.model_validate(data)
+
+    async def query_facts_graph(
+        self,
+        filter: Union[Optional[FactFilter], UnsetType] = UNSET,
+        graph: Union[Optional[FactGraphInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryFactsGraph:
+        variables: Dict[str, object] = {
+            "filter": filter,
+            "graph": graph,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_FACTS_GRAPH_GQL,
+            operation_name="QueryFactsGraph",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryFactsGraph.model_validate(data)
+
+    async def update_fact(self, fact: FactUpdateInput, **kwargs: Any) -> UpdateFact:
+        variables: Dict[str, object] = {"fact": fact}
+        response = await self.execute(
+            query=UPDATE_FACT_GQL,
+            operation_name="UpdateFact",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateFact.model_validate(data)
 
     async def count_feeds(
         self,

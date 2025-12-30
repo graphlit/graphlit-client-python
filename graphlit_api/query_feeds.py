@@ -330,6 +330,8 @@ class QueryFeedsFeedsResultsIssueGithub(BaseModel):
     uri: Optional[Any]
     repository_owner: str = Field(alias="repositoryOwner")
     repository_name: str = Field(alias="repositoryName")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     personal_access_token: Optional[str] = Field(alias="personalAccessToken")
     connector: Optional["QueryFeedsFeedsResultsIssueGithubConnector"]
@@ -372,6 +374,8 @@ class QueryFeedsFeedsResultsCommitGithub(BaseModel):
     uri: Optional[Any]
     repository_owner: str = Field(alias="repositoryOwner")
     repository_name: str = Field(alias="repositoryName")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     personal_access_token: Optional[str] = Field(alias="personalAccessToken")
     connector: Optional["QueryFeedsFeedsResultsCommitGithubConnector"]
@@ -394,6 +398,8 @@ class QueryFeedsFeedsResultsPullRequestGithub(BaseModel):
     uri: Optional[Any]
     repository_owner: str = Field(alias="repositoryOwner")
     repository_name: str = Field(alias="repositoryName")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     personal_access_token: Optional[str] = Field(alias="personalAccessToken")
     connector: Optional["QueryFeedsFeedsResultsPullRequestGithubConnector"]
@@ -577,6 +583,7 @@ class QueryFeedsFeedsResultsMicrosoftTeams(BaseModel):
     connector: Optional["QueryFeedsFeedsResultsMicrosoftTeamsConnector"]
     team_id: str = Field(alias="teamId")
     channel_id: str = Field(alias="channelId")
+    include_attachments: Optional[bool] = Field(alias="includeAttachments")
 
 
 class QueryFeedsFeedsResultsMicrosoftTeamsConnector(BaseModel):

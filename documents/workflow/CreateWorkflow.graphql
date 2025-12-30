@@ -128,6 +128,7 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
             tokenThreshold
             timeBudget
             entityBudget
+            extractionType
           }
         }
       }

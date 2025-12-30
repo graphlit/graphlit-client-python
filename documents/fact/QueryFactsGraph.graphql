@@ -1,0 +1,17 @@
+query QueryFactsGraph($filter: FactFilter, $graph: FactGraphInput, $correlationId: String) {
+  facts(filter: $filter, graph: $graph, correlationId: $correlationId) {
+    graph {
+      nodes {
+        id
+        name
+        type
+        metadata
+      }
+      edges {
+        from
+        to
+        relation
+      }
+    }
+  }
+}

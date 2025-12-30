@@ -1,0 +1,5 @@
+query CountFacts($filter: FactFilter, $correlationId: String) {
+  countFacts(filter: $filter, correlationId: $correlationId) {
+    count
+  }
+}

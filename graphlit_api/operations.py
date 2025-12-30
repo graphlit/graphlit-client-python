@@ -16,6 +16,7 @@ __all__ = [
     "COUNT_CONTENTS_GQL",
     "COUNT_CONVERSATIONS_GQL",
     "COUNT_EVENTS_GQL",
+    "COUNT_FACTS_GQL",
     "COUNT_FEEDS_GQL",
     "COUNT_INVESTMENTS_GQL",
     "COUNT_INVESTMENT_FUNDS_GQL",
@@ -47,6 +48,7 @@ __all__ = [
     "CREATE_CONNECTOR_GQL",
     "CREATE_CONVERSATION_GQL",
     "CREATE_EVENT_GQL",
+    "CREATE_FACT_GQL",
     "CREATE_FEED_GQL",
     "CREATE_INVESTMENT_FUND_GQL",
     "CREATE_INVESTMENT_GQL",
@@ -81,6 +83,7 @@ __all__ = [
     "DELETE_ALL_CONTENTS_GQL",
     "DELETE_ALL_CONVERSATIONS_GQL",
     "DELETE_ALL_EVENTS_GQL",
+    "DELETE_ALL_FACTS_GQL",
     "DELETE_ALL_FEEDS_GQL",
     "DELETE_ALL_INVESTMENTS_GQL",
     "DELETE_ALL_INVESTMENT_FUNDS_GQL",
@@ -116,6 +119,8 @@ __all__ = [
     "DELETE_CONVERSATION_GQL",
     "DELETE_EVENTS_GQL",
     "DELETE_EVENT_GQL",
+    "DELETE_FACTS_GQL",
+    "DELETE_FACT_GQL",
     "DELETE_FEEDS_GQL",
     "DELETE_FEED_GQL",
     "DELETE_INVESTMENTS_GQL",
@@ -190,6 +195,7 @@ __all__ = [
     "GET_CONTENT_GQL",
     "GET_CONVERSATION_GQL",
     "GET_EVENT_GQL",
+    "GET_FACT_GQL",
     "GET_FEED_GQL",
     "GET_INVESTMENT_FUND_GQL",
     "GET_INVESTMENT_GQL",
@@ -255,6 +261,9 @@ __all__ = [
     "QUERY_DROPBOX_FOLDERS_GQL",
     "QUERY_EVENTS_CLUSTERS_GQL",
     "QUERY_EVENTS_GQL",
+    "QUERY_FACTS_CLUSTERS_GQL",
+    "QUERY_FACTS_GQL",
+    "QUERY_FACTS_GRAPH_GQL",
     "QUERY_FEEDS_GQL",
     "QUERY_GIT_HUB_REPOSITORIES_GQL",
     "QUERY_GOOGLE_CALENDARS_GQL",
@@ -325,6 +334,8 @@ __all__ = [
     "RESEARCH_CONTENTS_GQL",
     "RESOLVE_ENTITIES_GQL",
     "RESOLVE_ENTITY_GQL",
+    "RETRIEVE_ENTITIES_GQL",
+    "RETRIEVE_FACTS_GQL",
     "RETRIEVE_SOURCES_GQL",
     "RETRIEVE_VIEW_GQL",
     "REVISE_CONTENT_GQL",
@@ -346,6 +357,7 @@ __all__ = [
     "UPDATE_CONTENT_GQL",
     "UPDATE_CONVERSATION_GQL",
     "UPDATE_EVENT_GQL",
+    "UPDATE_FACT_GQL",
     "UPDATE_FEED_GQL",
     "UPDATE_INVESTMENT_FUND_GQL",
     "UPDATE_INVESTMENT_GQL",
@@ -6814,6 +6826,77 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
 }
 """
 
+RETRIEVE_ENTITIES_GQL = """
+mutation RetrieveEntities($prompt: String!, $types: [ObservableTypes!], $searchType: SearchTypes, $limit: Int, $correlationId: String) {
+  retrieveEntities(
+    prompt: $prompt
+    types: $types
+    searchType: $searchType
+    limit: $limit
+    correlationId: $correlationId
+  ) {
+    results {
+      id
+      name
+      type
+      relevance
+      metadata
+    }
+  }
+}
+"""
+
+RETRIEVE_FACTS_GQL = """
+mutation RetrieveFacts($prompt: String!, $filter: FactFilter, $correlationId: String) {
+  retrieveFacts(prompt: $prompt, filter: $filter, correlationId: $correlationId) {
+    results {
+      fact {
+        id
+        text
+        validAt
+        invalidAt
+        state
+        mentions {
+          type
+          observable {
+            id
+            name
+          }
+          start
+          end
+        }
+        assertions {
+          text
+          mentions {
+            type
+            observable {
+              id
+              name
+            }
+            start
+            end
+          }
+        }
+        feeds {
+          id
+          name
+        }
+        content {
+          id
+          name
+        }
+        category
+        confidence
+      }
+      relevance
+      content {
+        id
+      }
+    }
+  }
+}
+"""
+
 RETRIEVE_SOURCES_GQL = """
 mutation RetrieveSources($prompt: String!, $filter: ContentFilter, $augmentedFilter: ContentFilter, $retrievalStrategy: RetrievalStrategyInput, $rerankingStrategy: RerankingStrategyInput, $correlationId: String) {
   retrieveSources(
@@ -7788,6 +7871,235 @@ mutation UpdateEvent($event: EventUpdateInput!) {
 }
 """
 
+COUNT_FACTS_GQL = """
+query CountFacts($filter: FactFilter, $correlationId: String) {
+  countFacts(filter: $filter, correlationId: $correlationId) {
+    count
+  }
+}
+"""
+
+CREATE_FACT_GQL = """
+mutation CreateFact($fact: FactInput!) {
+  createFact(fact: $fact) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_ALL_FACTS_GQL = """
+mutation DeleteAllFacts($filter: FactFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllFacts(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_FACT_GQL = """
+mutation DeleteFact($id: ID!) {
+  deleteFact(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_FACTS_GQL = """
+mutation DeleteFacts($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteFacts(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}
+"""
+
+GET_FACT_GQL = """
+query GetFact($id: ID!, $correlationId: String) {
+  fact(id: $id, correlationId: $correlationId) {
+    id
+    creationDate
+    owner {
+      id
+    }
+    text
+    validAt
+    invalidAt
+    relevance
+    mentions {
+      type
+      observable {
+        id
+        name
+      }
+      start
+      end
+    }
+    assertions {
+      text
+      mentions {
+        type
+        observable {
+          id
+          name
+        }
+        start
+        end
+      }
+    }
+    feeds {
+      id
+      name
+    }
+    content {
+      id
+      name
+    }
+    category
+    confidence
+  }
+}
+"""
+
+QUERY_FACTS_GQL = """
+query QueryFacts($filter: FactFilter, $correlationId: String) {
+  facts(filter: $filter, correlationId: $correlationId) {
+    results {
+      id
+      creationDate
+      owner {
+        id
+      }
+      text
+      validAt
+      invalidAt
+      relevance
+      mentions {
+        type
+        observable {
+          id
+          name
+        }
+        start
+        end
+      }
+      assertions {
+        text
+        mentions {
+          type
+          observable {
+            id
+            name
+          }
+          start
+          end
+        }
+      }
+      feeds {
+        id
+        name
+      }
+      content {
+        id
+        name
+      }
+      category
+      confidence
+    }
+  }
+}
+"""
+
+QUERY_FACTS_CLUSTERS_GQL = """
+query QueryFactsClusters($filter: FactFilter, $clusters: EntityClustersInput, $correlationId: String) {
+  facts(filter: $filter, clusters: $clusters, correlationId: $correlationId) {
+    results {
+      id
+      creationDate
+      owner {
+        id
+      }
+      text
+      validAt
+      invalidAt
+      relevance
+      mentions {
+        type
+        observable {
+          id
+          name
+        }
+        start
+        end
+      }
+      assertions {
+        text
+        mentions {
+          type
+          observable {
+            id
+            name
+          }
+          start
+          end
+        }
+      }
+      feeds {
+        id
+        name
+      }
+      content {
+        id
+        name
+      }
+      category
+      confidence
+    }
+    clusters {
+      entities {
+        id
+        name
+      }
+      similarity
+    }
+  }
+}
+"""
+
+QUERY_FACTS_GRAPH_GQL = """
+query QueryFactsGraph($filter: FactFilter, $graph: FactGraphInput, $correlationId: String) {
+  facts(filter: $filter, graph: $graph, correlationId: $correlationId) {
+    graph {
+      nodes {
+        id
+        name
+        type
+        metadata
+      }
+      edges {
+        from
+        to
+        relation
+      }
+    }
+  }
+}
+"""
+
+UPDATE_FACT_GQL = """
+mutation UpdateFact($fact: FactUpdateInput!) {
+  updateFact(fact: $fact) {
+    id
+    state
+  }
+}
+"""
+
 COUNT_FEEDS_GQL = """
 query CountFeeds($filter: FeedFilter, $correlationId: String) {
   countFeeds(filter: $filter, correlationId: $correlationId) {
@@ -8030,6 +8342,8 @@ query GetFeed($id: ID!, $correlationId: String) {
         uri
         repositoryOwner
         repositoryName
+        clientId
+        clientSecret
         refreshToken
         personalAccessToken
         connector {
@@ -8061,6 +8375,8 @@ query GetFeed($id: ID!, $correlationId: String) {
         uri
         repositoryOwner
         repositoryName
+        clientId
+        clientSecret
         refreshToken
         personalAccessToken
         connector {
@@ -8076,6 +8392,8 @@ query GetFeed($id: ID!, $correlationId: String) {
         uri
         repositoryOwner
         repositoryName
+        clientId
+        clientSecret
         refreshToken
         personalAccessToken
         connector {
@@ -8214,6 +8532,7 @@ query GetFeed($id: ID!, $correlationId: String) {
       }
       teamId
       channelId
+      includeAttachments
     }
     discord {
       readLimit
@@ -8485,6 +8804,8 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           uri
           repositoryOwner
           repositoryName
+          clientId
+          clientSecret
           refreshToken
           personalAccessToken
           connector {
@@ -8516,6 +8837,8 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           uri
           repositoryOwner
           repositoryName
+          clientId
+          clientSecret
           refreshToken
           personalAccessToken
           connector {
@@ -8531,6 +8854,8 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           uri
           repositoryOwner
           repositoryName
+          clientId
+          clientSecret
           refreshToken
           personalAccessToken
           connector {
@@ -8669,6 +8994,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         }
         teamId
         channelId
+        includeAttachments
       }
       discord {
         readLimit
@@ -14857,6 +15183,9 @@ query GetSpecification($id: ID!, $correlationId: String) {
       generateGraph
       observableLimit
     }
+    factStrategy {
+      factLimit
+    }
     revisionStrategy {
       type
       customRevision
@@ -15237,6 +15566,9 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         type
         generateGraph
         observableLimit
+      }
+      factStrategy {
+        factLimit
       }
       revisionStrategy {
         type
@@ -16892,6 +17224,7 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
             tokenThreshold
             timeBudget
             entityBudget
+            extractionType
           }
         }
       }
@@ -17167,6 +17500,7 @@ query GetWorkflow($id: ID!, $correlationId: String) {
             tokenThreshold
             timeBudget
             entityBudget
+            extractionType
           }
         }
       }
@@ -17413,6 +17747,7 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
               tokenThreshold
               timeBudget
               entityBudget
+              extractionType
             }
           }
         }
@@ -17653,6 +17988,7 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
             tokenThreshold
             timeBudget
             entityBudget
+            extractionType
           }
         }
       }
@@ -17892,6 +18228,7 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
             tokenThreshold
             timeBudget
             entityBudget
+            extractionType
           }
         }
       }

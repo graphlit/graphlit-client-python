@@ -1,0 +1,6 @@
+mutation UpdateFact($fact: FactUpdateInput!) {
+  updateFact(fact: $fact) {
+    id
+    state
+  }
+}

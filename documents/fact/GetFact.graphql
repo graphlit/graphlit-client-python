@@ -1,0 +1,44 @@
+query GetFact($id: ID!, $correlationId: String) {
+  fact(id: $id, correlationId: $correlationId) {
+    id
+    creationDate
+    owner {
+      id
+    }
+    text
+    validAt
+    invalidAt
+    relevance
+    mentions {
+      type
+      observable {
+        id
+        name
+      }
+      start
+      end
+    }
+    assertions {
+      text
+      mentions {
+        type
+        observable {
+          id
+          name
+        }
+        start
+        end
+      }
+    }
+    feeds {
+      id
+      name
+    }
+    content {
+      id
+      name
+    }
+    category
+    confidence
+  }
+}

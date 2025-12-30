@@ -72,6 +72,9 @@ class QuerySpecificationsSpecificationsResults(BaseModel):
     graph_strategy: Optional[
         "QuerySpecificationsSpecificationsResultsGraphStrategy"
     ] = Field(alias="graphStrategy")
+    fact_strategy: Optional["QuerySpecificationsSpecificationsResultsFactStrategy"] = (
+        Field(alias="factStrategy")
+    )
     revision_strategy: Optional[
         "QuerySpecificationsSpecificationsResultsRevisionStrategy"
     ] = Field(alias="revisionStrategy")
@@ -131,6 +134,10 @@ class QuerySpecificationsSpecificationsResultsGraphStrategy(BaseModel):
     type: GraphStrategyTypes
     generate_graph: Optional[bool] = Field(alias="generateGraph")
     observable_limit: Optional[int] = Field(alias="observableLimit")
+
+
+class QuerySpecificationsSpecificationsResultsFactStrategy(BaseModel):
+    fact_limit: Optional[int] = Field(alias="factLimit")
 
 
 class QuerySpecificationsSpecificationsResultsRevisionStrategy(BaseModel):

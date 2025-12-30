@@ -1,0 +1,11 @@
+mutation RetrieveEntities($prompt: String!, $types: [ObservableTypes!], $searchType: SearchTypes, $limit: Int, $correlationId: String) {
+  retrieveEntities(prompt: $prompt, types: $types, searchType: $searchType, limit: $limit, correlationId: $correlationId) {
+    results {
+      id
+      name
+      type
+      relevance
+      metadata
+    }
+  }
+}

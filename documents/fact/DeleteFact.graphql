@@ -1,0 +1,6 @@
+mutation DeleteFact($id: ID!) {
+  deleteFact(id: $id) {
+    id
+    state
+  }
+}

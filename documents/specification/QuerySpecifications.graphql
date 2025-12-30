@@ -43,6 +43,9 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         generateGraph
         observableLimit
       }
+      factStrategy {
+        factLimit
+      }
       revisionStrategy {
         type
         customRevision

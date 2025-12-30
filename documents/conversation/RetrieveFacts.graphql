@@ -1,0 +1,48 @@
+mutation RetrieveFacts($prompt: String!, $filter: FactFilter, $correlationId: String) {
+  retrieveFacts(prompt: $prompt, filter: $filter, correlationId: $correlationId) {
+    results {
+      fact {
+        id
+        text
+        validAt
+        invalidAt
+        state
+        mentions {
+          type
+          observable {
+            id
+            name
+          }
+          start
+          end
+        }
+        assertions {
+          text
+          mentions {
+            type
+            observable {
+              id
+              name
+            }
+            start
+            end
+          }
+        }
+        feeds {
+          id
+          name
+        }
+        content {
+          id
+          name
+        }
+        category
+        confidence
+      }
+      relevance
+      content {
+        id
+      }
+    }
+  }
+}

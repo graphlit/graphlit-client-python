@@ -67,6 +67,9 @@ class GetSpecificationSpecification(BaseModel):
     graph_strategy: Optional["GetSpecificationSpecificationGraphStrategy"] = Field(
         alias="graphStrategy"
     )
+    fact_strategy: Optional["GetSpecificationSpecificationFactStrategy"] = Field(
+        alias="factStrategy"
+    )
     revision_strategy: Optional["GetSpecificationSpecificationRevisionStrategy"] = (
         Field(alias="revisionStrategy")
     )
@@ -122,6 +125,10 @@ class GetSpecificationSpecificationGraphStrategy(BaseModel):
     type: GraphStrategyTypes
     generate_graph: Optional[bool] = Field(alias="generateGraph")
     observable_limit: Optional[int] = Field(alias="observableLimit")
+
+
+class GetSpecificationSpecificationFactStrategy(BaseModel):
+    fact_limit: Optional[int] = Field(alias="factLimit")
 
 
 class GetSpecificationSpecificationRevisionStrategy(BaseModel):
