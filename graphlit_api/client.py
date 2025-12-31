@@ -2534,6 +2534,8 @@ class Client(AsyncBaseClient):
         data: Union[Optional[str], UnsetType] = UNSET,
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         messages: Union[Optional[List[ConversationMessageInput]], UnsetType] = UNSET,
+        tools: Union[Optional[List[ToolDefinitionInput]], UnsetType] = UNSET,
+        require_tool: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> Prompt:
@@ -2543,6 +2545,8 @@ class Client(AsyncBaseClient):
             "data": data,
             "specification": specification,
             "messages": messages,
+            "tools": tools,
+            "requireTool": require_tool,
             "correlationId": correlation_id,
         }
         response = await self.execute(

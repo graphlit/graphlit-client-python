@@ -5863,13 +5863,15 @@ query GetConversation($id: ID!, $correlationId: String) {
 """
 
 PROMPT_GQL = """
-mutation Prompt($prompt: String, $mimeType: String, $data: String, $specification: EntityReferenceInput, $messages: [ConversationMessageInput!], $correlationId: String) {
+mutation Prompt($prompt: String, $mimeType: String, $data: String, $specification: EntityReferenceInput, $messages: [ConversationMessageInput!], $tools: [ToolDefinitionInput!], $requireTool: Boolean, $correlationId: String) {
   prompt(
     prompt: $prompt
     mimeType: $mimeType
     data: $data
     specification: $specification
     messages: $messages
+    tools: $tools
+    requireTool: $requireTool
     correlationId: $correlationId
   ) {
     specification {

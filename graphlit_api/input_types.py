@@ -1296,6 +1296,12 @@ class GraphFilter(BaseModel):
     )
 
 
+class ConversationToolCallInput(BaseModel):
+    id: str
+    name: str
+    arguments: Optional[str] = None
+
+
 class PostMetadataInput(BaseModel):
     creation_date: Optional[Any] = Field(alias="creationDate", default=None)
     modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
@@ -4295,7 +4301,12 @@ class EntityFeedPropertiesUpdateInput(BaseModel):
 class ConversationMessageInput(BaseModel):
     role: ConversationRoleTypes
     author: Optional[str] = None
-    message: str
+    message: Optional[str] = None
+    tool_calls: Optional[List["ConversationToolCallInput"]] = Field(
+        alias="toolCalls", default=None
+    )
+    tool_call_id: Optional[str] = Field(alias="toolCallId", default=None)
+    tool_call_response: Optional[str] = Field(alias="toolCallResponse", default=None)
     tokens: Optional[int] = None
     throughput: Optional[float] = None
     ttft: Optional[Any] = None
@@ -5426,6 +5437,7 @@ ObservationInput.model_rebuild()
 OneDriveFoldersInput.model_rebuild()
 OrganizationInput.model_rebuild()
 EntityFeedPropertiesUpdateInput.model_rebuild()
+ConversationMessageInput.model_rebuild()
 ContentCriteriaInput.model_rebuild()
 GoogleCalendarsInput.model_rebuild()
 MetadataUpdateInput.model_rebuild()
