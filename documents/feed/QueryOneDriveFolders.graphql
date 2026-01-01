@@ -3,6 +3,7 @@ query QueryOneDriveFolders($properties: OneDriveFoldersInput!, $folderId: ID) {
     results {
       folderName
       folderId
+      folderPath
     }
   }
 }

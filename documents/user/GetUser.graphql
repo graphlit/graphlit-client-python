@@ -33,6 +33,7 @@ query GetUser {
           clientId
           clientSecret
           refreshToken
+          redirectUri
           metadata
         }
         arcade {

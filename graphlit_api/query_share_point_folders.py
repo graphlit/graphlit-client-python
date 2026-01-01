@@ -22,6 +22,7 @@ class QuerySharePointFoldersSharePointFolders(BaseModel):
 class QuerySharePointFoldersSharePointFoldersResults(BaseModel):
     folder_name: Optional[str] = Field(alias="folderName")
     folder_id: Optional[str] = Field(alias="folderId")
+    folder_path: Optional[str] = Field(alias="folderPath")
 
 
 QuerySharePointFolders.model_rebuild()

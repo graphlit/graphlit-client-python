@@ -3,6 +3,7 @@ query QueryGoogleDriveFolders($properties: GoogleDriveFoldersInput!, $folderId: 
     results {
       folderName
       folderId
+      folderPath
     }
   }
 }

@@ -4,6 +4,7 @@ query QuerySharePointFolders($properties: SharePointFoldersInput!, $libraryId: I
     results {
       folderName
       folderId
+      folderPath
     }
   }
 }

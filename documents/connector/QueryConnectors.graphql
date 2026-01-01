@@ -27,6 +27,7 @@ query QueryConnectors($filter: ConnectorFilter, $correlationId: String) {
           clientId
           clientSecret
           refreshToken
+          redirectUri
           metadata
         }
         arcade {

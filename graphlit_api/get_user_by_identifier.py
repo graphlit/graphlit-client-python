@@ -85,6 +85,7 @@ class GetUserByIdentifierUserByIdentifierConnectorsAuthenticationOauth(BaseModel
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
     refresh_token: str = Field(alias="refreshToken")
+    redirect_uri: Optional[str] = Field(alias="redirectUri")
     metadata: Optional[str]
 
 

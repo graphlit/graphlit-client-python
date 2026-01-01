@@ -1139,6 +1139,7 @@ query GetConnector($id: ID!, $correlationId: String) {
         clientId
         clientSecret
         refreshToken
+        redirectUri
         metadata
       }
       arcade {
@@ -1204,6 +1205,7 @@ query QueryConnectors($filter: ConnectorFilter, $correlationId: String) {
           clientId
           clientSecret
           refreshToken
+          redirectUri
           metadata
         }
         arcade {
@@ -9105,6 +9107,7 @@ query QueryGoogleDriveFolders($properties: GoogleDriveFoldersInput!, $folderId: 
     results {
       folderName
       folderId
+      folderPath
     }
   }
 }
@@ -9179,6 +9182,7 @@ query QueryOneDriveFolders($properties: OneDriveFoldersInput!, $folderId: ID) {
     results {
       folderName
       folderId
+      folderPath
     }
   }
 }
@@ -9195,6 +9199,7 @@ query QuerySharePointFolders($properties: SharePointFoldersInput!, $libraryId: I
     results {
       folderName
       folderId
+      folderPath
     }
   }
 }
@@ -15873,6 +15878,7 @@ query GetUser {
           clientId
           clientSecret
           refreshToken
+          redirectUri
           metadata
         }
         arcade {
@@ -15945,6 +15951,7 @@ query GetUserByIdentifier($identifier: String!) {
           clientId
           clientSecret
           refreshToken
+          redirectUri
           metadata
         }
         arcade {
@@ -16018,6 +16025,7 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
             clientId
             clientSecret
             refreshToken
+            redirectUri
             metadata
           }
           arcade {

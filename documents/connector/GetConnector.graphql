@@ -25,6 +25,7 @@ query GetConnector($id: ID!, $correlationId: String) {
         clientId
         clientSecret
         refreshToken
+        redirectUri
         metadata
       }
       arcade {

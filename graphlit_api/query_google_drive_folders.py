@@ -23,6 +23,7 @@ class QueryGoogleDriveFoldersGoogleDriveFolders(BaseModel):
 class QueryGoogleDriveFoldersGoogleDriveFoldersResults(BaseModel):
     folder_name: Optional[str] = Field(alias="folderName")
     folder_id: Optional[str] = Field(alias="folderId")
+    folder_path: Optional[str] = Field(alias="folderPath")
 
 
 QueryGoogleDriveFolders.model_rebuild()

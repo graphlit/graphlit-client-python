@@ -33,6 +33,7 @@ query GetUserByIdentifier($identifier: String!) {
           clientId
           clientSecret
           refreshToken
+          redirectUri
           metadata
         }
         arcade {
