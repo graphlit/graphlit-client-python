@@ -8266,6 +8266,9 @@ query GetFeed($id: ID!, $correlationId: String) {
         appKey
         appSecret
         refreshToken
+        connector {
+          id
+        }
       }
       box {
         authenticationType
@@ -8274,6 +8277,9 @@ query GetFeed($id: ID!, $correlationId: String) {
         clientSecret
         refreshToken
         redirectUri
+        connector {
+          id
+        }
       }
       github {
         authenticationType
@@ -8518,7 +8524,14 @@ query GetFeed($id: ID!, $correlationId: String) {
     slack {
       readLimit
       type
+      authenticationType
       token
+      clientId
+      clientSecret
+      refreshToken
+      connector {
+        id
+      }
       channel
       includeAttachments
     }
@@ -8728,6 +8741,9 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           appKey
           appSecret
           refreshToken
+          connector {
+            id
+          }
         }
         box {
           authenticationType
@@ -8736,6 +8752,9 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           clientSecret
           refreshToken
           redirectUri
+          connector {
+            id
+          }
         }
         github {
           authenticationType
@@ -8980,7 +8999,14 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
       slack {
         readLimit
         type
+        authenticationType
         token
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
         channel
         includeAttachments
       }

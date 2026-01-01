@@ -37,6 +37,7 @@ from .enums import (
     SearchServiceTypes,
     SharePointAuthenticationTypes,
     SiteTypes,
+    SlackAuthenticationTypes,
     TimedPolicyRecurrenceTypes,
     TrelloTypes,
     TwitterListingTypes,
@@ -203,6 +204,11 @@ class GetFeedFeedSiteDropbox(BaseModel):
     app_key: Optional[str] = Field(alias="appKey")
     app_secret: Optional[str] = Field(alias="appSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["GetFeedFeedSiteDropboxConnector"]
+
+
+class GetFeedFeedSiteDropboxConnector(BaseModel):
+    id: str
 
 
 class GetFeedFeedSiteBox(BaseModel):
@@ -214,6 +220,11 @@ class GetFeedFeedSiteBox(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     redirect_uri: Optional[str] = Field(alias="redirectUri")
+    connector: Optional["GetFeedFeedSiteBoxConnector"]
+
+
+class GetFeedFeedSiteBoxConnector(BaseModel):
+    id: str
 
 
 class GetFeedFeedSiteGithub(BaseModel):
@@ -551,9 +562,20 @@ class GetFeedFeedTwitter(BaseModel):
 class GetFeedFeedSlack(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     type: Optional[FeedListingTypes]
-    token: str
+    authentication_type: Optional[SlackAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    token: Optional[str]
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["GetFeedFeedSlackConnector"]
     channel: str
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
+
+
+class GetFeedFeedSlackConnector(BaseModel):
+    id: str
 
 
 class GetFeedFeedMicrosoftTeams(BaseModel):
@@ -628,6 +650,8 @@ GetFeedFeedSite.model_rebuild()
 GetFeedFeedSiteSharePoint.model_rebuild()
 GetFeedFeedSiteOneDrive.model_rebuild()
 GetFeedFeedSiteGoogleDrive.model_rebuild()
+GetFeedFeedSiteDropbox.model_rebuild()
+GetFeedFeedSiteBox.model_rebuild()
 GetFeedFeedSiteGithub.model_rebuild()
 GetFeedFeedEmail.model_rebuild()
 GetFeedFeedEmailGoogle.model_rebuild()
@@ -644,6 +668,7 @@ GetFeedFeedCrmMicrosoftContacts.model_rebuild()
 GetFeedFeedCalendar.model_rebuild()
 GetFeedFeedCalendarGoogle.model_rebuild()
 GetFeedFeedCalendarMicrosoft.model_rebuild()
+GetFeedFeedSlack.model_rebuild()
 GetFeedFeedMicrosoftTeams.model_rebuild()
 GetFeedFeedResearch.model_rebuild()
 GetFeedFeedEntity.model_rebuild()

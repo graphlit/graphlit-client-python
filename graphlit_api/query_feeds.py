@@ -37,6 +37,7 @@ from .enums import (
     SearchServiceTypes,
     SharePointAuthenticationTypes,
     SiteTypes,
+    SlackAuthenticationTypes,
     TimedPolicyRecurrenceTypes,
     TrelloTypes,
     TwitterListingTypes,
@@ -218,6 +219,11 @@ class QueryFeedsFeedsResultsSiteDropbox(BaseModel):
     app_key: Optional[str] = Field(alias="appKey")
     app_secret: Optional[str] = Field(alias="appSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["QueryFeedsFeedsResultsSiteDropboxConnector"]
+
+
+class QueryFeedsFeedsResultsSiteDropboxConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsSiteBox(BaseModel):
@@ -229,6 +235,11 @@ class QueryFeedsFeedsResultsSiteBox(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     redirect_uri: Optional[str] = Field(alias="redirectUri")
+    connector: Optional["QueryFeedsFeedsResultsSiteBoxConnector"]
+
+
+class QueryFeedsFeedsResultsSiteBoxConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsSiteGithub(BaseModel):
@@ -566,9 +577,20 @@ class QueryFeedsFeedsResultsTwitter(BaseModel):
 class QueryFeedsFeedsResultsSlack(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     type: Optional[FeedListingTypes]
-    token: str
+    authentication_type: Optional[SlackAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    token: Optional[str]
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["QueryFeedsFeedsResultsSlackConnector"]
     channel: str
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
+
+
+class QueryFeedsFeedsResultsSlackConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsMicrosoftTeams(BaseModel):
@@ -644,6 +666,8 @@ QueryFeedsFeedsResultsSite.model_rebuild()
 QueryFeedsFeedsResultsSiteSharePoint.model_rebuild()
 QueryFeedsFeedsResultsSiteOneDrive.model_rebuild()
 QueryFeedsFeedsResultsSiteGoogleDrive.model_rebuild()
+QueryFeedsFeedsResultsSiteDropbox.model_rebuild()
+QueryFeedsFeedsResultsSiteBox.model_rebuild()
 QueryFeedsFeedsResultsSiteGithub.model_rebuild()
 QueryFeedsFeedsResultsEmail.model_rebuild()
 QueryFeedsFeedsResultsEmailGoogle.model_rebuild()
@@ -660,6 +684,7 @@ QueryFeedsFeedsResultsCrmMicrosoftContacts.model_rebuild()
 QueryFeedsFeedsResultsCalendar.model_rebuild()
 QueryFeedsFeedsResultsCalendarGoogle.model_rebuild()
 QueryFeedsFeedsResultsCalendarMicrosoft.model_rebuild()
+QueryFeedsFeedsResultsSlack.model_rebuild()
 QueryFeedsFeedsResultsMicrosoftTeams.model_rebuild()
 QueryFeedsFeedsResultsResearch.model_rebuild()
 QueryFeedsFeedsResultsEntity.model_rebuild()

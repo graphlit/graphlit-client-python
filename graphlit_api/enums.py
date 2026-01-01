@@ -67,6 +67,7 @@ class FacetValueTypes(str, Enum):
 
 class BoxAuthenticationTypes(str, Enum):
     USER = "USER"
+    CONNECTOR = "CONNECTOR"
 
 
 class ConnectorTypes(str, Enum):
@@ -833,6 +834,11 @@ class OpenAIReasoningEffortLevels(str, Enum):
     HIGH = "HIGH"
 
 
+class SlackAuthenticationTypes(str, Enum):
+    TOKEN = "TOKEN"
+    CONNECTOR = "CONNECTOR"
+
+
 class MicrosoftContactsAuthenticationTypes(str, Enum):
     USER = "USER"
     CONNECTOR = "CONNECTOR"
@@ -1094,6 +1100,7 @@ class AssemblyAIModels(str, Enum):
 
 class DropboxAuthenticationTypes(str, Enum):
     USER = "USER"
+    CONNECTOR = "CONNECTOR"
 
 
 class PlaceFacetTypes(str, Enum):
@@ -1188,6 +1195,7 @@ class OAuthProviders(str, Enum):
     GOOGLE = "GOOGLE"
     MICROSOFT = "MICROSOFT"
     GIT_HUB = "GIT_HUB"
+    SLACK = "SLACK"
 
 
 class MicrosoftCalendarAuthenticationTypes(str, Enum):

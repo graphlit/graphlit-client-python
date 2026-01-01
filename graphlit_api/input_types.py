@@ -139,6 +139,7 @@ from .enums import (
     SearchServiceTypes,
     SearchTypes,
     SharePointAuthenticationTypes,
+    SlackAuthenticationTypes,
     SoftwareFacetTypes,
     SpecificationTypes,
     StoragePolicyTypes,
@@ -1222,6 +1223,7 @@ class DropboxFeedPropertiesUpdateInput(BaseModel):
     app_key: Optional[str] = Field(alias="appKey", default=None)
     app_secret: Optional[str] = Field(alias="appSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class PreparationWorkflowJobInput(BaseModel):
@@ -1894,7 +1896,14 @@ class AzureDocumentPreparationPropertiesInput(BaseModel):
 
 class SlackFeedPropertiesInput(BaseModel):
     type: Optional[FeedListingTypes] = None
-    token: str
+    authentication_type: Optional[SlackAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    token: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
     channel: str
     include_attachments: Optional[bool] = Field(
         alias="includeAttachments", default=None
@@ -2687,7 +2696,14 @@ class ObservationReferenceFilter(BaseModel):
 
 
 class SlackChannelsInput(BaseModel):
-    token: str
+    authentication_type: Optional[SlackAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    token: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class AmazonFeedPropertiesUpdateInput(BaseModel):
@@ -2971,7 +2987,14 @@ class MedicalContraindicationFacetInput(BaseModel):
 
 class SlackFeedPropertiesUpdateInput(BaseModel):
     type: Optional[FeedListingTypes] = None
+    authentication_type: Optional[SlackAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     token: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
     channel: Optional[str] = None
     include_attachments: Optional[bool] = Field(
         alias="includeAttachments", default=None
@@ -3025,6 +3048,7 @@ class DropboxFoldersInput(BaseModel):
     app_key: Optional[str] = Field(alias="appKey", default=None)
     app_secret: Optional[str] = Field(alias="appSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class CommitFeedPropertiesUpdateInput(BaseModel):
@@ -3163,6 +3187,7 @@ class BoxFeedPropertiesInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     redirect_uri: Optional[str] = Field(alias="redirectUri", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class IntercomTicketsFeedPropertiesUpdateInput(BaseModel):
@@ -3767,6 +3792,7 @@ class BoxFoldersInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     redirect_uri: Optional[str] = Field(alias="redirectUri", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class MedicalGuidelineUpdateInput(BaseModel):
@@ -3814,6 +3840,7 @@ class DropboxFeedPropertiesInput(BaseModel):
     app_key: Optional[str] = Field(alias="appKey", default=None)
     app_secret: Optional[str] = Field(alias="appSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class CategoryInput(BaseModel):
@@ -3990,6 +4017,7 @@ class BoxFeedPropertiesUpdateInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     redirect_uri: Optional[str] = Field(alias="redirectUri", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class JinaModelPropertiesInput(BaseModel):
@@ -5303,6 +5331,7 @@ SoftwareInput.model_rebuild()
 AlertUpdateInput.model_rebuild()
 InvestmentFundInput.model_rebuild()
 InvestmentFundFilter.model_rebuild()
+DropboxFeedPropertiesUpdateInput.model_rebuild()
 PreparationWorkflowJobInput.model_rebuild()
 ViewUpdateInput.model_rebuild()
 InvestmentUpdateInput.model_rebuild()
@@ -5335,6 +5364,7 @@ OrganizationUpdateInput.model_rebuild()
 MedicalDrugClassInput.model_rebuild()
 MedicalTestUpdateInput.model_rebuild()
 AlertFilter.model_rebuild()
+SlackFeedPropertiesInput.model_rebuild()
 IssueFeedPropertiesInput.model_rebuild()
 SharePointFoldersInput.model_rebuild()
 RepoInput.model_rebuild()
@@ -5376,6 +5406,7 @@ ShapeMetadataInput.model_rebuild()
 CRMFeedPropertiesInput.model_rebuild()
 ConversationFilter.model_rebuild()
 ObservationReferenceFilter.model_rebuild()
+SlackChannelsInput.model_rebuild()
 MedicalIndicationUpdateInput.model_rebuild()
 GitHubFeedPropertiesUpdateInput.model_rebuild()
 MicrosoftEmailFeedPropertiesInput.model_rebuild()
@@ -5385,7 +5416,9 @@ MedicalConditionUpdateInput.model_rebuild()
 GitHubRepositoriesInput.model_rebuild()
 MedicalConditionFilter.model_rebuild()
 PersonFilter.model_rebuild()
+SlackFeedPropertiesUpdateInput.model_rebuild()
 MedicalIndicationInput.model_rebuild()
+DropboxFoldersInput.model_rebuild()
 CommitFeedPropertiesUpdateInput.model_rebuild()
 OrganizationFilter.model_rebuild()
 PullRequestFeedPropertiesUpdateInput.model_rebuild()
@@ -5393,6 +5426,7 @@ EntityExtractionConnectorInput.model_rebuild()
 FactInput.model_rebuild()
 StorageWorkflowStageInput.model_rebuild()
 DrawingMetadataInput.model_rebuild()
+BoxFeedPropertiesInput.model_rebuild()
 MedicalGuidelineInput.model_rebuild()
 ObservationOccurrenceInput.model_rebuild()
 EntityResolutionStrategyInput.model_rebuild()
@@ -5418,7 +5452,9 @@ MedicalTestFilter.model_rebuild()
 GitHubCommitsFeedPropertiesUpdateInput.model_rebuild()
 MicrosoftCalendarFeedPropertiesInput.model_rebuild()
 ExtractionWorkflowJobInput.model_rebuild()
+BoxFoldersInput.model_rebuild()
 MedicalGuidelineUpdateInput.model_rebuild()
+DropboxFeedPropertiesInput.model_rebuild()
 MicrosoftCalendarFeedPropertiesUpdateInput.model_rebuild()
 AlertInput.model_rebuild()
 ObservationCriteriaInput.model_rebuild()
@@ -5426,6 +5462,7 @@ MedicalProcedureFilter.model_rebuild()
 IssueFeedPropertiesUpdateInput.model_rebuild()
 MedicalDrugFilter.model_rebuild()
 PlaceInput.model_rebuild()
+BoxFeedPropertiesUpdateInput.model_rebuild()
 SoftwareFilter.model_rebuild()
 SiteFeedPropertiesInput.model_rebuild()
 ConnectorUpdateInput.model_rebuild()
