@@ -3,7 +3,7 @@ mutation UpdateFeed($feed: FeedUpdateInput!) {
     id
     name
     state
+    identifier
     type
-    syncMode
   }
 }

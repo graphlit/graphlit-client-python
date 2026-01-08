@@ -6,7 +6,7 @@ from typing import Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import EntityState, FeedSyncMode, FeedTypes
+from .enums import EntityState, FeedTypes
 
 
 class CreateFeed(BaseModel):
@@ -17,8 +17,8 @@ class CreateFeedCreateFeed(BaseModel):
     id: str
     name: str
     state: EntityState
+    identifier: Optional[str]
     type: FeedTypes
-    sync_mode: Optional[FeedSyncMode] = Field(alias="syncMode")
 
 
 CreateFeed.model_rebuild()

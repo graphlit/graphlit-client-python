@@ -84,6 +84,8 @@ class QueryContentsObservationsContentsResults(BaseModel):
     message: Optional["QueryContentsObservationsContentsResultsMessage"]
     post: Optional["QueryContentsObservationsContentsResultsPost"]
     package: Optional["QueryContentsObservationsContentsResultsPackage"]
+    meeting: Optional["QueryContentsObservationsContentsResultsMeeting"]
+    transcript: Optional["QueryContentsObservationsContentsResultsTranscript"]
     language: Optional["QueryContentsObservationsContentsResultsLanguage"]
     feed: Optional["QueryContentsObservationsContentsResultsFeed"]
     workflow: Optional["QueryContentsObservationsContentsResultsWorkflow"]
@@ -433,6 +435,42 @@ class QueryContentsObservationsContentsResultsPackage(BaseModel):
     is_encrypted: Optional[bool] = Field(alias="isEncrypted")
 
 
+class QueryContentsObservationsContentsResultsMeeting(BaseModel):
+    title: Optional[str]
+    duration: Optional[Any]
+    summary: Optional[str]
+    action_items: Optional[List[Optional[str]]] = Field(alias="actionItems")
+    keywords: Optional[List[Optional[str]]]
+    organizer: Optional[
+        List[Optional["QueryContentsObservationsContentsResultsMeetingOrganizer"]]
+    ]
+    participants: Optional[
+        List[Optional["QueryContentsObservationsContentsResultsMeetingParticipants"]]
+    ]
+    source: Optional[str]
+    external_id: Optional[str] = Field(alias="externalId")
+
+
+class QueryContentsObservationsContentsResultsMeetingOrganizer(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
+class QueryContentsObservationsContentsResultsMeetingParticipants(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
+class QueryContentsObservationsContentsResultsTranscript(BaseModel):
+    duration: Optional[Any]
+    segment_count: Optional[int] = Field(alias="segmentCount")
+    speaker_count: Optional[int] = Field(alias="speakerCount")
+
+
 class QueryContentsObservationsContentsResultsLanguage(BaseModel):
     languages: Optional[List[Optional[str]]]
 
@@ -549,6 +587,7 @@ QueryContentsObservationsContentsResultsCommit.model_rebuild()
 QueryContentsObservationsContentsResultsPullRequest.model_rebuild()
 QueryContentsObservationsContentsResultsMessage.model_rebuild()
 QueryContentsObservationsContentsResultsPost.model_rebuild()
+QueryContentsObservationsContentsResultsMeeting.model_rebuild()
 QueryContentsObservationsContentsResultsPages.model_rebuild()
 QueryContentsObservationsContentsResultsObservations.model_rebuild()
 QueryContentsObservationsContentsResultsObservationsOccurrences.model_rebuild()

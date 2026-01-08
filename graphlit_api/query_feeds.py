@@ -34,6 +34,9 @@ from .enums import (
     OneDriveAuthenticationTypes,
     ParallelGenerators,
     ParallelProcessors,
+    SalesforceAuthenticationTypes,
+    SalesforceFeedAuthenticationTypes,
+    SalesforceIssueAuthenticationTypes,
     SearchServiceTypes,
     SharePointAuthenticationTypes,
     SiteTypes,
@@ -61,6 +64,8 @@ class QueryFeedsFeedsResults(BaseModel):
     relevance: Optional[float]
     owner: "QueryFeedsFeedsResultsOwner"
     state: EntityState
+    identifier: Optional[str]
+    description: Optional[str]
     correlation_id: Optional[str] = Field(alias="correlationId")
     type: FeedTypes
     sync_mode: Optional[FeedSyncMode] = Field(alias="syncMode")
@@ -73,6 +78,7 @@ class QueryFeedsFeedsResults(BaseModel):
     )
     crm: Optional["QueryFeedsFeedsResultsCrm"]
     calendar: Optional["QueryFeedsFeedsResultsCalendar"]
+    meeting: Optional["QueryFeedsFeedsResultsMeeting"]
     rss: Optional["QueryFeedsFeedsResultsRss"]
     web: Optional["QueryFeedsFeedsResultsWeb"]
     search: Optional["QueryFeedsFeedsResultsSearch"]
@@ -88,6 +94,7 @@ class QueryFeedsFeedsResults(BaseModel):
     )
     discord: Optional["QueryFeedsFeedsResultsDiscord"]
     attio: Optional["QueryFeedsFeedsResultsAttio"]
+    salesforce: Optional["QueryFeedsFeedsResultsSalesforce"]
     research: Optional["QueryFeedsFeedsResultsResearch"]
     entity: Optional["QueryFeedsFeedsResultsEntity"]
     error: Optional[str]
@@ -318,6 +325,7 @@ class QueryFeedsFeedsResultsIssue(BaseModel):
     zendesk: Optional["QueryFeedsFeedsResultsIssueZendesk"]
     trello: Optional["QueryFeedsFeedsResultsIssueTrello"]
     attio: Optional["QueryFeedsFeedsResultsIssueAttio"]
+    salesforce: Optional["QueryFeedsFeedsResultsIssueSalesforce"]
     read_limit: Optional[int] = Field(alias="readLimit")
 
 
@@ -370,6 +378,21 @@ class QueryFeedsFeedsResultsIssueTrello(BaseModel):
 
 class QueryFeedsFeedsResultsIssueAttio(BaseModel):
     api_key: str = Field(alias="apiKey")
+
+
+class QueryFeedsFeedsResultsIssueSalesforce(BaseModel):
+    authentication_type: Optional[SalesforceIssueAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    is_sandbox: Optional[bool] = Field(alias="isSandbox")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["QueryFeedsFeedsResultsIssueSalesforceConnector"]
+
+
+class QueryFeedsFeedsResultsIssueSalesforceConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsCommit(BaseModel):
@@ -429,6 +452,7 @@ class QueryFeedsFeedsResultsCrm(BaseModel):
     microsoft_contacts: Optional["QueryFeedsFeedsResultsCrmMicrosoftContacts"] = Field(
         alias="microsoftContacts"
     )
+    salesforce: Optional["QueryFeedsFeedsResultsCrmSalesforce"]
     read_limit: Optional[int] = Field(alias="readLimit")
 
 
@@ -465,6 +489,22 @@ class QueryFeedsFeedsResultsCrmMicrosoftContacts(BaseModel):
 
 
 class QueryFeedsFeedsResultsCrmMicrosoftContactsConnector(BaseModel):
+    id: str
+
+
+class QueryFeedsFeedsResultsCrmSalesforce(BaseModel):
+    authentication_type: Optional[SalesforceAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    instance_url: Optional[str] = Field(alias="instanceUrl")
+    is_sandbox: Optional[bool] = Field(alias="isSandbox")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["QueryFeedsFeedsResultsCrmSalesforceConnector"]
+
+
+class QueryFeedsFeedsResultsCrmSalesforceConnector(BaseModel):
     id: str
 
 
@@ -512,6 +552,32 @@ class QueryFeedsFeedsResultsCalendarMicrosoft(BaseModel):
 
 class QueryFeedsFeedsResultsCalendarMicrosoftConnector(BaseModel):
     id: str
+
+
+class QueryFeedsFeedsResultsMeeting(BaseModel):
+    type: FeedServiceTypes
+    read_limit: Optional[int] = Field(alias="readLimit")
+    fireflies: Optional["QueryFeedsFeedsResultsMeetingFireflies"]
+    attio: Optional["QueryFeedsFeedsResultsMeetingAttio"]
+    fathom: Optional["QueryFeedsFeedsResultsMeetingFathom"]
+
+
+class QueryFeedsFeedsResultsMeetingFireflies(BaseModel):
+    api_key: Optional[str] = Field(alias="apiKey")
+    before_date: Optional[Any] = Field(alias="beforeDate")
+    after_date: Optional[Any] = Field(alias="afterDate")
+
+
+class QueryFeedsFeedsResultsMeetingAttio(BaseModel):
+    api_key: Optional[str] = Field(alias="apiKey")
+    after_date: Optional[Any] = Field(alias="afterDate")
+    before_date: Optional[Any] = Field(alias="beforeDate")
+
+
+class QueryFeedsFeedsResultsMeetingFathom(BaseModel):
+    api_key: Optional[str] = Field(alias="apiKey")
+    after_date: Optional[Any] = Field(alias="afterDate")
+    before_date: Optional[Any] = Field(alias="beforeDate")
 
 
 class QueryFeedsFeedsResultsRss(BaseModel):
@@ -625,6 +691,22 @@ class QueryFeedsFeedsResultsAttio(BaseModel):
     api_key: str = Field(alias="apiKey")
 
 
+class QueryFeedsFeedsResultsSalesforce(BaseModel):
+    read_limit: Optional[int] = Field(alias="readLimit")
+    authentication_type: Optional[SalesforceFeedAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    is_sandbox: Optional[bool] = Field(alias="isSandbox")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["QueryFeedsFeedsResultsSalesforceConnector"]
+
+
+class QueryFeedsFeedsResultsSalesforceConnector(BaseModel):
+    id: str
+
+
 class QueryFeedsFeedsResultsResearch(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     type: Optional[FeedServiceTypes]
@@ -674,6 +756,7 @@ QueryFeedsFeedsResultsEmailGoogle.model_rebuild()
 QueryFeedsFeedsResultsEmailMicrosoft.model_rebuild()
 QueryFeedsFeedsResultsIssue.model_rebuild()
 QueryFeedsFeedsResultsIssueGithub.model_rebuild()
+QueryFeedsFeedsResultsIssueSalesforce.model_rebuild()
 QueryFeedsFeedsResultsCommit.model_rebuild()
 QueryFeedsFeedsResultsCommitGithub.model_rebuild()
 QueryFeedsFeedsResultsPullRequest.model_rebuild()
@@ -681,10 +764,13 @@ QueryFeedsFeedsResultsPullRequestGithub.model_rebuild()
 QueryFeedsFeedsResultsCrm.model_rebuild()
 QueryFeedsFeedsResultsCrmGoogleContacts.model_rebuild()
 QueryFeedsFeedsResultsCrmMicrosoftContacts.model_rebuild()
+QueryFeedsFeedsResultsCrmSalesforce.model_rebuild()
 QueryFeedsFeedsResultsCalendar.model_rebuild()
 QueryFeedsFeedsResultsCalendarGoogle.model_rebuild()
 QueryFeedsFeedsResultsCalendarMicrosoft.model_rebuild()
+QueryFeedsFeedsResultsMeeting.model_rebuild()
 QueryFeedsFeedsResultsSlack.model_rebuild()
 QueryFeedsFeedsResultsMicrosoftTeams.model_rebuild()
+QueryFeedsFeedsResultsSalesforce.model_rebuild()
 QueryFeedsFeedsResultsResearch.model_rebuild()
 QueryFeedsFeedsResultsEntity.model_rebuild()

@@ -2067,6 +2067,32 @@ query GetContent($id: ID!, $correlationId: String) {
       folderCount
       isEncrypted
     }
+    meeting {
+      title
+      duration
+      summary
+      actionItems
+      keywords
+      organizer {
+        name
+        email
+        givenName
+        familyName
+      }
+      participants {
+        name
+        email
+        givenName
+        familyName
+      }
+      source
+      externalId
+    }
+    transcript {
+      duration
+      segmentCount
+      speakerCount
+    }
     language {
       languages
     }
@@ -2907,6 +2933,32 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
         folderCount
         isEncrypted
       }
+      meeting {
+        title
+        duration
+        summary
+        actionItems
+        keywords
+        organizer {
+          name
+          email
+          givenName
+          familyName
+        }
+        participants {
+          name
+          email
+          givenName
+          familyName
+        }
+        source
+        externalId
+      }
+      transcript {
+        duration
+        segmentCount
+        speakerCount
+      }
       language {
         languages
       }
@@ -3603,6 +3655,32 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
         folderCount
         isEncrypted
       }
+      meeting {
+        title
+        duration
+        summary
+        actionItems
+        keywords
+        organizer {
+          name
+          email
+          givenName
+          familyName
+        }
+        participants {
+          name
+          email
+          givenName
+          familyName
+        }
+        source
+        externalId
+      }
+      transcript {
+        duration
+        segmentCount
+        speakerCount
+      }
       language {
         languages
       }
@@ -4007,6 +4085,32 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
         fileCount
         folderCount
         isEncrypted
+      }
+      meeting {
+        title
+        duration
+        summary
+        actionItems
+        keywords
+        organizer {
+          name
+          email
+          givenName
+          familyName
+        }
+        participants {
+          name
+          email
+          givenName
+          familyName
+        }
+        source
+        externalId
+      }
+      transcript {
+        duration
+        segmentCount
+        speakerCount
       }
       language {
         languages
@@ -8118,8 +8222,8 @@ mutation CreateFeed($feed: FeedInput!, $correlationId: String) {
     id
     name
     state
+    identifier
     type
-    syncMode
   }
 }
 """
@@ -8192,6 +8296,8 @@ query GetFeed($id: ID!, $correlationId: String) {
       id
     }
     state
+    identifier
+    description
     correlationId
     type
     syncMode
@@ -8376,6 +8482,16 @@ query GetFeed($id: ID!, $correlationId: String) {
       attio {
         apiKey
       }
+      salesforce {
+        authenticationType
+        isSandbox
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
+      }
       readLimit
     }
     commit {
@@ -8437,6 +8553,17 @@ query GetFeed($id: ID!, $correlationId: String) {
           id
         }
       }
+      salesforce {
+        authenticationType
+        instanceUrl
+        isSandbox
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
+      }
       readLimit
     }
     calendar {
@@ -8471,6 +8598,25 @@ query GetFeed($id: ID!, $correlationId: String) {
         }
       }
       readLimit
+    }
+    meeting {
+      type
+      readLimit
+      fireflies {
+        apiKey
+        beforeDate
+        afterDate
+      }
+      attio {
+        apiKey
+        afterDate
+        beforeDate
+      }
+      fathom {
+        apiKey
+        afterDate
+        beforeDate
+      }
     }
     rss {
       readLimit
@@ -8561,6 +8707,17 @@ query GetFeed($id: ID!, $correlationId: String) {
     attio {
       readLimit
       apiKey
+    }
+    salesforce {
+      readLimit
+      authenticationType
+      isSandbox
+      clientId
+      clientSecret
+      refreshToken
+      connector {
+        id
+      }
     }
     research {
       readLimit
@@ -8667,6 +8824,8 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         id
       }
       state
+      identifier
+      description
       correlationId
       type
       syncMode
@@ -8851,6 +9010,16 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         attio {
           apiKey
         }
+        salesforce {
+          authenticationType
+          isSandbox
+          clientId
+          clientSecret
+          refreshToken
+          connector {
+            id
+          }
+        }
         readLimit
       }
       commit {
@@ -8912,6 +9081,17 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
             id
           }
         }
+        salesforce {
+          authenticationType
+          instanceUrl
+          isSandbox
+          clientId
+          clientSecret
+          refreshToken
+          connector {
+            id
+          }
+        }
         readLimit
       }
       calendar {
@@ -8946,6 +9126,25 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           }
         }
         readLimit
+      }
+      meeting {
+        type
+        readLimit
+        fireflies {
+          apiKey
+          beforeDate
+          afterDate
+        }
+        attio {
+          apiKey
+          afterDate
+          beforeDate
+        }
+        fathom {
+          apiKey
+          afterDate
+          beforeDate
+        }
       }
       rss {
         readLimit
@@ -9036,6 +9235,17 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
       attio {
         readLimit
         apiKey
+      }
+      salesforce {
+        readLimit
+        authenticationType
+        isSandbox
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
       }
       research {
         readLimit
@@ -9242,8 +9452,8 @@ mutation UpdateFeed($feed: FeedUpdateInput!) {
     id
     name
     state
+    identifier
     type
-    syncMode
   }
 }
 """

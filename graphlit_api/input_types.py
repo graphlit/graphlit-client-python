@@ -135,6 +135,9 @@ from .enums import (
     ResourceConnectorTypes,
     RetrievalStrategyTypes,
     RevisionStrategyTypes,
+    SalesforceAuthenticationTypes,
+    SalesforceFeedAuthenticationTypes,
+    SalesforceIssueAuthenticationTypes,
     SearchQueryTypes,
     SearchServiceTypes,
     SearchTypes,
@@ -787,6 +790,13 @@ class ResearchFeedPropertiesInput(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
+class MeetingFeedPropertiesUpdateInput(BaseModel):
+    fireflies: Optional["FirefliesFeedPropertiesUpdateInput"] = None
+    attio: Optional["AttioMeetingPropertiesUpdateInput"] = None
+    fathom: Optional["FathomPropertiesUpdateInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
 class EmbeddingsStrategyInput(BaseModel):
     text_specification: Optional["EntityReferenceInput"] = Field(
         alias="textSpecification", default=None
@@ -876,6 +886,12 @@ class UserInput(BaseModel):
     type: Optional[UserTypes] = None
     identifier: str
     description: Optional[str] = None
+
+
+class AttioMeetingPropertiesInput(BaseModel):
+    api_key: str = Field(alias="apiKey")
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
 
 
 class AzureOpenAIModelPropertiesInput(BaseModel):
@@ -1299,6 +1315,12 @@ class GraphFilter(BaseModel):
     )
 
 
+class FathomPropertiesUpdateInput(BaseModel):
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+
+
 class ConversationToolCallInput(BaseModel):
     id: str
     name: str
@@ -1590,6 +1612,17 @@ class RevisionStrategyUpdateInput(BaseModel):
     count: Optional[int] = None
 
 
+class SalesforceTasksFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[SalesforceIssueAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    is_sandbox: Optional[bool] = Field(alias="isSandbox", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
 class CerebrasModelPropertiesUpdateInput(BaseModel):
     model: Optional[CerebrasModels] = None
     model_name: Optional[str] = Field(alias="modelName", default=None)
@@ -1800,6 +1833,14 @@ class GoogleFeedPropertiesUpdateInput(BaseModel):
     prefix: Optional[str] = None
 
 
+class MeetingFeedPropertiesInput(BaseModel):
+    type: FeedServiceTypes
+    fireflies: Optional["FirefliesFeedPropertiesInput"] = None
+    attio: Optional["AttioMeetingPropertiesInput"] = None
+    fathom: Optional["FathomPropertiesInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
 class EnrichmentWorkflowJobInput(BaseModel):
     connector: Optional["EntityEnrichmentConnectorInput"] = None
 
@@ -1836,6 +1877,18 @@ class MedicalDrugClassInput(BaseModel):
     description: Optional[str] = None
     location: Optional["PointInput"] = None
     boundary: Optional[str] = None
+
+
+class SalesforceCRMFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[SalesforceAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    instance_url: Optional[str] = Field(alias="instanceUrl", default=None)
+    is_sandbox: Optional[bool] = Field(alias="isSandbox", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class MedicalTestUpdateInput(BaseModel):
@@ -1909,6 +1962,7 @@ class SlackFeedPropertiesInput(BaseModel):
     include_attachments: Optional[bool] = Field(
         alias="includeAttachments", default=None
     )
+    signing_secret: Optional[str] = Field(alias="signingSecret", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -1935,6 +1989,7 @@ class IssueFeedPropertiesInput(BaseModel):
     zendesk: Optional["ZendeskTicketsFeedPropertiesInput"] = None
     trello: Optional["TrelloFeedPropertiesInput"] = None
     attio: Optional["AttioTasksFeedPropertiesInput"] = None
+    salesforce: Optional["SalesforceTasksFeedPropertiesInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -2125,6 +2180,12 @@ class EventUpdateInput(BaseModel):
     performer: Optional[str] = None
     sponsor: Optional[str] = None
     event_status: Optional[str] = Field(alias="eventStatus", default=None)
+
+
+class FirefliesFeedPropertiesInput(BaseModel):
+    api_key: str = Field(alias="apiKey")
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
 
 
 class ObservationUpdateInput(BaseModel):
@@ -2502,6 +2563,12 @@ class TwitterFeedPropertiesUpdateInput(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
+class FathomPropertiesInput(BaseModel):
+    api_key: str = Field(alias="apiKey")
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+
+
 class MedicalContraindicationInput(BaseModel):
     name: str
     uri: Optional[Any] = None
@@ -2657,6 +2724,7 @@ class CRMFeedPropertiesInput(BaseModel):
     microsoft_contacts: Optional["MicrosoftContactsCRMFeedPropertiesInput"] = Field(
         alias="microsoftContacts", default=None
     )
+    salesforce: Optional["SalesforceCRMFeedPropertiesInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -2825,6 +2893,7 @@ class FeedFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    identifier: Optional[str] = None
     types: Optional[List[FeedTypes]] = None
 
 
@@ -2931,6 +3000,17 @@ class MedicalConditionFilter(BaseModel):
     )
 
 
+class SalesforceTasksFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[SalesforceIssueAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    is_sandbox: Optional[bool] = Field(alias="isSandbox", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
 class PersonFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
@@ -2978,6 +3058,18 @@ class PromptStrategyUpdateInput(BaseModel):
     type: Optional[PromptStrategyTypes] = None
 
 
+class SalesforceFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[SalesforceFeedAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    is_sandbox: Optional[bool] = Field(alias="isSandbox", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
 class MedicalContraindicationFacetInput(BaseModel):
     time_interval: Optional[TimeIntervalTypes] = Field(
         alias="timeInterval", default=None
@@ -3000,6 +3092,7 @@ class SlackFeedPropertiesUpdateInput(BaseModel):
     include_attachments: Optional[bool] = Field(
         alias="includeAttachments", default=None
     )
+    signing_secret: Optional[str] = Field(alias="signingSecret", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -3265,6 +3358,7 @@ class SummarizationStrategyInput(BaseModel):
 class FeedUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
+    identifier: Optional[str] = None
     description: Optional[str] = None
     type: Optional[FeedTypes] = None
     sync_mode: Optional[FeedSyncMode] = Field(alias="syncMode", default=None)
@@ -3290,10 +3384,12 @@ class FeedUpdateInput(BaseModel):
     )
     discord: Optional["DiscordFeedPropertiesUpdateInput"] = None
     attio: Optional["AttioFeedPropertiesUpdateInput"] = None
+    salesforce: Optional["SalesforceFeedPropertiesUpdateInput"] = None
     intercom: Optional["IntercomFeedPropertiesUpdateInput"] = None
     zendesk: Optional["ZendeskFeedPropertiesUpdateInput"] = None
     research: Optional["ResearchFeedPropertiesUpdateInput"] = None
     entity: Optional["EntityFeedPropertiesUpdateInput"] = None
+    meeting: Optional["MeetingFeedPropertiesUpdateInput"] = None
     schedule_policy: Optional["FeedSchedulePolicyInput"] = Field(
         alias="schedulePolicy", default=None
     )
@@ -3949,6 +4045,7 @@ class IssueFeedPropertiesUpdateInput(BaseModel):
     zendesk: Optional["ZendeskTicketsFeedPropertiesUpdateInput"] = None
     trello: Optional["TrelloFeedPropertiesUpdateInput"] = None
     attio: Optional["AttioTasksFeedPropertiesUpdateInput"] = None
+    salesforce: Optional["SalesforceTasksFeedPropertiesUpdateInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -4289,6 +4386,18 @@ class OneDriveFoldersInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
 
 
+class SalesforceCRMFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[SalesforceAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    instance_url: Optional[str] = Field(alias="instanceUrl", default=None)
+    is_sandbox: Optional[bool] = Field(alias="isSandbox", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
 class CohereModelPropertiesInput(BaseModel):
     model: CohereModels
     model_name: Optional[str] = Field(alias="modelName", default=None)
@@ -4450,6 +4559,7 @@ class ViewInput(BaseModel):
 
 class FeedInput(BaseModel):
     name: str
+    identifier: Optional[str] = None
     description: Optional[str] = None
     type: FeedTypes
     sync_mode: Optional[FeedSyncMode] = Field(alias="syncMode", default=None)
@@ -4475,10 +4585,12 @@ class FeedInput(BaseModel):
     )
     discord: Optional["DiscordFeedPropertiesInput"] = None
     attio: Optional["AttioFeedPropertiesInput"] = None
+    salesforce: Optional["SalesforceFeedPropertiesInput"] = None
     intercom: Optional["IntercomFeedPropertiesInput"] = None
     zendesk: Optional["ZendeskFeedPropertiesInput"] = None
     research: Optional["ResearchFeedPropertiesInput"] = None
     entity: Optional["EntityFeedPropertiesInput"] = None
+    meeting: Optional["MeetingFeedPropertiesInput"] = None
     schedule_policy: Optional["FeedSchedulePolicyInput"] = Field(
         alias="schedulePolicy", default=None
     )
@@ -4987,6 +5099,18 @@ class ProductFacetInput(BaseModel):
     facet: Optional[ProductFacetTypes] = None
 
 
+class SalesforceFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[SalesforceFeedAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    is_sandbox: Optional[bool] = Field(alias="isSandbox", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
 class SharePointLibrariesInput(BaseModel):
     authentication_type: SharePointAuthenticationTypes = Field(
         alias="authenticationType"
@@ -5013,6 +5137,12 @@ class XAIModelPropertiesInput(BaseModel):
 
 class ParallelEntityFeedPropertiesInput(BaseModel):
     generator: Optional[ParallelGenerators] = None
+
+
+class AttioMeetingPropertiesUpdateInput(BaseModel):
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
 
 
 class CollectionFilter(BaseModel):
@@ -5144,6 +5274,12 @@ class OpenAIVideoPublishingPropertiesInput(BaseModel):
     seed: Optional["EntityReferenceInput"] = None
 
 
+class FirefliesFeedPropertiesUpdateInput(BaseModel):
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+
+
 class CRMFeedPropertiesUpdateInput(BaseModel):
     attio: Optional["AttioCRMFeedPropertiesUpdateInput"] = None
     google_contacts: Optional["GoogleContactsCRMFeedPropertiesUpdateInput"] = Field(
@@ -5152,6 +5288,7 @@ class CRMFeedPropertiesUpdateInput(BaseModel):
     microsoft_contacts: Optional["MicrosoftContactsCRMFeedPropertiesUpdateInput"] = (
         Field(alias="microsoftContacts", default=None)
     )
+    salesforce: Optional["SalesforceCRMFeedPropertiesUpdateInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -5319,6 +5456,7 @@ MicrosoftTeamsTeamsInput.model_rebuild()
 ConnectorFilter.model_rebuild()
 RepoUpdateInput.model_rebuild()
 ResearchFeedPropertiesInput.model_rebuild()
+MeetingFeedPropertiesUpdateInput.model_rebuild()
 EmbeddingsStrategyInput.model_rebuild()
 IssueMetadataInput.model_rebuild()
 GoogleDriveFeedPropertiesInput.model_rebuild()
@@ -5349,6 +5487,7 @@ SpecificationFilter.model_rebuild()
 FactAssertionInput.model_rebuild()
 EventMetadataInput.model_rebuild()
 MedicalProcedureUpdateInput.model_rebuild()
+SalesforceTasksFeedPropertiesInput.model_rebuild()
 ContentClassificationConnectorInput.model_rebuild()
 WorkflowActionInput.model_rebuild()
 ContentCriteriaLevelInput.model_rebuild()
@@ -5360,9 +5499,11 @@ MetadataInput.model_rebuild()
 AuthenticationConnectorInput.model_rebuild()
 ModelTextExtractionPropertiesInput.model_rebuild()
 MedicalDeviceUpdateInput.model_rebuild()
+MeetingFeedPropertiesInput.model_rebuild()
 EnrichmentWorkflowJobInput.model_rebuild()
 OrganizationUpdateInput.model_rebuild()
 MedicalDrugClassInput.model_rebuild()
+SalesforceCRMFeedPropertiesInput.model_rebuild()
 MedicalTestUpdateInput.model_rebuild()
 AlertFilter.model_rebuild()
 SlackFeedPropertiesInput.model_rebuild()
@@ -5416,7 +5557,9 @@ ResearchFeedPropertiesUpdateInput.model_rebuild()
 MedicalConditionUpdateInput.model_rebuild()
 GitHubRepositoriesInput.model_rebuild()
 MedicalConditionFilter.model_rebuild()
+SalesforceTasksFeedPropertiesUpdateInput.model_rebuild()
 PersonFilter.model_rebuild()
+SalesforceFeedPropertiesUpdateInput.model_rebuild()
 SlackFeedPropertiesUpdateInput.model_rebuild()
 MedicalIndicationInput.model_rebuild()
 DropboxFoldersInput.model_rebuild()
@@ -5473,6 +5616,7 @@ ProductInput.model_rebuild()
 MedicalProcedureInput.model_rebuild()
 ObservationInput.model_rebuild()
 OneDriveFoldersInput.model_rebuild()
+SalesforceCRMFeedPropertiesUpdateInput.model_rebuild()
 OrganizationInput.model_rebuild()
 EntityFeedPropertiesUpdateInput.model_rebuild()
 ConversationMessageInput.model_rebuild()
@@ -5501,6 +5645,7 @@ MentionReferenceInput.model_rebuild()
 SpecificationUpdateInput.model_rebuild()
 H3Filter.model_rebuild()
 CalendarFeedPropertiesUpdateInput.model_rebuild()
+SalesforceFeedPropertiesInput.model_rebuild()
 SharePointLibrariesInput.model_rebuild()
 CollectionFilter.model_rebuild()
 DocumentMetadataInput.model_rebuild()

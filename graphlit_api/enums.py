@@ -152,6 +152,13 @@ class FeedServiceTypes(str, Enum):
     ATTIO_OBJECTS = "ATTIO_OBJECTS"
     ATTIO_TASKS = "ATTIO_TASKS"
     ATTIO_NOTES = "ATTIO_NOTES"
+    SALESFORCE_OBJECTS = "SALESFORCE_OBJECTS"
+    SALESFORCE_TASKS = "SALESFORCE_TASKS"
+    SALESFORCE_NOTES = "SALESFORCE_NOTES"
+    FIREFLIES = "FIREFLIES"
+    ATTIO_MEETING = "ATTIO_MEETING"
+    FATHOM = "FATHOM"
+    SALESFORCE_ECI = "SALESFORCE_ECI"
     PARALLEL = "PARALLEL"
 
 
@@ -631,6 +638,11 @@ class FeedConnectorTypes(str, Enum):
     GOOGLE_CONTACTS = "GOOGLE_CONTACTS"
     MICROSOFT_CONTACTS = "MICROSOFT_CONTACTS"
     ATTIO = "ATTIO"
+    SALESFORCE = "SALESFORCE"
+    FIREFLIES = "FIREFLIES"
+    ATTIO_MEETING = "ATTIO_MEETING"
+    FATHOM = "FATHOM"
+    SALESFORCE_ECI = "SALESFORCE_ECI"
     PARALLEL = "PARALLEL"
 
 
@@ -826,6 +838,7 @@ class ContentTypes(str, Enum):
     PULL_REQUEST = "PULL_REQUEST"
     COMMIT = "COMMIT"
     MEMORY = "MEMORY"
+    TRANSCRIPT = "TRANSCRIPT"
 
 
 class OpenAIReasoningEffortLevels(str, Enum):
@@ -1037,6 +1050,11 @@ class MailPriority(str, Enum):
     HIGH = "HIGH"
 
 
+class SalesforceFeedAuthenticationTypes(str, Enum):
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
+
+
 class OperationTypes(str, Enum):
     QUERY = "QUERY"
     MUTATION = "MUTATION"
@@ -1138,6 +1156,11 @@ class XAIModels(str, Enum):
     CUSTOM = "CUSTOM"
 
 
+class SalesforceAuthenticationTypes(str, Enum):
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
+
+
 class MedicalGuidelineFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
@@ -1187,6 +1210,11 @@ class LinkTypes(str, Enum):
     MEDIA = "MEDIA"
     WEB = "WEB"
     FILE = "FILE"
+
+
+class SalesforceIssueAuthenticationTypes(str, Enum):
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
 
 
 class OAuthProviders(str, Enum):
@@ -1325,6 +1353,8 @@ class FeedTypes(str, Enum):
     RESEARCH = "RESEARCH"
     ENTITY = "ENTITY"
     ATTIO = "ATTIO"
+    SALESFORCE = "SALESFORCE"
+    MEETING = "MEETING"
 
 
 class UserTypes(str, Enum):

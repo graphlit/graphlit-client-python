@@ -3,7 +3,7 @@ mutation CreateFeed($feed: FeedInput!, $correlationId: String) {
     id
     name
     state
+    identifier
     type
-    syncMode
   }
 }

@@ -94,6 +94,8 @@ class GetContentContent(BaseModel):
     message: Optional["GetContentContentMessage"]
     post: Optional["GetContentContentPost"]
     package: Optional["GetContentContentPackage"]
+    meeting: Optional["GetContentContentMeeting"]
+    transcript: Optional["GetContentContentTranscript"]
     language: Optional["GetContentContentLanguage"]
     parent: Optional["GetContentContentParent"]
     children: Optional[List[Optional["GetContentContentChildren"]]]
@@ -447,6 +449,38 @@ class GetContentContentPackage(BaseModel):
     is_encrypted: Optional[bool] = Field(alias="isEncrypted")
 
 
+class GetContentContentMeeting(BaseModel):
+    title: Optional[str]
+    duration: Optional[Any]
+    summary: Optional[str]
+    action_items: Optional[List[Optional[str]]] = Field(alias="actionItems")
+    keywords: Optional[List[Optional[str]]]
+    organizer: Optional[List[Optional["GetContentContentMeetingOrganizer"]]]
+    participants: Optional[List[Optional["GetContentContentMeetingParticipants"]]]
+    source: Optional[str]
+    external_id: Optional[str] = Field(alias="externalId")
+
+
+class GetContentContentMeetingOrganizer(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
+class GetContentContentMeetingParticipants(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
+class GetContentContentTranscript(BaseModel):
+    duration: Optional[Any]
+    segment_count: Optional[int] = Field(alias="segmentCount")
+    speaker_count: Optional[int] = Field(alias="speakerCount")
+
+
 class GetContentContentLanguage(BaseModel):
     languages: Optional[List[Optional[str]]]
 
@@ -573,6 +607,7 @@ GetContentContentCommit.model_rebuild()
 GetContentContentPullRequest.model_rebuild()
 GetContentContentMessage.model_rebuild()
 GetContentContentPost.model_rebuild()
+GetContentContentMeeting.model_rebuild()
 GetContentContentObservations.model_rebuild()
 GetContentContentObservationsOccurrences.model_rebuild()
 GetContentContentPages.model_rebuild()

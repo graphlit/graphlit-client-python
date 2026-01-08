@@ -34,6 +34,9 @@ from .enums import (
     OneDriveAuthenticationTypes,
     ParallelGenerators,
     ParallelProcessors,
+    SalesforceAuthenticationTypes,
+    SalesforceFeedAuthenticationTypes,
+    SalesforceIssueAuthenticationTypes,
     SearchServiceTypes,
     SharePointAuthenticationTypes,
     SiteTypes,
@@ -56,6 +59,8 @@ class GetFeedFeed(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetFeedFeedOwner"
     state: EntityState
+    identifier: Optional[str]
+    description: Optional[str]
     correlation_id: Optional[str] = Field(alias="correlationId")
     type: FeedTypes
     sync_mode: Optional[FeedSyncMode] = Field(alias="syncMode")
@@ -66,6 +71,7 @@ class GetFeedFeed(BaseModel):
     pull_request: Optional["GetFeedFeedPullRequest"] = Field(alias="pullRequest")
     crm: Optional["GetFeedFeedCrm"]
     calendar: Optional["GetFeedFeedCalendar"]
+    meeting: Optional["GetFeedFeedMeeting"]
     rss: Optional["GetFeedFeedRss"]
     web: Optional["GetFeedFeedWeb"]
     search: Optional["GetFeedFeedSearch"]
@@ -81,6 +87,7 @@ class GetFeedFeed(BaseModel):
     )
     discord: Optional["GetFeedFeedDiscord"]
     attio: Optional["GetFeedFeedAttio"]
+    salesforce: Optional["GetFeedFeedSalesforce"]
     research: Optional["GetFeedFeedResearch"]
     entity: Optional["GetFeedFeedEntity"]
     error: Optional[str]
@@ -303,6 +310,7 @@ class GetFeedFeedIssue(BaseModel):
     zendesk: Optional["GetFeedFeedIssueZendesk"]
     trello: Optional["GetFeedFeedIssueTrello"]
     attio: Optional["GetFeedFeedIssueAttio"]
+    salesforce: Optional["GetFeedFeedIssueSalesforce"]
     read_limit: Optional[int] = Field(alias="readLimit")
 
 
@@ -355,6 +363,21 @@ class GetFeedFeedIssueTrello(BaseModel):
 
 class GetFeedFeedIssueAttio(BaseModel):
     api_key: str = Field(alias="apiKey")
+
+
+class GetFeedFeedIssueSalesforce(BaseModel):
+    authentication_type: Optional[SalesforceIssueAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    is_sandbox: Optional[bool] = Field(alias="isSandbox")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["GetFeedFeedIssueSalesforceConnector"]
+
+
+class GetFeedFeedIssueSalesforceConnector(BaseModel):
+    id: str
 
 
 class GetFeedFeedCommit(BaseModel):
@@ -414,6 +437,7 @@ class GetFeedFeedCrm(BaseModel):
     microsoft_contacts: Optional["GetFeedFeedCrmMicrosoftContacts"] = Field(
         alias="microsoftContacts"
     )
+    salesforce: Optional["GetFeedFeedCrmSalesforce"]
     read_limit: Optional[int] = Field(alias="readLimit")
 
 
@@ -450,6 +474,22 @@ class GetFeedFeedCrmMicrosoftContacts(BaseModel):
 
 
 class GetFeedFeedCrmMicrosoftContactsConnector(BaseModel):
+    id: str
+
+
+class GetFeedFeedCrmSalesforce(BaseModel):
+    authentication_type: Optional[SalesforceAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    instance_url: Optional[str] = Field(alias="instanceUrl")
+    is_sandbox: Optional[bool] = Field(alias="isSandbox")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["GetFeedFeedCrmSalesforceConnector"]
+
+
+class GetFeedFeedCrmSalesforceConnector(BaseModel):
     id: str
 
 
@@ -497,6 +537,32 @@ class GetFeedFeedCalendarMicrosoft(BaseModel):
 
 class GetFeedFeedCalendarMicrosoftConnector(BaseModel):
     id: str
+
+
+class GetFeedFeedMeeting(BaseModel):
+    type: FeedServiceTypes
+    read_limit: Optional[int] = Field(alias="readLimit")
+    fireflies: Optional["GetFeedFeedMeetingFireflies"]
+    attio: Optional["GetFeedFeedMeetingAttio"]
+    fathom: Optional["GetFeedFeedMeetingFathom"]
+
+
+class GetFeedFeedMeetingFireflies(BaseModel):
+    api_key: Optional[str] = Field(alias="apiKey")
+    before_date: Optional[Any] = Field(alias="beforeDate")
+    after_date: Optional[Any] = Field(alias="afterDate")
+
+
+class GetFeedFeedMeetingAttio(BaseModel):
+    api_key: Optional[str] = Field(alias="apiKey")
+    after_date: Optional[Any] = Field(alias="afterDate")
+    before_date: Optional[Any] = Field(alias="beforeDate")
+
+
+class GetFeedFeedMeetingFathom(BaseModel):
+    api_key: Optional[str] = Field(alias="apiKey")
+    after_date: Optional[Any] = Field(alias="afterDate")
+    before_date: Optional[Any] = Field(alias="beforeDate")
 
 
 class GetFeedFeedRss(BaseModel):
@@ -610,6 +676,22 @@ class GetFeedFeedAttio(BaseModel):
     api_key: str = Field(alias="apiKey")
 
 
+class GetFeedFeedSalesforce(BaseModel):
+    read_limit: Optional[int] = Field(alias="readLimit")
+    authentication_type: Optional[SalesforceFeedAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    is_sandbox: Optional[bool] = Field(alias="isSandbox")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["GetFeedFeedSalesforceConnector"]
+
+
+class GetFeedFeedSalesforceConnector(BaseModel):
+    id: str
+
+
 class GetFeedFeedResearch(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     type: Optional[FeedServiceTypes]
@@ -658,6 +740,7 @@ GetFeedFeedEmailGoogle.model_rebuild()
 GetFeedFeedEmailMicrosoft.model_rebuild()
 GetFeedFeedIssue.model_rebuild()
 GetFeedFeedIssueGithub.model_rebuild()
+GetFeedFeedIssueSalesforce.model_rebuild()
 GetFeedFeedCommit.model_rebuild()
 GetFeedFeedCommitGithub.model_rebuild()
 GetFeedFeedPullRequest.model_rebuild()
@@ -665,10 +748,13 @@ GetFeedFeedPullRequestGithub.model_rebuild()
 GetFeedFeedCrm.model_rebuild()
 GetFeedFeedCrmGoogleContacts.model_rebuild()
 GetFeedFeedCrmMicrosoftContacts.model_rebuild()
+GetFeedFeedCrmSalesforce.model_rebuild()
 GetFeedFeedCalendar.model_rebuild()
 GetFeedFeedCalendarGoogle.model_rebuild()
 GetFeedFeedCalendarMicrosoft.model_rebuild()
+GetFeedFeedMeeting.model_rebuild()
 GetFeedFeedSlack.model_rebuild()
 GetFeedFeedMicrosoftTeams.model_rebuild()
+GetFeedFeedSalesforce.model_rebuild()
 GetFeedFeedResearch.model_rebuild()
 GetFeedFeedEntity.model_rebuild()

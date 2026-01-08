@@ -102,6 +102,8 @@ class LookupContentsLookupContentsResults(BaseModel):
     message: Optional["LookupContentsLookupContentsResultsMessage"]
     post: Optional["LookupContentsLookupContentsResultsPost"]
     package: Optional["LookupContentsLookupContentsResultsPackage"]
+    meeting: Optional["LookupContentsLookupContentsResultsMeeting"]
+    transcript: Optional["LookupContentsLookupContentsResultsTranscript"]
     language: Optional["LookupContentsLookupContentsResultsLanguage"]
     parent: Optional["LookupContentsLookupContentsResultsParent"]
     children: Optional[List[Optional["LookupContentsLookupContentsResultsChildren"]]]
@@ -475,6 +477,42 @@ class LookupContentsLookupContentsResultsPackage(BaseModel):
     is_encrypted: Optional[bool] = Field(alias="isEncrypted")
 
 
+class LookupContentsLookupContentsResultsMeeting(BaseModel):
+    title: Optional[str]
+    duration: Optional[Any]
+    summary: Optional[str]
+    action_items: Optional[List[Optional[str]]] = Field(alias="actionItems")
+    keywords: Optional[List[Optional[str]]]
+    organizer: Optional[
+        List[Optional["LookupContentsLookupContentsResultsMeetingOrganizer"]]
+    ]
+    participants: Optional[
+        List[Optional["LookupContentsLookupContentsResultsMeetingParticipants"]]
+    ]
+    source: Optional[str]
+    external_id: Optional[str] = Field(alias="externalId")
+
+
+class LookupContentsLookupContentsResultsMeetingOrganizer(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
+class LookupContentsLookupContentsResultsMeetingParticipants(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
+class LookupContentsLookupContentsResultsTranscript(BaseModel):
+    duration: Optional[Any]
+    segment_count: Optional[int] = Field(alias="segmentCount")
+    speaker_count: Optional[int] = Field(alias="speakerCount")
+
+
 class LookupContentsLookupContentsResultsLanguage(BaseModel):
     languages: Optional[List[Optional[str]]]
 
@@ -604,6 +642,7 @@ LookupContentsLookupContentsResultsCommit.model_rebuild()
 LookupContentsLookupContentsResultsPullRequest.model_rebuild()
 LookupContentsLookupContentsResultsMessage.model_rebuild()
 LookupContentsLookupContentsResultsPost.model_rebuild()
+LookupContentsLookupContentsResultsMeeting.model_rebuild()
 LookupContentsLookupContentsResultsObservations.model_rebuild()
 LookupContentsLookupContentsResultsObservationsOccurrences.model_rebuild()
 LookupContentsLookupContentsResultsPages.model_rebuild()

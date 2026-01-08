@@ -82,6 +82,8 @@ class QueryContentsContentsResults(BaseModel):
     message: Optional["QueryContentsContentsResultsMessage"]
     post: Optional["QueryContentsContentsResultsPost"]
     package: Optional["QueryContentsContentsResultsPackage"]
+    meeting: Optional["QueryContentsContentsResultsMeeting"]
+    transcript: Optional["QueryContentsContentsResultsTranscript"]
     language: Optional["QueryContentsContentsResultsLanguage"]
     feed: Optional["QueryContentsContentsResultsFeed"]
     workflow: Optional["QueryContentsContentsResultsWorkflow"]
@@ -415,6 +417,40 @@ class QueryContentsContentsResultsPackage(BaseModel):
     is_encrypted: Optional[bool] = Field(alias="isEncrypted")
 
 
+class QueryContentsContentsResultsMeeting(BaseModel):
+    title: Optional[str]
+    duration: Optional[Any]
+    summary: Optional[str]
+    action_items: Optional[List[Optional[str]]] = Field(alias="actionItems")
+    keywords: Optional[List[Optional[str]]]
+    organizer: Optional[List[Optional["QueryContentsContentsResultsMeetingOrganizer"]]]
+    participants: Optional[
+        List[Optional["QueryContentsContentsResultsMeetingParticipants"]]
+    ]
+    source: Optional[str]
+    external_id: Optional[str] = Field(alias="externalId")
+
+
+class QueryContentsContentsResultsMeetingOrganizer(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
+class QueryContentsContentsResultsMeetingParticipants(BaseModel):
+    name: Optional[str]
+    email: Optional[str]
+    given_name: Optional[str] = Field(alias="givenName")
+    family_name: Optional[str] = Field(alias="familyName")
+
+
+class QueryContentsContentsResultsTranscript(BaseModel):
+    duration: Optional[Any]
+    segment_count: Optional[int] = Field(alias="segmentCount")
+    speaker_count: Optional[int] = Field(alias="speakerCount")
+
+
 class QueryContentsContentsResultsLanguage(BaseModel):
     languages: Optional[List[Optional[str]]]
 
@@ -482,4 +518,5 @@ QueryContentsContentsResultsCommit.model_rebuild()
 QueryContentsContentsResultsPullRequest.model_rebuild()
 QueryContentsContentsResultsMessage.model_rebuild()
 QueryContentsContentsResultsPost.model_rebuild()
+QueryContentsContentsResultsMeeting.model_rebuild()
 QueryContentsContentsResultsPages.model_rebuild()

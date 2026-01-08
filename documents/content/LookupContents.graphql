@@ -336,6 +336,32 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
         folderCount
         isEncrypted
       }
+      meeting {
+        title
+        duration
+        summary
+        actionItems
+        keywords
+        organizer {
+          name
+          email
+          givenName
+          familyName
+        }
+        participants {
+          name
+          email
+          givenName
+          familyName
+        }
+        source
+        externalId
+      }
+      transcript {
+        duration
+        segmentCount
+        speakerCount
+      }
       language {
         languages
       }

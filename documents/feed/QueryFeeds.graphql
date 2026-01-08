@@ -10,6 +10,8 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         id
       }
       state
+      identifier
+      description
       correlationId
       type
       syncMode
@@ -194,6 +196,16 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         attio {
           apiKey
         }
+        salesforce {
+          authenticationType
+          isSandbox
+          clientId
+          clientSecret
+          refreshToken
+          connector {
+            id
+          }
+        }
         readLimit
       }
       commit {
@@ -255,6 +267,17 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
             id
           }
         }
+        salesforce {
+          authenticationType
+          instanceUrl
+          isSandbox
+          clientId
+          clientSecret
+          refreshToken
+          connector {
+            id
+          }
+        }
         readLimit
       }
       calendar {
@@ -289,6 +312,25 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           }
         }
         readLimit
+      }
+      meeting {
+        type
+        readLimit
+        fireflies {
+          apiKey
+          beforeDate
+          afterDate
+        }
+        attio {
+          apiKey
+          afterDate
+          beforeDate
+        }
+        fathom {
+          apiKey
+          afterDate
+          beforeDate
+        }
       }
       rss {
         readLimit
@@ -379,6 +421,17 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
       attio {
         readLimit
         apiKey
+      }
+      salesforce {
+        readLimit
+        authenticationType
+        isSandbox
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
       }
       research {
         readLimit
