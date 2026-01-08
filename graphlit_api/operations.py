@@ -2962,14 +2962,6 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
       language {
         languages
       }
-      parent {
-        id
-        name
-      }
-      children {
-        id
-        name
-      }
       feed {
         id
         name

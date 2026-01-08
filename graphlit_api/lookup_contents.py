@@ -105,8 +105,6 @@ class LookupContentsLookupContentsResults(BaseModel):
     meeting: Optional["LookupContentsLookupContentsResultsMeeting"]
     transcript: Optional["LookupContentsLookupContentsResultsTranscript"]
     language: Optional["LookupContentsLookupContentsResultsLanguage"]
-    parent: Optional["LookupContentsLookupContentsResultsParent"]
-    children: Optional[List[Optional["LookupContentsLookupContentsResultsChildren"]]]
     feed: Optional["LookupContentsLookupContentsResultsFeed"]
     collections: Optional[
         List[Optional["LookupContentsLookupContentsResultsCollections"]]
@@ -515,16 +513,6 @@ class LookupContentsLookupContentsResultsTranscript(BaseModel):
 
 class LookupContentsLookupContentsResultsLanguage(BaseModel):
     languages: Optional[List[Optional[str]]]
-
-
-class LookupContentsLookupContentsResultsParent(BaseModel):
-    id: str
-    name: str
-
-
-class LookupContentsLookupContentsResultsChildren(BaseModel):
-    id: str
-    name: str
 
 
 class LookupContentsLookupContentsResultsFeed(BaseModel):
