@@ -15,8 +15,7 @@ class GraphQLClientHttpError(GraphQLClientError):
         self.response = response
 
     def __str__(self) -> str:
-        return f"HTTP status code: {self.status_code}"
-
+       return f"HTTP status code: {self.status_code}\n{self.response.text}"
 
 class GraphQLClientInvalidResponseError(GraphQLClientError):
     def __init__(self, response: httpx.Response) -> None:
@@ -24,7 +23,6 @@ class GraphQLClientInvalidResponseError(GraphQLClientError):
 
     def __str__(self) -> str:
         return "Invalid response format."
-
 
 class GraphQLClientGraphQLError(GraphQLClientError):
     def __init__(
