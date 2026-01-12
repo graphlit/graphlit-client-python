@@ -2781,6 +2781,7 @@ class AmazonFeedPropertiesUpdateInput(BaseModel):
     bucket_name: Optional[str] = Field(alias="bucketName", default=None)
     prefix: Optional[str] = None
     region: Optional[str] = None
+    custom_endpoint: Optional[str] = Field(alias="customEndpoint", default=None)
 
 
 class AzureOpenAIModelPropertiesUpdateInput(BaseModel):
@@ -4515,6 +4516,7 @@ class AmazonFeedPropertiesInput(BaseModel):
     bucket_name: str = Field(alias="bucketName")
     prefix: Optional[str] = None
     region: Optional[str] = None
+    custom_endpoint: Optional[str] = Field(alias="customEndpoint", default=None)
 
 
 class AzureBlobFeedPropertiesInput(BaseModel):
