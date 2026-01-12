@@ -144,6 +144,7 @@ class QueryFeedsFeedsResultsSiteS3(BaseModel):
     bucket_name: Optional[str] = Field(alias="bucketName")
     prefix: Optional[str]
     region: Optional[str]
+    custom_endpoint: Optional[str] = Field(alias="customEndpoint")
 
 
 class QueryFeedsFeedsResultsSiteAzureBlob(BaseModel):

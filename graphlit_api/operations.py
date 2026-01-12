@@ -8305,6 +8305,7 @@ query GetFeed($id: ID!, $correlationId: String) {
         bucketName
         prefix
         region
+        customEndpoint
       }
       azureBlob {
         storageAccessKey
@@ -8833,6 +8834,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           bucketName
           prefix
           region
+          customEndpoint
         }
         azureBlob {
           storageAccessKey

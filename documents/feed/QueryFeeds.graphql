@@ -27,6 +27,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           bucketName
           prefix
           region
+          customEndpoint
         }
         azureBlob {
           storageAccessKey
