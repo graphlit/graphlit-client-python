@@ -32,6 +32,8 @@ from .enums import (
     ReductoOcrModes,
     ReductoOcrSystems,
     RegexSourceTypes,
+    StorageGateRejectionActions,
+    StorageGateTypes,
     StoragePolicyTypes,
     SummarizationTypes,
 )
@@ -405,6 +407,7 @@ class UpsertWorkflowUpsertWorkflowEnrichmentEntityResolutionSpecification(BaseMo
 
 class UpsertWorkflowUpsertWorkflowStorage(BaseModel):
     policy: Optional["UpsertWorkflowUpsertWorkflowStoragePolicy"]
+    gate: Optional["UpsertWorkflowUpsertWorkflowStorageGate"]
 
 
 class UpsertWorkflowUpsertWorkflowStoragePolicy(BaseModel):
@@ -413,6 +416,22 @@ class UpsertWorkflowUpsertWorkflowStoragePolicy(BaseModel):
     embedding_types: Optional[List[EmbeddingTypes]] = Field(alias="embeddingTypes")
     enable_snapshots: Optional[bool] = Field(alias="enableSnapshots")
     snapshot_count: Optional[int] = Field(alias="snapshotCount")
+
+
+class UpsertWorkflowUpsertWorkflowStorageGate(BaseModel):
+    type: StorageGateTypes
+    specification: Optional["UpsertWorkflowUpsertWorkflowStorageGateSpecification"]
+    rules: Optional[List["UpsertWorkflowUpsertWorkflowStorageGateRules"]]
+    uri: Optional[Any]
+    on_reject: Optional[StorageGateRejectionActions] = Field(alias="onReject")
+
+
+class UpsertWorkflowUpsertWorkflowStorageGateSpecification(BaseModel):
+    id: str
+
+
+class UpsertWorkflowUpsertWorkflowStorageGateRules(BaseModel):
+    if_: str = Field(alias="if")
 
 
 class UpsertWorkflowUpsertWorkflowActions(BaseModel):
@@ -477,5 +496,6 @@ UpsertWorkflowUpsertWorkflowEnrichmentJobs.model_rebuild()
 UpsertWorkflowUpsertWorkflowEnrichmentJobsConnector.model_rebuild()
 UpsertWorkflowUpsertWorkflowEnrichmentEntityResolution.model_rebuild()
 UpsertWorkflowUpsertWorkflowStorage.model_rebuild()
+UpsertWorkflowUpsertWorkflowStorageGate.model_rebuild()
 UpsertWorkflowUpsertWorkflowActions.model_rebuild()
 UpsertWorkflowUpsertWorkflowActionsConnector.model_rebuild()

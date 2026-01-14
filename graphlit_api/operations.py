@@ -3,6 +3,7 @@
 
 __all__ = [
     "ADD_CONTENTS_TO_COLLECTIONS_GQL",
+    "APPROVE_CONTENT_GQL",
     "ASK_GRAPHLIT_GQL",
     "BRANCH_CONVERSATION_GQL",
     "CLEAR_CONVERSATION_GQL",
@@ -330,10 +331,12 @@ __all__ = [
     "QUERY_USERS_GQL",
     "QUERY_VIEWS_GQL",
     "QUERY_WORKFLOWS_GQL",
+    "REJECT_CONTENT_GQL",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
     "RESEARCH_CONTENTS_GQL",
     "RESOLVE_ENTITIES_GQL",
     "RESOLVE_ENTITY_GQL",
+    "RESTART_CONTENT_GQL",
     "RETRIEVE_ENTITIES_GQL",
     "RETRIEVE_FACTS_GQL",
     "RETRIEVE_SOURCES_GQL",
@@ -1249,6 +1252,15 @@ mutation UpdateConnector($connector: ConnectorUpdateInput!) {
     name
     state
     type
+  }
+}
+"""
+
+APPROVE_CONTENT_GQL = """
+mutation ApproveContent($id: ID!) {
+  approveContent(id: $id) {
+    id
+    state
   }
 }
 """
@@ -4219,6 +4231,15 @@ query QueryObservables($filter: ContentFilter, $correlationId: String) {
 }
 """
 
+REJECT_CONTENT_GQL = """
+mutation RejectContent($id: ID!, $reason: String) {
+  rejectContent(id: $id, reason: $reason) {
+    id
+    state
+  }
+}
+"""
+
 RESEARCH_CONTENTS_GQL = """
 mutation ResearchContents($connector: ContentPublishingConnectorInput!, $filter: ContentFilter, $name: String, $summarySpecification: EntityReferenceInput, $publishSpecification: EntityReferenceInput, $workflow: EntityReferenceInput, $correlationId: String) {
   researchContents(
@@ -4231,6 +4252,15 @@ mutation ResearchContents($connector: ContentPublishingConnectorInput!, $filter:
     correlationId: $correlationId
   ) {
     result
+  }
+}
+"""
+
+RESTART_CONTENT_GQL = """
+mutation RestartContent($id: ID!) {
+  restartContent(id: $id) {
+    id
+    state
   }
 }
 """
@@ -17543,6 +17573,17 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
         enableSnapshots
         snapshotCount
       }
+      gate {
+        type
+        specification {
+          id
+        }
+        rules {
+          if
+        }
+        uri
+        onReject
+      }
     }
     actions {
       connector {
@@ -17819,6 +17860,17 @@ query GetWorkflow($id: ID!, $correlationId: String) {
         enableSnapshots
         snapshotCount
       }
+      gate {
+        type
+        specification {
+          id
+        }
+        rules {
+          if
+        }
+        uri
+        onReject
+      }
     }
     actions {
       connector {
@@ -18066,6 +18118,17 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
           enableSnapshots
           snapshotCount
         }
+        gate {
+          type
+          specification {
+            id
+          }
+          rules {
+            if
+          }
+          uri
+          onReject
+        }
       }
       actions {
         connector {
@@ -18307,6 +18370,17 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
         enableSnapshots
         snapshotCount
       }
+      gate {
+        type
+        specification {
+          id
+        }
+        rules {
+          if
+        }
+        uri
+        onReject
+      }
     }
     actions {
       connector {
@@ -18546,6 +18620,17 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
         embeddingTypes
         enableSnapshots
         snapshotCount
+      }
+      gate {
+        type
+        specification {
+          id
+        }
+        rules {
+          if
+        }
+        uri
+        onReject
       }
     }
     actions {

@@ -5,6 +5,7 @@ from .add_contents_to_collections import (
     AddContentsToCollectionsAddContentsToCollections,
     AddContentsToCollectionsAddContentsToCollectionsContents,
 )
+from .approve_content import ApproveContent, ApproveContentApproveContent
 from .ask_graphlit import (
     AskGraphlit,
     AskGraphlitAskGraphlit,
@@ -342,6 +343,9 @@ from .create_workflow import (
     CreateWorkflowCreateWorkflowPreparationSummarizations,
     CreateWorkflowCreateWorkflowPreparationSummarizationsSpecification,
     CreateWorkflowCreateWorkflowStorage,
+    CreateWorkflowCreateWorkflowStorageGate,
+    CreateWorkflowCreateWorkflowStorageGateRules,
+    CreateWorkflowCreateWorkflowStorageGateSpecification,
     CreateWorkflowCreateWorkflowStoragePolicy,
 )
 from .delete_alert import DeleteAlert, DeleteAlertDeleteAlert
@@ -771,6 +775,8 @@ from .enums import (
     SlackAuthenticationTypes,
     SoftwareFacetTypes,
     SpecificationTypes,
+    StorageGateRejectionActions,
+    StorageGateTypes,
     StoragePolicyTypes,
     SummarizationTypes,
     TextRoles,
@@ -1572,6 +1578,9 @@ from .get_workflow import (
     GetWorkflowWorkflowPreparationSummarizations,
     GetWorkflowWorkflowPreparationSummarizationsSpecification,
     GetWorkflowWorkflowStorage,
+    GetWorkflowWorkflowStorageGate,
+    GetWorkflowWorkflowStorageGateRules,
+    GetWorkflowWorkflowStorageGateSpecification,
     GetWorkflowWorkflowStoragePolicy,
 )
 from .ingest_batch import (
@@ -2039,6 +2048,8 @@ from .input_types import (
     SpecificationFilter,
     SpecificationInput,
     SpecificationUpdateInput,
+    StorageGateInput,
+    StorageGateRuleInput,
     StoragePolicyInput,
     StorageWorkflowStageInput,
     SummarizationStrategyInput,
@@ -2148,6 +2159,7 @@ from .match_entity import (
 )
 from .operations import (
     ADD_CONTENTS_TO_COLLECTIONS_GQL,
+    APPROVE_CONTENT_GQL,
     ASK_GRAPHLIT_GQL,
     BRANCH_CONVERSATION_GQL,
     CLEAR_CONVERSATION_GQL,
@@ -2475,10 +2487,12 @@ from .operations import (
     QUERY_USERS_GQL,
     QUERY_VIEWS_GQL,
     QUERY_WORKFLOWS_GQL,
+    REJECT_CONTENT_GQL,
     REMOVE_CONTENTS_FROM_COLLECTION_GQL,
     RESEARCH_CONTENTS_GQL,
     RESOLVE_ENTITIES_GQL,
     RESOLVE_ENTITY_GQL,
+    RESTART_CONTENT_GQL,
     RETRIEVE_ENTITIES_GQL,
     RETRIEVE_FACTS_GQL,
     RETRIEVE_SOURCES_GQL,
@@ -3883,8 +3897,12 @@ from .query_workflows import (
     QueryWorkflowsWorkflowsResultsPreparationSummarizations,
     QueryWorkflowsWorkflowsResultsPreparationSummarizationsSpecification,
     QueryWorkflowsWorkflowsResultsStorage,
+    QueryWorkflowsWorkflowsResultsStorageGate,
+    QueryWorkflowsWorkflowsResultsStorageGateRules,
+    QueryWorkflowsWorkflowsResultsStorageGateSpecification,
     QueryWorkflowsWorkflowsResultsStoragePolicy,
 )
+from .reject_content import RejectContent, RejectContentRejectContent
 from .remove_contents_from_collection import (
     RemoveContentsFromCollection,
     RemoveContentsFromCollectionRemoveContentsFromCollection,
@@ -3907,6 +3925,7 @@ from .resolve_entity import (
     ResolveEntityResolveEntityReference,
     ResolveEntityResolveEntityReferenceObservable,
 )
+from .restart_content import RestartContent, RestartContentRestartContent
 from .retrieve_entities import (
     RetrieveEntities,
     RetrieveEntitiesRetrieveEntities,
@@ -4221,6 +4240,9 @@ from .update_workflow import (
     UpdateWorkflowUpdateWorkflowPreparationSummarizations,
     UpdateWorkflowUpdateWorkflowPreparationSummarizationsSpecification,
     UpdateWorkflowUpdateWorkflowStorage,
+    UpdateWorkflowUpdateWorkflowStorageGate,
+    UpdateWorkflowUpdateWorkflowStorageGateRules,
+    UpdateWorkflowUpdateWorkflowStorageGateSpecification,
     UpdateWorkflowUpdateWorkflowStoragePolicy,
 )
 from .upsert_alert import UpsertAlert, UpsertAlertUpsertAlert
@@ -4345,6 +4367,9 @@ from .upsert_workflow import (
     UpsertWorkflowUpsertWorkflowPreparationSummarizations,
     UpsertWorkflowUpsertWorkflowPreparationSummarizationsSpecification,
     UpsertWorkflowUpsertWorkflowStorage,
+    UpsertWorkflowUpsertWorkflowStorageGate,
+    UpsertWorkflowUpsertWorkflowStorageGateRules,
+    UpsertWorkflowUpsertWorkflowStorageGateSpecification,
     UpsertWorkflowUpsertWorkflowStoragePolicy,
 )
 from .view_exists import ViewExists, ViewExistsViewExists
@@ -4352,6 +4377,7 @@ from .workflow_exists import WorkflowExists, WorkflowExistsWorkflowExists
 
 __all__ = [
     "ADD_CONTENTS_TO_COLLECTIONS_GQL",
+    "APPROVE_CONTENT_GQL",
     "ASK_GRAPHLIT_GQL",
     "AddContentsToCollections",
     "AddContentsToCollectionsAddContentsToCollections",
@@ -4369,6 +4395,8 @@ __all__ = [
     "AnthropicModelPropertiesUpdateInput",
     "AnthropicModels",
     "ApplyPolicy",
+    "ApproveContent",
+    "ApproveContentApproveContent",
     "ArcadeAuthenticationPropertiesInput",
     "ArcadeProviders",
     "AskGraphlit",
@@ -4863,6 +4891,9 @@ __all__ = [
     "CreateWorkflowCreateWorkflowPreparationSummarizations",
     "CreateWorkflowCreateWorkflowPreparationSummarizationsSpecification",
     "CreateWorkflowCreateWorkflowStorage",
+    "CreateWorkflowCreateWorkflowStorageGate",
+    "CreateWorkflowCreateWorkflowStorageGateRules",
+    "CreateWorkflowCreateWorkflowStorageGateSpecification",
     "CreateWorkflowCreateWorkflowStoragePolicy",
     "DELETE_ALERTS_GQL",
     "DELETE_ALERT_GQL",
@@ -6035,6 +6066,9 @@ __all__ = [
     "GetWorkflowWorkflowPreparationSummarizations",
     "GetWorkflowWorkflowPreparationSummarizationsSpecification",
     "GetWorkflowWorkflowStorage",
+    "GetWorkflowWorkflowStorageGate",
+    "GetWorkflowWorkflowStorageGateRules",
+    "GetWorkflowWorkflowStorageGateSpecification",
     "GetWorkflowWorkflowStoragePolicy",
     "GitHubAuthenticationTypes",
     "GitHubCommitAuthenticationTypes",
@@ -7717,11 +7751,16 @@ __all__ = [
     "QueryWorkflowsWorkflowsResultsPreparationSummarizations",
     "QueryWorkflowsWorkflowsResultsPreparationSummarizationsSpecification",
     "QueryWorkflowsWorkflowsResultsStorage",
+    "QueryWorkflowsWorkflowsResultsStorageGate",
+    "QueryWorkflowsWorkflowsResultsStorageGateRules",
+    "QueryWorkflowsWorkflowsResultsStorageGateSpecification",
     "QueryWorkflowsWorkflowsResultsStoragePolicy",
+    "REJECT_CONTENT_GQL",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
     "RESEARCH_CONTENTS_GQL",
     "RESOLVE_ENTITIES_GQL",
     "RESOLVE_ENTITY_GQL",
+    "RESTART_CONTENT_GQL",
     "RETRIEVE_ENTITIES_GQL",
     "RETRIEVE_FACTS_GQL",
     "RETRIEVE_SOURCES_GQL",
@@ -7742,6 +7781,8 @@ __all__ = [
     "RegexClassificationRuleInput",
     "RegexContentClassificationPropertiesInput",
     "RegexSourceTypes",
+    "RejectContent",
+    "RejectContentRejectContent",
     "RelationshipDirections",
     "RemoveContentsFromCollection",
     "RemoveContentsFromCollectionRemoveContentsFromCollection",
@@ -7775,6 +7816,8 @@ __all__ = [
     "ResolveEntityResolveEntityReference",
     "ResolveEntityResolveEntityReferenceObservable",
     "ResourceConnectorTypes",
+    "RestartContent",
+    "RestartContentRestartContent",
     "RetrievalStrategyInput",
     "RetrievalStrategyTypes",
     "RetrievalStrategyUpdateInput",
@@ -7908,6 +7951,10 @@ __all__ = [
     "SpecificationInput",
     "SpecificationTypes",
     "SpecificationUpdateInput",
+    "StorageGateInput",
+    "StorageGateRejectionActions",
+    "StorageGateRuleInput",
+    "StorageGateTypes",
     "StoragePolicyInput",
     "StoragePolicyTypes",
     "StorageWorkflowStageInput",
@@ -8167,6 +8214,9 @@ __all__ = [
     "UpdateWorkflowUpdateWorkflowPreparationSummarizations",
     "UpdateWorkflowUpdateWorkflowPreparationSummarizationsSpecification",
     "UpdateWorkflowUpdateWorkflowStorage",
+    "UpdateWorkflowUpdateWorkflowStorageGate",
+    "UpdateWorkflowUpdateWorkflowStorageGateRules",
+    "UpdateWorkflowUpdateWorkflowStorageGateSpecification",
     "UpdateWorkflowUpdateWorkflowStoragePolicy",
     "Upload",
     "UpsertAlert",
@@ -8289,6 +8339,9 @@ __all__ = [
     "UpsertWorkflowUpsertWorkflowPreparationSummarizations",
     "UpsertWorkflowUpsertWorkflowPreparationSummarizationsSpecification",
     "UpsertWorkflowUpsertWorkflowStorage",
+    "UpsertWorkflowUpsertWorkflowStorageGate",
+    "UpsertWorkflowUpsertWorkflowStorageGateRules",
+    "UpsertWorkflowUpsertWorkflowStorageGateSpecification",
     "UpsertWorkflowUpsertWorkflowStoragePolicy",
     "UserFilter",
     "UserInput",

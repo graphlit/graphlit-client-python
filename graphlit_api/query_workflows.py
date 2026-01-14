@@ -32,6 +32,8 @@ from .enums import (
     ReductoOcrModes,
     ReductoOcrSystems,
     RegexSourceTypes,
+    StorageGateRejectionActions,
+    StorageGateTypes,
     StoragePolicyTypes,
     SummarizationTypes,
 )
@@ -415,6 +417,7 @@ class QueryWorkflowsWorkflowsResultsEnrichmentEntityResolutionSpecification(Base
 
 class QueryWorkflowsWorkflowsResultsStorage(BaseModel):
     policy: Optional["QueryWorkflowsWorkflowsResultsStoragePolicy"]
+    gate: Optional["QueryWorkflowsWorkflowsResultsStorageGate"]
 
 
 class QueryWorkflowsWorkflowsResultsStoragePolicy(BaseModel):
@@ -423,6 +426,22 @@ class QueryWorkflowsWorkflowsResultsStoragePolicy(BaseModel):
     embedding_types: Optional[List[EmbeddingTypes]] = Field(alias="embeddingTypes")
     enable_snapshots: Optional[bool] = Field(alias="enableSnapshots")
     snapshot_count: Optional[int] = Field(alias="snapshotCount")
+
+
+class QueryWorkflowsWorkflowsResultsStorageGate(BaseModel):
+    type: StorageGateTypes
+    specification: Optional["QueryWorkflowsWorkflowsResultsStorageGateSpecification"]
+    rules: Optional[List["QueryWorkflowsWorkflowsResultsStorageGateRules"]]
+    uri: Optional[Any]
+    on_reject: Optional[StorageGateRejectionActions] = Field(alias="onReject")
+
+
+class QueryWorkflowsWorkflowsResultsStorageGateSpecification(BaseModel):
+    id: str
+
+
+class QueryWorkflowsWorkflowsResultsStorageGateRules(BaseModel):
+    if_: str = Field(alias="if")
 
 
 class QueryWorkflowsWorkflowsResultsActions(BaseModel):
@@ -488,5 +507,6 @@ QueryWorkflowsWorkflowsResultsEnrichmentJobs.model_rebuild()
 QueryWorkflowsWorkflowsResultsEnrichmentJobsConnector.model_rebuild()
 QueryWorkflowsWorkflowsResultsEnrichmentEntityResolution.model_rebuild()
 QueryWorkflowsWorkflowsResultsStorage.model_rebuild()
+QueryWorkflowsWorkflowsResultsStorageGate.model_rebuild()
 QueryWorkflowsWorkflowsResultsActions.model_rebuild()
 QueryWorkflowsWorkflowsResultsActionsConnector.model_rebuild()

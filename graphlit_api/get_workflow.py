@@ -32,6 +32,8 @@ from .enums import (
     ReductoOcrModes,
     ReductoOcrSystems,
     RegexSourceTypes,
+    StorageGateRejectionActions,
+    StorageGateTypes,
     StoragePolicyTypes,
     SummarizationTypes,
 )
@@ -388,6 +390,7 @@ class GetWorkflowWorkflowEnrichmentEntityResolutionSpecification(BaseModel):
 
 class GetWorkflowWorkflowStorage(BaseModel):
     policy: Optional["GetWorkflowWorkflowStoragePolicy"]
+    gate: Optional["GetWorkflowWorkflowStorageGate"]
 
 
 class GetWorkflowWorkflowStoragePolicy(BaseModel):
@@ -396,6 +399,22 @@ class GetWorkflowWorkflowStoragePolicy(BaseModel):
     embedding_types: Optional[List[EmbeddingTypes]] = Field(alias="embeddingTypes")
     enable_snapshots: Optional[bool] = Field(alias="enableSnapshots")
     snapshot_count: Optional[int] = Field(alias="snapshotCount")
+
+
+class GetWorkflowWorkflowStorageGate(BaseModel):
+    type: StorageGateTypes
+    specification: Optional["GetWorkflowWorkflowStorageGateSpecification"]
+    rules: Optional[List["GetWorkflowWorkflowStorageGateRules"]]
+    uri: Optional[Any]
+    on_reject: Optional[StorageGateRejectionActions] = Field(alias="onReject")
+
+
+class GetWorkflowWorkflowStorageGateSpecification(BaseModel):
+    id: str
+
+
+class GetWorkflowWorkflowStorageGateRules(BaseModel):
+    if_: str = Field(alias="if")
 
 
 class GetWorkflowWorkflowActions(BaseModel):
@@ -460,5 +479,6 @@ GetWorkflowWorkflowEnrichmentJobs.model_rebuild()
 GetWorkflowWorkflowEnrichmentJobsConnector.model_rebuild()
 GetWorkflowWorkflowEnrichmentEntityResolution.model_rebuild()
 GetWorkflowWorkflowStorage.model_rebuild()
+GetWorkflowWorkflowStorageGate.model_rebuild()
 GetWorkflowWorkflowActions.model_rebuild()
 GetWorkflowWorkflowActionsConnector.model_rebuild()

@@ -145,6 +145,8 @@ from .enums import (
     SlackAuthenticationTypes,
     SoftwareFacetTypes,
     SpecificationTypes,
+    StorageGateRejectionActions,
+    StorageGateTypes,
     StoragePolicyTypes,
     SummarizationTypes,
     TimedPolicyRecurrenceTypes,
@@ -2182,6 +2184,16 @@ class EventUpdateInput(BaseModel):
     event_status: Optional[str] = Field(alias="eventStatus", default=None)
 
 
+class StorageGateInput(BaseModel):
+    type: StorageGateTypes
+    specification: Optional["EntityReferenceInput"] = None
+    rules: Optional[List["StorageGateRuleInput"]] = None
+    uri: Optional[Any] = None
+    on_reject: Optional[StorageGateRejectionActions] = Field(
+        alias="onReject", default=None
+    )
+
+
 class FirefliesFeedPropertiesInput(BaseModel):
     api_key: str = Field(alias="apiKey")
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
@@ -2656,6 +2668,10 @@ class MedicalTherapyFacetInput(BaseModel):
     )
     time_offset: Optional[int] = Field(alias="timeOffset", default=None)
     facet: Optional[MedicalTherapyFacetTypes] = None
+
+
+class StorageGateRuleInput(BaseModel):
+    if_: str = Field(alias="if")
 
 
 class GitHubFeedPropertiesInput(BaseModel):
@@ -3248,6 +3264,7 @@ class FactInput(BaseModel):
 
 class StorageWorkflowStageInput(BaseModel):
     policy: Optional["StoragePolicyInput"] = None
+    gate: Optional["StorageGateInput"] = None
 
 
 class DrawingMetadataInput(BaseModel):
@@ -5522,6 +5539,7 @@ GitHubCommitsFeedPropertiesInput.model_rebuild()
 EmailFeedPropertiesUpdateInput.model_rebuild()
 MessageMetadataInput.model_rebuild()
 EventUpdateInput.model_rebuild()
+StorageGateInput.model_rebuild()
 ObservationUpdateInput.model_rebuild()
 ClassificationWorkflowStageInput.model_rebuild()
 MicrosoftContactsCRMFeedPropertiesInput.model_rebuild()

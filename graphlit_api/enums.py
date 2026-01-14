@@ -841,6 +841,11 @@ class ContentTypes(str, Enum):
     TRANSCRIPT = "TRANSCRIPT"
 
 
+class StorageGateRejectionActions(str, Enum):
+    DELETE = "DELETE"
+    REJECT = "REJECT"
+
+
 class OpenAIReasoningEffortLevels(str, Enum):
     LOW = "LOW"
     MEDIUM = "MEDIUM"
@@ -1250,6 +1255,11 @@ class OpenAIVideoModels(str, Enum):
     SORA_2 = "SORA_2"
     SORA_2_PRO = "SORA_2_PRO"
     CUSTOM = "CUSTOM"
+
+
+class StorageGateTypes(str, Enum):
+    MODEL = "MODEL"
+    WEBHOOK = "WEBHOOK"
 
 
 class BedrockModels(str, Enum):

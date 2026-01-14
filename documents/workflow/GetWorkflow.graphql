@@ -212,6 +212,17 @@ query GetWorkflow($id: ID!, $correlationId: String) {
         enableSnapshots
         snapshotCount
       }
+      gate {
+        type
+        specification {
+          id
+        }
+        rules {
+          if
+        }
+        uri
+        onReject
+      }
     }
     actions {
       connector {

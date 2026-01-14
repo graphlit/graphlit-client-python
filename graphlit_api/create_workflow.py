@@ -32,6 +32,8 @@ from .enums import (
     ReductoOcrModes,
     ReductoOcrSystems,
     RegexSourceTypes,
+    StorageGateRejectionActions,
+    StorageGateTypes,
     StoragePolicyTypes,
     SummarizationTypes,
 )
@@ -405,6 +407,7 @@ class CreateWorkflowCreateWorkflowEnrichmentEntityResolutionSpecification(BaseMo
 
 class CreateWorkflowCreateWorkflowStorage(BaseModel):
     policy: Optional["CreateWorkflowCreateWorkflowStoragePolicy"]
+    gate: Optional["CreateWorkflowCreateWorkflowStorageGate"]
 
 
 class CreateWorkflowCreateWorkflowStoragePolicy(BaseModel):
@@ -413,6 +416,22 @@ class CreateWorkflowCreateWorkflowStoragePolicy(BaseModel):
     embedding_types: Optional[List[EmbeddingTypes]] = Field(alias="embeddingTypes")
     enable_snapshots: Optional[bool] = Field(alias="enableSnapshots")
     snapshot_count: Optional[int] = Field(alias="snapshotCount")
+
+
+class CreateWorkflowCreateWorkflowStorageGate(BaseModel):
+    type: StorageGateTypes
+    specification: Optional["CreateWorkflowCreateWorkflowStorageGateSpecification"]
+    rules: Optional[List["CreateWorkflowCreateWorkflowStorageGateRules"]]
+    uri: Optional[Any]
+    on_reject: Optional[StorageGateRejectionActions] = Field(alias="onReject")
+
+
+class CreateWorkflowCreateWorkflowStorageGateSpecification(BaseModel):
+    id: str
+
+
+class CreateWorkflowCreateWorkflowStorageGateRules(BaseModel):
+    if_: str = Field(alias="if")
 
 
 class CreateWorkflowCreateWorkflowActions(BaseModel):
@@ -477,5 +496,6 @@ CreateWorkflowCreateWorkflowEnrichmentJobs.model_rebuild()
 CreateWorkflowCreateWorkflowEnrichmentJobsConnector.model_rebuild()
 CreateWorkflowCreateWorkflowEnrichmentEntityResolution.model_rebuild()
 CreateWorkflowCreateWorkflowStorage.model_rebuild()
+CreateWorkflowCreateWorkflowStorageGate.model_rebuild()
 CreateWorkflowCreateWorkflowActions.model_rebuild()
 CreateWorkflowCreateWorkflowActionsConnector.model_rebuild()

@@ -1,0 +1,6 @@
+mutation ApproveContent($id: ID!) {
+  approveContent(id: $id) {
+    id
+    state
+  }
+}

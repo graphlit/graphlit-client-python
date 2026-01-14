@@ -1,0 +1,6 @@
+mutation RestartContent($id: ID!) {
+  restartContent(id: $id) {
+    id
+    state
+  }
+}

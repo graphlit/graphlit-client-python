@@ -1,0 +1,6 @@
+mutation RejectContent($id: ID!, $reason: String) {
+  rejectContent(id: $id, reason: $reason) {
+    id
+    state
+  }
+}

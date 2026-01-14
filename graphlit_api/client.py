@@ -4,6 +4,7 @@
 from typing import Any, Dict, List, Optional, Union
 
 from .add_contents_to_collections import AddContentsToCollections
+from .approve_content import ApproveContent
 from .ask_graphlit import AskGraphlit
 from .async_base_client import AsyncBaseClient
 from .base_model import UNSET, UnsetType
@@ -393,6 +394,7 @@ from .map_web import MapWeb
 from .match_entity import MatchEntity
 from .operations import (
     ADD_CONTENTS_TO_COLLECTIONS_GQL,
+    APPROVE_CONTENT_GQL,
     ASK_GRAPHLIT_GQL,
     BRANCH_CONVERSATION_GQL,
     CLEAR_CONVERSATION_GQL,
@@ -720,10 +722,12 @@ from .operations import (
     QUERY_USERS_GQL,
     QUERY_VIEWS_GQL,
     QUERY_WORKFLOWS_GQL,
+    REJECT_CONTENT_GQL,
     REMOVE_CONTENTS_FROM_COLLECTION_GQL,
     RESEARCH_CONTENTS_GQL,
     RESOLVE_ENTITIES_GQL,
     RESOLVE_ENTITY_GQL,
+    RESTART_CONTENT_GQL,
     RETRIEVE_ENTITIES_GQL,
     RETRIEVE_FACTS_GQL,
     RETRIEVE_SOURCES_GQL,
@@ -877,10 +881,12 @@ from .query_usage import QueryUsage
 from .query_users import QueryUsers
 from .query_views import QueryViews
 from .query_workflows import QueryWorkflows
+from .reject_content import RejectContent
 from .remove_contents_from_collection import RemoveContentsFromCollection
 from .research_contents import ResearchContents
 from .resolve_entities import ResolveEntities
 from .resolve_entity import ResolveEntity
+from .restart_content import RestartContent
 from .retrieve_entities import RetrieveEntities
 from .retrieve_facts import RetrieveFacts
 from .retrieve_sources import RetrieveSources
@@ -1503,6 +1509,17 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdateConnector.model_validate(data)
+
+    async def approve_content(self, id: str, **kwargs: Any) -> ApproveContent:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=APPROVE_CONTENT_GQL,
+            operation_name="ApproveContent",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return ApproveContent.model_validate(data)
 
     async def count_contents(
         self,
@@ -2177,6 +2194,19 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryObservables.model_validate(data)
 
+    async def reject_content(
+        self, id: str, reason: Union[Optional[str], UnsetType] = UNSET, **kwargs: Any
+    ) -> RejectContent:
+        variables: Dict[str, object] = {"id": id, "reason": reason}
+        response = await self.execute(
+            query=REJECT_CONTENT_GQL,
+            operation_name="RejectContent",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return RejectContent.model_validate(data)
+
     async def research_contents(
         self,
         connector: ContentPublishingConnectorInput,
@@ -2205,6 +2235,17 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return ResearchContents.model_validate(data)
+
+    async def restart_content(self, id: str, **kwargs: Any) -> RestartContent:
+        variables: Dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=RESTART_CONTENT_GQL,
+            operation_name="RestartContent",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return RestartContent.model_validate(data)
 
     async def screenshot_page(
         self,
