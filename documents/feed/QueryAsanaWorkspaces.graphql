@@ -1,0 +1,5 @@
+query QueryAsanaWorkspaces($properties: AsanaWorkspacesInput!) {
+  asanaWorkspaces(properties: $properties) {
+    results
+  }
+}

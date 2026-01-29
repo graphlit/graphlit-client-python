@@ -1,0 +1,13 @@
+query QueryGustoLocations($properties: GustoOptionsInput!) {
+  gustoLocations(properties: $properties) {
+    results {
+      identifier
+      street1
+      street2
+      city
+      state
+      zip
+      country
+    }
+  }
+}

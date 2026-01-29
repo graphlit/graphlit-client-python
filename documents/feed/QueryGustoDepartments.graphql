@@ -1,0 +1,8 @@
+query QueryGustoDepartments($properties: GustoOptionsInput!) {
+  gustoDepartments(properties: $properties) {
+    results {
+      name
+      identifier
+    }
+  }
+}

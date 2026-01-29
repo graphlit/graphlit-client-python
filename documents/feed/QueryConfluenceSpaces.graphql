@@ -1,0 +1,9 @@
+query QueryConfluenceSpaces($properties: ConfluenceSpacesInput!) {
+  confluenceSpaces(properties: $properties) {
+    results {
+      name
+      identifier
+      key
+    }
+  }
+}

@@ -116,6 +116,7 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         chunkTokenLimit
         enableThinking
         thinkingTokenLimit
+        thinkingLevel
       }
       replicate {
         tokenLimit

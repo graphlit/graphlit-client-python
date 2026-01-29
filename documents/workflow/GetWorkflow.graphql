@@ -78,6 +78,14 @@ query GetWorkflow($id: ID!, $correlationId: String) {
             detectLanguage
             language
           }
+          elevenLabsScribe {
+            model
+            key
+            enableSpeakerDiarization
+            detectLanguage
+            language
+            tagAudioEvents
+          }
           page {
             enableScreenshot
           }

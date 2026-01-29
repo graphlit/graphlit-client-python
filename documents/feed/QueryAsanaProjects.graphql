@@ -1,0 +1,5 @@
+query QueryAsanaProjects($properties: AsanaProjectsInput!) {
+  asanaProjects(properties: $properties) {
+    results
+  }
+}

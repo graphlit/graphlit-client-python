@@ -247,9 +247,16 @@ __all__ = [
     "PUBLISH_CONVERSATION_GQL",
     "PUBLISH_TEXT_GQL",
     "QUERY_ALERTS_GQL",
+    "QUERY_ASANA_PROJECTS_GQL",
+    "QUERY_ASANA_WORKSPACES_GQL",
+    "QUERY_BAMBOO_HR_DEPARTMENTS_GQL",
+    "QUERY_BAMBOO_HR_DIVISIONS_GQL",
+    "QUERY_BAMBOO_HR_EMPLOYMENT_STATUSES_GQL",
+    "QUERY_BAMBOO_HR_LOCATIONS_GQL",
     "QUERY_BOX_FOLDERS_GQL",
     "QUERY_CATEGORIES_GQL",
     "QUERY_COLLECTIONS_GQL",
+    "QUERY_CONFLUENCE_SPACES_GQL",
     "QUERY_CONNECTORS_GQL",
     "QUERY_CONTENTS_FACETS_GQL",
     "QUERY_CONTENTS_GQL",
@@ -270,6 +277,9 @@ __all__ = [
     "QUERY_GOOGLE_CALENDARS_GQL",
     "QUERY_GOOGLE_DRIVE_FOLDERS_GQL",
     "QUERY_GRAPH_GQL",
+    "QUERY_GUSTO_COMPANIES_GQL",
+    "QUERY_GUSTO_DEPARTMENTS_GQL",
+    "QUERY_GUSTO_LOCATIONS_GQL",
     "QUERY_INVESTMENTS_CLUSTERS_GQL",
     "QUERY_INVESTMENTS_EXPANDED_GQL",
     "QUERY_INVESTMENTS_GQL",
@@ -304,6 +314,7 @@ __all__ = [
     "QUERY_MICROSOFT_TEAMS_CHANNELS_GQL",
     "QUERY_MICROSOFT_TEAMS_TEAMS_GQL",
     "QUERY_MODELS_GQL",
+    "QUERY_MONDAY_BOARDS_GQL",
     "QUERY_NOTION_DATABASES_GQL",
     "QUERY_NOTION_PAGES_GQL",
     "QUERY_OBSERVABLES_GQL",
@@ -5792,6 +5803,21 @@ query GetConversation($id: ID!, $correlationId: String) {
       toolCallId
       toolCallResponse
     }
+    transcriptUri
+    turns {
+      index
+      messages {
+        role
+        author
+        message
+        tokens
+        timestamp
+      }
+      tokens
+      timestamp
+      text
+      relevance
+    }
     specification {
       id
       name
@@ -6756,6 +6782,21 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         mimeType
         toolCallId
         toolCallResponse
+      }
+      transcriptUri
+      turns {
+        index
+        messages {
+          role
+          author
+          message
+          tokens
+          timestamp
+        }
+        tokens
+        timestamp
+        text
+        relevance
       }
       specification {
         id
@@ -8515,6 +8556,27 @@ query GetFeed($id: ID!, $correlationId: String) {
           id
         }
       }
+      hubSpot {
+        authenticationType
+        clientId
+        accessToken
+        connector {
+          id
+        }
+      }
+      asana {
+        authenticationType
+        personalAccessToken
+        clientId
+        clientSecret
+        refreshToken
+        workspaceId
+        projectId
+      }
+      monday {
+        apiToken
+        boardId
+      }
       readLimit
     }
     commit {
@@ -8587,6 +8649,29 @@ query GetFeed($id: ID!, $correlationId: String) {
           id
         }
       }
+      hubSpot {
+        authenticationType
+        clientId
+        clientSecret
+        refreshToken
+        accessToken
+      }
+      readLimit
+    }
+    hris {
+      type
+      bambooHR {
+        authenticationType
+        apiKey
+        companyDomain
+      }
+      gusto {
+        authenticationType
+        clientId
+        clientSecret
+        refreshToken
+        companyId
+      }
       readLimit
     }
     calendar {
@@ -8640,6 +8725,24 @@ query GetFeed($id: ID!, $correlationId: String) {
         afterDate
         beforeDate
       }
+      hubSpot {
+        authenticationType
+        clientId
+        accessToken
+        includeTranscripts
+        afterDate
+        beforeDate
+        readLimit
+        connector {
+          id
+        }
+      }
+      krisp {
+        authToken
+        includeTranscript
+        includeNotes
+        includeOutline
+      }
     }
     rss {
       readLimit
@@ -8666,6 +8769,16 @@ query GetFeed($id: ID!, $correlationId: String) {
       token
       identifiers
       type
+    }
+    confluence {
+      readLimit
+      uri
+      email
+      token
+      spaceKeys
+      identifiers
+      type
+      includeAttachments
     }
     intercom {
       readLimit
@@ -8742,6 +8855,18 @@ query GetFeed($id: ID!, $correlationId: String) {
         id
       }
     }
+    hubSpotConversations {
+      readLimit
+      authenticationType
+      clientId
+      accessToken
+      inboxId
+      includeClosedThreads
+      includeAttachments
+      connector {
+        id
+      }
+    }
     research {
       readLimit
       type
@@ -8790,12 +8915,84 @@ query IsFeedDone($id: ID!) {
 }
 """
 
+QUERY_ASANA_PROJECTS_GQL = """
+query QueryAsanaProjects($properties: AsanaProjectsInput!) {
+  asanaProjects(properties: $properties) {
+    results
+  }
+}
+"""
+
+QUERY_ASANA_WORKSPACES_GQL = """
+query QueryAsanaWorkspaces($properties: AsanaWorkspacesInput!) {
+  asanaWorkspaces(properties: $properties) {
+    results
+  }
+}
+"""
+
+QUERY_BAMBOO_HR_DEPARTMENTS_GQL = """
+query QueryBambooHRDepartments($properties: BambooHROptionsInput!) {
+  bambooHRDepartments(properties: $properties) {
+    results {
+      name
+      identifier
+    }
+  }
+}
+"""
+
+QUERY_BAMBOO_HR_DIVISIONS_GQL = """
+query QueryBambooHRDivisions($properties: BambooHROptionsInput!) {
+  bambooHRDivisions(properties: $properties) {
+    results {
+      name
+      identifier
+    }
+  }
+}
+"""
+
+QUERY_BAMBOO_HR_EMPLOYMENT_STATUSES_GQL = """
+query QueryBambooHREmploymentStatuses($properties: BambooHROptionsInput!) {
+  bambooHREmploymentStatuses(properties: $properties) {
+    results {
+      name
+      identifier
+    }
+  }
+}
+"""
+
+QUERY_BAMBOO_HR_LOCATIONS_GQL = """
+query QueryBambooHRLocations($properties: BambooHROptionsInput!) {
+  bambooHRLocations(properties: $properties) {
+    results {
+      name
+      identifier
+    }
+  }
+}
+"""
+
 QUERY_BOX_FOLDERS_GQL = """
 query QueryBoxFolders($properties: BoxFoldersInput!, $folderId: ID) {
   boxFolders(properties: $properties, folderId: $folderId) {
     results {
       folderName
       folderId
+    }
+  }
+}
+"""
+
+QUERY_CONFLUENCE_SPACES_GQL = """
+query QueryConfluenceSpaces($properties: ConfluenceSpacesInput!) {
+  confluenceSpaces(properties: $properties) {
+    results {
+      name
+      identifier
+      key
     }
   }
 }
@@ -9044,6 +9241,27 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
             id
           }
         }
+        hubSpot {
+          authenticationType
+          clientId
+          accessToken
+          connector {
+            id
+          }
+        }
+        asana {
+          authenticationType
+          personalAccessToken
+          clientId
+          clientSecret
+          refreshToken
+          workspaceId
+          projectId
+        }
+        monday {
+          apiToken
+          boardId
+        }
         readLimit
       }
       commit {
@@ -9116,6 +9334,29 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
             id
           }
         }
+        hubSpot {
+          authenticationType
+          clientId
+          clientSecret
+          refreshToken
+          accessToken
+        }
+        readLimit
+      }
+      hris {
+        type
+        bambooHR {
+          authenticationType
+          apiKey
+          companyDomain
+        }
+        gusto {
+          authenticationType
+          clientId
+          clientSecret
+          refreshToken
+          companyId
+        }
         readLimit
       }
       calendar {
@@ -9169,6 +9410,24 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           afterDate
           beforeDate
         }
+        hubSpot {
+          authenticationType
+          clientId
+          accessToken
+          includeTranscripts
+          afterDate
+          beforeDate
+          readLimit
+          connector {
+            id
+          }
+        }
+        krisp {
+          authToken
+          includeTranscript
+          includeNotes
+          includeOutline
+        }
       }
       rss {
         readLimit
@@ -9195,6 +9454,16 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         token
         identifiers
         type
+      }
+      confluence {
+        readLimit
+        uri
+        email
+        token
+        spaceKeys
+        identifiers
+        type
+        includeAttachments
       }
       intercom {
         readLimit
@@ -9267,6 +9536,18 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         clientId
         clientSecret
         refreshToken
+        connector {
+          id
+        }
+      }
+      hubSpotConversations {
+        readLimit
+        authenticationType
+        clientId
+        accessToken
+        inboxId
+        includeClosedThreads
+        includeAttachments
         connector {
           id
         }
@@ -9347,6 +9628,45 @@ query QueryGoogleDriveFolders($properties: GoogleDriveFoldersInput!, $folderId: 
 }
 """
 
+QUERY_GUSTO_COMPANIES_GQL = """
+query QueryGustoCompanies($properties: GustoCompaniesInput!) {
+  gustoCompanies(properties: $properties) {
+    results {
+      name
+      identifier
+      ein
+    }
+  }
+}
+"""
+
+QUERY_GUSTO_DEPARTMENTS_GQL = """
+query QueryGustoDepartments($properties: GustoOptionsInput!) {
+  gustoDepartments(properties: $properties) {
+    results {
+      name
+      identifier
+    }
+  }
+}
+"""
+
+QUERY_GUSTO_LOCATIONS_GQL = """
+query QueryGustoLocations($properties: GustoOptionsInput!) {
+  gustoLocations(properties: $properties) {
+    results {
+      identifier
+      street1
+      street2
+      city
+      state
+      zip
+      country
+    }
+  }
+}
+"""
+
 QUERY_LINEAR_PROJECTS_GQL = """
 query QueryLinearProjects($properties: LinearProjectsInput!) {
   linearProjects(properties: $properties) {
@@ -9384,6 +9704,14 @@ query QueryMicrosoftTeamsTeams($properties: MicrosoftTeamsTeamsInput!) {
       teamName
       teamId
     }
+  }
+}
+"""
+
+QUERY_MONDAY_BOARDS_GQL = """
+query QueryMondayBoards($properties: MondayBoardsInput!) {
+  mondayBoards(properties: $properties) {
+    results
   }
 }
 """
@@ -15523,6 +15851,7 @@ query GetSpecification($id: ID!, $correlationId: String) {
       chunkTokenLimit
       enableThinking
       thinkingTokenLimit
+      thinkingLevel
     }
     replicate {
       tokenLimit
@@ -15907,6 +16236,7 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         chunkTokenLimit
         enableThinking
         thinkingTokenLimit
+        thinkingLevel
       }
       replicate {
         tokenLimit
@@ -17439,6 +17769,14 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
             detectLanguage
             language
           }
+          elevenLabsScribe {
+            model
+            key
+            enableSpeakerDiarization
+            detectLanguage
+            language
+            tagAudioEvents
+          }
           page {
             enableScreenshot
           }
@@ -17726,6 +18064,14 @@ query GetWorkflow($id: ID!, $correlationId: String) {
             detectLanguage
             language
           }
+          elevenLabsScribe {
+            model
+            key
+            enableSpeakerDiarization
+            detectLanguage
+            language
+            tagAudioEvents
+          }
           page {
             enableScreenshot
           }
@@ -17984,6 +18330,14 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
               detectLanguage
               language
             }
+            elevenLabsScribe {
+              model
+              key
+              enableSpeakerDiarization
+              detectLanguage
+              language
+              tagAudioEvents
+            }
             page {
               enableScreenshot
             }
@@ -18236,6 +18590,14 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
             detectLanguage
             language
           }
+          elevenLabsScribe {
+            model
+            key
+            enableSpeakerDiarization
+            detectLanguage
+            language
+            tagAudioEvents
+          }
           page {
             enableScreenshot
           }
@@ -18486,6 +18848,14 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
             enableSpeakerDiarization
             detectLanguage
             language
+          }
+          elevenLabsScribe {
+            model
+            key
+            enableSpeakerDiarization
+            detectLanguage
+            language
+            tagAudioEvents
           }
           page {
             enableScreenshot

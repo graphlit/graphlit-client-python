@@ -1,0 +1,8 @@
+query QueryBambooHRDepartments($properties: BambooHROptionsInput!) {
+  bambooHRDepartments(properties: $properties) {
+    results {
+      name
+      identifier
+    }
+  }
+}

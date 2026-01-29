@@ -1,0 +1,9 @@
+query QueryGustoCompanies($properties: GustoCompaniesInput!) {
+  gustoCompanies(properties: $properties) {
+    results {
+      name
+      identifier
+      ein
+    }
+  }
+}

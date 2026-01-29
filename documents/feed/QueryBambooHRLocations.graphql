@@ -1,0 +1,8 @@
+query QueryBambooHRLocations($properties: BambooHROptionsInput!) {
+  bambooHRLocations(properties: $properties) {
+    results {
+      name
+      identifier
+    }
+  }
+}

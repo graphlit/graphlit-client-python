@@ -144,6 +144,21 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         toolCallId
         toolCallResponse
       }
+      transcriptUri
+      turns {
+        index
+        messages {
+          role
+          author
+          message
+          tokens
+          timestamp
+        }
+        tokens
+        timestamp
+        text
+        relevance
+      }
       specification {
         id
         name

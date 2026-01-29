@@ -1,0 +1,5 @@
+query QueryMondayBoards($properties: MondayBoardsInput!) {
+  mondayBoards(properties: $properties) {
+    results
+  }
+}

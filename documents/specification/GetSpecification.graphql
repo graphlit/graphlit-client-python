@@ -114,6 +114,7 @@ query GetSpecification($id: ID!, $correlationId: String) {
       chunkTokenLimit
       enableThinking
       thinkingTokenLimit
+      thinkingLevel
     }
     replicate {
       tokenLimit

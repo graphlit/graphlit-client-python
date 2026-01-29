@@ -1,0 +1,8 @@
+query QueryBambooHREmploymentStatuses($properties: BambooHROptionsInput!) {
+  bambooHREmploymentStatuses(properties: $properties) {
+    results {
+      name
+      identifier
+    }
+  }
+}

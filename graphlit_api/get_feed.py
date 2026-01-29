@@ -7,10 +7,13 @@ from pydantic import Field
 
 from .base_model import BaseModel
 from .enums import (
+    AsanaAuthenticationTypes,
     AttioAuthenticationTypes,
+    BambooHRAuthenticationTypes,
     BlobListingTypes,
     BoxAuthenticationTypes,
     CalendarListingTypes,
+    ConfluenceTypes,
     DropboxAuthenticationTypes,
     EmailListingTypes,
     EntityState,
@@ -26,6 +29,10 @@ from .enums import (
     GoogleContactsAuthenticationTypes,
     GoogleDriveAuthenticationTypes,
     GoogleEmailAuthenticationTypes,
+    GustoAuthenticationTypes,
+    HubSpotAuthenticationTypes,
+    HubSpotFeedAuthenticationTypes,
+    HubSpotIssueAuthenticationTypes,
     MicrosoftCalendarAuthenticationTypes,
     MicrosoftContactsAuthenticationTypes,
     MicrosoftEmailAuthenticationTypes,
@@ -70,6 +77,7 @@ class GetFeedFeed(BaseModel):
     commit: Optional["GetFeedFeedCommit"]
     pull_request: Optional["GetFeedFeedPullRequest"] = Field(alias="pullRequest")
     crm: Optional["GetFeedFeedCrm"]
+    hris: Optional["GetFeedFeedHris"]
     calendar: Optional["GetFeedFeedCalendar"]
     meeting: Optional["GetFeedFeedMeeting"]
     rss: Optional["GetFeedFeedRss"]
@@ -77,6 +85,7 @@ class GetFeedFeed(BaseModel):
     search: Optional["GetFeedFeedSearch"]
     reddit: Optional["GetFeedFeedReddit"]
     notion: Optional["GetFeedFeedNotion"]
+    confluence: Optional["GetFeedFeedConfluence"]
     intercom: Optional["GetFeedFeedIntercom"]
     zendesk: Optional["GetFeedFeedZendesk"]
     youtube: Optional["GetFeedFeedYoutube"]
@@ -88,6 +97,9 @@ class GetFeedFeed(BaseModel):
     discord: Optional["GetFeedFeedDiscord"]
     attio: Optional["GetFeedFeedAttio"]
     salesforce: Optional["GetFeedFeedSalesforce"]
+    hub_spot_conversations: Optional["GetFeedFeedHubSpotConversations"] = Field(
+        alias="hubSpotConversations"
+    )
     research: Optional["GetFeedFeedResearch"]
     entity: Optional["GetFeedFeedEntity"]
     error: Optional[str]
@@ -312,6 +324,9 @@ class GetFeedFeedIssue(BaseModel):
     trello: Optional["GetFeedFeedIssueTrello"]
     attio: Optional["GetFeedFeedIssueAttio"]
     salesforce: Optional["GetFeedFeedIssueSalesforce"]
+    hub_spot: Optional["GetFeedFeedIssueHubSpot"] = Field(alias="hubSpot")
+    asana: Optional["GetFeedFeedIssueAsana"]
+    monday: Optional["GetFeedFeedIssueMonday"]
     read_limit: Optional[int] = Field(alias="readLimit")
 
 
@@ -381,6 +396,36 @@ class GetFeedFeedIssueSalesforceConnector(BaseModel):
     id: str
 
 
+class GetFeedFeedIssueHubSpot(BaseModel):
+    authentication_type: Optional[HubSpotIssueAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    client_id: Optional[str] = Field(alias="clientId")
+    access_token: Optional[str] = Field(alias="accessToken")
+    connector: Optional["GetFeedFeedIssueHubSpotConnector"]
+
+
+class GetFeedFeedIssueHubSpotConnector(BaseModel):
+    id: str
+
+
+class GetFeedFeedIssueAsana(BaseModel):
+    authentication_type: Optional[AsanaAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    personal_access_token: Optional[str] = Field(alias="personalAccessToken")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    workspace_id: Optional[str] = Field(alias="workspaceId")
+    project_id: Optional[str] = Field(alias="projectId")
+
+
+class GetFeedFeedIssueMonday(BaseModel):
+    api_token: str = Field(alias="apiToken")
+    board_id: str = Field(alias="boardId")
+
+
 class GetFeedFeedCommit(BaseModel):
     type: FeedServiceTypes
     github: Optional["GetFeedFeedCommitGithub"]
@@ -439,6 +484,7 @@ class GetFeedFeedCrm(BaseModel):
         alias="microsoftContacts"
     )
     salesforce: Optional["GetFeedFeedCrmSalesforce"]
+    hub_spot: Optional["GetFeedFeedCrmHubSpot"] = Field(alias="hubSpot")
     read_limit: Optional[int] = Field(alias="readLimit")
 
 
@@ -494,6 +540,41 @@ class GetFeedFeedCrmSalesforceConnector(BaseModel):
     id: str
 
 
+class GetFeedFeedCrmHubSpot(BaseModel):
+    authentication_type: Optional[HubSpotAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    access_token: Optional[str] = Field(alias="accessToken")
+
+
+class GetFeedFeedHris(BaseModel):
+    type: FeedServiceTypes
+    bamboo_hr: Optional["GetFeedFeedHrisBambooHr"] = Field(alias="bambooHR")
+    gusto: Optional["GetFeedFeedHrisGusto"]
+    read_limit: Optional[int] = Field(alias="readLimit")
+
+
+class GetFeedFeedHrisBambooHr(BaseModel):
+    authentication_type: Optional[BambooHRAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    api_key: Optional[str] = Field(alias="apiKey")
+    company_domain: Optional[str] = Field(alias="companyDomain")
+
+
+class GetFeedFeedHrisGusto(BaseModel):
+    authentication_type: Optional[GustoAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    company_id: Optional[str] = Field(alias="companyId")
+
+
 class GetFeedFeedCalendar(BaseModel):
     type: FeedServiceTypes
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
@@ -546,6 +627,8 @@ class GetFeedFeedMeeting(BaseModel):
     fireflies: Optional["GetFeedFeedMeetingFireflies"]
     attio: Optional["GetFeedFeedMeetingAttio"]
     fathom: Optional["GetFeedFeedMeetingFathom"]
+    hub_spot: Optional["GetFeedFeedMeetingHubSpot"] = Field(alias="hubSpot")
+    krisp: Optional["GetFeedFeedMeetingKrisp"]
 
 
 class GetFeedFeedMeetingFireflies(BaseModel):
@@ -564,6 +647,30 @@ class GetFeedFeedMeetingFathom(BaseModel):
     api_key: Optional[str] = Field(alias="apiKey")
     after_date: Optional[Any] = Field(alias="afterDate")
     before_date: Optional[Any] = Field(alias="beforeDate")
+
+
+class GetFeedFeedMeetingHubSpot(BaseModel):
+    authentication_type: Optional[HubSpotFeedAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    client_id: Optional[str] = Field(alias="clientId")
+    access_token: Optional[str] = Field(alias="accessToken")
+    include_transcripts: Optional[bool] = Field(alias="includeTranscripts")
+    after_date: Optional[Any] = Field(alias="afterDate")
+    before_date: Optional[Any] = Field(alias="beforeDate")
+    read_limit: Optional[int] = Field(alias="readLimit")
+    connector: Optional["GetFeedFeedMeetingHubSpotConnector"]
+
+
+class GetFeedFeedMeetingHubSpotConnector(BaseModel):
+    id: str
+
+
+class GetFeedFeedMeetingKrisp(BaseModel):
+    auth_token: Optional[str] = Field(alias="authToken")
+    include_transcript: Optional[bool] = Field(alias="includeTranscript")
+    include_notes: Optional[bool] = Field(alias="includeNotes")
+    include_outline: Optional[bool] = Field(alias="includeOutline")
 
 
 class GetFeedFeedRss(BaseModel):
@@ -595,6 +702,17 @@ class GetFeedFeedNotion(BaseModel):
     token: str
     identifiers: List[str]
     type: NotionTypes
+
+
+class GetFeedFeedConfluence(BaseModel):
+    read_limit: Optional[int] = Field(alias="readLimit")
+    uri: str
+    email: str
+    token: str
+    space_keys: Optional[List[str]] = Field(alias="spaceKeys")
+    identifiers: Optional[List[str]]
+    type: ConfluenceTypes
+    include_attachments: Optional[bool] = Field(alias="includeAttachments")
 
 
 class GetFeedFeedIntercom(BaseModel):
@@ -693,6 +811,23 @@ class GetFeedFeedSalesforceConnector(BaseModel):
     id: str
 
 
+class GetFeedFeedHubSpotConversations(BaseModel):
+    read_limit: Optional[int] = Field(alias="readLimit")
+    authentication_type: Optional[HubSpotFeedAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    client_id: Optional[str] = Field(alias="clientId")
+    access_token: Optional[str] = Field(alias="accessToken")
+    inbox_id: Optional[str] = Field(alias="inboxId")
+    include_closed_threads: Optional[bool] = Field(alias="includeClosedThreads")
+    include_attachments: Optional[bool] = Field(alias="includeAttachments")
+    connector: Optional["GetFeedFeedHubSpotConversationsConnector"]
+
+
+class GetFeedFeedHubSpotConversationsConnector(BaseModel):
+    id: str
+
+
 class GetFeedFeedResearch(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     type: Optional[FeedServiceTypes]
@@ -742,6 +877,7 @@ GetFeedFeedEmailMicrosoft.model_rebuild()
 GetFeedFeedIssue.model_rebuild()
 GetFeedFeedIssueGithub.model_rebuild()
 GetFeedFeedIssueSalesforce.model_rebuild()
+GetFeedFeedIssueHubSpot.model_rebuild()
 GetFeedFeedCommit.model_rebuild()
 GetFeedFeedCommitGithub.model_rebuild()
 GetFeedFeedPullRequest.model_rebuild()
@@ -750,12 +886,15 @@ GetFeedFeedCrm.model_rebuild()
 GetFeedFeedCrmGoogleContacts.model_rebuild()
 GetFeedFeedCrmMicrosoftContacts.model_rebuild()
 GetFeedFeedCrmSalesforce.model_rebuild()
+GetFeedFeedHris.model_rebuild()
 GetFeedFeedCalendar.model_rebuild()
 GetFeedFeedCalendarGoogle.model_rebuild()
 GetFeedFeedCalendarMicrosoft.model_rebuild()
 GetFeedFeedMeeting.model_rebuild()
+GetFeedFeedMeetingHubSpot.model_rebuild()
 GetFeedFeedSlack.model_rebuild()
 GetFeedFeedMicrosoftTeams.model_rebuild()
 GetFeedFeedSalesforce.model_rebuild()
+GetFeedFeedHubSpotConversations.model_rebuild()
 GetFeedFeedResearch.model_rebuild()
 GetFeedFeedEntity.model_rebuild()

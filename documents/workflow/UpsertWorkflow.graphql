@@ -73,6 +73,14 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
             detectLanguage
             language
           }
+          elevenLabsScribe {
+            model
+            key
+            enableSpeakerDiarization
+            detectLanguage
+            language
+            tagAudioEvents
+          }
           page {
             enableScreenshot
           }

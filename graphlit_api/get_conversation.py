@@ -34,6 +34,8 @@ class GetConversationConversation(BaseModel):
     correlation_id: Optional[str] = Field(alias="correlationId")
     type: Optional[ConversationTypes]
     messages: Optional[List[Optional["GetConversationConversationMessages"]]]
+    transcript_uri: Optional[Any] = Field(alias="transcriptUri")
+    turns: Optional[List[Optional["GetConversationConversationTurns"]]]
     specification: Optional["GetConversationConversationSpecification"]
     fallbacks: Optional[List[Optional["GetConversationConversationFallbacks"]]]
     filter: Optional["GetConversationConversationFilter"]
@@ -193,6 +195,23 @@ class GetConversationConversationMessagesToolCalls(BaseModel):
     id: str
     name: str
     arguments: str
+
+
+class GetConversationConversationTurns(BaseModel):
+    index: Optional[int]
+    messages: Optional[List[Optional["GetConversationConversationTurnsMessages"]]]
+    tokens: Optional[int]
+    timestamp: Optional[Any]
+    text: Optional[str]
+    relevance: Optional[float]
+
+
+class GetConversationConversationTurnsMessages(BaseModel):
+    role: ConversationRoleTypes
+    author: Optional[str]
+    message: Optional[str]
+    tokens: Optional[int]
+    timestamp: Optional[Any]
 
 
 class GetConversationConversationSpecification(BaseModel):
@@ -528,6 +547,7 @@ GetConversationConversation.model_rebuild()
 GetConversationConversationMessages.model_rebuild()
 GetConversationConversationMessagesCitations.model_rebuild()
 GetConversationConversationMessagesCitationsContent.model_rebuild()
+GetConversationConversationTurns.model_rebuild()
 GetConversationConversationFilter.model_rebuild()
 GetConversationConversationFilterObservations.model_rebuild()
 GetConversationConversationFilterOr.model_rebuild()

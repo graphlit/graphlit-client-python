@@ -39,6 +39,8 @@ class QueryConversationsConversationsResults(BaseModel):
     correlation_id: Optional[str] = Field(alias="correlationId")
     type: Optional[ConversationTypes]
     messages: Optional[List[Optional["QueryConversationsConversationsResultsMessages"]]]
+    transcript_uri: Optional[Any] = Field(alias="transcriptUri")
+    turns: Optional[List[Optional["QueryConversationsConversationsResultsTurns"]]]
     specification: Optional["QueryConversationsConversationsResultsSpecification"]
     fallbacks: Optional[
         List[Optional["QueryConversationsConversationsResultsFallbacks"]]
@@ -210,6 +212,25 @@ class QueryConversationsConversationsResultsMessagesToolCalls(BaseModel):
     id: str
     name: str
     arguments: str
+
+
+class QueryConversationsConversationsResultsTurns(BaseModel):
+    index: Optional[int]
+    messages: Optional[
+        List[Optional["QueryConversationsConversationsResultsTurnsMessages"]]
+    ]
+    tokens: Optional[int]
+    timestamp: Optional[Any]
+    text: Optional[str]
+    relevance: Optional[float]
+
+
+class QueryConversationsConversationsResultsTurnsMessages(BaseModel):
+    role: ConversationRoleTypes
+    author: Optional[str]
+    message: Optional[str]
+    tokens: Optional[int]
+    timestamp: Optional[Any]
 
 
 class QueryConversationsConversationsResultsSpecification(BaseModel):
@@ -594,6 +615,7 @@ QueryConversationsConversationsResults.model_rebuild()
 QueryConversationsConversationsResultsMessages.model_rebuild()
 QueryConversationsConversationsResultsMessagesCitations.model_rebuild()
 QueryConversationsConversationsResultsMessagesCitationsContent.model_rebuild()
+QueryConversationsConversationsResultsTurns.model_rebuild()
 QueryConversationsConversationsResultsFilter.model_rebuild()
 QueryConversationsConversationsResultsFilterObservations.model_rebuild()
 QueryConversationsConversationsResultsFilterOr.model_rebuild()

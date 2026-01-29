@@ -1,0 +1,8 @@
+query QueryBambooHRDivisions($properties: BambooHROptionsInput!) {
+  bambooHRDivisions(properties: $properties) {
+    results {
+      name
+      identifier
+    }
+  }
+}

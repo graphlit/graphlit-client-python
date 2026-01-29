@@ -17,6 +17,7 @@ from .enums import (
     DeepseekModels,
     EntityState,
     GoogleModels,
+    GoogleThinkingLevels,
     GraphStrategyTypes,
     GroqModels,
     JinaModels,
@@ -218,6 +219,7 @@ class QuerySpecificationsSpecificationsResultsGoogle(BaseModel):
     chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit")
     enable_thinking: Optional[bool] = Field(alias="enableThinking")
     thinking_token_limit: Optional[int] = Field(alias="thinkingTokenLimit")
+    thinking_level: Optional[GoogleThinkingLevels] = Field(alias="thinkingLevel")
 
 
 class QuerySpecificationsSpecificationsResultsReplicate(BaseModel):

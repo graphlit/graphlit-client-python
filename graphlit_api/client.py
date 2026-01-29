@@ -247,6 +247,9 @@ from .input_types import (
     AlertFilter,
     AlertInput,
     AlertUpdateInput,
+    AsanaProjectsInput,
+    AsanaWorkspacesInput,
+    BambooHROptionsInput,
     BoxFoldersInput,
     CategoryFilter,
     CategoryInput,
@@ -254,6 +257,7 @@ from .input_types import (
     CollectionFilter,
     CollectionInput,
     CollectionUpdateInput,
+    ConfluenceSpacesInput,
     ConnectorFilter,
     ConnectorInput,
     ConnectorUpdateInput,
@@ -289,6 +293,8 @@ from .input_types import (
     GoogleDriveFoldersInput,
     GraphFilter,
     GraphInput,
+    GustoCompaniesInput,
+    GustoOptionsInput,
     IntegrationConnectorInput,
     InvestmentFilter,
     InvestmentFundFilter,
@@ -337,6 +343,7 @@ from .input_types import (
     MicrosoftTeamsChannelsInput,
     MicrosoftTeamsTeamsInput,
     ModelFilter,
+    MondayBoardsInput,
     NotionDatabasesInput,
     NotionPagesInput,
     ObservableInput,
@@ -638,9 +645,16 @@ from .operations import (
     PUBLISH_CONVERSATION_GQL,
     PUBLISH_TEXT_GQL,
     QUERY_ALERTS_GQL,
+    QUERY_ASANA_PROJECTS_GQL,
+    QUERY_ASANA_WORKSPACES_GQL,
+    QUERY_BAMBOO_HR_DEPARTMENTS_GQL,
+    QUERY_BAMBOO_HR_DIVISIONS_GQL,
+    QUERY_BAMBOO_HR_EMPLOYMENT_STATUSES_GQL,
+    QUERY_BAMBOO_HR_LOCATIONS_GQL,
     QUERY_BOX_FOLDERS_GQL,
     QUERY_CATEGORIES_GQL,
     QUERY_COLLECTIONS_GQL,
+    QUERY_CONFLUENCE_SPACES_GQL,
     QUERY_CONNECTORS_GQL,
     QUERY_CONTENTS_FACETS_GQL,
     QUERY_CONTENTS_GQL,
@@ -661,6 +675,9 @@ from .operations import (
     QUERY_GOOGLE_CALENDARS_GQL,
     QUERY_GOOGLE_DRIVE_FOLDERS_GQL,
     QUERY_GRAPH_GQL,
+    QUERY_GUSTO_COMPANIES_GQL,
+    QUERY_GUSTO_DEPARTMENTS_GQL,
+    QUERY_GUSTO_LOCATIONS_GQL,
     QUERY_INVESTMENT_FUNDS_CLUSTERS_GQL,
     QUERY_INVESTMENT_FUNDS_EXPANDED_GQL,
     QUERY_INVESTMENT_FUNDS_GQL,
@@ -695,6 +712,7 @@ from .operations import (
     QUERY_MICROSOFT_TEAMS_CHANNELS_GQL,
     QUERY_MICROSOFT_TEAMS_TEAMS_GQL,
     QUERY_MODELS_GQL,
+    QUERY_MONDAY_BOARDS_GQL,
     QUERY_NOTION_DATABASES_GQL,
     QUERY_NOTION_PAGES_GQL,
     QUERY_OBSERVABLES_GQL,
@@ -795,9 +813,16 @@ from .publish_contents import PublishContents
 from .publish_conversation import PublishConversation
 from .publish_text import PublishText
 from .query_alerts import QueryAlerts
+from .query_asana_projects import QueryAsanaProjects
+from .query_asana_workspaces import QueryAsanaWorkspaces
+from .query_bamboo_hr_departments import QueryBambooHRDepartments
+from .query_bamboo_hr_divisions import QueryBambooHRDivisions
+from .query_bamboo_hr_employment_statuses import QueryBambooHREmploymentStatuses
+from .query_bamboo_hr_locations import QueryBambooHRLocations
 from .query_box_folders import QueryBoxFolders
 from .query_categories import QueryCategories
 from .query_collections import QueryCollections
+from .query_confluence_spaces import QueryConfluenceSpaces
 from .query_connectors import QueryConnectors
 from .query_contents import QueryContents
 from .query_contents_facets import QueryContentsFacets
@@ -818,6 +843,9 @@ from .query_git_hub_repositories import QueryGitHubRepositories
 from .query_google_calendars import QueryGoogleCalendars
 from .query_google_drive_folders import QueryGoogleDriveFolders
 from .query_graph import QueryGraph
+from .query_gusto_companies import QueryGustoCompanies
+from .query_gusto_departments import QueryGustoDepartments
+from .query_gusto_locations import QueryGustoLocations
 from .query_investment_funds import QueryInvestmentFunds
 from .query_investment_funds_clusters import QueryInvestmentFundsClusters
 from .query_investment_funds_expanded import QueryInvestmentFundsExpanded
@@ -854,6 +882,7 @@ from .query_microsoft_calendars import QueryMicrosoftCalendars
 from .query_microsoft_teams_channels import QueryMicrosoftTeamsChannels
 from .query_microsoft_teams_teams import QueryMicrosoftTeamsTeams
 from .query_models import QueryModels
+from .query_monday_boards import QueryMondayBoards
 from .query_notion_databases import QueryNotionDatabases
 from .query_notion_pages import QueryNotionPages
 from .query_observables import QueryObservables
@@ -3382,6 +3411,84 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return IsFeedDone.model_validate(data)
 
+    async def query_asana_projects(
+        self, properties: AsanaProjectsInput, **kwargs: Any
+    ) -> QueryAsanaProjects:
+        variables: Dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_ASANA_PROJECTS_GQL,
+            operation_name="QueryAsanaProjects",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryAsanaProjects.model_validate(data)
+
+    async def query_asana_workspaces(
+        self, properties: AsanaWorkspacesInput, **kwargs: Any
+    ) -> QueryAsanaWorkspaces:
+        variables: Dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_ASANA_WORKSPACES_GQL,
+            operation_name="QueryAsanaWorkspaces",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryAsanaWorkspaces.model_validate(data)
+
+    async def query_bamboo_hr_departments(
+        self, properties: BambooHROptionsInput, **kwargs: Any
+    ) -> QueryBambooHRDepartments:
+        variables: Dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_BAMBOO_HR_DEPARTMENTS_GQL,
+            operation_name="QueryBambooHRDepartments",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryBambooHRDepartments.model_validate(data)
+
+    async def query_bamboo_hr_divisions(
+        self, properties: BambooHROptionsInput, **kwargs: Any
+    ) -> QueryBambooHRDivisions:
+        variables: Dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_BAMBOO_HR_DIVISIONS_GQL,
+            operation_name="QueryBambooHRDivisions",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryBambooHRDivisions.model_validate(data)
+
+    async def query_bamboo_hr_employment_statuses(
+        self, properties: BambooHROptionsInput, **kwargs: Any
+    ) -> QueryBambooHREmploymentStatuses:
+        variables: Dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_BAMBOO_HR_EMPLOYMENT_STATUSES_GQL,
+            operation_name="QueryBambooHREmploymentStatuses",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryBambooHREmploymentStatuses.model_validate(data)
+
+    async def query_bamboo_hr_locations(
+        self, properties: BambooHROptionsInput, **kwargs: Any
+    ) -> QueryBambooHRLocations:
+        variables: Dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_BAMBOO_HR_LOCATIONS_GQL,
+            operation_name="QueryBambooHRLocations",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryBambooHRLocations.model_validate(data)
+
     async def query_box_folders(
         self,
         properties: BoxFoldersInput,
@@ -3397,6 +3504,19 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryBoxFolders.model_validate(data)
+
+    async def query_confluence_spaces(
+        self, properties: ConfluenceSpacesInput, **kwargs: Any
+    ) -> QueryConfluenceSpaces:
+        variables: Dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_CONFLUENCE_SPACES_GQL,
+            operation_name="QueryConfluenceSpaces",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryConfluenceSpaces.model_validate(data)
 
     async def query_discord_channels(
         self, properties: DiscordChannelsInput, **kwargs: Any
@@ -3507,6 +3627,45 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryGoogleDriveFolders.model_validate(data)
 
+    async def query_gusto_companies(
+        self, properties: GustoCompaniesInput, **kwargs: Any
+    ) -> QueryGustoCompanies:
+        variables: Dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_GUSTO_COMPANIES_GQL,
+            operation_name="QueryGustoCompanies",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryGustoCompanies.model_validate(data)
+
+    async def query_gusto_departments(
+        self, properties: GustoOptionsInput, **kwargs: Any
+    ) -> QueryGustoDepartments:
+        variables: Dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_GUSTO_DEPARTMENTS_GQL,
+            operation_name="QueryGustoDepartments",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryGustoDepartments.model_validate(data)
+
+    async def query_gusto_locations(
+        self, properties: GustoOptionsInput, **kwargs: Any
+    ) -> QueryGustoLocations:
+        variables: Dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_GUSTO_LOCATIONS_GQL,
+            operation_name="QueryGustoLocations",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryGustoLocations.model_validate(data)
+
     async def query_linear_projects(
         self, properties: LinearProjectsInput, **kwargs: Any
     ) -> QueryLinearProjects:
@@ -3558,6 +3717,19 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryMicrosoftTeamsTeams.model_validate(data)
+
+    async def query_monday_boards(
+        self, properties: MondayBoardsInput, **kwargs: Any
+    ) -> QueryMondayBoards:
+        variables: Dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_MONDAY_BOARDS_GQL,
+            operation_name="QueryMondayBoards",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryMondayBoards.model_validate(data)
 
     async def query_notion_databases(
         self, properties: NotionDatabasesInput, **kwargs: Any

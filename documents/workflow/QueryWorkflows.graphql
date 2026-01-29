@@ -80,6 +80,14 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
               detectLanguage
               language
             }
+            elevenLabsScribe {
+              model
+              key
+              enableSpeakerDiarization
+              detectLanguage
+              language
+              tagAudioEvents
+            }
             page {
               enableScreenshot
             }

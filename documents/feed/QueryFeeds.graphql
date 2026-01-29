@@ -207,6 +207,27 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
             id
           }
         }
+        hubSpot {
+          authenticationType
+          clientId
+          accessToken
+          connector {
+            id
+          }
+        }
+        asana {
+          authenticationType
+          personalAccessToken
+          clientId
+          clientSecret
+          refreshToken
+          workspaceId
+          projectId
+        }
+        monday {
+          apiToken
+          boardId
+        }
         readLimit
       }
       commit {
@@ -279,6 +300,29 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
             id
           }
         }
+        hubSpot {
+          authenticationType
+          clientId
+          clientSecret
+          refreshToken
+          accessToken
+        }
+        readLimit
+      }
+      hris {
+        type
+        bambooHR {
+          authenticationType
+          apiKey
+          companyDomain
+        }
+        gusto {
+          authenticationType
+          clientId
+          clientSecret
+          refreshToken
+          companyId
+        }
         readLimit
       }
       calendar {
@@ -332,6 +376,24 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           afterDate
           beforeDate
         }
+        hubSpot {
+          authenticationType
+          clientId
+          accessToken
+          includeTranscripts
+          afterDate
+          beforeDate
+          readLimit
+          connector {
+            id
+          }
+        }
+        krisp {
+          authToken
+          includeTranscript
+          includeNotes
+          includeOutline
+        }
       }
       rss {
         readLimit
@@ -358,6 +420,16 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         token
         identifiers
         type
+      }
+      confluence {
+        readLimit
+        uri
+        email
+        token
+        spaceKeys
+        identifiers
+        type
+        includeAttachments
       }
       intercom {
         readLimit
@@ -430,6 +502,18 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         clientId
         clientSecret
         refreshToken
+        connector {
+          id
+        }
+      }
+      hubSpotConversations {
+        readLimit
+        authenticationType
+        clientId
+        accessToken
+        inboxId
+        includeClosedThreads
+        includeAttachments
         connector {
           id
         }

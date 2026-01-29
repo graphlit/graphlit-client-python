@@ -14,6 +14,7 @@ from .enums import (
     ContentIndexingServiceTypes,
     ContentTypes,
     DeepgramModels,
+    ElevenLabsScribeModels,
     EmbeddingTypes,
     EntityEnrichmentServiceTypes,
     EntityExtractionServiceTypes,
@@ -146,6 +147,9 @@ class UpsertWorkflowUpsertWorkflowPreparationJobsConnector(BaseModel):
     assembly_ai: Optional[
         "UpsertWorkflowUpsertWorkflowPreparationJobsConnectorAssemblyAi"
     ] = Field(alias="assemblyAI")
+    eleven_labs_scribe: Optional[
+        "UpsertWorkflowUpsertWorkflowPreparationJobsConnectorElevenLabsScribe"
+    ] = Field(alias="elevenLabsScribe")
     page: Optional["UpsertWorkflowUpsertWorkflowPreparationJobsConnectorPage"]
     document: Optional["UpsertWorkflowUpsertWorkflowPreparationJobsConnectorDocument"]
     email: Optional["UpsertWorkflowUpsertWorkflowPreparationJobsConnectorEmail"]
@@ -179,6 +183,15 @@ class UpsertWorkflowUpsertWorkflowPreparationJobsConnectorAssemblyAi(BaseModel):
     enable_speaker_diarization: Optional[bool] = Field(alias="enableSpeakerDiarization")
     detect_language: Optional[bool] = Field(alias="detectLanguage")
     language: Optional[str]
+
+
+class UpsertWorkflowUpsertWorkflowPreparationJobsConnectorElevenLabsScribe(BaseModel):
+    model: Optional[ElevenLabsScribeModels]
+    key: Optional[str]
+    enable_speaker_diarization: Optional[bool] = Field(alias="enableSpeakerDiarization")
+    detect_language: Optional[bool] = Field(alias="detectLanguage")
+    language: Optional[str]
+    tag_audio_events: Optional[bool] = Field(alias="tagAudioEvents")
 
 
 class UpsertWorkflowUpsertWorkflowPreparationJobsConnectorPage(BaseModel):
