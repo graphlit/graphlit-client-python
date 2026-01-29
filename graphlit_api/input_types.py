@@ -85,6 +85,7 @@ from .enums import (
     HubSpotIssueAuthenticationTypes,
     ImageProjectionTypes,
     IntegrationServiceTypes,
+    IntercomConversationsAuthenticationTypes,
     InvestmentFacetTypes,
     InvestmentFundFacetTypes,
     JinaModels,
@@ -631,6 +632,20 @@ class MedicalProcedureFacetInput(BaseModel):
     )
     time_offset: Optional[int] = Field(alias="timeOffset", default=None)
     facet: Optional[MedicalProcedureFacetTypes] = None
+
+
+class IntercomConversationsFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[IntercomConversationsAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    access_token: Optional[str] = Field(alias="accessToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    state: Optional[str] = None
+    include_notes: Optional[bool] = Field(alias="includeNotes", default=None)
+    include_attachments: Optional[bool] = Field(
+        alias="includeAttachments", default=None
+    )
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class GitHubFeedPropertiesUpdateInput(BaseModel):
@@ -1427,6 +1442,7 @@ class HubSpotCRMFeedPropertiesUpdateInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     access_token: Optional[str] = Field(alias="accessToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class PersonReferenceInput(BaseModel):
@@ -2797,6 +2813,9 @@ class FeedInput(BaseModel):
     )
     intercom: Optional["IntercomFeedPropertiesInput"] = None
     zendesk: Optional["ZendeskFeedPropertiesInput"] = None
+    intercom_conversations: Optional["IntercomConversationsFeedPropertiesInput"] = (
+        Field(alias="intercomConversations", default=None)
+    )
     research: Optional["ResearchFeedPropertiesInput"] = None
     entity: Optional["EntityFeedPropertiesInput"] = None
     meeting: Optional["MeetingFeedPropertiesInput"] = None
@@ -4338,6 +4357,7 @@ class HubSpotCRMFeedPropertiesInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     access_token: Optional[str] = Field(alias="accessToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class IssueFeedPropertiesInput(BaseModel):
@@ -4471,6 +4491,9 @@ class FeedUpdateInput(BaseModel):
     ] = Field(alias="hubSpotConversations", default=None)
     intercom: Optional["IntercomFeedPropertiesUpdateInput"] = None
     zendesk: Optional["ZendeskFeedPropertiesUpdateInput"] = None
+    intercom_conversations: Optional[
+        "IntercomConversationsFeedPropertiesUpdateInput"
+    ] = Field(alias="intercomConversations", default=None)
     research: Optional["ResearchFeedPropertiesUpdateInput"] = None
     entity: Optional["EntityFeedPropertiesUpdateInput"] = None
     meeting: Optional["MeetingFeedPropertiesUpdateInput"] = None
@@ -5782,6 +5805,20 @@ class PersonFacetInput(BaseModel):
     facet: Optional[PersonFacetTypes] = None
 
 
+class IntercomConversationsFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[IntercomConversationsAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    access_token: Optional[str] = Field(alias="accessToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    state: Optional[str] = None
+    include_notes: Optional[bool] = Field(alias="includeNotes", default=None)
+    include_attachments: Optional[bool] = Field(
+        alias="includeAttachments", default=None
+    )
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
 class GraphStrategyInput(BaseModel):
     type: Optional[GraphStrategyTypes] = None
     generate_graph: Optional[bool] = Field(alias="generateGraph", default=None)
@@ -5815,6 +5852,7 @@ PointCloudMetadataInput.model_rebuild()
 GoogleEmailFeedPropertiesUpdateInput.model_rebuild()
 GitHubPullRequestsFeedPropertiesInput.model_rebuild()
 H3Filter.model_rebuild()
+IntercomConversationsFeedPropertiesUpdateInput.model_rebuild()
 GitHubFeedPropertiesUpdateInput.model_rebuild()
 GoogleDriveFeedPropertiesInput.model_rebuild()
 ExtractionWorkflowJobInput.model_rebuild()
@@ -5844,6 +5882,7 @@ EmailMetadataInput.model_rebuild()
 InvestmentFundUpdateInput.model_rebuild()
 SalesforceCRMFeedPropertiesInput.model_rebuild()
 MedicalProcedureInput.model_rebuild()
+HubSpotCRMFeedPropertiesUpdateInput.model_rebuild()
 SharePointFeedPropertiesInput.model_rebuild()
 FactInput.model_rebuild()
 OpenAIVideoPublishingPropertiesInput.model_rebuild()
@@ -5971,6 +6010,7 @@ ObservationUpdateInput.model_rebuild()
 ObservationOccurrenceInput.model_rebuild()
 FactAssertionInput.model_rebuild()
 GoogleContactsCRMFeedPropertiesUpdateInput.model_rebuild()
+HubSpotCRMFeedPropertiesInput.model_rebuild()
 IssueFeedPropertiesInput.model_rebuild()
 MedicalProcedureUpdateInput.model_rebuild()
 MedicalTherapyFilter.model_rebuild()
@@ -6038,3 +6078,4 @@ ConversationFilter.model_rebuild()
 EntityResolutionStrategyInput.model_rebuild()
 ObservationReferenceInput.model_rebuild()
 FeedFilter.model_rebuild()
+IntercomConversationsFeedPropertiesInput.model_rebuild()

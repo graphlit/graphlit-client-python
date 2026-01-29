@@ -8655,6 +8655,9 @@ query GetFeed($id: ID!, $correlationId: String) {
         clientSecret
         refreshToken
         accessToken
+        connector {
+          id
+        }
       }
       readLimit
     }
@@ -8866,6 +8869,17 @@ query GetFeed($id: ID!, $correlationId: String) {
       connector {
         id
       }
+    }
+    intercomConversations {
+      readLimit
+      authenticationType
+      accessToken
+      connector {
+        id
+      }
+      state
+      includeNotes
+      includeAttachments
     }
     research {
       readLimit
@@ -9340,6 +9354,9 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           clientSecret
           refreshToken
           accessToken
+          connector {
+            id
+          }
         }
         readLimit
       }
@@ -9551,6 +9568,17 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         connector {
           id
         }
+      }
+      intercomConversations {
+        readLimit
+        authenticationType
+        accessToken
+        connector {
+          id
+        }
+        state
+        includeNotes
+        includeAttachments
       }
       research {
         readLimit

@@ -33,6 +33,7 @@ from .enums import (
     HubSpotAuthenticationTypes,
     HubSpotFeedAuthenticationTypes,
     HubSpotIssueAuthenticationTypes,
+    IntercomConversationsAuthenticationTypes,
     MicrosoftCalendarAuthenticationTypes,
     MicrosoftContactsAuthenticationTypes,
     MicrosoftEmailAuthenticationTypes,
@@ -99,6 +100,9 @@ class GetFeedFeed(BaseModel):
     salesforce: Optional["GetFeedFeedSalesforce"]
     hub_spot_conversations: Optional["GetFeedFeedHubSpotConversations"] = Field(
         alias="hubSpotConversations"
+    )
+    intercom_conversations: Optional["GetFeedFeedIntercomConversations"] = Field(
+        alias="intercomConversations"
     )
     research: Optional["GetFeedFeedResearch"]
     entity: Optional["GetFeedFeedEntity"]
@@ -548,6 +552,11 @@ class GetFeedFeedCrmHubSpot(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     access_token: Optional[str] = Field(alias="accessToken")
+    connector: Optional["GetFeedFeedCrmHubSpotConnector"]
+
+
+class GetFeedFeedCrmHubSpotConnector(BaseModel):
+    id: str
 
 
 class GetFeedFeedHris(BaseModel):
@@ -828,6 +837,22 @@ class GetFeedFeedHubSpotConversationsConnector(BaseModel):
     id: str
 
 
+class GetFeedFeedIntercomConversations(BaseModel):
+    read_limit: Optional[int] = Field(alias="readLimit")
+    authentication_type: Optional[IntercomConversationsAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    access_token: Optional[str] = Field(alias="accessToken")
+    connector: Optional["GetFeedFeedIntercomConversationsConnector"]
+    state: Optional[str]
+    include_notes: Optional[bool] = Field(alias="includeNotes")
+    include_attachments: Optional[bool] = Field(alias="includeAttachments")
+
+
+class GetFeedFeedIntercomConversationsConnector(BaseModel):
+    id: str
+
+
 class GetFeedFeedResearch(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     type: Optional[FeedServiceTypes]
@@ -886,6 +911,7 @@ GetFeedFeedCrm.model_rebuild()
 GetFeedFeedCrmGoogleContacts.model_rebuild()
 GetFeedFeedCrmMicrosoftContacts.model_rebuild()
 GetFeedFeedCrmSalesforce.model_rebuild()
+GetFeedFeedCrmHubSpot.model_rebuild()
 GetFeedFeedHris.model_rebuild()
 GetFeedFeedCalendar.model_rebuild()
 GetFeedFeedCalendarGoogle.model_rebuild()
@@ -896,5 +922,6 @@ GetFeedFeedSlack.model_rebuild()
 GetFeedFeedMicrosoftTeams.model_rebuild()
 GetFeedFeedSalesforce.model_rebuild()
 GetFeedFeedHubSpotConversations.model_rebuild()
+GetFeedFeedIntercomConversations.model_rebuild()
 GetFeedFeedResearch.model_rebuild()
 GetFeedFeedEntity.model_rebuild()

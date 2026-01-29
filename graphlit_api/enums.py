@@ -78,6 +78,7 @@ class FeedServiceTypes(str, Enum):
     SALESFORCE_NOTES = "SALESFORCE_NOTES"
     HUB_SPOT_OBJECTS = "HUB_SPOT_OBJECTS"
     HUB_SPOT_TASKS = "HUB_SPOT_TASKS"
+    HUB_SPOT_TICKETS = "HUB_SPOT_TICKETS"
     ASANA = "ASANA"
     MONDAY = "MONDAY"
     HUB_SPOT_NOTES = "HUB_SPOT_NOTES"
@@ -91,6 +92,7 @@ class FeedServiceTypes(str, Enum):
     PARALLEL = "PARALLEL"
     BAMBOO_HR = "BAMBOO_HR"
     GUSTO_HRIS = "GUSTO_HRIS"
+    INTERCOM_CONVERSATIONS = "INTERCOM_CONVERSATIONS"
 
 
 class MedicalContraindicationFacetTypes(str, Enum):
@@ -301,6 +303,7 @@ class BambooHRAuthenticationTypes(str, Enum):
 class HubSpotAuthenticationTypes(str, Enum):
     USER = "USER"
     PRIVATE_APP = "PRIVATE_APP"
+    CONNECTOR = "CONNECTOR"
 
 
 class GitHubCommitAuthenticationTypes(str, Enum):
@@ -475,6 +478,7 @@ class FeedTypes(str, Enum):
     CONFLUENCE = "CONFLUENCE"
     MEETING = "MEETING"
     HRIS = "HRIS"
+    INTERCOM_CONVERSATIONS = "INTERCOM_CONVERSATIONS"
 
 
 class SearchServiceTypes(str, Enum):
@@ -1332,6 +1336,11 @@ class MedicalIndicationFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
 
+class IntercomConversationsAuthenticationTypes(str, Enum):
+    ACCESS_TOKEN = "ACCESS_TOKEN"
+    CONNECTOR = "CONNECTOR"
+
+
 class GustoAuthenticationTypes(str, Enum):
     USER = "USER"
     CONNECTOR = "CONNECTOR"
@@ -1411,6 +1420,7 @@ class OAuthProviders(str, Enum):
     MICROSOFT = "MICROSOFT"
     GIT_HUB = "GIT_HUB"
     SLACK = "SLACK"
+    HUB_SPOT = "HUB_SPOT"
 
 
 class OrderDirectionTypes(str, Enum):

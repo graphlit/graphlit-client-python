@@ -33,6 +33,7 @@ from .enums import (
     HubSpotAuthenticationTypes,
     HubSpotFeedAuthenticationTypes,
     HubSpotIssueAuthenticationTypes,
+    IntercomConversationsAuthenticationTypes,
     MicrosoftCalendarAuthenticationTypes,
     MicrosoftContactsAuthenticationTypes,
     MicrosoftEmailAuthenticationTypes,
@@ -106,6 +107,9 @@ class QueryFeedsFeedsResults(BaseModel):
     salesforce: Optional["QueryFeedsFeedsResultsSalesforce"]
     hub_spot_conversations: Optional["QueryFeedsFeedsResultsHubSpotConversations"] = (
         Field(alias="hubSpotConversations")
+    )
+    intercom_conversations: Optional["QueryFeedsFeedsResultsIntercomConversations"] = (
+        Field(alias="intercomConversations")
     )
     research: Optional["QueryFeedsFeedsResultsResearch"]
     entity: Optional["QueryFeedsFeedsResultsEntity"]
@@ -563,6 +567,11 @@ class QueryFeedsFeedsResultsCrmHubSpot(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     access_token: Optional[str] = Field(alias="accessToken")
+    connector: Optional["QueryFeedsFeedsResultsCrmHubSpotConnector"]
+
+
+class QueryFeedsFeedsResultsCrmHubSpotConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsHris(BaseModel):
@@ -843,6 +852,22 @@ class QueryFeedsFeedsResultsHubSpotConversationsConnector(BaseModel):
     id: str
 
 
+class QueryFeedsFeedsResultsIntercomConversations(BaseModel):
+    read_limit: Optional[int] = Field(alias="readLimit")
+    authentication_type: Optional[IntercomConversationsAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    access_token: Optional[str] = Field(alias="accessToken")
+    connector: Optional["QueryFeedsFeedsResultsIntercomConversationsConnector"]
+    state: Optional[str]
+    include_notes: Optional[bool] = Field(alias="includeNotes")
+    include_attachments: Optional[bool] = Field(alias="includeAttachments")
+
+
+class QueryFeedsFeedsResultsIntercomConversationsConnector(BaseModel):
+    id: str
+
+
 class QueryFeedsFeedsResultsResearch(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     type: Optional[FeedServiceTypes]
@@ -902,6 +927,7 @@ QueryFeedsFeedsResultsCrm.model_rebuild()
 QueryFeedsFeedsResultsCrmGoogleContacts.model_rebuild()
 QueryFeedsFeedsResultsCrmMicrosoftContacts.model_rebuild()
 QueryFeedsFeedsResultsCrmSalesforce.model_rebuild()
+QueryFeedsFeedsResultsCrmHubSpot.model_rebuild()
 QueryFeedsFeedsResultsHris.model_rebuild()
 QueryFeedsFeedsResultsCalendar.model_rebuild()
 QueryFeedsFeedsResultsCalendarGoogle.model_rebuild()
@@ -912,5 +938,6 @@ QueryFeedsFeedsResultsSlack.model_rebuild()
 QueryFeedsFeedsResultsMicrosoftTeams.model_rebuild()
 QueryFeedsFeedsResultsSalesforce.model_rebuild()
 QueryFeedsFeedsResultsHubSpotConversations.model_rebuild()
+QueryFeedsFeedsResultsIntercomConversations.model_rebuild()
 QueryFeedsFeedsResultsResearch.model_rebuild()
 QueryFeedsFeedsResultsEntity.model_rebuild()
