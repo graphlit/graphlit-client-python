@@ -391,9 +391,6 @@ query GetFeed($id: ID!, $correlationId: String) {
       }
       krisp {
         authToken
-        includeTranscript
-        includeNotes
-        includeOutline
       }
     }
     rss {

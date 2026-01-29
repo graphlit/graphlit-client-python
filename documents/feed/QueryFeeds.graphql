@@ -393,9 +393,6 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         }
         krisp {
           authToken
-          includeTranscript
-          includeNotes
-          includeOutline
         }
       }
       rss {

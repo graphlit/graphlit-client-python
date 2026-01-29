@@ -1,5 +1,6 @@
 [tool.ariadne-codegen]
 remote_schema_url = "https://data-scus.graphlit.io/api/v1/graphql"
+remote_schema_timeout = 60
 queries_path = "./documents"
 target_package_name = "graphlit_api"
 client_name = "Client"

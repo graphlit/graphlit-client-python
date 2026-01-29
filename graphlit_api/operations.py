@@ -8742,9 +8742,6 @@ query GetFeed($id: ID!, $correlationId: String) {
       }
       krisp {
         authToken
-        includeTranscript
-        includeNotes
-        includeOutline
       }
     }
     rss {
@@ -9441,9 +9438,6 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         }
         krisp {
           authToken
-          includeTranscript
-          includeNotes
-          includeOutline
         }
       }
       rss {
