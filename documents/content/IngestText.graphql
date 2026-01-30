@@ -31,6 +31,7 @@ mutation IngestText($text: String!, $name: String, $textType: TextTypes, $uri: U
         startTime
         endTime
         pageIndex
+        turnIndex
         boundingBox {
           left
           top

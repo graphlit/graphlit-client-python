@@ -36,6 +36,11 @@ mutation RetrieveFacts($prompt: String!, $filter: FactFilter, $correlationId: St
           id
           name
         }
+        conversation {
+          id
+          name
+        }
+        sourceType
         category
         confidence
       }

@@ -31,6 +31,7 @@ mutation IngestUri($name: String, $uri: URL!, $id: ID, $mimeType: String, $ident
         startTime
         endTime
         pageIndex
+        turnIndex
         boundingBox {
           left
           top

@@ -3817,6 +3817,10 @@ class FHIREnrichmentPropertiesInput(BaseModel):
     endpoint: Optional[Any] = None
 
 
+class ConversationGraphInput(BaseModel):
+    types: Optional[list[ObservableTypes]] = None
+
+
 class ContentCriteriaLevelInput(BaseModel):
     feeds: Optional[list["EntityReferenceInput"]] = None
     workflows: Optional[list["EntityReferenceInput"]] = None
@@ -4954,6 +4958,15 @@ class ConversationStrategyUpdateInput(BaseModel):
     embed_citations: Optional[bool] = Field(alias="embedCitations", default=None)
     flatten_citations: Optional[bool] = Field(alias="flattenCitations", default=None)
     enable_facets: Optional[bool] = Field(alias="enableFacets", default=None)
+    enable_summarization: Optional[bool] = Field(
+        alias="enableSummarization", default=None
+    )
+    enable_entity_extraction: Optional[bool] = Field(
+        alias="enableEntityExtraction", default=None
+    )
+    enable_fact_extraction: Optional[bool] = Field(
+        alias="enableFactExtraction", default=None
+    )
     messages_weight: Optional[float] = Field(alias="messagesWeight", default=None)
     contents_weight: Optional[float] = Field(alias="contentsWeight", default=None)
 
@@ -5350,6 +5363,15 @@ class ConversationStrategyInput(BaseModel):
     embed_citations: Optional[bool] = Field(alias="embedCitations", default=None)
     flatten_citations: Optional[bool] = Field(alias="flattenCitations", default=None)
     enable_facets: Optional[bool] = Field(alias="enableFacets", default=None)
+    enable_summarization: Optional[bool] = Field(
+        alias="enableSummarization", default=None
+    )
+    enable_entity_extraction: Optional[bool] = Field(
+        alias="enableEntityExtraction", default=None
+    )
+    enable_fact_extraction: Optional[bool] = Field(
+        alias="enableFactExtraction", default=None
+    )
     messages_weight: Optional[float] = Field(alias="messagesWeight", default=None)
     contents_weight: Optional[float] = Field(alias="contentsWeight", default=None)
 
@@ -5749,6 +5771,11 @@ class ConversationFilter(BaseModel):
         alias="similarConversations", default=None
     )
     conversations: Optional[list["EntityReferenceFilter"]] = None
+    observations: Optional[list["ObservationReferenceFilter"]] = None
+    has_observations: Optional[bool] = Field(alias="hasObservations", default=None)
+    observation_mode: Optional[FilterMode] = Field(
+        alias="observationMode", default=None
+    )
 
 
 class EntityResolutionStrategyInput(BaseModel):

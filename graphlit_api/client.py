@@ -267,6 +267,7 @@ from .input_types import (
     ContentPublishingConnectorInput,
     ContentUpdateInput,
     ConversationFilter,
+    ConversationGraphInput,
     ConversationInput,
     ConversationMessageInput,
     ConversationToolResponseInput,
@@ -661,6 +662,7 @@ from .operations import (
     QUERY_CONTENTS_GRAPH_GQL,
     QUERY_CONTENTS_OBSERVATIONS_GQL,
     QUERY_CONVERSATIONS_GQL,
+    QUERY_CONVERSATIONS_GRAPH_GQL,
     QUERY_CREDITS_GQL,
     QUERY_DISCORD_CHANNELS_GQL,
     QUERY_DISCORD_GUILDS_GQL,
@@ -829,6 +831,7 @@ from .query_contents_facets import QueryContentsFacets
 from .query_contents_graph import QueryContentsGraph
 from .query_contents_observations import QueryContentsObservations
 from .query_conversations import QueryConversations
+from .query_conversations_graph import QueryConversationsGraph
 from .query_credits import QueryCredits
 from .query_discord_channels import QueryDiscordChannels
 from .query_discord_guilds import QueryDiscordGuilds
@@ -2705,6 +2708,27 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryConversations.model_validate(data)
+
+    async def query_conversations_graph(
+        self,
+        filter: Union[Optional[ConversationFilter], UnsetType] = UNSET,
+        graph: Union[Optional[ConversationGraphInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryConversationsGraph:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "graph": graph,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_CONVERSATIONS_GRAPH_GQL,
+            operation_name="QueryConversationsGraph",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryConversationsGraph.model_validate(data)
 
     async def retrieve_entities(
         self,

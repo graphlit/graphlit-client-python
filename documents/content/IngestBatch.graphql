@@ -31,6 +31,7 @@ mutation IngestBatch($uris: [URL!]!, $workflow: EntityReferenceInput, $collectio
         startTime
         endTime
         pageIndex
+        turnIndex
         boundingBox {
           left
           top

@@ -6,7 +6,7 @@ from typing import Any, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import EntityState, FactCategory, ObservableTypes
+from .enums import EntityState, FactCategory, ObservableTypes, SourceTypes
 
 
 class RetrieveFacts(BaseModel):
@@ -37,6 +37,8 @@ class RetrieveFactsRetrieveFactsResultsFact(BaseModel):
     ]
     feeds: Optional[list[Optional["RetrieveFactsRetrieveFactsResultsFactFeeds"]]]
     content: Optional["RetrieveFactsRetrieveFactsResultsFactContent"]
+    conversation: Optional["RetrieveFactsRetrieveFactsResultsFactConversation"]
+    source_type: Optional[SourceTypes] = Field(alias="sourceType")
     category: Optional[FactCategory]
     confidence: Optional[float]
 
@@ -80,6 +82,11 @@ class RetrieveFactsRetrieveFactsResultsFactFeeds(BaseModel):
 
 
 class RetrieveFactsRetrieveFactsResultsFactContent(BaseModel):
+    id: str
+    name: str
+
+
+class RetrieveFactsRetrieveFactsResultsFactConversation(BaseModel):
     id: str
     name: str
 

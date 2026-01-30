@@ -353,6 +353,7 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         collectionMode
         observationMode
       }
+      summary
     }
   }
 }

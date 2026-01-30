@@ -23,6 +23,9 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         embedCitations
         flattenCitations
         enableFacets
+        enableSummarization
+        enableEntityExtraction
+        enableFactExtraction
         messagesWeight
         contentsWeight
       }

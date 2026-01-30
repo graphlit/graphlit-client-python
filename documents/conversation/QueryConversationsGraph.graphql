@@ -1,0 +1,17 @@
+query QueryConversationsGraph($filter: ConversationFilter, $graph: ConversationGraphInput, $correlationId: String) {
+  conversations(filter: $filter, graph: $graph, correlationId: $correlationId) {
+    graph {
+      nodes {
+        id
+        name
+        type
+        metadata
+      }
+      edges {
+        from
+        to
+        relation
+      }
+    }
+  }
+}

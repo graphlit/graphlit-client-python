@@ -263,6 +263,7 @@ __all__ = [
     "QUERY_CONTENTS_GRAPH_GQL",
     "QUERY_CONTENTS_OBSERVATIONS_GQL",
     "QUERY_CONVERSATIONS_GQL",
+    "QUERY_CONVERSATIONS_GRAPH_GQL",
     "QUERY_CREDITS_GQL",
     "QUERY_DISCORD_CHANNELS_GQL",
     "QUERY_DISCORD_GUILDS_GQL",
@@ -2159,6 +2160,7 @@ query GetContent($id: ID!, $correlationId: String) {
         startTime
         endTime
         pageIndex
+        turnIndex
         boundingBox {
           left
           top
@@ -2167,6 +2169,49 @@ query GetContent($id: ID!, $correlationId: String) {
         }
       }
       state
+    }
+    facts {
+      id
+      text
+      validAt
+      invalidAt
+      state
+      mentions {
+        type
+        observable {
+          id
+          name
+        }
+        start
+        end
+      }
+      assertions {
+        text
+        mentions {
+          type
+          observable {
+            id
+            name
+          }
+          start
+          end
+        }
+      }
+      feeds {
+        id
+        name
+      }
+      content {
+        id
+        name
+      }
+      conversation {
+        id
+        name
+      }
+      sourceType
+      category
+      confidence
     }
     workflow {
       id
@@ -2254,6 +2299,7 @@ mutation IngestBatch($uris: [URL!]!, $workflow: EntityReferenceInput, $collectio
         startTime
         endTime
         pageIndex
+        turnIndex
         boundingBox {
           left
           top
@@ -2314,6 +2360,7 @@ mutation IngestEncodedFile($name: String!, $data: String!, $mimeType: String!, $
         startTime
         endTime
         pageIndex
+        turnIndex
         boundingBox {
           left
           top
@@ -2370,6 +2417,7 @@ mutation IngestEvent($markdown: String!, $name: String, $description: String, $e
         startTime
         endTime
         pageIndex
+        turnIndex
         boundingBox {
           left
           top
@@ -2425,6 +2473,7 @@ mutation IngestMemory($text: String!, $name: String, $textType: TextTypes, $id: 
         startTime
         endTime
         pageIndex
+        turnIndex
         boundingBox {
           left
           top
@@ -2484,6 +2533,7 @@ mutation IngestText($text: String!, $name: String, $textType: TextTypes, $uri: U
         startTime
         endTime
         pageIndex
+        turnIndex
         boundingBox {
           left
           top
@@ -2538,6 +2588,7 @@ mutation IngestTextBatch($batch: [TextContentInput!]!, $textType: TextTypes, $wo
         startTime
         endTime
         pageIndex
+        turnIndex
         boundingBox {
           left
           top
@@ -2596,6 +2647,7 @@ mutation IngestUri($name: String, $uri: URL!, $id: ID, $mimeType: String, $ident
         startTime
         endTime
         pageIndex
+        turnIndex
         boundingBox {
           left
           top
@@ -3017,6 +3069,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
           startTime
           endTime
           pageIndex
+          turnIndex
           boundingBox {
             left
             top
@@ -3025,6 +3078,49 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
           }
         }
         state
+      }
+      facts {
+        id
+        text
+        validAt
+        invalidAt
+        state
+        mentions {
+          type
+          observable {
+            id
+            name
+          }
+          start
+          end
+        }
+        assertions {
+          text
+          mentions {
+            type
+            observable {
+              id
+              name
+            }
+            start
+            end
+          }
+        }
+        feeds {
+          id
+          name
+        }
+        content {
+          id
+          name
+        }
+        conversation {
+          id
+          name
+        }
+        sourceType
+        category
+        confidence
       }
       workflow {
         id
@@ -4196,6 +4292,7 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
           startTime
           endTime
           pageIndex
+          turnIndex
           boundingBox {
             left
             top
@@ -4317,6 +4414,7 @@ mutation ScreenshotPage($uri: URL!, $maximumHeight: Int, $isSynchronous: Boolean
         startTime
         endTime
         pageIndex
+        turnIndex
         boundingBox {
           left
           top
@@ -4413,6 +4511,7 @@ mutation UpdateContent($content: ContentUpdateInput!) {
         startTime
         endTime
         pageIndex
+        turnIndex
         boundingBox {
           left
           top
@@ -6012,6 +6111,7 @@ query GetConversation($id: ID!, $correlationId: String) {
       collectionMode
       observationMode
     }
+    summary
   }
 }
 """
@@ -6992,6 +7092,27 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         collectionMode
         observationMode
       }
+      summary
+    }
+  }
+}
+"""
+
+QUERY_CONVERSATIONS_GRAPH_GQL = """
+query QueryConversationsGraph($filter: ConversationFilter, $graph: ConversationGraphInput, $correlationId: String) {
+  conversations(filter: $filter, graph: $graph, correlationId: $correlationId) {
+    graph {
+      nodes {
+        id
+        name
+        type
+        metadata
+      }
+      edges {
+        from
+        to
+        relation
+      }
     }
   }
 }
@@ -7056,6 +7177,11 @@ mutation RetrieveFacts($prompt: String!, $filter: FactFilter, $correlationId: St
           id
           name
         }
+        conversation {
+          id
+          name
+        }
+        sourceType
         category
         confidence
       }
@@ -8131,6 +8257,11 @@ query GetFact($id: ID!, $correlationId: String) {
       id
       name
     }
+    conversation {
+      id
+      name
+    }
+    sourceType
     category
     confidence
   }
@@ -8179,6 +8310,11 @@ query QueryFacts($filter: FactFilter, $correlationId: String) {
         id
         name
       }
+      conversation {
+        id
+        name
+      }
+      sourceType
       category
       confidence
     }
@@ -8228,6 +8364,11 @@ query QueryFactsClusters($filter: FactFilter, $clusters: EntityClustersInput, $c
         id
         name
       }
+      conversation {
+        id
+        name
+      }
+      sourceType
       category
       confidence
     }
@@ -15780,6 +15921,9 @@ query GetSpecification($id: ID!, $correlationId: String) {
       embedCitations
       flattenCitations
       enableFacets
+      enableSummarization
+      enableEntityExtraction
+      enableFactExtraction
       messagesWeight
       contentsWeight
     }
@@ -16165,6 +16309,9 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         embedCitations
         flattenCitations
         enableFacets
+        enableSummarization
+        enableEntityExtraction
+        enableFactExtraction
         messagesWeight
         contentsWeight
       }

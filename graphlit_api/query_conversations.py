@@ -49,6 +49,7 @@ class QueryConversationsConversationsResults(BaseModel):
     augmented_filter: Optional[
         "QueryConversationsConversationsResultsAugmentedFilter"
     ] = Field(alias="augmentedFilter")
+    summary: Optional[str]
 
 
 class QueryConversationsConversationsResultsOwner(BaseModel):

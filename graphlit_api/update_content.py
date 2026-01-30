@@ -68,6 +68,7 @@ class UpdateContentUpdateContentObservationsOccurrences(BaseModel):
     start_time: Optional[Any] = Field(alias="startTime")
     end_time: Optional[Any] = Field(alias="endTime")
     page_index: Optional[int] = Field(alias="pageIndex")
+    turn_index: Optional[int] = Field(alias="turnIndex")
     bounding_box: Optional[
         "UpdateContentUpdateContentObservationsOccurrencesBoundingBox"
     ] = Field(alias="boundingBox")

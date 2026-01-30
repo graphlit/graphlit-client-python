@@ -112,6 +112,9 @@ class QuerySpecificationsSpecificationsResultsStrategy(BaseModel):
     embed_citations: Optional[bool] = Field(alias="embedCitations")
     flatten_citations: Optional[bool] = Field(alias="flattenCitations")
     enable_facets: Optional[bool] = Field(alias="enableFacets")
+    enable_summarization: Optional[bool] = Field(alias="enableSummarization")
+    enable_entity_extraction: Optional[bool] = Field(alias="enableEntityExtraction")
+    enable_fact_extraction: Optional[bool] = Field(alias="enableFactExtraction")
     messages_weight: Optional[float] = Field(alias="messagesWeight")
     contents_weight: Optional[float] = Field(alias="contentsWeight")
 

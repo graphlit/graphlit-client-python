@@ -31,6 +31,7 @@ mutation IngestEncodedFile($name: String!, $data: String!, $mimeType: String!, $
         startTime
         endTime
         pageIndex
+        turnIndex
         boundingBox {
           left
           top

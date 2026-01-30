@@ -399,6 +399,7 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
           startTime
           endTime
           pageIndex
+          turnIndex
           boundingBox {
             left
             top

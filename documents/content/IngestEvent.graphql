@@ -31,6 +31,7 @@ mutation IngestEvent($markdown: String!, $name: String, $description: String, $e
         startTime
         endTime
         pageIndex
+        turnIndex
         boundingBox {
           left
           top

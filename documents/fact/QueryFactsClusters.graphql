@@ -39,6 +39,11 @@ query QueryFactsClusters($filter: FactFilter, $clusters: EntityClustersInput, $c
         id
         name
       }
+      conversation {
+        id
+        name
+      }
+      sourceType
       category
       confidence
     }

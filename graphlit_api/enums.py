@@ -185,6 +185,11 @@ class GraphStrategyTypes(str, Enum):
     NONE = "NONE"
 
 
+class SourceTypes(str, Enum):
+    CONTENT = "CONTENT"
+    CONVERSATION = "CONVERSATION"
+
+
 class ObservableTypes(str, Enum):
     CATEGORY = "CATEGORY"
     LABEL = "LABEL"
@@ -357,6 +362,7 @@ class OccurrenceTypes(str, Enum):
     IMAGE = "IMAGE"
     TIME = "TIME"
     TEXT = "TEXT"
+    TURN = "TURN"
 
 
 class FileTypes(str, Enum):
@@ -1199,6 +1205,7 @@ class MedicalDeviceFacetTypes(str, Enum):
 
 class MetadataTypes(str, Enum):
     CONTENT = "CONTENT"
+    CONVERSATION = "CONVERSATION"
 
 
 class TextTypes(str, Enum):

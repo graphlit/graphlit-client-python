@@ -38,6 +38,11 @@ query GetFact($id: ID!, $correlationId: String) {
       id
       name
     }
+    conversation {
+      id
+      name
+    }
+    sourceType
     category
     confidence
   }

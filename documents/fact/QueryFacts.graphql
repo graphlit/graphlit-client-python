@@ -39,6 +39,11 @@ query QueryFacts($filter: FactFilter, $correlationId: String) {
         id
         name
       }
+      conversation {
+        id
+        name
+      }
+      sourceType
       category
       confidence
     }

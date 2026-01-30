@@ -14,6 +14,7 @@ from .enums import (
     CalendarReminderMethod,
     ContentTypes,
     EntityState,
+    FactCategory,
     FileTypes,
     ImageProjectionTypes,
     LinkTypes,
@@ -23,6 +24,7 @@ from .enums import (
     ObservableTypes,
     OccurrenceTypes,
     OrientationTypes,
+    SourceTypes,
     TextRoles,
 )
 
@@ -113,6 +115,7 @@ class LookupContentsLookupContentsResults(BaseModel):
     observations: Optional[
         list[Optional["LookupContentsLookupContentsResultsObservations"]]
     ]
+    facts: Optional[list[Optional["LookupContentsLookupContentsResultsFacts"]]]
     workflow: Optional["LookupContentsLookupContentsResultsWorkflow"]
     pages: Optional[list["LookupContentsLookupContentsResultsPages"]]
     segments: Optional[list["LookupContentsLookupContentsResultsSegments"]]
@@ -560,6 +563,7 @@ class LookupContentsLookupContentsResultsObservationsOccurrences(BaseModel):
     start_time: Optional[Any] = Field(alias="startTime")
     end_time: Optional[Any] = Field(alias="endTime")
     page_index: Optional[int] = Field(alias="pageIndex")
+    turn_index: Optional[int] = Field(alias="turnIndex")
     bounding_box: Optional[
         "LookupContentsLookupContentsResultsObservationsOccurrencesBoundingBox"
     ] = Field(alias="boundingBox")
@@ -570,6 +574,74 @@ class LookupContentsLookupContentsResultsObservationsOccurrencesBoundingBox(Base
     top: Optional[float]
     width: Optional[float]
     height: Optional[float]
+
+
+class LookupContentsLookupContentsResultsFacts(BaseModel):
+    id: str
+    text: str
+    valid_at: Optional[Any] = Field(alias="validAt")
+    invalid_at: Optional[Any] = Field(alias="invalidAt")
+    state: EntityState
+    mentions: Optional[
+        list[Optional["LookupContentsLookupContentsResultsFactsMentions"]]
+    ]
+    assertions: Optional[
+        list[Optional["LookupContentsLookupContentsResultsFactsAssertions"]]
+    ]
+    feeds: Optional[list[Optional["LookupContentsLookupContentsResultsFactsFeeds"]]]
+    content: Optional["LookupContentsLookupContentsResultsFactsContent"]
+    conversation: Optional["LookupContentsLookupContentsResultsFactsConversation"]
+    source_type: Optional[SourceTypes] = Field(alias="sourceType")
+    category: Optional[FactCategory]
+    confidence: Optional[float]
+
+
+class LookupContentsLookupContentsResultsFactsMentions(BaseModel):
+    type: Optional[ObservableTypes]
+    observable: Optional["LookupContentsLookupContentsResultsFactsMentionsObservable"]
+    start: Optional[int]
+    end: Optional[int]
+
+
+class LookupContentsLookupContentsResultsFactsMentionsObservable(BaseModel):
+    id: str
+    name: Optional[str]
+
+
+class LookupContentsLookupContentsResultsFactsAssertions(BaseModel):
+    text: str
+    mentions: Optional[
+        list[Optional["LookupContentsLookupContentsResultsFactsAssertionsMentions"]]
+    ]
+
+
+class LookupContentsLookupContentsResultsFactsAssertionsMentions(BaseModel):
+    type: Optional[ObservableTypes]
+    observable: Optional[
+        "LookupContentsLookupContentsResultsFactsAssertionsMentionsObservable"
+    ]
+    start: Optional[int]
+    end: Optional[int]
+
+
+class LookupContentsLookupContentsResultsFactsAssertionsMentionsObservable(BaseModel):
+    id: str
+    name: Optional[str]
+
+
+class LookupContentsLookupContentsResultsFactsFeeds(BaseModel):
+    id: str
+    name: str
+
+
+class LookupContentsLookupContentsResultsFactsContent(BaseModel):
+    id: str
+    name: str
+
+
+class LookupContentsLookupContentsResultsFactsConversation(BaseModel):
+    id: str
+    name: str
 
 
 class LookupContentsLookupContentsResultsWorkflow(BaseModel):
@@ -633,4 +705,8 @@ LookupContentsLookupContentsResultsPost.model_rebuild()
 LookupContentsLookupContentsResultsMeeting.model_rebuild()
 LookupContentsLookupContentsResultsObservations.model_rebuild()
 LookupContentsLookupContentsResultsObservationsOccurrences.model_rebuild()
+LookupContentsLookupContentsResultsFacts.model_rebuild()
+LookupContentsLookupContentsResultsFactsMentions.model_rebuild()
+LookupContentsLookupContentsResultsFactsAssertions.model_rebuild()
+LookupContentsLookupContentsResultsFactsAssertionsMentions.model_rebuild()
 LookupContentsLookupContentsResultsPages.model_rebuild()

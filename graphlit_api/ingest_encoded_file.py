@@ -72,6 +72,7 @@ class IngestEncodedFileIngestEncodedFileObservationsOccurrences(BaseModel):
     start_time: Optional[Any] = Field(alias="startTime")
     end_time: Optional[Any] = Field(alias="endTime")
     page_index: Optional[int] = Field(alias="pageIndex")
+    turn_index: Optional[int] = Field(alias="turnIndex")
     bounding_box: Optional[
         "IngestEncodedFileIngestEncodedFileObservationsOccurrencesBoundingBox"
     ] = Field(alias="boundingBox")

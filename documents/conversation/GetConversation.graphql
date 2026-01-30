@@ -351,5 +351,6 @@ query GetConversation($id: ID!, $correlationId: String) {
       collectionMode
       observationMode
     }
+    summary
   }
 }

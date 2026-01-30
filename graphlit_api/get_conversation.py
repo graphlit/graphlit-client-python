@@ -42,6 +42,7 @@ class GetConversationConversation(BaseModel):
     augmented_filter: Optional["GetConversationConversationAugmentedFilter"] = Field(
         alias="augmentedFilter"
     )
+    summary: Optional[str]
 
 
 class GetConversationConversationOwner(BaseModel):
