@@ -11,12 +11,15 @@ from .enums import (
     ConversationRoleTypes,
     ConversationTypes,
     EntityState,
+    FactCategory,
     FileTypes,
     FilterMode,
     ImageProjectionTypes,
     ModelServiceTypes,
     ObservableTypes,
+    OccurrenceTypes,
     OrientationTypes,
+    SourceTypes,
 )
 
 
@@ -42,6 +45,8 @@ class GetConversationConversation(BaseModel):
     augmented_filter: Optional["GetConversationConversationAugmentedFilter"] = Field(
         alias="augmentedFilter"
     )
+    observations: Optional[list[Optional["GetConversationConversationObservations"]]]
+    facts: Optional[list[Optional["GetConversationConversationFacts"]]]
     summary: Optional[str]
 
 
@@ -543,6 +548,110 @@ class GetConversationConversationAugmentedFilterAndObservationsObservable(BaseMo
     id: str
 
 
+class GetConversationConversationObservations(BaseModel):
+    id: str
+    type: ObservableTypes
+    observable: "GetConversationConversationObservationsObservable"
+    related: Optional["GetConversationConversationObservationsRelated"]
+    related_type: Optional[ObservableTypes] = Field(alias="relatedType")
+    relation: Optional[str]
+    occurrences: Optional[
+        list[Optional["GetConversationConversationObservationsOccurrences"]]
+    ]
+    state: EntityState
+
+
+class GetConversationConversationObservationsObservable(BaseModel):
+    id: str
+    name: Optional[str]
+
+
+class GetConversationConversationObservationsRelated(BaseModel):
+    id: str
+    name: Optional[str]
+
+
+class GetConversationConversationObservationsOccurrences(BaseModel):
+    type: Optional[OccurrenceTypes]
+    confidence: Optional[float]
+    start_time: Optional[Any] = Field(alias="startTime")
+    end_time: Optional[Any] = Field(alias="endTime")
+    page_index: Optional[int] = Field(alias="pageIndex")
+    turn_index: Optional[int] = Field(alias="turnIndex")
+    bounding_box: Optional[
+        "GetConversationConversationObservationsOccurrencesBoundingBox"
+    ] = Field(alias="boundingBox")
+
+
+class GetConversationConversationObservationsOccurrencesBoundingBox(BaseModel):
+    left: Optional[float]
+    top: Optional[float]
+    width: Optional[float]
+    height: Optional[float]
+
+
+class GetConversationConversationFacts(BaseModel):
+    id: str
+    text: str
+    valid_at: Optional[Any] = Field(alias="validAt")
+    invalid_at: Optional[Any] = Field(alias="invalidAt")
+    state: EntityState
+    mentions: Optional[list[Optional["GetConversationConversationFactsMentions"]]]
+    assertions: Optional[list[Optional["GetConversationConversationFactsAssertions"]]]
+    feeds: Optional[list[Optional["GetConversationConversationFactsFeeds"]]]
+    content: Optional["GetConversationConversationFactsContent"]
+    conversation: Optional["GetConversationConversationFactsConversation"]
+    source_type: Optional[SourceTypes] = Field(alias="sourceType")
+    category: Optional[FactCategory]
+    confidence: Optional[float]
+
+
+class GetConversationConversationFactsMentions(BaseModel):
+    type: Optional[ObservableTypes]
+    observable: Optional["GetConversationConversationFactsMentionsObservable"]
+    start: Optional[int]
+    end: Optional[int]
+
+
+class GetConversationConversationFactsMentionsObservable(BaseModel):
+    id: str
+    name: Optional[str]
+
+
+class GetConversationConversationFactsAssertions(BaseModel):
+    text: str
+    mentions: Optional[
+        list[Optional["GetConversationConversationFactsAssertionsMentions"]]
+    ]
+
+
+class GetConversationConversationFactsAssertionsMentions(BaseModel):
+    type: Optional[ObservableTypes]
+    observable: Optional["GetConversationConversationFactsAssertionsMentionsObservable"]
+    start: Optional[int]
+    end: Optional[int]
+
+
+class GetConversationConversationFactsAssertionsMentionsObservable(BaseModel):
+    id: str
+    name: Optional[str]
+
+
+class GetConversationConversationFactsFeeds(BaseModel):
+    id: str
+    name: str
+
+
+class GetConversationConversationFactsContent(BaseModel):
+    id: str
+    name: str
+
+
+class GetConversationConversationFactsConversation(BaseModel):
+    id: str
+    name: str
+
+
 GetConversation.model_rebuild()
 GetConversationConversation.model_rebuild()
 GetConversationConversationMessages.model_rebuild()
@@ -561,3 +670,9 @@ GetConversationConversationAugmentedFilterOr.model_rebuild()
 GetConversationConversationAugmentedFilterOrObservations.model_rebuild()
 GetConversationConversationAugmentedFilterAnd.model_rebuild()
 GetConversationConversationAugmentedFilterAndObservations.model_rebuild()
+GetConversationConversationObservations.model_rebuild()
+GetConversationConversationObservationsOccurrences.model_rebuild()
+GetConversationConversationFacts.model_rebuild()
+GetConversationConversationFactsMentions.model_rebuild()
+GetConversationConversationFactsAssertions.model_rebuild()
+GetConversationConversationFactsAssertionsMentions.model_rebuild()

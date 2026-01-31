@@ -262,6 +262,7 @@ __all__ = [
     "QUERY_CONTENTS_GQL",
     "QUERY_CONTENTS_GRAPH_GQL",
     "QUERY_CONTENTS_OBSERVATIONS_GQL",
+    "QUERY_CONVERSATIONS_CLUSTERS_GQL",
     "QUERY_CONVERSATIONS_GQL",
     "QUERY_CONVERSATIONS_GRAPH_GQL",
     "QUERY_CREDITS_GQL",
@@ -6111,6 +6112,78 @@ query GetConversation($id: ID!, $correlationId: String) {
       collectionMode
       observationMode
     }
+    observations {
+      id
+      type
+      observable {
+        id
+        name
+      }
+      related {
+        id
+        name
+      }
+      relatedType
+      relation
+      occurrences {
+        type
+        confidence
+        startTime
+        endTime
+        pageIndex
+        turnIndex
+        boundingBox {
+          left
+          top
+          width
+          height
+        }
+      }
+      state
+    }
+    facts {
+      id
+      text
+      validAt
+      invalidAt
+      state
+      mentions {
+        type
+        observable {
+          id
+          name
+        }
+        start
+        end
+      }
+      assertions {
+        text
+        mentions {
+          type
+          observable {
+            id
+            name
+          }
+          start
+          end
+        }
+      }
+      feeds {
+        id
+        name
+      }
+      content {
+        id
+        name
+      }
+      conversation {
+        id
+        name
+      }
+      sourceType
+      category
+      confidence
+    }
     summary
   }
 }
@@ -7093,6 +7166,379 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         observationMode
       }
       summary
+    }
+  }
+}
+"""
+
+QUERY_CONVERSATIONS_CLUSTERS_GQL = """
+query QueryConversationsClusters($filter: ConversationFilter, $clusters: EntityClustersInput, $correlationId: String) {
+  conversations(
+    filter: $filter
+    clusters: $clusters
+    correlationId: $correlationId
+  ) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      correlationId
+      type
+      messages {
+        role
+        author
+        message
+        citations {
+          content {
+            id
+            name
+            state
+            originalDate
+            identifier
+            uri
+            type
+            fileType
+            mimeType
+            format
+            formatName
+            fileExtension
+            fileName
+            fileSize
+            fileMetadata
+            relativeFolderPath
+            masterUri
+            imageUri
+            textUri
+            audioUri
+            transcriptUri
+            snapshotsUri
+            snapshotCount
+            summary
+            customSummary
+            keywords
+            bullets
+            headlines
+            posts
+            chapters
+            questions
+            quotes
+            video {
+              width
+              height
+              duration
+              make
+              model
+              software
+              title
+              description
+              keywords
+              author
+            }
+            audio {
+              keywords
+              author
+              series
+              episode
+              episodeType
+              season
+              publisher
+              copyright
+              genre
+              title
+              description
+              bitrate
+              channels
+              sampleRate
+              bitsPerSample
+              duration
+            }
+            image {
+              width
+              height
+              resolutionX
+              resolutionY
+              bitsPerComponent
+              components
+              projectionType
+              orientation
+              description
+              make
+              model
+              software
+              lens
+              focalLength
+              exposureTime
+              fNumber
+              iso
+              heading
+              pitch
+            }
+            document {
+              title
+              subject
+              summary
+              author
+              lastModifiedBy
+              publisher
+              description
+              keywords
+              pageCount
+              worksheetCount
+              slideCount
+              wordCount
+              lineCount
+              paragraphCount
+              isEncrypted
+              hasDigitalSignature
+            }
+          }
+          index
+          text
+          startTime
+          endTime
+          pageNumber
+          frameNumber
+        }
+        toolCalls {
+          id
+          name
+          arguments
+        }
+        tokens
+        throughput
+        ttft
+        completionTime
+        timestamp
+        modelService
+        model
+        data
+        mimeType
+        toolCallId
+        toolCallResponse
+      }
+      transcriptUri
+      turns {
+        index
+        messages {
+          role
+          author
+          message
+          tokens
+          timestamp
+        }
+        tokens
+        timestamp
+        text
+        relevance
+      }
+      specification {
+        id
+        name
+      }
+      fallbacks {
+        id
+        name
+      }
+      filter {
+        dateRange {
+          from
+          to
+        }
+        inLast
+        creationDateRange {
+          from
+          to
+        }
+        createdInLast
+        types
+        fileTypes
+        formats
+        fileExtensions
+        fileSizeRange {
+          from
+          to
+        }
+        similarContents {
+          id
+        }
+        contents {
+          id
+        }
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+        or {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        and {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        hasObservations
+        hasFeeds
+        hasCollections
+        hasWorkflows
+        collectionMode
+        observationMode
+      }
+      augmentedFilter {
+        dateRange {
+          from
+          to
+        }
+        inLast
+        creationDateRange {
+          from
+          to
+        }
+        createdInLast
+        types
+        fileTypes
+        formats
+        fileExtensions
+        fileSizeRange {
+          from
+          to
+        }
+        similarContents {
+          id
+        }
+        contents {
+          id
+        }
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+        or {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        and {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        hasObservations
+        hasFeeds
+        hasCollections
+        hasWorkflows
+        collectionMode
+        observationMode
+      }
+      summary
+    }
+    clusters {
+      entities {
+        id
+        name
+      }
+      similarity
     }
   }
 }

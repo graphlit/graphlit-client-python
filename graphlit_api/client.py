@@ -661,6 +661,7 @@ from .operations import (
     QUERY_CONTENTS_GQL,
     QUERY_CONTENTS_GRAPH_GQL,
     QUERY_CONTENTS_OBSERVATIONS_GQL,
+    QUERY_CONVERSATIONS_CLUSTERS_GQL,
     QUERY_CONVERSATIONS_GQL,
     QUERY_CONVERSATIONS_GRAPH_GQL,
     QUERY_CREDITS_GQL,
@@ -831,6 +832,7 @@ from .query_contents_facets import QueryContentsFacets
 from .query_contents_graph import QueryContentsGraph
 from .query_contents_observations import QueryContentsObservations
 from .query_conversations import QueryConversations
+from .query_conversations_clusters import QueryConversationsClusters
 from .query_conversations_graph import QueryConversationsGraph
 from .query_credits import QueryCredits
 from .query_discord_channels import QueryDiscordChannels
@@ -2708,6 +2710,27 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryConversations.model_validate(data)
+
+    async def query_conversations_clusters(
+        self,
+        filter: Union[Optional[ConversationFilter], UnsetType] = UNSET,
+        clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryConversationsClusters:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "clusters": clusters,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_CONVERSATIONS_CLUSTERS_GQL,
+            operation_name="QueryConversationsClusters",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryConversationsClusters.model_validate(data)
 
     async def query_conversations_graph(
         self,
