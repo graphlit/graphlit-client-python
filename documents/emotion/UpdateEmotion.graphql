@@ -1,0 +1,6 @@
+mutation UpdateEmotion($emotion: EmotionUpdateInput!) {
+  updateEmotion(emotion: $emotion) {
+    id
+    name
+  }
+}

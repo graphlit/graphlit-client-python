@@ -5,6 +5,7 @@ query GetFact($id: ID!, $correlationId: String) {
     owner {
       id
     }
+    state
     text
     validAt
     invalidAt

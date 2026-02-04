@@ -19,6 +19,7 @@ from .count_collections import CountCollections
 from .count_connectors import CountConnectors
 from .count_contents import CountContents
 from .count_conversations import CountConversations
+from .count_emotions import CountEmotions
 from .count_events import CountEvents
 from .count_facts import CountFacts
 from .count_feeds import CountFeeds
@@ -51,6 +52,7 @@ from .create_category import CreateCategory
 from .create_collection import CreateCollection
 from .create_connector import CreateConnector
 from .create_conversation import CreateConversation
+from .create_emotion import CreateEmotion
 from .create_event import CreateEvent
 from .create_fact import CreateFact
 from .create_feed import CreateFeed
@@ -86,6 +88,7 @@ from .delete_all_categories import DeleteAllCategories
 from .delete_all_collections import DeleteAllCollections
 from .delete_all_contents import DeleteAllContents
 from .delete_all_conversations import DeleteAllConversations
+from .delete_all_emotions import DeleteAllEmotions
 from .delete_all_events import DeleteAllEvents
 from .delete_all_facts import DeleteAllFacts
 from .delete_all_feeds import DeleteAllFeeds
@@ -121,6 +124,8 @@ from .delete_content import DeleteContent
 from .delete_contents import DeleteContents
 from .delete_conversation import DeleteConversation
 from .delete_conversations import DeleteConversations
+from .delete_emotion import DeleteEmotion
+from .delete_emotions import DeleteEmotions
 from .delete_event import DeleteEvent
 from .delete_events import DeleteEvents
 from .delete_fact import DeleteFact
@@ -206,6 +211,7 @@ from .get_collection import GetCollection
 from .get_connector import GetConnector
 from .get_content import GetContent
 from .get_conversation import GetConversation
+from .get_emotion import GetEmotion
 from .get_event import GetEvent
 from .get_fact import GetFact
 from .get_feed import GetFeed
@@ -275,6 +281,9 @@ from .input_types import (
     DiscordChannelsInput,
     DiscordGuildsInput,
     DropboxFoldersInput,
+    EmotionFilter,
+    EmotionInput,
+    EmotionUpdateInput,
     EntityClustersInput,
     EntityEnrichmentConnectorInput,
     EntityReferenceInput,
@@ -415,6 +424,7 @@ from .operations import (
     COUNT_CONNECTORS_GQL,
     COUNT_CONTENTS_GQL,
     COUNT_CONVERSATIONS_GQL,
+    COUNT_EMOTIONS_GQL,
     COUNT_EVENTS_GQL,
     COUNT_FACTS_GQL,
     COUNT_FEEDS_GQL,
@@ -447,6 +457,7 @@ from .operations import (
     CREATE_COLLECTION_GQL,
     CREATE_CONNECTOR_GQL,
     CREATE_CONVERSATION_GQL,
+    CREATE_EMOTION_GQL,
     CREATE_EVENT_GQL,
     CREATE_FACT_GQL,
     CREATE_FEED_GQL,
@@ -482,6 +493,7 @@ from .operations import (
     DELETE_ALL_COLLECTIONS_GQL,
     DELETE_ALL_CONTENTS_GQL,
     DELETE_ALL_CONVERSATIONS_GQL,
+    DELETE_ALL_EMOTIONS_GQL,
     DELETE_ALL_EVENTS_GQL,
     DELETE_ALL_FACTS_GQL,
     DELETE_ALL_FEEDS_GQL,
@@ -517,6 +529,8 @@ from .operations import (
     DELETE_CONTENTS_GQL,
     DELETE_CONVERSATION_GQL,
     DELETE_CONVERSATIONS_GQL,
+    DELETE_EMOTION_GQL,
+    DELETE_EMOTIONS_GQL,
     DELETE_EVENT_GQL,
     DELETE_EVENTS_GQL,
     DELETE_FACT_GQL,
@@ -594,6 +608,7 @@ from .operations import (
     GET_CONNECTOR_GQL,
     GET_CONTENT_GQL,
     GET_CONVERSATION_GQL,
+    GET_EMOTION_GQL,
     GET_EVENT_GQL,
     GET_FACT_GQL,
     GET_FEED_GQL,
@@ -668,6 +683,7 @@ from .operations import (
     QUERY_DISCORD_CHANNELS_GQL,
     QUERY_DISCORD_GUILDS_GQL,
     QUERY_DROPBOX_FOLDERS_GQL,
+    QUERY_EMOTIONS_GQL,
     QUERY_EVENTS_CLUSTERS_GQL,
     QUERY_EVENTS_GQL,
     QUERY_FACTS_CLUSTERS_GQL,
@@ -771,6 +787,7 @@ from .operations import (
     UPDATE_CONNECTOR_GQL,
     UPDATE_CONTENT_GQL,
     UPDATE_CONVERSATION_GQL,
+    UPDATE_EMOTION_GQL,
     UPDATE_EVENT_GQL,
     UPDATE_FACT_GQL,
     UPDATE_FEED_GQL,
@@ -838,6 +855,7 @@ from .query_credits import QueryCredits
 from .query_discord_channels import QueryDiscordChannels
 from .query_discord_guilds import QueryDiscordGuilds
 from .query_dropbox_folders import QueryDropboxFolders
+from .query_emotions import QueryEmotions
 from .query_events import QueryEvents
 from .query_events_clusters import QueryEventsClusters
 from .query_facts import QueryFacts
@@ -943,6 +961,7 @@ from .update_collection import UpdateCollection
 from .update_connector import UpdateConnector
 from .update_content import UpdateContent
 from .update_conversation import UpdateConversation
+from .update_emotion import UpdateEmotion
 from .update_event import UpdateEvent
 from .update_fact import UpdateFact
 from .update_feed import UpdateFeed
@@ -2988,6 +3007,134 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdateConversation.model_validate(data)
+
+    async def count_emotions(
+        self,
+        filter: Union[Optional[EmotionFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountEmotions:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=COUNT_EMOTIONS_GQL,
+            operation_name="CountEmotions",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountEmotions.model_validate(data)
+
+    async def create_emotion(
+        self, emotion: EmotionInput, **kwargs: Any
+    ) -> CreateEmotion:
+        variables: dict[str, object] = {"emotion": emotion}
+        response = await self.execute(
+            query=CREATE_EMOTION_GQL,
+            operation_name="CreateEmotion",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CreateEmotion.model_validate(data)
+
+    async def delete_all_emotions(
+        self,
+        filter: Union[Optional[EmotionFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllEmotions:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DELETE_ALL_EMOTIONS_GQL,
+            operation_name="DeleteAllEmotions",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllEmotions.model_validate(data)
+
+    async def delete_emotion(self, id: str, **kwargs: Any) -> DeleteEmotion:
+        variables: dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DELETE_EMOTION_GQL,
+            operation_name="DeleteEmotion",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteEmotion.model_validate(data)
+
+    async def delete_emotions(
+        self,
+        ids: list[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteEmotions:
+        variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
+        response = await self.execute(
+            query=DELETE_EMOTIONS_GQL,
+            operation_name="DeleteEmotions",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteEmotions.model_validate(data)
+
+    async def get_emotion(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetEmotion:
+        variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
+        response = await self.execute(
+            query=GET_EMOTION_GQL,
+            operation_name="GetEmotion",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return GetEmotion.model_validate(data)
+
+    async def query_emotions(
+        self,
+        filter: Union[Optional[EmotionFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryEmotions:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_EMOTIONS_GQL,
+            operation_name="QueryEmotions",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryEmotions.model_validate(data)
+
+    async def update_emotion(
+        self, emotion: EmotionUpdateInput, **kwargs: Any
+    ) -> UpdateEmotion:
+        variables: dict[str, object] = {"emotion": emotion}
+        response = await self.execute(
+            query=UPDATE_EMOTION_GQL,
+            operation_name="UpdateEmotion",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateEmotion.model_validate(data)
 
     async def count_events(
         self,

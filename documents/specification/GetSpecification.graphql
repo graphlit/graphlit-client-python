@@ -24,6 +24,8 @@ query GetSpecification($id: ID!, $correlationId: String) {
       enableSummarization
       enableEntityExtraction
       enableFactExtraction
+      entityExtractionLimit
+      factExtractionLimit
       messagesWeight
       contentsWeight
     }

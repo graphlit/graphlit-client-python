@@ -1,0 +1,6 @@
+mutation DeleteAllEmotions($filter: EmotionFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllEmotions(filter: $filter, isSynchronous: $isSynchronous, correlationId: $correlationId) {
+    id
+    state
+  }
+}

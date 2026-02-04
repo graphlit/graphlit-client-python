@@ -361,6 +361,7 @@ query GetFeed($id: ID!, $correlationId: String) {
     }
     meeting {
       type
+      contentType
       readLimit
       fireflies {
         apiKey

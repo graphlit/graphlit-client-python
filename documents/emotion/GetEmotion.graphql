@@ -1,0 +1,12 @@
+query GetEmotion($id: ID!, $correlationId: String) {
+  emotion(id: $id, correlationId: $correlationId) {
+    id
+    name
+    description
+    creationDate
+    feeds {
+      id
+      name
+    }
+  }
+}

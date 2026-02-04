@@ -19,6 +19,7 @@ class ExtractObservablesExtractObservables(BaseModel):
     categories: Optional[
         list[Optional["ExtractObservablesExtractObservablesCategories"]]
     ]
+    emotions: Optional[list[Optional["ExtractObservablesExtractObservablesEmotions"]]]
     persons: Optional[list[Optional["ExtractObservablesExtractObservablesPersons"]]]
     organizations: Optional[
         list[Optional["ExtractObservablesExtractObservablesOrganizations"]]
@@ -75,6 +76,11 @@ class ExtractObservablesExtractObservablesLabels(BaseModel):
 
 
 class ExtractObservablesExtractObservablesCategories(BaseModel):
+    name: Optional[str]
+    metadata: Optional[str]
+
+
+class ExtractObservablesExtractObservablesEmotions(BaseModel):
     name: Optional[str]
     metadata: Optional[str]
 

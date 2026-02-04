@@ -26,6 +26,8 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         enableSummarization
         enableEntityExtraction
         enableFactExtraction
+        entityExtractionLimit
+        factExtractionLimit
         messagesWeight
         contentsWeight
       }

@@ -1,0 +1,6 @@
+mutation CreateEmotion($emotion: EmotionInput!) {
+  createEmotion(emotion: $emotion) {
+    id
+    name
+  }
+}

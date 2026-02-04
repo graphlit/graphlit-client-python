@@ -1,0 +1,6 @@
+mutation DeleteEmotions($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteEmotions(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}

@@ -145,6 +145,9 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
               entityBudget
               extractionType
             }
+            hume {
+              confidenceThreshold
+            }
           }
         }
       }

@@ -6,7 +6,7 @@ from typing import Any, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import FactCategory, ObservableTypes, SourceTypes
+from .enums import EntityState, FactCategory, ObservableTypes, SourceTypes
 
 
 class QueryFacts(BaseModel):
@@ -21,6 +21,7 @@ class QueryFactsFactsResults(BaseModel):
     id: str
     creation_date: Any = Field(alias="creationDate")
     owner: "QueryFactsFactsResultsOwner"
+    state: EntityState
     text: str
     valid_at: Optional[Any] = Field(alias="validAt")
     invalid_at: Optional[Any] = Field(alias="invalidAt")

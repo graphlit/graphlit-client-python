@@ -6,6 +6,7 @@ query QueryFactsClusters($filter: FactFilter, $clusters: EntityClustersInput, $c
       owner {
         id
       }
+      state
       text
       validAt
       invalidAt

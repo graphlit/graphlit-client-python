@@ -1,0 +1,6 @@
+mutation DeleteEmotion($id: ID!) {
+  deleteEmotion(id: $id) {
+    id
+    state
+  }
+}

@@ -16,6 +16,7 @@ __all__ = [
     "COUNT_CONNECTORS_GQL",
     "COUNT_CONTENTS_GQL",
     "COUNT_CONVERSATIONS_GQL",
+    "COUNT_EMOTIONS_GQL",
     "COUNT_EVENTS_GQL",
     "COUNT_FACTS_GQL",
     "COUNT_FEEDS_GQL",
@@ -48,6 +49,7 @@ __all__ = [
     "CREATE_COLLECTION_GQL",
     "CREATE_CONNECTOR_GQL",
     "CREATE_CONVERSATION_GQL",
+    "CREATE_EMOTION_GQL",
     "CREATE_EVENT_GQL",
     "CREATE_FACT_GQL",
     "CREATE_FEED_GQL",
@@ -83,6 +85,7 @@ __all__ = [
     "DELETE_ALL_COLLECTIONS_GQL",
     "DELETE_ALL_CONTENTS_GQL",
     "DELETE_ALL_CONVERSATIONS_GQL",
+    "DELETE_ALL_EMOTIONS_GQL",
     "DELETE_ALL_EVENTS_GQL",
     "DELETE_ALL_FACTS_GQL",
     "DELETE_ALL_FEEDS_GQL",
@@ -118,6 +121,8 @@ __all__ = [
     "DELETE_CONTENT_GQL",
     "DELETE_CONVERSATIONS_GQL",
     "DELETE_CONVERSATION_GQL",
+    "DELETE_EMOTIONS_GQL",
+    "DELETE_EMOTION_GQL",
     "DELETE_EVENTS_GQL",
     "DELETE_EVENT_GQL",
     "DELETE_FACTS_GQL",
@@ -195,6 +200,7 @@ __all__ = [
     "GET_CONNECTOR_GQL",
     "GET_CONTENT_GQL",
     "GET_CONVERSATION_GQL",
+    "GET_EMOTION_GQL",
     "GET_EVENT_GQL",
     "GET_FACT_GQL",
     "GET_FEED_GQL",
@@ -269,6 +275,7 @@ __all__ = [
     "QUERY_DISCORD_CHANNELS_GQL",
     "QUERY_DISCORD_GUILDS_GQL",
     "QUERY_DROPBOX_FOLDERS_GQL",
+    "QUERY_EMOTIONS_GQL",
     "QUERY_EVENTS_CLUSTERS_GQL",
     "QUERY_EVENTS_GQL",
     "QUERY_FACTS_CLUSTERS_GQL",
@@ -372,6 +379,7 @@ __all__ = [
     "UPDATE_CONNECTOR_GQL",
     "UPDATE_CONTENT_GQL",
     "UPDATE_CONVERSATION_GQL",
+    "UPDATE_EMOTION_GQL",
     "UPDATE_EVENT_GQL",
     "UPDATE_FACT_GQL",
     "UPDATE_FEED_GQL",
@@ -1644,6 +1652,10 @@ mutation ExtractObservables($text: String!, $textType: TextTypes, $specification
       name
       metadata
     }
+    emotions {
+      name
+      metadata
+    }
     persons {
       name
       metadata
@@ -2177,40 +2189,6 @@ query GetContent($id: ID!, $correlationId: String) {
       validAt
       invalidAt
       state
-      mentions {
-        type
-        observable {
-          id
-          name
-        }
-        start
-        end
-      }
-      assertions {
-        text
-        mentions {
-          type
-          observable {
-            id
-            name
-          }
-          start
-          end
-        }
-      }
-      feeds {
-        id
-        name
-      }
-      content {
-        id
-        name
-      }
-      conversation {
-        id
-        name
-      }
-      sourceType
       category
       confidence
     }
@@ -3086,40 +3064,6 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
         validAt
         invalidAt
         state
-        mentions {
-          type
-          observable {
-            id
-            name
-          }
-          start
-          end
-        }
-        assertions {
-          text
-          mentions {
-            type
-            observable {
-              id
-              name
-            }
-            start
-            end
-          }
-        }
-        feeds {
-          id
-          name
-        }
-        content {
-          id
-          name
-        }
-        conversation {
-          id
-          name
-        }
-        sourceType
         category
         confidence
       }
@@ -6147,40 +6091,6 @@ query GetConversation($id: ID!, $correlationId: String) {
       validAt
       invalidAt
       state
-      mentions {
-        type
-        observable {
-          id
-          name
-        }
-        start
-        end
-      }
-      assertions {
-        text
-        mentions {
-          type
-          observable {
-            id
-            name
-          }
-          start
-          end
-        }
-      }
-      feeds {
-        id
-        name
-      }
-      content {
-        id
-        name
-      }
-      conversation {
-        id
-        name
-      }
-      sourceType
       category
       confidence
     }
@@ -7590,10 +7500,15 @@ mutation RetrieveFacts($prompt: String!, $filter: FactFilter, $correlationId: St
     results {
       fact {
         id
+        creationDate
+        owner {
+          id
+        }
+        state
         text
         validAt
         invalidAt
-        state
+        relevance
         mentions {
           type
           observable {
@@ -8314,6 +8229,96 @@ mutation UpdateConversation($conversation: ConversationUpdateInput!) {
 }
 """
 
+COUNT_EMOTIONS_GQL = """
+query CountEmotions($filter: EmotionFilter, $correlationId: String) {
+  countEmotions(filter: $filter, correlationId: $correlationId) {
+    count
+  }
+}
+"""
+
+CREATE_EMOTION_GQL = """
+mutation CreateEmotion($emotion: EmotionInput!) {
+  createEmotion(emotion: $emotion) {
+    id
+    name
+  }
+}
+"""
+
+DELETE_ALL_EMOTIONS_GQL = """
+mutation DeleteAllEmotions($filter: EmotionFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllEmotions(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_EMOTION_GQL = """
+mutation DeleteEmotion($id: ID!) {
+  deleteEmotion(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_EMOTIONS_GQL = """
+mutation DeleteEmotions($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteEmotions(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}
+"""
+
+GET_EMOTION_GQL = """
+query GetEmotion($id: ID!, $correlationId: String) {
+  emotion(id: $id, correlationId: $correlationId) {
+    id
+    name
+    description
+    creationDate
+    feeds {
+      id
+      name
+    }
+  }
+}
+"""
+
+QUERY_EMOTIONS_GQL = """
+query QueryEmotions($filter: EmotionFilter, $correlationId: String) {
+  emotions(filter: $filter, correlationId: $correlationId) {
+    results {
+      id
+      name
+      description
+      creationDate
+      relevance
+      feeds {
+        id
+        name
+      }
+    }
+  }
+}
+"""
+
+UPDATE_EMOTION_GQL = """
+mutation UpdateEmotion($emotion: EmotionUpdateInput!) {
+  updateEmotion(emotion: $emotion) {
+    id
+    name
+  }
+}
+"""
+
 COUNT_EVENTS_GQL = """
 query CountEvents($filter: EventFilter, $correlationId: String) {
   countEvents(filter: $filter, correlationId: $correlationId) {
@@ -8670,6 +8675,7 @@ query GetFact($id: ID!, $correlationId: String) {
     owner {
       id
     }
+    state
     text
     validAt
     invalidAt
@@ -8723,6 +8729,7 @@ query QueryFacts($filter: FactFilter, $correlationId: String) {
       owner {
         id
       }
+      state
       text
       validAt
       invalidAt
@@ -8777,6 +8784,7 @@ query QueryFactsClusters($filter: FactFilter, $clusters: EntityClustersInput, $c
       owner {
         id
       }
+      state
       text
       validAt
       invalidAt
@@ -9299,6 +9307,7 @@ query GetFeed($id: ID!, $correlationId: String) {
     }
     meeting {
       type
+      contentType
       readLimit
       fireflies {
         apiKey
@@ -9995,6 +10004,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
       }
       meeting {
         type
+        contentType
         readLimit
         fireflies {
           apiKey
@@ -16370,6 +16380,8 @@ query GetSpecification($id: ID!, $correlationId: String) {
       enableSummarization
       enableEntityExtraction
       enableFactExtraction
+      entityExtractionLimit
+      factExtractionLimit
       messagesWeight
       contentsWeight
     }
@@ -16758,6 +16770,8 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         enableSummarization
         enableEntityExtraction
         enableFactExtraction
+        entityExtractionLimit
+        factExtractionLimit
         messagesWeight
         contentsWeight
       }
@@ -18449,6 +18463,9 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
             entityBudget
             extractionType
           }
+          hume {
+            confidenceThreshold
+          }
         }
       }
     }
@@ -18744,6 +18761,9 @@ query GetWorkflow($id: ID!, $correlationId: String) {
             entityBudget
             extractionType
           }
+          hume {
+            confidenceThreshold
+          }
         }
       }
     }
@@ -19010,6 +19030,9 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
               entityBudget
               extractionType
             }
+            hume {
+              confidenceThreshold
+            }
           }
         }
       }
@@ -19270,6 +19293,9 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
             entityBudget
             extractionType
           }
+          hume {
+            confidenceThreshold
+          }
         }
       }
     }
@@ -19528,6 +19554,9 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
             timeBudget
             entityBudget
             extractionType
+          }
+          hume {
+            confidenceThreshold
           }
         }
       }

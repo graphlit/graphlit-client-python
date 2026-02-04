@@ -34,6 +34,7 @@ from .enums import (
     HubSpotFeedAuthenticationTypes,
     HubSpotIssueAuthenticationTypes,
     IntercomConversationsAuthenticationTypes,
+    MeetingContentTypes,
     MicrosoftCalendarAuthenticationTypes,
     MicrosoftContactsAuthenticationTypes,
     MicrosoftEmailAuthenticationTypes,
@@ -647,6 +648,7 @@ class QueryFeedsFeedsResultsCalendarMicrosoftConnector(BaseModel):
 
 class QueryFeedsFeedsResultsMeeting(BaseModel):
     type: FeedServiceTypes
+    content_type: Optional[MeetingContentTypes] = Field(alias="contentType")
     read_limit: Optional[int] = Field(alias="readLimit")
     fireflies: Optional["QueryFeedsFeedsResultsMeetingFireflies"]
     attio: Optional["QueryFeedsFeedsResultsMeetingAttio"]

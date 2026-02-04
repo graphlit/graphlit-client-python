@@ -24,7 +24,6 @@ from .enums import (
     ObservableTypes,
     OccurrenceTypes,
     OrientationTypes,
-    SourceTypes,
     TextRoles,
 )
 
@@ -560,58 +559,8 @@ class GetContentContentFacts(BaseModel):
     valid_at: Optional[Any] = Field(alias="validAt")
     invalid_at: Optional[Any] = Field(alias="invalidAt")
     state: EntityState
-    mentions: Optional[list[Optional["GetContentContentFactsMentions"]]]
-    assertions: Optional[list[Optional["GetContentContentFactsAssertions"]]]
-    feeds: Optional[list[Optional["GetContentContentFactsFeeds"]]]
-    content: Optional["GetContentContentFactsContent"]
-    conversation: Optional["GetContentContentFactsConversation"]
-    source_type: Optional[SourceTypes] = Field(alias="sourceType")
     category: Optional[FactCategory]
     confidence: Optional[float]
-
-
-class GetContentContentFactsMentions(BaseModel):
-    type: Optional[ObservableTypes]
-    observable: Optional["GetContentContentFactsMentionsObservable"]
-    start: Optional[int]
-    end: Optional[int]
-
-
-class GetContentContentFactsMentionsObservable(BaseModel):
-    id: str
-    name: Optional[str]
-
-
-class GetContentContentFactsAssertions(BaseModel):
-    text: str
-    mentions: Optional[list[Optional["GetContentContentFactsAssertionsMentions"]]]
-
-
-class GetContentContentFactsAssertionsMentions(BaseModel):
-    type: Optional[ObservableTypes]
-    observable: Optional["GetContentContentFactsAssertionsMentionsObservable"]
-    start: Optional[int]
-    end: Optional[int]
-
-
-class GetContentContentFactsAssertionsMentionsObservable(BaseModel):
-    id: str
-    name: Optional[str]
-
-
-class GetContentContentFactsFeeds(BaseModel):
-    id: str
-    name: str
-
-
-class GetContentContentFactsContent(BaseModel):
-    id: str
-    name: str
-
-
-class GetContentContentFactsConversation(BaseModel):
-    id: str
-    name: str
 
 
 class GetContentContentWorkflow(BaseModel):
@@ -674,8 +623,4 @@ GetContentContentPost.model_rebuild()
 GetContentContentMeeting.model_rebuild()
 GetContentContentObservations.model_rebuild()
 GetContentContentObservationsOccurrences.model_rebuild()
-GetContentContentFacts.model_rebuild()
-GetContentContentFactsMentions.model_rebuild()
-GetContentContentFactsAssertions.model_rebuild()
-GetContentContentFactsAssertionsMentions.model_rebuild()
 GetContentContentPages.model_rebuild()

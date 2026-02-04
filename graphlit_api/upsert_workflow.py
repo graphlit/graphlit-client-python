@@ -257,6 +257,7 @@ class UpsertWorkflowUpsertWorkflowExtractionJobsConnector(BaseModel):
     model_text: Optional[
         "UpsertWorkflowUpsertWorkflowExtractionJobsConnectorModelText"
     ] = Field(alias="modelText")
+    hume: Optional["UpsertWorkflowUpsertWorkflowExtractionJobsConnectorHume"]
 
 
 class UpsertWorkflowUpsertWorkflowExtractionJobsConnectorAzureText(BaseModel):
@@ -294,6 +295,10 @@ class UpsertWorkflowUpsertWorkflowExtractionJobsConnectorModelTextSpecification(
     BaseModel
 ):
     id: str
+
+
+class UpsertWorkflowUpsertWorkflowExtractionJobsConnectorHume(BaseModel):
+    confidence_threshold: Optional[float] = Field(alias="confidenceThreshold")
 
 
 class UpsertWorkflowUpsertWorkflowClassification(BaseModel):

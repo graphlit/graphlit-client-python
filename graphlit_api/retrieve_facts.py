@@ -27,10 +27,13 @@ class RetrieveFactsRetrieveFactsResults(BaseModel):
 
 class RetrieveFactsRetrieveFactsResultsFact(BaseModel):
     id: str
+    creation_date: Any = Field(alias="creationDate")
+    owner: "RetrieveFactsRetrieveFactsResultsFactOwner"
+    state: EntityState
     text: str
     valid_at: Optional[Any] = Field(alias="validAt")
     invalid_at: Optional[Any] = Field(alias="invalidAt")
-    state: EntityState
+    relevance: Optional[float]
     mentions: Optional[list[Optional["RetrieveFactsRetrieveFactsResultsFactMentions"]]]
     assertions: Optional[
         list[Optional["RetrieveFactsRetrieveFactsResultsFactAssertions"]]
@@ -41,6 +44,10 @@ class RetrieveFactsRetrieveFactsResultsFact(BaseModel):
     source_type: Optional[SourceTypes] = Field(alias="sourceType")
     category: Optional[FactCategory]
     confidence: Optional[float]
+
+
+class RetrieveFactsRetrieveFactsResultsFactOwner(BaseModel):
+    id: str
 
 
 class RetrieveFactsRetrieveFactsResultsFactMentions(BaseModel):

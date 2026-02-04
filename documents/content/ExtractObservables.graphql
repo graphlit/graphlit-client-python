@@ -8,6 +8,10 @@ mutation ExtractObservables($text: String!, $textType: TextTypes, $specification
       name
       metadata
     }
+    emotions {
+      name
+      metadata
+    }
     persons {
       name
       metadata

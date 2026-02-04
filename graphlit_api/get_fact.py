@@ -6,7 +6,7 @@ from typing import Any, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import FactCategory, ObservableTypes, SourceTypes
+from .enums import EntityState, FactCategory, ObservableTypes, SourceTypes
 
 
 class GetFact(BaseModel):
@@ -17,6 +17,7 @@ class GetFactFact(BaseModel):
     id: str
     creation_date: Any = Field(alias="creationDate")
     owner: "GetFactFactOwner"
+    state: EntityState
     text: str
     valid_at: Optional[Any] = Field(alias="validAt")
     invalid_at: Optional[Any] = Field(alias="invalidAt")

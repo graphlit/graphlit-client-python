@@ -6,6 +6,7 @@ query QueryFacts($filter: FactFilter, $correlationId: String) {
       owner {
         id
       }
+      state
       text
       validAt
       invalidAt

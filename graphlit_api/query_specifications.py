@@ -115,6 +115,8 @@ class QuerySpecificationsSpecificationsResultsStrategy(BaseModel):
     enable_summarization: Optional[bool] = Field(alias="enableSummarization")
     enable_entity_extraction: Optional[bool] = Field(alias="enableEntityExtraction")
     enable_fact_extraction: Optional[bool] = Field(alias="enableFactExtraction")
+    entity_extraction_limit: Optional[int] = Field(alias="entityExtractionLimit")
+    fact_extraction_limit: Optional[int] = Field(alias="factExtractionLimit")
     messages_weight: Optional[float] = Field(alias="messagesWeight")
     contents_weight: Optional[float] = Field(alias="contentsWeight")
 

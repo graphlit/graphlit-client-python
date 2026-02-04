@@ -138,6 +138,9 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
             entityBudget
             extractionType
           }
+          hume {
+            confidenceThreshold
+          }
         }
       }
     }

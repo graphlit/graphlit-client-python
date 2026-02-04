@@ -193,6 +193,7 @@ class SourceTypes(str, Enum):
 class ObservableTypes(str, Enum):
     CATEGORY = "CATEGORY"
     LABEL = "LABEL"
+    EMOTION = "EMOTION"
     EVENT = "EVENT"
     INVESTMENT = "INVESTMENT"
     INVESTMENT_FUND = "INVESTMENT_FUND"
@@ -213,6 +214,10 @@ class ObservableTypes(str, Enum):
     MEDICAL_DEVICE = "MEDICAL_DEVICE"
     MEDICAL_THERAPY = "MEDICAL_THERAPY"
     MEDICAL_PROCEDURE = "MEDICAL_PROCEDURE"
+
+
+class EmotionFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
 
 
 class LinkTypes(str, Enum):
@@ -379,6 +384,7 @@ class FileTypes(str, Enum):
     POINT_CLOUD = "POINT_CLOUD"
     GEOMETRY = "GEOMETRY"
     DRAWING = "DRAWING"
+    SUBTITLES = "SUBTITLES"
     MANIFEST = "MANIFEST"
     UNKNOWN = "UNKNOWN"
 
@@ -502,6 +508,7 @@ class EntityExtractionServiceTypes(str, Enum):
     OPEN_AI_IMAGE = "OPEN_AI_IMAGE"
     AZURE_COGNITIVE_SERVICES_IMAGE = "AZURE_COGNITIVE_SERVICES_IMAGE"
     AZURE_COGNITIVE_SERVICES_TEXT = "AZURE_COGNITIVE_SERVICES_TEXT"
+    HUME_EMOTION = "HUME_EMOTION"
 
 
 class CalendarReminderMethod(str, Enum):
@@ -1192,6 +1199,12 @@ class OneDriveAuthenticationTypes(str, Enum):
     CONNECTOR = "CONNECTOR"
 
 
+class MeetingContentTypes(str, Enum):
+    TRANSCRIPT = "TRANSCRIPT"
+    RECORDING = "RECORDING"
+    PREFERRED = "PREFERRED"
+
+
 class EmbeddingTypes(str, Enum):
     TEXT = "TEXT"
     IMAGE = "IMAGE"
@@ -1465,6 +1478,7 @@ class EntityTypes(str, Enum):
     INVESTMENT_FUND = "INVESTMENT_FUND"
     JOB = "JOB"
     LABEL = "LABEL"
+    EMOTION = "EMOTION"
     METADATA = "METADATA"
     MEDICAL_STUDY = "MEDICAL_STUDY"
     MEDICAL_CONDITION = "MEDICAL_CONDITION"

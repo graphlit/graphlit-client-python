@@ -50,6 +50,7 @@ from .enums import (
     ElevenLabsScribeModels,
     EmailListingTypes,
     EmbeddingTypes,
+    EmotionFacetTypes,
     EntityEnrichmentServiceTypes,
     EntityExtractionServiceTypes,
     EntityResolutionStrategyTypes,
@@ -106,6 +107,7 @@ from .enums import (
     MedicalStudyFacetTypes,
     MedicalTestFacetTypes,
     MedicalTherapyFacetTypes,
+    MeetingContentTypes,
     MetadataTypes,
     MicrosoftCalendarAuthenticationTypes,
     MicrosoftContactsAuthenticationTypes,
@@ -435,6 +437,32 @@ class MedicalTestFilter(BaseModel):
     medical_tests: Optional[list["EntityReferenceFilter"]] = Field(
         alias="medicalTests", default=None
     )
+
+
+class EmotionFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
+    feeds: Optional[list["EntityReferenceFilter"]] = None
 
 
 class MedicalStudyFilter(BaseModel):
@@ -1048,6 +1076,7 @@ class EntityExtractionConnectorInput(BaseModel):
     model_image: Optional["ModelImageExtractionPropertiesInput"] = Field(
         alias="modelImage", default=None
     )
+    hume: Optional["HumeExtractionPropertiesInput"] = None
 
 
 class PointInput(BaseModel):
@@ -1547,6 +1576,9 @@ class RegexContentClassificationPropertiesInput(BaseModel):
 
 class MeetingFeedPropertiesInput(BaseModel):
     type: FeedServiceTypes
+    content_type: Optional[MeetingContentTypes] = Field(
+        alias="contentType", default=None
+    )
     fireflies: Optional["FirefliesFeedPropertiesInput"] = None
     attio: Optional["AttioMeetingPropertiesInput"] = None
     fathom: Optional["FathomPropertiesInput"] = None
@@ -1592,6 +1624,12 @@ class PackageMetadataInput(BaseModel):
 
 class KrispPropertiesInput(BaseModel):
     auth_token: Optional[str] = Field(alias="authToken", default=None)
+
+
+class EmotionUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    description: Optional[str] = None
 
 
 class EntityReferenceInput(BaseModel):
@@ -2277,6 +2315,12 @@ class PersonInput(BaseModel):
     title: Optional[str] = None
     occupation: Optional[str] = None
     education: Optional[str] = None
+
+
+class HumeExtractionPropertiesInput(BaseModel):
+    confidence_threshold: Optional[float] = Field(
+        alias="confidenceThreshold", default=None
+    )
 
 
 class MedicalProcedureFilter(BaseModel):
@@ -3218,6 +3262,14 @@ class AzureFileFeedPropertiesInput(BaseModel):
     prefix: Optional[str] = None
 
 
+class EmotionFacetInput(BaseModel):
+    time_interval: Optional[TimeIntervalTypes] = Field(
+        alias="timeInterval", default=None
+    )
+    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
+    facet: Optional[EmotionFacetTypes] = None
+
+
 class OpenAIImagePublishingPropertiesInput(BaseModel):
     model: Optional[OpenAIImageModels] = None
     count: Optional[int] = None
@@ -3849,6 +3901,9 @@ class ContentFacetInput(BaseModel):
 
 
 class MeetingFeedPropertiesUpdateInput(BaseModel):
+    content_type: Optional[MeetingContentTypes] = Field(
+        alias="contentType", default=None
+    )
     fireflies: Optional["FirefliesFeedPropertiesUpdateInput"] = None
     attio: Optional["AttioMeetingPropertiesUpdateInput"] = None
     fathom: Optional["FathomPropertiesUpdateInput"] = None
@@ -3913,6 +3968,11 @@ class CollectionFilter(BaseModel):
     disable_inheritance: Optional[bool] = Field(
         alias="disableInheritance", default=None
     )
+
+
+class EmotionInput(BaseModel):
+    name: str
+    description: Optional[str] = None
 
 
 class MicrosoftTeamsChannelsInput(BaseModel):
@@ -4967,6 +5027,12 @@ class ConversationStrategyUpdateInput(BaseModel):
     enable_fact_extraction: Optional[bool] = Field(
         alias="enableFactExtraction", default=None
     )
+    entity_extraction_limit: Optional[int] = Field(
+        alias="entityExtractionLimit", default=None
+    )
+    fact_extraction_limit: Optional[int] = Field(
+        alias="factExtractionLimit", default=None
+    )
     messages_weight: Optional[float] = Field(alias="messagesWeight", default=None)
     contents_weight: Optional[float] = Field(alias="contentsWeight", default=None)
 
@@ -5371,6 +5437,12 @@ class ConversationStrategyInput(BaseModel):
     )
     enable_fact_extraction: Optional[bool] = Field(
         alias="enableFactExtraction", default=None
+    )
+    entity_extraction_limit: Optional[int] = Field(
+        alias="entityExtractionLimit", default=None
+    )
+    fact_extraction_limit: Optional[int] = Field(
+        alias="factExtractionLimit", default=None
     )
     messages_weight: Optional[float] = Field(alias="messagesWeight", default=None)
     contents_weight: Optional[float] = Field(alias="contentsWeight", default=None)
@@ -5866,6 +5938,7 @@ MedicalStudyInput.model_rebuild()
 MedicalGuidelineUpdateInput.model_rebuild()
 SpecificationInput.model_rebuild()
 MedicalTestFilter.model_rebuild()
+EmotionFilter.model_rebuild()
 MedicalStudyFilter.model_rebuild()
 MedicalDrugInput.model_rebuild()
 ObservationInput.model_rebuild()

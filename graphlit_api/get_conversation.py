@@ -19,7 +19,6 @@ from .enums import (
     ObservableTypes,
     OccurrenceTypes,
     OrientationTypes,
-    SourceTypes,
 )
 
 
@@ -596,60 +595,8 @@ class GetConversationConversationFacts(BaseModel):
     valid_at: Optional[Any] = Field(alias="validAt")
     invalid_at: Optional[Any] = Field(alias="invalidAt")
     state: EntityState
-    mentions: Optional[list[Optional["GetConversationConversationFactsMentions"]]]
-    assertions: Optional[list[Optional["GetConversationConversationFactsAssertions"]]]
-    feeds: Optional[list[Optional["GetConversationConversationFactsFeeds"]]]
-    content: Optional["GetConversationConversationFactsContent"]
-    conversation: Optional["GetConversationConversationFactsConversation"]
-    source_type: Optional[SourceTypes] = Field(alias="sourceType")
     category: Optional[FactCategory]
     confidence: Optional[float]
-
-
-class GetConversationConversationFactsMentions(BaseModel):
-    type: Optional[ObservableTypes]
-    observable: Optional["GetConversationConversationFactsMentionsObservable"]
-    start: Optional[int]
-    end: Optional[int]
-
-
-class GetConversationConversationFactsMentionsObservable(BaseModel):
-    id: str
-    name: Optional[str]
-
-
-class GetConversationConversationFactsAssertions(BaseModel):
-    text: str
-    mentions: Optional[
-        list[Optional["GetConversationConversationFactsAssertionsMentions"]]
-    ]
-
-
-class GetConversationConversationFactsAssertionsMentions(BaseModel):
-    type: Optional[ObservableTypes]
-    observable: Optional["GetConversationConversationFactsAssertionsMentionsObservable"]
-    start: Optional[int]
-    end: Optional[int]
-
-
-class GetConversationConversationFactsAssertionsMentionsObservable(BaseModel):
-    id: str
-    name: Optional[str]
-
-
-class GetConversationConversationFactsFeeds(BaseModel):
-    id: str
-    name: str
-
-
-class GetConversationConversationFactsContent(BaseModel):
-    id: str
-    name: str
-
-
-class GetConversationConversationFactsConversation(BaseModel):
-    id: str
-    name: str
 
 
 GetConversation.model_rebuild()
@@ -672,7 +619,3 @@ GetConversationConversationAugmentedFilterAnd.model_rebuild()
 GetConversationConversationAugmentedFilterAndObservations.model_rebuild()
 GetConversationConversationObservations.model_rebuild()
 GetConversationConversationObservationsOccurrences.model_rebuild()
-GetConversationConversationFacts.model_rebuild()
-GetConversationConversationFactsMentions.model_rebuild()
-GetConversationConversationFactsAssertions.model_rebuild()
-GetConversationConversationFactsAssertionsMentions.model_rebuild()

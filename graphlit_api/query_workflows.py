@@ -267,6 +267,7 @@ class QueryWorkflowsWorkflowsResultsExtractionJobsConnector(BaseModel):
     model_text: Optional[
         "QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelText"
     ] = Field(alias="modelText")
+    hume: Optional["QueryWorkflowsWorkflowsResultsExtractionJobsConnectorHume"]
 
 
 class QueryWorkflowsWorkflowsResultsExtractionJobsConnectorAzureText(BaseModel):
@@ -304,6 +305,10 @@ class QueryWorkflowsWorkflowsResultsExtractionJobsConnectorModelTextSpecificatio
     BaseModel
 ):
     id: str
+
+
+class QueryWorkflowsWorkflowsResultsExtractionJobsConnectorHume(BaseModel):
+    confidence_threshold: Optional[float] = Field(alias="confidenceThreshold")
 
 
 class QueryWorkflowsWorkflowsResultsClassification(BaseModel):

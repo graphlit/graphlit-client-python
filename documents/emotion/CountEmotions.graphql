@@ -1,0 +1,5 @@
+query CountEmotions($filter: EmotionFilter, $correlationId: String) {
+  countEmotions(filter: $filter, correlationId: $correlationId) {
+    count
+  }
+}

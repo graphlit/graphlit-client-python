@@ -1,0 +1,15 @@
+query QueryEmotions($filter: EmotionFilter, $correlationId: String) {
+  emotions(filter: $filter, correlationId: $correlationId) {
+    results {
+      id
+      name
+      description
+      creationDate
+      relevance
+      feeds {
+        id
+        name
+      }
+    }
+  }
+}
