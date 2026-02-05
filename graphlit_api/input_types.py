@@ -8,6 +8,7 @@ from pydantic import Field
 from .base_model import BaseModel
 from .enums import (
     AlertTypes,
+    AnthropicEffortLevels,
     AnthropicModels,
     ArcadeProviders,
     AsanaAuthenticationTypes,
@@ -3614,6 +3615,7 @@ class AnthropicModelPropertiesInput(BaseModel):
     thinking_token_limit: Optional[int] = Field(
         alias="thinkingTokenLimit", default=None
     )
+    effort: Optional[AnthropicEffortLevels] = None
 
 
 class ProjectQuotaInput(BaseModel):
@@ -4051,6 +4053,7 @@ class AnthropicModelPropertiesUpdateInput(BaseModel):
     thinking_token_limit: Optional[int] = Field(
         alias="thinkingTokenLimit", default=None
     )
+    effort: Optional[AnthropicEffortLevels] = None
 
 
 class GoogleModelPropertiesUpdateInput(BaseModel):
