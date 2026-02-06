@@ -16463,6 +16463,7 @@ query GetSpecification($id: ID!, $correlationId: String) {
       probability
       enableThinking
       thinkingTokenLimit
+      effort
     }
     google {
       tokenLimit
@@ -16853,6 +16854,7 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         probability
         enableThinking
         thinkingTokenLimit
+        effort
       }
       google {
         tokenLimit

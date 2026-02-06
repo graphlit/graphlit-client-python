@@ -107,6 +107,7 @@ query GetSpecification($id: ID!, $correlationId: String) {
       probability
       enableThinking
       thinkingTokenLimit
+      effort
     }
     google {
       tokenLimit

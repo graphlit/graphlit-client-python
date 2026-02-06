@@ -7,6 +7,7 @@ from pydantic import Field
 
 from .base_model import BaseModel
 from .enums import (
+    AnthropicEffortLevels,
     AnthropicModels,
     AzureOpenAIModels,
     BedrockModels,
@@ -211,6 +212,7 @@ class QuerySpecificationsSpecificationsResultsAnthropic(BaseModel):
     probability: Optional[float]
     enable_thinking: Optional[bool] = Field(alias="enableThinking")
     thinking_token_limit: Optional[int] = Field(alias="thinkingTokenLimit")
+    effort: Optional[AnthropicEffortLevels]
 
 
 class QuerySpecificationsSpecificationsResultsGoogle(BaseModel):
