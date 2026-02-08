@@ -39,6 +39,7 @@ from .enums import (
     MicrosoftContactsAuthenticationTypes,
     MicrosoftEmailAuthenticationTypes,
     MicrosoftTeamsAuthenticationTypes,
+    NotionAuthenticationTypes,
     NotionTypes,
     OneDriveAuthenticationTypes,
     ParallelGenerators,
@@ -722,9 +723,20 @@ class QueryFeedsFeedsResultsReddit(BaseModel):
 
 class QueryFeedsFeedsResultsNotion(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
-    token: str
+    authentication_type: Optional[NotionAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    token: Optional[str]
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["QueryFeedsFeedsResultsNotionConnector"]
     identifiers: list[str]
     type: NotionTypes
+
+
+class QueryFeedsFeedsResultsNotionConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsConfluence(BaseModel):
@@ -933,6 +945,7 @@ QueryFeedsFeedsResultsCalendarGoogle.model_rebuild()
 QueryFeedsFeedsResultsCalendarMicrosoft.model_rebuild()
 QueryFeedsFeedsResultsMeeting.model_rebuild()
 QueryFeedsFeedsResultsMeetingHubSpot.model_rebuild()
+QueryFeedsFeedsResultsNotion.model_rebuild()
 QueryFeedsFeedsResultsSlack.model_rebuild()
 QueryFeedsFeedsResultsMicrosoftTeams.model_rebuild()
 QueryFeedsFeedsResultsSalesforce.model_rebuild()

@@ -9362,7 +9362,14 @@ query GetFeed($id: ID!, $correlationId: String) {
     }
     notion {
       readLimit
+      authenticationType
       token
+      clientId
+      clientSecret
+      refreshToken
+      connector {
+        id
+      }
       identifiers
       type
     }
@@ -10059,7 +10066,14 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
       }
       notion {
         readLimit
+        authenticationType
         token
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
         identifiers
         type
       }

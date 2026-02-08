@@ -117,6 +117,7 @@ from .enums import (
     MistralModels,
     ModelServiceTypes,
     ModelTypes,
+    NotionAuthenticationTypes,
     NotionTypes,
     OAuthProviders,
     ObservableTypes,
@@ -2458,9 +2459,16 @@ class RepoInput(BaseModel):
 
 class NotionFeedPropertiesUpdateInput(BaseModel):
     is_recursive: Optional[bool] = Field(alias="isRecursive", default=None)
-    token: str
+    authentication_type: Optional[NotionAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    token: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
     type: Optional[NotionTypes] = None
-    identifiers: Optional[list[str]] = None
+    identifiers: list[str]
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -2712,7 +2720,11 @@ class MedicalContraindicationUpdateInput(BaseModel):
 
 
 class NotionDatabasesInput(BaseModel):
-    token: str
+    authentication_type: Optional[NotionAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    token: Optional[str] = None
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class TwitterIntegrationPropertiesInput(BaseModel):
@@ -4685,7 +4697,14 @@ class HubSpotTasksFeedPropertiesUpdateInput(BaseModel):
 
 class NotionFeedPropertiesInput(BaseModel):
     is_recursive: Optional[bool] = Field(alias="isRecursive", default=None)
-    token: str
+    authentication_type: Optional[NotionAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    token: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
     type: NotionTypes
     identifiers: list[str]
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
@@ -5452,7 +5471,11 @@ class ConversationStrategyInput(BaseModel):
 
 
 class NotionPagesInput(BaseModel):
-    token: str
+    authentication_type: Optional[NotionAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    token: Optional[str] = None
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class ZendeskTicketsFeedPropertiesInput(BaseModel):
@@ -6026,6 +6049,7 @@ BoxFeedPropertiesUpdateInput.model_rebuild()
 MedicalGuidelineInput.model_rebuild()
 GoogleCalendarFeedPropertiesInput.model_rebuild()
 RepoInput.model_rebuild()
+NotionFeedPropertiesUpdateInput.model_rebuild()
 ModelDocumentPreparationPropertiesInput.model_rebuild()
 SalesforceFeedPropertiesUpdateInput.model_rebuild()
 MedicalGuidelineFilter.model_rebuild()
@@ -6038,6 +6062,7 @@ MetadataFilter.model_rebuild()
 ContentPublishingConnectorInput.model_rebuild()
 ViewFilter.model_rebuild()
 MedicalContraindicationUpdateInput.model_rebuild()
+NotionDatabasesInput.model_rebuild()
 GoogleDriveFeedPropertiesUpdateInput.model_rebuild()
 IssueFeedPropertiesUpdateInput.model_rebuild()
 OneDriveFeedPropertiesInput.model_rebuild()
@@ -6118,6 +6143,7 @@ CRMFeedPropertiesUpdateInput.model_rebuild()
 OneDriveFeedPropertiesUpdateInput.model_rebuild()
 MedicalContraindicationFilter.model_rebuild()
 HubSpotTasksFeedPropertiesUpdateInput.model_rebuild()
+NotionFeedPropertiesInput.model_rebuild()
 SalesforceCRMFeedPropertiesUpdateInput.model_rebuild()
 SoftwareUpdateInput.model_rebuild()
 ModelContentClassificationPropertiesInput.model_rebuild()
@@ -6156,6 +6182,7 @@ GoogleCalendarFeedPropertiesUpdateInput.model_rebuild()
 DropboxFeedPropertiesUpdateInput.model_rebuild()
 GitHubCommitsFeedPropertiesInput.model_rebuild()
 BoxFeedPropertiesInput.model_rebuild()
+NotionPagesInput.model_rebuild()
 PersonUpdateInput.model_rebuild()
 ContentFilter.model_rebuild()
 MedicalIndicationInput.model_rebuild()

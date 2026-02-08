@@ -877,6 +877,11 @@ class CalendarEventStatus(str, Enum):
     CANCELLED = "CANCELLED"
 
 
+class NotionAuthenticationTypes(str, Enum):
+    TOKEN = "TOKEN"
+    CONNECTOR = "CONNECTOR"
+
+
 class AzureDocumentIntelligenceVersions(str, Enum):
     V2023_07_31 = "V2023_07_31"
     V2024_02_29_PREVIEW = "V2024_02_29_PREVIEW"
@@ -1453,6 +1458,7 @@ class OAuthProviders(str, Enum):
     GIT_HUB = "GIT_HUB"
     SLACK = "SLACK"
     HUB_SPOT = "HUB_SPOT"
+    NOTION = "NOTION"
 
 
 class OrderDirectionTypes(str, Enum):
