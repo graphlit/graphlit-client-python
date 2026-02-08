@@ -2468,7 +2468,7 @@ class NotionFeedPropertiesUpdateInput(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
     type: Optional[NotionTypes] = None
-    identifiers: list[str]
+    identifiers: Optional[list[str]] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
