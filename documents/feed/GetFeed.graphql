@@ -156,11 +156,19 @@ query GetFeed($id: ID!, $correlationId: String) {
       type
       includeAttachments
       jira {
+        authenticationType
         uri
         project
         email
         token
         offset
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
+        cloudId
       }
       linear {
         key
@@ -429,9 +437,17 @@ query GetFeed($id: ID!, $correlationId: String) {
     }
     confluence {
       readLimit
+      authenticationType
       uri
       email
       token
+      clientId
+      clientSecret
+      refreshToken
+      connector {
+        id
+      }
+      cloudId
       spaceKeys
       identifiers
       type

@@ -13,6 +13,7 @@ from .enums import (
     BlobListingTypes,
     BoxAuthenticationTypes,
     CalendarListingTypes,
+    ConfluenceAuthenticationTypes,
     ConfluenceTypes,
     DropboxAuthenticationTypes,
     EmailListingTypes,
@@ -34,6 +35,7 @@ from .enums import (
     HubSpotFeedAuthenticationTypes,
     HubSpotIssueAuthenticationTypes,
     IntercomConversationsAuthenticationTypes,
+    JiraAuthenticationTypes,
     MeetingContentTypes,
     MicrosoftCalendarAuthenticationTypes,
     MicrosoftContactsAuthenticationTypes,
@@ -337,11 +339,23 @@ class GetFeedFeedIssue(BaseModel):
 
 
 class GetFeedFeedIssueJira(BaseModel):
-    uri: Any
-    project: str
-    email: str
-    token: str
+    authentication_type: Optional[JiraAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    uri: Optional[Any]
+    project: Optional[str]
+    email: Optional[str]
+    token: Optional[str]
     offset: Optional[Any]
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["GetFeedFeedIssueJiraConnector"]
+    cloud_id: Optional[str] = Field(alias="cloudId")
+
+
+class GetFeedFeedIssueJiraConnector(BaseModel):
+    id: str
 
 
 class GetFeedFeedIssueLinear(BaseModel):
@@ -726,13 +740,25 @@ class GetFeedFeedNotionConnector(BaseModel):
 
 class GetFeedFeedConfluence(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
-    uri: str
-    email: str
-    token: str
+    authentication_type: Optional[ConfluenceAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    uri: Optional[str]
+    email: Optional[str]
+    token: Optional[str]
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["GetFeedFeedConfluenceConnector"]
+    cloud_id: Optional[str] = Field(alias="cloudId")
     space_keys: Optional[list[str]] = Field(alias="spaceKeys")
     identifiers: Optional[list[str]]
     type: ConfluenceTypes
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
+
+
+class GetFeedFeedConfluenceConnector(BaseModel):
+    id: str
 
 
 class GetFeedFeedIntercom(BaseModel):
@@ -911,6 +937,7 @@ GetFeedFeedEmail.model_rebuild()
 GetFeedFeedEmailGoogle.model_rebuild()
 GetFeedFeedEmailMicrosoft.model_rebuild()
 GetFeedFeedIssue.model_rebuild()
+GetFeedFeedIssueJira.model_rebuild()
 GetFeedFeedIssueGithub.model_rebuild()
 GetFeedFeedIssueSalesforce.model_rebuild()
 GetFeedFeedIssueHubSpot.model_rebuild()
@@ -930,6 +957,7 @@ GetFeedFeedCalendarMicrosoft.model_rebuild()
 GetFeedFeedMeeting.model_rebuild()
 GetFeedFeedMeetingHubSpot.model_rebuild()
 GetFeedFeedNotion.model_rebuild()
+GetFeedFeedConfluence.model_rebuild()
 GetFeedFeedSlack.model_rebuild()
 GetFeedFeedMicrosoftTeams.model_rebuild()
 GetFeedFeedSalesforce.model_rebuild()

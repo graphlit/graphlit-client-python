@@ -1459,6 +1459,7 @@ class OAuthProviders(str, Enum):
     SLACK = "SLACK"
     HUB_SPOT = "HUB_SPOT"
     NOTION = "NOTION"
+    ATLASSIAN = "ATLASSIAN"
 
 
 class OrderDirectionTypes(str, Enum):
@@ -1560,6 +1561,11 @@ class ElevenLabsModels(str, Enum):
     TURBO_V2_5 = "TURBO_V2_5"
 
 
+class ConfluenceAuthenticationTypes(str, Enum):
+    TOKEN = "TOKEN"
+    CONNECTOR = "CONNECTOR"
+
+
 class ReductoOcrModes(str, Enum):
     STANDARD = "STANDARD"
     AGENTIC = "AGENTIC"
@@ -1588,6 +1594,11 @@ class TimeIntervalTypes(str, Enum):
 
 class MicrosoftCalendarAuthenticationTypes(str, Enum):
     USER = "USER"
+    CONNECTOR = "CONNECTOR"
+
+
+class JiraAuthenticationTypes(str, Enum):
+    TOKEN = "TOKEN"
     CONNECTOR = "CONNECTOR"
 
 

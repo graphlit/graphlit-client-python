@@ -13,6 +13,7 @@ from .enums import (
     BlobListingTypes,
     BoxAuthenticationTypes,
     CalendarListingTypes,
+    ConfluenceAuthenticationTypes,
     ConfluenceTypes,
     DropboxAuthenticationTypes,
     EmailListingTypes,
@@ -34,6 +35,7 @@ from .enums import (
     HubSpotFeedAuthenticationTypes,
     HubSpotIssueAuthenticationTypes,
     IntercomConversationsAuthenticationTypes,
+    JiraAuthenticationTypes,
     MeetingContentTypes,
     MicrosoftCalendarAuthenticationTypes,
     MicrosoftContactsAuthenticationTypes,
@@ -352,11 +354,23 @@ class QueryFeedsFeedsResultsIssue(BaseModel):
 
 
 class QueryFeedsFeedsResultsIssueJira(BaseModel):
-    uri: Any
-    project: str
-    email: str
-    token: str
+    authentication_type: Optional[JiraAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    uri: Optional[Any]
+    project: Optional[str]
+    email: Optional[str]
+    token: Optional[str]
     offset: Optional[Any]
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["QueryFeedsFeedsResultsIssueJiraConnector"]
+    cloud_id: Optional[str] = Field(alias="cloudId")
+
+
+class QueryFeedsFeedsResultsIssueJiraConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsIssueLinear(BaseModel):
@@ -741,13 +755,25 @@ class QueryFeedsFeedsResultsNotionConnector(BaseModel):
 
 class QueryFeedsFeedsResultsConfluence(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
-    uri: str
-    email: str
-    token: str
+    authentication_type: Optional[ConfluenceAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    uri: Optional[str]
+    email: Optional[str]
+    token: Optional[str]
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["QueryFeedsFeedsResultsConfluenceConnector"]
+    cloud_id: Optional[str] = Field(alias="cloudId")
     space_keys: Optional[list[str]] = Field(alias="spaceKeys")
     identifiers: Optional[list[str]]
     type: ConfluenceTypes
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
+
+
+class QueryFeedsFeedsResultsConfluenceConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsIntercom(BaseModel):
@@ -927,6 +953,7 @@ QueryFeedsFeedsResultsEmail.model_rebuild()
 QueryFeedsFeedsResultsEmailGoogle.model_rebuild()
 QueryFeedsFeedsResultsEmailMicrosoft.model_rebuild()
 QueryFeedsFeedsResultsIssue.model_rebuild()
+QueryFeedsFeedsResultsIssueJira.model_rebuild()
 QueryFeedsFeedsResultsIssueGithub.model_rebuild()
 QueryFeedsFeedsResultsIssueSalesforce.model_rebuild()
 QueryFeedsFeedsResultsIssueHubSpot.model_rebuild()
@@ -946,6 +973,7 @@ QueryFeedsFeedsResultsCalendarMicrosoft.model_rebuild()
 QueryFeedsFeedsResultsMeeting.model_rebuild()
 QueryFeedsFeedsResultsMeetingHubSpot.model_rebuild()
 QueryFeedsFeedsResultsNotion.model_rebuild()
+QueryFeedsFeedsResultsConfluence.model_rebuild()
 QueryFeedsFeedsResultsSlack.model_rebuild()
 QueryFeedsFeedsResultsMicrosoftTeams.model_rebuild()
 QueryFeedsFeedsResultsSalesforce.model_rebuild()

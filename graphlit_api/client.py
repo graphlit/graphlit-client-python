@@ -255,6 +255,7 @@ from .input_types import (
     AlertUpdateInput,
     AsanaProjectsInput,
     AsanaWorkspacesInput,
+    AtlassianSitesInput,
     BambooHROptionsInput,
     BoxFoldersInput,
     CategoryFilter,
@@ -312,6 +313,7 @@ from .input_types import (
     InvestmentFundUpdateInput,
     InvestmentInput,
     InvestmentUpdateInput,
+    JiraProjectsInput,
     LabelFilter,
     LabelInput,
     LabelUpdateInput,
@@ -663,6 +665,7 @@ from .operations import (
     QUERY_ALERTS_GQL,
     QUERY_ASANA_PROJECTS_GQL,
     QUERY_ASANA_WORKSPACES_GQL,
+    QUERY_ATLASSIAN_SITES_GQL,
     QUERY_BAMBOO_HR_DEPARTMENTS_GQL,
     QUERY_BAMBOO_HR_DIVISIONS_GQL,
     QUERY_BAMBOO_HR_EMPLOYMENT_STATUSES_GQL,
@@ -703,6 +706,7 @@ from .operations import (
     QUERY_INVESTMENTS_CLUSTERS_GQL,
     QUERY_INVESTMENTS_EXPANDED_GQL,
     QUERY_INVESTMENTS_GQL,
+    QUERY_JIRA_PROJECTS_GQL,
     QUERY_LABELS_GQL,
     QUERY_LINEAR_PROJECTS_GQL,
     QUERY_MEDICAL_CONDITIONS_CLUSTERS_GQL,
@@ -835,6 +839,7 @@ from .publish_text import PublishText
 from .query_alerts import QueryAlerts
 from .query_asana_projects import QueryAsanaProjects
 from .query_asana_workspaces import QueryAsanaWorkspaces
+from .query_atlassian_sites import QueryAtlassianSites
 from .query_bamboo_hr_departments import QueryBambooHRDepartments
 from .query_bamboo_hr_divisions import QueryBambooHRDivisions
 from .query_bamboo_hr_employment_statuses import QueryBambooHREmploymentStatuses
@@ -875,6 +880,7 @@ from .query_investment_funds_expanded import QueryInvestmentFundsExpanded
 from .query_investments import QueryInvestments
 from .query_investments_clusters import QueryInvestmentsClusters
 from .query_investments_expanded import QueryInvestmentsExpanded
+from .query_jira_projects import QueryJiraProjects
 from .query_labels import QueryLabels
 from .query_linear_projects import QueryLinearProjects
 from .query_medical_conditions import QueryMedicalConditions
@@ -3631,6 +3637,19 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryAsanaWorkspaces.model_validate(data)
 
+    async def query_atlassian_sites(
+        self, properties: AtlassianSitesInput, **kwargs: Any
+    ) -> QueryAtlassianSites:
+        variables: dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_ATLASSIAN_SITES_GQL,
+            operation_name="QueryAtlassianSites",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryAtlassianSites.model_validate(data)
+
     async def query_bamboo_hr_departments(
         self, properties: BambooHROptionsInput, **kwargs: Any
     ) -> QueryBambooHRDepartments:
@@ -3859,6 +3878,19 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryGustoLocations.model_validate(data)
+
+    async def query_jira_projects(
+        self, properties: JiraProjectsInput, **kwargs: Any
+    ) -> QueryJiraProjects:
+        variables: dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_JIRA_PROJECTS_GQL,
+            operation_name="QueryJiraProjects",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryJiraProjects.model_validate(data)
 
     async def query_linear_projects(
         self, properties: LinearProjectsInput, **kwargs: Any

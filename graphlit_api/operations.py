@@ -255,6 +255,7 @@ __all__ = [
     "QUERY_ALERTS_GQL",
     "QUERY_ASANA_PROJECTS_GQL",
     "QUERY_ASANA_WORKSPACES_GQL",
+    "QUERY_ATLASSIAN_SITES_GQL",
     "QUERY_BAMBOO_HR_DEPARTMENTS_GQL",
     "QUERY_BAMBOO_HR_DIVISIONS_GQL",
     "QUERY_BAMBOO_HR_EMPLOYMENT_STATUSES_GQL",
@@ -295,6 +296,7 @@ __all__ = [
     "QUERY_INVESTMENT_FUNDS_CLUSTERS_GQL",
     "QUERY_INVESTMENT_FUNDS_EXPANDED_GQL",
     "QUERY_INVESTMENT_FUNDS_GQL",
+    "QUERY_JIRA_PROJECTS_GQL",
     "QUERY_LABELS_GQL",
     "QUERY_LINEAR_PROJECTS_GQL",
     "QUERY_MEDICAL_CONDITIONS_CLUSTERS_GQL",
@@ -9102,11 +9104,19 @@ query GetFeed($id: ID!, $correlationId: String) {
       type
       includeAttachments
       jira {
+        authenticationType
         uri
         project
         email
         token
         offset
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
+        cloudId
       }
       linear {
         key
@@ -9375,9 +9385,17 @@ query GetFeed($id: ID!, $correlationId: String) {
     }
     confluence {
       readLimit
+      authenticationType
       uri
       email
       token
+      clientId
+      clientSecret
+      refreshToken
+      connector {
+        id
+      }
+      cloudId
       spaceKeys
       identifiers
       type
@@ -9541,6 +9559,18 @@ QUERY_ASANA_WORKSPACES_GQL = """
 query QueryAsanaWorkspaces($properties: AsanaWorkspacesInput!) {
   asanaWorkspaces(properties: $properties) {
     results
+  }
+}
+"""
+
+QUERY_ATLASSIAN_SITES_GQL = """
+query QueryAtlassianSites($properties: AtlassianSitesInput!) {
+  atlassianSites(properties: $properties) {
+    results {
+      identifier
+      name
+      url
+    }
   }
 }
 """
@@ -9806,11 +9836,19 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         type
         includeAttachments
         jira {
+          authenticationType
           uri
           project
           email
           token
           offset
+          clientId
+          clientSecret
+          refreshToken
+          connector {
+            id
+          }
+          cloudId
         }
         linear {
           key
@@ -10079,9 +10117,17 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
       }
       confluence {
         readLimit
+        authenticationType
         uri
         email
         token
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
+        cloudId
         spaceKeys
         identifiers
         type
@@ -10295,6 +10341,18 @@ query QueryGustoLocations($properties: GustoOptionsInput!) {
       state
       zip
       country
+    }
+  }
+}
+"""
+
+QUERY_JIRA_PROJECTS_GQL = """
+query QueryJiraProjects($properties: JiraProjectsInput!) {
+  jiraProjects(properties: $properties) {
+    results {
+      identifier
+      name
+      key
     }
   }
 }

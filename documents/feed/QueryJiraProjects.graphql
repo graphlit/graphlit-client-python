@@ -1,0 +1,9 @@
+query QueryJiraProjects($properties: JiraProjectsInput!) {
+  jiraProjects(properties: $properties) {
+    results {
+      identifier
+      name
+      key
+    }
+  }
+}

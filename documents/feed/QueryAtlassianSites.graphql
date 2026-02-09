@@ -1,0 +1,9 @@
+query QueryAtlassianSites($properties: AtlassianSitesInput!) {
+  atlassianSites(properties: $properties) {
+    results {
+      identifier
+      name
+      url
+    }
+  }
+}

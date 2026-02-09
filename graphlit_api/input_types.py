@@ -32,6 +32,7 @@ from .enums import (
     CerebrasModels,
     CohereModels,
     CollectionTypes,
+    ConfluenceAuthenticationTypes,
     ConfluenceTypes,
     ConnectorTypes,
     ContentClassificationServiceTypes,
@@ -91,6 +92,7 @@ from .enums import (
     InvestmentFacetTypes,
     InvestmentFundFacetTypes,
     JinaModels,
+    JiraAuthenticationTypes,
     LabelFacetTypes,
     LinkTypes,
     MailImportance,
@@ -1591,6 +1593,17 @@ class MeetingFeedPropertiesInput(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
+class JiraProjectsInput(BaseModel):
+    authentication_type: Optional[JiraAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    uri: Optional[str] = None
+    email_address: Optional[str] = Field(alias="emailAddress", default=None)
+    token: Optional[str] = None
+    connector: Optional["EntityReferenceInput"] = None
+    cloud_id: Optional[str] = Field(alias="cloudId", default=None)
+
+
 class WebFeedPropertiesUpdateInput(BaseModel):
     uri: Optional[Any] = None
     allowed_paths: Optional[list[str]] = Field(alias="allowedPaths", default=None)
@@ -1909,9 +1922,14 @@ class AzureTextExtractionPropertiesInput(BaseModel):
 
 
 class ConfluenceSpacesInput(BaseModel):
-    uri: str
-    email_address: str = Field(alias="emailAddress")
-    token: str
+    authentication_type: Optional[ConfluenceAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    uri: Optional[str] = None
+    email_address: Optional[str] = Field(alias="emailAddress", default=None)
+    token: Optional[str] = None
+    connector: Optional["EntityReferenceInput"] = None
+    cloud_id: Optional[str] = Field(alias="cloudId", default=None)
 
 
 class MicrosoftCalendarFeedPropertiesUpdateInput(BaseModel):
@@ -2115,11 +2133,19 @@ class MedicalConditionUpdateInput(BaseModel):
 
 
 class AtlassianJiraFeedPropertiesInput(BaseModel):
-    uri: Any
-    project: str
-    email: str
-    token: str
+    authentication_type: Optional[JiraAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    uri: Optional[Any] = None
+    project: Optional[str] = None
+    email: Optional[str] = None
+    token: Optional[str] = None
     offset: Optional[Any] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    cloud_id: Optional[str] = Field(alias="cloudId", default=None)
 
 
 class GitHubFeedPropertiesInput(BaseModel):
@@ -2501,11 +2527,19 @@ class SalesforceFeedPropertiesUpdateInput(BaseModel):
 
 
 class AtlassianJiraFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[JiraAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     uri: Optional[Any] = None
     project: Optional[str] = None
     email: Optional[str] = None
     token: Optional[str] = None
     offset: Optional[Any] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    cloud_id: Optional[str] = Field(alias="cloudId", default=None)
 
 
 class MedicalGuidelineFilter(BaseModel):
@@ -2732,6 +2766,14 @@ class TwitterIntegrationPropertiesInput(BaseModel):
     consumer_secret: str = Field(alias="consumerSecret")
     access_token_key: str = Field(alias="accessTokenKey")
     access_token_secret: str = Field(alias="accessTokenSecret")
+
+
+class AtlassianSitesInput(BaseModel):
+    authentication_type: Optional[ConfluenceAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    token: Optional[str] = None
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class PromptClassificationRuleInput(BaseModel):
@@ -3072,9 +3114,17 @@ class FeedSchedulePolicyInput(BaseModel):
 
 class ConfluenceFeedPropertiesInput(BaseModel):
     is_recursive: Optional[bool] = Field(alias="isRecursive", default=None)
-    uri: str
-    email: str
-    token: str
+    authentication_type: Optional[ConfluenceAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    uri: Optional[str] = None
+    email: Optional[str] = None
+    token: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    cloud_id: Optional[str] = Field(alias="cloudId", default=None)
     type: ConfluenceTypes
     space_keys: Optional[list[str]] = Field(alias="spaceKeys", default=None)
     identifiers: Optional[list[str]] = None
@@ -5427,9 +5477,17 @@ class ParallelEntityFeedPropertiesInput(BaseModel):
 
 class ConfluenceFeedPropertiesUpdateInput(BaseModel):
     is_recursive: Optional[bool] = Field(alias="isRecursive", default=None)
+    authentication_type: Optional[ConfluenceAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     uri: Optional[str] = None
     email: Optional[str] = None
     token: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    cloud_id: Optional[str] = Field(alias="cloudId", default=None)
     type: Optional[ConfluenceTypes] = None
     space_keys: Optional[list[str]] = Field(alias="spaceKeys", default=None)
     identifiers: Optional[list[str]] = None
@@ -6012,6 +6070,7 @@ MedicalTherapyUpdateInput.model_rebuild()
 CommitFeedPropertiesInput.model_rebuild()
 RegexContentClassificationPropertiesInput.model_rebuild()
 MeetingFeedPropertiesInput.model_rebuild()
+JiraProjectsInput.model_rebuild()
 EnrichmentWorkflowJobInput.model_rebuild()
 PackageMetadataInput.model_rebuild()
 ConnectorUpdateInput.model_rebuild()
@@ -6023,6 +6082,7 @@ SiteFeedPropertiesUpdateInput.model_rebuild()
 EmailFeedPropertiesUpdateInput.model_rebuild()
 MedicalDeviceInput.model_rebuild()
 InvestmentInput.model_rebuild()
+ConfluenceSpacesInput.model_rebuild()
 MicrosoftCalendarFeedPropertiesUpdateInput.model_rebuild()
 DropboxFoldersInput.model_rebuild()
 PreparationWorkflowJobInput.model_rebuild()
@@ -6034,6 +6094,7 @@ EntityEnrichmentConnectorInput.model_rebuild()
 ObservationReferenceFilter.model_rebuild()
 EventInput.model_rebuild()
 MedicalConditionUpdateInput.model_rebuild()
+AtlassianJiraFeedPropertiesInput.model_rebuild()
 GitHubFeedPropertiesInput.model_rebuild()
 IssueMetadataInput.model_rebuild()
 EventUpdateInput.model_rebuild()
@@ -6052,6 +6113,7 @@ RepoInput.model_rebuild()
 NotionFeedPropertiesUpdateInput.model_rebuild()
 ModelDocumentPreparationPropertiesInput.model_rebuild()
 SalesforceFeedPropertiesUpdateInput.model_rebuild()
+AtlassianJiraFeedPropertiesUpdateInput.model_rebuild()
 MedicalGuidelineFilter.model_rebuild()
 CommitFeedPropertiesUpdateInput.model_rebuild()
 ProjectUpdateInput.model_rebuild()
@@ -6063,6 +6125,7 @@ ContentPublishingConnectorInput.model_rebuild()
 ViewFilter.model_rebuild()
 MedicalContraindicationUpdateInput.model_rebuild()
 NotionDatabasesInput.model_rebuild()
+AtlassianSitesInput.model_rebuild()
 GoogleDriveFeedPropertiesUpdateInput.model_rebuild()
 IssueFeedPropertiesUpdateInput.model_rebuild()
 OneDriveFeedPropertiesInput.model_rebuild()
@@ -6075,6 +6138,7 @@ ShapeMetadataInput.model_rebuild()
 CategoryFilter.model_rebuild()
 HRISFeedPropertiesInput.model_rebuild()
 ResearchFeedPropertiesUpdateInput.model_rebuild()
+ConfluenceFeedPropertiesInput.model_rebuild()
 WorkflowUpdateInput.model_rebuild()
 GitHubCommitsFeedPropertiesUpdateInput.model_rebuild()
 SharePointFeedPropertiesUpdateInput.model_rebuild()
@@ -6182,6 +6246,7 @@ GoogleCalendarFeedPropertiesUpdateInput.model_rebuild()
 DropboxFeedPropertiesUpdateInput.model_rebuild()
 GitHubCommitsFeedPropertiesInput.model_rebuild()
 BoxFeedPropertiesInput.model_rebuild()
+ConfluenceFeedPropertiesUpdateInput.model_rebuild()
 NotionPagesInput.model_rebuild()
 PersonUpdateInput.model_rebuild()
 ContentFilter.model_rebuild()
