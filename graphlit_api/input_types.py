@@ -272,6 +272,7 @@ class MicrosoftContactsCRMFeedPropertiesUpdateInput(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     tenant_id: Optional[str] = Field(alias="tenantId", default=None)
     connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
 
 
 class SummarizationStrategyInput(BaseModel):
@@ -548,6 +549,7 @@ class AttioMeetingPropertiesUpdateInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    type: Optional[FeedListingTypes] = None
 
 
 class PlaceFacetInput(BaseModel):
@@ -673,6 +675,7 @@ class FathomPropertiesInput(BaseModel):
     api_key: str = Field(alias="apiKey")
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    type: Optional[FeedListingTypes] = None
 
 
 class H3Filter(BaseModel):
@@ -1213,6 +1216,7 @@ class FirefliesFeedPropertiesInput(BaseModel):
     api_key: str = Field(alias="apiKey")
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    type: Optional[FeedListingTypes] = None
 
 
 class EventFacetInput(BaseModel):
@@ -1428,6 +1432,7 @@ class SalesforceCRMFeedPropertiesInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
 
 
 class BedrockModelPropertiesUpdateInput(BaseModel):
@@ -1521,6 +1526,7 @@ class HubSpotCRMFeedPropertiesUpdateInput(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     access_token: Optional[str] = Field(alias="accessToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
 
 
 class PersonReferenceInput(BaseModel):
@@ -1684,6 +1690,7 @@ class PackageMetadataInput(BaseModel):
 
 class KrispPropertiesInput(BaseModel):
     auth_token: Optional[str] = Field(alias="authToken", default=None)
+    type: Optional[FeedListingTypes] = None
 
 
 class EmotionUpdateInput(BaseModel):
@@ -2079,6 +2086,7 @@ class HubSpotMeetingPropertiesUpdateInput(BaseModel):
     )
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    type: Optional[FeedListingTypes] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -2664,6 +2672,7 @@ class FirefliesFeedPropertiesUpdateInput(BaseModel):
     api_key: Optional[str] = Field(alias="apiKey", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    type: Optional[FeedListingTypes] = None
 
 
 class GraphFilter(BaseModel):
@@ -3339,6 +3348,7 @@ class HubSpotMeetingPropertiesInput(BaseModel):
     )
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    type: Optional[FeedListingTypes] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -3378,6 +3388,7 @@ class GoogleContactsCRMFeedPropertiesInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
 
 
 class DiffbotEnrichmentPropertiesInput(BaseModel):
@@ -3466,6 +3477,7 @@ class AttioCRMFeedPropertiesUpdateInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
 
 
 class PromptStrategyInput(BaseModel):
@@ -3823,6 +3835,7 @@ class AttioCRMFeedPropertiesInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
 
 
 class BambooHROptionsInput(BaseModel):
@@ -3948,6 +3961,7 @@ class AttioMeetingPropertiesInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    type: Optional[FeedListingTypes] = None
 
 
 class MistralModelPropertiesUpdateInput(BaseModel):
@@ -4015,6 +4029,7 @@ class FathomPropertiesUpdateInput(BaseModel):
     api_key: Optional[str] = Field(alias="apiKey", default=None)
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    type: Optional[FeedListingTypes] = None
 
 
 class FHIREnrichmentPropertiesInput(BaseModel):
@@ -4542,6 +4557,7 @@ class ObservationOccurrenceInput(BaseModel):
 
 class KrispPropertiesUpdateInput(BaseModel):
     auth_token: Optional[str] = Field(alias="authToken", default=None)
+    type: Optional[FeedListingTypes] = None
 
 
 class BedrockModelPropertiesInput(BaseModel):
@@ -4572,6 +4588,7 @@ class GoogleContactsCRMFeedPropertiesUpdateInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
 
 
 class HubSpotCRMFeedPropertiesInput(BaseModel):
@@ -4583,6 +4600,7 @@ class HubSpotCRMFeedPropertiesInput(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     access_token: Optional[str] = Field(alias="accessToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
 
 
 class IssueFeedPropertiesInput(BaseModel):
@@ -4872,6 +4890,7 @@ class SalesforceCRMFeedPropertiesUpdateInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
 
 
 class SoftwareUpdateInput(BaseModel):
@@ -5136,6 +5155,7 @@ class MicrosoftContactsCRMFeedPropertiesInput(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     tenant_id: Optional[str] = Field(alias="tenantId", default=None)
     connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
 
 
 class MedicalDrugFilter(BaseModel):

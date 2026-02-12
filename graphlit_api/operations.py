@@ -9250,6 +9250,7 @@ query GetFeed($id: ID!, $correlationId: String) {
         connector {
           id
         }
+        type
       }
       googleContacts {
         authenticationType
@@ -9259,6 +9260,7 @@ query GetFeed($id: ID!, $correlationId: String) {
         connector {
           id
         }
+        type
       }
       microsoftContacts {
         authenticationType
@@ -9269,6 +9271,7 @@ query GetFeed($id: ID!, $correlationId: String) {
         connector {
           id
         }
+        type
       }
       salesforce {
         authenticationType
@@ -9280,6 +9283,7 @@ query GetFeed($id: ID!, $correlationId: String) {
         connector {
           id
         }
+        type
       }
       hubSpot {
         authenticationType
@@ -9290,6 +9294,7 @@ query GetFeed($id: ID!, $correlationId: String) {
         connector {
           id
         }
+        type
       }
       readLimit
     }
@@ -9350,6 +9355,7 @@ query GetFeed($id: ID!, $correlationId: String) {
         apiKey
         beforeDate
         afterDate
+        type
       }
       attio {
         authenticationType
@@ -9362,11 +9368,13 @@ query GetFeed($id: ID!, $correlationId: String) {
         }
         afterDate
         beforeDate
+        type
       }
       fathom {
         apiKey
         afterDate
         beforeDate
+        type
       }
       hubSpot {
         authenticationType
@@ -9379,9 +9387,11 @@ query GetFeed($id: ID!, $correlationId: String) {
         connector {
           id
         }
+        type
       }
       krisp {
         authToken
+        type
       }
     }
     rss {
@@ -10040,6 +10050,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           connector {
             id
           }
+          type
         }
         googleContacts {
           authenticationType
@@ -10049,6 +10060,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           connector {
             id
           }
+          type
         }
         microsoftContacts {
           authenticationType
@@ -10059,6 +10071,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           connector {
             id
           }
+          type
         }
         salesforce {
           authenticationType
@@ -10070,6 +10083,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           connector {
             id
           }
+          type
         }
         hubSpot {
           authenticationType
@@ -10080,6 +10094,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           connector {
             id
           }
+          type
         }
         readLimit
       }
@@ -10140,6 +10155,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           apiKey
           beforeDate
           afterDate
+          type
         }
         attio {
           authenticationType
@@ -10152,11 +10168,13 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           }
           afterDate
           beforeDate
+          type
         }
         fathom {
           apiKey
           afterDate
           beforeDate
+          type
         }
         hubSpot {
           authenticationType
@@ -10169,9 +10187,11 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           connector {
             id
           }
+          type
         }
         krisp {
           authToken
+          type
         }
       }
       rss {

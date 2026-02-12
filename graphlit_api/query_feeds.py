@@ -572,6 +572,7 @@ class QueryFeedsFeedsResultsCrmAttio(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     connector: Optional["QueryFeedsFeedsResultsCrmAttioConnector"]
+    type: Optional[FeedListingTypes]
 
 
 class QueryFeedsFeedsResultsCrmAttioConnector(BaseModel):
@@ -586,6 +587,7 @@ class QueryFeedsFeedsResultsCrmGoogleContacts(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     connector: Optional["QueryFeedsFeedsResultsCrmGoogleContactsConnector"]
+    type: Optional[FeedListingTypes]
 
 
 class QueryFeedsFeedsResultsCrmGoogleContactsConnector(BaseModel):
@@ -601,6 +603,7 @@ class QueryFeedsFeedsResultsCrmMicrosoftContacts(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
     tenant_id: Optional[str] = Field(alias="tenantId")
     connector: Optional["QueryFeedsFeedsResultsCrmMicrosoftContactsConnector"]
+    type: Optional[FeedListingTypes]
 
 
 class QueryFeedsFeedsResultsCrmMicrosoftContactsConnector(BaseModel):
@@ -617,6 +620,7 @@ class QueryFeedsFeedsResultsCrmSalesforce(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     connector: Optional["QueryFeedsFeedsResultsCrmSalesforceConnector"]
+    type: Optional[FeedListingTypes]
 
 
 class QueryFeedsFeedsResultsCrmSalesforceConnector(BaseModel):
@@ -632,6 +636,7 @@ class QueryFeedsFeedsResultsCrmHubSpot(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
     access_token: Optional[str] = Field(alias="accessToken")
     connector: Optional["QueryFeedsFeedsResultsCrmHubSpotConnector"]
+    type: Optional[FeedListingTypes]
 
 
 class QueryFeedsFeedsResultsCrmHubSpotConnector(BaseModel):
@@ -724,6 +729,7 @@ class QueryFeedsFeedsResultsMeetingFireflies(BaseModel):
     api_key: Optional[str] = Field(alias="apiKey")
     before_date: Optional[Any] = Field(alias="beforeDate")
     after_date: Optional[Any] = Field(alias="afterDate")
+    type: Optional[FeedListingTypes]
 
 
 class QueryFeedsFeedsResultsMeetingAttio(BaseModel):
@@ -737,6 +743,7 @@ class QueryFeedsFeedsResultsMeetingAttio(BaseModel):
     connector: Optional["QueryFeedsFeedsResultsMeetingAttioConnector"]
     after_date: Optional[Any] = Field(alias="afterDate")
     before_date: Optional[Any] = Field(alias="beforeDate")
+    type: Optional[FeedListingTypes]
 
 
 class QueryFeedsFeedsResultsMeetingAttioConnector(BaseModel):
@@ -747,6 +754,7 @@ class QueryFeedsFeedsResultsMeetingFathom(BaseModel):
     api_key: Optional[str] = Field(alias="apiKey")
     after_date: Optional[Any] = Field(alias="afterDate")
     before_date: Optional[Any] = Field(alias="beforeDate")
+    type: Optional[FeedListingTypes]
 
 
 class QueryFeedsFeedsResultsMeetingHubSpot(BaseModel):
@@ -760,6 +768,7 @@ class QueryFeedsFeedsResultsMeetingHubSpot(BaseModel):
     before_date: Optional[Any] = Field(alias="beforeDate")
     read_limit: Optional[int] = Field(alias="readLimit")
     connector: Optional["QueryFeedsFeedsResultsMeetingHubSpotConnector"]
+    type: Optional[FeedListingTypes]
 
 
 class QueryFeedsFeedsResultsMeetingHubSpotConnector(BaseModel):
@@ -768,6 +777,7 @@ class QueryFeedsFeedsResultsMeetingHubSpotConnector(BaseModel):
 
 class QueryFeedsFeedsResultsMeetingKrisp(BaseModel):
     auth_token: Optional[str] = Field(alias="authToken")
+    type: Optional[FeedListingTypes]
 
 
 class QueryFeedsFeedsResultsRss(BaseModel):
