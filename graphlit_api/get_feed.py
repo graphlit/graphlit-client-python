@@ -11,6 +11,7 @@ from .enums import (
     AttioAuthenticationTypes,
     AttioFeedAuthenticationTypes,
     AttioIssueAuthenticationTypes,
+    AttioMeetingAuthenticationTypes,
     BambooHRAuthenticationTypes,
     BlobListingTypes,
     BoxAuthenticationTypes,
@@ -711,9 +712,20 @@ class GetFeedFeedMeetingFireflies(BaseModel):
 
 
 class GetFeedFeedMeetingAttio(BaseModel):
+    authentication_type: Optional[AttioMeetingAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
     api_key: Optional[str] = Field(alias="apiKey")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["GetFeedFeedMeetingAttioConnector"]
     after_date: Optional[Any] = Field(alias="afterDate")
     before_date: Optional[Any] = Field(alias="beforeDate")
+
+
+class GetFeedFeedMeetingAttioConnector(BaseModel):
+    id: str
 
 
 class GetFeedFeedMeetingFathom(BaseModel):
@@ -1042,6 +1054,7 @@ GetFeedFeedCalendar.model_rebuild()
 GetFeedFeedCalendarGoogle.model_rebuild()
 GetFeedFeedCalendarMicrosoft.model_rebuild()
 GetFeedFeedMeeting.model_rebuild()
+GetFeedFeedMeetingAttio.model_rebuild()
 GetFeedFeedMeetingHubSpot.model_rebuild()
 GetFeedFeedNotion.model_rebuild()
 GetFeedFeedConfluence.model_rebuild()

@@ -11,6 +11,7 @@ from .enums import (
     AttioAuthenticationTypes,
     AttioFeedAuthenticationTypes,
     AttioIssueAuthenticationTypes,
+    AttioMeetingAuthenticationTypes,
     BambooHRAuthenticationTypes,
     BlobListingTypes,
     BoxAuthenticationTypes,
@@ -726,9 +727,20 @@ class QueryFeedsFeedsResultsMeetingFireflies(BaseModel):
 
 
 class QueryFeedsFeedsResultsMeetingAttio(BaseModel):
+    authentication_type: Optional[AttioMeetingAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
     api_key: Optional[str] = Field(alias="apiKey")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["QueryFeedsFeedsResultsMeetingAttioConnector"]
     after_date: Optional[Any] = Field(alias="afterDate")
     before_date: Optional[Any] = Field(alias="beforeDate")
+
+
+class QueryFeedsFeedsResultsMeetingAttioConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsMeetingFathom(BaseModel):
@@ -1058,6 +1070,7 @@ QueryFeedsFeedsResultsCalendar.model_rebuild()
 QueryFeedsFeedsResultsCalendarGoogle.model_rebuild()
 QueryFeedsFeedsResultsCalendarMicrosoft.model_rebuild()
 QueryFeedsFeedsResultsMeeting.model_rebuild()
+QueryFeedsFeedsResultsMeetingAttio.model_rebuild()
 QueryFeedsFeedsResultsMeetingHubSpot.model_rebuild()
 QueryFeedsFeedsResultsNotion.model_rebuild()
 QueryFeedsFeedsResultsConfluence.model_rebuild()

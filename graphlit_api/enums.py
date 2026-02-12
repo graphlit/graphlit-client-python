@@ -1059,6 +1059,12 @@ class CollectionTypes(str, Enum):
     FOLDER = "FOLDER"
 
 
+class AttioMeetingAuthenticationTypes(str, Enum):
+    API_KEY = "API_KEY"
+    ACCESS_TOKEN = "ACCESS_TOKEN"
+    CONNECTOR = "CONNECTOR"
+
+
 class ResourceConnectorTypes(str, Enum):
     AMAZON = "AMAZON"
     AZURE = "AZURE"

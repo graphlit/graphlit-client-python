@@ -16,6 +16,7 @@ from .enums import (
     AttioAuthenticationTypes,
     AttioFeedAuthenticationTypes,
     AttioIssueAuthenticationTypes,
+    AttioMeetingAuthenticationTypes,
     AuthenticationServiceTypes,
     AzureDocumentIntelligenceModels,
     AzureDocumentIntelligenceVersions,
@@ -537,7 +538,14 @@ class AzureImageExtractionPropertiesInput(BaseModel):
 
 
 class AttioMeetingPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[AttioMeetingAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     api_key: Optional[str] = Field(alias="apiKey", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
 
@@ -3930,7 +3938,14 @@ class SoftwareFilter(BaseModel):
 
 
 class AttioMeetingPropertiesInput(BaseModel):
-    api_key: str = Field(alias="apiKey")
+    authentication_type: Optional[AttioMeetingAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
 
@@ -6129,6 +6144,7 @@ SpecificationInput.model_rebuild()
 MedicalTestFilter.model_rebuild()
 EmotionFilter.model_rebuild()
 MedicalStudyFilter.model_rebuild()
+AttioMeetingPropertiesUpdateInput.model_rebuild()
 MedicalDrugInput.model_rebuild()
 ObservationInput.model_rebuild()
 PointCloudMetadataInput.model_rebuild()
@@ -6283,6 +6299,7 @@ ConversationMessageInput.model_rebuild()
 ProjectInput.model_rebuild()
 IntercomTicketsFeedPropertiesInput.model_rebuild()
 SoftwareFilter.model_rebuild()
+AttioMeetingPropertiesInput.model_rebuild()
 EntityFeedPropertiesInput.model_rebuild()
 ImageMetadataInput.model_rebuild()
 ContentCriteriaLevelInput.model_rebuild()

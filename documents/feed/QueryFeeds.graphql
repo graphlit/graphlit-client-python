@@ -406,7 +406,14 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           afterDate
         }
         attio {
+          authenticationType
           apiKey
+          clientId
+          clientSecret
+          refreshToken
+          connector {
+            id
+          }
           afterDate
           beforeDate
         }
