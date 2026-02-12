@@ -422,6 +422,12 @@ class MedicalStudyFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
 
+class AttioIssueAuthenticationTypes(str, Enum):
+    API_KEY = "API_KEY"
+    ACCESS_TOKEN = "ACCESS_TOKEN"
+    CONNECTOR = "CONNECTOR"
+
+
 class OperationTypes(str, Enum):
     QUERY = "QUERY"
     MUTATION = "MUTATION"
@@ -524,6 +530,11 @@ class ContentPublishingServiceTypes(str, Enum):
     OPEN_AI_VIDEO = "OPEN_AI_VIDEO"
     TEXT = "TEXT"
     PARALLEL_RESEARCH = "PARALLEL_RESEARCH"
+
+
+class IntercomIssueAuthenticationTypes(str, Enum):
+    ACCESS_TOKEN = "ACCESS_TOKEN"
+    CONNECTOR = "CONNECTOR"
 
 
 class VideoSizeTypes(str, Enum):
@@ -1216,6 +1227,11 @@ class OneDriveAuthenticationTypes(str, Enum):
     CONNECTOR = "CONNECTOR"
 
 
+class ZendeskIssueAuthenticationTypes(str, Enum):
+    ACCESS_TOKEN = "ACCESS_TOKEN"
+    CONNECTOR = "CONNECTOR"
+
+
 class MeetingContentTypes(str, Enum):
     TRANSCRIPT = "TRANSCRIPT"
     RECORDING = "RECORDING"
@@ -1367,6 +1383,8 @@ class EntityState(str, Enum):
 
 class AttioAuthenticationTypes(str, Enum):
     API_KEY = "API_KEY"
+    ACCESS_TOKEN = "ACCESS_TOKEN"
+    CONNECTOR = "CONNECTOR"
 
 
 class MedicalIndicationFacetTypes(str, Enum):
@@ -1417,6 +1435,12 @@ class EmailListingTypes(str, Enum):
     NEW = "NEW"
 
 
+class AttioFeedAuthenticationTypes(str, Enum):
+    API_KEY = "API_KEY"
+    ACCESS_TOKEN = "ACCESS_TOKEN"
+    CONNECTOR = "CONNECTOR"
+
+
 class MCPServerTypes(str, Enum):
     REMOTE_SSE = "REMOTE_SSE"
     REMOTE_HTTP = "REMOTE_HTTP"
@@ -1460,6 +1484,9 @@ class OAuthProviders(str, Enum):
     HUB_SPOT = "HUB_SPOT"
     NOTION = "NOTION"
     ATLASSIAN = "ATLASSIAN"
+    INTERCOM = "INTERCOM"
+    ZENDESK = "ZENDESK"
+    ATTIO = "ATTIO"
 
 
 class OrderDirectionTypes(str, Enum):
@@ -1551,6 +1578,11 @@ class MailSensitivity(str, Enum):
     COMPANY_CONFIDENTIAL = "COMPANY_CONFIDENTIAL"
 
 
+class IntercomAuthenticationTypes(str, Enum):
+    ACCESS_TOKEN = "ACCESS_TOKEN"
+    CONNECTOR = "CONNECTOR"
+
+
 class ElevenLabsModels(str, Enum):
     MULTILINGUAL_V1 = "MULTILINGUAL_V1"
     MULTILINGUAL_V2 = "MULTILINGUAL_V2"
@@ -1604,6 +1636,11 @@ class JiraAuthenticationTypes(str, Enum):
 
 class MicrosoftContactsAuthenticationTypes(str, Enum):
     USER = "USER"
+    CONNECTOR = "CONNECTOR"
+
+
+class ZendeskAuthenticationTypes(str, Enum):
+    ACCESS_TOKEN = "ACCESS_TOKEN"
     CONNECTOR = "CONNECTOR"
 
 

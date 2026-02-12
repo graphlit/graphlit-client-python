@@ -14,6 +14,8 @@ from .enums import (
     AsanaAuthenticationTypes,
     AssemblyAIModels,
     AttioAuthenticationTypes,
+    AttioFeedAuthenticationTypes,
+    AttioIssueAuthenticationTypes,
     AuthenticationServiceTypes,
     AzureDocumentIntelligenceModels,
     AzureDocumentIntelligenceVersions,
@@ -88,7 +90,9 @@ from .enums import (
     HubSpotIssueAuthenticationTypes,
     ImageProjectionTypes,
     IntegrationServiceTypes,
+    IntercomAuthenticationTypes,
     IntercomConversationsAuthenticationTypes,
+    IntercomIssueAuthenticationTypes,
     InvestmentFacetTypes,
     InvestmentFundFacetTypes,
     JinaModels,
@@ -176,11 +180,20 @@ from .enums import (
     VoyageModels,
     XAIModels,
     YouTubeTypes,
+    ZendeskAuthenticationTypes,
+    ZendeskIssueAuthenticationTypes,
 )
 
 
 class AttioFeedPropertiesInput(BaseModel):
-    api_key: str = Field(alias="apiKey")
+    authentication_type: Optional[AttioFeedAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -671,6 +684,9 @@ class IntercomConversationsFeedPropertiesUpdateInput(BaseModel):
         alias="authenticationType", default=None
     )
     access_token: Optional[str] = Field(alias="accessToken", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
     state: Optional[str] = None
     include_notes: Optional[bool] = Field(alias="includeNotes", default=None)
@@ -761,7 +777,14 @@ class DocumentMetadataInput(BaseModel):
 
 
 class AttioTasksFeedPropertiesInput(BaseModel):
-    api_key: str = Field(alias="apiKey")
+    authentication_type: Optional[AttioIssueAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class LinearFeedPropertiesUpdateInput(BaseModel):
@@ -1193,7 +1216,14 @@ class EventFacetInput(BaseModel):
 
 
 class AttioTasksFeedPropertiesUpdateInput(BaseModel):
-    api_key: str = Field(alias="apiKey")
+    authentication_type: Optional[AttioIssueAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class TextContentInput(BaseModel):
@@ -1408,7 +1438,14 @@ class BedrockModelPropertiesUpdateInput(BaseModel):
 
 
 class AttioFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[AttioFeedAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     api_key: Optional[str] = Field(alias="apiKey", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -2471,7 +2508,14 @@ class GoogleCalendarFeedPropertiesInput(BaseModel):
 
 
 class IntercomTicketsFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[IntercomIssueAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     access_token: Optional[str] = Field(alias="accessToken", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class RepoInput(BaseModel):
@@ -2738,8 +2782,15 @@ class YouTubeFeedPropertiesUpdateInput(BaseModel):
 
 
 class ZendeskFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[ZendeskAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     subdomain: str
-    access_token: str = Field(alias="accessToken")
+    access_token: Optional[str] = Field(alias="accessToken", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -3103,7 +3154,14 @@ class ResearchFeedPropertiesUpdateInput(BaseModel):
 
 
 class IntercomFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[IntercomAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     access_token: Optional[str] = Field(alias="accessToken", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -3396,6 +3454,10 @@ class AttioCRMFeedPropertiesUpdateInput(BaseModel):
         alias="authenticationType", default=None
     )
     api_key: Optional[str] = Field(alias="apiKey", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class PromptStrategyInput(BaseModel):
@@ -3749,6 +3811,10 @@ class AttioCRMFeedPropertiesInput(BaseModel):
         alias="authenticationType", default=None
     )
     api_key: Optional[str] = Field(alias="apiKey", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class BambooHROptionsInput(BaseModel):
@@ -3808,7 +3874,14 @@ class ProjectInput(BaseModel):
 
 
 class IntercomTicketsFeedPropertiesInput(BaseModel):
-    access_token: str = Field(alias="accessToken")
+    authentication_type: Optional[IntercomIssueAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    access_token: Optional[str] = Field(alias="accessToken", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class VoyageModelPropertiesUpdateInput(BaseModel):
@@ -4050,8 +4123,15 @@ class MicrosoftTeamsChannelsInput(BaseModel):
 
 
 class ZendeskTicketsFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[ZendeskIssueAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     subdomain: Optional[str] = None
     access_token: Optional[str] = Field(alias="accessToken", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class TwitterFeedPropertiesInput(BaseModel):
@@ -4096,7 +4176,14 @@ class MentionReferenceFilter(BaseModel):
 
 
 class IntercomFeedPropertiesInput(BaseModel):
-    access_token: str = Field(alias="accessToken")
+    authentication_type: Optional[IntercomAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    access_token: Optional[str] = Field(alias="accessToken", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -5466,8 +5553,15 @@ class BoxFeedPropertiesInput(BaseModel):
 
 
 class ZendeskFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[ZendeskAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     subdomain: Optional[str] = None
     access_token: Optional[str] = Field(alias="accessToken", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -5537,8 +5631,15 @@ class NotionPagesInput(BaseModel):
 
 
 class ZendeskTicketsFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[ZendeskIssueAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     subdomain: str
-    access_token: str = Field(alias="accessToken")
+    access_token: Optional[str] = Field(alias="accessToken", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class AzureAIModelPropertiesInput(BaseModel):
@@ -5987,6 +6088,9 @@ class IntercomConversationsFeedPropertiesInput(BaseModel):
         alias="authenticationType", default=None
     )
     access_token: Optional[str] = Field(alias="accessToken", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
     state: Optional[str] = None
     include_notes: Optional[bool] = Field(alias="includeNotes", default=None)
@@ -6012,6 +6116,7 @@ class StoragePolicyInput(BaseModel):
     snapshot_count: Optional[int] = Field(alias="snapshotCount", default=None)
 
 
+AttioFeedPropertiesInput.model_rebuild()
 ContentCriteriaInput.model_rebuild()
 GoogleCalendarsInput.model_rebuild()
 ResearchFeedPropertiesInput.model_rebuild()
@@ -6035,6 +6140,7 @@ GitHubFeedPropertiesUpdateInput.model_rebuild()
 GoogleDriveFeedPropertiesInput.model_rebuild()
 ExtractionWorkflowJobInput.model_rebuild()
 DocumentMetadataInput.model_rebuild()
+AttioTasksFeedPropertiesInput.model_rebuild()
 ObservationCriteriaInput.model_rebuild()
 EmailFeedPropertiesInput.model_rebuild()
 FactFilter.model_rebuild()
@@ -6051,6 +6157,7 @@ EntityExtractionConnectorInput.model_rebuild()
 OneDriveFoldersInput.model_rebuild()
 MedicalDeviceFilter.model_rebuild()
 MedicalDrugClassUpdateInput.model_rebuild()
+AttioTasksFeedPropertiesUpdateInput.model_rebuild()
 MedicalIndicationUpdateInput.model_rebuild()
 IndexingWorkflowStageInput.model_rebuild()
 PlaceUpdateInput.model_rebuild()
@@ -6059,6 +6166,7 @@ PullRequestFeedPropertiesInput.model_rebuild()
 EmailMetadataInput.model_rebuild()
 InvestmentFundUpdateInput.model_rebuild()
 SalesforceCRMFeedPropertiesInput.model_rebuild()
+AttioFeedPropertiesUpdateInput.model_rebuild()
 MedicalProcedureInput.model_rebuild()
 HubSpotCRMFeedPropertiesUpdateInput.model_rebuild()
 SharePointFeedPropertiesInput.model_rebuild()
@@ -6109,6 +6217,7 @@ ProductInput.model_rebuild()
 BoxFeedPropertiesUpdateInput.model_rebuild()
 MedicalGuidelineInput.model_rebuild()
 GoogleCalendarFeedPropertiesInput.model_rebuild()
+IntercomTicketsFeedPropertiesUpdateInput.model_rebuild()
 RepoInput.model_rebuild()
 NotionFeedPropertiesUpdateInput.model_rebuild()
 ModelDocumentPreparationPropertiesInput.model_rebuild()
@@ -6123,6 +6232,7 @@ MicrosoftCalendarsInput.model_rebuild()
 MetadataFilter.model_rebuild()
 ContentPublishingConnectorInput.model_rebuild()
 ViewFilter.model_rebuild()
+ZendeskFeedPropertiesInput.model_rebuild()
 MedicalContraindicationUpdateInput.model_rebuild()
 NotionDatabasesInput.model_rebuild()
 AtlassianSitesInput.model_rebuild()
@@ -6138,6 +6248,7 @@ ShapeMetadataInput.model_rebuild()
 CategoryFilter.model_rebuild()
 HRISFeedPropertiesInput.model_rebuild()
 ResearchFeedPropertiesUpdateInput.model_rebuild()
+IntercomFeedPropertiesUpdateInput.model_rebuild()
 ConfluenceFeedPropertiesInput.model_rebuild()
 WorkflowUpdateInput.model_rebuild()
 GitHubCommitsFeedPropertiesUpdateInput.model_rebuild()
@@ -6153,6 +6264,7 @@ GoogleContactsCRMFeedPropertiesInput.model_rebuild()
 OpenAIImagePublishingPropertiesInput.model_rebuild()
 LabelFilter.model_rebuild()
 CRMFeedPropertiesInput.model_rebuild()
+AttioCRMFeedPropertiesUpdateInput.model_rebuild()
 PersonFilter.model_rebuild()
 ProductUpdateInput.model_rebuild()
 ExtractionWorkflowStageInput.model_rebuild()
@@ -6165,9 +6277,11 @@ ViewUpdateInput.model_rebuild()
 StorageWorkflowStageInput.model_rebuild()
 MetadataUpdateInput.model_rebuild()
 SharePointLibrariesInput.model_rebuild()
+AttioCRMFeedPropertiesInput.model_rebuild()
 IndexingWorkflowJobInput.model_rebuild()
 ConversationMessageInput.model_rebuild()
 ProjectInput.model_rebuild()
+IntercomTicketsFeedPropertiesInput.model_rebuild()
 SoftwareFilter.model_rebuild()
 EntityFeedPropertiesInput.model_rebuild()
 ImageMetadataInput.model_rebuild()
@@ -6177,9 +6291,11 @@ MeetingFeedPropertiesUpdateInput.model_rebuild()
 MicrosoftEmailFeedPropertiesUpdateInput.model_rebuild()
 CollectionFilter.model_rebuild()
 MicrosoftTeamsChannelsInput.model_rebuild()
+ZendeskTicketsFeedPropertiesUpdateInput.model_rebuild()
 ModelImageExtractionPropertiesInput.model_rebuild()
 CalendarFeedPropertiesUpdateInput.model_rebuild()
 MentionReferenceFilter.model_rebuild()
+IntercomFeedPropertiesInput.model_rebuild()
 InvestmentUpdateInput.model_rebuild()
 RepoUpdateInput.model_rebuild()
 ConversationUpdateInput.model_rebuild()
@@ -6246,8 +6362,10 @@ GoogleCalendarFeedPropertiesUpdateInput.model_rebuild()
 DropboxFeedPropertiesUpdateInput.model_rebuild()
 GitHubCommitsFeedPropertiesInput.model_rebuild()
 BoxFeedPropertiesInput.model_rebuild()
+ZendeskFeedPropertiesUpdateInput.model_rebuild()
 ConfluenceFeedPropertiesUpdateInput.model_rebuild()
 NotionPagesInput.model_rebuild()
+ZendeskTicketsFeedPropertiesInput.model_rebuild()
 PersonUpdateInput.model_rebuild()
 ContentFilter.model_rebuild()
 MedicalIndicationInput.model_rebuild()

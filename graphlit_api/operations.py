@@ -9136,11 +9136,25 @@ query GetFeed($id: ID!, $correlationId: String) {
         }
       }
       intercom {
+        authenticationType
         accessToken
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
       }
       zendesk {
+        authenticationType
         subdomain
         accessToken
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
       }
       trello {
         key
@@ -9149,7 +9163,14 @@ query GetFeed($id: ID!, $correlationId: String) {
         type
       }
       attio {
+        authenticationType
         apiKey
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
       }
       salesforce {
         authenticationType
@@ -9223,6 +9244,12 @@ query GetFeed($id: ID!, $correlationId: String) {
       attio {
         authenticationType
         apiKey
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
       }
       googleContacts {
         authenticationType
@@ -9403,12 +9430,26 @@ query GetFeed($id: ID!, $correlationId: String) {
     }
     intercom {
       readLimit
+      authenticationType
       accessToken
+      clientId
+      clientSecret
+      refreshToken
+      connector {
+        id
+      }
     }
     zendesk {
       readLimit
+      authenticationType
       subdomain
       accessToken
+      clientId
+      clientSecret
+      refreshToken
+      connector {
+        id
+      }
     }
     youtube {
       readLimit
@@ -9463,7 +9504,14 @@ query GetFeed($id: ID!, $correlationId: String) {
     }
     attio {
       readLimit
+      authenticationType
       apiKey
+      clientId
+      clientSecret
+      refreshToken
+      connector {
+        id
+      }
     }
     salesforce {
       readLimit
@@ -9492,6 +9540,9 @@ query GetFeed($id: ID!, $correlationId: String) {
       readLimit
       authenticationType
       accessToken
+      clientId
+      clientSecret
+      refreshToken
       connector {
         id
       }
@@ -9868,11 +9919,25 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           }
         }
         intercom {
+          authenticationType
           accessToken
+          clientId
+          clientSecret
+          refreshToken
+          connector {
+            id
+          }
         }
         zendesk {
+          authenticationType
           subdomain
           accessToken
+          clientId
+          clientSecret
+          refreshToken
+          connector {
+            id
+          }
         }
         trello {
           key
@@ -9881,7 +9946,14 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           type
         }
         attio {
+          authenticationType
           apiKey
+          clientId
+          clientSecret
+          refreshToken
+          connector {
+            id
+          }
         }
         salesforce {
           authenticationType
@@ -9955,6 +10027,12 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         attio {
           authenticationType
           apiKey
+          clientId
+          clientSecret
+          refreshToken
+          connector {
+            id
+          }
         }
         googleContacts {
           authenticationType
@@ -10135,12 +10213,26 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
       }
       intercom {
         readLimit
+        authenticationType
         accessToken
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
       }
       zendesk {
         readLimit
+        authenticationType
         subdomain
         accessToken
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
       }
       youtube {
         readLimit
@@ -10195,7 +10287,14 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
       }
       attio {
         readLimit
+        authenticationType
         apiKey
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
       }
       salesforce {
         readLimit
@@ -10224,6 +10323,9 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         readLimit
         authenticationType
         accessToken
+        clientId
+        clientSecret
+        refreshToken
         connector {
           id
         }
