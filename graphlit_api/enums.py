@@ -1487,6 +1487,7 @@ class OAuthProviders(str, Enum):
     INTERCOM = "INTERCOM"
     ZENDESK = "ZENDESK"
     ATTIO = "ATTIO"
+    SALESFORCE = "SALESFORCE"
 
 
 class OrderDirectionTypes(str, Enum):
