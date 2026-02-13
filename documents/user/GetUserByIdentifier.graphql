@@ -66,5 +66,16 @@ query GetUserByIdentifier($identifier: String!) {
         }
       }
     }
+    personas {
+      id
+      name
+      state
+      role
+      instructions
+      facts {
+        id
+        text
+      }
+    }
   }
 }

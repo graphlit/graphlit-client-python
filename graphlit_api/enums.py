@@ -188,6 +188,7 @@ class GraphStrategyTypes(str, Enum):
 class SourceTypes(str, Enum):
     CONTENT = "CONTENT"
     CONVERSATION = "CONVERSATION"
+    PERSONA = "PERSONA"
 
 
 class ObservableTypes(str, Enum):
@@ -1471,6 +1472,14 @@ class GoogleContactsAuthenticationTypes(str, Enum):
     CONNECTOR = "CONNECTOR"
 
 
+class ExaSearchTypes(str, Enum):
+    AUTO = "AUTO"
+    INSTANT = "INSTANT"
+    FAST = "FAST"
+    DEEP = "DEEP"
+    NEURAL = "NEURAL"
+
+
 class PersonFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
@@ -1547,6 +1556,7 @@ class EntityTypes(str, Enum):
     OBSERVATION = "OBSERVATION"
     ORGANIZATION = "ORGANIZATION"
     PERSON = "PERSON"
+    PERSONA = "PERSONA"
     PLACE = "PLACE"
     PRODUCT = "PRODUCT"
     PROJECT = "PROJECT"

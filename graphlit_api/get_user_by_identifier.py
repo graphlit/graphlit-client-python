@@ -38,6 +38,7 @@ class GetUserByIdentifierUserByIdentifier(BaseModel):
     connectors: Optional[
         list[Optional["GetUserByIdentifierUserByIdentifierConnectors"]]
     ]
+    personas: Optional[list[Optional["GetUserByIdentifierUserByIdentifierPersonas"]]]
 
 
 class GetUserByIdentifierUserByIdentifierOwner(BaseModel):
@@ -127,8 +128,23 @@ class GetUserByIdentifierUserByIdentifierConnectorsIntegrationMcp(BaseModel):
     type: MCPServerTypes
 
 
+class GetUserByIdentifierUserByIdentifierPersonas(BaseModel):
+    id: str
+    name: str
+    state: EntityState
+    role: Optional[str]
+    instructions: Optional[str]
+    facts: Optional[list["GetUserByIdentifierUserByIdentifierPersonasFacts"]]
+
+
+class GetUserByIdentifierUserByIdentifierPersonasFacts(BaseModel):
+    id: Optional[str]
+    text: Optional[str]
+
+
 GetUserByIdentifier.model_rebuild()
 GetUserByIdentifierUserByIdentifier.model_rebuild()
 GetUserByIdentifierUserByIdentifierConnectors.model_rebuild()
 GetUserByIdentifierUserByIdentifierConnectorsAuthentication.model_rebuild()
 GetUserByIdentifierUserByIdentifierConnectorsIntegration.model_rebuild()
+GetUserByIdentifierUserByIdentifierPersonas.model_rebuild()

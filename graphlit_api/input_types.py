@@ -62,6 +62,7 @@ from .enums import (
     EntityState,
     EnvironmentTypes,
     EventFacetTypes,
+    ExaSearchTypes,
     ExtractionTypes,
     FactCategory,
     FeedListingTypes,
@@ -1042,6 +1043,7 @@ class ConversationToolCallInput(BaseModel):
 class SearchFeedPropertiesUpdateInput(BaseModel):
     type: Optional[SearchServiceTypes] = None
     text: Optional[str] = None
+    exa: Optional["ExaSearchPropertiesInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -1565,6 +1567,7 @@ class SharePointFeedPropertiesInput(BaseModel):
 
 class FactInput(BaseModel):
     content: Optional["EntityReferenceInput"] = None
+    persona: Optional["EntityReferenceInput"] = None
     text: str
     valid_at: Optional[Any] = Field(alias="validAt", default=None)
     invalid_at: Optional[Any] = Field(alias="invalidAt", default=None)
@@ -1592,6 +1595,10 @@ class HRISFeedPropertiesUpdateInput(BaseModel):
     )
     gusto: Optional["GustoHRISFeedPropertiesUpdateInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class ExaSearchPropertiesInput(BaseModel):
+    search_type: Optional[ExaSearchTypes] = Field(alias="searchType", default=None)
 
 
 class MetadataInput(BaseModel):
@@ -3154,6 +3161,28 @@ class ObservableInput(BaseModel):
     metadata: Optional[str] = None
 
 
+class PersonaFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+
+
 class HRISFeedPropertiesInput(BaseModel):
     type: FeedServiceTypes
     bamboo_hr: Optional["BambooHRHRISFeedPropertiesInput"] = Field(
@@ -3638,6 +3667,7 @@ class ParallelEntityFeedPropertiesUpdateInput(BaseModel):
 class SearchFeedPropertiesInput(BaseModel):
     type: Optional[SearchServiceTypes] = None
     text: str
+    exa: Optional["ExaSearchPropertiesInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -4312,6 +4342,7 @@ class ConversationUpdateInput(BaseModel):
     name: Optional[str] = None
     messages: Optional[list["ConversationMessageInput"]] = None
     tools: Optional[list["ToolDefinitionInput"]] = None
+    persona: Optional["EntityReferenceInput"] = None
     specification: Optional["EntityReferenceInput"] = None
     fallbacks: Optional[list[Optional["EntityReferenceInput"]]] = None
     filter: Optional["ContentCriteriaInput"] = None
@@ -4924,6 +4955,12 @@ class GoogleImagePublishingPropertiesInput(BaseModel):
     seed: Optional["EntityReferenceInput"] = None
 
 
+class PersonaInput(BaseModel):
+    name: str
+    role: Optional[str] = None
+    instructions: Optional[str] = None
+
+
 class MedicalContraindicationInput(BaseModel):
     name: str
     uri: Optional[Any] = None
@@ -5051,6 +5088,7 @@ class ConversationInput(BaseModel):
     type: Optional[ConversationTypes] = None
     messages: Optional[list["ConversationMessageInput"]] = None
     tools: Optional[list["ToolDefinitionInput"]] = None
+    persona: Optional["EntityReferenceInput"] = None
     specification: Optional["EntityReferenceInput"] = None
     fallbacks: Optional[list[Optional["EntityReferenceInput"]]] = None
     filter: Optional["ContentCriteriaInput"] = None
@@ -5657,6 +5695,13 @@ class ConversationStrategyInput(BaseModel):
     contents_weight: Optional[float] = Field(alias="contentsWeight", default=None)
 
 
+class PersonaUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    role: Optional[str] = None
+    instructions: Optional[str] = None
+
+
 class NotionPagesInput(BaseModel):
     authentication_type: Optional[NotionAuthenticationTypes] = Field(
         alias="authenticationType", default=None
@@ -6186,6 +6231,7 @@ EnrichmentWorkflowStageInput.model_rebuild()
 MedicalStudyUpdateInput.model_rebuild()
 SalesforceFeedPropertiesInput.model_rebuild()
 ViewInput.model_rebuild()
+SearchFeedPropertiesUpdateInput.model_rebuild()
 GoogleEmailFeedPropertiesInput.model_rebuild()
 SalesforceTasksFeedPropertiesUpdateInput.model_rebuild()
 SalesforceTasksFeedPropertiesInput.model_rebuild()
@@ -6282,6 +6328,7 @@ AlertUpdateInput.model_rebuild()
 OrganizationFilter.model_rebuild()
 ShapeMetadataInput.model_rebuild()
 CategoryFilter.model_rebuild()
+PersonaFilter.model_rebuild()
 HRISFeedPropertiesInput.model_rebuild()
 ResearchFeedPropertiesUpdateInput.model_rebuild()
 IntercomFeedPropertiesUpdateInput.model_rebuild()
@@ -6307,6 +6354,7 @@ ExtractionWorkflowStageInput.model_rebuild()
 AuthenticationConnectorInput.model_rebuild()
 CollectionUpdateInput.model_rebuild()
 ProjectFilter.model_rebuild()
+SearchFeedPropertiesInput.model_rebuild()
 SpecificationUpdateInput.model_rebuild()
 IntegrationConnectorInput.model_rebuild()
 ViewUpdateInput.model_rebuild()

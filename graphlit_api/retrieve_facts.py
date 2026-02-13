@@ -41,6 +41,7 @@ class RetrieveFactsRetrieveFactsResultsFact(BaseModel):
     feeds: Optional[list[Optional["RetrieveFactsRetrieveFactsResultsFactFeeds"]]]
     content: Optional["RetrieveFactsRetrieveFactsResultsFactContent"]
     conversation: Optional["RetrieveFactsRetrieveFactsResultsFactConversation"]
+    persona: Optional["RetrieveFactsRetrieveFactsResultsFactPersona"]
     source_type: Optional[SourceTypes] = Field(alias="sourceType")
     category: Optional[FactCategory]
     confidence: Optional[float]
@@ -94,6 +95,11 @@ class RetrieveFactsRetrieveFactsResultsFactContent(BaseModel):
 
 
 class RetrieveFactsRetrieveFactsResultsFactConversation(BaseModel):
+    id: str
+    name: str
+
+
+class RetrieveFactsRetrieveFactsResultsFactPersona(BaseModel):
     id: str
     name: str
 

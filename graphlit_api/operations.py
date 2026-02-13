@@ -35,6 +35,7 @@ __all__ = [
     "COUNT_MEDICAL_TESTS_GQL",
     "COUNT_MEDICAL_THERAPIES_GQL",
     "COUNT_ORGANIZATIONS_GQL",
+    "COUNT_PERSONAS_GQL",
     "COUNT_PERSONS_GQL",
     "COUNT_PLACES_GQL",
     "COUNT_PRODUCTS_GQL",
@@ -69,6 +70,7 @@ __all__ = [
     "CREATE_MEDICAL_THERAPY_GQL",
     "CREATE_OBSERVATION_GQL",
     "CREATE_ORGANIZATION_GQL",
+    "CREATE_PERSONA_GQL",
     "CREATE_PERSON_GQL",
     "CREATE_PLACE_GQL",
     "CREATE_PRODUCT_GQL",
@@ -104,6 +106,7 @@ __all__ = [
     "DELETE_ALL_MEDICAL_TESTS_GQL",
     "DELETE_ALL_MEDICAL_THERAPIES_GQL",
     "DELETE_ALL_ORGANIZATIONS_GQL",
+    "DELETE_ALL_PERSONAS_GQL",
     "DELETE_ALL_PERSONS_GQL",
     "DELETE_ALL_PLACES_GQL",
     "DELETE_ALL_PRODUCTS_GQL",
@@ -160,6 +163,8 @@ __all__ = [
     "DELETE_OBSERVATION_GQL",
     "DELETE_ORGANIZATIONS_GQL",
     "DELETE_ORGANIZATION_GQL",
+    "DELETE_PERSONAS_GQL",
+    "DELETE_PERSONA_GQL",
     "DELETE_PERSONS_GQL",
     "DELETE_PERSON_GQL",
     "DELETE_PLACES_GQL",
@@ -219,6 +224,7 @@ __all__ = [
     "GET_MEDICAL_TEST_GQL",
     "GET_MEDICAL_THERAPY_GQL",
     "GET_ORGANIZATION_GQL",
+    "GET_PERSONA_GQL",
     "GET_PERSON_GQL",
     "GET_PLACE_GQL",
     "GET_PRODUCT_GQL",
@@ -333,6 +339,7 @@ __all__ = [
     "QUERY_ORGANIZATIONS_CLUSTERS_GQL",
     "QUERY_ORGANIZATIONS_EXPANDED_GQL",
     "QUERY_ORGANIZATIONS_GQL",
+    "QUERY_PERSONAS_GQL",
     "QUERY_PERSONS_CLUSTERS_GQL",
     "QUERY_PERSONS_EXPANDED_GQL",
     "QUERY_PERSONS_GQL",
@@ -401,6 +408,7 @@ __all__ = [
     "UPDATE_MEDICAL_THERAPY_GQL",
     "UPDATE_OBSERVATION_GQL",
     "UPDATE_ORGANIZATION_GQL",
+    "UPDATE_PERSONA_GQL",
     "UPDATE_PERSON_GQL",
     "UPDATE_PLACE_GQL",
     "UPDATE_PRODUCT_GQL",
@@ -4850,6 +4858,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
       formattedObservables
       formattedInstructions
       formattedTools
+      formattedPersona
       specification
       messages {
         role
@@ -5181,6 +5190,7 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
       formattedObservables
       formattedInstructions
       formattedTools
+      formattedPersona
       specification
       messages {
         role
@@ -5370,11 +5380,12 @@ mutation DeleteConversations($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 FORMAT_CONVERSATION_GQL = """
-mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $tools: [ToolDefinitionInput!], $systemPrompt: String, $includeDetails: Boolean, $correlationId: String) {
+mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $persona: EntityReferenceInput, $tools: [ToolDefinitionInput!], $systemPrompt: String, $includeDetails: Boolean, $correlationId: String) {
   formatConversation(
     prompt: $prompt
     id: $id
     specification: $specification
+    persona: $persona
     tools: $tools
     systemPrompt: $systemPrompt
     includeDetails: $includeDetails
@@ -5566,6 +5577,7 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
       formattedObservables
       formattedInstructions
       formattedTools
+      formattedPersona
       specification
       messages {
         role
@@ -5863,6 +5875,10 @@ query GetConversation($id: ID!, $correlationId: String) {
       timestamp
       text
       relevance
+    }
+    persona {
+      id
+      name
     }
     specification {
       id
@@ -6254,13 +6270,14 @@ mutation Prompt($prompt: String, $mimeType: String, $data: String, $specificatio
 """
 
 PROMPT_CONVERSATION_GQL = """
-mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, $id: ID, $specification: EntityReferenceInput, $systemPrompt: String, $tools: [ToolDefinitionInput!], $requireTool: Boolean, $includeDetails: Boolean, $correlationId: String) {
+mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, $id: ID, $specification: EntityReferenceInput, $persona: EntityReferenceInput, $systemPrompt: String, $tools: [ToolDefinitionInput!], $requireTool: Boolean, $includeDetails: Boolean, $correlationId: String) {
   promptConversation(
     prompt: $prompt
     id: $id
     mimeType: $mimeType
     data: $data
     specification: $specification
+    persona: $persona
     tools: $tools
     systemPrompt: $systemPrompt
     requireTool: $requireTool
@@ -6453,6 +6470,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
       formattedObservables
       formattedInstructions
       formattedTools
+      formattedPersona
       specification
       messages {
         role
@@ -6883,6 +6901,10 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         text
         relevance
       }
+      persona {
+        id
+        name
+      }
       specification {
         id
         name
@@ -7249,6 +7271,10 @@ query QueryConversationsClusters($filter: ConversationFilter, $clusters: EntityC
         text
         relevance
       }
+      persona {
+        id
+        name
+      }
       specification {
         id
         name
@@ -7541,6 +7567,10 @@ mutation RetrieveFacts($prompt: String!, $filter: FactFilter, $correlationId: St
           name
         }
         conversation {
+          id
+          name
+        }
+        persona {
           id
           name
         }
@@ -8715,6 +8745,10 @@ query GetFact($id: ID!, $correlationId: String) {
       id
       name
     }
+    persona {
+      id
+      name
+    }
     sourceType
     category
     confidence
@@ -8766,6 +8800,10 @@ query QueryFacts($filter: FactFilter, $correlationId: String) {
         name
       }
       conversation {
+        id
+        name
+      }
+      persona {
         id
         name
       }
@@ -8821,6 +8859,10 @@ query QueryFactsClusters($filter: FactFilter, $clusters: EntityClustersInput, $c
         name
       }
       conversation {
+        id
+        name
+      }
+      persona {
         id
         name
       }
@@ -9409,6 +9451,9 @@ query GetFeed($id: ID!, $correlationId: String) {
       readLimit
       type
       text
+      exa {
+        searchType
+      }
     }
     reddit {
       readLimit
@@ -10209,6 +10254,9 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         readLimit
         type
         text
+        exa {
+          searchType
+        }
       }
       reddit {
         readLimit
@@ -15220,6 +15268,112 @@ mutation UpdatePerson($person: PersonUpdateInput!) {
 }
 """
 
+COUNT_PERSONAS_GQL = """
+query CountPersonas($filter: PersonaFilter, $correlationId: String) {
+  countPersonas(filter: $filter, correlationId: $correlationId) {
+    count
+  }
+}
+"""
+
+CREATE_PERSONA_GQL = """
+mutation CreatePersona($persona: PersonaInput!) {
+  createPersona(persona: $persona) {
+    id
+    name
+    state
+    role
+  }
+}
+"""
+
+DELETE_ALL_PERSONAS_GQL = """
+mutation DeleteAllPersonas($filter: PersonaFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllPersonas(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_PERSONA_GQL = """
+mutation DeletePersona($id: ID!) {
+  deletePersona(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_PERSONAS_GQL = """
+mutation DeletePersonas($ids: [ID!]!, $isSynchronous: Boolean) {
+  deletePersonas(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}
+"""
+
+GET_PERSONA_GQL = """
+query GetPersona($id: ID!, $correlationId: String) {
+  persona(id: $id, correlationId: $correlationId) {
+    id
+    name
+    creationDate
+    modifiedDate
+    owner {
+      id
+    }
+    state
+    role
+    instructions
+    facts {
+      id
+      text
+    }
+  }
+}
+"""
+
+QUERY_PERSONAS_GQL = """
+query QueryPersonas($filter: PersonaFilter, $correlationId: String) {
+  personas(filter: $filter, correlationId: $correlationId) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      role
+      instructions
+      facts {
+        id
+        text
+      }
+    }
+  }
+}
+"""
+
+UPDATE_PERSONA_GQL = """
+mutation UpdatePersona($persona: PersonaUpdateInput!) {
+  updatePersona(persona: $persona) {
+    id
+    name
+    state
+    role
+  }
+}
+"""
+
 COUNT_PLACES_GQL = """
 query CountPlaces($filter: PlaceFilter, $correlationId: String) {
   countPlaces(filter: $filter, correlationId: $correlationId) {
@@ -17314,6 +17468,17 @@ query GetUser {
         }
       }
     }
+    personas {
+      id
+      name
+      state
+      role
+      instructions
+      facts {
+        id
+        text
+      }
+    }
   }
 }
 """
@@ -17385,6 +17550,17 @@ query GetUserByIdentifier($identifier: String!) {
           token
           type
         }
+      }
+    }
+    personas {
+      id
+      name
+      state
+      role
+      instructions
+      facts {
+        id
+        text
       }
     }
   }
@@ -17459,6 +17635,17 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
             token
             type
           }
+        }
+      }
+      personas {
+        id
+        name
+        state
+        role
+        instructions
+        facts {
+          id
+          text
         }
       }
     }

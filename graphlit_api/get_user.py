@@ -34,6 +34,7 @@ class GetUserUser(BaseModel):
     identifier: str
     description: Optional[str]
     connectors: Optional[list[Optional["GetUserUserConnectors"]]]
+    personas: Optional[list[Optional["GetUserUserPersonas"]]]
 
 
 class GetUserUserOwner(BaseModel):
@@ -115,8 +116,23 @@ class GetUserUserConnectorsIntegrationMcp(BaseModel):
     type: MCPServerTypes
 
 
+class GetUserUserPersonas(BaseModel):
+    id: str
+    name: str
+    state: EntityState
+    role: Optional[str]
+    instructions: Optional[str]
+    facts: Optional[list["GetUserUserPersonasFacts"]]
+
+
+class GetUserUserPersonasFacts(BaseModel):
+    id: Optional[str]
+    text: Optional[str]
+
+
 GetUser.model_rebuild()
 GetUserUser.model_rebuild()
 GetUserUserConnectors.model_rebuild()
 GetUserUserConnectorsAuthentication.model_rebuild()
 GetUserUserConnectorsIntegration.model_rebuild()
+GetUserUserPersonas.model_rebuild()

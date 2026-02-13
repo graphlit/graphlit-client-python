@@ -186,6 +186,7 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
       formattedObservables
       formattedInstructions
       formattedTools
+      formattedPersona
       specification
       messages {
         role

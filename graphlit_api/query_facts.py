@@ -31,6 +31,7 @@ class QueryFactsFactsResults(BaseModel):
     feeds: Optional[list[Optional["QueryFactsFactsResultsFeeds"]]]
     content: Optional["QueryFactsFactsResultsContent"]
     conversation: Optional["QueryFactsFactsResultsConversation"]
+    persona: Optional["QueryFactsFactsResultsPersona"]
     source_type: Optional[SourceTypes] = Field(alias="sourceType")
     category: Optional[FactCategory]
     confidence: Optional[float]
@@ -80,6 +81,11 @@ class QueryFactsFactsResultsContent(BaseModel):
 
 
 class QueryFactsFactsResultsConversation(BaseModel):
+    id: str
+    name: str
+
+
+class QueryFactsFactsResultsPersona(BaseModel):
     id: str
     name: str
 

@@ -257,6 +257,7 @@ class PromptConversationPromptConversationDetails(BaseModel):
     formatted_observables: Optional[str] = Field(alias="formattedObservables")
     formatted_instructions: Optional[str] = Field(alias="formattedInstructions")
     formatted_tools: Optional[str] = Field(alias="formattedTools")
+    formatted_persona: Optional[str] = Field(alias="formattedPersona")
     specification: Optional[str]
     messages: Optional[
         list[Optional["PromptConversationPromptConversationDetailsMessages"]]

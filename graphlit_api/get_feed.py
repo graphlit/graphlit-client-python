@@ -21,6 +21,7 @@ from .enums import (
     DropboxAuthenticationTypes,
     EmailListingTypes,
     EntityState,
+    ExaSearchTypes,
     FeedListingTypes,
     FeedServiceTypes,
     FeedSyncMode,
@@ -782,6 +783,11 @@ class GetFeedFeedSearch(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     type: Optional[SearchServiceTypes]
     text: str
+    exa: Optional["GetFeedFeedSearchExa"]
+
+
+class GetFeedFeedSearchExa(BaseModel):
+    search_type: Optional[ExaSearchTypes] = Field(alias="searchType")
 
 
 class GetFeedFeedReddit(BaseModel):
@@ -1066,6 +1072,7 @@ GetFeedFeedCalendarMicrosoft.model_rebuild()
 GetFeedFeedMeeting.model_rebuild()
 GetFeedFeedMeetingAttio.model_rebuild()
 GetFeedFeedMeetingHubSpot.model_rebuild()
+GetFeedFeedSearch.model_rebuild()
 GetFeedFeedNotion.model_rebuild()
 GetFeedFeedConfluence.model_rebuild()
 GetFeedFeedIntercom.model_rebuild()

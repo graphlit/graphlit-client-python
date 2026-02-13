@@ -27,6 +27,7 @@ class GetFactFact(BaseModel):
     feeds: Optional[list[Optional["GetFactFactFeeds"]]]
     content: Optional["GetFactFactContent"]
     conversation: Optional["GetFactFactConversation"]
+    persona: Optional["GetFactFactPersona"]
     source_type: Optional[SourceTypes] = Field(alias="sourceType")
     category: Optional[FactCategory]
     confidence: Optional[float]
@@ -76,6 +77,11 @@ class GetFactFactContent(BaseModel):
 
 
 class GetFactFactConversation(BaseModel):
+    id: str
+    name: str
+
+
+class GetFactFactPersona(BaseModel):
     id: str
     name: str
 

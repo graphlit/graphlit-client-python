@@ -461,6 +461,9 @@ query GetFeed($id: ID!, $correlationId: String) {
       readLimit
       type
       text
+      exa {
+        searchType
+      }
     }
     reddit {
       readLimit

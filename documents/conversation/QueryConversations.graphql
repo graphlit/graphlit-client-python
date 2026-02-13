@@ -159,6 +159,10 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         text
         relevance
       }
+      persona {
+        id
+        name
+      }
       specification {
         id
         name

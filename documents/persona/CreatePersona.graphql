@@ -1,0 +1,8 @@
+mutation CreatePersona($persona: PersonaInput!) {
+  createPersona(persona: $persona) {
+    id
+    name
+    state
+    role
+  }
+}

@@ -157,6 +157,10 @@ query GetConversation($id: ID!, $correlationId: String) {
       text
       relevance
     }
+    persona {
+      id
+      name
+    }
     specification {
       id
       name

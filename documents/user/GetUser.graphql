@@ -66,5 +66,16 @@ query GetUser {
         }
       }
     }
+    personas {
+      id
+      name
+      state
+      role
+      instructions
+      facts {
+        id
+        text
+      }
+    }
   }
 }

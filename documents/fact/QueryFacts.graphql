@@ -44,6 +44,10 @@ query QueryFacts($filter: FactFilter, $correlationId: String) {
         id
         name
       }
+      persona {
+        id
+        name
+      }
       sourceType
       category
       confidence

@@ -1,5 +1,5 @@
-mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, $id: ID, $specification: EntityReferenceInput, $systemPrompt: String, $tools: [ToolDefinitionInput!], $requireTool: Boolean, $includeDetails: Boolean, $correlationId: String) {
-  promptConversation(prompt: $prompt, id: $id, mimeType: $mimeType, data: $data, specification: $specification, tools: $tools, systemPrompt: $systemPrompt, requireTool: $requireTool, includeDetails: $includeDetails, correlationId: $correlationId) {
+mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, $id: ID, $specification: EntityReferenceInput, $persona: EntityReferenceInput, $systemPrompt: String, $tools: [ToolDefinitionInput!], $requireTool: Boolean, $includeDetails: Boolean, $correlationId: String) {
+  promptConversation(prompt: $prompt, id: $id, mimeType: $mimeType, data: $data, specification: $specification, persona: $persona, tools: $tools, systemPrompt: $systemPrompt, requireTool: $requireTool, includeDetails: $includeDetails, correlationId: $correlationId) {
     conversation {
       id
     }
@@ -186,6 +186,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
       formattedObservables
       formattedInstructions
       formattedTools
+      formattedPersona
       specification
       messages {
         role

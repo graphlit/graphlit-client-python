@@ -186,6 +186,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
       formattedObservables
       formattedInstructions
       formattedTools
+      formattedPersona
       specification
       messages {
         role

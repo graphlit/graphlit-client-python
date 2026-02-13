@@ -38,6 +38,7 @@ class QueryUsersUsersResults(BaseModel):
     identifier: str
     description: Optional[str]
     connectors: Optional[list[Optional["QueryUsersUsersResultsConnectors"]]]
+    personas: Optional[list[Optional["QueryUsersUsersResultsPersonas"]]]
 
 
 class QueryUsersUsersResultsOwner(BaseModel):
@@ -119,9 +120,24 @@ class QueryUsersUsersResultsConnectorsIntegrationMcp(BaseModel):
     type: MCPServerTypes
 
 
+class QueryUsersUsersResultsPersonas(BaseModel):
+    id: str
+    name: str
+    state: EntityState
+    role: Optional[str]
+    instructions: Optional[str]
+    facts: Optional[list["QueryUsersUsersResultsPersonasFacts"]]
+
+
+class QueryUsersUsersResultsPersonasFacts(BaseModel):
+    id: Optional[str]
+    text: Optional[str]
+
+
 QueryUsers.model_rebuild()
 QueryUsersUsers.model_rebuild()
 QueryUsersUsersResults.model_rebuild()
 QueryUsersUsersResultsConnectors.model_rebuild()
 QueryUsersUsersResultsConnectorsAuthentication.model_rebuild()
 QueryUsersUsersResultsConnectorsIntegration.model_rebuild()
+QueryUsersUsersResultsPersonas.model_rebuild()

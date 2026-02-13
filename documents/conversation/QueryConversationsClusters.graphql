@@ -159,6 +159,10 @@ query QueryConversationsClusters($filter: ConversationFilter, $clusters: EntityC
         text
         relevance
       }
+      persona {
+        id
+        name
+      }
       specification {
         id
         name

@@ -48,6 +48,7 @@ class QueryConversationsClustersConversationsResults(BaseModel):
     turns: Optional[
         list[Optional["QueryConversationsClustersConversationsResultsTurns"]]
     ]
+    persona: Optional["QueryConversationsClustersConversationsResultsPersona"]
     specification: Optional[
         "QueryConversationsClustersConversationsResultsSpecification"
     ]
@@ -255,6 +256,11 @@ class QueryConversationsClustersConversationsResultsTurnsMessages(BaseModel):
     message: Optional[str]
     tokens: Optional[int]
     timestamp: Optional[Any]
+
+
+class QueryConversationsClustersConversationsResultsPersona(BaseModel):
+    id: str
+    name: str
 
 
 class QueryConversationsClustersConversationsResultsSpecification(BaseModel):

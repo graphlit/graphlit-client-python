@@ -44,6 +44,10 @@ query QueryFactsClusters($filter: FactFilter, $clusters: EntityClustersInput, $c
         id
         name
       }
+      persona {
+        id
+        name
+      }
       sourceType
       category
       confidence

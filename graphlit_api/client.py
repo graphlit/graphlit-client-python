@@ -38,6 +38,7 @@ from .count_medical_studies import CountMedicalStudies
 from .count_medical_tests import CountMedicalTests
 from .count_medical_therapies import CountMedicalTherapies
 from .count_organizations import CountOrganizations
+from .count_personas import CountPersonas
 from .count_persons import CountPersons
 from .count_places import CountPlaces
 from .count_products import CountProducts
@@ -73,6 +74,7 @@ from .create_medical_therapy import CreateMedicalTherapy
 from .create_observation import CreateObservation
 from .create_organization import CreateOrganization
 from .create_person import CreatePerson
+from .create_persona import CreatePersona
 from .create_place import CreatePlace
 from .create_product import CreateProduct
 from .create_repo import CreateRepo
@@ -107,6 +109,7 @@ from .delete_all_medical_studies import DeleteAllMedicalStudies
 from .delete_all_medical_tests import DeleteAllMedicalTests
 from .delete_all_medical_therapies import DeleteAllMedicalTherapies
 from .delete_all_organizations import DeleteAllOrganizations
+from .delete_all_personas import DeleteAllPersonas
 from .delete_all_persons import DeleteAllPersons
 from .delete_all_places import DeleteAllPlaces
 from .delete_all_products import DeleteAllProducts
@@ -164,6 +167,8 @@ from .delete_observation import DeleteObservation
 from .delete_organization import DeleteOrganization
 from .delete_organizations import DeleteOrganizations
 from .delete_person import DeletePerson
+from .delete_persona import DeletePersona
+from .delete_personas import DeletePersonas
 from .delete_persons import DeletePersons
 from .delete_place import DeletePlace
 from .delete_places import DeletePlaces
@@ -231,6 +236,7 @@ from .get_medical_test import GetMedicalTest
 from .get_medical_therapy import GetMedicalTherapy
 from .get_organization import GetOrganization
 from .get_person import GetPerson
+from .get_persona import GetPersona
 from .get_place import GetPlace
 from .get_product import GetProduct
 from .get_project import GetProject
@@ -366,6 +372,9 @@ from .input_types import (
     OrganizationFilter,
     OrganizationInput,
     OrganizationUpdateInput,
+    PersonaFilter,
+    PersonaInput,
+    PersonaUpdateInput,
     PersonFilter,
     PersonInput,
     PersonUpdateInput,
@@ -445,6 +454,7 @@ from .operations import (
     COUNT_MEDICAL_TESTS_GQL,
     COUNT_MEDICAL_THERAPIES_GQL,
     COUNT_ORGANIZATIONS_GQL,
+    COUNT_PERSONAS_GQL,
     COUNT_PERSONS_GQL,
     COUNT_PLACES_GQL,
     COUNT_PRODUCTS_GQL,
@@ -480,6 +490,7 @@ from .operations import (
     CREATE_OBSERVATION_GQL,
     CREATE_ORGANIZATION_GQL,
     CREATE_PERSON_GQL,
+    CREATE_PERSONA_GQL,
     CREATE_PLACE_GQL,
     CREATE_PRODUCT_GQL,
     CREATE_REPO_GQL,
@@ -514,6 +525,7 @@ from .operations import (
     DELETE_ALL_MEDICAL_TESTS_GQL,
     DELETE_ALL_MEDICAL_THERAPIES_GQL,
     DELETE_ALL_ORGANIZATIONS_GQL,
+    DELETE_ALL_PERSONAS_GQL,
     DELETE_ALL_PERSONS_GQL,
     DELETE_ALL_PLACES_GQL,
     DELETE_ALL_PRODUCTS_GQL,
@@ -571,6 +583,8 @@ from .operations import (
     DELETE_ORGANIZATION_GQL,
     DELETE_ORGANIZATIONS_GQL,
     DELETE_PERSON_GQL,
+    DELETE_PERSONA_GQL,
+    DELETE_PERSONAS_GQL,
     DELETE_PERSONS_GQL,
     DELETE_PLACE_GQL,
     DELETE_PLACES_GQL,
@@ -630,6 +644,7 @@ from .operations import (
     GET_MEDICAL_THERAPY_GQL,
     GET_ORGANIZATION_GQL,
     GET_PERSON_GQL,
+    GET_PERSONA_GQL,
     GET_PLACE_GQL,
     GET_PRODUCT_GQL,
     GET_PROJECT_GQL,
@@ -743,6 +758,7 @@ from .operations import (
     QUERY_ORGANIZATIONS_CLUSTERS_GQL,
     QUERY_ORGANIZATIONS_EXPANDED_GQL,
     QUERY_ORGANIZATIONS_GQL,
+    QUERY_PERSONAS_GQL,
     QUERY_PERSONS_CLUSTERS_GQL,
     QUERY_PERSONS_EXPANDED_GQL,
     QUERY_PERSONS_GQL,
@@ -812,6 +828,7 @@ from .operations import (
     UPDATE_OBSERVATION_GQL,
     UPDATE_ORGANIZATION_GQL,
     UPDATE_PERSON_GQL,
+    UPDATE_PERSONA_GQL,
     UPDATE_PLACE_GQL,
     UPDATE_PRODUCT_GQL,
     UPDATE_PROJECT_GQL,
@@ -919,6 +936,7 @@ from .query_one_drive_folders import QueryOneDriveFolders
 from .query_organizations import QueryOrganizations
 from .query_organizations_clusters import QueryOrganizationsClusters
 from .query_organizations_expanded import QueryOrganizationsExpanded
+from .query_personas import QueryPersonas
 from .query_persons import QueryPersons
 from .query_persons_clusters import QueryPersonsClusters
 from .query_persons_expanded import QueryPersonsExpanded
@@ -988,6 +1006,7 @@ from .update_medical_therapy import UpdateMedicalTherapy
 from .update_observation import UpdateObservation
 from .update_organization import UpdateOrganization
 from .update_person import UpdatePerson
+from .update_persona import UpdatePersona
 from .update_place import UpdatePlace
 from .update_product import UpdateProduct
 from .update_project import UpdateProject
@@ -2587,6 +2606,7 @@ class Client(AsyncBaseClient):
         prompt: str,
         id: Union[Optional[str], UnsetType] = UNSET,
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        persona: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         tools: Union[Optional[list[ToolDefinitionInput]], UnsetType] = UNSET,
         system_prompt: Union[Optional[str], UnsetType] = UNSET,
         include_details: Union[Optional[bool], UnsetType] = UNSET,
@@ -2597,6 +2617,7 @@ class Client(AsyncBaseClient):
             "prompt": prompt,
             "id": id,
             "specification": specification,
+            "persona": persona,
             "tools": tools,
             "systemPrompt": system_prompt,
             "includeDetails": include_details,
@@ -2662,6 +2683,7 @@ class Client(AsyncBaseClient):
         data: Union[Optional[str], UnsetType] = UNSET,
         id: Union[Optional[str], UnsetType] = UNSET,
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        persona: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         system_prompt: Union[Optional[str], UnsetType] = UNSET,
         tools: Union[Optional[list[ToolDefinitionInput]], UnsetType] = UNSET,
         require_tool: Union[Optional[bool], UnsetType] = UNSET,
@@ -2675,6 +2697,7 @@ class Client(AsyncBaseClient):
             "data": data,
             "id": id,
             "specification": specification,
+            "persona": persona,
             "systemPrompt": system_prompt,
             "tools": tools,
             "requireTool": require_tool,
@@ -6711,6 +6734,134 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdatePerson.model_validate(data)
+
+    async def count_personas(
+        self,
+        filter: Union[Optional[PersonaFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountPersonas:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=COUNT_PERSONAS_GQL,
+            operation_name="CountPersonas",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountPersonas.model_validate(data)
+
+    async def create_persona(
+        self, persona: PersonaInput, **kwargs: Any
+    ) -> CreatePersona:
+        variables: dict[str, object] = {"persona": persona}
+        response = await self.execute(
+            query=CREATE_PERSONA_GQL,
+            operation_name="CreatePersona",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CreatePersona.model_validate(data)
+
+    async def delete_all_personas(
+        self,
+        filter: Union[Optional[PersonaFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllPersonas:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DELETE_ALL_PERSONAS_GQL,
+            operation_name="DeleteAllPersonas",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllPersonas.model_validate(data)
+
+    async def delete_persona(self, id: str, **kwargs: Any) -> DeletePersona:
+        variables: dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DELETE_PERSONA_GQL,
+            operation_name="DeletePersona",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeletePersona.model_validate(data)
+
+    async def delete_personas(
+        self,
+        ids: list[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeletePersonas:
+        variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
+        response = await self.execute(
+            query=DELETE_PERSONAS_GQL,
+            operation_name="DeletePersonas",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeletePersonas.model_validate(data)
+
+    async def get_persona(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetPersona:
+        variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
+        response = await self.execute(
+            query=GET_PERSONA_GQL,
+            operation_name="GetPersona",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return GetPersona.model_validate(data)
+
+    async def query_personas(
+        self,
+        filter: Union[Optional[PersonaFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryPersonas:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_PERSONAS_GQL,
+            operation_name="QueryPersonas",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryPersonas.model_validate(data)
+
+    async def update_persona(
+        self, persona: PersonaUpdateInput, **kwargs: Any
+    ) -> UpdatePersona:
+        variables: dict[str, object] = {"persona": persona}
+        response = await self.execute(
+            query=UPDATE_PERSONA_GQL,
+            operation_name="UpdatePersona",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdatePersona.model_validate(data)
 
     async def count_places(
         self,

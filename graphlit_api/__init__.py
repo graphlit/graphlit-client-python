@@ -147,6 +147,7 @@ from .count_organizations import (
     CountOrganizations,
     CountOrganizationsCountOrganizations,
 )
+from .count_personas import CountPersonas, CountPersonasCountPersonas
 from .count_persons import CountPersons, CountPersonsCountPersons
 from .count_places import CountPlaces, CountPlacesCountPlaces
 from .count_products import CountProducts, CountProductsCountProducts
@@ -221,6 +222,7 @@ from .create_organization import (
     CreateOrganizationCreateOrganization,
 )
 from .create_person import CreatePerson, CreatePersonCreatePerson
+from .create_persona import CreatePersona, CreatePersonaCreatePersona
 from .create_place import CreatePlace, CreatePlaceCreatePlace
 from .create_product import CreateProduct, CreateProductCreateProduct
 from .create_repo import CreateRepo, CreateRepoCreateRepo
@@ -429,6 +431,7 @@ from .delete_all_organizations import (
     DeleteAllOrganizations,
     DeleteAllOrganizationsDeleteAllOrganizations,
 )
+from .delete_all_personas import DeleteAllPersonas, DeleteAllPersonasDeleteAllPersonas
 from .delete_all_persons import DeleteAllPersons, DeleteAllPersonsDeleteAllPersons
 from .delete_all_places import DeleteAllPlaces, DeleteAllPlacesDeleteAllPlaces
 from .delete_all_products import DeleteAllProducts, DeleteAllProductsDeleteAllProducts
@@ -573,6 +576,8 @@ from .delete_organizations import (
     DeleteOrganizationsDeleteOrganizations,
 )
 from .delete_person import DeletePerson, DeletePersonDeletePerson
+from .delete_persona import DeletePersona, DeletePersonaDeletePersona
+from .delete_personas import DeletePersonas, DeletePersonasDeletePersonas
 from .delete_persons import DeletePersons, DeletePersonsDeletePersons
 from .delete_place import DeletePlace, DeletePlaceDeletePlace
 from .delete_places import DeletePlaces, DeletePlacesDeletePlaces
@@ -691,6 +696,7 @@ from .enums import (
     EntityTypes,
     EnvironmentTypes,
     EventFacetTypes,
+    ExaSearchTypes,
     ExtractionTypes,
     FacetValueTypes,
     FactCategory,
@@ -1099,6 +1105,7 @@ from .get_conversation import (
     GetConversationConversationObservationsOccurrencesBoundingBox,
     GetConversationConversationObservationsRelated,
     GetConversationConversationOwner,
+    GetConversationConversationPersona,
     GetConversationConversationSpecification,
     GetConversationConversationTurns,
     GetConversationConversationTurnsMessages,
@@ -1127,6 +1134,7 @@ from .get_fact import (
     GetFactFactMentions,
     GetFactFactMentionsObservable,
     GetFactFactOwner,
+    GetFactFactPersona,
 )
 from .get_feed import (
     GetFeed,
@@ -1214,6 +1222,7 @@ from .get_feed import (
     GetFeedFeedSalesforceConnector,
     GetFeedFeedSchedulePolicy,
     GetFeedFeedSearch,
+    GetFeedFeedSearchExa,
     GetFeedFeedSite,
     GetFeedFeedSiteAzureBlob,
     GetFeedFeedSiteAzureFile,
@@ -1417,6 +1426,12 @@ from .get_person import (
     GetPersonPersonWorkLocation,
     GetPersonPersonWorksFor,
 )
+from .get_persona import (
+    GetPersona,
+    GetPersonaPersona,
+    GetPersonaPersonaFacts,
+    GetPersonaPersonaOwner,
+)
 from .get_place import (
     GetPlace,
     GetPlacePlace,
@@ -1515,6 +1530,8 @@ from .get_user import (
     GetUserUserConnectorsIntegrationSlack,
     GetUserUserConnectorsIntegrationTwitter,
     GetUserUserOwner,
+    GetUserUserPersonas,
+    GetUserUserPersonasFacts,
 )
 from .get_user_by_identifier import (
     GetUserByIdentifier,
@@ -1531,6 +1548,8 @@ from .get_user_by_identifier import (
     GetUserByIdentifierUserByIdentifierConnectorsIntegrationSlack,
     GetUserByIdentifierUserByIdentifierConnectorsIntegrationTwitter,
     GetUserByIdentifierUserByIdentifierOwner,
+    GetUserByIdentifierUserByIdentifierPersonas,
+    GetUserByIdentifierUserByIdentifierPersonasFacts,
 )
 from .get_view import (
     GetView,
@@ -1869,6 +1888,7 @@ from .input_types import (
     EventInput,
     EventMetadataInput,
     EventUpdateInput,
+    ExaSearchPropertiesInput,
     ExtractionWorkflowJobInput,
     ExtractionWorkflowStageInput,
     FactAssertionInput,
@@ -2086,6 +2106,9 @@ from .input_types import (
     ParallelFeedPropertiesInput,
     ParallelFeedPropertiesUpdateInput,
     ParallelPublishingPropertiesInput,
+    PersonaFilter,
+    PersonaInput,
+    PersonaUpdateInput,
     PersonFacetInput,
     PersonFilter,
     PersonInput,
@@ -2305,6 +2328,7 @@ from .operations import (
     COUNT_MEDICAL_TESTS_GQL,
     COUNT_MEDICAL_THERAPIES_GQL,
     COUNT_ORGANIZATIONS_GQL,
+    COUNT_PERSONAS_GQL,
     COUNT_PERSONS_GQL,
     COUNT_PLACES_GQL,
     COUNT_PRODUCTS_GQL,
@@ -2340,6 +2364,7 @@ from .operations import (
     CREATE_OBSERVATION_GQL,
     CREATE_ORGANIZATION_GQL,
     CREATE_PERSON_GQL,
+    CREATE_PERSONA_GQL,
     CREATE_PLACE_GQL,
     CREATE_PRODUCT_GQL,
     CREATE_REPO_GQL,
@@ -2374,6 +2399,7 @@ from .operations import (
     DELETE_ALL_MEDICAL_TESTS_GQL,
     DELETE_ALL_MEDICAL_THERAPIES_GQL,
     DELETE_ALL_ORGANIZATIONS_GQL,
+    DELETE_ALL_PERSONAS_GQL,
     DELETE_ALL_PERSONS_GQL,
     DELETE_ALL_PLACES_GQL,
     DELETE_ALL_PRODUCTS_GQL,
@@ -2431,6 +2457,8 @@ from .operations import (
     DELETE_ORGANIZATION_GQL,
     DELETE_ORGANIZATIONS_GQL,
     DELETE_PERSON_GQL,
+    DELETE_PERSONA_GQL,
+    DELETE_PERSONAS_GQL,
     DELETE_PERSONS_GQL,
     DELETE_PLACE_GQL,
     DELETE_PLACES_GQL,
@@ -2490,6 +2518,7 @@ from .operations import (
     GET_MEDICAL_THERAPY_GQL,
     GET_ORGANIZATION_GQL,
     GET_PERSON_GQL,
+    GET_PERSONA_GQL,
     GET_PLACE_GQL,
     GET_PRODUCT_GQL,
     GET_PROJECT_GQL,
@@ -2603,6 +2632,7 @@ from .operations import (
     QUERY_ORGANIZATIONS_CLUSTERS_GQL,
     QUERY_ORGANIZATIONS_EXPANDED_GQL,
     QUERY_ORGANIZATIONS_GQL,
+    QUERY_PERSONAS_GQL,
     QUERY_PERSONS_CLUSTERS_GQL,
     QUERY_PERSONS_EXPANDED_GQL,
     QUERY_PERSONS_GQL,
@@ -2672,6 +2702,7 @@ from .operations import (
     UPDATE_OBSERVATION_GQL,
     UPDATE_ORGANIZATION_GQL,
     UPDATE_PERSON_GQL,
+    UPDATE_PERSONA_GQL,
     UPDATE_PLACE_GQL,
     UPDATE_PRODUCT_GQL,
     UPDATE_PROJECT_GQL,
@@ -3076,6 +3107,7 @@ from .query_conversations import (
     QueryConversationsConversationsResultsMessagesCitationsContentVideo,
     QueryConversationsConversationsResultsMessagesToolCalls,
     QueryConversationsConversationsResultsOwner,
+    QueryConversationsConversationsResultsPersona,
     QueryConversationsConversationsResultsSpecification,
     QueryConversationsConversationsResultsTurns,
     QueryConversationsConversationsResultsTurnsMessages,
@@ -3148,6 +3180,7 @@ from .query_conversations_clusters import (
     QueryConversationsClustersConversationsResultsMessagesCitationsContentVideo,
     QueryConversationsClustersConversationsResultsMessagesToolCalls,
     QueryConversationsClustersConversationsResultsOwner,
+    QueryConversationsClustersConversationsResultsPersona,
     QueryConversationsClustersConversationsResultsSpecification,
     QueryConversationsClustersConversationsResultsTurns,
     QueryConversationsClustersConversationsResultsTurnsMessages,
@@ -3221,6 +3254,7 @@ from .query_facts import (
     QueryFactsFactsResultsMentions,
     QueryFactsFactsResultsMentionsObservable,
     QueryFactsFactsResultsOwner,
+    QueryFactsFactsResultsPersona,
 )
 from .query_facts_clusters import (
     QueryFactsClusters,
@@ -3237,6 +3271,7 @@ from .query_facts_clusters import (
     QueryFactsClustersFactsResultsMentions,
     QueryFactsClustersFactsResultsMentionsObservable,
     QueryFactsClustersFactsResultsOwner,
+    QueryFactsClustersFactsResultsPersona,
 )
 from .query_facts_graph import (
     QueryFactsGraph,
@@ -3332,6 +3367,7 @@ from .query_feeds import (
     QueryFeedsFeedsResultsSalesforceConnector,
     QueryFeedsFeedsResultsSchedulePolicy,
     QueryFeedsFeedsResultsSearch,
+    QueryFeedsFeedsResultsSearchExa,
     QueryFeedsFeedsResultsSite,
     QueryFeedsFeedsResultsSiteAzureBlob,
     QueryFeedsFeedsResultsSiteAzureFile,
@@ -3871,6 +3907,13 @@ from .query_organizations_expanded import (
     QueryOrganizationsExpandedOrganizationsResultsSubOrganizations,
     QueryOrganizationsExpandedOrganizationsResultsWorkflow,
 )
+from .query_personas import (
+    QueryPersonas,
+    QueryPersonasPersonas,
+    QueryPersonasPersonasResults,
+    QueryPersonasPersonasResultsFacts,
+    QueryPersonasPersonasResultsOwner,
+)
 from .query_persons import (
     QueryPersons,
     QueryPersonsPersons,
@@ -4087,6 +4130,8 @@ from .query_users import (
     QueryUsersUsersResultsConnectorsIntegrationSlack,
     QueryUsersUsersResultsConnectorsIntegrationTwitter,
     QueryUsersUsersResultsOwner,
+    QueryUsersUsersResultsPersonas,
+    QueryUsersUsersResultsPersonasFacts,
 )
 from .query_views import (
     QueryViews,
@@ -4258,6 +4303,7 @@ from .retrieve_facts import (
     RetrieveFactsRetrieveFactsResultsFactMentions,
     RetrieveFactsRetrieveFactsResultsFactMentionsObservable,
     RetrieveFactsRetrieveFactsResultsFactOwner,
+    RetrieveFactsRetrieveFactsResultsFactPersona,
 )
 from .retrieve_sources import (
     RetrieveSources,
@@ -4430,6 +4476,7 @@ from .update_organization import (
     UpdateOrganizationUpdateOrganization,
 )
 from .update_person import UpdatePerson, UpdatePersonUpdatePerson
+from .update_persona import UpdatePersona, UpdatePersonaUpdatePersona
 from .update_place import UpdatePlace, UpdatePlaceUpdatePlace
 from .update_product import UpdateProduct, UpdateProductUpdateProduct
 from .update_project import UpdateProject, UpdateProjectUpdateProject
@@ -4817,6 +4864,7 @@ __all__ = [
     "COUNT_MEDICAL_TESTS_GQL",
     "COUNT_MEDICAL_THERAPIES_GQL",
     "COUNT_ORGANIZATIONS_GQL",
+    "COUNT_PERSONAS_GQL",
     "COUNT_PERSONS_GQL",
     "COUNT_PLACES_GQL",
     "COUNT_PRODUCTS_GQL",
@@ -4851,6 +4899,7 @@ __all__ = [
     "CREATE_MEDICAL_THERAPY_GQL",
     "CREATE_OBSERVATION_GQL",
     "CREATE_ORGANIZATION_GQL",
+    "CREATE_PERSONA_GQL",
     "CREATE_PERSON_GQL",
     "CREATE_PLACE_GQL",
     "CREATE_PRODUCT_GQL",
@@ -5042,6 +5091,8 @@ __all__ = [
     "CountMedicalTherapiesCountMedicalTherapies",
     "CountOrganizations",
     "CountOrganizationsCountOrganizations",
+    "CountPersonas",
+    "CountPersonasCountPersonas",
     "CountPersons",
     "CountPersonsCountPersons",
     "CountPlaces",
@@ -5112,6 +5163,8 @@ __all__ = [
     "CreateOrganizationCreateOrganization",
     "CreatePerson",
     "CreatePersonCreatePerson",
+    "CreatePersona",
+    "CreatePersonaCreatePersona",
     "CreatePlace",
     "CreatePlaceCreatePlace",
     "CreateProduct",
@@ -5268,6 +5321,7 @@ __all__ = [
     "DELETE_ALL_MEDICAL_TESTS_GQL",
     "DELETE_ALL_MEDICAL_THERAPIES_GQL",
     "DELETE_ALL_ORGANIZATIONS_GQL",
+    "DELETE_ALL_PERSONAS_GQL",
     "DELETE_ALL_PERSONS_GQL",
     "DELETE_ALL_PLACES_GQL",
     "DELETE_ALL_PRODUCTS_GQL",
@@ -5324,6 +5378,8 @@ __all__ = [
     "DELETE_OBSERVATION_GQL",
     "DELETE_ORGANIZATIONS_GQL",
     "DELETE_ORGANIZATION_GQL",
+    "DELETE_PERSONAS_GQL",
+    "DELETE_PERSONA_GQL",
     "DELETE_PERSONS_GQL",
     "DELETE_PERSON_GQL",
     "DELETE_PLACES_GQL",
@@ -5405,6 +5461,8 @@ __all__ = [
     "DeleteAllMedicalTherapiesDeleteAllMedicalTherapies",
     "DeleteAllOrganizations",
     "DeleteAllOrganizationsDeleteAllOrganizations",
+    "DeleteAllPersonas",
+    "DeleteAllPersonasDeleteAllPersonas",
     "DeleteAllPersons",
     "DeleteAllPersonsDeleteAllPersons",
     "DeleteAllPlaces",
@@ -5519,6 +5577,10 @@ __all__ = [
     "DeleteOrganizationsDeleteOrganizations",
     "DeletePerson",
     "DeletePersonDeletePerson",
+    "DeletePersona",
+    "DeletePersonaDeletePersona",
+    "DeletePersonas",
+    "DeletePersonasDeletePersonas",
     "DeletePersons",
     "DeletePersonsDeletePersons",
     "DeletePlace",
@@ -5652,6 +5714,8 @@ __all__ = [
     "EventInput",
     "EventMetadataInput",
     "EventUpdateInput",
+    "ExaSearchPropertiesInput",
+    "ExaSearchTypes",
     "ExtractContents",
     "ExtractContentsExtractContents",
     "ExtractContentsExtractContentsContent",
@@ -5771,6 +5835,7 @@ __all__ = [
     "GET_MEDICAL_TEST_GQL",
     "GET_MEDICAL_THERAPY_GQL",
     "GET_ORGANIZATION_GQL",
+    "GET_PERSONA_GQL",
     "GET_PERSON_GQL",
     "GET_PLACE_GQL",
     "GET_PRODUCT_GQL",
@@ -5976,6 +6041,7 @@ __all__ = [
     "GetConversationConversationObservationsOccurrencesBoundingBox",
     "GetConversationConversationObservationsRelated",
     "GetConversationConversationOwner",
+    "GetConversationConversationPersona",
     "GetConversationConversationSpecification",
     "GetConversationConversationTurns",
     "GetConversationConversationTurnsMessages",
@@ -6002,6 +6068,7 @@ __all__ = [
     "GetFactFactMentions",
     "GetFactFactMentionsObservable",
     "GetFactFactOwner",
+    "GetFactFactPersona",
     "GetFeed",
     "GetFeedFeed",
     "GetFeedFeedAttio",
@@ -6087,6 +6154,7 @@ __all__ = [
     "GetFeedFeedSalesforceConnector",
     "GetFeedFeedSchedulePolicy",
     "GetFeedFeedSearch",
+    "GetFeedFeedSearchExa",
     "GetFeedFeedSite",
     "GetFeedFeedSiteAzureBlob",
     "GetFeedFeedSiteAzureFile",
@@ -6261,6 +6329,10 @@ __all__ = [
     "GetPersonPersonWorkLocation",
     "GetPersonPersonWorkflow",
     "GetPersonPersonWorksFor",
+    "GetPersona",
+    "GetPersonaPersona",
+    "GetPersonaPersonaFacts",
+    "GetPersonaPersonaOwner",
     "GetPlace",
     "GetPlacePlace",
     "GetPlacePlaceAddress",
@@ -6345,6 +6417,8 @@ __all__ = [
     "GetUserByIdentifierUserByIdentifierConnectorsIntegrationSlack",
     "GetUserByIdentifierUserByIdentifierConnectorsIntegrationTwitter",
     "GetUserByIdentifierUserByIdentifierOwner",
+    "GetUserByIdentifierUserByIdentifierPersonas",
+    "GetUserByIdentifierUserByIdentifierPersonasFacts",
     "GetUserUser",
     "GetUserUserConnectors",
     "GetUserUserConnectorsAuthentication",
@@ -6358,6 +6432,8 @@ __all__ = [
     "GetUserUserConnectorsIntegrationSlack",
     "GetUserUserConnectorsIntegrationTwitter",
     "GetUserUserOwner",
+    "GetUserUserPersonas",
+    "GetUserUserPersonasFacts",
     "GetView",
     "GetViewView",
     "GetViewViewAugmentedFilter",
@@ -6908,6 +6984,9 @@ __all__ = [
     "PersonInput",
     "PersonReferenceInput",
     "PersonUpdateInput",
+    "PersonaFilter",
+    "PersonaInput",
+    "PersonaUpdateInput",
     "PlaceFacetInput",
     "PlaceFacetTypes",
     "PlaceFilter",
@@ -7091,6 +7170,7 @@ __all__ = [
     "QUERY_ORGANIZATIONS_CLUSTERS_GQL",
     "QUERY_ORGANIZATIONS_EXPANDED_GQL",
     "QUERY_ORGANIZATIONS_GQL",
+    "QUERY_PERSONAS_GQL",
     "QUERY_PERSONS_CLUSTERS_GQL",
     "QUERY_PERSONS_EXPANDED_GQL",
     "QUERY_PERSONS_GQL",
@@ -7380,6 +7460,7 @@ __all__ = [
     "QueryConversationsClustersConversationsResultsMessagesCitationsContentVideo",
     "QueryConversationsClustersConversationsResultsMessagesToolCalls",
     "QueryConversationsClustersConversationsResultsOwner",
+    "QueryConversationsClustersConversationsResultsPersona",
     "QueryConversationsClustersConversationsResultsSpecification",
     "QueryConversationsClustersConversationsResultsTurns",
     "QueryConversationsClustersConversationsResultsTurnsMessages",
@@ -7447,6 +7528,7 @@ __all__ = [
     "QueryConversationsConversationsResultsMessagesCitationsContentVideo",
     "QueryConversationsConversationsResultsMessagesToolCalls",
     "QueryConversationsConversationsResultsOwner",
+    "QueryConversationsConversationsResultsPersona",
     "QueryConversationsConversationsResultsSpecification",
     "QueryConversationsConversationsResultsTurns",
     "QueryConversationsConversationsResultsTurnsMessages",
@@ -7508,6 +7590,7 @@ __all__ = [
     "QueryFactsClustersFactsResultsMentions",
     "QueryFactsClustersFactsResultsMentionsObservable",
     "QueryFactsClustersFactsResultsOwner",
+    "QueryFactsClustersFactsResultsPersona",
     "QueryFactsFacts",
     "QueryFactsFactsResults",
     "QueryFactsFactsResultsAssertions",
@@ -7519,6 +7602,7 @@ __all__ = [
     "QueryFactsFactsResultsMentions",
     "QueryFactsFactsResultsMentionsObservable",
     "QueryFactsFactsResultsOwner",
+    "QueryFactsFactsResultsPersona",
     "QueryFactsGraph",
     "QueryFactsGraphFacts",
     "QueryFactsGraphFactsGraph",
@@ -7610,6 +7694,7 @@ __all__ = [
     "QueryFeedsFeedsResultsSalesforceConnector",
     "QueryFeedsFeedsResultsSchedulePolicy",
     "QueryFeedsFeedsResultsSearch",
+    "QueryFeedsFeedsResultsSearchExa",
     "QueryFeedsFeedsResultsSite",
     "QueryFeedsFeedsResultsSiteAzureBlob",
     "QueryFeedsFeedsResultsSiteAzureFile",
@@ -8051,6 +8136,11 @@ __all__ = [
     "QueryOrganizationsOrganizationsResultsLocation",
     "QueryOrganizationsOrganizationsResultsOwner",
     "QueryOrganizationsOrganizationsResultsWorkflow",
+    "QueryPersonas",
+    "QueryPersonasPersonas",
+    "QueryPersonasPersonasResults",
+    "QueryPersonasPersonasResultsFacts",
+    "QueryPersonasPersonasResultsOwner",
     "QueryPersons",
     "QueryPersonsClusters",
     "QueryPersonsClustersPersons",
@@ -8241,6 +8331,8 @@ __all__ = [
     "QueryUsersUsersResultsConnectorsIntegrationSlack",
     "QueryUsersUsersResultsConnectorsIntegrationTwitter",
     "QueryUsersUsersResultsOwner",
+    "QueryUsersUsersResultsPersonas",
+    "QueryUsersUsersResultsPersonasFacts",
     "QueryViews",
     "QueryViewsViews",
     "QueryViewsViewsResults",
@@ -8446,6 +8538,7 @@ __all__ = [
     "RetrieveFactsRetrieveFactsResultsFactMentions",
     "RetrieveFactsRetrieveFactsResultsFactMentionsObservable",
     "RetrieveFactsRetrieveFactsResultsFactOwner",
+    "RetrieveFactsRetrieveFactsResultsFactPersona",
     "RetrieveSources",
     "RetrieveSourcesRetrieveSources",
     "RetrieveSourcesRetrieveSourcesResults",
@@ -8625,6 +8718,7 @@ __all__ = [
     "UPDATE_MEDICAL_THERAPY_GQL",
     "UPDATE_OBSERVATION_GQL",
     "UPDATE_ORGANIZATION_GQL",
+    "UPDATE_PERSONA_GQL",
     "UPDATE_PERSON_GQL",
     "UPDATE_PLACE_GQL",
     "UPDATE_PRODUCT_GQL",
@@ -8702,6 +8796,8 @@ __all__ = [
     "UpdateOrganizationUpdateOrganization",
     "UpdatePerson",
     "UpdatePersonUpdatePerson",
+    "UpdatePersona",
+    "UpdatePersonaUpdatePersona",
     "UpdatePlace",
     "UpdatePlaceUpdatePlace",
     "UpdateProduct",

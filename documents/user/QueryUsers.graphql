@@ -67,6 +67,17 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
           }
         }
       }
+      personas {
+        id
+        name
+        state
+        role
+        instructions
+        facts {
+          id
+          text
+        }
+      }
     }
   }
 }

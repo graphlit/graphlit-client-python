@@ -1,0 +1,21 @@
+query QueryPersonas($filter: PersonaFilter, $correlationId: String) {
+  personas(filter: $filter, correlationId: $correlationId) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      role
+      instructions
+      facts {
+        id
+        text
+      }
+    }
+  }
+}

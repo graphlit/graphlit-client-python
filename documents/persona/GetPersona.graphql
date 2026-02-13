@@ -1,0 +1,18 @@
+query GetPersona($id: ID!, $correlationId: String) {
+  persona(id: $id, correlationId: $correlationId) {
+    id
+    name
+    creationDate
+    modifiedDate
+    owner {
+      id
+    }
+    state
+    role
+    instructions
+    facts {
+      id
+      text
+    }
+  }
+}
