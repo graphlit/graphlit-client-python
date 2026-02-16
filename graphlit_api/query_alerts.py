@@ -15,6 +15,7 @@ from .enums import (
     FileTypes,
     FilterMode,
     GoogleImageModels,
+    GoogleVideoModels,
     IntegrationServiceTypes,
     MCPServerTypes,
     ObservableTypes,
@@ -22,6 +23,7 @@ from .enums import (
     OpenAIVideoModels,
     ParallelProcessors,
     TimedPolicyRecurrenceTypes,
+    VideoAspectRatioTypes,
     VideoSizeTypes,
 )
 
@@ -268,6 +270,9 @@ class QueryAlertsAlertsResultsPublishing(BaseModel):
     open_ai_video: Optional["QueryAlertsAlertsResultsPublishingOpenAiVideo"] = Field(
         alias="openAIVideo"
     )
+    google_video: Optional["QueryAlertsAlertsResultsPublishingGoogleVideo"] = Field(
+        alias="googleVideo"
+    )
     parallel: Optional["QueryAlertsAlertsResultsPublishingParallel"]
 
 
@@ -307,6 +312,17 @@ class QueryAlertsAlertsResultsPublishingOpenAiVideoSeed(BaseModel):
     id: str
 
 
+class QueryAlertsAlertsResultsPublishingGoogleVideo(BaseModel):
+    model: Optional[GoogleVideoModels]
+    seconds: Optional[int]
+    aspect_ratio: Optional[VideoAspectRatioTypes] = Field(alias="aspectRatio")
+    seed: Optional["QueryAlertsAlertsResultsPublishingGoogleVideoSeed"]
+
+
+class QueryAlertsAlertsResultsPublishingGoogleVideoSeed(BaseModel):
+    id: str
+
+
 class QueryAlertsAlertsResultsPublishingParallel(BaseModel):
     processor: Optional[ParallelProcessors]
 
@@ -342,3 +358,4 @@ QueryAlertsAlertsResultsPublishing.model_rebuild()
 QueryAlertsAlertsResultsPublishingOpenAiImage.model_rebuild()
 QueryAlertsAlertsResultsPublishingGoogleImage.model_rebuild()
 QueryAlertsAlertsResultsPublishingOpenAiVideo.model_rebuild()
+QueryAlertsAlertsResultsPublishingGoogleVideo.model_rebuild()

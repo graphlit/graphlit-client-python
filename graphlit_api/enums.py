@@ -157,6 +157,11 @@ class FacetValueTypes(str, Enum):
     OBJECT = "OBJECT"
 
 
+class VideoAspectRatioTypes(str, Enum):
+    LANDSCAPE_16X9 = "LANDSCAPE_16X9"
+    PORTRAIT_9X16 = "PORTRAIT_9X16"
+
+
 class HubSpotFeedAuthenticationTypes(str, Enum):
     USER = "USER"
     PRIVATE_APP = "PRIVATE_APP"
@@ -529,6 +534,7 @@ class ContentPublishingServiceTypes(str, Enum):
     OPEN_AI_IMAGE = "OPEN_AI_IMAGE"
     GOOGLE_IMAGE = "GOOGLE_IMAGE"
     OPEN_AI_VIDEO = "OPEN_AI_VIDEO"
+    GOOGLE_VIDEO = "GOOGLE_VIDEO"
     TEXT = "TEXT"
     PARALLEL_RESEARCH = "PARALLEL_RESEARCH"
 
@@ -1578,13 +1584,24 @@ class YouTubeTypes(str, Enum):
 
 
 class ParallelProcessors(str, Enum):
+    LITE = "LITE"
     BASE = "BASE"
     CORE = "CORE"
+    CORE2X = "CORE2X"
     PRO = "PRO"
     ULTRA = "ULTRA"
     ULTRA2X = "ULTRA2X"
     ULTRA4X = "ULTRA4X"
     ULTRA8X = "ULTRA8X"
+    LITE_FAST = "LITE_FAST"
+    BASE_FAST = "BASE_FAST"
+    CORE_FAST = "CORE_FAST"
+    CORE2X_FAST = "CORE2X_FAST"
+    PRO_FAST = "PRO_FAST"
+    ULTRA_FAST = "ULTRA_FAST"
+    ULTRA2X_FAST = "ULTRA2X_FAST"
+    ULTRA4X_FAST = "ULTRA4X_FAST"
+    ULTRA8X_FAST = "ULTRA8X_FAST"
 
 
 class MailSensitivity(str, Enum):
@@ -1598,6 +1615,14 @@ class MailSensitivity(str, Enum):
 class IntercomAuthenticationTypes(str, Enum):
     ACCESS_TOKEN = "ACCESS_TOKEN"
     CONNECTOR = "CONNECTOR"
+
+
+class GoogleVideoModels(str, Enum):
+    VEO_3 = "VEO_3"
+    VEO_3_FAST = "VEO_3_FAST"
+    VEO_3_1_PREVIEW = "VEO_3_1_PREVIEW"
+    VEO_3_1_FAST_PREVIEW = "VEO_3_1_FAST_PREVIEW"
+    CUSTOM = "CUSTOM"
 
 
 class ElevenLabsModels(str, Enum):

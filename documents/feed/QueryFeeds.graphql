@@ -638,6 +638,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         readLimit
         parallel {
           generator
+          processor
         }
       }
       error

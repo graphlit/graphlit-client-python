@@ -159,6 +159,14 @@ query GetAlert($id: ID!, $correlationId: String) {
           id
         }
       }
+      googleVideo {
+        model
+        seconds
+        aspectRatio
+        seed {
+          id
+        }
+      }
       parallel {
         processor
       }

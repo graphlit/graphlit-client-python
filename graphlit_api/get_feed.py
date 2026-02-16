@@ -1021,6 +1021,7 @@ class GetFeedFeedEntity(BaseModel):
 
 class GetFeedFeedEntityParallel(BaseModel):
     generator: Optional[ParallelGenerators]
+    processor: Optional[ParallelProcessors]
 
 
 class GetFeedFeedWorkflow(BaseModel):

@@ -659,6 +659,14 @@ query GetAlert($id: ID!, $correlationId: String) {
           id
         }
       }
+      googleVideo {
+        model
+        seconds
+        aspectRatio
+        seed {
+          id
+        }
+      }
       parallel {
         processor
       }
@@ -840,6 +848,14 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
           model
           seconds
           size
+          seed {
+            id
+          }
+        }
+        googleVideo {
+          model
+          seconds
+          aspectRatio
           seed {
             id
           }
@@ -9626,6 +9642,7 @@ query GetFeed($id: ID!, $correlationId: String) {
       readLimit
       parallel {
         generator
+        processor
       }
     }
     error
@@ -10429,6 +10446,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         readLimit
         parallel {
           generator
+          processor
         }
       }
       error
@@ -18858,6 +18876,8 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
             tokenThreshold
             timeBudget
             entityBudget
+            pageBudget
+            tokenBudget
             extractionType
           }
           hume {
@@ -19156,6 +19176,8 @@ query GetWorkflow($id: ID!, $correlationId: String) {
             tokenThreshold
             timeBudget
             entityBudget
+            pageBudget
+            tokenBudget
             extractionType
           }
           hume {
@@ -19425,6 +19447,8 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
               tokenThreshold
               timeBudget
               entityBudget
+              pageBudget
+              tokenBudget
               extractionType
             }
             hume {
@@ -19688,6 +19712,8 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
             tokenThreshold
             timeBudget
             entityBudget
+            pageBudget
+            tokenBudget
             extractionType
           }
           hume {
@@ -19950,6 +19976,8 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
             tokenThreshold
             timeBudget
             entityBudget
+            pageBudget
+            tokenBudget
             extractionType
           }
           hume {

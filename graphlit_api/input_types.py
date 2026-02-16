@@ -83,6 +83,7 @@ from .enums import (
     GoogleImageModels,
     GoogleModels,
     GoogleThinkingLevels,
+    GoogleVideoModels,
     GraphStrategyTypes,
     GroqModels,
     GustoAuthenticationTypes,
@@ -177,6 +178,7 @@ from .enums import (
     TwitterListingTypes,
     UnitTypes,
     UserTypes,
+    VideoAspectRatioTypes,
     VideoSizeTypes,
     ViewTypes,
     VoyageModels,
@@ -196,6 +198,7 @@ class AttioFeedPropertiesInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -705,6 +708,7 @@ class IntercomConversationsFeedPropertiesUpdateInput(BaseModel):
     include_attachments: Optional[bool] = Field(
         alias="includeAttachments", default=None
     )
+    type: Optional[FeedListingTypes] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -999,6 +1003,7 @@ class SalesforceFeedPropertiesInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -1461,6 +1466,7 @@ class AttioFeedPropertiesUpdateInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -2064,6 +2070,9 @@ class ContentPublishingConnectorUpdateInput(BaseModel):
     open_ai_video: Optional["OpenAIVideoPublishingPropertiesInput"] = Field(
         alias="openAIVideo", default=None
     )
+    google_video: Optional["GoogleVideoPublishingPropertiesInput"] = Field(
+        alias="googleVideo", default=None
+    )
     parallel: Optional["ParallelPublishingPropertiesInput"] = None
 
 
@@ -2301,6 +2310,8 @@ class ModelTextExtractionPropertiesInput(BaseModel):
     token_threshold: Optional[int] = Field(alias="tokenThreshold", default=None)
     time_budget: Optional[Any] = Field(alias="timeBudget", default=None)
     entity_budget: Optional[int] = Field(alias="entityBudget", default=None)
+    page_budget: Optional[int] = Field(alias="pageBudget", default=None)
+    token_budget: Optional[int] = Field(alias="tokenBudget", default=None)
     extraction_type: Optional[ExtractionTypes] = Field(
         alias="extractionType", default=None
     )
@@ -2590,6 +2601,7 @@ class SalesforceFeedPropertiesUpdateInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -2755,6 +2767,9 @@ class ContentPublishingConnectorInput(BaseModel):
     )
     open_ai_video: Optional["OpenAIVideoPublishingPropertiesInput"] = Field(
         alias="openAIVideo", default=None
+    )
+    google_video: Optional["GoogleVideoPublishingPropertiesInput"] = Field(
+        alias="googleVideo", default=None
     )
     parallel: Optional["ParallelPublishingPropertiesInput"] = None
 
@@ -3662,6 +3677,7 @@ class ProjectFilter(BaseModel):
 
 class ParallelEntityFeedPropertiesUpdateInput(BaseModel):
     generator: Optional[ParallelGenerators] = None
+    processor: Optional[ParallelProcessors] = None
 
 
 class SearchFeedPropertiesInput(BaseModel):
@@ -3815,6 +3831,15 @@ class ReplicateModelPropertiesInput(BaseModel):
     completion_token_limit: Optional[int] = Field(
         alias="completionTokenLimit", default=None
     )
+
+
+class GoogleVideoPublishingPropertiesInput(BaseModel):
+    model: Optional[GoogleVideoModels] = None
+    seconds: Optional[int] = None
+    aspect_ratio: Optional[VideoAspectRatioTypes] = Field(
+        alias="aspectRatio", default=None
+    )
+    seed: Optional["EntityReferenceInput"] = None
 
 
 class MetadataUpdateInput(BaseModel):
@@ -5640,6 +5665,7 @@ class ZendeskFeedPropertiesUpdateInput(BaseModel):
 
 class ParallelEntityFeedPropertiesInput(BaseModel):
     generator: Optional[ParallelGenerators] = None
+    processor: Optional[ParallelProcessors] = None
 
 
 class ConfluenceFeedPropertiesUpdateInput(BaseModel):
@@ -6177,6 +6203,7 @@ class IntercomConversationsFeedPropertiesInput(BaseModel):
     include_attachments: Optional[bool] = Field(
         alias="includeAttachments", default=None
     )
+    type: Optional[FeedListingTypes] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -6359,6 +6386,7 @@ SpecificationUpdateInput.model_rebuild()
 IntegrationConnectorInput.model_rebuild()
 ViewUpdateInput.model_rebuild()
 StorageWorkflowStageInput.model_rebuild()
+GoogleVideoPublishingPropertiesInput.model_rebuild()
 MetadataUpdateInput.model_rebuild()
 SharePointLibrariesInput.model_rebuild()
 AttioCRMFeedPropertiesInput.model_rebuild()

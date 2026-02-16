@@ -161,6 +161,14 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
             id
           }
         }
+        googleVideo {
+          model
+          seconds
+          aspectRatio
+          seed {
+            id
+          }
+        }
         parallel {
           processor
         }

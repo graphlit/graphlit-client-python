@@ -141,6 +141,8 @@ query GetWorkflow($id: ID!, $correlationId: String) {
             tokenThreshold
             timeBudget
             entityBudget
+            pageBudget
+            tokenBudget
             extractionType
           }
           hume {

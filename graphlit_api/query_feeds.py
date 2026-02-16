@@ -1036,6 +1036,7 @@ class QueryFeedsFeedsResultsEntity(BaseModel):
 
 class QueryFeedsFeedsResultsEntityParallel(BaseModel):
     generator: Optional[ParallelGenerators]
+    processor: Optional[ParallelProcessors]
 
 
 class QueryFeedsFeedsResultsWorkflow(BaseModel):

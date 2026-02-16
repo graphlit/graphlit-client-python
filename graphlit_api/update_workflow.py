@@ -288,6 +288,8 @@ class UpdateWorkflowUpdateWorkflowExtractionJobsConnectorModelText(BaseModel):
     token_threshold: Optional[int] = Field(alias="tokenThreshold")
     time_budget: Optional[Any] = Field(alias="timeBudget")
     entity_budget: Optional[int] = Field(alias="entityBudget")
+    page_budget: Optional[int] = Field(alias="pageBudget")
+    token_budget: Optional[int] = Field(alias="tokenBudget")
     extraction_type: Optional[ExtractionTypes] = Field(alias="extractionType")
 
 

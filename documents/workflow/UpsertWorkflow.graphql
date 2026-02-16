@@ -136,6 +136,8 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
             tokenThreshold
             timeBudget
             entityBudget
+            pageBudget
+            tokenBudget
             extractionType
           }
           hume {

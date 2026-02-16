@@ -636,6 +636,7 @@ query GetFeed($id: ID!, $correlationId: String) {
       readLimit
       parallel {
         generator
+        processor
       }
     }
     error
