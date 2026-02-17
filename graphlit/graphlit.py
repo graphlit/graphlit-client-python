@@ -5,26 +5,35 @@ import httpx
 from graphlit_api.client import Client
 
 class Graphlit:
-    def __init__(self, organization_id=None, environment_id=None, jwt_secret=None, owner_id=None, user_id=None, api_uri=None):
+    def __init__(self, organization_id=None, environment_id=None, jwt_secret=None, owner_id=None, user_id=None, api_uri=None, token=None):
         self.organization_id = organization_id if organization_id is not None else os.getenv("GRAPHLIT_ORGANIZATION_ID")
         self.environment_id = environment_id if environment_id is not None else os.getenv("GRAPHLIT_ENVIRONMENT_ID")
         self.owner_id = owner_id if owner_id is not None else os.getenv("GRAPHLIT_OWNER_ID")
         self.user_id = user_id if user_id is not None else os.getenv("GRAPHLIT_USER_ID")
         self.secret_key = jwt_secret if jwt_secret is not None else os.getenv("GRAPHLIT_JWT_SECRET")
         self.api_uri = api_uri if api_uri is not None else "https://data-scus.graphlit.io/api/v1/graphql/"
+
+        # Accept pre-signed token (matches TS SDK's token option)
+        pre_signed_token = token if token is not None else os.getenv("GRAPHLIT_TOKEN")
+
+        if pre_signed_token:
+            self.token = pre_signed_token
+            self._init_client()
+        else:
+            self.refresh_client()
         
-        self.refresh_client()
-        
-    def refresh_client(self):
-        self.client = None
-        self._generate_token()
-        
+    def _init_client(self):
         headers = {"Authorization": f"Bearer {self.token}"}
 
         timeout = httpx.Timeout(connect=10.0, read=600.0, write=10.0, pool=60.0)
-        
+
         self.client = Client(url=self.api_uri, headers=headers)
         self.client.http_client.timeout = timeout
+
+    def refresh_client(self):
+        self.client = None
+        self._generate_token()
+        self._init_client()
 
     def _generate_token(self):
         expiration = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=1)
