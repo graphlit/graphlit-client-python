@@ -1,0 +1,12 @@
+mutation AddConversationsToCollections($conversations: [EntityReferenceInput!]!, $collections: [EntityReferenceInput!]!) {
+  addConversationsToCollections(conversations: $conversations, collections: $collections) {
+    id
+    name
+    state
+    type
+    contents {
+      id
+      name
+    }
+  }
+}

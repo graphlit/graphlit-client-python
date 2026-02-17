@@ -3,6 +3,7 @@
 
 __all__ = [
     "ADD_CONTENTS_TO_COLLECTIONS_GQL",
+    "ADD_CONVERSATIONS_TO_COLLECTIONS_GQL",
     "APPROVE_CONTENT_GQL",
     "ASK_GRAPHLIT_GQL",
     "BRANCH_CONVERSATION_GQL",
@@ -362,6 +363,7 @@ __all__ = [
     "QUERY_WORKFLOWS_GQL",
     "REJECT_CONTENT_GQL",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
+    "REMOVE_CONVERSATIONS_FROM_COLLECTION_GQL",
     "RESEARCH_CONTENTS_GQL",
     "RESOLVE_ENTITIES_GQL",
     "RESOLVE_ENTITY_GQL",
@@ -1018,6 +1020,24 @@ mutation AddContentsToCollections($contents: [EntityReferenceInput!]!, $collecti
 }
 """
 
+ADD_CONVERSATIONS_TO_COLLECTIONS_GQL = """
+mutation AddConversationsToCollections($conversations: [EntityReferenceInput!]!, $collections: [EntityReferenceInput!]!) {
+  addConversationsToCollections(
+    conversations: $conversations
+    collections: $collections
+  ) {
+    id
+    name
+    state
+    type
+    contents {
+      id
+      name
+    }
+  }
+}
+"""
+
 COUNT_COLLECTIONS_GQL = """
 query CountCollections($filter: CollectionFilter, $correlationId: String) {
   countCollections(filter: $filter, correlationId: $correlationId) {
@@ -1084,6 +1104,10 @@ query GetCollection($id: ID!, $correlationId: String) {
       id
       name
     }
+    conversations {
+      id
+      name
+    }
   }
 }
 """
@@ -1110,6 +1134,24 @@ query QueryCollections($filter: CollectionFilter, $correlationId: String) {
 REMOVE_CONTENTS_FROM_COLLECTION_GQL = """
 mutation RemoveContentsFromCollection($contents: [EntityReferenceInput!]!, $collection: EntityReferenceInput!) {
   removeContentsFromCollection(contents: $contents, collection: $collection) {
+    id
+    name
+    state
+    type
+    contents {
+      id
+      name
+    }
+  }
+}
+"""
+
+REMOVE_CONVERSATIONS_FROM_COLLECTION_GQL = """
+mutation RemoveConversationsFromCollection($conversations: [EntityReferenceInput!]!, $collection: EntityReferenceInput!) {
+  removeConversationsFromCollection(
+    conversations: $conversations
+    collection: $collection
+  ) {
     id
     name
     state

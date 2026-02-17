@@ -13,5 +13,9 @@ query GetCollection($id: ID!, $correlationId: String) {
       id
       name
     }
+    conversations {
+      id
+      name
+    }
   }
 }

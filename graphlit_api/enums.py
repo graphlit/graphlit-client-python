@@ -1061,6 +1061,7 @@ class SlackAuthenticationTypes(str, Enum):
 
 class CollectionTypes(str, Enum):
     COLLECTION = "COLLECTION"
+    CONVERSATION = "CONVERSATION"
     THREAD = "THREAD"
     SERIES = "SERIES"
     FOLDER = "FOLDER"

@@ -5,6 +5,11 @@ from .add_contents_to_collections import (
     AddContentsToCollectionsAddContentsToCollections,
     AddContentsToCollectionsAddContentsToCollectionsContents,
 )
+from .add_conversations_to_collections import (
+    AddConversationsToCollections,
+    AddConversationsToCollectionsAddConversationsToCollections,
+    AddConversationsToCollectionsAddConversationsToCollectionsContents,
+)
 from .approve_content import ApproveContent, ApproveContentApproveContent
 from .ask_graphlit import (
     AskGraphlit,
@@ -964,6 +969,7 @@ from .get_collection import (
     GetCollection,
     GetCollectionCollection,
     GetCollectionCollectionContents,
+    GetCollectionCollectionConversations,
     GetCollectionCollectionOwner,
 )
 from .get_connector import (
@@ -2301,6 +2307,7 @@ from .match_entity import (
 )
 from .operations import (
     ADD_CONTENTS_TO_COLLECTIONS_GQL,
+    ADD_CONVERSATIONS_TO_COLLECTIONS_GQL,
     APPROVE_CONTENT_GQL,
     ASK_GRAPHLIT_GQL,
     BRANCH_CONVERSATION_GQL,
@@ -2660,6 +2667,7 @@ from .operations import (
     QUERY_WORKFLOWS_GQL,
     REJECT_CONTENT_GQL,
     REMOVE_CONTENTS_FROM_COLLECTION_GQL,
+    REMOVE_CONVERSATIONS_FROM_COLLECTION_GQL,
     RESEARCH_CONTENTS_GQL,
     RESOLVE_ENTITIES_GQL,
     RESOLVE_ENTITY_GQL,
@@ -4272,6 +4280,11 @@ from .remove_contents_from_collection import (
     RemoveContentsFromCollectionRemoveContentsFromCollection,
     RemoveContentsFromCollectionRemoveContentsFromCollectionContents,
 )
+from .remove_conversations_from_collection import (
+    RemoveConversationsFromCollection,
+    RemoveConversationsFromCollectionRemoveConversationsFromCollection,
+    RemoveConversationsFromCollectionRemoveConversationsFromCollectionContents,
+)
 from .research_contents import ResearchContents, ResearchContentsResearchContents
 from .resolve_entities import (
     ResolveEntities,
@@ -4750,11 +4763,15 @@ from .workflow_exists import WorkflowExists, WorkflowExistsWorkflowExists
 
 __all__ = [
     "ADD_CONTENTS_TO_COLLECTIONS_GQL",
+    "ADD_CONVERSATIONS_TO_COLLECTIONS_GQL",
     "APPROVE_CONTENT_GQL",
     "ASK_GRAPHLIT_GQL",
     "AddContentsToCollections",
     "AddContentsToCollectionsAddContentsToCollections",
     "AddContentsToCollectionsAddContentsToCollectionsContents",
+    "AddConversationsToCollections",
+    "AddConversationsToCollectionsAddConversationsToCollections",
+    "AddConversationsToCollectionsAddConversationsToCollectionsContents",
     "AddressFilter",
     "AddressInput",
     "AlertFilter",
@@ -5911,6 +5928,7 @@ __all__ = [
     "GetCollection",
     "GetCollectionCollection",
     "GetCollectionCollectionContents",
+    "GetCollectionCollectionConversations",
     "GetCollectionCollectionOwner",
     "GetConnector",
     "GetConnectorConnector",
@@ -8470,6 +8488,7 @@ __all__ = [
     "QueryWorkflowsWorkflowsResultsStoragePolicy",
     "REJECT_CONTENT_GQL",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
+    "REMOVE_CONVERSATIONS_FROM_COLLECTION_GQL",
     "RESEARCH_CONTENTS_GQL",
     "RESOLVE_ENTITIES_GQL",
     "RESOLVE_ENTITY_GQL",
@@ -8500,6 +8519,9 @@ __all__ = [
     "RemoveContentsFromCollection",
     "RemoveContentsFromCollectionRemoveContentsFromCollection",
     "RemoveContentsFromCollectionRemoveContentsFromCollectionContents",
+    "RemoveConversationsFromCollection",
+    "RemoveConversationsFromCollectionRemoveConversationsFromCollection",
+    "RemoveConversationsFromCollectionRemoveConversationsFromCollectionContents",
     "RenditionTypes",
     "ReplicateModelPropertiesInput",
     "ReplicateModelPropertiesUpdateInput",

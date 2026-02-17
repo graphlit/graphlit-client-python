@@ -4,6 +4,7 @@
 from typing import Any, Optional, Union
 
 from .add_contents_to_collections import AddContentsToCollections
+from .add_conversations_to_collections import AddConversationsToCollections
 from .approve_content import ApproveContent
 from .ask_graphlit import AskGraphlit
 from .async_base_client import AsyncBaseClient
@@ -422,6 +423,7 @@ from .map_web import MapWeb
 from .match_entity import MatchEntity
 from .operations import (
     ADD_CONTENTS_TO_COLLECTIONS_GQL,
+    ADD_CONVERSATIONS_TO_COLLECTIONS_GQL,
     APPROVE_CONTENT_GQL,
     ASK_GRAPHLIT_GQL,
     BRANCH_CONVERSATION_GQL,
@@ -781,6 +783,7 @@ from .operations import (
     QUERY_WORKFLOWS_GQL,
     REJECT_CONTENT_GQL,
     REMOVE_CONTENTS_FROM_COLLECTION_GQL,
+    REMOVE_CONVERSATIONS_FROM_COLLECTION_GQL,
     RESEARCH_CONTENTS_GQL,
     RESOLVE_ENTITIES_GQL,
     RESOLVE_ENTITY_GQL,
@@ -959,6 +962,7 @@ from .query_views import QueryViews
 from .query_workflows import QueryWorkflows
 from .reject_content import RejectContent
 from .remove_contents_from_collection import RemoveContentsFromCollection
+from .remove_conversations_from_collection import RemoveConversationsFromCollection
 from .research_contents import ResearchContents
 from .resolve_entities import ResolveEntities
 from .resolve_entity import ResolveEntity
@@ -1353,6 +1357,25 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return AddContentsToCollections.model_validate(data)
 
+    async def add_conversations_to_collections(
+        self,
+        conversations: list[EntityReferenceInput],
+        collections: list[EntityReferenceInput],
+        **kwargs: Any
+    ) -> AddConversationsToCollections:
+        variables: dict[str, object] = {
+            "conversations": conversations,
+            "collections": collections,
+        }
+        response = await self.execute(
+            query=ADD_CONVERSATIONS_TO_COLLECTIONS_GQL,
+            operation_name="AddConversationsToCollections",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return AddConversationsToCollections.model_validate(data)
+
     async def count_collections(
         self,
         filter: Union[Optional[CollectionFilter], UnsetType] = UNSET,
@@ -1483,6 +1506,25 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return RemoveContentsFromCollection.model_validate(data)
+
+    async def remove_conversations_from_collection(
+        self,
+        conversations: list[EntityReferenceInput],
+        collection: EntityReferenceInput,
+        **kwargs: Any
+    ) -> RemoveConversationsFromCollection:
+        variables: dict[str, object] = {
+            "conversations": conversations,
+            "collection": collection,
+        }
+        response = await self.execute(
+            query=REMOVE_CONVERSATIONS_FROM_COLLECTION_GQL,
+            operation_name="RemoveConversationsFromCollection",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return RemoveConversationsFromCollection.model_validate(data)
 
     async def update_collection(
         self, collection: CollectionUpdateInput, **kwargs: Any

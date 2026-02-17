@@ -22,6 +22,7 @@ class GetCollectionCollection(BaseModel):
     state: EntityState
     type: Optional[CollectionTypes]
     contents: Optional[list[Optional["GetCollectionCollectionContents"]]]
+    conversations: Optional[list[Optional["GetCollectionCollectionConversations"]]]
 
 
 class GetCollectionCollectionOwner(BaseModel):
@@ -29,6 +30,11 @@ class GetCollectionCollectionOwner(BaseModel):
 
 
 class GetCollectionCollectionContents(BaseModel):
+    id: str
+    name: str
+
+
+class GetCollectionCollectionConversations(BaseModel):
     id: str
     name: str
 
