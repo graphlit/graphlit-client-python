@@ -130,5 +130,11 @@ mutation DescribeEncodedImage($prompt: String!, $mimeType: String!, $data: Strin
     mimeType
     toolCallId
     toolCallResponse
+    artifacts {
+      id
+      name
+      mimeType
+      uri
+    }
   }
 }

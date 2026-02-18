@@ -42,6 +42,7 @@ class DescribeImageDescribeImage(BaseModel):
     mime_type: Optional[str] = Field(alias="mimeType")
     tool_call_id: Optional[str] = Field(alias="toolCallId")
     tool_call_response: Optional[str] = Field(alias="toolCallResponse")
+    artifacts: Optional[list[Optional["DescribeImageDescribeImageArtifacts"]]]
 
 
 class DescribeImageDescribeImageCitations(BaseModel):
@@ -170,6 +171,13 @@ class DescribeImageDescribeImageToolCalls(BaseModel):
     id: str
     name: str
     arguments: str
+
+
+class DescribeImageDescribeImageArtifacts(BaseModel):
+    id: str
+    name: str
+    mime_type: Optional[str] = Field(alias="mimeType")
+    uri: Optional[Any]
 
 
 DescribeImage.model_rebuild()

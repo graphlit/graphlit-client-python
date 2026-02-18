@@ -1,5 +1,5 @@
-mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: TimeSpan, $ttft: TimeSpan, $throughput: Float, $correlationId: String) {
-  completeConversation(completion: $completion, id: $id, completionTime: $completionTime, ttft: $ttft, throughput: $throughput, correlationId: $correlationId) {
+mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: TimeSpan, $ttft: TimeSpan, $throughput: Float, $artifacts: [EntityReferenceInput!], $correlationId: String) {
+  completeConversation(completion: $completion, id: $id, completionTime: $completionTime, ttft: $ttft, throughput: $throughput, artifacts: $artifacts, correlationId: $correlationId) {
     conversation {
       id
     }
@@ -134,6 +134,12 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
       mimeType
       toolCallId
       toolCallResponse
+      artifacts {
+        id
+        name
+        mimeType
+        uri
+      }
     }
     messageCount
     facets {
@@ -319,6 +325,12 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
         mimeType
         toolCallId
         toolCallResponse
+        artifacts {
+          id
+          name
+          mimeType
+          uri
+        }
       }
     }
   }

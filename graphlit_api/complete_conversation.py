@@ -61,6 +61,9 @@ class CompleteConversationCompleteConversationMessage(BaseModel):
     mime_type: Optional[str] = Field(alias="mimeType")
     tool_call_id: Optional[str] = Field(alias="toolCallId")
     tool_call_response: Optional[str] = Field(alias="toolCallResponse")
+    artifacts: Optional[
+        list[Optional["CompleteConversationCompleteConversationMessageArtifacts"]]
+    ]
 
 
 class CompleteConversationCompleteConversationMessageCitations(BaseModel):
@@ -201,6 +204,13 @@ class CompleteConversationCompleteConversationMessageToolCalls(BaseModel):
     arguments: str
 
 
+class CompleteConversationCompleteConversationMessageArtifacts(BaseModel):
+    id: str
+    name: str
+    mime_type: Optional[str] = Field(alias="mimeType")
+    uri: Optional[Any]
+
+
 class CompleteConversationCompleteConversationFacets(BaseModel):
     type: Optional[FacetValueTypes]
     value: Optional[str]
@@ -301,6 +311,11 @@ class CompleteConversationCompleteConversationDetailsMessages(BaseModel):
     mime_type: Optional[str] = Field(alias="mimeType")
     tool_call_id: Optional[str] = Field(alias="toolCallId")
     tool_call_response: Optional[str] = Field(alias="toolCallResponse")
+    artifacts: Optional[
+        list[
+            Optional["CompleteConversationCompleteConversationDetailsMessagesArtifacts"]
+        ]
+    ]
 
 
 class CompleteConversationCompleteConversationDetailsMessagesCitations(BaseModel):
@@ -449,6 +464,13 @@ class CompleteConversationCompleteConversationDetailsMessagesToolCalls(BaseModel
     id: str
     name: str
     arguments: str
+
+
+class CompleteConversationCompleteConversationDetailsMessagesArtifacts(BaseModel):
+    id: str
+    name: str
+    mime_type: Optional[str] = Field(alias="mimeType")
+    uri: Optional[Any]
 
 
 CompleteConversation.model_rebuild()

@@ -50,6 +50,7 @@ class PromptPromptMessages(BaseModel):
     mime_type: Optional[str] = Field(alias="mimeType")
     tool_call_id: Optional[str] = Field(alias="toolCallId")
     tool_call_response: Optional[str] = Field(alias="toolCallResponse")
+    artifacts: Optional[list[Optional["PromptPromptMessagesArtifacts"]]]
 
 
 class PromptPromptMessagesCitations(BaseModel):
@@ -178,6 +179,13 @@ class PromptPromptMessagesToolCalls(BaseModel):
     id: str
     name: str
     arguments: str
+
+
+class PromptPromptMessagesArtifacts(BaseModel):
+    id: str
+    name: str
+    mime_type: Optional[str] = Field(alias="mimeType")
+    uri: Optional[Any]
 
 
 Prompt.model_rebuild()

@@ -61,6 +61,9 @@ class PromptConversationPromptConversationMessage(BaseModel):
     mime_type: Optional[str] = Field(alias="mimeType")
     tool_call_id: Optional[str] = Field(alias="toolCallId")
     tool_call_response: Optional[str] = Field(alias="toolCallResponse")
+    artifacts: Optional[
+        list[Optional["PromptConversationPromptConversationMessageArtifacts"]]
+    ]
 
 
 class PromptConversationPromptConversationMessageCitations(BaseModel):
@@ -193,6 +196,13 @@ class PromptConversationPromptConversationMessageToolCalls(BaseModel):
     arguments: str
 
 
+class PromptConversationPromptConversationMessageArtifacts(BaseModel):
+    id: str
+    name: str
+    mime_type: Optional[str] = Field(alias="mimeType")
+    uri: Optional[Any]
+
+
 class PromptConversationPromptConversationFacets(BaseModel):
     type: Optional[FacetValueTypes]
     value: Optional[str]
@@ -285,6 +295,9 @@ class PromptConversationPromptConversationDetailsMessages(BaseModel):
     mime_type: Optional[str] = Field(alias="mimeType")
     tool_call_id: Optional[str] = Field(alias="toolCallId")
     tool_call_response: Optional[str] = Field(alias="toolCallResponse")
+    artifacts: Optional[
+        list[Optional["PromptConversationPromptConversationDetailsMessagesArtifacts"]]
+    ]
 
 
 class PromptConversationPromptConversationDetailsMessagesCitations(BaseModel):
@@ -431,6 +444,13 @@ class PromptConversationPromptConversationDetailsMessagesToolCalls(BaseModel):
     id: str
     name: str
     arguments: str
+
+
+class PromptConversationPromptConversationDetailsMessagesArtifacts(BaseModel):
+    id: str
+    name: str
+    mime_type: Optional[str] = Field(alias="mimeType")
+    uri: Optional[Any]
 
 
 PromptConversation.model_rebuild()

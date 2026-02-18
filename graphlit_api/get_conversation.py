@@ -73,6 +73,7 @@ class GetConversationConversationMessages(BaseModel):
     mime_type: Optional[str] = Field(alias="mimeType")
     tool_call_id: Optional[str] = Field(alias="toolCallId")
     tool_call_response: Optional[str] = Field(alias="toolCallResponse")
+    artifacts: Optional[list[Optional["GetConversationConversationMessagesArtifacts"]]]
 
 
 class GetConversationConversationMessagesCitations(BaseModel):
@@ -201,6 +202,13 @@ class GetConversationConversationMessagesToolCalls(BaseModel):
     id: str
     name: str
     arguments: str
+
+
+class GetConversationConversationMessagesArtifacts(BaseModel):
+    id: str
+    name: str
+    mime_type: Optional[str] = Field(alias="mimeType")
+    uri: Optional[Any]
 
 
 class GetConversationConversationTurns(BaseModel):

@@ -143,6 +143,12 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         mimeType
         toolCallId
         toolCallResponse
+        artifacts {
+          id
+          name
+          mimeType
+          uri
+        }
       }
       transcriptUri
       turns {

@@ -44,6 +44,9 @@ class DescribeEncodedImageDescribeEncodedImage(BaseModel):
     mime_type: Optional[str] = Field(alias="mimeType")
     tool_call_id: Optional[str] = Field(alias="toolCallId")
     tool_call_response: Optional[str] = Field(alias="toolCallResponse")
+    artifacts: Optional[
+        list[Optional["DescribeEncodedImageDescribeEncodedImageArtifacts"]]
+    ]
 
 
 class DescribeEncodedImageDescribeEncodedImageCitations(BaseModel):
@@ -174,6 +177,13 @@ class DescribeEncodedImageDescribeEncodedImageToolCalls(BaseModel):
     id: str
     name: str
     arguments: str
+
+
+class DescribeEncodedImageDescribeEncodedImageArtifacts(BaseModel):
+    id: str
+    name: str
+    mime_type: Optional[str] = Field(alias="mimeType")
+    uri: Optional[Any]
 
 
 DescribeEncodedImage.model_rebuild()

@@ -134,6 +134,12 @@ mutation ReviseContent($prompt: String!, $content: EntityReferenceInput!, $id: I
       mimeType
       toolCallId
       toolCallResponse
+      artifacts {
+        id
+        name
+        mimeType
+        uri
+      }
     }
     messageCount
   }

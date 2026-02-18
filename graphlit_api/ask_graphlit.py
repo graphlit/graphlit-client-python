@@ -50,6 +50,7 @@ class AskGraphlitAskGraphlitMessage(BaseModel):
     mime_type: Optional[str] = Field(alias="mimeType")
     tool_call_id: Optional[str] = Field(alias="toolCallId")
     tool_call_response: Optional[str] = Field(alias="toolCallResponse")
+    artifacts: Optional[list[Optional["AskGraphlitAskGraphlitMessageArtifacts"]]]
 
 
 class AskGraphlitAskGraphlitMessageCitations(BaseModel):
@@ -178,6 +179,13 @@ class AskGraphlitAskGraphlitMessageToolCalls(BaseModel):
     id: str
     name: str
     arguments: str
+
+
+class AskGraphlitAskGraphlitMessageArtifacts(BaseModel):
+    id: str
+    name: str
+    mime_type: Optional[str] = Field(alias="mimeType")
+    uri: Optional[Any]
 
 
 AskGraphlit.model_rebuild()

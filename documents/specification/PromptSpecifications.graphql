@@ -134,6 +134,12 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
       mimeType
       toolCallId
       toolCallResponse
+      artifacts {
+        id
+        name
+        mimeType
+        uri
+      }
     }
     error
   }

@@ -134,6 +134,12 @@ mutation ReviseEncodedImage($prompt: String!, $mimeType: String!, $data: String!
       mimeType
       toolCallId
       toolCallResponse
+      artifacts {
+        id
+        name
+        mimeType
+        uri
+      }
     }
     messageCount
   }

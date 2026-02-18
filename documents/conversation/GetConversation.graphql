@@ -141,6 +141,12 @@ query GetConversation($id: ID!, $correlationId: String) {
       mimeType
       toolCallId
       toolCallResponse
+      artifacts {
+        id
+        name
+        mimeType
+        uri
+      }
     }
     transcriptUri
     turns {

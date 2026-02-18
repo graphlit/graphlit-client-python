@@ -134,6 +134,12 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
       mimeType
       toolCallId
       toolCallResponse
+      artifacts {
+        id
+        name
+        mimeType
+        uri
+      }
     }
     messageCount
     facets {
@@ -319,6 +325,12 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
         mimeType
         toolCallId
         toolCallResponse
+        artifacts {
+          id
+          name
+          mimeType
+          uri
+        }
       }
     }
   }

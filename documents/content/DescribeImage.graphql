@@ -130,5 +130,11 @@ mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityRefer
     mimeType
     toolCallId
     toolCallResponse
+    artifacts {
+      id
+      name
+      mimeType
+      uri
+    }
   }
 }

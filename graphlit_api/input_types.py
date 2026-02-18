@@ -3938,6 +3938,7 @@ class ConversationMessageInput(BaseModel):
     timestamp: Optional[Any] = None
     data: Optional[str] = None
     mime_type: Optional[str] = Field(alias="mimeType", default=None)
+    artifacts: Optional[list[Optional["EntityReferenceInput"]]] = None
 
 
 class ProjectInput(BaseModel):

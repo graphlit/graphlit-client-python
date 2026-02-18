@@ -134,6 +134,12 @@ mutation AskGraphlit($prompt: String!, $type: SdkTypes, $id: ID, $specification:
       mimeType
       toolCallId
       toolCallResponse
+      artifacts {
+        id
+        name
+        mimeType
+        uri
+      }
     }
     messageCount
   }

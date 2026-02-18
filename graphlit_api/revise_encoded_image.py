@@ -54,6 +54,9 @@ class ReviseEncodedImageReviseEncodedImageMessage(BaseModel):
     mime_type: Optional[str] = Field(alias="mimeType")
     tool_call_id: Optional[str] = Field(alias="toolCallId")
     tool_call_response: Optional[str] = Field(alias="toolCallResponse")
+    artifacts: Optional[
+        list[Optional["ReviseEncodedImageReviseEncodedImageMessageArtifacts"]]
+    ]
 
 
 class ReviseEncodedImageReviseEncodedImageMessageCitations(BaseModel):
@@ -184,6 +187,13 @@ class ReviseEncodedImageReviseEncodedImageMessageToolCalls(BaseModel):
     id: str
     name: str
     arguments: str
+
+
+class ReviseEncodedImageReviseEncodedImageMessageArtifacts(BaseModel):
+    id: str
+    name: str
+    mime_type: Optional[str] = Field(alias="mimeType")
+    uri: Optional[Any]
 
 
 ReviseEncodedImage.model_rebuild()

@@ -143,6 +143,12 @@ query QueryConversationsClusters($filter: ConversationFilter, $clusters: EntityC
         mimeType
         toolCallId
         toolCallResponse
+        artifacts {
+          id
+          name
+          mimeType
+          uri
+        }
       }
       transcriptUri
       turns {
