@@ -11,7 +11,7 @@ class Graphlit:
         self.owner_id = owner_id if owner_id is not None else os.getenv("GRAPHLIT_OWNER_ID")
         self.user_id = user_id if user_id is not None else os.getenv("GRAPHLIT_USER_ID")
         self.secret_key = jwt_secret if jwt_secret is not None else os.getenv("GRAPHLIT_JWT_SECRET")
-        self.api_uri = api_uri if api_uri is not None else "https://data-scus.graphlit.io/api/v1/graphql/"
+        self.api_uri = api_uri if api_uri is not None else os.getenv("GRAPHLIT_API_URI", "https://data-scus.graphlit.io/api/v1/graphql/")
 
         # Accept pre-signed token (matches TS SDK's token option)
         pre_signed_token = token if token is not None else os.getenv("GRAPHLIT_TOKEN")
