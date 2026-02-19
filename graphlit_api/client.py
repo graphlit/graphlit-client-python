@@ -191,6 +191,7 @@ from .describe_image import DescribeImage
 from .disable_alert import DisableAlert
 from .disable_feed import DisableFeed
 from .disable_user import DisableUser
+from .distribute_contents import DistributeContents
 from .enable_alert import EnableAlert
 from .enable_feed import EnableFeed
 from .enable_user import EnableUser
@@ -288,6 +289,7 @@ from .input_types import (
     ConversationUpdateInput,
     DiscordChannelsInput,
     DiscordGuildsInput,
+    DistributionConnectorInput,
     DropboxFoldersInput,
     EmotionFilter,
     EmotionInput,
@@ -608,6 +610,7 @@ from .operations import (
     DISABLE_ALERT_GQL,
     DISABLE_FEED_GQL,
     DISABLE_USER_GQL,
+    DISTRIBUTE_CONTENTS_GQL,
     ENABLE_ALERT_GQL,
     ENABLE_FEED_GQL,
     ENABLE_USER_GQL,
@@ -1755,6 +1758,35 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return DescribeImage.model_validate(data)
+
+    async def distribute_contents(
+        self,
+        connector: DistributionConnectorInput,
+        authentication: EntityReferenceInput,
+        text: Union[Optional[str], UnsetType] = UNSET,
+        text_type: Union[Optional[TextTypes], UnsetType] = UNSET,
+        name: Union[Optional[str], UnsetType] = UNSET,
+        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DistributeContents:
+        variables: dict[str, object] = {
+            "connector": connector,
+            "authentication": authentication,
+            "text": text,
+            "textType": text_type,
+            "name": name,
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DISTRIBUTE_CONTENTS_GQL,
+            operation_name="DistributeContents",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DistributeContents.model_validate(data)
 
     async def extract_contents(
         self,

@@ -120,6 +120,9 @@ class QuerySpecificationsSpecificationsResultsStrategy(BaseModel):
     fact_extraction_limit: Optional[int] = Field(alias="factExtractionLimit")
     messages_weight: Optional[float] = Field(alias="messagesWeight")
     contents_weight: Optional[float] = Field(alias="contentsWeight")
+    tool_result_token_limit: Optional[int] = Field(alias="toolResultTokenLimit")
+    tool_round_limit: Optional[int] = Field(alias="toolRoundLimit")
+    tool_budget_threshold: Optional[float] = Field(alias="toolBudgetThreshold")
 
 
 class QuerySpecificationsSpecificationsResultsPromptStrategy(BaseModel):

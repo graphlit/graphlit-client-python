@@ -171,8 +171,15 @@ query GetFeed($id: ID!, $correlationId: String) {
         cloudId
       }
       linear {
+        authenticationType
         key
         project
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
       }
       github {
         authenticationType

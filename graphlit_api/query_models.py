@@ -51,6 +51,8 @@ class QueryModelsModelsResultsMetadata(BaseModel):
     reranking_cost_per_million: Optional[float] = Field(alias="rerankingCostPerMillion")
     context_window_tokens: Optional[int] = Field(alias="contextWindowTokens")
     max_output_tokens: Optional[int] = Field(alias="maxOutputTokens")
+    deprecated: Optional[bool]
+    deprecation_date: Optional[Any] = Field(alias="deprecationDate")
 
 
 QueryModels.model_rebuild()

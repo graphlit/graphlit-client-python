@@ -42,6 +42,7 @@ from .enums import (
     IntercomConversationsAuthenticationTypes,
     IntercomIssueAuthenticationTypes,
     JiraAuthenticationTypes,
+    LinearIssueAuthenticationTypes,
     MeetingContentTypes,
     MicrosoftCalendarAuthenticationTypes,
     MicrosoftContactsAuthenticationTypes,
@@ -382,8 +383,19 @@ class QueryFeedsFeedsResultsIssueJiraConnector(BaseModel):
 
 
 class QueryFeedsFeedsResultsIssueLinear(BaseModel):
-    key: str
+    authentication_type: Optional[LinearIssueAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    key: Optional[str]
     project: str
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["QueryFeedsFeedsResultsIssueLinearConnector"]
+
+
+class QueryFeedsFeedsResultsIssueLinearConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsIssueGithub(BaseModel):
@@ -1066,6 +1078,7 @@ QueryFeedsFeedsResultsEmailGoogle.model_rebuild()
 QueryFeedsFeedsResultsEmailMicrosoft.model_rebuild()
 QueryFeedsFeedsResultsIssue.model_rebuild()
 QueryFeedsFeedsResultsIssueJira.model_rebuild()
+QueryFeedsFeedsResultsIssueLinear.model_rebuild()
 QueryFeedsFeedsResultsIssueGithub.model_rebuild()
 QueryFeedsFeedsResultsIssueIntercom.model_rebuild()
 QueryFeedsFeedsResultsIssueZendesk.model_rebuild()

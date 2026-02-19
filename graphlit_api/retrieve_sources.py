@@ -22,7 +22,7 @@ class RetrieveSourcesRetrieveSources(BaseModel):
 class RetrieveSourcesRetrieveSourcesResults(BaseModel):
     type: Optional[ContentSourceTypes]
     content: "RetrieveSourcesRetrieveSourcesResultsContent"
-    text: str
+    text: Optional[str]
     metadata: Optional[str]
     relevance: float
     start_time: Optional[Any] = Field(alias="startTime")

@@ -25,6 +25,8 @@ query QueryModels($filter: ModelFilter) {
         rerankingCostPerMillion
         contextWindowTokens
         maxOutputTokens
+        deprecated
+        deprecationDate
       }
     }
   }

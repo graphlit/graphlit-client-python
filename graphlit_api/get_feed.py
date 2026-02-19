@@ -42,6 +42,7 @@ from .enums import (
     IntercomConversationsAuthenticationTypes,
     IntercomIssueAuthenticationTypes,
     JiraAuthenticationTypes,
+    LinearIssueAuthenticationTypes,
     MeetingContentTypes,
     MicrosoftCalendarAuthenticationTypes,
     MicrosoftContactsAuthenticationTypes,
@@ -367,8 +368,19 @@ class GetFeedFeedIssueJiraConnector(BaseModel):
 
 
 class GetFeedFeedIssueLinear(BaseModel):
-    key: str
+    authentication_type: Optional[LinearIssueAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    key: Optional[str]
     project: str
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["GetFeedFeedIssueLinearConnector"]
+
+
+class GetFeedFeedIssueLinearConnector(BaseModel):
+    id: str
 
 
 class GetFeedFeedIssueGithub(BaseModel):
@@ -1050,6 +1062,7 @@ GetFeedFeedEmailGoogle.model_rebuild()
 GetFeedFeedEmailMicrosoft.model_rebuild()
 GetFeedFeedIssue.model_rebuild()
 GetFeedFeedIssueJira.model_rebuild()
+GetFeedFeedIssueLinear.model_rebuild()
 GetFeedFeedIssueGithub.model_rebuild()
 GetFeedFeedIssueIntercom.model_rebuild()
 GetFeedFeedIssueZendesk.model_rebuild()

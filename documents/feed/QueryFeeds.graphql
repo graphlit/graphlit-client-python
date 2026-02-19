@@ -173,8 +173,15 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           cloudId
         }
         linear {
+          authenticationType
           key
           project
+          clientId
+          clientSecret
+          refreshToken
+          connector {
+            id
+          }
         }
         github {
           authenticationType

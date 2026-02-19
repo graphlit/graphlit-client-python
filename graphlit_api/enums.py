@@ -4,226 +4,32 @@
 from enum import Enum
 
 
-class MedicalTestFacetTypes(str, Enum):
-    CREATION_DATE = "CREATION_DATE"
-
-
-class ConversationSearchTypes(str, Enum):
-    NONE = "NONE"
-    VECTOR = "VECTOR"
-    HYBRID = "HYBRID"
-
-
-class GoogleDriveAuthenticationTypes(str, Enum):
-    SERVICE_ACCOUNT = "SERVICE_ACCOUNT"
-    USER = "USER"
-    CONNECTOR = "CONNECTOR"
-
-
-class RerankingModelServiceTypes(str, Enum):
-    COHERE = "COHERE"
-    JINA = "JINA"
-    VOYAGE = "VOYAGE"
-
-
-class BillableMetrics(str, Enum):
-    BYTES = "BYTES"
-    TOKENS = "TOKENS"
-    LENGTH = "LENGTH"
-    TIME = "TIME"
-    UNITS = "UNITS"
-    COST = "COST"
-    REQUESTS = "REQUESTS"
-    CREDITS = "CREDITS"
-
-
-class SalesforceIssueAuthenticationTypes(str, Enum):
-    USER = "USER"
-    CONNECTOR = "CONNECTOR"
-
-
-class FeedServiceTypes(str, Enum):
-    GOOGLE_BLOB = "GOOGLE_BLOB"
-    S3_BLOB = "S3_BLOB"
-    AZURE_BLOB = "AZURE_BLOB"
-    AZURE_FILE = "AZURE_FILE"
-    SHARE_POINT = "SHARE_POINT"
-    ONE_DRIVE = "ONE_DRIVE"
-    GOOGLE_DRIVE = "GOOGLE_DRIVE"
-    DROPBOX = "DROPBOX"
-    BOX = "BOX"
-    GOOGLE_EMAIL = "GOOGLE_EMAIL"
-    MICROSOFT_EMAIL = "MICROSOFT_EMAIL"
-    ATLASSIAN_JIRA = "ATLASSIAN_JIRA"
-    ATLASSIAN_CONFLUENCE = "ATLASSIAN_CONFLUENCE"
-    TRELLO = "TRELLO"
-    LINEAR = "LINEAR"
-    GIT_HUB_ISSUES = "GIT_HUB_ISSUES"
-    GIT_HUB_PULL_REQUESTS = "GIT_HUB_PULL_REQUESTS"
-    GIT_HUB_COMMITS = "GIT_HUB_COMMITS"
-    GIT_HUB = "GIT_HUB"
-    INTERCOM_ARTICLES = "INTERCOM_ARTICLES"
-    ZENDESK_ARTICLES = "ZENDESK_ARTICLES"
-    INTERCOM_TICKETS = "INTERCOM_TICKETS"
-    ZENDESK_TICKETS = "ZENDESK_TICKETS"
-    GOOGLE_CALENDAR = "GOOGLE_CALENDAR"
-    MICROSOFT_CALENDAR = "MICROSOFT_CALENDAR"
-    GOOGLE_CONTACTS = "GOOGLE_CONTACTS"
-    MICROSOFT_CONTACTS = "MICROSOFT_CONTACTS"
-    ATTIO_OBJECTS = "ATTIO_OBJECTS"
-    ATTIO_TASKS = "ATTIO_TASKS"
-    ATTIO_NOTES = "ATTIO_NOTES"
-    SALESFORCE_OBJECTS = "SALESFORCE_OBJECTS"
-    SALESFORCE_TASKS = "SALESFORCE_TASKS"
-    SALESFORCE_NOTES = "SALESFORCE_NOTES"
-    HUB_SPOT_OBJECTS = "HUB_SPOT_OBJECTS"
-    HUB_SPOT_TASKS = "HUB_SPOT_TASKS"
-    HUB_SPOT_TICKETS = "HUB_SPOT_TICKETS"
-    ASANA = "ASANA"
-    MONDAY = "MONDAY"
-    HUB_SPOT_NOTES = "HUB_SPOT_NOTES"
-    HUB_SPOT_MEETING = "HUB_SPOT_MEETING"
-    HUB_SPOT_CONVERSATIONS = "HUB_SPOT_CONVERSATIONS"
-    FIREFLIES = "FIREFLIES"
-    ATTIO_MEETING = "ATTIO_MEETING"
-    FATHOM = "FATHOM"
-    KRISP = "KRISP"
-    SALESFORCE_ECI = "SALESFORCE_ECI"
-    PARALLEL = "PARALLEL"
-    BAMBOO_HR = "BAMBOO_HR"
-    GUSTO_HRIS = "GUSTO_HRIS"
-    INTERCOM_CONVERSATIONS = "INTERCOM_CONVERSATIONS"
-
-
-class MedicalContraindicationFacetTypes(str, Enum):
-    CREATION_DATE = "CREATION_DATE"
-
-
-class OrientationTypes(str, Enum):
-    TOP_LEFT = "TOP_LEFT"
-    TOP_RIGHT = "TOP_RIGHT"
-    BOTTOM_RIGHT = "BOTTOM_RIGHT"
-    BOTTOM_LEFT = "BOTTOM_LEFT"
-    LEFT_TOP = "LEFT_TOP"
-    RIGHT_TOP = "RIGHT_TOP"
-    RIGHT_BOTTOM = "RIGHT_BOTTOM"
-    LEFT_BOTTOM = "LEFT_BOTTOM"
-
-
-class IntegrationServiceTypes(str, Enum):
-    SLACK = "SLACK"
-    WEB_HOOK = "WEB_HOOK"
-    EMAIL = "EMAIL"
-    TWITTER = "TWITTER"
-    MCP = "MCP"
-
-
-class SearchTypes(str, Enum):
-    KEYWORD = "KEYWORD"
-    VECTOR = "VECTOR"
-    HYBRID = "HYBRID"
-
-
-class RenditionTypes(str, Enum):
-    CONTENT = "CONTENT"
-
-
-class InvestmentFundFacetTypes(str, Enum):
-    CREATION_DATE = "CREATION_DATE"
-
-
-class OpenAIVideoModels(str, Enum):
-    SORA_2 = "SORA_2"
-    SORA_2_PRO = "SORA_2_PRO"
-    CUSTOM = "CUSTOM"
-
-
-class MailPriority(str, Enum):
-    NORMAL = "NORMAL"
-    LOW = "LOW"
-    HIGH = "HIGH"
-
-
-class CalendarRecurrencePattern(str, Enum):
-    DAILY = "DAILY"
-    WEEKLY = "WEEKLY"
-    MONTHLY = "MONTHLY"
-    YEARLY = "YEARLY"
-
-
-class FacetValueTypes(str, Enum):
-    VALUE = "VALUE"
-    RANGE = "RANGE"
-    OBJECT = "OBJECT"
-
-
-class VideoAspectRatioTypes(str, Enum):
-    LANDSCAPE_16X9 = "LANDSCAPE_16X9"
-    PORTRAIT_9X16 = "PORTRAIT_9X16"
-
-
-class HubSpotFeedAuthenticationTypes(str, Enum):
-    USER = "USER"
-    PRIVATE_APP = "PRIVATE_APP"
-    CONNECTOR = "CONNECTOR"
-
-
-class CerebrasModels(str, Enum):
-    LLAMA_4_SCOUT_17B = "LLAMA_4_SCOUT_17B"
-    LLAMA_3_3_70B = "LLAMA_3_3_70B"
-    LLAMA_3_1_8B = "LLAMA_3_1_8B"
-    QWEN_3_32B = "QWEN_3_32B"
-    CUSTOM = "CUSTOM"
-
-
-class CategoryFacetTypes(str, Enum):
-    CREATION_DATE = "CREATION_DATE"
-
-
-class AlertTypes(str, Enum):
-    PROMPT = "PROMPT"
-
-
-class GraphStrategyTypes(str, Enum):
-    EXTRACT_ENTITIES_FILTER = "EXTRACT_ENTITIES_FILTER"
-    EXTRACT_ENTITIES_GRAPH = "EXTRACT_ENTITIES_GRAPH"
-    NONE = "NONE"
-
-
-class SourceTypes(str, Enum):
-    CONTENT = "CONTENT"
-    CONVERSATION = "CONVERSATION"
-    PERSONA = "PERSONA"
-
-
-class ObservableTypes(str, Enum):
-    CATEGORY = "CATEGORY"
-    LABEL = "LABEL"
-    EMOTION = "EMOTION"
+class FactCategory(str, Enum):
+    RELATIONSHIP = "RELATIONSHIP"
     EVENT = "EVENT"
-    INVESTMENT = "INVESTMENT"
-    INVESTMENT_FUND = "INVESTMENT_FUND"
-    ORGANIZATION = "ORGANIZATION"
-    PERSON = "PERSON"
-    PLACE = "PLACE"
-    PRODUCT = "PRODUCT"
-    REPO = "REPO"
-    SOFTWARE = "SOFTWARE"
-    MEDICAL_STUDY = "MEDICAL_STUDY"
-    MEDICAL_CONDITION = "MEDICAL_CONDITION"
-    MEDICAL_GUIDELINE = "MEDICAL_GUIDELINE"
-    MEDICAL_DRUG = "MEDICAL_DRUG"
-    MEDICAL_DRUG_CLASS = "MEDICAL_DRUG_CLASS"
-    MEDICAL_INDICATION = "MEDICAL_INDICATION"
-    MEDICAL_CONTRAINDICATION = "MEDICAL_CONTRAINDICATION"
-    MEDICAL_TEST = "MEDICAL_TEST"
-    MEDICAL_DEVICE = "MEDICAL_DEVICE"
-    MEDICAL_THERAPY = "MEDICAL_THERAPY"
-    MEDICAL_PROCEDURE = "MEDICAL_PROCEDURE"
+    FACT = "FACT"
+    PREFERENCE = "PREFERENCE"
+    CHANGE = "CHANGE"
+    QUANTITATIVE = "QUANTITATIVE"
+    GOAL = "GOAL"
+    CAPABILITY = "CAPABILITY"
+    CONSTRAINT = "CONSTRAINT"
+    DECISION = "DECISION"
+    APPROVAL = "APPROVAL"
+    EXCEPTION = "EXCEPTION"
+    ESCALATION = "ESCALATION"
+    OVERRIDE = "OVERRIDE"
+    PRECEDENT = "PRECEDENT"
+    RATIONALE = "RATIONALE"
+    COMMITMENT = "COMMITMENT"
+    DELEGATION = "DELEGATION"
 
 
-class EmotionFacetTypes(str, Enum):
-    CREATION_DATE = "CREATION_DATE"
+class AzureOpenAIModels(str, Enum):
+    GPT35_TURBO_16K = "GPT35_TURBO_16K"
+    GPT4 = "GPT4"
+    GPT4_TURBO_128K = "GPT4_TURBO_128K"
+    CUSTOM = "CUSTOM"
 
 
 class LinkTypes(str, Enum):
@@ -274,203 +80,21 @@ class LinkTypes(str, Enum):
     FILE = "FILE"
 
 
-class UnitTypes(str, Enum):
-    KILOMETER = "KILOMETER"
-    METER = "METER"
-    CENTIMETER = "CENTIMETER"
-    MILLIMETER = "MILLIMETER"
-    MICROMETER = "MICROMETER"
-    NANOMETER = "NANOMETER"
-    ANGSTROM = "ANGSTROM"
-    DECIMETER = "DECIMETER"
-    DECAMETER = "DECAMETER"
-    HECTOMETER = "HECTOMETER"
-    GIGAMETER = "GIGAMETER"
-    ASTRONOMICAL_UNIT = "ASTRONOMICAL_UNIT"
-    LIGHT_YEAR = "LIGHT_YEAR"
-    PARSEC = "PARSEC"
-    MILE = "MILE"
-    YARD = "YARD"
-    FOOT = "FOOT"
-    INCH = "INCH"
-    MIL = "MIL"
-    MICRO_INCH = "MICRO_INCH"
-    CUSTOM = "CUSTOM"
-    UNITLESS = "UNITLESS"
-
-
-class SummarizationTypes(str, Enum):
-    SUMMARY = "SUMMARY"
-    KEYWORDS = "KEYWORDS"
-    BULLETS = "BULLETS"
-    HEADLINES = "HEADLINES"
-    POSTS = "POSTS"
-    CHAPTERS = "CHAPTERS"
-    QUESTIONS = "QUESTIONS"
-    QUOTES = "QUOTES"
-    GEOTAG = "GEOTAG"
-    CUSTOM = "CUSTOM"
-
-
-class BambooHRAuthenticationTypes(str, Enum):
-    API_KEY = "API_KEY"
-
-
-class HubSpotAuthenticationTypes(str, Enum):
-    USER = "USER"
-    PRIVATE_APP = "PRIVATE_APP"
-    CONNECTOR = "CONNECTOR"
-
-
-class GitHubCommitAuthenticationTypes(str, Enum):
-    PERSONAL_ACCESS_TOKEN = "PERSONAL_ACCESS_TOKEN"
-    O_AUTH = "O_AUTH"
-    CONNECTOR = "CONNECTOR"
-
-
-class GitHubPullRequestAuthenticationTypes(str, Enum):
-    PERSONAL_ACCESS_TOKEN = "PERSONAL_ACCESS_TOKEN"
-    O_AUTH = "O_AUTH"
-    CONNECTOR = "CONNECTOR"
-
-
-class FeedConnectorTypes(str, Enum):
-    GOOGLE = "GOOGLE"
-    AMAZON = "AMAZON"
-    AZURE = "AZURE"
-    SHARE_POINT = "SHARE_POINT"
-    ONE_DRIVE = "ONE_DRIVE"
-    GOOGLE_DRIVE = "GOOGLE_DRIVE"
-    DROPBOX = "DROPBOX"
-    BOX = "BOX"
-    GOOGLE_EMAIL = "GOOGLE_EMAIL"
-    MICROSOFT_EMAIL = "MICROSOFT_EMAIL"
-    ATLASSIAN = "ATLASSIAN"
-    LINEAR = "LINEAR"
-    GIT_HUB = "GIT_HUB"
-    INTERCOM = "INTERCOM"
-    ZENDESK = "ZENDESK"
-    GOOGLE_CALENDAR = "GOOGLE_CALENDAR"
-    MICROSOFT_CALENDAR = "MICROSOFT_CALENDAR"
-    GOOGLE_CONTACTS = "GOOGLE_CONTACTS"
-    MICROSOFT_CONTACTS = "MICROSOFT_CONTACTS"
-    ATTIO = "ATTIO"
-    SALESFORCE = "SALESFORCE"
-    HUB_SPOT = "HUB_SPOT"
-    ASANA = "ASANA"
-    MONDAY = "MONDAY"
-    FIREFLIES = "FIREFLIES"
-    ATTIO_MEETING = "ATTIO_MEETING"
-    FATHOM = "FATHOM"
-    KRISP = "KRISP"
-    SALESFORCE_ECI = "SALESFORCE_ECI"
-    PARALLEL = "PARALLEL"
-    BAMBOO_HR = "BAMBOO_HR"
-    GUSTO = "GUSTO"
-
-
-class OccurrenceTypes(str, Enum):
-    IMAGE = "IMAGE"
-    TIME = "TIME"
-    TEXT = "TEXT"
-    TURN = "TURN"
-
-
-class FileTypes(str, Enum):
-    VIDEO = "VIDEO"
-    AUDIO = "AUDIO"
-    IMAGE = "IMAGE"
-    ANIMATION = "ANIMATION"
-    DOCUMENT = "DOCUMENT"
-    EMAIL = "EMAIL"
-    CODE = "CODE"
-    DATA = "DATA"
-    PACKAGE = "PACKAGE"
-    SHAPE = "SHAPE"
-    POINT_CLOUD = "POINT_CLOUD"
-    GEOMETRY = "GEOMETRY"
-    DRAWING = "DRAWING"
-    SUBTITLES = "SUBTITLES"
-    MANIFEST = "MANIFEST"
-    UNKNOWN = "UNKNOWN"
-
-
-class ConversationRoleTypes(str, Enum):
-    SYSTEM = "SYSTEM"
-    ASSISTANT = "ASSISTANT"
-    USER = "USER"
-    TOOL = "TOOL"
-
-
-class GoogleEmailAuthenticationTypes(str, Enum):
-    USER = "USER"
-    CONNECTOR = "CONNECTOR"
-
-
-class StorageGateRejectionActions(str, Enum):
-    DELETE = "DELETE"
-    REJECT = "REJECT"
-
-
-class MailImportance(str, Enum):
-    NORMAL = "NORMAL"
-    LOW = "LOW"
-    HIGH = "HIGH"
-
-
-class GoogleImageModels(str, Enum):
-    GEMINI_2_5_FLASH_IMAGE_PREVIEW = "GEMINI_2_5_FLASH_IMAGE_PREVIEW"
-    GEMINI_3_PRO_IMAGE_PREVIEW = "GEMINI_3_PRO_IMAGE_PREVIEW"
-    CUSTOM = "CUSTOM"
-
-
-class MedicalStudyFacetTypes(str, Enum):
-    CREATION_DATE = "CREATION_DATE"
-
-
-class AttioIssueAuthenticationTypes(str, Enum):
-    API_KEY = "API_KEY"
-    ACCESS_TOKEN = "ACCESS_TOKEN"
-    CONNECTOR = "CONNECTOR"
-
-
-class OperationTypes(str, Enum):
-    QUERY = "QUERY"
-    MUTATION = "MUTATION"
-
-
-class RepoFacetTypes(str, Enum):
-    CREATION_DATE = "CREATION_DATE"
-
-
-class SpecificationTypes(str, Enum):
-    COMPLETION = "COMPLETION"
-    AGENTIC = "AGENTIC"
-    TEXT_EMBEDDING = "TEXT_EMBEDDING"
-    IMAGE_EMBEDDING = "IMAGE_EMBEDDING"
-    EXTRACTION = "EXTRACTION"
-    CLASSIFICATION = "CLASSIFICATION"
-    SUMMARIZATION = "SUMMARIZATION"
-    PREPARATION = "PREPARATION"
+class CollectionTypes(str, Enum):
+    COLLECTION = "COLLECTION"
+    CONVERSATION = "CONVERSATION"
+    THREAD = "THREAD"
+    SERIES = "SERIES"
+    FOLDER = "FOLDER"
 
 
 class MedicalProcedureFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
 
-class ViewTypes(str, Enum):
-    CONTENT = "CONTENT"
-
-
-class MicrosoftTeamsAuthenticationTypes(str, Enum):
-    USER = "USER"
+class SlackAuthenticationTypes(str, Enum):
+    TOKEN = "TOKEN"
     CONNECTOR = "CONNECTOR"
-
-
-class ReductoEnrichmentModes(str, Enum):
-    STANDARD = "STANDARD"
-    PAGE = "PAGE"
-    TABLE = "TABLE"
 
 
 class FeedTypes(str, Enum):
@@ -505,170 +129,102 @@ class FeedTypes(str, Enum):
     INTERCOM_CONVERSATIONS = "INTERCOM_CONVERSATIONS"
 
 
-class SearchServiceTypes(str, Enum):
-    PARALLEL = "PARALLEL"
-    TAVILY = "TAVILY"
-    EXA = "EXA"
-    EXA_CODE = "EXA_CODE"
-    PERPLEXITY = "PERPLEXITY"
-    PODSCAN = "PODSCAN"
+class H3ResolutionTypes(str, Enum):
+    R0 = "R0"
+    R1 = "R1"
+    R2 = "R2"
+    R3 = "R3"
+    R4 = "R4"
+    R5 = "R5"
+    R6 = "R6"
+    R7 = "R7"
+    R8 = "R8"
+    R9 = "R9"
+    R10 = "R10"
+    R11 = "R11"
+    R12 = "R12"
+    R13 = "R13"
+    R14 = "R14"
+    R15 = "R15"
 
 
-class EntityExtractionServiceTypes(str, Enum):
-    MODEL_TEXT = "MODEL_TEXT"
-    MODEL_IMAGE = "MODEL_IMAGE"
-    OPEN_AI_IMAGE = "OPEN_AI_IMAGE"
-    AZURE_COGNITIVE_SERVICES_IMAGE = "AZURE_COGNITIVE_SERVICES_IMAGE"
-    AZURE_COGNITIVE_SERVICES_TEXT = "AZURE_COGNITIVE_SERVICES_TEXT"
-    HUME_EMOTION = "HUME_EMOTION"
+class DropboxAuthenticationTypes(str, Enum):
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
 
 
-class CalendarReminderMethod(str, Enum):
-    EMAIL = "EMAIL"
-    POPUP = "POPUP"
-    SMS = "SMS"
+class GoogleDriveAuthenticationTypes(str, Enum):
+    SERVICE_ACCOUNT = "SERVICE_ACCOUNT"
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
 
 
-class ContentPublishingServiceTypes(str, Enum):
-    ELEVEN_LABS_AUDIO = "ELEVEN_LABS_AUDIO"
-    OPEN_AI_IMAGE = "OPEN_AI_IMAGE"
-    GOOGLE_IMAGE = "GOOGLE_IMAGE"
-    OPEN_AI_VIDEO = "OPEN_AI_VIDEO"
-    GOOGLE_VIDEO = "GOOGLE_VIDEO"
-    TEXT = "TEXT"
-    PARALLEL_RESEARCH = "PARALLEL_RESEARCH"
+class AnthropicEffortLevels(str, Enum):
+    LOW = "LOW"
+    MEDIUM = "MEDIUM"
+    HIGH = "HIGH"
+    MAX = "MAX"
 
 
-class IntercomIssueAuthenticationTypes(str, Enum):
+class RerankingModelServiceTypes(str, Enum):
+    COHERE = "COHERE"
+    JINA = "JINA"
+    VOYAGE = "VOYAGE"
+
+
+class AttioAuthenticationTypes(str, Enum):
+    API_KEY = "API_KEY"
     ACCESS_TOKEN = "ACCESS_TOKEN"
     CONNECTOR = "CONNECTOR"
 
 
-class VideoSizeTypes(str, Enum):
-    HD_PORTRAIT = "HD_PORTRAIT"
-    HD_LANDSCAPE = "HD_LANDSCAPE"
-    FULL_HD_PORTRAIT = "FULL_HD_PORTRAIT"
-    FULL_HD_LANDSCAPE = "FULL_HD_LANDSCAPE"
-
-
-class ArcadeProviders(str, Enum):
-    GOOGLE = "GOOGLE"
-    GIT_HUB = "GIT_HUB"
-    MICROSOFT = "MICROSOFT"
-
-
-class ContentFacetTypes(str, Enum):
-    CREATION_DATE = "CREATION_DATE"
-    ORIGINAL_DATE = "ORIGINAL_DATE"
-    OBSERVABLE = "OBSERVABLE"
-    CONTENT_TYPE = "CONTENT_TYPE"
-    FILE_TYPE = "FILE_TYPE"
-    FORMAT = "FORMAT"
-    FORMAT_NAME = "FORMAT_NAME"
-    FILE_EXTENSION = "FILE_EXTENSION"
-    FILE_SIZE = "FILE_SIZE"
-    DEVICE_TYPE = "DEVICE_TYPE"
-    IMAGE_MAKE = "IMAGE_MAKE"
-    IMAGE_MODEL = "IMAGE_MODEL"
-    IMAGE_SOFTWARE = "IMAGE_SOFTWARE"
-    AUDIO_AUTHOR = "AUDIO_AUTHOR"
-    AUDIO_SERIES = "AUDIO_SERIES"
-    AUDIO_PUBLISHER = "AUDIO_PUBLISHER"
-    VIDEO_MAKE = "VIDEO_MAKE"
-    VIDEO_MODEL = "VIDEO_MODEL"
-    VIDEO_SOFTWARE = "VIDEO_SOFTWARE"
-    DOCUMENT_AUTHOR = "DOCUMENT_AUTHOR"
-    DOCUMENT_PUBLISHER = "DOCUMENT_PUBLISHER"
-    DOCUMENT_IS_ENCRYPTED = "DOCUMENT_IS_ENCRYPTED"
-    DOCUMENT_HAS_DIGITAL_SIGNATURE = "DOCUMENT_HAS_DIGITAL_SIGNATURE"
-    EMAIL_PRIORITY = "EMAIL_PRIORITY"
-    EMAIL_SENSITIVITY = "EMAIL_SENSITIVITY"
-    ISSUE_PROJECT = "ISSUE_PROJECT"
-    ISSUE_TEAM = "ISSUE_TEAM"
-    ISSUE_PRIORITY = "ISSUE_PRIORITY"
-    ISSUE_STATUS = "ISSUE_STATUS"
-    ISSUE_TYPE = "ISSUE_TYPE"
-
-
-class ContentSourceTypes(str, Enum):
-    FRAME = "FRAME"
-    DOCUMENT = "DOCUMENT"
-    TRANSCRIPT = "TRANSCRIPT"
-
-
-class SoftwareFacetTypes(str, Enum):
+class PlaceFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
 
-class LabelFacetTypes(str, Enum):
+class SourceTypes(str, Enum):
+    CONTENT = "CONTENT"
+    CONVERSATION = "CONVERSATION"
+    PERSONA = "PERSONA"
+
+
+class InvestmentFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
 
-class FeedListingTypes(str, Enum):
-    PAST = "PAST"
-    NEW = "NEW"
+class IntercomAuthenticationTypes(str, Enum):
+    ACCESS_TOKEN = "ACCESS_TOKEN"
+    CONNECTOR = "CONNECTOR"
 
 
-class GoogleThinkingLevels(str, Enum):
-    MINIMAL = "MINIMAL"
-    LOW = "LOW"
-    MEDIUM = "MEDIUM"
+class MedicalDrugFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
+class RetrievalStrategyTypes(str, Enum):
+    CONTENT = "CONTENT"
+    CHUNK = "CHUNK"
+    SECTION = "SECTION"
+
+
+class MedicalGuidelineFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
+class OpenAIVisionDetailLevels(str, Enum):
     HIGH = "HIGH"
+    LOW = "LOW"
 
 
-class BedrockModels(str, Enum):
-    LLAMA_4_MAVERICK_17B = "LLAMA_4_MAVERICK_17B"
-    LLAMA_4_SCOUT_17B = "LLAMA_4_SCOUT_17B"
-    CLAUDE_3_7_SONNET = "CLAUDE_3_7_SONNET"
-    NOVA_PREMIER = "NOVA_PREMIER"
-    NOVA_PRO = "NOVA_PRO"
-    CUSTOM = "CUSTOM"
-
-
-class DeepgramModels(str, Enum):
-    NOVA3_MEDICAL = "NOVA3_MEDICAL"
-    NOVA3 = "NOVA3"
-    NOVA2 = "NOVA2"
-    NOVA2_MEETING = "NOVA2_MEETING"
-    NOVA2_PHONECALL = "NOVA2_PHONECALL"
-    NOVA2_VOICEMAIL = "NOVA2_VOICEMAIL"
-    NOVA2_FINANCE = "NOVA2_FINANCE"
-    NOVA2_CONVERSATIONAL_AI = "NOVA2_CONVERSATIONAL_AI"
-    NOVA2_VIDEO = "NOVA2_VIDEO"
-    NOVA2_MEDICAL = "NOVA2_MEDICAL"
-    NOVA2_DRIVETHRU = "NOVA2_DRIVETHRU"
-    NOVA2_AUTOMOTIVE = "NOVA2_AUTOMOTIVE"
-    WHISPER_TINY = "WHISPER_TINY"
-    WHISPER_SMALL = "WHISPER_SMALL"
-    WHISPER_BASE = "WHISPER_BASE"
-    WHISPER_MEDIUM = "WHISPER_MEDIUM"
-    WHISPER_LARGE = "WHISPER_LARGE"
-
-
-class FactCategory(str, Enum):
-    RELATIONSHIP = "RELATIONSHIP"
-    EVENT = "EVENT"
-    FACT = "FACT"
-    PREFERENCE = "PREFERENCE"
-    CHANGE = "CHANGE"
-    QUANTITATIVE = "QUANTITATIVE"
-    GOAL = "GOAL"
-    CAPABILITY = "CAPABILITY"
-    CONSTRAINT = "CONSTRAINT"
-    DECISION = "DECISION"
-    APPROVAL = "APPROVAL"
-    EXCEPTION = "EXCEPTION"
-    ESCALATION = "ESCALATION"
-    OVERRIDE = "OVERRIDE"
-    PRECEDENT = "PRECEDENT"
-    RATIONALE = "RATIONALE"
-    COMMITMENT = "COMMITMENT"
-    DELEGATION = "DELEGATION"
-
-
-class RelationshipDirections(str, Enum):
-    INCOMING = "INCOMING"
-    OUTGOING = "OUTGOING"
+class ContentPublishingFormats(str, Enum):
+    PNG = "PNG"
+    JPEG = "JPEG"
+    WEBP = "WEBP"
+    MP3 = "MP3"
+    MP4 = "MP4"
+    TEXT = "TEXT"
+    MARKDOWN = "MARKDOWN"
+    HTML = "HTML"
 
 
 class AzureDocumentIntelligenceModels(str, Enum):
@@ -694,37 +250,67 @@ class AzureDocumentIntelligenceModels(str, Enum):
     US_BANK_STATEMENT = "US_BANK_STATEMENT"
 
 
-class CalendarAttendeeResponseStatus(str, Enum):
-    NEEDS_ACTION = "NEEDS_ACTION"
-    DECLINED = "DECLINED"
-    TENTATIVE = "TENTATIVE"
-    ACCEPTED = "ACCEPTED"
+class GitHubAuthenticationTypes(str, Enum):
+    PERSONAL_ACCESS_TOKEN = "PERSONAL_ACCESS_TOKEN"
+    O_AUTH = "O_AUTH"
+    CONNECTOR = "CONNECTOR"
 
 
-class ElevenLabsScribeModels(str, Enum):
-    SCRIBE_V1 = "SCRIBE_V1"
-    SCRIBE_V2 = "SCRIBE_V2"
+class GoogleEmailAuthenticationTypes(str, Enum):
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
 
 
-class ParallelGenerators(str, Enum):
-    BASE = "BASE"
-    CORE = "CORE"
-    PRO = "PRO"
+class JinaModels(str, Enum):
+    CLIP_IMAGE = "CLIP_IMAGE"
+    EMBED = "EMBED"
+    EMBED_3_0 = "EMBED_3_0"
+    EMBED_4_0 = "EMBED_4_0"
+    CUSTOM = "CUSTOM"
 
 
-class ImageProjectionTypes(str, Enum):
-    EQUIRECTANGULAR = "EQUIRECTANGULAR"
-    CYLINDRICAL = "CYLINDRICAL"
+class OneDriveAuthenticationTypes(str, Enum):
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
 
 
-class ContentClassificationServiceTypes(str, Enum):
-    REGEX = "REGEX"
-    MODEL = "MODEL"
+class GraphStrategyTypes(str, Enum):
+    EXTRACT_ENTITIES_FILTER = "EXTRACT_ENTITIES_FILTER"
+    EXTRACT_ENTITIES_GRAPH = "EXTRACT_ENTITIES_GRAPH"
+    NONE = "NONE"
 
 
-class FeedSyncMode(str, Enum):
-    ARCHIVE = "ARCHIVE"
-    MIRROR = "MIRROR"
+class MicrosoftTeamsAuthenticationTypes(str, Enum):
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
+
+
+class AuthenticationServiceTypes(str, Enum):
+    AUTH0 = "AUTH0"
+    MICROSOFT_GRAPH = "MICROSOFT_GRAPH"
+    CLERK = "CLERK"
+    GOOGLE = "GOOGLE"
+    O_AUTH = "O_AUTH"
+    ARCADE = "ARCADE"
+
+
+class LinearIssueAuthenticationTypes(str, Enum):
+    API_KEY = "API_KEY"
+    O_AUTH = "O_AUTH"
+    CONNECTOR = "CONNECTOR"
+
+
+class RevisionStrategyTypes(str, Enum):
+    REVISE = "REVISE"
+    CUSTOM = "CUSTOM"
+    NONE = "NONE"
+
+
+class DeepseekModels(str, Enum):
+    REASONER = "REASONER"
+    CHAT = "CHAT"
+    CODER = "CODER"
+    CUSTOM = "CUSTOM"
 
 
 class AnthropicModels(str, Enum):
@@ -769,37 +355,31 @@ class AnthropicModels(str, Enum):
     CUSTOM = "CUSTOM"
 
 
-class UserTypes(str, Enum):
-    HUMAN = "HUMAN"
-    AGENT = "AGENT"
+class TimedPolicyRecurrenceTypes(str, Enum):
+    ONCE = "ONCE"
+    REPEAT = "REPEAT"
+    MONITOR = "MONITOR"
 
 
-class PlaceFacetTypes(str, Enum):
-    CREATION_DATE = "CREATION_DATE"
+class ElevenLabsModels(str, Enum):
+    MULTILINGUAL_V1 = "MULTILINGUAL_V1"
+    MULTILINGUAL_V2 = "MULTILINGUAL_V2"
+    ENGLISH_V1 = "ENGLISH_V1"
+    FLASH_V2 = "FLASH_V2"
+    FLASH_V2_5 = "FLASH_V2_5"
+    TURBO_V2 = "TURBO_V2"
+    TURBO_V2_5 = "TURBO_V2_5"
 
 
-class XAIModels(str, Enum):
-    GROK_4 = "GROK_4"
-    GROK_3 = "GROK_3"
-    GROK_3_MINI = "GROK_3_MINI"
-    CUSTOM = "CUSTOM"
+class BlobListingTypes(str, Enum):
+    PAST = "PAST"
+    NEW = "NEW"
 
 
-class GitHubAuthenticationTypes(str, Enum):
-    PERSONAL_ACCESS_TOKEN = "PERSONAL_ACCESS_TOKEN"
-    O_AUTH = "O_AUTH"
+class AttioFeedAuthenticationTypes(str, Enum):
+    API_KEY = "API_KEY"
+    ACCESS_TOKEN = "ACCESS_TOKEN"
     CONNECTOR = "CONNECTOR"
-
-
-class TrelloTypes(str, Enum):
-    CARD = "CARD"
-    BOARD = "BOARD"
-
-
-class PromptStrategyTypes(str, Enum):
-    OPTIMIZE_SEARCH = "OPTIMIZE_SEARCH"
-    REWRITE = "REWRITE"
-    NONE = "NONE"
 
 
 class GroqModels(str, Enum):
@@ -820,116 +400,23 @@ class GroqModels(str, Enum):
     CUSTOM = "CUSTOM"
 
 
-class SiteTypes(str, Enum):
-    WATCH = "WATCH"
-    SWEEP = "SWEEP"
-    STORAGE = "STORAGE"
+class OrderByTypes(str, Enum):
+    NAME = "NAME"
+    CREATION_DATE = "CREATION_DATE"
+    ORIGINAL_DATE = "ORIGINAL_DATE"
+    RELEVANCE = "RELEVANCE"
 
 
-class RevisionStrategyTypes(str, Enum):
-    REVISE = "REVISE"
-    CUSTOM = "CUSTOM"
-    NONE = "NONE"
-
-
-class EntityEnrichmentServiceTypes(str, Enum):
-    PARALLEL = "PARALLEL"
-    DIFFBOT = "DIFFBOT"
-    WIKIPEDIA = "WIKIPEDIA"
-    CRUNCHBASE = "CRUNCHBASE"
-    FHIR = "FHIR"
-    RADAR = "RADAR"
-
-
-class AuthenticationServiceTypes(str, Enum):
-    AUTH0 = "AUTH0"
-    MICROSOFT_GRAPH = "MICROSOFT_GRAPH"
-    CLERK = "CLERK"
-    GOOGLE = "GOOGLE"
-    O_AUTH = "O_AUTH"
-    ARCADE = "ARCADE"
-
-
-class OpenAIImageModels(str, Enum):
-    GPT_IMAGE_1 = "GPT_IMAGE_1"
-    GPT_IMAGE_1_MINI = "GPT_IMAGE_1_MINI"
-    GPT_IMAGE_1_5 = "GPT_IMAGE_1_5"
+class OpenAIVideoModels(str, Enum):
+    SORA_2 = "SORA_2"
+    SORA_2_PRO = "SORA_2_PRO"
     CUSTOM = "CUSTOM"
 
 
-class BoxAuthenticationTypes(str, Enum):
-    USER = "USER"
-    CONNECTOR = "CONNECTOR"
-
-
-class ReplicateModels(str, Enum):
-    MISTRAL_7B = "MISTRAL_7B"
-    MISTRAL_7B_INSTRUCT = "MISTRAL_7B_INSTRUCT"
-    LLAMA_2_7B = "LLAMA_2_7B"
-    LLAMA_2_13B = "LLAMA_2_13B"
-    LLAMA_2_70B = "LLAMA_2_70B"
-    LLAMA_2_7B_CHAT = "LLAMA_2_7B_CHAT"
-    LLAMA_2_13B_CHAT = "LLAMA_2_13B_CHAT"
-    LLAMA_2_70B_CHAT = "LLAMA_2_70B_CHAT"
-    CUSTOM = "CUSTOM"
-
-
-class FilePreparationServiceTypes(str, Enum):
-    AZURE_DOCUMENT_INTELLIGENCE = "AZURE_DOCUMENT_INTELLIGENCE"
-    DEEPGRAM = "DEEPGRAM"
-    DOCUMENT = "DOCUMENT"
-    EMAIL = "EMAIL"
-    PAGE = "PAGE"
-    REDUCTO_DOCUMENT = "REDUCTO_DOCUMENT"
-    MODEL_DOCUMENT = "MODEL_DOCUMENT"
-    ASSEMBLY_AI = "ASSEMBLY_AI"
-    MISTRAL_DOCUMENT = "MISTRAL_DOCUMENT"
-    ELEVEN_LABS_SCRIBE = "ELEVEN_LABS_SCRIBE"
-
-
-class HubSpotIssueAuthenticationTypes(str, Enum):
-    USER = "USER"
-    PRIVATE_APP = "PRIVATE_APP"
-    CONNECTOR = "CONNECTOR"
-
-
-class CalendarEventStatus(str, Enum):
-    CONFIRMED = "CONFIRMED"
-    TENTATIVE = "TENTATIVE"
-    CANCELLED = "CANCELLED"
-
-
-class NotionAuthenticationTypes(str, Enum):
-    TOKEN = "TOKEN"
-    CONNECTOR = "CONNECTOR"
-
-
-class AzureDocumentIntelligenceVersions(str, Enum):
-    V2023_07_31 = "V2023_07_31"
-    V2024_02_29_PREVIEW = "V2024_02_29_PREVIEW"
-    V2024_07_31_PREVIEW = "V2024_07_31_PREVIEW"
-    V2024_11_30 = "V2024_11_30"
-
-
-class ConfluenceTypes(str, Enum):
-    SPACE = "SPACE"
-    PAGE = "PAGE"
-
-
-class DeviceTypes(str, Enum):
-    DRONE = "DRONE"
-    ROBOT = "ROBOT"
-    MOBILE = "MOBILE"
-    CAMERA = "CAMERA"
-    STREAM = "STREAM"
-    SCREEN = "SCREEN"
-    GEOSPATIAL = "GEOSPATIAL"
-    UNKNOWN = "UNKNOWN"
-
-
-class BlobListingTypes(str, Enum):
-    PAST = "PAST"
-    NEW = "NEW"
+class ConnectorTypes(str, Enum):
+    INTEGRATION = "INTEGRATION"
+    AUTHENTICATION = "AUTHENTICATION"
+    SITE = "SITE"
 
 
 class ModelTypes(str, Enum):
@@ -940,147 +427,442 @@ class ModelTypes(str, Enum):
     RERANKING = "RERANKING"
 
 
-class MedicalDrugClassFacetTypes(str, Enum):
+class AssemblyAIModels(str, Enum):
+    BEST = "BEST"
+    NANO = "NANO"
+
+
+class FileTypes(str, Enum):
+    VIDEO = "VIDEO"
+    AUDIO = "AUDIO"
+    IMAGE = "IMAGE"
+    ANIMATION = "ANIMATION"
+    DOCUMENT = "DOCUMENT"
+    EMAIL = "EMAIL"
+    CODE = "CODE"
+    DATA = "DATA"
+    PACKAGE = "PACKAGE"
+    SHAPE = "SHAPE"
+    POINT_CLOUD = "POINT_CLOUD"
+    GEOMETRY = "GEOMETRY"
+    DRAWING = "DRAWING"
+    SUBTITLES = "SUBTITLES"
+    MANIFEST = "MANIFEST"
+    UNKNOWN = "UNKNOWN"
+
+
+class DeepgramModels(str, Enum):
+    NOVA3_MEDICAL = "NOVA3_MEDICAL"
+    NOVA3 = "NOVA3"
+    NOVA2 = "NOVA2"
+    NOVA2_MEETING = "NOVA2_MEETING"
+    NOVA2_PHONECALL = "NOVA2_PHONECALL"
+    NOVA2_VOICEMAIL = "NOVA2_VOICEMAIL"
+    NOVA2_FINANCE = "NOVA2_FINANCE"
+    NOVA2_CONVERSATIONAL_AI = "NOVA2_CONVERSATIONAL_AI"
+    NOVA2_VIDEO = "NOVA2_VIDEO"
+    NOVA2_MEDICAL = "NOVA2_MEDICAL"
+    NOVA2_DRIVETHRU = "NOVA2_DRIVETHRU"
+    NOVA2_AUTOMOTIVE = "NOVA2_AUTOMOTIVE"
+    WHISPER_TINY = "WHISPER_TINY"
+    WHISPER_SMALL = "WHISPER_SMALL"
+    WHISPER_BASE = "WHISPER_BASE"
+    WHISPER_MEDIUM = "WHISPER_MEDIUM"
+    WHISPER_LARGE = "WHISPER_LARGE"
+
+
+class MedicalContraindicationFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
 
-class MedicalTherapyFacetTypes(str, Enum):
+class MCPServerTypes(str, Enum):
+    REMOTE_SSE = "REMOTE_SSE"
+    REMOTE_HTTP = "REMOTE_HTTP"
+    LOCAL_NPX = "LOCAL_NPX"
+
+
+class MailPriority(str, Enum):
+    NORMAL = "NORMAL"
+    LOW = "LOW"
+    HIGH = "HIGH"
+
+
+class ConversationTypes(str, Enum):
+    CONTENT = "CONTENT"
+
+
+class OpenAIImageModels(str, Enum):
+    GPT_IMAGE_1 = "GPT_IMAGE_1"
+    GPT_IMAGE_1_MINI = "GPT_IMAGE_1_MINI"
+    GPT_IMAGE_1_5 = "GPT_IMAGE_1_5"
+    CUSTOM = "CUSTOM"
+
+
+class SummarizationTypes(str, Enum):
+    SUMMARY = "SUMMARY"
+    KEYWORDS = "KEYWORDS"
+    BULLETS = "BULLETS"
+    HEADLINES = "HEADLINES"
+    POSTS = "POSTS"
+    CHAPTERS = "CHAPTERS"
+    QUESTIONS = "QUESTIONS"
+    QUOTES = "QUOTES"
+    GEOTAG = "GEOTAG"
+    CUSTOM = "CUSTOM"
+
+
+class OrderDirectionTypes(str, Enum):
+    ASCENDING = "ASCENDING"
+    DESCENDING = "DESCENDING"
+
+
+class CalendarEventVisibility(str, Enum):
+    DEFAULT = "DEFAULT"
+    PUBLIC = "PUBLIC"
+    PRIVATE = "PRIVATE"
+    CONFIDENTIAL = "CONFIDENTIAL"
+
+
+class MedicalDeviceFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
 
-class SharePointAuthenticationTypes(str, Enum):
-    APPLICATION = "APPLICATION"
+class OperationTypes(str, Enum):
+    QUERY = "QUERY"
+    MUTATION = "MUTATION"
+
+
+class SpecificationTypes(str, Enum):
+    COMPLETION = "COMPLETION"
+    AGENTIC = "AGENTIC"
+    TEXT_EMBEDDING = "TEXT_EMBEDDING"
+    IMAGE_EMBEDDING = "IMAGE_EMBEDDING"
+    EXTRACTION = "EXTRACTION"
+    CLASSIFICATION = "CLASSIFICATION"
+    SUMMARIZATION = "SUMMARIZATION"
+    PREPARATION = "PREPARATION"
+
+
+class CalendarEventStatus(str, Enum):
+    CONFIRMED = "CONFIRMED"
+    TENTATIVE = "TENTATIVE"
+    CANCELLED = "CANCELLED"
+
+
+class MetadataTypes(str, Enum):
+    CONTENT = "CONTENT"
+    CONVERSATION = "CONVERSATION"
+
+
+class VoyageModels(str, Enum):
+    VOYAGE = "VOYAGE"
+    VOYAGE_3_5 = "VOYAGE_3_5"
+    VOYAGE_3_5_LITE = "VOYAGE_3_5_LITE"
+    VOYAGE_3_0_LARGE = "VOYAGE_3_0_LARGE"
+    VOYAGE_3_0 = "VOYAGE_3_0"
+    VOYAGE_LITE_3_0 = "VOYAGE_LITE_3_0"
+    VOYAGE_CODE_3_0 = "VOYAGE_CODE_3_0"
+    VOYAGE_FINANCE_2_0 = "VOYAGE_FINANCE_2_0"
+    VOYAGE_MULTILINGUAL_2_0 = "VOYAGE_MULTILINGUAL_2_0"
+    VOYAGE_LAW_2_0 = "VOYAGE_LAW_2_0"
+    VOYAGE_CODE_2_0 = "VOYAGE_CODE_2_0"
+    CUSTOM = "CUSTOM"
+
+
+class AlertTypes(str, Enum):
+    PROMPT = "PROMPT"
+
+
+class MeetingContentTypes(str, Enum):
+    TRANSCRIPT = "TRANSCRIPT"
+    RECORDING = "RECORDING"
+    PREFERRED = "PREFERRED"
+
+
+class SalesforceAuthenticationTypes(str, Enum):
     USER = "USER"
     CONNECTOR = "CONNECTOR"
 
 
-class EntityResolutionStrategyTypes(str, Enum):
-    NONE = "NONE"
-    AUTOMATIC = "AUTOMATIC"
-
-
-class AnthropicEffortLevels(str, Enum):
-    LOW = "LOW"
-    MEDIUM = "MEDIUM"
-    HIGH = "HIGH"
-    MAX = "MAX"
-
-
-class StoragePolicyTypes(str, Enum):
-    ARCHIVE = "ARCHIVE"
-    MINIMIZE = "MINIMIZE"
-
-
-class MedicalConditionFacetTypes(str, Enum):
-    CREATION_DATE = "CREATION_DATE"
-
-
-class GoogleModels(str, Enum):
-    GEMINI_2_5_PRO = "GEMINI_2_5_PRO"
-    GEMINI_2_5_PRO_PREVIEW = "GEMINI_2_5_PRO_PREVIEW"
-    GEMINI_2_5_PRO_EXPERIMENTAL = "GEMINI_2_5_PRO_EXPERIMENTAL"
-    GEMINI_3_PRO_PREVIEW = "GEMINI_3_PRO_PREVIEW"
-    GEMINI_3_FLASH_PREVIEW = "GEMINI_3_FLASH_PREVIEW"
-    GEMINI_2_5_FLASH = "GEMINI_2_5_FLASH"
-    GEMINI_FLASH_LATEST = "GEMINI_FLASH_LATEST"
-    GEMINI_2_5_FLASH_PREVIEW = "GEMINI_2_5_FLASH_PREVIEW"
-    GEMINI_2_5_FLASH_LITE = "GEMINI_2_5_FLASH_LITE"
-    GEMINI_FLASH_LITE_LATEST = "GEMINI_FLASH_LITE_LATEST"
-    GEMINI_2_0_PRO_EXPERIMENTAL = "GEMINI_2_0_PRO_EXPERIMENTAL"
-    GEMINI_2_0_FLASH_THINKING_EXPERIMENTAL = "GEMINI_2_0_FLASH_THINKING_EXPERIMENTAL"
-    GEMINI_2_0_FLASH_EXPERIMENTAL = "GEMINI_2_0_FLASH_EXPERIMENTAL"
-    GEMINI_2_0_FLASH = "GEMINI_2_0_FLASH"
-    GEMINI_2_0_FLASH_001 = "GEMINI_2_0_FLASH_001"
-    GEMINI_1_5_FLASH_8B = "GEMINI_1_5_FLASH_8B"
-    GEMINI_1_5_FLASH_8B_001 = "GEMINI_1_5_FLASH_8B_001"
-    GEMINI_1_5_FLASH = "GEMINI_1_5_FLASH"
-    GEMINI_1_5_FLASH_001 = "GEMINI_1_5_FLASH_001"
-    GEMINI_1_5_PRO = "GEMINI_1_5_PRO"
-    GEMINI_1_5_PRO_001 = "GEMINI_1_5_PRO_001"
-    GEMINI_1_5_FLASH_002 = "GEMINI_1_5_FLASH_002"
-    GEMINI_1_5_PRO_002 = "GEMINI_1_5_PRO_002"
-    EMBEDDING_004 = "EMBEDDING_004"
-    GEMINI_EMBEDDING_001 = "GEMINI_EMBEDDING_001"
-    CUSTOM = "CUSTOM"
-
-
-class ConversationStrategyTypes(str, Enum):
-    WINDOWED = "WINDOWED"
-    SUMMARIZED = "SUMMARIZED"
-
-
-class NotionTypes(str, Enum):
+class ContentTypes(str, Enum):
+    FILE = "FILE"
     PAGE = "PAGE"
-    DATABASE = "DATABASE"
+    MESSAGE = "MESSAGE"
+    TEXT = "TEXT"
+    POST = "POST"
+    EMAIL = "EMAIL"
+    EVENT = "EVENT"
+    ISSUE = "ISSUE"
+    PULL_REQUEST = "PULL_REQUEST"
+    COMMIT = "COMMIT"
+    MEMORY = "MEMORY"
+    TRANSCRIPT = "TRANSCRIPT"
 
 
-class ModelServiceTypes(str, Enum):
-    GOOGLE = "GOOGLE"
-    ANTHROPIC = "ANTHROPIC"
-    AZURE_AI = "AZURE_AI"
-    AZURE_OPEN_AI = "AZURE_OPEN_AI"
-    OPEN_AI = "OPEN_AI"
-    REPLICATE = "REPLICATE"
-    GROQ = "GROQ"
-    CEREBRAS = "CEREBRAS"
-    MISTRAL = "MISTRAL"
-    COHERE = "COHERE"
-    DEEPSEEK = "DEEPSEEK"
-    JINA = "JINA"
-    VOYAGE = "VOYAGE"
-    BEDROCK = "BEDROCK"
-    XAI = "XAI"
+class EntityExtractionServiceTypes(str, Enum):
+    MODEL_TEXT = "MODEL_TEXT"
+    MODEL_IMAGE = "MODEL_IMAGE"
+    OPEN_AI_IMAGE = "OPEN_AI_IMAGE"
+    AZURE_COGNITIVE_SERVICES_IMAGE = "AZURE_COGNITIVE_SERVICES_IMAGE"
+    AZURE_COGNITIVE_SERVICES_TEXT = "AZURE_COGNITIVE_SERVICES_TEXT"
+    HUME_EMOTION = "HUME_EMOTION"
 
 
-class FilterMode(str, Enum):
-    ANY = "ANY"
-    ONLY = "ONLY"
-    ALL = "ALL"
+class TwitterListingTypes(str, Enum):
+    POSTS = "POSTS"
+    MENTIONS = "MENTIONS"
+    RECENT_SEARCH = "RECENT_SEARCH"
 
 
-class OpenAIVisionDetailLevels(str, Enum):
-    HIGH = "HIGH"
+class RenditionTypes(str, Enum):
+    CONTENT = "CONTENT"
+
+
+class ConversationRoleTypes(str, Enum):
+    SYSTEM = "SYSTEM"
+    ASSISTANT = "ASSISTANT"
+    USER = "USER"
+    TOOL = "TOOL"
+
+
+class GoogleCalendarAuthenticationTypes(str, Enum):
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
+
+
+class MailImportance(str, Enum):
+    NORMAL = "NORMAL"
     LOW = "LOW"
+    HIGH = "HIGH"
 
 
-class JinaModels(str, Enum):
-    CLIP_IMAGE = "CLIP_IMAGE"
-    EMBED = "EMBED"
-    EMBED_3_0 = "EMBED_3_0"
-    CUSTOM = "CUSTOM"
+class GitHubIssueAuthenticationTypes(str, Enum):
+    PERSONAL_ACCESS_TOKEN = "PERSONAL_ACCESS_TOKEN"
+    O_AUTH = "O_AUTH"
+    CONNECTOR = "CONNECTOR"
 
 
-class InvestmentFacetTypes(str, Enum):
-    CREATION_DATE = "CREATION_DATE"
+class SalesforceIssueAuthenticationTypes(str, Enum):
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
 
 
-class MedicalDrugFacetTypes(str, Enum):
-    CREATION_DATE = "CREATION_DATE"
+class FeedListingTypes(str, Enum):
+    PAST = "PAST"
+    NEW = "NEW"
 
 
-class SlackAuthenticationTypes(str, Enum):
+class HubSpotAuthenticationTypes(str, Enum):
+    USER = "USER"
+    PRIVATE_APP = "PRIVATE_APP"
+    CONNECTOR = "CONNECTOR"
+
+
+class HubSpotIssueAuthenticationTypes(str, Enum):
+    USER = "USER"
+    PRIVATE_APP = "PRIVATE_APP"
+    CONNECTOR = "CONNECTOR"
+
+
+class NotionAuthenticationTypes(str, Enum):
     TOKEN = "TOKEN"
     CONNECTOR = "CONNECTOR"
 
 
-class CollectionTypes(str, Enum):
-    COLLECTION = "COLLECTION"
-    CONVERSATION = "CONVERSATION"
-    THREAD = "THREAD"
-    SERIES = "SERIES"
-    FOLDER = "FOLDER"
-
-
-class AttioMeetingAuthenticationTypes(str, Enum):
-    API_KEY = "API_KEY"
-    ACCESS_TOKEN = "ACCESS_TOKEN"
+class SalesforceFeedAuthenticationTypes(str, Enum):
+    USER = "USER"
     CONNECTOR = "CONNECTOR"
+
+
+class GoogleVideoModels(str, Enum):
+    VEO_3 = "VEO_3"
+    VEO_3_FAST = "VEO_3_FAST"
+    VEO_3_1_PREVIEW = "VEO_3_1_PREVIEW"
+    VEO_3_1_FAST_PREVIEW = "VEO_3_1_FAST_PREVIEW"
+    CUSTOM = "CUSTOM"
+
+
+class MedicalIndicationFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
+class ViewTypes(str, Enum):
+    CONTENT = "CONTENT"
+
+
+class RepoFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
+class GustoAuthenticationTypes(str, Enum):
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
+
+
+class BedrockModels(str, Enum):
+    LLAMA_4_MAVERICK_17B = "LLAMA_4_MAVERICK_17B"
+    LLAMA_4_SCOUT_17B = "LLAMA_4_SCOUT_17B"
+    CLAUDE_3_7_SONNET = "CLAUDE_3_7_SONNET"
+    NOVA_PREMIER = "NOVA_PREMIER"
+    NOVA_PRO = "NOVA_PRO"
+    CUSTOM = "CUSTOM"
+
+
+class AzureDocumentIntelligenceVersions(str, Enum):
+    V2023_07_31 = "V2023_07_31"
+    V2024_02_29_PREVIEW = "V2024_02_29_PREVIEW"
+    V2024_07_31_PREVIEW = "V2024_07_31_PREVIEW"
+    V2024_11_30 = "V2024_11_30"
+
+
+class ArcadeProviders(str, Enum):
+    GOOGLE = "GOOGLE"
+    GIT_HUB = "GIT_HUB"
+    MICROSOFT = "MICROSOFT"
+
+
+class LabelFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
+class ContentFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+    ORIGINAL_DATE = "ORIGINAL_DATE"
+    OBSERVABLE = "OBSERVABLE"
+    CONTENT_TYPE = "CONTENT_TYPE"
+    FILE_TYPE = "FILE_TYPE"
+    FORMAT = "FORMAT"
+    FORMAT_NAME = "FORMAT_NAME"
+    FILE_EXTENSION = "FILE_EXTENSION"
+    FILE_SIZE = "FILE_SIZE"
+    DEVICE_TYPE = "DEVICE_TYPE"
+    IMAGE_MAKE = "IMAGE_MAKE"
+    IMAGE_MODEL = "IMAGE_MODEL"
+    IMAGE_SOFTWARE = "IMAGE_SOFTWARE"
+    AUDIO_AUTHOR = "AUDIO_AUTHOR"
+    AUDIO_SERIES = "AUDIO_SERIES"
+    AUDIO_PUBLISHER = "AUDIO_PUBLISHER"
+    VIDEO_MAKE = "VIDEO_MAKE"
+    VIDEO_MODEL = "VIDEO_MODEL"
+    VIDEO_SOFTWARE = "VIDEO_SOFTWARE"
+    DOCUMENT_AUTHOR = "DOCUMENT_AUTHOR"
+    DOCUMENT_PUBLISHER = "DOCUMENT_PUBLISHER"
+    DOCUMENT_IS_ENCRYPTED = "DOCUMENT_IS_ENCRYPTED"
+    DOCUMENT_HAS_DIGITAL_SIGNATURE = "DOCUMENT_HAS_DIGITAL_SIGNATURE"
+    EMAIL_PRIORITY = "EMAIL_PRIORITY"
+    EMAIL_SENSITIVITY = "EMAIL_SENSITIVITY"
+    ISSUE_PROJECT = "ISSUE_PROJECT"
+    ISSUE_TEAM = "ISSUE_TEAM"
+    ISSUE_PRIORITY = "ISSUE_PRIORITY"
+    ISSUE_STATUS = "ISSUE_STATUS"
+    ISSUE_TYPE = "ISSUE_TYPE"
+
+
+class RegexSourceTypes(str, Enum):
+    MARKDOWN = "MARKDOWN"
+    METADATA = "METADATA"
+
+
+class OccurrenceTypes(str, Enum):
+    IMAGE = "IMAGE"
+    TIME = "TIME"
+    TEXT = "TEXT"
+    TURN = "TURN"
+
+
+class InvestmentFundFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
+class ElevenLabsScribeModels(str, Enum):
+    SCRIBE_V1 = "SCRIBE_V1"
+    SCRIBE_V2 = "SCRIBE_V2"
+
+
+class EmailListingTypes(str, Enum):
+    PAST = "PAST"
+    NEW = "NEW"
+
+
+class BambooHRAuthenticationTypes(str, Enum):
+    API_KEY = "API_KEY"
 
 
 class ResourceConnectorTypes(str, Enum):
     AMAZON = "AMAZON"
     AZURE = "AZURE"
     GOOGLE = "GOOGLE"
+
+
+class DistributionServiceTypes(str, Enum):
+    NOTION = "NOTION"
+    GOOGLE_DRIVE = "GOOGLE_DRIVE"
+    ONE_DRIVE = "ONE_DRIVE"
+    CONFLUENCE = "CONFLUENCE"
+    SLACK = "SLACK"
+    GMAIL = "GMAIL"
+    MICROSOFT_OUTLOOK = "MICROSOFT_OUTLOOK"
+    HUB_SPOT = "HUB_SPOT"
+    SALESFORCE = "SALESFORCE"
+    ATTIO = "ATTIO"
+    GOOGLE_CALENDAR = "GOOGLE_CALENDAR"
+    MICROSOFT_CALENDAR = "MICROSOFT_CALENDAR"
+    LINEAR = "LINEAR"
+    JIRA = "JIRA"
+    GOOGLE_DOCS = "GOOGLE_DOCS"
+    MICROSOFT_WORD = "MICROSOFT_WORD"
+    SHARE_POINT = "SHARE_POINT"
+    DISCORD = "DISCORD"
+    MICROSOFT_TEAMS = "MICROSOFT_TEAMS"
+    TWITTER = "TWITTER"
+    GIT_HUB = "GIT_HUB"
+    ATTIO_TASKS = "ATTIO_TASKS"
+
+
+class ReductoExtractionModes(str, Enum):
+    OCR = "OCR"
+    METADATA = "METADATA"
+    HYBRID = "HYBRID"
+
+
+class MedicalConditionFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
+class EntityState(str, Enum):
+    INITIALIZED = "INITIALIZED"
+    RESTARTED = "RESTARTED"
+    CREATED = "CREATED"
+    INGESTED = "INGESTED"
+    INDEXED = "INDEXED"
+    PREPARED = "PREPARED"
+    SANITIZED = "SANITIZED"
+    EXTRACTED = "EXTRACTED"
+    ENRICHED = "ENRICHED"
+    CLASSIFIED = "CLASSIFIED"
+    CHANGED = "CHANGED"
+    ARCHIVED = "ARCHIVED"
+    APPROVED = "APPROVED"
+    REJECTED = "REJECTED"
+    PENDING = "PENDING"
+    QUEUED = "QUEUED"
+    OPENED = "OPENED"
+    CLOSED = "CLOSED"
+    FINISHED = "FINISHED"
+    PAUSED = "PAUSED"
+    RUNNING = "RUNNING"
+    SUBSCRIBED = "SUBSCRIBED"
+    ERRORED = "ERRORED"
+    ENABLED = "ENABLED"
+    RESOLVED = "RESOLVED"
+    DISABLED = "DISABLED"
+    DELETED = "DELETED"
+
+
+class GitHubPullRequestAuthenticationTypes(str, Enum):
+    PERSONAL_ACCESS_TOKEN = "PERSONAL_ACCESS_TOKEN"
+    O_AUTH = "O_AUTH"
+    CONNECTOR = "CONNECTOR"
 
 
 class TextRoles(str, Enum):
@@ -1122,45 +904,263 @@ class TextRoles(str, Enum):
     CORNER_HEADER = "CORNER_HEADER"
 
 
+class YouTubeTypes(str, Enum):
+    VIDEO = "VIDEO"
+    VIDEOS = "VIDEOS"
+    PLAYLIST = "PLAYLIST"
+    CHANNEL = "CHANNEL"
+
+
+class NotionTypes(str, Enum):
+    PAGE = "PAGE"
+    DATABASE = "DATABASE"
+
+
+class PromptStrategyTypes(str, Enum):
+    OPTIMIZE_SEARCH = "OPTIMIZE_SEARCH"
+    REWRITE = "REWRITE"
+    NONE = "NONE"
+
+
+class ReductoOcrModes(str, Enum):
+    STANDARD = "STANDARD"
+    AGENTIC = "AGENTIC"
+
+
+class ConfluenceTypes(str, Enum):
+    SPACE = "SPACE"
+    PAGE = "PAGE"
+
+
+class EmbeddingTypes(str, Enum):
+    TEXT = "TEXT"
+    IMAGE = "IMAGE"
+    AUDIO = "AUDIO"
+    VIDEO = "VIDEO"
+
+
+class MedicalTestFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
 class ReductoOcrSystems(str, Enum):
     HIGHRES = "HIGHRES"
     MULTILINGUAL = "MULTILINGUAL"
     COMBINED = "COMBINED"
 
 
-class ContentPublishingFormats(str, Enum):
-    PNG = "PNG"
-    JPEG = "JPEG"
-    WEBP = "WEBP"
-    MP3 = "MP3"
-    MP4 = "MP4"
-    TEXT = "TEXT"
-    MARKDOWN = "MARKDOWN"
-    HTML = "HTML"
-
-
-class OrganizationFacetTypes(str, Enum):
+class SoftwareFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
 
-class VoyageModels(str, Enum):
-    VOYAGE = "VOYAGE"
-    VOYAGE_3_5 = "VOYAGE_3_5"
-    VOYAGE_3_5_LITE = "VOYAGE_3_5_LITE"
-    VOYAGE_3_0_LARGE = "VOYAGE_3_0_LARGE"
-    VOYAGE_3_0 = "VOYAGE_3_0"
-    VOYAGE_LITE_3_0 = "VOYAGE_LITE_3_0"
-    VOYAGE_CODE_3_0 = "VOYAGE_CODE_3_0"
-    VOYAGE_FINANCE_2_0 = "VOYAGE_FINANCE_2_0"
-    VOYAGE_MULTILINGUAL_2_0 = "VOYAGE_MULTILINGUAL_2_0"
-    VOYAGE_LAW_2_0 = "VOYAGE_LAW_2_0"
-    VOYAGE_CODE_2_0 = "VOYAGE_CODE_2_0"
-    CUSTOM = "CUSTOM"
+class MailSensitivity(str, Enum):
+    NONE = "NONE"
+    NORMAL = "NORMAL"
+    PERSONAL = "PERSONAL"
+    PRIVATE = "PRIVATE"
+    COMPANY_CONFIDENTIAL = "COMPANY_CONFIDENTIAL"
 
 
-class GitHubRepositorySortTypes(str, Enum):
-    ALPHABETICAL = "ALPHABETICAL"
-    RANKED = "RANKED"
+class MedicalStudyFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
+class SdkTypes(str, Enum):
+    DOTNET = "DOTNET"
+    PYTHON = "PYTHON"
+    NODE_JS = "NODE_JS"
+
+
+class GoogleThinkingLevels(str, Enum):
+    MINIMAL = "MINIMAL"
+    LOW = "LOW"
+    MEDIUM = "MEDIUM"
+    HIGH = "HIGH"
+
+
+class SearchTypes(str, Enum):
+    KEYWORD = "KEYWORD"
+    VECTOR = "VECTOR"
+    HYBRID = "HYBRID"
+
+
+class MedicalTherapyFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
+class FacetValueTypes(str, Enum):
+    VALUE = "VALUE"
+    RANGE = "RANGE"
+    OBJECT = "OBJECT"
+
+
+class ZendeskIssueAuthenticationTypes(str, Enum):
+    ACCESS_TOKEN = "ACCESS_TOKEN"
+    CONNECTOR = "CONNECTOR"
+
+
+class ReductoEnrichmentModes(str, Enum):
+    STANDARD = "STANDARD"
+    PAGE = "PAGE"
+    TABLE = "TABLE"
+
+
+class TrelloTypes(str, Enum):
+    CARD = "CARD"
+    BOARD = "BOARD"
+
+
+class ContentPublishingServiceTypes(str, Enum):
+    ELEVEN_LABS_AUDIO = "ELEVEN_LABS_AUDIO"
+    OPEN_AI_IMAGE = "OPEN_AI_IMAGE"
+    GOOGLE_IMAGE = "GOOGLE_IMAGE"
+    OPEN_AI_VIDEO = "OPEN_AI_VIDEO"
+    GOOGLE_VIDEO = "GOOGLE_VIDEO"
+    TEXT = "TEXT"
+    PARALLEL_RESEARCH = "PARALLEL_RESEARCH"
+
+
+class StorageGateTypes(str, Enum):
+    MODEL = "MODEL"
+    WEBHOOK = "WEBHOOK"
+
+
+class ParallelProcessors(str, Enum):
+    LITE = "LITE"
+    BASE = "BASE"
+    CORE = "CORE"
+    CORE2X = "CORE2X"
+    PRO = "PRO"
+    ULTRA = "ULTRA"
+    ULTRA2X = "ULTRA2X"
+    ULTRA4X = "ULTRA4X"
+    ULTRA8X = "ULTRA8X"
+    LITE_FAST = "LITE_FAST"
+    BASE_FAST = "BASE_FAST"
+    CORE_FAST = "CORE_FAST"
+    CORE2X_FAST = "CORE2X_FAST"
+    PRO_FAST = "PRO_FAST"
+    ULTRA_FAST = "ULTRA_FAST"
+    ULTRA2X_FAST = "ULTRA2X_FAST"
+    ULTRA4X_FAST = "ULTRA4X_FAST"
+    ULTRA8X_FAST = "ULTRA8X_FAST"
+
+
+class ObservableTypes(str, Enum):
+    CATEGORY = "CATEGORY"
+    LABEL = "LABEL"
+    EMOTION = "EMOTION"
+    EVENT = "EVENT"
+    INVESTMENT = "INVESTMENT"
+    INVESTMENT_FUND = "INVESTMENT_FUND"
+    ORGANIZATION = "ORGANIZATION"
+    PERSON = "PERSON"
+    PLACE = "PLACE"
+    PRODUCT = "PRODUCT"
+    REPO = "REPO"
+    SOFTWARE = "SOFTWARE"
+    MEDICAL_STUDY = "MEDICAL_STUDY"
+    MEDICAL_CONDITION = "MEDICAL_CONDITION"
+    MEDICAL_GUIDELINE = "MEDICAL_GUIDELINE"
+    MEDICAL_DRUG = "MEDICAL_DRUG"
+    MEDICAL_DRUG_CLASS = "MEDICAL_DRUG_CLASS"
+    MEDICAL_INDICATION = "MEDICAL_INDICATION"
+    MEDICAL_CONTRAINDICATION = "MEDICAL_CONTRAINDICATION"
+    MEDICAL_TEST = "MEDICAL_TEST"
+    MEDICAL_DEVICE = "MEDICAL_DEVICE"
+    MEDICAL_THERAPY = "MEDICAL_THERAPY"
+    MEDICAL_PROCEDURE = "MEDICAL_PROCEDURE"
+
+
+class CalendarReminderMethod(str, Enum):
+    EMAIL = "EMAIL"
+    POPUP = "POPUP"
+    SMS = "SMS"
+
+
+class MedicalDrugClassFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
+class GitHubCommitAuthenticationTypes(str, Enum):
+    PERSONAL_ACCESS_TOKEN = "PERSONAL_ACCESS_TOKEN"
+    O_AUTH = "O_AUTH"
+    CONNECTOR = "CONNECTOR"
+
+
+class EmotionFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
+class EntityTypes(str, Enum):
+    ACTIVITY = "ACTIVITY"
+    ALERT = "ALERT"
+    CATEGORY = "CATEGORY"
+    COLLECTION = "COLLECTION"
+    CONNECTOR = "CONNECTOR"
+    CONTENT = "CONTENT"
+    CONVERSATION = "CONVERSATION"
+    EVENT = "EVENT"
+    FACT = "FACT"
+    FEED = "FEED"
+    INVESTMENT = "INVESTMENT"
+    INVESTMENT_FUND = "INVESTMENT_FUND"
+    JOB = "JOB"
+    LABEL = "LABEL"
+    EMOTION = "EMOTION"
+    METADATA = "METADATA"
+    MEDICAL_STUDY = "MEDICAL_STUDY"
+    MEDICAL_CONDITION = "MEDICAL_CONDITION"
+    MEDICAL_GUIDELINE = "MEDICAL_GUIDELINE"
+    MEDICAL_DRUG = "MEDICAL_DRUG"
+    MEDICAL_DRUG_CLASS = "MEDICAL_DRUG_CLASS"
+    MEDICAL_INDICATION = "MEDICAL_INDICATION"
+    MEDICAL_CONTRAINDICATION = "MEDICAL_CONTRAINDICATION"
+    MEDICAL_TEST = "MEDICAL_TEST"
+    MEDICAL_DEVICE = "MEDICAL_DEVICE"
+    MEDICAL_THERAPY = "MEDICAL_THERAPY"
+    MEDICAL_PROCEDURE = "MEDICAL_PROCEDURE"
+    OBSERVATION = "OBSERVATION"
+    ORGANIZATION = "ORGANIZATION"
+    PERSON = "PERSON"
+    PERSONA = "PERSONA"
+    PLACE = "PLACE"
+    PRODUCT = "PRODUCT"
+    PROJECT = "PROJECT"
+    RENDITION = "RENDITION"
+    REPO = "REPO"
+    SITE = "SITE"
+    SOFTWARE = "SOFTWARE"
+    SPECIFICATION = "SPECIFICATION"
+    USER = "USER"
+    VIEW = "VIEW"
+    WORKFLOW = "WORKFLOW"
+
+
+class ConversationSearchTypes(str, Enum):
+    NONE = "NONE"
+    VECTOR = "VECTOR"
+    HYBRID = "HYBRID"
+
+
+class EventFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
+class ZendeskAuthenticationTypes(str, Enum):
+    ACCESS_TOKEN = "ACCESS_TOKEN"
+    CONNECTOR = "CONNECTOR"
+
+
+class EntityResolutionStrategyTypes(str, Enum):
+    NONE = "NONE"
+    AUTOMATIC = "AUTOMATIC"
+
+
+class AttioMeetingAuthenticationTypes(str, Enum):
+    API_KEY = "API_KEY"
+    ACCESS_TOKEN = "ACCESS_TOKEN"
+    CONNECTOR = "CONNECTOR"
 
 
 class OpenAIModels(str, Enum):
@@ -1224,52 +1224,57 @@ class OpenAIModels(str, Enum):
     CUSTOM = "CUSTOM"
 
 
-class ApplyPolicy(str, Enum):
-    BEFORE_RESOLVER = "BEFORE_RESOLVER"
-    AFTER_RESOLVER = "AFTER_RESOLVER"
-    VALIDATION = "VALIDATION"
-
-
-class DropboxAuthenticationTypes(str, Enum):
-    USER = "USER"
-    CONNECTOR = "CONNECTOR"
-
-
-class StorageGateTypes(str, Enum):
-    MODEL = "MODEL"
-    WEBHOOK = "WEBHOOK"
-
-
-class OneDriveAuthenticationTypes(str, Enum):
-    USER = "USER"
-    CONNECTOR = "CONNECTOR"
-
-
-class ZendeskIssueAuthenticationTypes(str, Enum):
-    ACCESS_TOKEN = "ACCESS_TOKEN"
-    CONNECTOR = "CONNECTOR"
-
-
-class MeetingContentTypes(str, Enum):
-    TRANSCRIPT = "TRANSCRIPT"
-    RECORDING = "RECORDING"
-    PREFERRED = "PREFERRED"
-
-
-class EmbeddingTypes(str, Enum):
-    TEXT = "TEXT"
-    IMAGE = "IMAGE"
-    AUDIO = "AUDIO"
-    VIDEO = "VIDEO"
-
-
-class MedicalDeviceFacetTypes(str, Enum):
-    CREATION_DATE = "CREATION_DATE"
-
-
-class MetadataTypes(str, Enum):
-    CONTENT = "CONTENT"
-    CONVERSATION = "CONVERSATION"
+class FeedServiceTypes(str, Enum):
+    GOOGLE_BLOB = "GOOGLE_BLOB"
+    S3_BLOB = "S3_BLOB"
+    AZURE_BLOB = "AZURE_BLOB"
+    AZURE_FILE = "AZURE_FILE"
+    SHARE_POINT = "SHARE_POINT"
+    ONE_DRIVE = "ONE_DRIVE"
+    GOOGLE_DRIVE = "GOOGLE_DRIVE"
+    DROPBOX = "DROPBOX"
+    BOX = "BOX"
+    GOOGLE_EMAIL = "GOOGLE_EMAIL"
+    MICROSOFT_EMAIL = "MICROSOFT_EMAIL"
+    ATLASSIAN_JIRA = "ATLASSIAN_JIRA"
+    ATLASSIAN_CONFLUENCE = "ATLASSIAN_CONFLUENCE"
+    TRELLO = "TRELLO"
+    LINEAR = "LINEAR"
+    GIT_HUB_ISSUES = "GIT_HUB_ISSUES"
+    GIT_HUB_PULL_REQUESTS = "GIT_HUB_PULL_REQUESTS"
+    GIT_HUB_COMMITS = "GIT_HUB_COMMITS"
+    GIT_HUB = "GIT_HUB"
+    INTERCOM_ARTICLES = "INTERCOM_ARTICLES"
+    ZENDESK_ARTICLES = "ZENDESK_ARTICLES"
+    INTERCOM_TICKETS = "INTERCOM_TICKETS"
+    ZENDESK_TICKETS = "ZENDESK_TICKETS"
+    GOOGLE_CALENDAR = "GOOGLE_CALENDAR"
+    MICROSOFT_CALENDAR = "MICROSOFT_CALENDAR"
+    GOOGLE_CONTACTS = "GOOGLE_CONTACTS"
+    MICROSOFT_CONTACTS = "MICROSOFT_CONTACTS"
+    ATTIO_OBJECTS = "ATTIO_OBJECTS"
+    ATTIO_TASKS = "ATTIO_TASKS"
+    ATTIO_NOTES = "ATTIO_NOTES"
+    SALESFORCE_OBJECTS = "SALESFORCE_OBJECTS"
+    SALESFORCE_TASKS = "SALESFORCE_TASKS"
+    SALESFORCE_NOTES = "SALESFORCE_NOTES"
+    HUB_SPOT_OBJECTS = "HUB_SPOT_OBJECTS"
+    HUB_SPOT_TASKS = "HUB_SPOT_TASKS"
+    HUB_SPOT_TICKETS = "HUB_SPOT_TICKETS"
+    ASANA = "ASANA"
+    MONDAY = "MONDAY"
+    HUB_SPOT_NOTES = "HUB_SPOT_NOTES"
+    HUB_SPOT_MEETING = "HUB_SPOT_MEETING"
+    HUB_SPOT_CONVERSATIONS = "HUB_SPOT_CONVERSATIONS"
+    FIREFLIES = "FIREFLIES"
+    ATTIO_MEETING = "ATTIO_MEETING"
+    FATHOM = "FATHOM"
+    KRISP = "KRISP"
+    SALESFORCE_ECI = "SALESFORCE_ECI"
+    PARALLEL = "PARALLEL"
+    BAMBOO_HR = "BAMBOO_HR"
+    GUSTO_HRIS = "GUSTO_HRIS"
+    INTERCOM_CONVERSATIONS = "INTERCOM_CONVERSATIONS"
 
 
 class TextTypes(str, Enum):
@@ -1278,64 +1283,64 @@ class TextTypes(str, Enum):
     HTML = "HTML"
 
 
-class SdkTypes(str, Enum):
-    DOTNET = "DOTNET"
-    PYTHON = "PYTHON"
-    NODE_JS = "NODE_JS"
+class SearchServiceTypes(str, Enum):
+    PARALLEL = "PARALLEL"
+    TAVILY = "TAVILY"
+    EXA = "EXA"
+    EXA_CODE = "EXA_CODE"
+    PERPLEXITY = "PERPLEXITY"
+    PODSCAN = "PODSCAN"
 
 
-class ProductFacetTypes(str, Enum):
+class FeedSyncMode(str, Enum):
+    ARCHIVE = "ARCHIVE"
+    MIRROR = "MIRROR"
+
+
+class FilePreparationServiceTypes(str, Enum):
+    AZURE_DOCUMENT_INTELLIGENCE = "AZURE_DOCUMENT_INTELLIGENCE"
+    DEEPGRAM = "DEEPGRAM"
+    DOCUMENT = "DOCUMENT"
+    EMAIL = "EMAIL"
+    PAGE = "PAGE"
+    REDUCTO_DOCUMENT = "REDUCTO_DOCUMENT"
+    MODEL_DOCUMENT = "MODEL_DOCUMENT"
+    ASSEMBLY_AI = "ASSEMBLY_AI"
+    MISTRAL_DOCUMENT = "MISTRAL_DOCUMENT"
+    ELEVEN_LABS_SCRIBE = "ELEVEN_LABS_SCRIBE"
+
+
+class GitHubRepositorySortTypes(str, Enum):
+    ALPHABETICAL = "ALPHABETICAL"
+    RANKED = "RANKED"
+
+
+class UserTypes(str, Enum):
+    HUMAN = "HUMAN"
+    AGENT = "AGENT"
+
+
+class CalendarAttendeeResponseStatus(str, Enum):
+    NEEDS_ACTION = "NEEDS_ACTION"
+    DECLINED = "DECLINED"
+    TENTATIVE = "TENTATIVE"
+    ACCEPTED = "ACCEPTED"
+
+
+class SearchQueryTypes(str, Enum):
+    SIMPLE = "SIMPLE"
+    FULL = "FULL"
+
+
+class OrganizationFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
 
-class ConversationTypes(str, Enum):
-    CONTENT = "CONTENT"
-
-
-class RegexSourceTypes(str, Enum):
-    MARKDOWN = "MARKDOWN"
-    METADATA = "METADATA"
-
-
-class DeepseekModels(str, Enum):
-    REASONER = "REASONER"
-    CHAT = "CHAT"
-    CODER = "CODER"
-    CUSTOM = "CUSTOM"
-
-
-class CalendarEventVisibility(str, Enum):
-    DEFAULT = "DEFAULT"
-    PUBLIC = "PUBLIC"
-    PRIVATE = "PRIVATE"
-    CONFIDENTIAL = "CONFIDENTIAL"
-
-
-class MicrosoftEmailAuthenticationTypes(str, Enum):
-    USER = "USER"
-    CONNECTOR = "CONNECTOR"
-
-
-class SalesforceFeedAuthenticationTypes(str, Enum):
-    USER = "USER"
-    CONNECTOR = "CONNECTOR"
-
-
-class SalesforceAuthenticationTypes(str, Enum):
-    USER = "USER"
-    CONNECTOR = "CONNECTOR"
-
-
-class CalendarListingTypes(str, Enum):
-    PAST = "PAST"
-    NEW = "NEW"
-
-
-class OrderByTypes(str, Enum):
-    NAME = "NAME"
-    CREATION_DATE = "CREATION_DATE"
-    ORIGINAL_DATE = "ORIGINAL_DATE"
-    RELEVANCE = "RELEVANCE"
+class OpenAIReasoningEffortLevels(str, Enum):
+    MINIMAL = "MINIMAL"
+    LOW = "LOW"
+    MEDIUM = "MEDIUM"
+    HIGH = "HIGH"
 
 
 class MistralModels(str, Enum):
@@ -1350,78 +1355,41 @@ class MistralModels(str, Enum):
     CUSTOM = "CUSTOM"
 
 
-class H3ResolutionTypes(str, Enum):
-    R0 = "R0"
-    R1 = "R1"
-    R2 = "R2"
-    R3 = "R3"
-    R4 = "R4"
-    R5 = "R5"
-    R6 = "R6"
-    R7 = "R7"
-    R8 = "R8"
-    R9 = "R9"
-    R10 = "R10"
-    R11 = "R11"
-    R12 = "R12"
-    R13 = "R13"
-    R14 = "R14"
-    R15 = "R15"
+class StorageGateRejectionActions(str, Enum):
+    DELETE = "DELETE"
+    REJECT = "REJECT"
 
 
-class EntityState(str, Enum):
-    INITIALIZED = "INITIALIZED"
-    RESTARTED = "RESTARTED"
-    CREATED = "CREATED"
-    INGESTED = "INGESTED"
-    INDEXED = "INDEXED"
-    PREPARED = "PREPARED"
-    SANITIZED = "SANITIZED"
-    EXTRACTED = "EXTRACTED"
-    ENRICHED = "ENRICHED"
-    CLASSIFIED = "CLASSIFIED"
-    CHANGED = "CHANGED"
-    ARCHIVED = "ARCHIVED"
-    APPROVED = "APPROVED"
-    REJECTED = "REJECTED"
-    PENDING = "PENDING"
-    QUEUED = "QUEUED"
-    OPENED = "OPENED"
-    CLOSED = "CLOSED"
-    FINISHED = "FINISHED"
-    PAUSED = "PAUSED"
-    RUNNING = "RUNNING"
-    SUBSCRIBED = "SUBSCRIBED"
-    ERRORED = "ERRORED"
-    ENABLED = "ENABLED"
-    RESOLVED = "RESOLVED"
-    DISABLED = "DISABLED"
-    DELETED = "DELETED"
+class ImageProjectionTypes(str, Enum):
+    EQUIRECTANGULAR = "EQUIRECTANGULAR"
+    CYLINDRICAL = "CYLINDRICAL"
 
 
-class AttioAuthenticationTypes(str, Enum):
-    API_KEY = "API_KEY"
-    ACCESS_TOKEN = "ACCESS_TOKEN"
-    CONNECTOR = "CONNECTOR"
-
-
-class MedicalIndicationFacetTypes(str, Enum):
-    CREATION_DATE = "CREATION_DATE"
-
-
-class IntercomConversationsAuthenticationTypes(str, Enum):
-    ACCESS_TOKEN = "ACCESS_TOKEN"
-    CONNECTOR = "CONNECTOR"
-
-
-class GustoAuthenticationTypes(str, Enum):
+class HubSpotFeedAuthenticationTypes(str, Enum):
     USER = "USER"
+    PRIVATE_APP = "PRIVATE_APP"
     CONNECTOR = "CONNECTOR"
 
 
-class EnvironmentTypes(str, Enum):
-    DEVELOPMENT = "DEVELOPMENT"
-    PRODUCTION = "PRODUCTION"
+class IntegrationServiceTypes(str, Enum):
+    SLACK = "SLACK"
+    WEB_HOOK = "WEB_HOOK"
+    EMAIL = "EMAIL"
+    TWITTER = "TWITTER"
+    MCP = "MCP"
+
+
+class CerebrasModels(str, Enum):
+    LLAMA_4_SCOUT_17B = "LLAMA_4_SCOUT_17B"
+    LLAMA_3_3_70B = "LLAMA_3_3_70B"
+    LLAMA_3_1_8B = "LLAMA_3_1_8B"
+    QWEN_3_32B = "QWEN_3_32B"
+    CUSTOM = "CUSTOM"
+
+
+class IntercomIssueAuthenticationTypes(str, Enum):
+    ACCESS_TOKEN = "ACCESS_TOKEN"
+    CONNECTOR = "CONNECTOR"
 
 
 class CohereModels(str, Enum):
@@ -1439,48 +1407,30 @@ class CohereModels(str, Enum):
     CUSTOM = "CUSTOM"
 
 
-class GoogleCalendarAuthenticationTypes(str, Enum):
+class SharePointAuthenticationTypes(str, Enum):
+    APPLICATION = "APPLICATION"
     USER = "USER"
     CONNECTOR = "CONNECTOR"
 
 
-class ContentIndexingServiceTypes(str, Enum):
-    AZURE_AI_LANGUAGE = "AZURE_AI_LANGUAGE"
+class ConversationStrategyTypes(str, Enum):
+    WINDOWED = "WINDOWED"
+    SUMMARIZED = "SUMMARIZED"
 
 
-class EmailListingTypes(str, Enum):
-    PAST = "PAST"
-    NEW = "NEW"
-
-
-class AttioFeedAuthenticationTypes(str, Enum):
-    API_KEY = "API_KEY"
-    ACCESS_TOKEN = "ACCESS_TOKEN"
-    CONNECTOR = "CONNECTOR"
-
-
-class MCPServerTypes(str, Enum):
-    REMOTE_SSE = "REMOTE_SSE"
-    REMOTE_HTTP = "REMOTE_HTTP"
-    LOCAL_NPX = "LOCAL_NPX"
-
-
-class AzureOpenAIModels(str, Enum):
-    GPT35_TURBO_16K = "GPT35_TURBO_16K"
-    GPT4 = "GPT4"
-    GPT4_TURBO_128K = "GPT4_TURBO_128K"
-    CUSTOM = "CUSTOM"
-
-
-class GitHubIssueAuthenticationTypes(str, Enum):
+class AsanaAuthenticationTypes(str, Enum):
     PERSONAL_ACCESS_TOKEN = "PERSONAL_ACCESS_TOKEN"
     O_AUTH = "O_AUTH"
-    CONNECTOR = "CONNECTOR"
 
 
-class GoogleContactsAuthenticationTypes(str, Enum):
+class MicrosoftEmailAuthenticationTypes(str, Enum):
     USER = "USER"
     CONNECTOR = "CONNECTOR"
+
+
+class EnvironmentTypes(str, Enum):
+    DEVELOPMENT = "DEVELOPMENT"
+    PRODUCTION = "PRODUCTION"
 
 
 class ExaSearchTypes(str, Enum):
@@ -1491,13 +1441,98 @@ class ExaSearchTypes(str, Enum):
     NEURAL = "NEURAL"
 
 
-class PersonFacetTypes(str, Enum):
+class GoogleContactsAuthenticationTypes(str, Enum):
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
+
+
+class CalendarRecurrencePattern(str, Enum):
+    DAILY = "DAILY"
+    WEEKLY = "WEEKLY"
+    MONTHLY = "MONTHLY"
+    YEARLY = "YEARLY"
+
+
+class RelationshipDirections(str, Enum):
+    INCOMING = "INCOMING"
+    OUTGOING = "OUTGOING"
+
+
+class ModelServiceTypes(str, Enum):
+    GOOGLE = "GOOGLE"
+    ANTHROPIC = "ANTHROPIC"
+    AZURE_AI = "AZURE_AI"
+    AZURE_OPEN_AI = "AZURE_OPEN_AI"
+    OPEN_AI = "OPEN_AI"
+    REPLICATE = "REPLICATE"
+    GROQ = "GROQ"
+    CEREBRAS = "CEREBRAS"
+    MISTRAL = "MISTRAL"
+    COHERE = "COHERE"
+    DEEPSEEK = "DEEPSEEK"
+    JINA = "JINA"
+    VOYAGE = "VOYAGE"
+    BEDROCK = "BEDROCK"
+    XAI = "XAI"
+
+
+class MicrosoftCalendarAuthenticationTypes(str, Enum):
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
+
+
+class ReplicateModels(str, Enum):
+    MISTRAL_7B = "MISTRAL_7B"
+    MISTRAL_7B_INSTRUCT = "MISTRAL_7B_INSTRUCT"
+    LLAMA_2_7B = "LLAMA_2_7B"
+    LLAMA_2_13B = "LLAMA_2_13B"
+    LLAMA_2_70B = "LLAMA_2_70B"
+    LLAMA_2_7B_CHAT = "LLAMA_2_7B_CHAT"
+    LLAMA_2_13B_CHAT = "LLAMA_2_13B_CHAT"
+    LLAMA_2_70B_CHAT = "LLAMA_2_70B_CHAT"
+    CUSTOM = "CUSTOM"
+
+
+class SiteTypes(str, Enum):
+    WATCH = "WATCH"
+    SWEEP = "SWEEP"
+    STORAGE = "STORAGE"
+
+
+class ExtractionTypes(str, Enum):
+    ENTITIES = "ENTITIES"
+    FACTS = "FACTS"
+
+
+class TimeIntervalTypes(str, Enum):
+    MINUTE = "MINUTE"
+    HOUR = "HOUR"
+    DAY = "DAY"
+    WEEK = "WEEK"
+    MONTH = "MONTH"
+    QUARTER = "QUARTER"
+    YEAR = "YEAR"
+
+
+class OrientationTypes(str, Enum):
+    TOP_LEFT = "TOP_LEFT"
+    TOP_RIGHT = "TOP_RIGHT"
+    BOTTOM_RIGHT = "BOTTOM_RIGHT"
+    BOTTOM_LEFT = "BOTTOM_LEFT"
+    LEFT_TOP = "LEFT_TOP"
+    RIGHT_TOP = "RIGHT_TOP"
+    RIGHT_BOTTOM = "RIGHT_BOTTOM"
+    LEFT_BOTTOM = "LEFT_BOTTOM"
+
+
+class ProductFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
 
-class AssemblyAIModels(str, Enum):
-    BEST = "BEST"
-    NANO = "NANO"
+class FilterMode(str, Enum):
+    ANY = "ANY"
+    ONLY = "ONLY"
+    ALL = "ALL"
 
 
 class OAuthProviders(str, Enum):
@@ -1514,130 +1549,8 @@ class OAuthProviders(str, Enum):
     ZENDESK = "ZENDESK"
     ATTIO = "ATTIO"
     SALESFORCE = "SALESFORCE"
-
-
-class OrderDirectionTypes(str, Enum):
-    ASCENDING = "ASCENDING"
-    DESCENDING = "DESCENDING"
-
-
-class EventFacetTypes(str, Enum):
-    CREATION_DATE = "CREATION_DATE"
-
-
-class SearchQueryTypes(str, Enum):
-    SIMPLE = "SIMPLE"
-    FULL = "FULL"
-
-
-class TwitterListingTypes(str, Enum):
-    POSTS = "POSTS"
-    MENTIONS = "MENTIONS"
-    RECENT_SEARCH = "RECENT_SEARCH"
-
-
-class EntityTypes(str, Enum):
-    ACTIVITY = "ACTIVITY"
-    ALERT = "ALERT"
-    CATEGORY = "CATEGORY"
-    COLLECTION = "COLLECTION"
-    CONNECTOR = "CONNECTOR"
-    CONTENT = "CONTENT"
-    CONVERSATION = "CONVERSATION"
-    EVENT = "EVENT"
-    FACT = "FACT"
-    FEED = "FEED"
-    INVESTMENT = "INVESTMENT"
-    INVESTMENT_FUND = "INVESTMENT_FUND"
-    JOB = "JOB"
-    LABEL = "LABEL"
-    EMOTION = "EMOTION"
-    METADATA = "METADATA"
-    MEDICAL_STUDY = "MEDICAL_STUDY"
-    MEDICAL_CONDITION = "MEDICAL_CONDITION"
-    MEDICAL_GUIDELINE = "MEDICAL_GUIDELINE"
-    MEDICAL_DRUG = "MEDICAL_DRUG"
-    MEDICAL_DRUG_CLASS = "MEDICAL_DRUG_CLASS"
-    MEDICAL_INDICATION = "MEDICAL_INDICATION"
-    MEDICAL_CONTRAINDICATION = "MEDICAL_CONTRAINDICATION"
-    MEDICAL_TEST = "MEDICAL_TEST"
-    MEDICAL_DEVICE = "MEDICAL_DEVICE"
-    MEDICAL_THERAPY = "MEDICAL_THERAPY"
-    MEDICAL_PROCEDURE = "MEDICAL_PROCEDURE"
-    OBSERVATION = "OBSERVATION"
-    ORGANIZATION = "ORGANIZATION"
-    PERSON = "PERSON"
-    PERSONA = "PERSONA"
-    PLACE = "PLACE"
-    PRODUCT = "PRODUCT"
-    PROJECT = "PROJECT"
-    RENDITION = "RENDITION"
-    REPO = "REPO"
-    SITE = "SITE"
-    SOFTWARE = "SOFTWARE"
-    SPECIFICATION = "SPECIFICATION"
-    USER = "USER"
-    VIEW = "VIEW"
-    WORKFLOW = "WORKFLOW"
-
-
-class YouTubeTypes(str, Enum):
-    VIDEO = "VIDEO"
-    VIDEOS = "VIDEOS"
-    PLAYLIST = "PLAYLIST"
-    CHANNEL = "CHANNEL"
-
-
-class ParallelProcessors(str, Enum):
-    LITE = "LITE"
-    BASE = "BASE"
-    CORE = "CORE"
-    CORE2X = "CORE2X"
-    PRO = "PRO"
-    ULTRA = "ULTRA"
-    ULTRA2X = "ULTRA2X"
-    ULTRA4X = "ULTRA4X"
-    ULTRA8X = "ULTRA8X"
-    LITE_FAST = "LITE_FAST"
-    BASE_FAST = "BASE_FAST"
-    CORE_FAST = "CORE_FAST"
-    CORE2X_FAST = "CORE2X_FAST"
-    PRO_FAST = "PRO_FAST"
-    ULTRA_FAST = "ULTRA_FAST"
-    ULTRA2X_FAST = "ULTRA2X_FAST"
-    ULTRA4X_FAST = "ULTRA4X_FAST"
-    ULTRA8X_FAST = "ULTRA8X_FAST"
-
-
-class MailSensitivity(str, Enum):
-    NONE = "NONE"
-    NORMAL = "NORMAL"
-    PERSONAL = "PERSONAL"
-    PRIVATE = "PRIVATE"
-    COMPANY_CONFIDENTIAL = "COMPANY_CONFIDENTIAL"
-
-
-class IntercomAuthenticationTypes(str, Enum):
-    ACCESS_TOKEN = "ACCESS_TOKEN"
-    CONNECTOR = "CONNECTOR"
-
-
-class GoogleVideoModels(str, Enum):
-    VEO_3 = "VEO_3"
-    VEO_3_FAST = "VEO_3_FAST"
-    VEO_3_1_PREVIEW = "VEO_3_1_PREVIEW"
-    VEO_3_1_FAST_PREVIEW = "VEO_3_1_FAST_PREVIEW"
-    CUSTOM = "CUSTOM"
-
-
-class ElevenLabsModels(str, Enum):
-    MULTILINGUAL_V1 = "MULTILINGUAL_V1"
-    MULTILINGUAL_V2 = "MULTILINGUAL_V2"
-    ENGLISH_V1 = "ENGLISH_V1"
-    FLASH_V2 = "FLASH_V2"
-    FLASH_V2_5 = "FLASH_V2_5"
-    TURBO_V2 = "TURBO_V2"
-    TURBO_V2_5 = "TURBO_V2_5"
+    LINEAR = "LINEAR"
+    TWITTER = "TWITTER"
 
 
 class ConfluenceAuthenticationTypes(str, Enum):
@@ -1645,40 +1558,45 @@ class ConfluenceAuthenticationTypes(str, Enum):
     CONNECTOR = "CONNECTOR"
 
 
-class ReductoOcrModes(str, Enum):
-    STANDARD = "STANDARD"
-    AGENTIC = "AGENTIC"
+class UnitTypes(str, Enum):
+    KILOMETER = "KILOMETER"
+    METER = "METER"
+    CENTIMETER = "CENTIMETER"
+    MILLIMETER = "MILLIMETER"
+    MICROMETER = "MICROMETER"
+    NANOMETER = "NANOMETER"
+    ANGSTROM = "ANGSTROM"
+    DECIMETER = "DECIMETER"
+    DECAMETER = "DECAMETER"
+    HECTOMETER = "HECTOMETER"
+    GIGAMETER = "GIGAMETER"
+    ASTRONOMICAL_UNIT = "ASTRONOMICAL_UNIT"
+    LIGHT_YEAR = "LIGHT_YEAR"
+    PARSEC = "PARSEC"
+    MILE = "MILE"
+    YARD = "YARD"
+    FOOT = "FOOT"
+    INCH = "INCH"
+    MIL = "MIL"
+    MICRO_INCH = "MICRO_INCH"
+    CUSTOM = "CUSTOM"
+    UNITLESS = "UNITLESS"
 
 
-class ExtractionTypes(str, Enum):
-    ENTITIES = "ENTITIES"
-    FACTS = "FACTS"
+class ParallelGenerators(str, Enum):
+    BASE = "BASE"
+    CORE = "CORE"
+    PRO = "PRO"
 
 
-class ReductoExtractionModes(str, Enum):
-    OCR = "OCR"
-    METADATA = "METADATA"
-    HYBRID = "HYBRID"
-
-
-class TimeIntervalTypes(str, Enum):
-    MINUTE = "MINUTE"
-    HOUR = "HOUR"
-    DAY = "DAY"
-    WEEK = "WEEK"
-    MONTH = "MONTH"
-    QUARTER = "QUARTER"
-    YEAR = "YEAR"
-
-
-class MicrosoftCalendarAuthenticationTypes(str, Enum):
-    USER = "USER"
+class AttioIssueAuthenticationTypes(str, Enum):
+    API_KEY = "API_KEY"
+    ACCESS_TOKEN = "ACCESS_TOKEN"
     CONNECTOR = "CONNECTOR"
 
 
-class JiraAuthenticationTypes(str, Enum):
-    TOKEN = "TOKEN"
-    CONNECTOR = "CONNECTOR"
+class ContentIndexingServiceTypes(str, Enum):
+    AZURE_AI_LANGUAGE = "AZURE_AI_LANGUAGE"
 
 
 class MicrosoftContactsAuthenticationTypes(str, Enum):
@@ -1686,55 +1604,172 @@ class MicrosoftContactsAuthenticationTypes(str, Enum):
     CONNECTOR = "CONNECTOR"
 
 
-class ZendeskAuthenticationTypes(str, Enum):
+class CategoryFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
+class PersonFacetTypes(str, Enum):
+    CREATION_DATE = "CREATION_DATE"
+
+
+class VideoAspectRatioTypes(str, Enum):
+    LANDSCAPE_16X9 = "LANDSCAPE_16X9"
+    PORTRAIT_9X16 = "PORTRAIT_9X16"
+
+
+class StoragePolicyTypes(str, Enum):
+    ARCHIVE = "ARCHIVE"
+    MINIMIZE = "MINIMIZE"
+
+
+class CalendarListingTypes(str, Enum):
+    PAST = "PAST"
+    NEW = "NEW"
+
+
+class EntityEnrichmentServiceTypes(str, Enum):
+    PARALLEL = "PARALLEL"
+    DIFFBOT = "DIFFBOT"
+    WIKIPEDIA = "WIKIPEDIA"
+    CRUNCHBASE = "CRUNCHBASE"
+    FHIR = "FHIR"
+    RADAR = "RADAR"
+
+
+class DeviceTypes(str, Enum):
+    DRONE = "DRONE"
+    ROBOT = "ROBOT"
+    MOBILE = "MOBILE"
+    CAMERA = "CAMERA"
+    STREAM = "STREAM"
+    SCREEN = "SCREEN"
+    GEOSPATIAL = "GEOSPATIAL"
+    UNKNOWN = "UNKNOWN"
+
+
+class VideoSizeTypes(str, Enum):
+    HD_PORTRAIT = "HD_PORTRAIT"
+    HD_LANDSCAPE = "HD_LANDSCAPE"
+    FULL_HD_PORTRAIT = "FULL_HD_PORTRAIT"
+    FULL_HD_LANDSCAPE = "FULL_HD_LANDSCAPE"
+
+
+class ContentClassificationServiceTypes(str, Enum):
+    REGEX = "REGEX"
+    MODEL = "MODEL"
+
+
+class BoxAuthenticationTypes(str, Enum):
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
+
+
+class ContentSourceTypes(str, Enum):
+    FRAME = "FRAME"
+    DOCUMENT = "DOCUMENT"
+    TRANSCRIPT = "TRANSCRIPT"
+
+
+class GoogleModels(str, Enum):
+    GEMINI_2_5_PRO = "GEMINI_2_5_PRO"
+    GEMINI_2_5_PRO_PREVIEW = "GEMINI_2_5_PRO_PREVIEW"
+    GEMINI_2_5_PRO_EXPERIMENTAL = "GEMINI_2_5_PRO_EXPERIMENTAL"
+    GEMINI_3_PRO_PREVIEW = "GEMINI_3_PRO_PREVIEW"
+    GEMINI_3_1_PRO_PREVIEW = "GEMINI_3_1_PRO_PREVIEW"
+    GEMINI_3_FLASH_PREVIEW = "GEMINI_3_FLASH_PREVIEW"
+    GEMINI_2_5_FLASH = "GEMINI_2_5_FLASH"
+    GEMINI_FLASH_LATEST = "GEMINI_FLASH_LATEST"
+    GEMINI_2_5_FLASH_PREVIEW = "GEMINI_2_5_FLASH_PREVIEW"
+    GEMINI_2_5_FLASH_LITE = "GEMINI_2_5_FLASH_LITE"
+    GEMINI_FLASH_LITE_LATEST = "GEMINI_FLASH_LITE_LATEST"
+    GEMINI_2_0_PRO_EXPERIMENTAL = "GEMINI_2_0_PRO_EXPERIMENTAL"
+    GEMINI_2_0_FLASH_THINKING_EXPERIMENTAL = "GEMINI_2_0_FLASH_THINKING_EXPERIMENTAL"
+    GEMINI_2_0_FLASH_EXPERIMENTAL = "GEMINI_2_0_FLASH_EXPERIMENTAL"
+    GEMINI_2_0_FLASH = "GEMINI_2_0_FLASH"
+    GEMINI_2_0_FLASH_001 = "GEMINI_2_0_FLASH_001"
+    GEMINI_1_5_FLASH_8B = "GEMINI_1_5_FLASH_8B"
+    GEMINI_1_5_FLASH_8B_001 = "GEMINI_1_5_FLASH_8B_001"
+    GEMINI_1_5_FLASH = "GEMINI_1_5_FLASH"
+    GEMINI_1_5_FLASH_001 = "GEMINI_1_5_FLASH_001"
+    GEMINI_1_5_PRO = "GEMINI_1_5_PRO"
+    GEMINI_1_5_PRO_001 = "GEMINI_1_5_PRO_001"
+    GEMINI_1_5_FLASH_002 = "GEMINI_1_5_FLASH_002"
+    GEMINI_1_5_PRO_002 = "GEMINI_1_5_PRO_002"
+    EMBEDDING_004 = "EMBEDDING_004"
+    GEMINI_EMBEDDING_001 = "GEMINI_EMBEDDING_001"
+    CUSTOM = "CUSTOM"
+
+
+class ApplyPolicy(str, Enum):
+    BEFORE_RESOLVER = "BEFORE_RESOLVER"
+    AFTER_RESOLVER = "AFTER_RESOLVER"
+    VALIDATION = "VALIDATION"
+
+
+class FeedConnectorTypes(str, Enum):
+    GOOGLE = "GOOGLE"
+    AMAZON = "AMAZON"
+    AZURE = "AZURE"
+    SHARE_POINT = "SHARE_POINT"
+    ONE_DRIVE = "ONE_DRIVE"
+    GOOGLE_DRIVE = "GOOGLE_DRIVE"
+    DROPBOX = "DROPBOX"
+    BOX = "BOX"
+    GOOGLE_EMAIL = "GOOGLE_EMAIL"
+    MICROSOFT_EMAIL = "MICROSOFT_EMAIL"
+    ATLASSIAN = "ATLASSIAN"
+    LINEAR = "LINEAR"
+    GIT_HUB = "GIT_HUB"
+    INTERCOM = "INTERCOM"
+    ZENDESK = "ZENDESK"
+    GOOGLE_CALENDAR = "GOOGLE_CALENDAR"
+    MICROSOFT_CALENDAR = "MICROSOFT_CALENDAR"
+    GOOGLE_CONTACTS = "GOOGLE_CONTACTS"
+    MICROSOFT_CONTACTS = "MICROSOFT_CONTACTS"
+    ATTIO = "ATTIO"
+    SALESFORCE = "SALESFORCE"
+    HUB_SPOT = "HUB_SPOT"
+    ASANA = "ASANA"
+    MONDAY = "MONDAY"
+    FIREFLIES = "FIREFLIES"
+    ATTIO_MEETING = "ATTIO_MEETING"
+    FATHOM = "FATHOM"
+    KRISP = "KRISP"
+    SALESFORCE_ECI = "SALESFORCE_ECI"
+    PARALLEL = "PARALLEL"
+    BAMBOO_HR = "BAMBOO_HR"
+    GUSTO = "GUSTO"
+
+
+class BillableMetrics(str, Enum):
+    BYTES = "BYTES"
+    TOKENS = "TOKENS"
+    LENGTH = "LENGTH"
+    TIME = "TIME"
+    UNITS = "UNITS"
+    COST = "COST"
+    REQUESTS = "REQUESTS"
+    CREDITS = "CREDITS"
+
+
+class JiraAuthenticationTypes(str, Enum):
+    TOKEN = "TOKEN"
+    CONNECTOR = "CONNECTOR"
+
+
+class IntercomConversationsAuthenticationTypes(str, Enum):
     ACCESS_TOKEN = "ACCESS_TOKEN"
     CONNECTOR = "CONNECTOR"
 
 
-class RetrievalStrategyTypes(str, Enum):
-    CONTENT = "CONTENT"
-    CHUNK = "CHUNK"
-    SECTION = "SECTION"
+class GoogleImageModels(str, Enum):
+    GEMINI_2_5_FLASH_IMAGE_PREVIEW = "GEMINI_2_5_FLASH_IMAGE_PREVIEW"
+    GEMINI_3_PRO_IMAGE_PREVIEW = "GEMINI_3_PRO_IMAGE_PREVIEW"
+    CUSTOM = "CUSTOM"
 
 
-class TimedPolicyRecurrenceTypes(str, Enum):
-    ONCE = "ONCE"
-    REPEAT = "REPEAT"
-    MONITOR = "MONITOR"
-
-
-class MedicalGuidelineFacetTypes(str, Enum):
-    CREATION_DATE = "CREATION_DATE"
-
-
-class AsanaAuthenticationTypes(str, Enum):
-    PERSONAL_ACCESS_TOKEN = "PERSONAL_ACCESS_TOKEN"
-    O_AUTH = "O_AUTH"
-
-
-class OpenAIReasoningEffortLevels(str, Enum):
-    MINIMAL = "MINIMAL"
-    LOW = "LOW"
-    MEDIUM = "MEDIUM"
-    HIGH = "HIGH"
-
-
-class ContentTypes(str, Enum):
-    FILE = "FILE"
-    PAGE = "PAGE"
-    MESSAGE = "MESSAGE"
-    TEXT = "TEXT"
-    POST = "POST"
-    EMAIL = "EMAIL"
-    EVENT = "EVENT"
-    ISSUE = "ISSUE"
-    PULL_REQUEST = "PULL_REQUEST"
-    COMMIT = "COMMIT"
-    MEMORY = "MEMORY"
-    TRANSCRIPT = "TRANSCRIPT"
-
-
-class ConnectorTypes(str, Enum):
-    INTEGRATION = "INTEGRATION"
-    AUTHENTICATION = "AUTHENTICATION"
-    SITE = "SITE"
+class XAIModels(str, Enum):
+    GROK_4 = "GROK_4"
+    GROK_3 = "GROK_3"
+    GROK_3_MINI = "GROK_3_MINI"
+    CUSTOM = "CUSTOM"

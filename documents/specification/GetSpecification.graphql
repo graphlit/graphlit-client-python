@@ -28,6 +28,9 @@ query GetSpecification($id: ID!, $correlationId: String) {
       factExtractionLimit
       messagesWeight
       contentsWeight
+      toolResultTokenLimit
+      toolRoundLimit
+      toolBudgetThreshold
     }
     promptStrategy {
       type

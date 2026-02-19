@@ -20,7 +20,7 @@ class RetrieveViewRetrieveView(BaseModel):
 class RetrieveViewRetrieveViewResults(BaseModel):
     type: Optional[ContentSourceTypes]
     content: "RetrieveViewRetrieveViewResultsContent"
-    text: str
+    text: Optional[str]
     metadata: Optional[str]
     relevance: float
     start_time: Optional[Any] = Field(alias="startTime")

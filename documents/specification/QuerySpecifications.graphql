@@ -30,6 +30,9 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         factExtractionLimit
         messagesWeight
         contentsWeight
+        toolResultTokenLimit
+        toolRoundLimit
+        toolBudgetThreshold
       }
       promptStrategy {
         type

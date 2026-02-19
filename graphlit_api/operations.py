@@ -188,6 +188,7 @@ __all__ = [
     "DISABLE_ALERT_GQL",
     "DISABLE_FEED_GQL",
     "DISABLE_USER_GQL",
+    "DISTRIBUTE_CONTENTS_GQL",
     "ENABLE_ALERT_GQL",
     "ENABLE_FEED_GQL",
     "ENABLE_USER_GQL",
@@ -1686,6 +1687,25 @@ mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityRefer
       mimeType
       uri
     }
+  }
+}
+"""
+
+DISTRIBUTE_CONTENTS_GQL = """
+mutation DistributeContents($connector: DistributionConnectorInput!, $authentication: EntityReferenceInput!, $text: String, $textType: TextTypes, $name: String, $filter: ContentFilter, $correlationId: String) {
+  distributeContents(
+    connector: $connector
+    authentication: $authentication
+    text: $text
+    textType: $textType
+    name: $name
+    filter: $filter
+    correlationId: $correlationId
+  ) {
+    uri
+    identifier
+    serviceType
+    error
   }
 }
 """
@@ -9334,8 +9354,15 @@ query GetFeed($id: ID!, $correlationId: String) {
         cloudId
       }
       linear {
+        authenticationType
         key
         project
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
       }
       github {
         authenticationType
@@ -10138,8 +10165,15 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           cloudId
         }
         linear {
+          authenticationType
           key
           project
+          clientId
+          clientSecret
+          refreshToken
+          connector {
+            id
+          }
         }
         github {
           authenticationType
@@ -16921,6 +16955,9 @@ query GetSpecification($id: ID!, $correlationId: String) {
       factExtractionLimit
       messagesWeight
       contentsWeight
+      toolResultTokenLimit
+      toolRoundLimit
+      toolBudgetThreshold
     }
     promptStrategy {
       type
@@ -17279,6 +17316,8 @@ query QueryModels($filter: ModelFilter) {
         rerankingCostPerMillion
         contextWindowTokens
         maxOutputTokens
+        deprecated
+        deprecationDate
       }
     }
   }
@@ -17318,6 +17357,9 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         factExtractionLimit
         messagesWeight
         contentsWeight
+        toolResultTokenLimit
+        toolRoundLimit
+        toolBudgetThreshold
       }
       promptStrategy {
         type

@@ -1,0 +1,8 @@
+mutation DistributeContents($connector: DistributionConnectorInput!, $authentication: EntityReferenceInput!, $text: String, $textType: TextTypes, $name: String, $filter: ContentFilter, $correlationId: String) {
+  distributeContents(connector: $connector, authentication: $authentication, text: $text, textType: $textType, name: $name, filter: $filter, correlationId: $correlationId) {
+    uri
+    identifier
+    serviceType
+    error
+  }
+}
