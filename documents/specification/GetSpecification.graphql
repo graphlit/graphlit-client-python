@@ -208,5 +208,13 @@ query GetSpecification($id: ID!, $correlationId: String) {
       modelName
       chunkTokenLimit
     }
+    twelveLabs {
+      model
+      key
+      embeddingOptions
+      embeddingScopes
+      segmentationMethod
+      segmentationDuration
+    }
   }
 }

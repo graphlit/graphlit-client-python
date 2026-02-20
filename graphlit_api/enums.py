@@ -25,11 +25,20 @@ class FactCategory(str, Enum):
     DELEGATION = "DELEGATION"
 
 
+class TwitterAuthenticationTypes(str, Enum):
+    TOKEN = "TOKEN"
+    CONNECTOR = "CONNECTOR"
+
+
 class AzureOpenAIModels(str, Enum):
     GPT35_TURBO_16K = "GPT35_TURBO_16K"
     GPT4 = "GPT4"
     GPT4_TURBO_128K = "GPT4_TURBO_128K"
     CUSTOM = "CUSTOM"
+
+
+class TwelveLabsModels(str, Enum):
+    MARENGO_3_0 = "MARENGO_3_0"
 
 
 class LinkTypes(str, Enum):
@@ -292,6 +301,8 @@ class AuthenticationServiceTypes(str, Enum):
     GOOGLE = "GOOGLE"
     O_AUTH = "O_AUTH"
     ARCADE = "ARCADE"
+    TOKEN = "TOKEN"
+    API_KEY = "API_KEY"
 
 
 class LinearIssueAuthenticationTypes(str, Enum):
@@ -353,6 +364,11 @@ class AnthropicModels(str, Enum):
     CLAUDE_4_5_HAIKU = "CLAUDE_4_5_HAIKU"
     CLAUDE_4_5_HAIKU_20251001 = "CLAUDE_4_5_HAIKU_20251001"
     CUSTOM = "CUSTOM"
+
+
+class TwelveLabsSegmentationMethods(str, Enum):
+    DYNAMIC = "DYNAMIC"
+    FIXED = "FIXED"
 
 
 class TimedPolicyRecurrenceTypes(str, Enum):
@@ -541,6 +557,7 @@ class SpecificationTypes(str, Enum):
     CLASSIFICATION = "CLASSIFICATION"
     SUMMARIZATION = "SUMMARIZATION"
     PREPARATION = "PREPARATION"
+    MULTIMODAL_EMBEDDING = "MULTIMODAL_EMBEDDING"
 
 
 class CalendarEventStatus(str, Enum):
@@ -937,6 +954,7 @@ class EmbeddingTypes(str, Enum):
     IMAGE = "IMAGE"
     AUDIO = "AUDIO"
     VIDEO = "VIDEO"
+    MULTIMODAL = "MULTIMODAL"
 
 
 class MedicalTestFacetTypes(str, Enum):
@@ -1474,6 +1492,7 @@ class ModelServiceTypes(str, Enum):
     VOYAGE = "VOYAGE"
     BEDROCK = "BEDROCK"
     XAI = "XAI"
+    TWELVE_LABS = "TWELVE_LABS"
 
 
 class MicrosoftCalendarAuthenticationTypes(str, Enum):
@@ -1622,6 +1641,12 @@ class StoragePolicyTypes(str, Enum):
     MINIMIZE = "MINIMIZE"
 
 
+class TwelveLabsEmbeddingOptions(str, Enum):
+    VISUAL = "VISUAL"
+    AUDIO = "AUDIO"
+    TRANSCRIPTION = "TRANSCRIPTION"
+
+
 class CalendarListingTypes(str, Enum):
     PAST = "PAST"
     NEW = "NEW"
@@ -1750,6 +1775,11 @@ class BillableMetrics(str, Enum):
     COST = "COST"
     REQUESTS = "REQUESTS"
     CREDITS = "CREDITS"
+
+
+class TwelveLabsEmbeddingScopes(str, Enum):
+    CLIP = "CLIP"
+    ASSET = "ASSET"
 
 
 class JiraAuthenticationTypes(str, Enum):

@@ -62,6 +62,7 @@ from .enums import (
     SlackAuthenticationTypes,
     TimedPolicyRecurrenceTypes,
     TrelloTypes,
+    TwitterAuthenticationTypes,
     TwitterListingTypes,
     YouTubeTypes,
     ZendeskAuthenticationTypes,
@@ -892,11 +893,22 @@ class GetFeedFeedYoutube(BaseModel):
 
 class GetFeedFeedTwitter(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
-    token: str
+    authentication_type: Optional[TwitterAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    token: Optional[str]
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["GetFeedFeedTwitterConnector"]
     type: Optional[TwitterListingTypes]
     user_name: Optional[str] = Field(alias="userName")
     query: Optional[str]
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
+
+
+class GetFeedFeedTwitterConnector(BaseModel):
+    id: str
 
 
 class GetFeedFeedSlack(BaseModel):
@@ -1091,6 +1103,7 @@ GetFeedFeedNotion.model_rebuild()
 GetFeedFeedConfluence.model_rebuild()
 GetFeedFeedIntercom.model_rebuild()
 GetFeedFeedZendesk.model_rebuild()
+GetFeedFeedTwitter.model_rebuild()
 GetFeedFeedSlack.model_rebuild()
 GetFeedFeedMicrosoftTeams.model_rebuild()
 GetFeedFeedAttio.model_rebuild()

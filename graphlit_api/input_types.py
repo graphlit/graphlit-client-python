@@ -177,6 +177,11 @@ from .enums import (
     TimedPolicyRecurrenceTypes,
     TimeIntervalTypes,
     TrelloTypes,
+    TwelveLabsEmbeddingOptions,
+    TwelveLabsEmbeddingScopes,
+    TwelveLabsModels,
+    TwelveLabsSegmentationMethods,
+    TwitterAuthenticationTypes,
     TwitterListingTypes,
     UnitTypes,
     UserTypes,
@@ -502,6 +507,9 @@ class SpecificationInput(BaseModel):
     deepseek: Optional["DeepseekModelPropertiesInput"] = None
     jina: Optional["JinaModelPropertiesInput"] = None
     voyage: Optional["VoyageModelPropertiesInput"] = None
+    twelve_labs: Optional["TwelveLabsModelPropertiesInput"] = Field(
+        alias="twelveLabs", default=None
+    )
 
 
 class CerebrasModelPropertiesInput(BaseModel):
@@ -603,7 +611,6 @@ class ElevenLabsScribeAudioPreparationPropertiesInput(BaseModel):
 
 
 class DiscordDistributionPropertiesInput(BaseModel):
-    token: str
     channel_id: str = Field(alias="channelId")
     thread_id: Optional[str] = Field(alias="threadId", default=None)
 
@@ -616,7 +623,14 @@ class SearchFeedPropertiesUpdateInput(BaseModel):
 
 
 class TwitterFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[TwitterAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
     token: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
     type: Optional[TwitterListingTypes] = None
     user_name: Optional[str] = Field(alias="userName", default=None)
     query: Optional[str] = None
@@ -866,6 +880,9 @@ class EmbeddingsStrategyInput(BaseModel):
     )
     image_specification: Optional["EntityReferenceInput"] = Field(
         alias="imageSpecification", default=None
+    )
+    multimodal_specification: Optional["EntityReferenceInput"] = Field(
+        alias="multimodalSpecification", default=None
     )
 
 
@@ -3194,6 +3211,23 @@ class LinearProjectsInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
 
 
+class TwelveLabsModelPropertiesUpdateInput(BaseModel):
+    model: Optional[TwelveLabsModels] = None
+    key: Optional[str] = None
+    embedding_options: Optional[list[TwelveLabsEmbeddingOptions]] = Field(
+        alias="embeddingOptions", default=None
+    )
+    embedding_scopes: Optional[list[TwelveLabsEmbeddingScopes]] = Field(
+        alias="embeddingScopes", default=None
+    )
+    segmentation_method: Optional[TwelveLabsSegmentationMethods] = Field(
+        alias="segmentationMethod", default=None
+    )
+    segmentation_duration: Optional[int] = Field(
+        alias="segmentationDuration", default=None
+    )
+
+
 class ContentCriteriaLevelInput(BaseModel):
     feeds: Optional[list["EntityReferenceInput"]] = None
     workflows: Optional[list["EntityReferenceInput"]] = None
@@ -3663,7 +3697,14 @@ class ObservationReferenceInput(BaseModel):
 
 
 class TwitterFeedPropertiesInput(BaseModel):
-    token: str
+    authentication_type: Optional[TwitterAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    token: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
     type: Optional[TwitterListingTypes] = None
     user_name: Optional[str] = Field(alias="userName", default=None)
     query: Optional[str] = None
@@ -3671,6 +3712,23 @@ class TwitterFeedPropertiesInput(BaseModel):
         alias="includeAttachments", default=None
     )
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class TwelveLabsModelPropertiesInput(BaseModel):
+    model: TwelveLabsModels
+    key: Optional[str] = None
+    embedding_options: Optional[list[TwelveLabsEmbeddingOptions]] = Field(
+        alias="embeddingOptions", default=None
+    )
+    embedding_scopes: Optional[list[TwelveLabsEmbeddingScopes]] = Field(
+        alias="embeddingScopes", default=None
+    )
+    segmentation_method: Optional[TwelveLabsSegmentationMethods] = Field(
+        alias="segmentationMethod", default=None
+    )
+    segmentation_duration: Optional[int] = Field(
+        alias="segmentationDuration", default=None
+    )
 
 
 class MedicalDeviceFacetInput(BaseModel):
@@ -4141,6 +4199,9 @@ class SpecificationUpdateInput(BaseModel):
     deepseek: Optional["DeepseekModelPropertiesUpdateInput"] = None
     jina: Optional["JinaModelPropertiesUpdateInput"] = None
     voyage: Optional["VoyageModelPropertiesUpdateInput"] = None
+    twelve_labs: Optional["TwelveLabsModelPropertiesUpdateInput"] = Field(
+        alias="twelveLabs", default=None
+    )
 
 
 class EnrichmentWorkflowStageInput(BaseModel):
@@ -4767,6 +4828,8 @@ class ResearchFeedPropertiesInput(BaseModel):
 
 class AuthenticationConnectorInput(BaseModel):
     type: AuthenticationServiceTypes
+    token: Optional[str] = None
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
     microsoft: Optional["MicrosoftAuthenticationPropertiesInput"] = None
     google: Optional["GoogleAuthenticationPropertiesInput"] = None
     arcade: Optional["ArcadeAuthenticationPropertiesInput"] = None
@@ -6478,6 +6541,7 @@ ModelImageExtractionPropertiesInput.model_rebuild()
 MicrosoftEmailFeedPropertiesUpdateInput.model_rebuild()
 SalesforceCRMFeedPropertiesInput.model_rebuild()
 SearchFeedPropertiesUpdateInput.model_rebuild()
+TwitterFeedPropertiesUpdateInput.model_rebuild()
 MedicalIndicationFilter.model_rebuild()
 EventInput.model_rebuild()
 EmailFeedPropertiesInput.model_rebuild()
@@ -6613,6 +6677,7 @@ IntercomTicketsFeedPropertiesInput.model_rebuild()
 EntityEnrichmentConnectorInput.model_rebuild()
 AttioFeedPropertiesUpdateInput.model_rebuild()
 ObservationReferenceInput.model_rebuild()
+TwitterFeedPropertiesInput.model_rebuild()
 WorkflowInput.model_rebuild()
 RepoUpdateInput.model_rebuild()
 NotionFeedPropertiesInput.model_rebuild()

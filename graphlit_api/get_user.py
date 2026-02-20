@@ -52,6 +52,8 @@ class GetUserUserConnectors(BaseModel):
 
 class GetUserUserConnectorsAuthentication(BaseModel):
     type: AuthenticationServiceTypes
+    token: Optional[str]
+    api_key: Optional[str] = Field(alias="apiKey")
     microsoft: Optional["GetUserUserConnectorsAuthenticationMicrosoft"]
     google: Optional["GetUserUserConnectorsAuthenticationGoogle"]
     oauth: Optional["GetUserUserConnectorsAuthenticationOauth"]

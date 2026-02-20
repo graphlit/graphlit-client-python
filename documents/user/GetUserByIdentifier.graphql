@@ -19,6 +19,8 @@ query GetUserByIdentifier($identifier: String!) {
       type
       authentication {
         type
+        token
+        apiKey
         microsoft {
           tenantId
           clientId

@@ -33,6 +33,10 @@ from .enums import (
     RetrievalStrategyTypes,
     RevisionStrategyTypes,
     SpecificationTypes,
+    TwelveLabsEmbeddingOptions,
+    TwelveLabsEmbeddingScopes,
+    TwelveLabsModels,
+    TwelveLabsSegmentationMethods,
     VoyageModels,
     XAIModels,
 )
@@ -92,6 +96,9 @@ class GetSpecificationSpecification(BaseModel):
     deepseek: Optional["GetSpecificationSpecificationDeepseek"]
     jina: Optional["GetSpecificationSpecificationJina"]
     voyage: Optional["GetSpecificationSpecificationVoyage"]
+    twelve_labs: Optional["GetSpecificationSpecificationTwelveLabs"] = Field(
+        alias="twelveLabs"
+    )
 
 
 class GetSpecificationSpecificationOwner(BaseModel):
@@ -313,6 +320,21 @@ class GetSpecificationSpecificationVoyage(BaseModel):
     key: Optional[str]
     model_name: Optional[str] = Field(alias="modelName")
     chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit")
+
+
+class GetSpecificationSpecificationTwelveLabs(BaseModel):
+    model: TwelveLabsModels
+    key: Optional[str]
+    embedding_options: Optional[list[TwelveLabsEmbeddingOptions]] = Field(
+        alias="embeddingOptions"
+    )
+    embedding_scopes: Optional[list[TwelveLabsEmbeddingScopes]] = Field(
+        alias="embeddingScopes"
+    )
+    segmentation_method: Optional[TwelveLabsSegmentationMethods] = Field(
+        alias="segmentationMethod"
+    )
+    segmentation_duration: Optional[int] = Field(alias="segmentationDuration")
 
 
 GetSpecification.model_rebuild()

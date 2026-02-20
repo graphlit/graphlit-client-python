@@ -58,6 +58,8 @@ class GetUserByIdentifierUserByIdentifierConnectors(BaseModel):
 
 class GetUserByIdentifierUserByIdentifierConnectorsAuthentication(BaseModel):
     type: AuthenticationServiceTypes
+    token: Optional[str]
+    api_key: Optional[str] = Field(alias="apiKey")
     microsoft: Optional[
         "GetUserByIdentifierUserByIdentifierConnectorsAuthenticationMicrosoft"
     ]

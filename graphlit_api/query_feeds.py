@@ -62,6 +62,7 @@ from .enums import (
     SlackAuthenticationTypes,
     TimedPolicyRecurrenceTypes,
     TrelloTypes,
+    TwitterAuthenticationTypes,
     TwitterListingTypes,
     YouTubeTypes,
     ZendeskAuthenticationTypes,
@@ -907,11 +908,22 @@ class QueryFeedsFeedsResultsYoutube(BaseModel):
 
 class QueryFeedsFeedsResultsTwitter(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
-    token: str
+    authentication_type: Optional[TwitterAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    token: Optional[str]
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["QueryFeedsFeedsResultsTwitterConnector"]
     type: Optional[TwitterListingTypes]
     user_name: Optional[str] = Field(alias="userName")
     query: Optional[str]
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
+
+
+class QueryFeedsFeedsResultsTwitterConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsSlack(BaseModel):
@@ -1107,6 +1119,7 @@ QueryFeedsFeedsResultsNotion.model_rebuild()
 QueryFeedsFeedsResultsConfluence.model_rebuild()
 QueryFeedsFeedsResultsIntercom.model_rebuild()
 QueryFeedsFeedsResultsZendesk.model_rebuild()
+QueryFeedsFeedsResultsTwitter.model_rebuild()
 QueryFeedsFeedsResultsSlack.model_rebuild()
 QueryFeedsFeedsResultsMicrosoftTeams.model_rebuild()
 QueryFeedsFeedsResultsAttio.model_rebuild()

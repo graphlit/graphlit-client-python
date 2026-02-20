@@ -20,6 +20,8 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
         type
         authentication {
           type
+          token
+          apiKey
           microsoft {
             tenantId
             clientId

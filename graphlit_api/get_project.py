@@ -48,6 +48,9 @@ class GetProjectProjectEmbeddings(BaseModel):
     image_specification: Optional["GetProjectProjectEmbeddingsImageSpecification"] = (
         Field(alias="imageSpecification")
     )
+    multimodal_specification: Optional[
+        "GetProjectProjectEmbeddingsMultimodalSpecification"
+    ] = Field(alias="multimodalSpecification")
 
 
 class GetProjectProjectEmbeddingsTextSpecification(BaseModel):
@@ -55,6 +58,10 @@ class GetProjectProjectEmbeddingsTextSpecification(BaseModel):
 
 
 class GetProjectProjectEmbeddingsImageSpecification(BaseModel):
+    id: str
+
+
+class GetProjectProjectEmbeddingsMultimodalSpecification(BaseModel):
     id: str
 
 

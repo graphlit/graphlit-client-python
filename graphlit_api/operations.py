@@ -1218,6 +1218,8 @@ query GetConnector($id: ID!, $correlationId: String) {
     type
     authentication {
       type
+      token
+      apiKey
       microsoft {
         tenantId
         clientId
@@ -1284,6 +1286,8 @@ query QueryConnectors($filter: ConnectorFilter, $correlationId: String) {
       type
       authentication {
         type
+        token
+        apiKey
         microsoft {
           tenantId
           clientId
@@ -9723,7 +9727,14 @@ query GetFeed($id: ID!, $correlationId: String) {
     }
     twitter {
       readLimit
+      authenticationType
       token
+      clientId
+      clientSecret
+      refreshToken
+      connector {
+        id
+      }
       type
       userName
       query
@@ -10534,7 +10545,14 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
       }
       twitter {
         readLimit
+        authenticationType
         token
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
         type
         userName
         query
@@ -16189,6 +16207,9 @@ query GetProject {
       imageSpecification {
         id
       }
+      multimodalSpecification {
+        id
+      }
     }
     quota {
       storage
@@ -17135,6 +17156,14 @@ query GetSpecification($id: ID!, $correlationId: String) {
       modelName
       chunkTokenLimit
     }
+    twelveLabs {
+      model
+      key
+      embeddingOptions
+      embeddingScopes
+      segmentationMethod
+      segmentationDuration
+    }
   }
 }
 """
@@ -17537,6 +17566,14 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         modelName
         chunkTokenLimit
       }
+      twelveLabs {
+        model
+        key
+        embeddingOptions
+        embeddingScopes
+        segmentationMethod
+        segmentationDuration
+      }
     }
   }
 }
@@ -17644,6 +17681,8 @@ query GetUser {
       type
       authentication {
         type
+        token
+        apiKey
         microsoft {
           tenantId
           clientId
@@ -17728,6 +17767,8 @@ query GetUserByIdentifier($identifier: String!) {
       type
       authentication {
         type
+        token
+        apiKey
         microsoft {
           tenantId
           clientId
@@ -17813,6 +17854,8 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
         type
         authentication {
           type
+          token
+          apiKey
           microsoft {
             tenantId
             clientId

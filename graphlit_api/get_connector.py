@@ -39,6 +39,8 @@ class GetConnectorConnectorOwner(BaseModel):
 
 class GetConnectorConnectorAuthentication(BaseModel):
     type: AuthenticationServiceTypes
+    token: Optional[str]
+    api_key: Optional[str] = Field(alias="apiKey")
     microsoft: Optional["GetConnectorConnectorAuthenticationMicrosoft"]
     google: Optional["GetConnectorConnectorAuthenticationGoogle"]
     oauth: Optional["GetConnectorConnectorAuthenticationOauth"]

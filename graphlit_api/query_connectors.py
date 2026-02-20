@@ -44,6 +44,8 @@ class QueryConnectorsConnectorsResultsOwner(BaseModel):
 
 class QueryConnectorsConnectorsResultsAuthentication(BaseModel):
     type: AuthenticationServiceTypes
+    token: Optional[str]
+    api_key: Optional[str] = Field(alias="apiKey")
     microsoft: Optional["QueryConnectorsConnectorsResultsAuthenticationMicrosoft"]
     google: Optional["QueryConnectorsConnectorsResultsAuthenticationGoogle"]
     oauth: Optional["QueryConnectorsConnectorsResultsAuthenticationOauth"]

@@ -210,6 +210,14 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         modelName
         chunkTokenLimit
       }
+      twelveLabs {
+        model
+        key
+        embeddingOptions
+        embeddingScopes
+        segmentationMethod
+        segmentationDuration
+      }
     }
   }
 }

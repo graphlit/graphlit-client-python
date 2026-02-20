@@ -25,6 +25,9 @@ query GetProject {
       imageSpecification {
         id
       }
+      multimodalSpecification {
+        id
+      }
     }
     quota {
       storage

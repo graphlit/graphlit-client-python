@@ -33,6 +33,10 @@ from .enums import (
     RetrievalStrategyTypes,
     RevisionStrategyTypes,
     SpecificationTypes,
+    TwelveLabsEmbeddingOptions,
+    TwelveLabsEmbeddingScopes,
+    TwelveLabsModels,
+    TwelveLabsSegmentationMethods,
     VoyageModels,
     XAIModels,
 )
@@ -101,6 +105,9 @@ class QuerySpecificationsSpecificationsResults(BaseModel):
     deepseek: Optional["QuerySpecificationsSpecificationsResultsDeepseek"]
     jina: Optional["QuerySpecificationsSpecificationsResultsJina"]
     voyage: Optional["QuerySpecificationsSpecificationsResultsVoyage"]
+    twelve_labs: Optional["QuerySpecificationsSpecificationsResultsTwelveLabs"] = Field(
+        alias="twelveLabs"
+    )
 
 
 class QuerySpecificationsSpecificationsResultsOwner(BaseModel):
@@ -322,6 +329,21 @@ class QuerySpecificationsSpecificationsResultsVoyage(BaseModel):
     key: Optional[str]
     model_name: Optional[str] = Field(alias="modelName")
     chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit")
+
+
+class QuerySpecificationsSpecificationsResultsTwelveLabs(BaseModel):
+    model: TwelveLabsModels
+    key: Optional[str]
+    embedding_options: Optional[list[TwelveLabsEmbeddingOptions]] = Field(
+        alias="embeddingOptions"
+    )
+    embedding_scopes: Optional[list[TwelveLabsEmbeddingScopes]] = Field(
+        alias="embeddingScopes"
+    )
+    segmentation_method: Optional[TwelveLabsSegmentationMethods] = Field(
+        alias="segmentationMethod"
+    )
+    segmentation_duration: Optional[int] = Field(alias="segmentationDuration")
 
 
 QuerySpecifications.model_rebuild()

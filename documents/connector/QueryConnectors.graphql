@@ -13,6 +13,8 @@ query QueryConnectors($filter: ConnectorFilter, $correlationId: String) {
       type
       authentication {
         type
+        token
+        apiKey
         microsoft {
           tenantId
           clientId

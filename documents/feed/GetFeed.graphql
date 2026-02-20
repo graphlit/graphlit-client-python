@@ -540,7 +540,14 @@ query GetFeed($id: ID!, $correlationId: String) {
     }
     twitter {
       readLimit
+      authenticationType
       token
+      clientId
+      clientSecret
+      refreshToken
+      connector {
+        id
+      }
       type
       userName
       query
