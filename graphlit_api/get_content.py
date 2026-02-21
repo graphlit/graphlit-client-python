@@ -13,6 +13,7 @@ from .enums import (
     CalendarRecurrencePattern,
     CalendarReminderMethod,
     ContentTypes,
+    EmbeddingTypes,
     EntityState,
     FactCategory,
     FileTypes,
@@ -572,6 +573,7 @@ class GetContentContentPages(BaseModel):
     index: Optional[int]
     text: Optional[str]
     relevance: Optional[float]
+    embedding_type: Optional[EmbeddingTypes] = Field(alias="embeddingType")
     images: Optional[list[Optional["GetContentContentPagesImages"]]]
     chunks: Optional[list[Optional["GetContentContentPagesChunks"]]]
 
@@ -596,6 +598,7 @@ class GetContentContentPagesChunks(BaseModel):
     role: Optional[TextRoles]
     language: Optional[str]
     relevance: Optional[float]
+    embedding_type: Optional[EmbeddingTypes] = Field(alias="embeddingType")
 
 
 class GetContentContentSegments(BaseModel):
@@ -603,6 +606,7 @@ class GetContentContentSegments(BaseModel):
     end_time: Optional[Any] = Field(alias="endTime")
     text: Optional[str]
     relevance: Optional[float]
+    embedding_type: Optional[EmbeddingTypes] = Field(alias="embeddingType")
 
 
 class GetContentContentFrames(BaseModel):
@@ -610,6 +614,7 @@ class GetContentContentFrames(BaseModel):
     description: Optional[str]
     text: Optional[str]
     relevance: Optional[float]
+    embedding_type: Optional[EmbeddingTypes] = Field(alias="embeddingType")
 
 
 GetContent.model_rebuild()

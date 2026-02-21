@@ -345,6 +345,7 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
         index
         text
         relevance
+        embeddingType
         images {
           id
           mimeType
@@ -364,6 +365,7 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
           role
           language
           relevance
+          embeddingType
         }
       }
       segments {
@@ -371,12 +373,14 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
         endTime
         text
         relevance
+        embeddingType
       }
       frames {
         index
         description
         text
         relevance
+        embeddingType
       }
       error
       markdown

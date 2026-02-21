@@ -13,6 +13,7 @@ from .enums import (
     CalendarRecurrencePattern,
     CalendarReminderMethod,
     ContentTypes,
+    EmbeddingTypes,
     EntityState,
     FactCategory,
     FileTypes,
@@ -594,6 +595,7 @@ class LookupContentsLookupContentsResultsPages(BaseModel):
     index: Optional[int]
     text: Optional[str]
     relevance: Optional[float]
+    embedding_type: Optional[EmbeddingTypes] = Field(alias="embeddingType")
     images: Optional[list[Optional["LookupContentsLookupContentsResultsPagesImages"]]]
     chunks: Optional[list[Optional["LookupContentsLookupContentsResultsPagesChunks"]]]
 
@@ -618,6 +620,7 @@ class LookupContentsLookupContentsResultsPagesChunks(BaseModel):
     role: Optional[TextRoles]
     language: Optional[str]
     relevance: Optional[float]
+    embedding_type: Optional[EmbeddingTypes] = Field(alias="embeddingType")
 
 
 class LookupContentsLookupContentsResultsSegments(BaseModel):
@@ -625,6 +628,7 @@ class LookupContentsLookupContentsResultsSegments(BaseModel):
     end_time: Optional[Any] = Field(alias="endTime")
     text: Optional[str]
     relevance: Optional[float]
+    embedding_type: Optional[EmbeddingTypes] = Field(alias="embeddingType")
 
 
 class LookupContentsLookupContentsResultsFrames(BaseModel):
@@ -632,6 +636,7 @@ class LookupContentsLookupContentsResultsFrames(BaseModel):
     description: Optional[str]
     text: Optional[str]
     relevance: Optional[float]
+    embedding_type: Optional[EmbeddingTypes] = Field(alias="embeddingType")
 
 
 LookupContents.model_rebuild()

@@ -2304,6 +2304,7 @@ query GetContent($id: ID!, $correlationId: String) {
       index
       text
       relevance
+      embeddingType
       images {
         id
         mimeType
@@ -2323,6 +2324,7 @@ query GetContent($id: ID!, $correlationId: String) {
         role
         language
         relevance
+        embeddingType
       }
     }
     segments {
@@ -2330,12 +2332,14 @@ query GetContent($id: ID!, $correlationId: String) {
       endTime
       text
       relevance
+      embeddingType
     }
     frames {
       index
       description
       text
       relevance
+      embeddingType
     }
     error
   }
@@ -3179,6 +3183,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
         index
         text
         relevance
+        embeddingType
         images {
           id
           mimeType
@@ -3198,6 +3203,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
           role
           language
           relevance
+          embeddingType
         }
       }
       segments {
@@ -3205,12 +3211,14 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
         endTime
         text
         relevance
+        embeddingType
       }
       frames {
         index
         description
         text
         relevance
+        embeddingType
       }
       error
     }
@@ -3856,6 +3864,7 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
         index
         text
         relevance
+        embeddingType
         images {
           id
           mimeType
@@ -3875,6 +3884,7 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
           role
           language
           relevance
+          embeddingType
         }
       }
       segments {
@@ -3882,12 +3892,14 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
         endTime
         text
         relevance
+        embeddingType
       }
       frames {
         index
         description
         text
         relevance
+        embeddingType
       }
       error
     }
@@ -4287,6 +4299,7 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
         index
         text
         relevance
+        embeddingType
         images {
           id
           mimeType
@@ -4306,6 +4319,7 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
           role
           language
           relevance
+          embeddingType
         }
       }
       segments {
@@ -4313,12 +4327,14 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
         endTime
         text
         relevance
+        embeddingType
       }
       frames {
         index
         description
         text
         relevance
+        embeddingType
       }
       error
       markdown

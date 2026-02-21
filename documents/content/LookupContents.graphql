@@ -424,6 +424,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
         index
         text
         relevance
+        embeddingType
         images {
           id
           mimeType
@@ -443,6 +444,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
           role
           language
           relevance
+          embeddingType
         }
       }
       segments {
@@ -450,12 +452,14 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
         endTime
         text
         relevance
+        embeddingType
       }
       frames {
         index
         description
         text
         relevance
+        embeddingType
       }
       error
     }

@@ -13,6 +13,7 @@ from .enums import (
     CalendarRecurrencePattern,
     CalendarReminderMethod,
     ContentTypes,
+    EmbeddingTypes,
     EntityState,
     FileTypes,
     ImageProjectionTypes,
@@ -489,6 +490,7 @@ class QueryContentsObservationsContentsResultsPages(BaseModel):
     index: Optional[int]
     text: Optional[str]
     relevance: Optional[float]
+    embedding_type: Optional[EmbeddingTypes] = Field(alias="embeddingType")
     images: Optional[
         list[Optional["QueryContentsObservationsContentsResultsPagesImages"]]
     ]
@@ -517,6 +519,7 @@ class QueryContentsObservationsContentsResultsPagesChunks(BaseModel):
     role: Optional[TextRoles]
     language: Optional[str]
     relevance: Optional[float]
+    embedding_type: Optional[EmbeddingTypes] = Field(alias="embeddingType")
 
 
 class QueryContentsObservationsContentsResultsSegments(BaseModel):
@@ -524,6 +527,7 @@ class QueryContentsObservationsContentsResultsSegments(BaseModel):
     end_time: Optional[Any] = Field(alias="endTime")
     text: Optional[str]
     relevance: Optional[float]
+    embedding_type: Optional[EmbeddingTypes] = Field(alias="embeddingType")
 
 
 class QueryContentsObservationsContentsResultsFrames(BaseModel):
@@ -531,6 +535,7 @@ class QueryContentsObservationsContentsResultsFrames(BaseModel):
     description: Optional[str]
     text: Optional[str]
     relevance: Optional[float]
+    embedding_type: Optional[EmbeddingTypes] = Field(alias="embeddingType")
 
 
 class QueryContentsObservationsContentsResultsObservations(BaseModel):

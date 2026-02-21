@@ -13,6 +13,7 @@ from .enums import (
     CalendarRecurrencePattern,
     CalendarReminderMethod,
     ContentTypes,
+    EmbeddingTypes,
     EntityState,
     FileTypes,
     ImageProjectionTypes,
@@ -469,6 +470,7 @@ class QueryContentsContentsResultsPages(BaseModel):
     index: Optional[int]
     text: Optional[str]
     relevance: Optional[float]
+    embedding_type: Optional[EmbeddingTypes] = Field(alias="embeddingType")
     images: Optional[list[Optional["QueryContentsContentsResultsPagesImages"]]]
     chunks: Optional[list[Optional["QueryContentsContentsResultsPagesChunks"]]]
 
@@ -493,6 +495,7 @@ class QueryContentsContentsResultsPagesChunks(BaseModel):
     role: Optional[TextRoles]
     language: Optional[str]
     relevance: Optional[float]
+    embedding_type: Optional[EmbeddingTypes] = Field(alias="embeddingType")
 
 
 class QueryContentsContentsResultsSegments(BaseModel):
@@ -500,6 +503,7 @@ class QueryContentsContentsResultsSegments(BaseModel):
     end_time: Optional[Any] = Field(alias="endTime")
     text: Optional[str]
     relevance: Optional[float]
+    embedding_type: Optional[EmbeddingTypes] = Field(alias="embeddingType")
 
 
 class QueryContentsContentsResultsFrames(BaseModel):
@@ -507,6 +511,7 @@ class QueryContentsContentsResultsFrames(BaseModel):
     description: Optional[str]
     text: Optional[str]
     relevance: Optional[float]
+    embedding_type: Optional[EmbeddingTypes] = Field(alias="embeddingType")
 
 
 QueryContents.model_rebuild()
