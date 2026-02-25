@@ -1,5 +1,5 @@
-mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: TimeSpan, $ttft: TimeSpan, $throughput: Float, $artifacts: [EntityReferenceInput!], $correlationId: String) {
-  completeConversation(completion: $completion, id: $id, completionTime: $completionTime, ttft: $ttft, throughput: $throughput, artifacts: $artifacts, correlationId: $correlationId) {
+mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: TimeSpan, $ttft: TimeSpan, $throughput: Float, $artifacts: [EntityReferenceInput!], $messages: [ConversationMessageInput!], $correlationId: String) {
+  completeConversation(completion: $completion, id: $id, completionTime: $completionTime, ttft: $ttft, throughput: $throughput, artifacts: $artifacts, messages: $messages, correlationId: $correlationId) {
     conversation {
       id
     }

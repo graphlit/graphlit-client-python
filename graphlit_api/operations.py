@@ -4779,7 +4779,7 @@ mutation CloseConversation($id: ID!) {
 """
 
 COMPLETE_CONVERSATION_GQL = """
-mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: TimeSpan, $ttft: TimeSpan, $throughput: Float, $artifacts: [EntityReferenceInput!], $correlationId: String) {
+mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: TimeSpan, $ttft: TimeSpan, $throughput: Float, $artifacts: [EntityReferenceInput!], $messages: [ConversationMessageInput!], $correlationId: String) {
   completeConversation(
     completion: $completion
     id: $id
@@ -4787,6 +4787,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
     ttft: $ttft
     throughput: $throughput
     artifacts: $artifacts
+    messages: $messages
     correlationId: $correlationId
   ) {
     conversation {

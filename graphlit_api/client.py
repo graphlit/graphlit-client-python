@@ -2549,6 +2549,7 @@ class Client(AsyncBaseClient):
         ttft: Union[Optional[Any], UnsetType] = UNSET,
         throughput: Union[Optional[float], UnsetType] = UNSET,
         artifacts: Union[Optional[list[EntityReferenceInput]], UnsetType] = UNSET,
+        messages: Union[Optional[list[ConversationMessageInput]], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> CompleteConversation:
@@ -2559,6 +2560,7 @@ class Client(AsyncBaseClient):
             "ttft": ttft,
             "throughput": throughput,
             "artifacts": artifacts,
+            "messages": messages,
             "correlationId": correlation_id,
         }
         response = await self.execute(
