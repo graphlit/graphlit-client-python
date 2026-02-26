@@ -181,6 +181,7 @@ query GetConversation($id: ID!, $correlationId: String) {
         to
       }
       inLast
+      inNext
       creationDateRange {
         from
         to
@@ -274,6 +275,7 @@ query GetConversation($id: ID!, $correlationId: String) {
         to
       }
       inLast
+      inNext
       creationDateRange {
         from
         to

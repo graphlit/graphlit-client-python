@@ -234,6 +234,7 @@ class ContentPublishingFormats(str, Enum):
     TEXT = "TEXT"
     MARKDOWN = "MARKDOWN"
     HTML = "HTML"
+    SVG = "SVG"
 
 
 class AzureDocumentIntelligenceModels(str, Enum):
@@ -1035,6 +1036,7 @@ class ContentPublishingServiceTypes(str, Enum):
     OPEN_AI_VIDEO = "OPEN_AI_VIDEO"
     GOOGLE_VIDEO = "GOOGLE_VIDEO"
     TEXT = "TEXT"
+    QUIVER_IMAGE = "QUIVER_IMAGE"
     PARALLEL_RESEARCH = "PARALLEL_RESEARCH"
 
 
@@ -1108,6 +1110,11 @@ class GitHubCommitAuthenticationTypes(str, Enum):
 
 class EmotionFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
+
+
+class QuiverImageModels(str, Enum):
+    ARROW_PREVIEW = "ARROW_PREVIEW"
+    CUSTOM = "CUSTOM"
 
 
 class EntityTypes(str, Enum):
@@ -1493,6 +1500,7 @@ class ModelServiceTypes(str, Enum):
     BEDROCK = "BEDROCK"
     XAI = "XAI"
     TWELVE_LABS = "TWELVE_LABS"
+    QUIVER = "QUIVER"
 
 
 class MicrosoftCalendarAuthenticationTypes(str, Enum):
@@ -1795,6 +1803,7 @@ class IntercomConversationsAuthenticationTypes(str, Enum):
 class GoogleImageModels(str, Enum):
     GEMINI_2_5_FLASH_IMAGE_PREVIEW = "GEMINI_2_5_FLASH_IMAGE_PREVIEW"
     GEMINI_3_PRO_IMAGE_PREVIEW = "GEMINI_3_PRO_IMAGE_PREVIEW"
+    GEMINI_3_1_FLASH_IMAGE_PREVIEW = "GEMINI_3_1_FLASH_IMAGE_PREVIEW"
     CUSTOM = "CUSTOM"
 
 

@@ -637,10 +637,7 @@ from .describe_image import (
 from .disable_alert import DisableAlert, DisableAlertDisableAlert
 from .disable_feed import DisableFeed, DisableFeedDisableFeed
 from .disable_user import DisableUser, DisableUserDisableUser
-from .distribute_contents import (
-    DistributeContents,
-    DistributeContentsDistributeContents,
-)
+from .distribute import Distribute, DistributeDistribute
 from .enable_alert import EnableAlert, EnableAlertEnableAlert
 from .enable_feed import EnableFeed, EnableFeedEnableFeed
 from .enable_user import EnableUser, EnableUserEnableUser
@@ -803,6 +800,7 @@ from .enums import (
     PlaceFacetTypes,
     ProductFacetTypes,
     PromptStrategyTypes,
+    QuiverImageModels,
     ReductoEnrichmentModes,
     ReductoExtractionModes,
     ReductoOcrModes,
@@ -979,6 +977,8 @@ from .get_alert import (
     GetAlertAlertPublishingOpenAiVideo,
     GetAlertAlertPublishingOpenAiVideoSeed,
     GetAlertAlertPublishingParallel,
+    GetAlertAlertPublishingQuiverImage,
+    GetAlertAlertPublishingQuiverImageSeed,
     GetAlertAlertPublishSpecification,
     GetAlertAlertSchedulePolicy,
     GetAlertAlertSummarySpecification,
@@ -2192,6 +2192,7 @@ from .input_types import (
     PromptStrategyUpdateInput,
     PullRequestFeedPropertiesInput,
     PullRequestFeedPropertiesUpdateInput,
+    QuiverImagePublishingPropertiesInput,
     RedditFeedPropertiesInput,
     RedditFeedPropertiesUpdateInput,
     ReductoDocumentPreparationPropertiesInput,
@@ -2542,7 +2543,7 @@ from .operations import (
     DISABLE_ALERT_GQL,
     DISABLE_FEED_GQL,
     DISABLE_USER_GQL,
-    DISTRIBUTE_CONTENTS_GQL,
+    DISTRIBUTE_GQL,
     ENABLE_ALERT_GQL,
     ENABLE_FEED_GQL,
     ENABLE_USER_GQL,
@@ -2924,6 +2925,8 @@ from .query_alerts import (
     QueryAlertsAlertsResultsPublishingOpenAiVideo,
     QueryAlertsAlertsResultsPublishingOpenAiVideoSeed,
     QueryAlertsAlertsResultsPublishingParallel,
+    QueryAlertsAlertsResultsPublishingQuiverImage,
+    QueryAlertsAlertsResultsPublishingQuiverImageSeed,
     QueryAlertsAlertsResultsPublishSpecification,
     QueryAlertsAlertsResultsSchedulePolicy,
     QueryAlertsAlertsResultsSummarySpecification,
@@ -5498,7 +5501,7 @@ __all__ = [
     "DISABLE_ALERT_GQL",
     "DISABLE_FEED_GQL",
     "DISABLE_USER_GQL",
-    "DISTRIBUTE_CONTENTS_GQL",
+    "DISTRIBUTE_GQL",
     "DateRangeFilter",
     "DateRangeInput",
     "DeepgramAudioPreparationPropertiesInput",
@@ -5743,8 +5746,8 @@ __all__ = [
     "DiscordFeedPropertiesInput",
     "DiscordFeedPropertiesUpdateInput",
     "DiscordGuildsInput",
-    "DistributeContents",
-    "DistributeContentsDistributeContents",
+    "Distribute",
+    "DistributeDistribute",
     "DistributionConnectorInput",
     "DistributionServiceTypes",
     "DocumentMetadataInput",
@@ -6001,6 +6004,8 @@ __all__ = [
     "GetAlertAlertPublishingOpenAiVideo",
     "GetAlertAlertPublishingOpenAiVideoSeed",
     "GetAlertAlertPublishingParallel",
+    "GetAlertAlertPublishingQuiverImage",
+    "GetAlertAlertPublishingQuiverImageSeed",
     "GetAlertAlertSchedulePolicy",
     "GetAlertAlertSummarySpecification",
     "GetAlertAlertView",
@@ -7373,6 +7378,8 @@ __all__ = [
     "QueryAlertsAlertsResultsPublishingOpenAiVideo",
     "QueryAlertsAlertsResultsPublishingOpenAiVideoSeed",
     "QueryAlertsAlertsResultsPublishingParallel",
+    "QueryAlertsAlertsResultsPublishingQuiverImage",
+    "QueryAlertsAlertsResultsPublishingQuiverImageSeed",
     "QueryAlertsAlertsResultsSchedulePolicy",
     "QueryAlertsAlertsResultsSummarySpecification",
     "QueryAlertsAlertsResultsView",
@@ -8597,6 +8604,8 @@ __all__ = [
     "QueryWorkflowsWorkflowsResultsStorageGateRules",
     "QueryWorkflowsWorkflowsResultsStorageGateSpecification",
     "QueryWorkflowsWorkflowsResultsStoragePolicy",
+    "QuiverImageModels",
+    "QuiverImagePublishingPropertiesInput",
     "REJECT_CONTENT_GQL",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
     "REMOVE_CONVERSATIONS_FROM_COLLECTION_GQL",

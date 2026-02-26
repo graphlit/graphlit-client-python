@@ -36,6 +36,7 @@ class CreateViewCreateViewFilter(BaseModel):
         alias="dateRange"
     )
     in_last: Optional[Any] = Field(alias="inLast")
+    in_next: Optional[Any] = Field(alias="inNext")
     creation_date_range: Optional["CreateViewCreateViewFilterCreationDateRange"] = (
         Field(alias="creationDateRange")
     )
@@ -188,6 +189,7 @@ class CreateViewCreateViewAugmentedFilter(BaseModel):
         alias="dateRange"
     )
     in_last: Optional[Any] = Field(alias="inLast")
+    in_next: Optional[Any] = Field(alias="inNext")
     creation_date_range: Optional[
         "CreateViewCreateViewAugmentedFilterCreationDateRange"
     ] = Field(alias="creationDateRange")

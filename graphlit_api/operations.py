@@ -188,7 +188,7 @@ __all__ = [
     "DISABLE_ALERT_GQL",
     "DISABLE_FEED_GQL",
     "DISABLE_USER_GQL",
-    "DISTRIBUTE_CONTENTS_GQL",
+    "DISTRIBUTE_GQL",
     "ENABLE_ALERT_GQL",
     "ENABLE_FEED_GQL",
     "ENABLE_USER_GQL",
@@ -524,6 +524,7 @@ query GetAlert($id: ID!, $correlationId: String) {
         to
       }
       inLast
+      inNext
       creationDateRange {
         from
         to
@@ -654,6 +655,14 @@ query GetAlert($id: ID!, $correlationId: String) {
           id
         }
       }
+      quiverImage {
+        model
+        count
+        seed {
+          id
+        }
+        instructions
+      }
       openAIVideo {
         model
         seconds
@@ -717,6 +726,7 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
           to
         }
         inLast
+        inNext
         creationDateRange {
           from
           to
@@ -846,6 +856,14 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
           seed {
             id
           }
+        }
+        quiverImage {
+          model
+          count
+          seed {
+            id
+          }
+          instructions
         }
         openAIVideo {
           model
@@ -1695,9 +1713,9 @@ mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityRefer
 }
 """
 
-DISTRIBUTE_CONTENTS_GQL = """
-mutation DistributeContents($connector: DistributionConnectorInput!, $authentication: EntityReferenceInput!, $text: String, $textType: TextTypes, $name: String, $filter: ContentFilter, $correlationId: String) {
-  distributeContents(
+DISTRIBUTE_GQL = """
+mutation Distribute($connector: DistributionConnectorInput!, $authentication: EntityReferenceInput!, $text: String, $textType: TextTypes, $name: String, $filter: ContentFilter, $correlationId: String) {
+  distribute(
     connector: $connector
     authentication: $authentication
     text: $text
@@ -6054,6 +6072,7 @@ query GetConversation($id: ID!, $correlationId: String) {
         to
       }
       inLast
+      inNext
       creationDateRange {
         from
         to
@@ -6147,6 +6166,7 @@ query GetConversation($id: ID!, $correlationId: String) {
         to
       }
       inLast
+      inNext
       creationDateRange {
         from
         to
@@ -7103,6 +7123,7 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
           to
         }
         inLast
+        inNext
         creationDateRange {
           from
           to
@@ -7196,6 +7217,7 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
           to
         }
         inLast
+        inNext
         creationDateRange {
           from
           to
@@ -7479,6 +7501,7 @@ query QueryConversationsClusters($filter: ConversationFilter, $clusters: EntityC
           to
         }
         inLast
+        inNext
         creationDateRange {
           from
           to
@@ -7572,6 +7595,7 @@ query QueryConversationsClusters($filter: ConversationFilter, $clusters: EntityC
           to
         }
         inLast
+        inNext
         creationDateRange {
           from
           to
@@ -17970,6 +17994,7 @@ mutation CreateView($view: ViewInput!) {
         to
       }
       inLast
+      inNext
       creationDateRange {
         from
         to
@@ -18063,6 +18088,7 @@ mutation CreateView($view: ViewInput!) {
         to
       }
       inLast
+      inNext
       creationDateRange {
         from
         to
@@ -18203,6 +18229,7 @@ query GetView($id: ID!, $correlationId: String) {
         to
       }
       inLast
+      inNext
       creationDateRange {
         from
         to
@@ -18296,6 +18323,7 @@ query GetView($id: ID!, $correlationId: String) {
         to
       }
       inLast
+      inNext
       creationDateRange {
         from
         to
@@ -18407,6 +18435,7 @@ query QueryViews($filter: ViewFilter, $correlationId: String) {
           to
         }
         inLast
+        inNext
         creationDateRange {
           from
           to
@@ -18500,6 +18529,7 @@ query QueryViews($filter: ViewFilter, $correlationId: String) {
           to
         }
         inLast
+        inNext
         creationDateRange {
           from
           to
@@ -18605,6 +18635,7 @@ mutation UpdateView($view: ViewUpdateInput!) {
         to
       }
       inLast
+      inNext
       creationDateRange {
         from
         to
@@ -18698,6 +18729,7 @@ mutation UpdateView($view: ViewUpdateInput!) {
         to
       }
       inLast
+      inNext
       creationDateRange {
         from
         to
@@ -18802,6 +18834,7 @@ mutation UpsertView($view: ViewInput!) {
         to
       }
       inLast
+      inNext
       creationDateRange {
         from
         to
@@ -18895,6 +18928,7 @@ mutation UpsertView($view: ViewInput!) {
         to
       }
       inLast
+      inNext
       creationDateRange {
         from
         to

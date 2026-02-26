@@ -290,6 +290,7 @@ class QueryConversationsClustersConversationsResultsFilter(BaseModel):
         "QueryConversationsClustersConversationsResultsFilterDateRange"
     ] = Field(alias="dateRange")
     in_last: Optional[Any] = Field(alias="inLast")
+    in_next: Optional[Any] = Field(alias="inNext")
     creation_date_range: Optional[
         "QueryConversationsClustersConversationsResultsFilterCreationDateRange"
     ] = Field(alias="creationDateRange")
@@ -482,6 +483,7 @@ class QueryConversationsClustersConversationsResultsAugmentedFilter(BaseModel):
         "QueryConversationsClustersConversationsResultsAugmentedFilterDateRange"
     ] = Field(alias="dateRange")
     in_last: Optional[Any] = Field(alias="inLast")
+    in_next: Optional[Any] = Field(alias="inNext")
     creation_date_range: Optional[
         "QueryConversationsClustersConversationsResultsAugmentedFilterCreationDateRange"
     ] = Field(alias="creationDateRange")

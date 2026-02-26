@@ -183,6 +183,7 @@ query QueryConversationsClusters($filter: ConversationFilter, $clusters: EntityC
           to
         }
         inLast
+        inNext
         creationDateRange {
           from
           to
@@ -276,6 +277,7 @@ query QueryConversationsClusters($filter: ConversationFilter, $clusters: EntityC
           to
         }
         inLast
+        inNext
         creationDateRange {
           from
           to

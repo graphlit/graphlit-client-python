@@ -22,6 +22,7 @@ from .enums import (
     OpenAIImageModels,
     OpenAIVideoModels,
     ParallelProcessors,
+    QuiverImageModels,
     TimedPolicyRecurrenceTypes,
     VideoAspectRatioTypes,
     VideoSizeTypes,
@@ -77,6 +78,7 @@ class QueryAlertsAlertsResultsFilter(BaseModel):
         alias="dateRange"
     )
     in_last: Optional[Any] = Field(alias="inLast")
+    in_next: Optional[Any] = Field(alias="inNext")
     creation_date_range: Optional["QueryAlertsAlertsResultsFilterCreationDateRange"] = (
         Field(alias="creationDateRange")
     )
@@ -267,6 +269,9 @@ class QueryAlertsAlertsResultsPublishing(BaseModel):
     google_image: Optional["QueryAlertsAlertsResultsPublishingGoogleImage"] = Field(
         alias="googleImage"
     )
+    quiver_image: Optional["QueryAlertsAlertsResultsPublishingQuiverImage"] = Field(
+        alias="quiverImage"
+    )
     open_ai_video: Optional["QueryAlertsAlertsResultsPublishingOpenAiVideo"] = Field(
         alias="openAIVideo"
     )
@@ -298,6 +303,17 @@ class QueryAlertsAlertsResultsPublishingGoogleImage(BaseModel):
 
 
 class QueryAlertsAlertsResultsPublishingGoogleImageSeed(BaseModel):
+    id: str
+
+
+class QueryAlertsAlertsResultsPublishingQuiverImage(BaseModel):
+    model: Optional[QuiverImageModels]
+    count: Optional[int]
+    seed: Optional["QueryAlertsAlertsResultsPublishingQuiverImageSeed"]
+    instructions: Optional[str]
+
+
+class QueryAlertsAlertsResultsPublishingQuiverImageSeed(BaseModel):
     id: str
 
 
@@ -357,5 +373,6 @@ QueryAlertsAlertsResultsIntegration.model_rebuild()
 QueryAlertsAlertsResultsPublishing.model_rebuild()
 QueryAlertsAlertsResultsPublishingOpenAiImage.model_rebuild()
 QueryAlertsAlertsResultsPublishingGoogleImage.model_rebuild()
+QueryAlertsAlertsResultsPublishingQuiverImage.model_rebuild()
 QueryAlertsAlertsResultsPublishingOpenAiVideo.model_rebuild()
 QueryAlertsAlertsResultsPublishingGoogleVideo.model_rebuild()

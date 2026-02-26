@@ -23,6 +23,7 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
           to
         }
         inLast
+        inNext
         creationDateRange {
           from
           to
@@ -152,6 +153,14 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
           seed {
             id
           }
+        }
+        quiverImage {
+          model
+          count
+          seed {
+            id
+          }
+          instructions
         }
         openAIVideo {
           model

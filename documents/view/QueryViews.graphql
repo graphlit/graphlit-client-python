@@ -17,6 +17,7 @@ query QueryViews($filter: ViewFilter, $correlationId: String) {
           to
         }
         inLast
+        inNext
         creationDateRange {
           from
           to
@@ -110,6 +111,7 @@ query QueryViews($filter: ViewFilter, $correlationId: String) {
           to
         }
         inLast
+        inNext
         creationDateRange {
           from
           to

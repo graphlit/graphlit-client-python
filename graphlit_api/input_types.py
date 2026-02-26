@@ -149,6 +149,7 @@ from .enums import (
     PlaceFacetTypes,
     ProductFacetTypes,
     PromptStrategyTypes,
+    QuiverImageModels,
     ReductoEnrichmentModes,
     ReductoExtractionModes,
     ReductoOcrModes,
@@ -1626,6 +1627,13 @@ class GoogleCalendarDistributionPropertiesInput(BaseModel):
     attendees: Optional[list[str]] = None
 
 
+class QuiverImagePublishingPropertiesInput(BaseModel):
+    model: Optional[QuiverImageModels] = None
+    count: Optional[int] = None
+    seed: Optional["EntityReferenceInput"] = None
+    instructions: Optional[str] = None
+
+
 class GraphStrategyUpdateInput(BaseModel):
     type: Optional[GraphStrategyTypes] = None
     generate_graph: Optional[bool] = Field(alias="generateGraph", default=None)
@@ -2133,6 +2141,9 @@ class ContentPublishingConnectorInput(BaseModel):
     )
     google_image: Optional["GoogleImagePublishingPropertiesInput"] = Field(
         alias="googleImage", default=None
+    )
+    quiver_image: Optional["QuiverImagePublishingPropertiesInput"] = Field(
+        alias="quiverImage", default=None
     )
     open_ai_video: Optional["OpenAIVideoPublishingPropertiesInput"] = Field(
         alias="openAIVideo", default=None
@@ -2835,6 +2846,7 @@ class ContentFilter(BaseModel):
     h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
     boundaries: Optional[list[Optional[str]]] = None
     in_last: Optional[Any] = Field(alias="inLast", default=None)
+    in_next: Optional[Any] = Field(alias="inNext", default=None)
     original_date_range: Optional["DateRangeFilter"] = Field(
         alias="originalDateRange", default=None
     )
@@ -4632,6 +4644,9 @@ class ContentPublishingConnectorUpdateInput(BaseModel):
     google_image: Optional["GoogleImagePublishingPropertiesInput"] = Field(
         alias="googleImage", default=None
     )
+    quiver_image: Optional["QuiverImagePublishingPropertiesInput"] = Field(
+        alias="quiverImage", default=None
+    )
     open_ai_video: Optional["OpenAIVideoPublishingPropertiesInput"] = Field(
         alias="openAIVideo", default=None
     )
@@ -5735,6 +5750,7 @@ class JiraProjectsInput(BaseModel):
 
 class ContentCriteriaInput(BaseModel):
     in_last: Optional[Any] = Field(alias="inLast", default=None)
+    in_next: Optional[Any] = Field(alias="inNext", default=None)
     date_range: Optional["DateRangeInput"] = Field(alias="dateRange", default=None)
     created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
     creation_date_range: Optional["DateRangeInput"] = Field(
@@ -6585,6 +6601,7 @@ IntercomFeedPropertiesUpdateInput.model_rebuild()
 ConfluenceFeedPropertiesInput.model_rebuild()
 MicrosoftTeamsTeamsInput.model_rebuild()
 IntercomTicketsFeedPropertiesUpdateInput.model_rebuild()
+QuiverImagePublishingPropertiesInput.model_rebuild()
 ViewInput.model_rebuild()
 GoogleCalendarsInput.model_rebuild()
 AttioCRMFeedPropertiesInput.model_rebuild()

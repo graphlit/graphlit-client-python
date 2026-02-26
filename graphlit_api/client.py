@@ -191,7 +191,7 @@ from .describe_image import DescribeImage
 from .disable_alert import DisableAlert
 from .disable_feed import DisableFeed
 from .disable_user import DisableUser
-from .distribute_contents import DistributeContents
+from .distribute import Distribute
 from .enable_alert import EnableAlert
 from .enable_feed import EnableFeed
 from .enable_user import EnableUser
@@ -610,7 +610,7 @@ from .operations import (
     DISABLE_ALERT_GQL,
     DISABLE_FEED_GQL,
     DISABLE_USER_GQL,
-    DISTRIBUTE_CONTENTS_GQL,
+    DISTRIBUTE_GQL,
     ENABLE_ALERT_GQL,
     ENABLE_FEED_GQL,
     ENABLE_USER_GQL,
@@ -1759,7 +1759,7 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DescribeImage.model_validate(data)
 
-    async def distribute_contents(
+    async def distribute(
         self,
         connector: DistributionConnectorInput,
         authentication: EntityReferenceInput,
@@ -1769,7 +1769,7 @@ class Client(AsyncBaseClient):
         filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
-    ) -> DistributeContents:
+    ) -> Distribute:
         variables: dict[str, object] = {
             "connector": connector,
             "authentication": authentication,
@@ -1780,13 +1780,13 @@ class Client(AsyncBaseClient):
             "correlationId": correlation_id,
         }
         response = await self.execute(
-            query=DISTRIBUTE_CONTENTS_GQL,
-            operation_name="DistributeContents",
+            query=DISTRIBUTE_GQL,
+            operation_name="Distribute",
             variables=variables,
             **kwargs
         )
         data = self.get_data(response)
-        return DistributeContents.model_validate(data)
+        return Distribute.model_validate(data)
 
     async def extract_contents(
         self,

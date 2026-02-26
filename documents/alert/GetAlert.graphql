@@ -21,6 +21,7 @@ query GetAlert($id: ID!, $correlationId: String) {
         to
       }
       inLast
+      inNext
       creationDateRange {
         from
         to
@@ -150,6 +151,14 @@ query GetAlert($id: ID!, $correlationId: String) {
         seed {
           id
         }
+      }
+      quiverImage {
+        model
+        count
+        seed {
+          id
+        }
+        instructions
       }
       openAIVideo {
         model

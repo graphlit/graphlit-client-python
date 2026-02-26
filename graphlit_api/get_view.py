@@ -41,6 +41,7 @@ class GetViewViewOwner(BaseModel):
 class GetViewViewFilter(BaseModel):
     date_range: Optional["GetViewViewFilterDateRange"] = Field(alias="dateRange")
     in_last: Optional[Any] = Field(alias="inLast")
+    in_next: Optional[Any] = Field(alias="inNext")
     creation_date_range: Optional["GetViewViewFilterCreationDateRange"] = Field(
         alias="creationDateRange"
     )
@@ -193,6 +194,7 @@ class GetViewViewAugmentedFilter(BaseModel):
         alias="dateRange"
     )
     in_last: Optional[Any] = Field(alias="inLast")
+    in_next: Optional[Any] = Field(alias="inNext")
     creation_date_range: Optional["GetViewViewAugmentedFilterCreationDateRange"] = (
         Field(alias="creationDateRange")
     )

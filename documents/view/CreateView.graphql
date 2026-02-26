@@ -10,6 +10,7 @@ mutation CreateView($view: ViewInput!) {
         to
       }
       inLast
+      inNext
       creationDateRange {
         from
         to
@@ -103,6 +104,7 @@ mutation CreateView($view: ViewInput!) {
         to
       }
       inLast
+      inNext
       creationDateRange {
         from
         to

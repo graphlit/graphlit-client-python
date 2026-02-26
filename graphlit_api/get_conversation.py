@@ -248,6 +248,7 @@ class GetConversationConversationFilter(BaseModel):
         alias="dateRange"
     )
     in_last: Optional[Any] = Field(alias="inLast")
+    in_next: Optional[Any] = Field(alias="inNext")
     creation_date_range: Optional[
         "GetConversationConversationFilterCreationDateRange"
     ] = Field(alias="creationDateRange")
@@ -400,6 +401,7 @@ class GetConversationConversationAugmentedFilter(BaseModel):
         alias="dateRange"
     )
     in_last: Optional[Any] = Field(alias="inLast")
+    in_next: Optional[Any] = Field(alias="inNext")
     creation_date_range: Optional[
         "GetConversationConversationAugmentedFilterCreationDateRange"
     ] = Field(alias="creationDateRange")

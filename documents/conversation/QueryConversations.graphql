@@ -183,6 +183,7 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
           to
         }
         inLast
+        inNext
         creationDateRange {
           from
           to
@@ -276,6 +277,7 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
           to
         }
         inLast
+        inNext
         creationDateRange {
           from
           to

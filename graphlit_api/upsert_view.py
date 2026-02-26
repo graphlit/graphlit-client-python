@@ -36,6 +36,7 @@ class UpsertViewUpsertViewFilter(BaseModel):
         alias="dateRange"
     )
     in_last: Optional[Any] = Field(alias="inLast")
+    in_next: Optional[Any] = Field(alias="inNext")
     creation_date_range: Optional["UpsertViewUpsertViewFilterCreationDateRange"] = (
         Field(alias="creationDateRange")
     )
@@ -188,6 +189,7 @@ class UpsertViewUpsertViewAugmentedFilter(BaseModel):
         alias="dateRange"
     )
     in_last: Optional[Any] = Field(alias="inLast")
+    in_next: Optional[Any] = Field(alias="inNext")
     creation_date_range: Optional[
         "UpsertViewUpsertViewAugmentedFilterCreationDateRange"
     ] = Field(alias="creationDateRange")

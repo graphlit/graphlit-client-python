@@ -22,6 +22,7 @@ from .enums import (
     OpenAIImageModels,
     OpenAIVideoModels,
     ParallelProcessors,
+    QuiverImageModels,
     TimedPolicyRecurrenceTypes,
     VideoAspectRatioTypes,
     VideoSizeTypes,
@@ -70,6 +71,7 @@ class GetAlertAlertView(BaseModel):
 class GetAlertAlertFilter(BaseModel):
     date_range: Optional["GetAlertAlertFilterDateRange"] = Field(alias="dateRange")
     in_last: Optional[Any] = Field(alias="inLast")
+    in_next: Optional[Any] = Field(alias="inNext")
     creation_date_range: Optional["GetAlertAlertFilterCreationDateRange"] = Field(
         alias="creationDateRange"
     )
@@ -260,6 +262,9 @@ class GetAlertAlertPublishing(BaseModel):
     google_image: Optional["GetAlertAlertPublishingGoogleImage"] = Field(
         alias="googleImage"
     )
+    quiver_image: Optional["GetAlertAlertPublishingQuiverImage"] = Field(
+        alias="quiverImage"
+    )
     open_ai_video: Optional["GetAlertAlertPublishingOpenAiVideo"] = Field(
         alias="openAIVideo"
     )
@@ -291,6 +296,17 @@ class GetAlertAlertPublishingGoogleImage(BaseModel):
 
 
 class GetAlertAlertPublishingGoogleImageSeed(BaseModel):
+    id: str
+
+
+class GetAlertAlertPublishingQuiverImage(BaseModel):
+    model: Optional[QuiverImageModels]
+    count: Optional[int]
+    seed: Optional["GetAlertAlertPublishingQuiverImageSeed"]
+    instructions: Optional[str]
+
+
+class GetAlertAlertPublishingQuiverImageSeed(BaseModel):
     id: str
 
 
@@ -349,5 +365,6 @@ GetAlertAlertIntegration.model_rebuild()
 GetAlertAlertPublishing.model_rebuild()
 GetAlertAlertPublishingOpenAiImage.model_rebuild()
 GetAlertAlertPublishingGoogleImage.model_rebuild()
+GetAlertAlertPublishingQuiverImage.model_rebuild()
 GetAlertAlertPublishingOpenAiVideo.model_rebuild()
 GetAlertAlertPublishingGoogleVideo.model_rebuild()
