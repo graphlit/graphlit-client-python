@@ -3,6 +3,10 @@ mutation UpdatePersona($persona: PersonaUpdateInput!) {
     id
     name
     state
+    identifier
+    platform
+    displayName
+    timezone
     role
   }
 }

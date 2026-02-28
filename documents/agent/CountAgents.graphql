@@ -1,0 +1,5 @@
+query CountAgents($filter: AgentFilter, $correlationId: String) {
+  countAgents(filter: $filter, correlationId: $correlationId) {
+    count
+  }
+}

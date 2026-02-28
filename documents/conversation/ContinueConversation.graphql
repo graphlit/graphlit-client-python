@@ -140,6 +140,8 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
         mimeType
         uri
       }
+      thinkingContent
+      thinkingSignature
     }
     messageCount
     facets {
@@ -331,6 +333,8 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
           mimeType
           uri
         }
+        thinkingContent
+        thinkingSignature
       }
     }
   }

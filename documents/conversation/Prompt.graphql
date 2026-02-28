@@ -140,6 +140,8 @@ mutation Prompt($prompt: String, $mimeType: String, $data: String, $specificatio
         mimeType
         uri
       }
+      thinkingContent
+      thinkingSignature
     }
     error
   }

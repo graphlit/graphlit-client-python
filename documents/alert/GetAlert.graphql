@@ -144,6 +144,7 @@ query GetAlert($id: ID!, $correlationId: String) {
         seed {
           id
         }
+        size
       }
       googleImage {
         model
@@ -151,6 +152,8 @@ query GetAlert($id: ID!, $correlationId: String) {
         seed {
           id
         }
+        resolution
+        aspectRatio
       }
       quiverImage {
         model

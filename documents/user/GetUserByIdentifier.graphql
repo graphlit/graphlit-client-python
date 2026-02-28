@@ -72,6 +72,10 @@ query GetUserByIdentifier($identifier: String!) {
       id
       name
       state
+      identifier
+      platform
+      displayName
+      timezone
       role
       instructions
       facts {

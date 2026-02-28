@@ -115,6 +115,7 @@ class FeedTypes(str, Enum):
     MICROSOFT_TEAMS = "MICROSOFT_TEAMS"
     DISCORD = "DISCORD"
     REDDIT = "REDDIT"
+    LINKED_IN = "LINKED_IN"
     WEB = "WEB"
     RSS = "RSS"
     SITE = "SITE"
@@ -700,6 +701,13 @@ class GoogleVideoModels(str, Enum):
     CUSTOM = "CUSTOM"
 
 
+class OpenAIImageSizeTypes(str, Enum):
+    SQUARE = "SQUARE"
+    LANDSCAPE = "LANDSCAPE"
+    PORTRAIT = "PORTRAIT"
+    AUTO = "AUTO"
+
+
 class MedicalIndicationFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
@@ -950,6 +958,23 @@ class ConfluenceTypes(str, Enum):
     PAGE = "PAGE"
 
 
+class GoogleImageAspectRatioTypes(str, Enum):
+    SQUARE_1X1 = "SQUARE_1X1"
+    PORTRAIT_1X4 = "PORTRAIT_1X4"
+    PORTRAIT_1X8 = "PORTRAIT_1X8"
+    PORTRAIT_2X3 = "PORTRAIT_2X3"
+    LANDSCAPE_3X2 = "LANDSCAPE_3X2"
+    PORTRAIT_3X4 = "PORTRAIT_3X4"
+    LANDSCAPE_4X1 = "LANDSCAPE_4X1"
+    LANDSCAPE_4X3 = "LANDSCAPE_4X3"
+    PORTRAIT_4X5 = "PORTRAIT_4X5"
+    LANDSCAPE_5X4 = "LANDSCAPE_5X4"
+    LANDSCAPE_8X1 = "LANDSCAPE_8X1"
+    PORTRAIT_9X16 = "PORTRAIT_9X16"
+    LANDSCAPE_16X9 = "LANDSCAPE_16X9"
+    LANDSCAPE_21X9 = "LANDSCAPE_21X9"
+
+
 class EmbeddingTypes(str, Enum):
     TEXT = "TEXT"
     IMAGE = "IMAGE"
@@ -1040,6 +1065,15 @@ class ContentPublishingServiceTypes(str, Enum):
     PARALLEL_RESEARCH = "PARALLEL_RESEARCH"
 
 
+class LinkedInPostContentTypes(str, Enum):
+    PHOTOS = "PHOTOS"
+    VIDEOS = "VIDEOS"
+    DOCUMENTS = "DOCUMENTS"
+    JOBS = "JOBS"
+    COLLABORATIVE_ARTICLES = "COLLABORATIVE_ARTICLES"
+    LIVE_VIDEOS = "LIVE_VIDEOS"
+
+
 class StorageGateTypes(str, Enum):
     MODEL = "MODEL"
     WEBHOOK = "WEBHOOK"
@@ -1108,6 +1142,28 @@ class GitHubCommitAuthenticationTypes(str, Enum):
     CONNECTOR = "CONNECTOR"
 
 
+class CrustdataWatcherSignalTypes(str, Enum):
+    COMPANY_JOB_POSTINGS = "COMPANY_JOB_POSTINGS"
+    COMPANY_LINKED_IN_POSTS = "COMPANY_LINKED_IN_POSTS"
+    COMPANY_NEWS_MENTIONS = "COMPANY_NEWS_MENTIONS"
+    COMPANY_FUNDING_ROUND = "COMPANY_FUNDING_ROUND"
+    COMPANY_HEADCOUNT_GROWTH = "COMPANY_HEADCOUNT_GROWTH"
+    PERSON_PROFILE_UPDATES = "PERSON_PROFILE_UPDATES"
+    PERSON_LINKED_IN_POSTS = "PERSON_LINKED_IN_POSTS"
+    JOB_POSTING_BY_KEYWORD = "JOB_POSTING_BY_KEYWORD"
+    NEW_FUNDING_ANNOUNCEMENTS = "NEW_FUNDING_ANNOUNCEMENTS"
+    LINKED_IN_POST_WITH_KEYWORD = "LINKED_IN_POST_WITH_KEYWORD"
+    HEADCOUNT_GROWTH_DISCOVERY = "HEADCOUNT_GROWTH_DISCOVERY"
+    PERSON_STARTING_NEW_POSITION = "PERSON_STARTING_NEW_POSITION"
+    JOB_POSTING_BY_LOCATION = "JOB_POSTING_BY_LOCATION"
+    COMPANY_DEPARTMENT_HEADCOUNT = "COMPANY_DEPARTMENT_HEADCOUNT"
+    FIRST_PERSON_HIRED_IN_DEPARTMENT = "FIRST_PERSON_HIRED_IN_DEPARTMENT"
+    FIRST_PERSON_HIRED_INTERNATIONALLY = "FIRST_PERSON_HIRED_INTERNATIONALLY"
+    EMPLOYEE_LOCATION_TWO_COUNTRIES = "EMPLOYEE_LOCATION_TWO_COUNTRIES"
+    HEADCOUNT_GROWTH_OVER_BASELINE = "HEADCOUNT_GROWTH_OVER_BASELINE"
+    PERSON_DISCOVERY_VIA_FILTERS = "PERSON_DISCOVERY_VIA_FILTERS"
+
+
 class EmotionFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
@@ -1119,6 +1175,7 @@ class QuiverImageModels(str, Enum):
 
 class EntityTypes(str, Enum):
     ACTIVITY = "ACTIVITY"
+    AGENT = "AGENT"
     ALERT = "ALERT"
     CATEGORY = "CATEGORY"
     COLLECTION = "COLLECTION"
@@ -1297,6 +1354,7 @@ class FeedServiceTypes(str, Enum):
     KRISP = "KRISP"
     SALESFORCE_ECI = "SALESFORCE_ECI"
     PARALLEL = "PARALLEL"
+    CRUSTDATA = "CRUSTDATA"
     BAMBOO_HR = "BAMBOO_HR"
     GUSTO_HRIS = "GUSTO_HRIS"
     INTERCOM_CONVERSATIONS = "INTERCOM_CONVERSATIONS"
@@ -1315,6 +1373,7 @@ class SearchServiceTypes(str, Enum):
     EXA_CODE = "EXA_CODE"
     PERPLEXITY = "PERPLEXITY"
     PODSCAN = "PODSCAN"
+    CRUSTDATA = "CRUSTDATA"
 
 
 class FeedSyncMode(str, Enum):
@@ -1343,6 +1402,13 @@ class GitHubRepositorySortTypes(str, Enum):
 class UserTypes(str, Enum):
     HUMAN = "HUMAN"
     AGENT = "AGENT"
+
+
+class GoogleImageResolutionTypes(str, Enum):
+    RESOLUTION_512 = "RESOLUTION_512"
+    RESOLUTION_1_K = "RESOLUTION_1_K"
+    RESOLUTION_2_K = "RESOLUTION_2_K"
+    RESOLUTION_4_K = "RESOLUTION_4_K"
 
 
 class CalendarAttendeeResponseStatus(str, Enum):
@@ -1503,6 +1569,10 @@ class ModelServiceTypes(str, Enum):
     QUIVER = "QUIVER"
 
 
+class AgentTypes(str, Enum):
+    AUTOMATION = "AUTOMATION"
+
+
 class MicrosoftCalendarAuthenticationTypes(str, Enum):
     USER = "USER"
     CONNECTOR = "CONNECTOR"
@@ -1649,6 +1719,12 @@ class StoragePolicyTypes(str, Enum):
     MINIMIZE = "MINIMIZE"
 
 
+class LinkedInPostListingTypes(str, Enum):
+    COMPANY = "COMPANY"
+    PERSON = "PERSON"
+    KEYWORD_SEARCH = "KEYWORD_SEARCH"
+
+
 class TwelveLabsEmbeddingOptions(str, Enum):
     VISUAL = "VISUAL"
     AUDIO = "AUDIO"
@@ -1667,6 +1743,7 @@ class EntityEnrichmentServiceTypes(str, Enum):
     CRUNCHBASE = "CRUNCHBASE"
     FHIR = "FHIR"
     RADAR = "RADAR"
+    CRUSTDATA = "CRUSTDATA"
 
 
 class DeviceTypes(str, Enum):

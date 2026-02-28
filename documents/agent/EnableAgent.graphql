@@ -1,0 +1,6 @@
+mutation EnableAgent($id: ID!) {
+  enableAgent(id: $id) {
+    id
+    state
+  }
+}

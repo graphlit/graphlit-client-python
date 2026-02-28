@@ -14,12 +14,15 @@ from .enums import (
     EntityState,
     FileTypes,
     FilterMode,
+    GoogleImageAspectRatioTypes,
     GoogleImageModels,
+    GoogleImageResolutionTypes,
     GoogleVideoModels,
     IntegrationServiceTypes,
     MCPServerTypes,
     ObservableTypes,
     OpenAIImageModels,
+    OpenAIImageSizeTypes,
     OpenAIVideoModels,
     ParallelProcessors,
     QuiverImageModels,
@@ -290,6 +293,7 @@ class QueryAlertsAlertsResultsPublishingOpenAiImage(BaseModel):
     model: Optional[OpenAIImageModels]
     count: Optional[int]
     seed: Optional["QueryAlertsAlertsResultsPublishingOpenAiImageSeed"]
+    size: Optional[OpenAIImageSizeTypes]
 
 
 class QueryAlertsAlertsResultsPublishingOpenAiImageSeed(BaseModel):
@@ -300,6 +304,8 @@ class QueryAlertsAlertsResultsPublishingGoogleImage(BaseModel):
     model: Optional[GoogleImageModels]
     count: Optional[int]
     seed: Optional["QueryAlertsAlertsResultsPublishingGoogleImageSeed"]
+    resolution: Optional[GoogleImageResolutionTypes]
+    aspect_ratio: Optional[GoogleImageAspectRatioTypes] = Field(alias="aspectRatio")
 
 
 class QueryAlertsAlertsResultsPublishingGoogleImageSeed(BaseModel):

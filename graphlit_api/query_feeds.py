@@ -18,6 +18,7 @@ from .enums import (
     CalendarListingTypes,
     ConfluenceAuthenticationTypes,
     ConfluenceTypes,
+    CrustdataWatcherSignalTypes,
     DropboxAuthenticationTypes,
     EmailListingTypes,
     EntityState,
@@ -43,6 +44,8 @@ from .enums import (
     IntercomIssueAuthenticationTypes,
     JiraAuthenticationTypes,
     LinearIssueAuthenticationTypes,
+    LinkedInPostContentTypes,
+    LinkedInPostListingTypes,
     MeetingContentTypes,
     MicrosoftCalendarAuthenticationTypes,
     MicrosoftContactsAuthenticationTypes,
@@ -106,6 +109,7 @@ class QueryFeedsFeedsResults(BaseModel):
     web: Optional["QueryFeedsFeedsResultsWeb"]
     search: Optional["QueryFeedsFeedsResultsSearch"]
     reddit: Optional["QueryFeedsFeedsResultsReddit"]
+    linked_in: Optional["QueryFeedsFeedsResultsLinkedIn"] = Field(alias="linkedIn")
     notion: Optional["QueryFeedsFeedsResultsNotion"]
     confluence: Optional["QueryFeedsFeedsResultsConfluence"]
     intercom: Optional["QueryFeedsFeedsResultsIntercom"]
@@ -810,17 +814,47 @@ class QueryFeedsFeedsResultsWeb(BaseModel):
 class QueryFeedsFeedsResultsSearch(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     type: Optional[SearchServiceTypes]
-    text: str
+    text: Optional[str]
     exa: Optional["QueryFeedsFeedsResultsSearchExa"]
+    crustdata: Optional["QueryFeedsFeedsResultsSearchCrustdata"]
 
 
 class QueryFeedsFeedsResultsSearchExa(BaseModel):
     search_type: Optional[ExaSearchTypes] = Field(alias="searchType")
 
 
+class QueryFeedsFeedsResultsSearchCrustdata(BaseModel):
+    signal_type: Optional[CrustdataWatcherSignalTypes] = Field(alias="signalType")
+    company_domain: Optional[str] = Field(alias="companyDomain")
+    company_linked_in_url: Optional[str] = Field(alias="companyLinkedInUrl")
+    company_id: Optional[str] = Field(alias="companyId")
+    person_linked_in_urls: Optional[list[str]] = Field(alias="personLinkedInUrls")
+    job_title: Optional[str] = Field(alias="jobTitle")
+    job_region: Optional[str] = Field(alias="jobRegion")
+    job_description: Optional[str] = Field(alias="jobDescription")
+
+
 class QueryFeedsFeedsResultsReddit(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     subreddit_name: str = Field(alias="subredditName")
+
+
+class QueryFeedsFeedsResultsLinkedIn(BaseModel):
+    read_limit: Optional[int] = Field(alias="readLimit")
+    listing_type: Optional[LinkedInPostListingTypes] = Field(alias="listingType")
+    company_domain: Optional[str] = Field(alias="companyDomain")
+    company_linked_in_url: Optional[str] = Field(alias="companyLinkedInUrl")
+    company_name: Optional[str] = Field(alias="companyName")
+    person_linked_in_url: Optional[str] = Field(alias="personLinkedInUrl")
+    post_types: Optional[str] = Field(alias="postTypes")
+    keyword: Optional[str]
+    date_posted: Optional[str] = Field(alias="datePosted")
+    exact_keyword_match: Optional[bool] = Field(alias="exactKeywordMatch")
+    content_types: Optional[list[Optional[LinkedInPostContentTypes]]] = Field(
+        alias="contentTypes"
+    )
+    include_comments: Optional[bool] = Field(alias="includeComments")
+    max_comments: Optional[int] = Field(alias="maxComments")
 
 
 class QueryFeedsFeedsResultsNotion(BaseModel):
@@ -1053,14 +1087,63 @@ class QueryFeedsFeedsResultsResearchParallel(BaseModel):
 
 class QueryFeedsFeedsResultsEntity(BaseModel):
     type: FeedServiceTypes
-    query: str
+    query: Optional[str]
     read_limit: Optional[int] = Field(alias="readLimit")
     parallel: Optional["QueryFeedsFeedsResultsEntityParallel"]
+    crustdata: Optional["QueryFeedsFeedsResultsEntityCrustdata"]
 
 
 class QueryFeedsFeedsResultsEntityParallel(BaseModel):
     generator: Optional[ParallelGenerators]
     processor: Optional[ParallelProcessors]
+
+
+class QueryFeedsFeedsResultsEntityCrustdata(BaseModel):
+    person_filters: Optional["QueryFeedsFeedsResultsEntityCrustdataPersonFilters"] = (
+        Field(alias="personFilters")
+    )
+    company_filters: Optional["QueryFeedsFeedsResultsEntityCrustdataCompanyFilters"] = (
+        Field(alias="companyFilters")
+    )
+
+
+class QueryFeedsFeedsResultsEntityCrustdataPersonFilters(BaseModel):
+    titles: Optional[list[str]]
+    seniority_levels: Optional[list[str]] = Field(alias="seniorityLevels")
+    function_categories: Optional[list[str]] = Field(alias="functionCategories")
+    company_names: Optional[list[str]] = Field(alias="companyNames")
+    company_domains: Optional[list[str]] = Field(alias="companyDomains")
+    company_linked_in_urls: Optional[list[str]] = Field(alias="companyLinkedInUrls")
+    industries: Optional[list[str]]
+    regions: Optional[list[str]]
+    countries: Optional[list[str]]
+    skills: Optional[list[str]]
+    schools: Optional[list[str]]
+    min_years_experience: Optional[int] = Field(alias="minYearsExperience")
+    max_years_experience: Optional[int] = Field(alias="maxYearsExperience")
+    min_connections: Optional[int] = Field(alias="minConnections")
+    recently_changed_jobs: Optional[bool] = Field(alias="recentlyChangedJobs")
+
+
+class QueryFeedsFeedsResultsEntityCrustdataCompanyFilters(BaseModel):
+    names: Optional[list[str]]
+    domains: Optional[list[str]]
+    industries: Optional[list[str]]
+    categories: Optional[list[str]]
+    countries: Optional[list[str]]
+    locations: Optional[list[str]]
+    company_types: Optional[list[str]] = Field(alias="companyTypes")
+    min_employee_count: Optional[int] = Field(alias="minEmployeeCount")
+    max_employee_count: Optional[int] = Field(alias="maxEmployeeCount")
+    min_growth_6_m_percent: Optional[Any] = Field(alias="minGrowth6mPercent")
+    min_growth_12_m_percent: Optional[Any] = Field(alias="minGrowth12mPercent")
+    funding_round_types: Optional[list[str]] = Field(alias="fundingRoundTypes")
+    min_funding_date: Optional[Any] = Field(alias="minFundingDate")
+    min_total_funding_usd: Optional[Any] = Field(alias="minTotalFundingUsd")
+    min_revenue_lower_bound_usd: Optional[Any] = Field(alias="minRevenueLowerBoundUsd")
+    max_revenue_upper_bound_usd: Optional[Any] = Field(alias="maxRevenueUpperBoundUsd")
+    min_year_founded: Optional[int] = Field(alias="minYearFounded")
+    max_year_founded: Optional[int] = Field(alias="maxYearFounded")
 
 
 class QueryFeedsFeedsResultsWorkflow(BaseModel):
@@ -1128,3 +1211,4 @@ QueryFeedsFeedsResultsHubSpotConversations.model_rebuild()
 QueryFeedsFeedsResultsIntercomConversations.model_rebuild()
 QueryFeedsFeedsResultsResearch.model_rebuild()
 QueryFeedsFeedsResultsEntity.model_rebuild()
+QueryFeedsFeedsResultsEntityCrustdata.model_rebuild()

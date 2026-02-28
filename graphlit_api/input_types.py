@@ -7,6 +7,7 @@ from pydantic import Field
 
 from .base_model import BaseModel
 from .enums import (
+    AgentTypes,
     AlertTypes,
     AnthropicEffortLevels,
     AnthropicModels,
@@ -48,6 +49,7 @@ from .enums import (
     ConversationSearchTypes,
     ConversationStrategyTypes,
     ConversationTypes,
+    CrustdataWatcherSignalTypes,
     DeepgramModels,
     DeepseekModels,
     DistributionServiceTypes,
@@ -81,7 +83,9 @@ from .enums import (
     GoogleContactsAuthenticationTypes,
     GoogleDriveAuthenticationTypes,
     GoogleEmailAuthenticationTypes,
+    GoogleImageAspectRatioTypes,
     GoogleImageModels,
+    GoogleImageResolutionTypes,
     GoogleModels,
     GoogleThinkingLevels,
     GoogleVideoModels,
@@ -103,6 +107,8 @@ from .enums import (
     JiraAuthenticationTypes,
     LabelFacetTypes,
     LinearIssueAuthenticationTypes,
+    LinkedInPostContentTypes,
+    LinkedInPostListingTypes,
     LinkTypes,
     MailImportance,
     MailPriority,
@@ -135,6 +141,7 @@ from .enums import (
     OccurrenceTypes,
     OneDriveAuthenticationTypes,
     OpenAIImageModels,
+    OpenAIImageSizeTypes,
     OpenAIModels,
     OpenAIReasoningEffortLevels,
     OpenAIVideoModels,
@@ -322,6 +329,10 @@ class PlaceInput(BaseModel):
 
 class PersonaInput(BaseModel):
     name: str
+    identifier: Optional[str] = None
+    platform: Optional[str] = None
+    display_name: Optional[str] = Field(alias="displayName", default=None)
+    timezone: Optional[str] = None
     role: Optional[str] = None
     instructions: Optional[str] = None
 
@@ -620,6 +631,7 @@ class SearchFeedPropertiesUpdateInput(BaseModel):
     type: Optional[SearchServiceTypes] = None
     text: Optional[str] = None
     exa: Optional["ExaSearchPropertiesInput"] = None
+    crustdata: Optional["CrustdataSearchFeedPropertiesUpdateInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -1394,6 +1406,26 @@ class FactStrategyInput(BaseModel):
     fact_limit: Optional[int] = Field(alias="factLimit", default=None)
 
 
+class LinkedInFeedPropertiesInput(BaseModel):
+    listing_type: LinkedInPostListingTypes = Field(alias="listingType")
+    company_domain: Optional[str] = Field(alias="companyDomain", default=None)
+    company_linked_in_url: Optional[str] = Field(
+        alias="companyLinkedInUrl", default=None
+    )
+    company_name: Optional[str] = Field(alias="companyName", default=None)
+    person_linked_in_url: Optional[str] = Field(alias="personLinkedInUrl", default=None)
+    post_types: Optional[str] = Field(alias="postTypes", default=None)
+    keyword: Optional[str] = None
+    date_posted: Optional[str] = Field(alias="datePosted", default=None)
+    exact_keyword_match: Optional[bool] = Field(alias="exactKeywordMatch", default=None)
+    content_types: Optional[list[Optional[LinkedInPostContentTypes]]] = Field(
+        alias="contentTypes", default=None
+    )
+    include_comments: Optional[bool] = Field(alias="includeComments", default=None)
+    max_comments: Optional[int] = Field(alias="maxComments", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
 class MicrosoftTeamsFeedPropertiesInput(BaseModel):
     type: Optional[FeedListingTypes] = None
     authentication_type: Optional[MicrosoftTeamsAuthenticationTypes] = Field(
@@ -1747,6 +1779,9 @@ class FeedUpdateInput(BaseModel):
     web: Optional["WebFeedPropertiesUpdateInput"] = None
     search: Optional["SearchFeedPropertiesUpdateInput"] = None
     reddit: Optional["RedditFeedPropertiesUpdateInput"] = None
+    linked_in: Optional["LinkedInFeedPropertiesUpdateInput"] = Field(
+        alias="linkedIn", default=None
+    )
     youtube: Optional["YouTubeFeedPropertiesUpdateInput"] = None
     notion: Optional["NotionFeedPropertiesUpdateInput"] = None
     confluence: Optional["ConfluenceFeedPropertiesUpdateInput"] = None
@@ -1939,6 +1974,21 @@ class HumeExtractionPropertiesInput(BaseModel):
     confidence_threshold: Optional[float] = Field(
         alias="confidenceThreshold", default=None
     )
+
+
+class CrustdataSearchFeedPropertiesInput(BaseModel):
+    signal_type: CrustdataWatcherSignalTypes = Field(alias="signalType")
+    company_domain: Optional[str] = Field(alias="companyDomain", default=None)
+    company_linked_in_url: Optional[str] = Field(
+        alias="companyLinkedInUrl", default=None
+    )
+    company_id: Optional[str] = Field(alias="companyId", default=None)
+    person_linked_in_urls: Optional[list[str]] = Field(
+        alias="personLinkedInUrls", default=None
+    )
+    job_title: Optional[str] = Field(alias="jobTitle", default=None)
+    job_region: Optional[str] = Field(alias="jobRegion", default=None)
+    job_description: Optional[str] = Field(alias="jobDescription", default=None)
 
 
 class InvestmentFundUpdateInput(BaseModel):
@@ -2598,6 +2648,42 @@ class CalendarFeedPropertiesUpdateInput(BaseModel):
     google: Optional["GoogleCalendarFeedPropertiesUpdateInput"] = None
     microsoft: Optional["MicrosoftCalendarFeedPropertiesUpdateInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class AgentInput(BaseModel):
+    name: str
+    type: AgentTypes
+    description: Optional[str] = None
+    specification: Optional["EntityReferenceInput"] = None
+    filter: Optional["ContentCriteriaInput"] = None
+
+
+class CrustdataPersonDiscoveryFilterInput(BaseModel):
+    titles: Optional[list[str]] = None
+    seniority_levels: Optional[list[str]] = Field(alias="seniorityLevels", default=None)
+    function_categories: Optional[list[str]] = Field(
+        alias="functionCategories", default=None
+    )
+    company_names: Optional[list[str]] = Field(alias="companyNames", default=None)
+    company_domains: Optional[list[str]] = Field(alias="companyDomains", default=None)
+    company_linked_in_urls: Optional[list[str]] = Field(
+        alias="companyLinkedInUrls", default=None
+    )
+    industries: Optional[list[str]] = None
+    regions: Optional[list[str]] = None
+    countries: Optional[list[str]] = None
+    skills: Optional[list[str]] = None
+    schools: Optional[list[str]] = None
+    min_years_experience: Optional[int] = Field(
+        alias="minYearsExperience", default=None
+    )
+    max_years_experience: Optional[int] = Field(
+        alias="maxYearsExperience", default=None
+    )
+    min_connections: Optional[int] = Field(alias="minConnections", default=None)
+    recently_changed_jobs: Optional[bool] = Field(
+        alias="recentlyChangedJobs", default=None
+    )
 
 
 class WorkflowActionInput(BaseModel):
@@ -3458,8 +3544,9 @@ class ConfluenceSpacesInput(BaseModel):
 
 class EntityFeedPropertiesInput(BaseModel):
     type: FeedServiceTypes
-    query: str
+    query: Optional[str] = None
     parallel: Optional["ParallelEntityFeedPropertiesInput"] = None
+    crustdata: Optional["CrustdataEntityFeedPropertiesInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -3518,6 +3605,30 @@ class CerebrasModelPropertiesUpdateInput(BaseModel):
     completion_token_limit: Optional[int] = Field(
         alias="completionTokenLimit", default=None
     )
+
+
+class AgentFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    types: Optional[list[AgentTypes]] = None
+    conversations: Optional[list["EntityReferenceFilter"]] = None
 
 
 class EmailMetadataInput(BaseModel):
@@ -3581,6 +3692,7 @@ class OpenAIImagePublishingPropertiesInput(BaseModel):
     model: Optional[OpenAIImageModels] = None
     count: Optional[int] = None
     seed: Optional["EntityReferenceInput"] = None
+    size: Optional[OpenAIImageSizeTypes] = None
 
 
 class ModelDocumentPreparationPropertiesInput(BaseModel):
@@ -3608,6 +3720,23 @@ class FilePreparationConnectorInput(BaseModel):
         alias="modelDocument", default=None
     )
     reducto: Optional["ReductoDocumentPreparationPropertiesInput"] = None
+
+
+class CrustdataSearchFeedPropertiesUpdateInput(BaseModel):
+    signal_type: Optional[CrustdataWatcherSignalTypes] = Field(
+        alias="signalType", default=None
+    )
+    company_domain: Optional[str] = Field(alias="companyDomain", default=None)
+    company_linked_in_url: Optional[str] = Field(
+        alias="companyLinkedInUrl", default=None
+    )
+    company_id: Optional[str] = Field(alias="companyId", default=None)
+    person_linked_in_urls: Optional[list[str]] = Field(
+        alias="personLinkedInUrls", default=None
+    )
+    job_title: Optional[str] = Field(alias="jobTitle", default=None)
+    job_region: Optional[str] = Field(alias="jobRegion", default=None)
+    job_description: Optional[str] = Field(alias="jobDescription", default=None)
 
 
 class ParallelEntityFeedPropertiesUpdateInput(BaseModel):
@@ -3663,6 +3792,7 @@ class EntityEnrichmentConnectorInput(BaseModel):
     parallel: Optional["ParallelEnrichmentPropertiesInput"] = None
     fhir: Optional["FHIREnrichmentPropertiesInput"] = None
     diffbot: Optional["DiffbotEnrichmentPropertiesInput"] = None
+    crustdata: Optional["CrustdataEnrichmentPropertiesInput"] = None
 
 
 class AttioFeedPropertiesUpdateInput(BaseModel):
@@ -3839,6 +3969,15 @@ class GitHubDistributionPropertiesInput(BaseModel):
     labels: Optional[list[str]] = None
     assignees: Optional[list[str]] = None
     milestone: Optional[int] = None
+
+
+class CrustdataEntityFeedPropertiesInput(BaseModel):
+    person_filters: Optional["CrustdataPersonDiscoveryFilterInput"] = Field(
+        alias="personFilters", default=None
+    )
+    company_filters: Optional["CrustdataCompanyDiscoveryFilterInput"] = Field(
+        alias="companyFilters", default=None
+    )
 
 
 class TwitterIntegrationPropertiesInput(BaseModel):
@@ -4050,6 +4189,28 @@ class AttioDistributionPropertiesInput(BaseModel):
     parent_object: str = Field(alias="parentObject")
     parent_record_id: str = Field(alias="parentRecordId")
     title: Optional[str] = None
+
+
+class LinkedInFeedPropertiesUpdateInput(BaseModel):
+    listing_type: Optional[LinkedInPostListingTypes] = Field(
+        alias="listingType", default=None
+    )
+    company_domain: Optional[str] = Field(alias="companyDomain", default=None)
+    company_linked_in_url: Optional[str] = Field(
+        alias="companyLinkedInUrl", default=None
+    )
+    company_name: Optional[str] = Field(alias="companyName", default=None)
+    person_linked_in_url: Optional[str] = Field(alias="personLinkedInUrl", default=None)
+    post_types: Optional[str] = Field(alias="postTypes", default=None)
+    keyword: Optional[str] = None
+    date_posted: Optional[str] = Field(alias="datePosted", default=None)
+    exact_keyword_match: Optional[bool] = Field(alias="exactKeywordMatch", default=None)
+    content_types: Optional[list[Optional[LinkedInPostContentTypes]]] = Field(
+        alias="contentTypes", default=None
+    )
+    include_comments: Optional[bool] = Field(alias="includeComments", default=None)
+    max_comments: Optional[int] = Field(alias="maxComments", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class AttioTasksFeedPropertiesInput(BaseModel):
@@ -4410,6 +4571,7 @@ class PersonaFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    identifier: Optional[str] = None
 
 
 class RegexContentClassificationPropertiesInput(BaseModel):
@@ -4493,6 +4655,7 @@ class MedicalDeviceFilter(BaseModel):
 class EntityFeedPropertiesUpdateInput(BaseModel):
     query: Optional[str] = None
     parallel: Optional["ParallelEntityFeedPropertiesUpdateInput"] = None
+    crustdata: Optional["CrustdataEntityFeedPropertiesUpdateInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -4787,6 +4950,8 @@ class ConversationMessageInput(BaseModel):
     data: Optional[str] = None
     mime_type: Optional[str] = Field(alias="mimeType", default=None)
     artifacts: Optional[list[Optional["EntityReferenceInput"]]] = None
+    thinking_content: Optional[str] = Field(alias="thinkingContent", default=None)
+    thinking_signature: Optional[str] = Field(alias="thinkingSignature", default=None)
 
 
 class GitHubCommitsFeedPropertiesInput(BaseModel):
@@ -4919,6 +5084,10 @@ class GoogleImagePublishingPropertiesInput(BaseModel):
     model: Optional[GoogleImageModels] = None
     count: Optional[int] = None
     seed: Optional["EntityReferenceInput"] = None
+    resolution: Optional[GoogleImageResolutionTypes] = None
+    aspect_ratio: Optional[GoogleImageAspectRatioTypes] = Field(
+        alias="aspectRatio", default=None
+    )
 
 
 class MedicalStudyUpdateInput(BaseModel):
@@ -5042,8 +5211,9 @@ class GoogleVideoPublishingPropertiesInput(BaseModel):
 
 class SearchFeedPropertiesInput(BaseModel):
     type: Optional[SearchServiceTypes] = None
-    text: str
+    text: Optional[str] = None
     exa: Optional["ExaSearchPropertiesInput"] = None
+    crustdata: Optional["CrustdataSearchFeedPropertiesInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -5654,6 +5824,10 @@ class SiteFeedPropertiesInput(BaseModel):
 class PersonaUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
+    identifier: Optional[str] = None
+    platform: Optional[str] = None
+    display_name: Optional[str] = Field(alias="displayName", default=None)
+    timezone: Optional[str] = None
     role: Optional[str] = None
     instructions: Optional[str] = None
 
@@ -5690,9 +5864,46 @@ class MedicalProcedureInput(BaseModel):
     boundary: Optional[str] = None
 
 
+class CrustdataEnrichmentPropertiesInput(BaseModel):
+    is_realtime: Optional[bool] = Field(alias="isRealtime", default=None)
+
+
 class MondayFeedPropertiesUpdateInput(BaseModel):
     api_token: Optional[str] = Field(alias="apiToken", default=None)
     board_id: Optional[str] = Field(alias="boardId", default=None)
+
+
+class CrustdataCompanyDiscoveryFilterInput(BaseModel):
+    names: Optional[list[str]] = None
+    domains: Optional[list[str]] = None
+    industries: Optional[list[str]] = None
+    categories: Optional[list[str]] = None
+    countries: Optional[list[str]] = None
+    locations: Optional[list[str]] = None
+    company_types: Optional[list[str]] = Field(alias="companyTypes", default=None)
+    min_employee_count: Optional[int] = Field(alias="minEmployeeCount", default=None)
+    max_employee_count: Optional[int] = Field(alias="maxEmployeeCount", default=None)
+    min_growth_6_m_percent: Optional[Any] = Field(
+        alias="minGrowth6mPercent", default=None
+    )
+    min_growth_12_m_percent: Optional[Any] = Field(
+        alias="minGrowth12mPercent", default=None
+    )
+    funding_round_types: Optional[list[str]] = Field(
+        alias="fundingRoundTypes", default=None
+    )
+    min_funding_date: Optional[Any] = Field(alias="minFundingDate", default=None)
+    min_total_funding_usd: Optional[Any] = Field(
+        alias="minTotalFundingUsd", default=None
+    )
+    min_revenue_lower_bound_usd: Optional[Any] = Field(
+        alias="minRevenueLowerBoundUsd", default=None
+    )
+    max_revenue_upper_bound_usd: Optional[Any] = Field(
+        alias="maxRevenueUpperBoundUsd", default=None
+    )
+    min_year_founded: Optional[int] = Field(alias="minYearFounded", default=None)
+    max_year_founded: Optional[int] = Field(alias="maxYearFounded", default=None)
 
 
 class ArcadeAuthenticationPropertiesInput(BaseModel):
@@ -5823,6 +6034,15 @@ class MedicalGuidelineFilter(BaseModel):
     )
 
 
+class CrustdataEntityFeedPropertiesUpdateInput(BaseModel):
+    person_filters: Optional["CrustdataPersonDiscoveryFilterInput"] = Field(
+        alias="personFilters", default=None
+    )
+    company_filters: Optional["CrustdataCompanyDiscoveryFilterInput"] = Field(
+        alias="companyFilters", default=None
+    )
+
+
 class AzureBlobFeedPropertiesUpdateInput(BaseModel):
     storage_access_key: Optional[str] = Field(alias="storageAccessKey", default=None)
     account_name: Optional[str] = Field(alias="accountName", default=None)
@@ -5922,6 +6142,9 @@ class FeedInput(BaseModel):
     web: Optional["WebFeedPropertiesInput"] = None
     search: Optional["SearchFeedPropertiesInput"] = None
     reddit: Optional["RedditFeedPropertiesInput"] = None
+    linked_in: Optional["LinkedInFeedPropertiesInput"] = Field(
+        alias="linkedIn", default=None
+    )
     youtube: Optional["YouTubeFeedPropertiesInput"] = None
     notion: Optional["NotionFeedPropertiesInput"] = None
     confluence: Optional["ConfluenceFeedPropertiesInput"] = None
@@ -6374,6 +6597,14 @@ class OpenAIModelPropertiesInput(BaseModel):
     )
 
 
+class AgentUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    description: Optional[str] = None
+    specification: Optional["EntityReferenceInput"] = None
+    filter: Optional["ContentCriteriaInput"] = None
+
+
 class IssueFeedPropertiesInput(BaseModel):
     type: FeedServiceTypes
     include_attachments: Optional[bool] = Field(
@@ -6646,6 +6877,7 @@ NotionPagesInput.model_rebuild()
 EntityExtractionConnectorInput.model_rebuild()
 PullRequestFeedPropertiesInput.model_rebuild()
 CalendarFeedPropertiesUpdateInput.model_rebuild()
+AgentInput.model_rebuild()
 WorkflowActionInput.model_rebuild()
 MedicalConditionUpdateInput.model_rebuild()
 PackageMetadataInput.model_rebuild()
@@ -6686,6 +6918,7 @@ ConfluenceSpacesInput.model_rebuild()
 EntityFeedPropertiesInput.model_rebuild()
 CommitFeedPropertiesInput.model_rebuild()
 SoftwareFilter.model_rebuild()
+AgentFilter.model_rebuild()
 EmailMetadataInput.model_rebuild()
 SharePointLibrariesInput.model_rebuild()
 SharePointFeedPropertiesInput.model_rebuild()
@@ -6701,6 +6934,7 @@ TwitterFeedPropertiesInput.model_rebuild()
 WorkflowInput.model_rebuild()
 RepoUpdateInput.model_rebuild()
 NotionFeedPropertiesInput.model_rebuild()
+CrustdataEntityFeedPropertiesInput.model_rebuild()
 PlaceUpdateInput.model_rebuild()
 GitHubRepositoriesInput.model_rebuild()
 ConversationInput.model_rebuild()
@@ -6795,6 +7029,7 @@ WorkflowUpdateInput.model_rebuild()
 JiraProjectsInput.model_rebuild()
 ContentCriteriaInput.model_rebuild()
 MedicalGuidelineFilter.model_rebuild()
+CrustdataEntityFeedPropertiesUpdateInput.model_rebuild()
 ImageMetadataInput.model_rebuild()
 EventMetadataInput.model_rebuild()
 GitHubCommitsFeedPropertiesUpdateInput.model_rebuild()
@@ -6818,6 +7053,7 @@ DrawingMetadataInput.model_rebuild()
 SalesforceTasksFeedPropertiesUpdateInput.model_rebuild()
 ResearchFeedPropertiesUpdateInput.model_rebuild()
 SalesforceFeedPropertiesUpdateInput.model_rebuild()
+AgentUpdateInput.model_rebuild()
 IssueFeedPropertiesInput.model_rebuild()
 FactInput.model_rebuild()
 EnrichmentWorkflowJobInput.model_rebuild()

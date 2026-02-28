@@ -398,6 +398,7 @@ class UpsertWorkflowUpsertWorkflowEnrichmentJobsConnector(BaseModel):
     fhir: Optional["UpsertWorkflowUpsertWorkflowEnrichmentJobsConnectorFhir"]
     diffbot: Optional["UpsertWorkflowUpsertWorkflowEnrichmentJobsConnectorDiffbot"]
     parallel: Optional["UpsertWorkflowUpsertWorkflowEnrichmentJobsConnectorParallel"]
+    crustdata: Optional["UpsertWorkflowUpsertWorkflowEnrichmentJobsConnectorCrustdata"]
 
 
 class UpsertWorkflowUpsertWorkflowEnrichmentJobsConnectorFhir(BaseModel):
@@ -411,6 +412,10 @@ class UpsertWorkflowUpsertWorkflowEnrichmentJobsConnectorDiffbot(BaseModel):
 class UpsertWorkflowUpsertWorkflowEnrichmentJobsConnectorParallel(BaseModel):
     processor: Optional[ParallelProcessors]
     is_synchronous: Optional[bool] = Field(alias="isSynchronous")
+
+
+class UpsertWorkflowUpsertWorkflowEnrichmentJobsConnectorCrustdata(BaseModel):
+    is_realtime: Optional[bool] = Field(alias="isRealtime")
 
 
 class UpsertWorkflowUpsertWorkflowEnrichmentEntityResolution(BaseModel):

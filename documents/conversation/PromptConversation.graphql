@@ -140,6 +140,8 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
         mimeType
         uri
       }
+      thinkingContent
+      thinkingSignature
     }
     messageCount
     facets {
@@ -331,6 +333,8 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
           mimeType
           uri
         }
+        thinkingContent
+        thinkingSignature
       }
     }
   }

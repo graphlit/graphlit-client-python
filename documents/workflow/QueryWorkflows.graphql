@@ -209,6 +209,9 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
               processor
               isSynchronous
             }
+            crustdata {
+              isRealtime
+            }
           }
         }
         entityResolution {

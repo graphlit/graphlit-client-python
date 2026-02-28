@@ -25,6 +25,10 @@ class QueryPersonasPersonasResults(BaseModel):
     relevance: Optional[float]
     owner: "QueryPersonasPersonasResultsOwner"
     state: EntityState
+    identifier: Optional[str]
+    platform: Optional[str]
+    display_name: Optional[str] = Field(alias="displayName")
+    timezone: Optional[str]
     role: Optional[str]
     instructions: Optional[str]
     facts: Optional[list["QueryPersonasPersonasResultsFacts"]]

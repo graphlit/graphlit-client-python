@@ -1,0 +1,8 @@
+mutation UpsertAgent($agent: AgentInput!) {
+  upsertAgent(agent: $agent) {
+    id
+    name
+    state
+    type
+  }
+}

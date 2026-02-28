@@ -14,6 +14,7 @@ from .clear_conversation import ClearConversation
 from .close_conversation import CloseConversation
 from .complete_conversation import CompleteConversation
 from .continue_conversation import ContinueConversation
+from .count_agents import CountAgents
 from .count_alerts import CountAlerts
 from .count_categories import CountCategories
 from .count_collections import CountCollections
@@ -49,6 +50,7 @@ from .count_specifications import CountSpecifications
 from .count_users import CountUsers
 from .count_views import CountViews
 from .count_workflows import CountWorkflows
+from .create_agent import CreateAgent
 from .create_alert import CreateAlert
 from .create_category import CreateCategory
 from .create_collection import CreateCollection
@@ -84,8 +86,11 @@ from .create_specification import CreateSpecification
 from .create_user import CreateUser
 from .create_view import CreateView
 from .create_workflow import CreateWorkflow
+from .delete_agent import DeleteAgent
+from .delete_agents import DeleteAgents
 from .delete_alert import DeleteAlert
 from .delete_alerts import DeleteAlerts
+from .delete_all_agents import DeleteAllAgents
 from .delete_all_alerts import DeleteAllAlerts
 from .delete_all_categories import DeleteAllCategories
 from .delete_all_collections import DeleteAllCollections
@@ -188,10 +193,12 @@ from .delete_workflow import DeleteWorkflow
 from .delete_workflows import DeleteWorkflows
 from .describe_encoded_image import DescribeEncodedImage
 from .describe_image import DescribeImage
+from .disable_agent import DisableAgent
 from .disable_alert import DisableAlert
 from .disable_feed import DisableFeed
 from .disable_user import DisableUser
 from .distribute import Distribute
+from .enable_agent import EnableAgent
 from .enable_alert import EnableAlert
 from .enable_feed import EnableFeed
 from .enable_user import EnableUser
@@ -212,6 +219,7 @@ from .extract_observables import ExtractObservables
 from .extract_text import ExtractText
 from .feed_exists import FeedExists
 from .format_conversation import FormatConversation
+from .get_agent import GetAgent
 from .get_alert import GetAlert
 from .get_category import GetCategory
 from .get_collection import GetCollection
@@ -258,6 +266,9 @@ from .ingest_text import IngestText
 from .ingest_text_batch import IngestTextBatch
 from .ingest_uri import IngestUri
 from .input_types import (
+    AgentFilter,
+    AgentInput,
+    AgentUpdateInput,
     AlertFilter,
     AlertInput,
     AlertUpdateInput,
@@ -433,6 +444,7 @@ from .operations import (
     CLOSE_CONVERSATION_GQL,
     COMPLETE_CONVERSATION_GQL,
     CONTINUE_CONVERSATION_GQL,
+    COUNT_AGENTS_GQL,
     COUNT_ALERTS_GQL,
     COUNT_CATEGORIES_GQL,
     COUNT_COLLECTIONS_GQL,
@@ -468,6 +480,7 @@ from .operations import (
     COUNT_USERS_GQL,
     COUNT_VIEWS_GQL,
     COUNT_WORKFLOWS_GQL,
+    CREATE_AGENT_GQL,
     CREATE_ALERT_GQL,
     CREATE_CATEGORY_GQL,
     CREATE_COLLECTION_GQL,
@@ -503,8 +516,11 @@ from .operations import (
     CREATE_USER_GQL,
     CREATE_VIEW_GQL,
     CREATE_WORKFLOW_GQL,
+    DELETE_AGENT_GQL,
+    DELETE_AGENTS_GQL,
     DELETE_ALERT_GQL,
     DELETE_ALERTS_GQL,
+    DELETE_ALL_AGENTS_GQL,
     DELETE_ALL_ALERTS_GQL,
     DELETE_ALL_CATEGORIES_GQL,
     DELETE_ALL_COLLECTIONS_GQL,
@@ -607,10 +623,12 @@ from .operations import (
     DELETE_WORKFLOWS_GQL,
     DESCRIBE_ENCODED_IMAGE_GQL,
     DESCRIBE_IMAGE_GQL,
+    DISABLE_AGENT_GQL,
     DISABLE_ALERT_GQL,
     DISABLE_FEED_GQL,
     DISABLE_USER_GQL,
     DISTRIBUTE_GQL,
+    ENABLE_AGENT_GQL,
     ENABLE_ALERT_GQL,
     ENABLE_FEED_GQL,
     ENABLE_USER_GQL,
@@ -623,6 +641,7 @@ from .operations import (
     EXTRACT_TEXT_GQL,
     FEED_EXISTS_GQL,
     FORMAT_CONVERSATION_GQL,
+    GET_AGENT_GQL,
     GET_ALERT_GQL,
     GET_CATEGORY_GQL,
     GET_COLLECTION_GQL,
@@ -682,6 +701,7 @@ from .operations import (
     PUBLISH_CONTENTS_GQL,
     PUBLISH_CONVERSATION_GQL,
     PUBLISH_TEXT_GQL,
+    QUERY_AGENTS_GQL,
     QUERY_ALERTS_GQL,
     QUERY_ASANA_PROJECTS_GQL,
     QUERY_ASANA_WORKSPACES_GQL,
@@ -807,6 +827,7 @@ from .operations import (
     SUMMARIZE_CONTENTS_GQL,
     SUMMARIZE_TEXT_GQL,
     TRIGGER_FEED_GQL,
+    UPDATE_AGENT_GQL,
     UPDATE_ALERT_GQL,
     UPDATE_CATEGORY_GQL,
     UPDATE_COLLECTION_GQL,
@@ -844,6 +865,7 @@ from .operations import (
     UPDATE_USER_GQL,
     UPDATE_VIEW_GQL,
     UPDATE_WORKFLOW_GQL,
+    UPSERT_AGENT_GQL,
     UPSERT_ALERT_GQL,
     UPSERT_CATEGORY_GQL,
     UPSERT_LABEL_GQL,
@@ -859,6 +881,7 @@ from .prompt_specifications import PromptSpecifications
 from .publish_contents import PublishContents
 from .publish_conversation import PublishConversation
 from .publish_text import PublishText
+from .query_agents import QueryAgents
 from .query_alerts import QueryAlerts
 from .query_asana_projects import QueryAsanaProjects
 from .query_asana_workspaces import QueryAsanaWorkspaces
@@ -986,6 +1009,7 @@ from .suggest_conversation import SuggestConversation
 from .summarize_contents import SummarizeContents
 from .summarize_text import SummarizeText
 from .trigger_feed import TriggerFeed
+from .update_agent import UpdateAgent
 from .update_alert import UpdateAlert
 from .update_category import UpdateCategory
 from .update_collection import UpdateCollection
@@ -1023,6 +1047,7 @@ from .update_specification import UpdateSpecification
 from .update_user import UpdateUser
 from .update_view import UpdateView
 from .update_workflow import UpdateWorkflow
+from .upsert_agent import UpsertAgent
 from .upsert_alert import UpsertAlert
 from .upsert_category import UpsertCategory
 from .upsert_label import UpsertLabel
@@ -1038,6 +1063,168 @@ def gql(q: str) -> str:
 
 
 class Client(AsyncBaseClient):
+    async def count_agents(
+        self,
+        filter: Union[Optional[AgentFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountAgents:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=COUNT_AGENTS_GQL,
+            operation_name="CountAgents",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountAgents.model_validate(data)
+
+    async def create_agent(
+        self,
+        agent: AgentInput,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CreateAgent:
+        variables: dict[str, object] = {"agent": agent, "correlationId": correlation_id}
+        response = await self.execute(
+            query=CREATE_AGENT_GQL,
+            operation_name="CreateAgent",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CreateAgent.model_validate(data)
+
+    async def delete_agent(self, id: str, **kwargs: Any) -> DeleteAgent:
+        variables: dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DELETE_AGENT_GQL,
+            operation_name="DeleteAgent",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAgent.model_validate(data)
+
+    async def delete_agents(
+        self,
+        ids: list[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAgents:
+        variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
+        response = await self.execute(
+            query=DELETE_AGENTS_GQL,
+            operation_name="DeleteAgents",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAgents.model_validate(data)
+
+    async def delete_all_agents(
+        self,
+        filter: Union[Optional[AgentFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllAgents:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DELETE_ALL_AGENTS_GQL,
+            operation_name="DeleteAllAgents",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllAgents.model_validate(data)
+
+    async def disable_agent(self, id: str, **kwargs: Any) -> DisableAgent:
+        variables: dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DISABLE_AGENT_GQL,
+            operation_name="DisableAgent",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DisableAgent.model_validate(data)
+
+    async def enable_agent(self, id: str, **kwargs: Any) -> EnableAgent:
+        variables: dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=ENABLE_AGENT_GQL,
+            operation_name="EnableAgent",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return EnableAgent.model_validate(data)
+
+    async def get_agent(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetAgent:
+        variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
+        response = await self.execute(
+            query=GET_AGENT_GQL,
+            operation_name="GetAgent",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return GetAgent.model_validate(data)
+
+    async def query_agents(
+        self,
+        filter: Union[Optional[AgentFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryAgents:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_AGENTS_GQL,
+            operation_name="QueryAgents",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryAgents.model_validate(data)
+
+    async def update_agent(self, agent: AgentUpdateInput, **kwargs: Any) -> UpdateAgent:
+        variables: dict[str, object] = {"agent": agent}
+        response = await self.execute(
+            query=UPDATE_AGENT_GQL,
+            operation_name="UpdateAgent",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateAgent.model_validate(data)
+
+    async def upsert_agent(self, agent: AgentInput, **kwargs: Any) -> UpsertAgent:
+        variables: dict[str, object] = {"agent": agent}
+        response = await self.execute(
+            query=UPSERT_AGENT_GQL,
+            operation_name="UpsertAgent",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpsertAgent.model_validate(data)
+
     async def count_alerts(
         self,
         filter: Union[Optional[AlertFilter], UnsetType] = UNSET,

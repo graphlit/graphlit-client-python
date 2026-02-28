@@ -11,6 +11,7 @@ __all__ = [
     "CLOSE_CONVERSATION_GQL",
     "COMPLETE_CONVERSATION_GQL",
     "CONTINUE_CONVERSATION_GQL",
+    "COUNT_AGENTS_GQL",
     "COUNT_ALERTS_GQL",
     "COUNT_CATEGORIES_GQL",
     "COUNT_COLLECTIONS_GQL",
@@ -46,6 +47,7 @@ __all__ = [
     "COUNT_USERS_GQL",
     "COUNT_VIEWS_GQL",
     "COUNT_WORKFLOWS_GQL",
+    "CREATE_AGENT_GQL",
     "CREATE_ALERT_GQL",
     "CREATE_CATEGORY_GQL",
     "CREATE_COLLECTION_GQL",
@@ -81,8 +83,11 @@ __all__ = [
     "CREATE_USER_GQL",
     "CREATE_VIEW_GQL",
     "CREATE_WORKFLOW_GQL",
+    "DELETE_AGENTS_GQL",
+    "DELETE_AGENT_GQL",
     "DELETE_ALERTS_GQL",
     "DELETE_ALERT_GQL",
+    "DELETE_ALL_AGENTS_GQL",
     "DELETE_ALL_ALERTS_GQL",
     "DELETE_ALL_CATEGORIES_GQL",
     "DELETE_ALL_COLLECTIONS_GQL",
@@ -185,10 +190,12 @@ __all__ = [
     "DELETE_WORKFLOW_GQL",
     "DESCRIBE_ENCODED_IMAGE_GQL",
     "DESCRIBE_IMAGE_GQL",
+    "DISABLE_AGENT_GQL",
     "DISABLE_ALERT_GQL",
     "DISABLE_FEED_GQL",
     "DISABLE_USER_GQL",
     "DISTRIBUTE_GQL",
+    "ENABLE_AGENT_GQL",
     "ENABLE_ALERT_GQL",
     "ENABLE_FEED_GQL",
     "ENABLE_USER_GQL",
@@ -201,6 +208,7 @@ __all__ = [
     "EXTRACT_TEXT_GQL",
     "FEED_EXISTS_GQL",
     "FORMAT_CONVERSATION_GQL",
+    "GET_AGENT_GQL",
     "GET_ALERT_GQL",
     "GET_CATEGORY_GQL",
     "GET_COLLECTION_GQL",
@@ -260,6 +268,7 @@ __all__ = [
     "PUBLISH_CONTENTS_GQL",
     "PUBLISH_CONVERSATION_GQL",
     "PUBLISH_TEXT_GQL",
+    "QUERY_AGENTS_GQL",
     "QUERY_ALERTS_GQL",
     "QUERY_ASANA_PROJECTS_GQL",
     "QUERY_ASANA_WORKSPACES_GQL",
@@ -385,6 +394,7 @@ __all__ = [
     "SUMMARIZE_CONTENTS_GQL",
     "SUMMARIZE_TEXT_GQL",
     "TRIGGER_FEED_GQL",
+    "UPDATE_AGENT_GQL",
     "UPDATE_ALERT_GQL",
     "UPDATE_CATEGORY_GQL",
     "UPDATE_COLLECTION_GQL",
@@ -422,6 +432,7 @@ __all__ = [
     "UPDATE_USER_GQL",
     "UPDATE_VIEW_GQL",
     "UPDATE_WORKFLOW_GQL",
+    "UPSERT_AGENT_GQL",
     "UPSERT_ALERT_GQL",
     "UPSERT_CATEGORY_GQL",
     "UPSERT_LABEL_GQL",
@@ -431,6 +442,327 @@ __all__ = [
     "VIEW_EXISTS_GQL",
     "WORKFLOW_EXISTS_GQL",
 ]
+
+COUNT_AGENTS_GQL = """
+query CountAgents($filter: AgentFilter, $correlationId: String) {
+  countAgents(filter: $filter, correlationId: $correlationId) {
+    count
+  }
+}
+"""
+
+CREATE_AGENT_GQL = """
+mutation CreateAgent($agent: AgentInput!, $correlationId: String) {
+  createAgent(agent: $agent, correlationId: $correlationId) {
+    id
+    name
+    state
+    type
+  }
+}
+"""
+
+DELETE_AGENT_GQL = """
+mutation DeleteAgent($id: ID!) {
+  deleteAgent(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_AGENTS_GQL = """
+mutation DeleteAgents($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteAgents(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_ALL_AGENTS_GQL = """
+mutation DeleteAllAgents($filter: AgentFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllAgents(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
+    id
+    state
+  }
+}
+"""
+
+DISABLE_AGENT_GQL = """
+mutation DisableAgent($id: ID!) {
+  disableAgent(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+ENABLE_AGENT_GQL = """
+mutation EnableAgent($id: ID!) {
+  enableAgent(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+GET_AGENT_GQL = """
+query GetAgent($id: ID!, $correlationId: String) {
+  agent(id: $id, correlationId: $correlationId) {
+    id
+    name
+    creationDate
+    modifiedDate
+    owner {
+      id
+    }
+    state
+    correlationId
+    type
+    specification {
+      id
+    }
+    filter {
+      dateRange {
+        from
+        to
+      }
+      inLast
+      inNext
+      creationDateRange {
+        from
+        to
+      }
+      createdInLast
+      types
+      fileTypes
+      formats
+      fileExtensions
+      fileSizeRange {
+        from
+        to
+      }
+      similarContents {
+        id
+      }
+      contents {
+        id
+      }
+      feeds {
+        id
+      }
+      workflows {
+        id
+      }
+      collections {
+        id
+      }
+      users {
+        id
+      }
+      observations {
+        type
+        observable {
+          id
+        }
+        states
+      }
+      or {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+      and {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+      hasObservations
+      hasFeeds
+      hasCollections
+      hasWorkflows
+      collectionMode
+      observationMode
+    }
+  }
+}
+"""
+
+QUERY_AGENTS_GQL = """
+query QueryAgents($filter: AgentFilter, $correlationId: String) {
+  agents(filter: $filter, correlationId: $correlationId) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      correlationId
+      type
+      specification {
+        id
+      }
+      filter {
+        dateRange {
+          from
+          to
+        }
+        inLast
+        inNext
+        creationDateRange {
+          from
+          to
+        }
+        createdInLast
+        types
+        fileTypes
+        formats
+        fileExtensions
+        fileSizeRange {
+          from
+          to
+        }
+        similarContents {
+          id
+        }
+        contents {
+          id
+        }
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+        or {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        and {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        hasObservations
+        hasFeeds
+        hasCollections
+        hasWorkflows
+        collectionMode
+        observationMode
+      }
+    }
+  }
+}
+"""
+
+UPDATE_AGENT_GQL = """
+mutation UpdateAgent($agent: AgentUpdateInput!) {
+  updateAgent(agent: $agent) {
+    id
+    name
+    state
+    type
+  }
+}
+"""
+
+UPSERT_AGENT_GQL = """
+mutation UpsertAgent($agent: AgentInput!) {
+  upsertAgent(agent: $agent) {
+    id
+    name
+    state
+    type
+  }
+}
+"""
 
 COUNT_ALERTS_GQL = """
 query CountAlerts($filter: AlertFilter, $correlationId: String) {
@@ -647,6 +979,7 @@ query GetAlert($id: ID!, $correlationId: String) {
         seed {
           id
         }
+        size
       }
       googleImage {
         model
@@ -654,6 +987,8 @@ query GetAlert($id: ID!, $correlationId: String) {
         seed {
           id
         }
+        resolution
+        aspectRatio
       }
       quiverImage {
         model
@@ -849,6 +1184,7 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
           seed {
             id
           }
+          size
         }
         googleImage {
           model
@@ -856,6 +1192,8 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
           seed {
             id
           }
+          resolution
+          aspectRatio
         }
         quiverImage {
           model
@@ -1561,6 +1899,8 @@ mutation DescribeEncodedImage($prompt: String!, $mimeType: String!, $data: Strin
       mimeType
       uri
     }
+    thinkingContent
+    thinkingSignature
   }
 }
 """
@@ -1709,6 +2049,8 @@ mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityRefer
       mimeType
       uri
     }
+    thinkingContent
+    thinkingSignature
   }
 }
 """
@@ -4757,6 +5099,8 @@ mutation AskGraphlit($prompt: String!, $type: SdkTypes, $id: ID, $specification:
         mimeType
         uri
       }
+      thinkingContent
+      thinkingSignature
     }
     messageCount
   }
@@ -4948,6 +5292,8 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
         mimeType
         uri
       }
+      thinkingContent
+      thinkingSignature
     }
     messageCount
     facets {
@@ -5139,6 +5485,8 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
           mimeType
           uri
         }
+        thinkingContent
+        thinkingSignature
       }
     }
   }
@@ -5292,6 +5640,8 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
         mimeType
         uri
       }
+      thinkingContent
+      thinkingSignature
     }
     messageCount
     facets {
@@ -5483,6 +5833,8 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
           mimeType
           uri
         }
+        thinkingContent
+        thinkingSignature
       }
     }
   }
@@ -5691,6 +6043,8 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
         mimeType
         uri
       }
+      thinkingContent
+      thinkingSignature
     }
     messageCount
     facets {
@@ -5882,6 +6236,8 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
           mimeType
           uri
         }
+        thinkingContent
+        thinkingSignature
       }
     }
   }
@@ -6038,6 +6394,8 @@ query GetConversation($id: ID!, $correlationId: String) {
         mimeType
         uri
       }
+      thinkingContent
+      thinkingSignature
     }
     transcriptUri
     turns {
@@ -6449,6 +6807,8 @@ mutation Prompt($prompt: String, $mimeType: String, $data: String, $specificatio
         mimeType
         uri
       }
+      thinkingContent
+      thinkingSignature
     }
     error
   }
@@ -6610,6 +6970,8 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
         mimeType
         uri
       }
+      thinkingContent
+      thinkingSignature
     }
     messageCount
     facets {
@@ -6801,6 +7163,8 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
           mimeType
           uri
         }
+        thinkingContent
+        thinkingSignature
       }
     }
   }
@@ -7089,6 +7453,8 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
           mimeType
           uri
         }
+        thinkingContent
+        thinkingSignature
       }
       transcriptUri
       turns {
@@ -7467,6 +7833,8 @@ query QueryConversationsClusters($filter: ConversationFilter, $clusters: EntityC
           mimeType
           uri
         }
+        thinkingContent
+        thinkingSignature
       }
       transcriptUri
       turns {
@@ -8003,6 +8371,8 @@ mutation ReviseContent($prompt: String!, $content: EntityReferenceInput!, $id: I
         mimeType
         uri
       }
+      thinkingContent
+      thinkingSignature
     }
     messageCount
   }
@@ -8159,6 +8529,8 @@ mutation ReviseEncodedImage($prompt: String!, $mimeType: String!, $data: String!
         mimeType
         uri
       }
+      thinkingContent
+      thinkingSignature
     }
     messageCount
   }
@@ -8314,6 +8686,8 @@ mutation ReviseImage($prompt: String!, $uri: URL!, $id: ID, $specification: Enti
         mimeType
         uri
       }
+      thinkingContent
+      thinkingSignature
     }
     messageCount
   }
@@ -8469,6 +8843,8 @@ mutation ReviseText($prompt: String!, $text: String!, $id: ID, $specification: E
         mimeType
         uri
       }
+      thinkingContent
+      thinkingSignature
     }
     messageCount
   }
@@ -9699,10 +10075,35 @@ query GetFeed($id: ID!, $correlationId: String) {
       exa {
         searchType
       }
+      crustdata {
+        signalType
+        companyDomain
+        companyLinkedInUrl
+        companyId
+        personLinkedInUrls
+        jobTitle
+        jobRegion
+        jobDescription
+      }
     }
     reddit {
       readLimit
       subredditName
+    }
+    linkedIn {
+      readLimit
+      listingType
+      companyDomain
+      companyLinkedInUrl
+      companyName
+      personLinkedInUrl
+      postTypes
+      keyword
+      datePosted
+      exactKeywordMatch
+      contentTypes
+      includeComments
+      maxComments
     }
     notion {
       readLimit
@@ -9879,6 +10280,45 @@ query GetFeed($id: ID!, $correlationId: String) {
       parallel {
         generator
         processor
+      }
+      crustdata {
+        personFilters {
+          titles
+          seniorityLevels
+          functionCategories
+          companyNames
+          companyDomains
+          companyLinkedInUrls
+          industries
+          regions
+          countries
+          skills
+          schools
+          minYearsExperience
+          maxYearsExperience
+          minConnections
+          recentlyChangedJobs
+        }
+        companyFilters {
+          names
+          domains
+          industries
+          categories
+          countries
+          locations
+          companyTypes
+          minEmployeeCount
+          maxEmployeeCount
+          minGrowth6mPercent
+          minGrowth12mPercent
+          fundingRoundTypes
+          minFundingDate
+          minTotalFundingUsd
+          minRevenueLowerBoundUsd
+          maxRevenueUpperBoundUsd
+          minYearFounded
+          maxYearFounded
+        }
       }
     }
     error
@@ -10517,10 +10957,35 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         exa {
           searchType
         }
+        crustdata {
+          signalType
+          companyDomain
+          companyLinkedInUrl
+          companyId
+          personLinkedInUrls
+          jobTitle
+          jobRegion
+          jobDescription
+        }
       }
       reddit {
         readLimit
         subredditName
+      }
+      linkedIn {
+        readLimit
+        listingType
+        companyDomain
+        companyLinkedInUrl
+        companyName
+        personLinkedInUrl
+        postTypes
+        keyword
+        datePosted
+        exactKeywordMatch
+        contentTypes
+        includeComments
+        maxComments
       }
       notion {
         readLimit
@@ -10697,6 +11162,45 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         parallel {
           generator
           processor
+        }
+        crustdata {
+          personFilters {
+            titles
+            seniorityLevels
+            functionCategories
+            companyNames
+            companyDomains
+            companyLinkedInUrls
+            industries
+            regions
+            countries
+            skills
+            schools
+            minYearsExperience
+            maxYearsExperience
+            minConnections
+            recentlyChangedJobs
+          }
+          companyFilters {
+            names
+            domains
+            industries
+            categories
+            countries
+            locations
+            companyTypes
+            minEmployeeCount
+            maxEmployeeCount
+            minGrowth6mPercent
+            minGrowth12mPercent
+            fundingRoundTypes
+            minFundingDate
+            minTotalFundingUsd
+            minRevenueLowerBoundUsd
+            maxRevenueUpperBoundUsd
+            minYearFounded
+            maxYearFounded
+          }
         }
       }
       error
@@ -15550,6 +16054,10 @@ mutation CreatePersona($persona: PersonaInput!) {
     id
     name
     state
+    identifier
+    platform
+    displayName
+    timezone
     role
   }
 }
@@ -15597,6 +16105,10 @@ query GetPersona($id: ID!, $correlationId: String) {
       id
     }
     state
+    identifier
+    platform
+    displayName
+    timezone
     role
     instructions
     facts {
@@ -15620,6 +16132,10 @@ query QueryPersonas($filter: PersonaFilter, $correlationId: String) {
         id
       }
       state
+      identifier
+      platform
+      displayName
+      timezone
       role
       instructions
       facts {
@@ -15637,6 +16153,10 @@ mutation UpdatePersona($persona: PersonaUpdateInput!) {
     id
     name
     state
+    identifier
+    platform
+    displayName
+    timezone
     role
   }
 }
@@ -17352,6 +17872,8 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
         mimeType
         uri
       }
+      thinkingContent
+      thinkingSignature
     }
     error
   }
@@ -17775,6 +18297,10 @@ query GetUser {
       id
       name
       state
+      identifier
+      platform
+      displayName
+      timezone
       role
       instructions
       facts {
@@ -17861,6 +18387,10 @@ query GetUserByIdentifier($identifier: String!) {
       id
       name
       state
+      identifier
+      platform
+      displayName
+      timezone
       role
       instructions
       facts {
@@ -17948,6 +18478,10 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
         id
         name
         state
+        identifier
+        platform
+        displayName
+        timezone
         role
         instructions
         facts {
@@ -19241,6 +19775,9 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
             processor
             isSynchronous
           }
+          crustdata {
+            isRealtime
+          }
         }
       }
       entityResolution {
@@ -19541,6 +20078,9 @@ query GetWorkflow($id: ID!, $correlationId: String) {
             processor
             isSynchronous
           }
+          crustdata {
+            isRealtime
+          }
         }
       }
       entityResolution {
@@ -19812,6 +20352,9 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
               processor
               isSynchronous
             }
+            crustdata {
+              isRealtime
+            }
           }
         }
         entityResolution {
@@ -20077,6 +20620,9 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
             processor
             isSynchronous
           }
+          crustdata {
+            isRealtime
+          }
         }
       }
       entityResolution {
@@ -20340,6 +20886,9 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
           parallel {
             processor
             isSynchronous
+          }
+          crustdata {
+            isRealtime
           }
         }
       }

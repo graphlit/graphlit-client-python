@@ -8,6 +8,10 @@ query GetPersona($id: ID!, $correlationId: String) {
       id
     }
     state
+    identifier
+    platform
+    displayName
+    timezone
     role
     instructions
     facts {

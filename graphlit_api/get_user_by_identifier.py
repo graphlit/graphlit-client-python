@@ -134,6 +134,10 @@ class GetUserByIdentifierUserByIdentifierPersonas(BaseModel):
     id: str
     name: str
     state: EntityState
+    identifier: Optional[str]
+    platform: Optional[str]
+    display_name: Optional[str] = Field(alias="displayName")
+    timezone: Optional[str]
     role: Optional[str]
     instructions: Optional[str]
     facts: Optional[list["GetUserByIdentifierUserByIdentifierPersonasFacts"]]

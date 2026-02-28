@@ -1,0 +1,8 @@
+mutation CreateAgent($agent: AgentInput!, $correlationId: String) {
+  createAgent(agent: $agent, correlationId: $correlationId) {
+    id
+    name
+    state
+    type
+  }
+}

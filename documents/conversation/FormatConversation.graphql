@@ -140,6 +140,8 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
         mimeType
         uri
       }
+      thinkingContent
+      thinkingSignature
     }
     messageCount
     facets {
@@ -331,6 +333,8 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
           mimeType
           uri
         }
+        thinkingContent
+        thinkingSignature
       }
     }
   }

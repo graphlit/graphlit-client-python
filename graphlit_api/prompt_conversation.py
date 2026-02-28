@@ -64,6 +64,8 @@ class PromptConversationPromptConversationMessage(BaseModel):
     artifacts: Optional[
         list[Optional["PromptConversationPromptConversationMessageArtifacts"]]
     ]
+    thinking_content: Optional[str] = Field(alias="thinkingContent")
+    thinking_signature: Optional[str] = Field(alias="thinkingSignature")
 
 
 class PromptConversationPromptConversationMessageCitations(BaseModel):
@@ -298,6 +300,8 @@ class PromptConversationPromptConversationDetailsMessages(BaseModel):
     artifacts: Optional[
         list[Optional["PromptConversationPromptConversationDetailsMessagesArtifacts"]]
     ]
+    thinking_content: Optional[str] = Field(alias="thinkingContent")
+    thinking_signature: Optional[str] = Field(alias="thinkingSignature")
 
 
 class PromptConversationPromptConversationDetailsMessagesCitations(BaseModel):

@@ -51,6 +51,8 @@ class PromptPromptMessages(BaseModel):
     tool_call_id: Optional[str] = Field(alias="toolCallId")
     tool_call_response: Optional[str] = Field(alias="toolCallResponse")
     artifacts: Optional[list[Optional["PromptPromptMessagesArtifacts"]]]
+    thinking_content: Optional[str] = Field(alias="thinkingContent")
+    thinking_signature: Optional[str] = Field(alias="thinkingSignature")
 
 
 class PromptPromptMessagesCitations(BaseModel):

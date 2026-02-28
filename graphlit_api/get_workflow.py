@@ -381,6 +381,7 @@ class GetWorkflowWorkflowEnrichmentJobsConnector(BaseModel):
     fhir: Optional["GetWorkflowWorkflowEnrichmentJobsConnectorFhir"]
     diffbot: Optional["GetWorkflowWorkflowEnrichmentJobsConnectorDiffbot"]
     parallel: Optional["GetWorkflowWorkflowEnrichmentJobsConnectorParallel"]
+    crustdata: Optional["GetWorkflowWorkflowEnrichmentJobsConnectorCrustdata"]
 
 
 class GetWorkflowWorkflowEnrichmentJobsConnectorFhir(BaseModel):
@@ -394,6 +395,10 @@ class GetWorkflowWorkflowEnrichmentJobsConnectorDiffbot(BaseModel):
 class GetWorkflowWorkflowEnrichmentJobsConnectorParallel(BaseModel):
     processor: Optional[ParallelProcessors]
     is_synchronous: Optional[bool] = Field(alias="isSynchronous")
+
+
+class GetWorkflowWorkflowEnrichmentJobsConnectorCrustdata(BaseModel):
+    is_realtime: Optional[bool] = Field(alias="isRealtime")
 
 
 class GetWorkflowWorkflowEnrichmentEntityResolution(BaseModel):

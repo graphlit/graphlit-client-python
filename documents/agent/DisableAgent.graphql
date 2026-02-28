@@ -1,0 +1,6 @@
+mutation DisableAgent($id: ID!) {
+  disableAgent(id: $id) {
+    id
+    state
+  }
+}

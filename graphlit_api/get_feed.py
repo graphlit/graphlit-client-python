@@ -18,6 +18,7 @@ from .enums import (
     CalendarListingTypes,
     ConfluenceAuthenticationTypes,
     ConfluenceTypes,
+    CrustdataWatcherSignalTypes,
     DropboxAuthenticationTypes,
     EmailListingTypes,
     EntityState,
@@ -43,6 +44,8 @@ from .enums import (
     IntercomIssueAuthenticationTypes,
     JiraAuthenticationTypes,
     LinearIssueAuthenticationTypes,
+    LinkedInPostContentTypes,
+    LinkedInPostListingTypes,
     MeetingContentTypes,
     MicrosoftCalendarAuthenticationTypes,
     MicrosoftContactsAuthenticationTypes,
@@ -99,6 +102,7 @@ class GetFeedFeed(BaseModel):
     web: Optional["GetFeedFeedWeb"]
     search: Optional["GetFeedFeedSearch"]
     reddit: Optional["GetFeedFeedReddit"]
+    linked_in: Optional["GetFeedFeedLinkedIn"] = Field(alias="linkedIn")
     notion: Optional["GetFeedFeedNotion"]
     confluence: Optional["GetFeedFeedConfluence"]
     intercom: Optional["GetFeedFeedIntercom"]
@@ -795,17 +799,47 @@ class GetFeedFeedWeb(BaseModel):
 class GetFeedFeedSearch(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     type: Optional[SearchServiceTypes]
-    text: str
+    text: Optional[str]
     exa: Optional["GetFeedFeedSearchExa"]
+    crustdata: Optional["GetFeedFeedSearchCrustdata"]
 
 
 class GetFeedFeedSearchExa(BaseModel):
     search_type: Optional[ExaSearchTypes] = Field(alias="searchType")
 
 
+class GetFeedFeedSearchCrustdata(BaseModel):
+    signal_type: Optional[CrustdataWatcherSignalTypes] = Field(alias="signalType")
+    company_domain: Optional[str] = Field(alias="companyDomain")
+    company_linked_in_url: Optional[str] = Field(alias="companyLinkedInUrl")
+    company_id: Optional[str] = Field(alias="companyId")
+    person_linked_in_urls: Optional[list[str]] = Field(alias="personLinkedInUrls")
+    job_title: Optional[str] = Field(alias="jobTitle")
+    job_region: Optional[str] = Field(alias="jobRegion")
+    job_description: Optional[str] = Field(alias="jobDescription")
+
+
 class GetFeedFeedReddit(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     subreddit_name: str = Field(alias="subredditName")
+
+
+class GetFeedFeedLinkedIn(BaseModel):
+    read_limit: Optional[int] = Field(alias="readLimit")
+    listing_type: Optional[LinkedInPostListingTypes] = Field(alias="listingType")
+    company_domain: Optional[str] = Field(alias="companyDomain")
+    company_linked_in_url: Optional[str] = Field(alias="companyLinkedInUrl")
+    company_name: Optional[str] = Field(alias="companyName")
+    person_linked_in_url: Optional[str] = Field(alias="personLinkedInUrl")
+    post_types: Optional[str] = Field(alias="postTypes")
+    keyword: Optional[str]
+    date_posted: Optional[str] = Field(alias="datePosted")
+    exact_keyword_match: Optional[bool] = Field(alias="exactKeywordMatch")
+    content_types: Optional[list[Optional[LinkedInPostContentTypes]]] = Field(
+        alias="contentTypes"
+    )
+    include_comments: Optional[bool] = Field(alias="includeComments")
+    max_comments: Optional[int] = Field(alias="maxComments")
 
 
 class GetFeedFeedNotion(BaseModel):
@@ -1038,14 +1072,63 @@ class GetFeedFeedResearchParallel(BaseModel):
 
 class GetFeedFeedEntity(BaseModel):
     type: FeedServiceTypes
-    query: str
+    query: Optional[str]
     read_limit: Optional[int] = Field(alias="readLimit")
     parallel: Optional["GetFeedFeedEntityParallel"]
+    crustdata: Optional["GetFeedFeedEntityCrustdata"]
 
 
 class GetFeedFeedEntityParallel(BaseModel):
     generator: Optional[ParallelGenerators]
     processor: Optional[ParallelProcessors]
+
+
+class GetFeedFeedEntityCrustdata(BaseModel):
+    person_filters: Optional["GetFeedFeedEntityCrustdataPersonFilters"] = Field(
+        alias="personFilters"
+    )
+    company_filters: Optional["GetFeedFeedEntityCrustdataCompanyFilters"] = Field(
+        alias="companyFilters"
+    )
+
+
+class GetFeedFeedEntityCrustdataPersonFilters(BaseModel):
+    titles: Optional[list[str]]
+    seniority_levels: Optional[list[str]] = Field(alias="seniorityLevels")
+    function_categories: Optional[list[str]] = Field(alias="functionCategories")
+    company_names: Optional[list[str]] = Field(alias="companyNames")
+    company_domains: Optional[list[str]] = Field(alias="companyDomains")
+    company_linked_in_urls: Optional[list[str]] = Field(alias="companyLinkedInUrls")
+    industries: Optional[list[str]]
+    regions: Optional[list[str]]
+    countries: Optional[list[str]]
+    skills: Optional[list[str]]
+    schools: Optional[list[str]]
+    min_years_experience: Optional[int] = Field(alias="minYearsExperience")
+    max_years_experience: Optional[int] = Field(alias="maxYearsExperience")
+    min_connections: Optional[int] = Field(alias="minConnections")
+    recently_changed_jobs: Optional[bool] = Field(alias="recentlyChangedJobs")
+
+
+class GetFeedFeedEntityCrustdataCompanyFilters(BaseModel):
+    names: Optional[list[str]]
+    domains: Optional[list[str]]
+    industries: Optional[list[str]]
+    categories: Optional[list[str]]
+    countries: Optional[list[str]]
+    locations: Optional[list[str]]
+    company_types: Optional[list[str]] = Field(alias="companyTypes")
+    min_employee_count: Optional[int] = Field(alias="minEmployeeCount")
+    max_employee_count: Optional[int] = Field(alias="maxEmployeeCount")
+    min_growth_6_m_percent: Optional[Any] = Field(alias="minGrowth6mPercent")
+    min_growth_12_m_percent: Optional[Any] = Field(alias="minGrowth12mPercent")
+    funding_round_types: Optional[list[str]] = Field(alias="fundingRoundTypes")
+    min_funding_date: Optional[Any] = Field(alias="minFundingDate")
+    min_total_funding_usd: Optional[Any] = Field(alias="minTotalFundingUsd")
+    min_revenue_lower_bound_usd: Optional[Any] = Field(alias="minRevenueLowerBoundUsd")
+    max_revenue_upper_bound_usd: Optional[Any] = Field(alias="maxRevenueUpperBoundUsd")
+    min_year_founded: Optional[int] = Field(alias="minYearFounded")
+    max_year_founded: Optional[int] = Field(alias="maxYearFounded")
 
 
 class GetFeedFeedWorkflow(BaseModel):
@@ -1112,3 +1195,4 @@ GetFeedFeedHubSpotConversations.model_rebuild()
 GetFeedFeedIntercomConversations.model_rebuild()
 GetFeedFeedResearch.model_rebuild()
 GetFeedFeedEntity.model_rebuild()
+GetFeedFeedEntityCrustdata.model_rebuild()

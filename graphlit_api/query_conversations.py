@@ -81,6 +81,8 @@ class QueryConversationsConversationsResultsMessages(BaseModel):
     artifacts: Optional[
         list[Optional["QueryConversationsConversationsResultsMessagesArtifacts"]]
     ]
+    thinking_content: Optional[str] = Field(alias="thinkingContent")
+    thinking_signature: Optional[str] = Field(alias="thinkingSignature")
 
 
 class QueryConversationsConversationsResultsMessagesCitations(BaseModel):

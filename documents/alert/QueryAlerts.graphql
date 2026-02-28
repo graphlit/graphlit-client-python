@@ -146,6 +146,7 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
           seed {
             id
           }
+          size
         }
         googleImage {
           model
@@ -153,6 +154,8 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
           seed {
             id
           }
+          resolution
+          aspectRatio
         }
         quiverImage {
           model

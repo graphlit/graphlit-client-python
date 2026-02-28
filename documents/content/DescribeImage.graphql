@@ -136,5 +136,7 @@ mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityRefer
       mimeType
       uri
     }
+    thinkingContent
+    thinkingSignature
   }
 }

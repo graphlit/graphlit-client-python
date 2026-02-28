@@ -149,6 +149,8 @@ query QueryConversationsClusters($filter: ConversationFilter, $clusters: EntityC
           mimeType
           uri
         }
+        thinkingContent
+        thinkingSignature
       }
       transcriptUri
       turns {

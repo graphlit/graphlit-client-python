@@ -473,10 +473,35 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         exa {
           searchType
         }
+        crustdata {
+          signalType
+          companyDomain
+          companyLinkedInUrl
+          companyId
+          personLinkedInUrls
+          jobTitle
+          jobRegion
+          jobDescription
+        }
       }
       reddit {
         readLimit
         subredditName
+      }
+      linkedIn {
+        readLimit
+        listingType
+        companyDomain
+        companyLinkedInUrl
+        companyName
+        personLinkedInUrl
+        postTypes
+        keyword
+        datePosted
+        exactKeywordMatch
+        contentTypes
+        includeComments
+        maxComments
       }
       notion {
         readLimit
@@ -653,6 +678,45 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         parallel {
           generator
           processor
+        }
+        crustdata {
+          personFilters {
+            titles
+            seniorityLevels
+            functionCategories
+            companyNames
+            companyDomains
+            companyLinkedInUrls
+            industries
+            regions
+            countries
+            skills
+            schools
+            minYearsExperience
+            maxYearsExperience
+            minConnections
+            recentlyChangedJobs
+          }
+          companyFilters {
+            names
+            domains
+            industries
+            categories
+            countries
+            locations
+            companyTypes
+            minEmployeeCount
+            maxEmployeeCount
+            minGrowth6mPercent
+            minGrowth12mPercent
+            fundingRoundTypes
+            minFundingDate
+            minTotalFundingUsd
+            minRevenueLowerBoundUsd
+            maxRevenueUpperBoundUsd
+            minYearFounded
+            maxYearFounded
+          }
         }
       }
       error

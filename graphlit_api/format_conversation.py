@@ -64,6 +64,8 @@ class FormatConversationFormatConversationMessage(BaseModel):
     artifacts: Optional[
         list[Optional["FormatConversationFormatConversationMessageArtifacts"]]
     ]
+    thinking_content: Optional[str] = Field(alias="thinkingContent")
+    thinking_signature: Optional[str] = Field(alias="thinkingSignature")
 
 
 class FormatConversationFormatConversationMessageCitations(BaseModel):
@@ -298,6 +300,8 @@ class FormatConversationFormatConversationDetailsMessages(BaseModel):
     artifacts: Optional[
         list[Optional["FormatConversationFormatConversationDetailsMessagesArtifacts"]]
     ]
+    thinking_content: Optional[str] = Field(alias="thinkingContent")
+    thinking_signature: Optional[str] = Field(alias="thinkingSignature")
 
 
 class FormatConversationFormatConversationDetailsMessagesCitations(BaseModel):

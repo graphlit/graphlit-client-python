@@ -1,0 +1,6 @@
+mutation DeleteAgent($id: ID!) {
+  deleteAgent(id: $id) {
+    id
+    state
+  }
+}

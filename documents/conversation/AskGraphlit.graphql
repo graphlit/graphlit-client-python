@@ -140,6 +140,8 @@ mutation AskGraphlit($prompt: String!, $type: SdkTypes, $id: ID, $specification:
         mimeType
         uri
       }
+      thinkingContent
+      thinkingSignature
     }
     messageCount
   }

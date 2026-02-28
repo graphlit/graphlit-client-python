@@ -136,5 +136,7 @@ mutation DescribeEncodedImage($prompt: String!, $mimeType: String!, $data: Strin
       mimeType
       uri
     }
+    thinkingContent
+    thinkingSignature
   }
 }

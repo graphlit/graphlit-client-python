@@ -147,6 +147,8 @@ query GetConversation($id: ID!, $correlationId: String) {
         mimeType
         uri
       }
+      thinkingContent
+      thinkingSignature
     }
     transcriptUri
     turns {

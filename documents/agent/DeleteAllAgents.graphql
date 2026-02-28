@@ -1,0 +1,6 @@
+mutation DeleteAllAgents($filter: AgentFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllAgents(filter: $filter, isSynchronous: $isSynchronous, correlationId: $correlationId) {
+    id
+    state
+  }
+}

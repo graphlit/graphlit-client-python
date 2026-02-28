@@ -57,6 +57,8 @@ class ReviseEncodedImageReviseEncodedImageMessage(BaseModel):
     artifacts: Optional[
         list[Optional["ReviseEncodedImageReviseEncodedImageMessageArtifacts"]]
     ]
+    thinking_content: Optional[str] = Field(alias="thinkingContent")
+    thinking_signature: Optional[str] = Field(alias="thinkingSignature")
 
 
 class ReviseEncodedImageReviseEncodedImageMessageCitations(BaseModel):

@@ -202,6 +202,9 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
             processor
             isSynchronous
           }
+          crustdata {
+            isRealtime
+          }
         }
       }
       entityResolution {

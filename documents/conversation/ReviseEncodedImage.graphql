@@ -140,6 +140,8 @@ mutation ReviseEncodedImage($prompt: String!, $mimeType: String!, $data: String!
         mimeType
         uri
       }
+      thinkingContent
+      thinkingSignature
     }
     messageCount
   }

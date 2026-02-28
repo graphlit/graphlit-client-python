@@ -1,0 +1,6 @@
+mutation DeleteAgents($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteAgents(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}
