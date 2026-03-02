@@ -13,6 +13,7 @@ from .enums import (
     FileTypes,
     FilterMode,
     ObservableTypes,
+    TimedPolicyRecurrenceTypes,
 )
 
 
@@ -36,6 +37,11 @@ class QueryAgentsAgentsResults(BaseModel):
     type: AgentTypes
     specification: Optional["QueryAgentsAgentsResultsSpecification"]
     filter: Optional["QueryAgentsAgentsResultsFilter"]
+    schedule_policy: Optional["QueryAgentsAgentsResultsSchedulePolicy"] = Field(
+        alias="schedulePolicy"
+    )
+    timeout: Optional[Any]
+    scratchpad: Optional[str]
 
 
 class QueryAgentsAgentsResultsOwner(BaseModel):
@@ -197,6 +203,15 @@ class QueryAgentsAgentsResultsFilterAndObservations(BaseModel):
 
 class QueryAgentsAgentsResultsFilterAndObservationsObservable(BaseModel):
     id: str
+
+
+class QueryAgentsAgentsResultsSchedulePolicy(BaseModel):
+    recurrence_type: Optional[TimedPolicyRecurrenceTypes] = Field(
+        alias="recurrenceType"
+    )
+    repeat_interval: Optional[Any] = Field(alias="repeatInterval")
+    cron: Optional[str]
+    time_zone_id: Optional[str] = Field(alias="timeZoneId")
 
 
 QueryAgents.model_rebuild()

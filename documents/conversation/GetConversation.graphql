@@ -165,6 +165,9 @@ query GetConversation($id: ID!, $correlationId: String) {
       text
       relevance
     }
+    agent {
+      id
+    }
     persona {
       id
       name

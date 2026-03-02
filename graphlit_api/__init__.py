@@ -976,6 +976,7 @@ from .get_agent import (
     GetAgentAgentFilterUsers,
     GetAgentAgentFilterWorkflows,
     GetAgentAgentOwner,
+    GetAgentAgentSchedulePolicy,
     GetAgentAgentSpecification,
 )
 from .get_alert import (
@@ -1114,6 +1115,7 @@ from .get_content import (
 from .get_conversation import (
     GetConversation,
     GetConversationConversation,
+    GetConversationConversationAgent,
     GetConversationConversationAugmentedFilter,
     GetConversationConversationAugmentedFilterAnd,
     GetConversationConversationAugmentedFilterAndCollections,
@@ -1838,6 +1840,7 @@ from .input_types import (
     AddressInput,
     AgentFilter,
     AgentInput,
+    AgentSchedulePolicyInput,
     AgentUpdateInput,
     AlertFilter,
     AlertInput,
@@ -2349,6 +2352,11 @@ from .input_types import (
 )
 from .is_content_done import IsContentDone, IsContentDoneIsContentDone
 from .is_feed_done import IsFeedDone, IsFeedDoneIsFeedDone
+from .lookup_companies import (
+    LookupCompanies,
+    LookupCompaniesLookupCompanies,
+    LookupCompaniesLookupCompaniesResults,
+)
 from .lookup_contents import (
     LookupContents,
     LookupContentsLookupContents,
@@ -2412,6 +2420,11 @@ from .lookup_entity import (
     LookupEntityLookupEntityEntity,
     LookupEntityLookupEntityRelationships,
     LookupEntityLookupEntityRelationshipsEntity,
+)
+from .lookup_persons import (
+    LookupPersons,
+    LookupPersonsLookupPersons,
+    LookupPersonsLookupPersonsResults,
 )
 from .lookup_usage import LookupUsage, LookupUsageLookupUsage
 from .map_web import MapWeb, MapWebMapWeb
@@ -2676,9 +2689,11 @@ from .operations import (
     INGEST_URI_GQL,
     IS_CONTENT_DONE_GQL,
     IS_FEED_DONE_GQL,
+    LOOKUP_COMPANIES_GQL,
     LOOKUP_CONTENTS_GQL,
     LOOKUP_CREDITS_GQL,
     LOOKUP_ENTITY_GQL,
+    LOOKUP_PERSONS_GQL,
     LOOKUP_USAGE_GQL,
     MAP_WEB_GQL,
     MATCH_ENTITY_GQL,
@@ -2985,6 +3000,7 @@ from .query_agents import (
     QueryAgentsAgentsResultsFilterUsers,
     QueryAgentsAgentsResultsFilterWorkflows,
     QueryAgentsAgentsResultsOwner,
+    QueryAgentsAgentsResultsSchedulePolicy,
     QueryAgentsAgentsResultsSpecification,
 )
 from .query_alerts import (
@@ -3227,6 +3243,7 @@ from .query_conversations import (
     QueryConversations,
     QueryConversationsConversations,
     QueryConversationsConversationsResults,
+    QueryConversationsConversationsResultsAgent,
     QueryConversationsConversationsResultsAugmentedFilter,
     QueryConversationsConversationsResultsAugmentedFilterAnd,
     QueryConversationsConversationsResultsAugmentedFilterAndCollections,
@@ -3301,6 +3318,7 @@ from .query_conversations_clusters import (
     QueryConversationsClustersConversationsClusters,
     QueryConversationsClustersConversationsClustersEntities,
     QueryConversationsClustersConversationsResults,
+    QueryConversationsClustersConversationsResultsAgent,
     QueryConversationsClustersConversationsResultsAugmentedFilter,
     QueryConversationsClustersConversationsResultsAugmentedFilterAnd,
     QueryConversationsClustersConversationsResultsAugmentedFilterAndCollections,
@@ -4962,6 +4980,7 @@ __all__ = [
     "AddressInput",
     "AgentFilter",
     "AgentInput",
+    "AgentSchedulePolicyInput",
     "AgentTypes",
     "AgentUpdateInput",
     "AlertFilter",
@@ -6141,6 +6160,7 @@ __all__ = [
     "GetAgentAgentFilterUsers",
     "GetAgentAgentFilterWorkflows",
     "GetAgentAgentOwner",
+    "GetAgentAgentSchedulePolicy",
     "GetAgentAgentSpecification",
     "GetAlert",
     "GetAlertAlert",
@@ -6271,6 +6291,7 @@ __all__ = [
     "GetContentContentWorkflow",
     "GetConversation",
     "GetConversationConversation",
+    "GetConversationConversationAgent",
     "GetConversationConversationAugmentedFilter",
     "GetConversationConversationAugmentedFilterAnd",
     "GetConversationConversationAugmentedFilterAndCollections",
@@ -7055,9 +7076,11 @@ __all__ = [
     "JiraProjectsInput",
     "KrispPropertiesInput",
     "KrispPropertiesUpdateInput",
+    "LOOKUP_COMPANIES_GQL",
     "LOOKUP_CONTENTS_GQL",
     "LOOKUP_CREDITS_GQL",
     "LOOKUP_ENTITY_GQL",
+    "LOOKUP_PERSONS_GQL",
     "LOOKUP_USAGE_GQL",
     "LabelFacetInput",
     "LabelFacetTypes",
@@ -7077,6 +7100,9 @@ __all__ = [
     "LinkedInFeedPropertiesUpdateInput",
     "LinkedInPostContentTypes",
     "LinkedInPostListingTypes",
+    "LookupCompanies",
+    "LookupCompaniesLookupCompanies",
+    "LookupCompaniesLookupCompaniesResults",
     "LookupContents",
     "LookupContentsLookupContents",
     "LookupContentsLookupContentsResults",
@@ -7138,6 +7164,9 @@ __all__ = [
     "LookupEntityLookupEntityEntity",
     "LookupEntityLookupEntityRelationships",
     "LookupEntityLookupEntityRelationshipsEntity",
+    "LookupPersons",
+    "LookupPersonsLookupPersons",
+    "LookupPersonsLookupPersonsResults",
     "LookupUsage",
     "LookupUsageLookupUsage",
     "MAP_WEB_GQL",
@@ -7559,6 +7588,7 @@ __all__ = [
     "QueryAgentsAgentsResultsFilterUsers",
     "QueryAgentsAgentsResultsFilterWorkflows",
     "QueryAgentsAgentsResultsOwner",
+    "QueryAgentsAgentsResultsSchedulePolicy",
     "QueryAgentsAgentsResultsSpecification",
     "QueryAlerts",
     "QueryAlertsAlerts",
@@ -7771,6 +7801,7 @@ __all__ = [
     "QueryConversationsClustersConversationsClusters",
     "QueryConversationsClustersConversationsClustersEntities",
     "QueryConversationsClustersConversationsResults",
+    "QueryConversationsClustersConversationsResultsAgent",
     "QueryConversationsClustersConversationsResultsAugmentedFilter",
     "QueryConversationsClustersConversationsResultsAugmentedFilterAnd",
     "QueryConversationsClustersConversationsResultsAugmentedFilterAndCollections",
@@ -7840,6 +7871,7 @@ __all__ = [
     "QueryConversationsClustersConversationsResultsTurnsMessages",
     "QueryConversationsConversations",
     "QueryConversationsConversationsResults",
+    "QueryConversationsConversationsResultsAgent",
     "QueryConversationsConversationsResultsAugmentedFilter",
     "QueryConversationsConversationsResultsAugmentedFilterAnd",
     "QueryConversationsConversationsResultsAugmentedFilterAndCollections",

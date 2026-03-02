@@ -41,6 +41,7 @@ class QueryConversationsConversationsResults(BaseModel):
     messages: Optional[list[Optional["QueryConversationsConversationsResultsMessages"]]]
     transcript_uri: Optional[Any] = Field(alias="transcriptUri")
     turns: Optional[list[Optional["QueryConversationsConversationsResultsTurns"]]]
+    agent: Optional["QueryConversationsConversationsResultsAgent"]
     persona: Optional["QueryConversationsConversationsResultsPersona"]
     specification: Optional["QueryConversationsConversationsResultsSpecification"]
     fallbacks: Optional[
@@ -245,6 +246,10 @@ class QueryConversationsConversationsResultsTurnsMessages(BaseModel):
     message: Optional[str]
     tokens: Optional[int]
     timestamp: Optional[Any]
+
+
+class QueryConversationsConversationsResultsAgent(BaseModel):
+    id: str
 
 
 class QueryConversationsConversationsResultsPersona(BaseModel):

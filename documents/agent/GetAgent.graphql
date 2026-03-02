@@ -107,5 +107,13 @@ query GetAgent($id: ID!, $correlationId: String) {
       collectionMode
       observationMode
     }
+    schedulePolicy {
+      recurrenceType
+      repeatInterval
+      cron
+      timeZoneId
+    }
+    timeout
+    scratchpad
   }
 }

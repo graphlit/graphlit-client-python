@@ -428,9 +428,11 @@ from .input_types import (
 )
 from .is_content_done import IsContentDone
 from .is_feed_done import IsFeedDone
+from .lookup_companies import LookupCompanies
 from .lookup_contents import LookupContents
 from .lookup_credits import LookupCredits
 from .lookup_entity import LookupEntity
+from .lookup_persons import LookupPersons
 from .lookup_usage import LookupUsage
 from .map_web import MapWeb
 from .match_entity import MatchEntity
@@ -689,9 +691,11 @@ from .operations import (
     INGEST_URI_GQL,
     IS_CONTENT_DONE_GQL,
     IS_FEED_DONE_GQL,
+    LOOKUP_COMPANIES_GQL,
     LOOKUP_CONTENTS_GQL,
     LOOKUP_CREDITS_GQL,
     LOOKUP_ENTITY_GQL,
+    LOOKUP_PERSONS_GQL,
     LOOKUP_USAGE_GQL,
     MAP_WEB_GQL,
     MATCH_ENTITY_GQL,
@@ -2876,6 +2880,8 @@ class Client(AsyncBaseClient):
         system_prompt: Union[Optional[str], UnsetType] = UNSET,
         include_details: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        instructions: Union[Optional[str], UnsetType] = UNSET,
+        scratchpad: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> FormatConversation:
         variables: dict[str, object] = {
@@ -2887,6 +2893,8 @@ class Client(AsyncBaseClient):
             "systemPrompt": system_prompt,
             "includeDetails": include_details,
             "correlationId": correlation_id,
+            "instructions": instructions,
+            "scratchpad": scratchpad,
         }
         response = await self.execute(
             query=FORMAT_CONVERSATION_GQL,
@@ -2954,6 +2962,8 @@ class Client(AsyncBaseClient):
         require_tool: Union[Optional[bool], UnsetType] = UNSET,
         include_details: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        instructions: Union[Optional[str], UnsetType] = UNSET,
+        scratchpad: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> PromptConversation:
         variables: dict[str, object] = {
@@ -2968,6 +2978,8 @@ class Client(AsyncBaseClient):
             "requireTool": require_tool,
             "includeDetails": include_details,
             "correlationId": correlation_id,
+            "instructions": instructions,
+            "scratchpad": scratchpad,
         }
         response = await self.execute(
             query=PROMPT_CONVERSATION_GQL,
@@ -3898,6 +3910,43 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return IsFeedDone.model_validate(data)
+
+    async def lookup_companies(
+        self,
+        name: Union[Optional[str], UnsetType] = UNSET,
+        domain: Union[Optional[str], UnsetType] = UNSET,
+        linked_in_url: Union[Optional[Any], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> LookupCompanies:
+        variables: dict[str, object] = {
+            "name": name,
+            "domain": domain,
+            "linkedInUrl": linked_in_url,
+        }
+        response = await self.execute(
+            query=LOOKUP_COMPANIES_GQL,
+            operation_name="LookupCompanies",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return LookupCompanies.model_validate(data)
+
+    async def lookup_persons(
+        self,
+        linked_in_url: Union[Optional[Any], UnsetType] = UNSET,
+        email: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> LookupPersons:
+        variables: dict[str, object] = {"linkedInUrl": linked_in_url, "email": email}
+        response = await self.execute(
+            query=LOOKUP_PERSONS_GQL,
+            operation_name="LookupPersons",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return LookupPersons.model_validate(data)
 
     async def query_asana_projects(
         self, properties: AsanaProjectsInput, **kwargs: Any

@@ -193,6 +193,7 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
       formattedSources
       formattedObservables
       formattedInstructions
+      formattedScratchpad
       formattedTools
       formattedPersona
       specification

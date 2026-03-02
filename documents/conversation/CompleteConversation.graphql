@@ -193,6 +193,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
       formattedSources
       formattedObservables
       formattedInstructions
+      formattedScratchpad
       formattedTools
       formattedPersona
       specification

@@ -1,0 +1,18 @@
+query LookupCompanies($name: String, $domain: String, $linkedInUrl: URL) {
+  lookupCompanies(name: $name, domain: $domain, linkedInUrl: $linkedInUrl) {
+    results {
+      companyId
+      companyName
+      companyDomain
+      companyLinkedInUrl
+      headquarters
+      hqCountry
+      headcount
+      employeeCountRange
+      industries
+      estimatedRevenueLowerBound
+      estimatedRevenueUpperBound
+      logoUrl
+    }
+  }
+}

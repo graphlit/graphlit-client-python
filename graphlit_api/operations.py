@@ -256,9 +256,11 @@ __all__ = [
     "INGEST_URI_GQL",
     "IS_CONTENT_DONE_GQL",
     "IS_FEED_DONE_GQL",
+    "LOOKUP_COMPANIES_GQL",
     "LOOKUP_CONTENTS_GQL",
     "LOOKUP_CREDITS_GQL",
     "LOOKUP_ENTITY_GQL",
+    "LOOKUP_PERSONS_GQL",
     "LOOKUP_USAGE_GQL",
     "MAP_WEB_GQL",
     "MATCH_ENTITY_GQL",
@@ -621,6 +623,14 @@ query GetAgent($id: ID!, $correlationId: String) {
       collectionMode
       observationMode
     }
+    schedulePolicy {
+      recurrenceType
+      repeatInterval
+      cron
+      timeZoneId
+    }
+    timeout
+    scratchpad
   }
 }
 """
@@ -737,6 +747,14 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
         collectionMode
         observationMode
       }
+      schedulePolicy {
+        recurrenceType
+        repeatInterval
+        cron
+        timeZoneId
+      }
+      timeout
+      scratchpad
     }
   }
 }
@@ -5345,6 +5363,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
       formattedSources
       formattedObservables
       formattedInstructions
+      formattedScratchpad
       formattedTools
       formattedPersona
       specification
@@ -5693,6 +5712,7 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
       formattedSources
       formattedObservables
       formattedInstructions
+      formattedScratchpad
       formattedTools
       formattedPersona
       specification
@@ -5892,7 +5912,7 @@ mutation DeleteConversations($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 FORMAT_CONVERSATION_GQL = """
-mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $persona: EntityReferenceInput, $tools: [ToolDefinitionInput!], $systemPrompt: String, $includeDetails: Boolean, $correlationId: String) {
+mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $persona: EntityReferenceInput, $tools: [ToolDefinitionInput!], $systemPrompt: String, $includeDetails: Boolean, $correlationId: String, $instructions: String, $scratchpad: String) {
   formatConversation(
     prompt: $prompt
     id: $id
@@ -5902,6 +5922,8 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
     systemPrompt: $systemPrompt
     includeDetails: $includeDetails
     correlationId: $correlationId
+    instructions: $instructions
+    scratchpad: $scratchpad
   ) {
     conversation {
       id
@@ -6096,6 +6118,7 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
       formattedSources
       formattedObservables
       formattedInstructions
+      formattedScratchpad
       formattedTools
       formattedPersona
       specification
@@ -6411,6 +6434,9 @@ query GetConversation($id: ID!, $correlationId: String) {
       timestamp
       text
       relevance
+    }
+    agent {
+      id
     }
     persona {
       id
@@ -6816,7 +6842,7 @@ mutation Prompt($prompt: String, $mimeType: String, $data: String, $specificatio
 """
 
 PROMPT_CONVERSATION_GQL = """
-mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, $id: ID, $specification: EntityReferenceInput, $persona: EntityReferenceInput, $systemPrompt: String, $tools: [ToolDefinitionInput!], $requireTool: Boolean, $includeDetails: Boolean, $correlationId: String) {
+mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, $id: ID, $specification: EntityReferenceInput, $persona: EntityReferenceInput, $systemPrompt: String, $tools: [ToolDefinitionInput!], $requireTool: Boolean, $includeDetails: Boolean, $correlationId: String, $instructions: String, $scratchpad: String) {
   promptConversation(
     prompt: $prompt
     id: $id
@@ -6829,6 +6855,8 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
     requireTool: $requireTool
     includeDetails: $includeDetails
     correlationId: $correlationId
+    instructions: $instructions
+    scratchpad: $scratchpad
   ) {
     conversation {
       id
@@ -7023,6 +7051,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
       formattedSources
       formattedObservables
       formattedInstructions
+      formattedScratchpad
       formattedTools
       formattedPersona
       specification
@@ -7471,6 +7500,9 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         text
         relevance
       }
+      agent {
+        id
+      }
       persona {
         id
         name
@@ -7850,6 +7882,9 @@ query QueryConversationsClusters($filter: ConversationFilter, $clusters: EntityC
         timestamp
         text
         relevance
+      }
+      agent {
+        id
       }
       persona {
         id
@@ -10349,6 +10384,47 @@ IS_FEED_DONE_GQL = """
 query IsFeedDone($id: ID!) {
   isFeedDone(id: $id) {
     result
+  }
+}
+"""
+
+LOOKUP_COMPANIES_GQL = """
+query LookupCompanies($name: String, $domain: String, $linkedInUrl: URL) {
+  lookupCompanies(name: $name, domain: $domain, linkedInUrl: $linkedInUrl) {
+    results {
+      companyId
+      companyName
+      companyDomain
+      companyLinkedInUrl
+      headquarters
+      hqCountry
+      headcount
+      employeeCountRange
+      industries
+      estimatedRevenueLowerBound
+      estimatedRevenueUpperBound
+      logoUrl
+    }
+  }
+}
+"""
+
+LOOKUP_PERSONS_GQL = """
+query LookupPersons($linkedInUrl: URL, $email: String) {
+  lookupPersons(linkedInUrl: $linkedInUrl, email: $email) {
+    results {
+      name
+      title
+      headline
+      location
+      linkedInUrl
+      email
+      profilePictureUrl
+      currentCompany
+      currentTitle
+      skills
+      yearsOfExperience
+    }
   }
 }
 """

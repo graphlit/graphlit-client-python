@@ -507,6 +507,7 @@ class MailPriority(str, Enum):
 
 class ConversationTypes(str, Enum):
     CONTENT = "CONTENT"
+    AGENT = "AGENT"
 
 
 class OpenAIImageModels(str, Enum):
@@ -1570,7 +1571,7 @@ class ModelServiceTypes(str, Enum):
 
 
 class AgentTypes(str, Enum):
-    AUTOMATION = "AUTOMATION"
+    AGENT = "AGENT"
 
 
 class MicrosoftCalendarAuthenticationTypes(str, Enum):

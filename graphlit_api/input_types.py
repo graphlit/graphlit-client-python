@@ -2448,6 +2448,15 @@ class MetadataUpdateInput(BaseModel):
     content: Optional["EntityReferenceInput"] = None
 
 
+class AgentSchedulePolicyInput(BaseModel):
+    recurrence_type: Optional[TimedPolicyRecurrenceTypes] = Field(
+        alias="recurrenceType", default=None
+    )
+    repeat_interval: Optional[Any] = Field(alias="repeatInterval", default=None)
+    cron: Optional[str] = None
+    time_zone_id: Optional[str] = Field(alias="timeZoneId", default=None)
+
+
 class AttioFeedPropertiesInput(BaseModel):
     authentication_type: Optional[AttioFeedAuthenticationTypes] = Field(
         alias="authenticationType", default=None
@@ -2656,6 +2665,11 @@ class AgentInput(BaseModel):
     description: Optional[str] = None
     specification: Optional["EntityReferenceInput"] = None
     filter: Optional["ContentCriteriaInput"] = None
+    schedule_policy: Optional["AgentSchedulePolicyInput"] = Field(
+        alias="schedulePolicy", default=None
+    )
+    timeout: Optional[Any] = None
+    scratchpad: Optional[str] = None
 
 
 class CrustdataPersonDiscoveryFilterInput(BaseModel):
@@ -4043,6 +4057,7 @@ class ConversationInput(BaseModel):
     type: Optional[ConversationTypes] = None
     messages: Optional[list["ConversationMessageInput"]] = None
     tools: Optional[list["ToolDefinitionInput"]] = None
+    agent: Optional["EntityReferenceInput"] = None
     persona: Optional["EntityReferenceInput"] = None
     specification: Optional["EntityReferenceInput"] = None
     fallbacks: Optional[list[Optional["EntityReferenceInput"]]] = None
@@ -4050,6 +4065,7 @@ class ConversationInput(BaseModel):
     augmented_filter: Optional["ContentCriteriaInput"] = Field(
         alias="augmentedFilter", default=None
     )
+    scratchpad: Optional[str] = None
 
 
 class MedicalTestUpdateInput(BaseModel):
@@ -5346,6 +5362,7 @@ class ConversationUpdateInput(BaseModel):
     name: Optional[str] = None
     messages: Optional[list["ConversationMessageInput"]] = None
     tools: Optional[list["ToolDefinitionInput"]] = None
+    agent: Optional["EntityReferenceInput"] = None
     persona: Optional["EntityReferenceInput"] = None
     specification: Optional["EntityReferenceInput"] = None
     fallbacks: Optional[list[Optional["EntityReferenceInput"]]] = None
@@ -5353,6 +5370,7 @@ class ConversationUpdateInput(BaseModel):
     augmented_filter: Optional["ContentCriteriaInput"] = Field(
         alias="augmentedFilter", default=None
     )
+    scratchpad: Optional[str] = None
 
 
 class MedicalDeviceInput(BaseModel):
@@ -6603,6 +6621,11 @@ class AgentUpdateInput(BaseModel):
     description: Optional[str] = None
     specification: Optional["EntityReferenceInput"] = None
     filter: Optional["ContentCriteriaInput"] = None
+    schedule_policy: Optional["AgentSchedulePolicyInput"] = Field(
+        alias="schedulePolicy", default=None
+    )
+    timeout: Optional[Any] = None
+    scratchpad: Optional[str] = None
 
 
 class IssueFeedPropertiesInput(BaseModel):

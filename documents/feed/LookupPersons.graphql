@@ -1,0 +1,17 @@
+query LookupPersons($linkedInUrl: URL, $email: String) {
+  lookupPersons(linkedInUrl: $linkedInUrl, email: $email) {
+    results {
+      name
+      title
+      headline
+      location
+      linkedInUrl
+      email
+      profilePictureUrl
+      currentCompany
+      currentTitle
+      skills
+      yearsOfExperience
+    }
+  }
+}

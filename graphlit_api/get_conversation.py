@@ -38,6 +38,7 @@ class GetConversationConversation(BaseModel):
     messages: Optional[list[Optional["GetConversationConversationMessages"]]]
     transcript_uri: Optional[Any] = Field(alias="transcriptUri")
     turns: Optional[list[Optional["GetConversationConversationTurns"]]]
+    agent: Optional["GetConversationConversationAgent"]
     persona: Optional["GetConversationConversationPersona"]
     specification: Optional["GetConversationConversationSpecification"]
     fallbacks: Optional[list[Optional["GetConversationConversationFallbacks"]]]
@@ -228,6 +229,10 @@ class GetConversationConversationTurnsMessages(BaseModel):
     message: Optional[str]
     tokens: Optional[int]
     timestamp: Optional[Any]
+
+
+class GetConversationConversationAgent(BaseModel):
+    id: str
 
 
 class GetConversationConversationPersona(BaseModel):

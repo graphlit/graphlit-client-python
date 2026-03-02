@@ -268,6 +268,7 @@ class FormatConversationFormatConversationDetails(BaseModel):
     formatted_sources: Optional[str] = Field(alias="formattedSources")
     formatted_observables: Optional[str] = Field(alias="formattedObservables")
     formatted_instructions: Optional[str] = Field(alias="formattedInstructions")
+    formatted_scratchpad: Optional[str] = Field(alias="formattedScratchpad")
     formatted_tools: Optional[str] = Field(alias="formattedTools")
     formatted_persona: Optional[str] = Field(alias="formattedPersona")
     specification: Optional[str]
