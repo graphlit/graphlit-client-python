@@ -1,0 +1,5 @@
+query CountSkills($filter: SkillFilter, $correlationId: String) {
+  countSkills(filter: $filter, correlationId: $correlationId) {
+    count
+  }
+}

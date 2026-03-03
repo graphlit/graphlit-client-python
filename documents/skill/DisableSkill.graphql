@@ -1,0 +1,6 @@
+mutation DisableSkill($id: ID!) {
+  disableSkill(id: $id) {
+    id
+    state
+  }
+}

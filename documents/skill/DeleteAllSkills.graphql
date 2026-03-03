@@ -1,0 +1,6 @@
+mutation DeleteAllSkills($filter: SkillFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllSkills(filter: $filter, isSynchronous: $isSynchronous, correlationId: $correlationId) {
+    id
+    state
+  }
+}

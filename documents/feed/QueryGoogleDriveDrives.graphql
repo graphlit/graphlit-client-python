@@ -1,0 +1,8 @@
+query QueryGoogleDriveDrives($properties: GoogleDriveDrivesInput!) {
+  googleDriveDrives(properties: $properties) {
+    results {
+      driveId
+      driveName
+    }
+  }
+}

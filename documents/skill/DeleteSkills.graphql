@@ -1,0 +1,6 @@
+mutation DeleteSkills($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteSkills(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}

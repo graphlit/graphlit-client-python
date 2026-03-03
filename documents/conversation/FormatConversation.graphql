@@ -1,5 +1,5 @@
-mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $persona: EntityReferenceInput, $tools: [ToolDefinitionInput!], $systemPrompt: String, $includeDetails: Boolean, $correlationId: String, $instructions: String, $scratchpad: String) {
-  formatConversation(prompt: $prompt, id: $id, specification: $specification, persona: $persona, tools: $tools, systemPrompt: $systemPrompt, includeDetails: $includeDetails, correlationId: $correlationId, instructions: $instructions, scratchpad: $scratchpad) {
+mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $persona: EntityReferenceInput, $tools: [ToolDefinitionInput!], $systemPrompt: String, $includeDetails: Boolean, $correlationId: String, $instructions: String, $scratchpad: String, $skills: [EntityReferenceInput!]) {
+  formatConversation(prompt: $prompt, id: $id, specification: $specification, persona: $persona, tools: $tools, systemPrompt: $systemPrompt, includeDetails: $includeDetails, correlationId: $correlationId, instructions: $instructions, scratchpad: $scratchpad, skills: $skills) {
     conversation {
       id
     }

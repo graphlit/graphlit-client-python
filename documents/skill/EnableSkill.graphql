@@ -1,0 +1,6 @@
+mutation EnableSkill($id: ID!) {
+  enableSkill(id: $id) {
+    id
+    state
+  }
+}

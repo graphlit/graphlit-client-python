@@ -1,0 +1,19 @@
+query GetSkill($id: ID!, $correlationId: String) {
+  skill(id: $id, correlationId: $correlationId) {
+    id
+    name
+    creationDate
+    modifiedDate
+    owner {
+      id
+    }
+    state
+    correlationId
+    text
+    skillOwner
+    collections {
+      id
+      name
+    }
+  }
+}

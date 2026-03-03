@@ -1,0 +1,8 @@
+mutation UpsertSkill($skill: SkillInput!) {
+  upsertSkill(skill: $skill) {
+    id
+    name
+    state
+    skillOwner
+  }
+}

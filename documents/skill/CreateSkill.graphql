@@ -1,0 +1,8 @@
+mutation CreateSkill($skill: SkillInput!, $correlationId: String) {
+  createSkill(skill: $skill, correlationId: $correlationId) {
+    id
+    name
+    state
+    skillOwner
+  }
+}
