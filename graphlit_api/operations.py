@@ -42,6 +42,7 @@ __all__ = [
     "COUNT_PLACES_GQL",
     "COUNT_PRODUCTS_GQL",
     "COUNT_REPOS_GQL",
+    "COUNT_SKILLS_GQL",
     "COUNT_SOFTWARES_GQL",
     "COUNT_SPECIFICATIONS_GQL",
     "COUNT_USERS_GQL",
@@ -78,6 +79,7 @@ __all__ = [
     "CREATE_PLACE_GQL",
     "CREATE_PRODUCT_GQL",
     "CREATE_REPO_GQL",
+    "CREATE_SKILL_GQL",
     "CREATE_SOFTWARE_GQL",
     "CREATE_SPECIFICATION_GQL",
     "CREATE_USER_GQL",
@@ -117,6 +119,7 @@ __all__ = [
     "DELETE_ALL_PLACES_GQL",
     "DELETE_ALL_PRODUCTS_GQL",
     "DELETE_ALL_REPOS_GQL",
+    "DELETE_ALL_SKILLS_GQL",
     "DELETE_ALL_SOFTWARES_GQL",
     "DELETE_ALL_SPECIFICATIONS_GQL",
     "DELETE_ALL_VIEWS_GQL",
@@ -179,6 +182,8 @@ __all__ = [
     "DELETE_PRODUCT_GQL",
     "DELETE_REPOS_GQL",
     "DELETE_REPO_GQL",
+    "DELETE_SKILLS_GQL",
+    "DELETE_SKILL_GQL",
     "DELETE_SOFTWARES_GQL",
     "DELETE_SOFTWARE_GQL",
     "DELETE_SPECIFICATIONS_GQL",
@@ -193,11 +198,13 @@ __all__ = [
     "DISABLE_AGENT_GQL",
     "DISABLE_ALERT_GQL",
     "DISABLE_FEED_GQL",
+    "DISABLE_SKILL_GQL",
     "DISABLE_USER_GQL",
     "DISTRIBUTE_GQL",
     "ENABLE_AGENT_GQL",
     "ENABLE_ALERT_GQL",
     "ENABLE_FEED_GQL",
+    "ENABLE_SKILL_GQL",
     "ENABLE_USER_GQL",
     "ENRICH_ORGANIZATIONS_GQL",
     "ENRICH_PERSONS_GQL",
@@ -241,6 +248,7 @@ __all__ = [
     "GET_PROJECT_GQL",
     "GET_REPO_GQL",
     "GET_SHARE_POINT_CONSENT_URI_GQL",
+    "GET_SKILL_GQL",
     "GET_SOFTWARE_GQL",
     "GET_SPECIFICATION_GQL",
     "GET_USER_BY_IDENTIFIER_GQL",
@@ -304,6 +312,7 @@ __all__ = [
     "QUERY_FEEDS_GQL",
     "QUERY_GIT_HUB_REPOSITORIES_GQL",
     "QUERY_GOOGLE_CALENDARS_GQL",
+    "QUERY_GOOGLE_DRIVE_DRIVES_GQL",
     "QUERY_GOOGLE_DRIVE_FOLDERS_GQL",
     "QUERY_GRAPH_GQL",
     "QUERY_GUSTO_COMPANIES_GQL",
@@ -364,6 +373,7 @@ __all__ = [
     "QUERY_REPOS_GQL",
     "QUERY_SHARE_POINT_FOLDERS_GQL",
     "QUERY_SHARE_POINT_LIBRARIES_GQL",
+    "QUERY_SKILLS_GQL",
     "QUERY_SLACK_CHANNELS_GQL",
     "QUERY_SOFTWARES_CLUSTERS_GQL",
     "QUERY_SOFTWARES_GQL",
@@ -429,6 +439,7 @@ __all__ = [
     "UPDATE_PRODUCT_GQL",
     "UPDATE_PROJECT_GQL",
     "UPDATE_REPO_GQL",
+    "UPDATE_SKILL_GQL",
     "UPDATE_SOFTWARE_GQL",
     "UPDATE_SPECIFICATION_GQL",
     "UPDATE_USER_GQL",
@@ -438,6 +449,7 @@ __all__ = [
     "UPSERT_ALERT_GQL",
     "UPSERT_CATEGORY_GQL",
     "UPSERT_LABEL_GQL",
+    "UPSERT_SKILL_GQL",
     "UPSERT_SPECIFICATION_GQL",
     "UPSERT_VIEW_GQL",
     "UPSERT_WORKFLOW_GQL",
@@ -5912,7 +5924,7 @@ mutation DeleteConversations($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 FORMAT_CONVERSATION_GQL = """
-mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $persona: EntityReferenceInput, $tools: [ToolDefinitionInput!], $systemPrompt: String, $includeDetails: Boolean, $correlationId: String, $instructions: String, $scratchpad: String) {
+mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $persona: EntityReferenceInput, $tools: [ToolDefinitionInput!], $systemPrompt: String, $includeDetails: Boolean, $correlationId: String, $instructions: String, $scratchpad: String, $skills: [EntityReferenceInput!]) {
   formatConversation(
     prompt: $prompt
     id: $id
@@ -5924,6 +5936,7 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
     correlationId: $correlationId
     instructions: $instructions
     scratchpad: $scratchpad
+    skills: $skills
   ) {
     conversation {
       id
@@ -6842,7 +6855,7 @@ mutation Prompt($prompt: String, $mimeType: String, $data: String, $specificatio
 """
 
 PROMPT_CONVERSATION_GQL = """
-mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, $id: ID, $specification: EntityReferenceInput, $persona: EntityReferenceInput, $systemPrompt: String, $tools: [ToolDefinitionInput!], $requireTool: Boolean, $includeDetails: Boolean, $correlationId: String, $instructions: String, $scratchpad: String) {
+mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, $id: ID, $specification: EntityReferenceInput, $persona: EntityReferenceInput, $systemPrompt: String, $tools: [ToolDefinitionInput!], $requireTool: Boolean, $includeDetails: Boolean, $correlationId: String, $instructions: String, $scratchpad: String, $skills: [EntityReferenceInput!]) {
   promptConversation(
     prompt: $prompt
     id: $id
@@ -6857,6 +6870,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
     correlationId: $correlationId
     instructions: $instructions
     scratchpad: $scratchpad
+    skills: $skills
   ) {
     conversation {
       id
@@ -11327,9 +11341,24 @@ query QueryGoogleCalendars($properties: GoogleCalendarsInput!) {
 }
 """
 
+QUERY_GOOGLE_DRIVE_DRIVES_GQL = """
+query QueryGoogleDriveDrives($properties: GoogleDriveDrivesInput!) {
+  googleDriveDrives(properties: $properties) {
+    results {
+      driveId
+      driveName
+    }
+  }
+}
+"""
+
 QUERY_GOOGLE_DRIVE_FOLDERS_GQL = """
-query QueryGoogleDriveFolders($properties: GoogleDriveFoldersInput!, $folderId: ID) {
-  googleDriveFolders(properties: $properties, folderId: $folderId) {
+query QueryGoogleDriveFolders($properties: GoogleDriveFoldersInput!, $folderId: ID, $driveId: ID) {
+  googleDriveFolders(
+    properties: $properties
+    folderId: $folderId
+    driveId: $driveId
+  ) {
     results {
       folderName
       folderId
@@ -17284,6 +17313,143 @@ query SearchWeb($text: String!, $service: SearchServiceTypes, $limit: Int, $corr
       title
       score
     }
+  }
+}
+"""
+
+COUNT_SKILLS_GQL = """
+query CountSkills($filter: SkillFilter, $correlationId: String) {
+  countSkills(filter: $filter, correlationId: $correlationId) {
+    count
+  }
+}
+"""
+
+CREATE_SKILL_GQL = """
+mutation CreateSkill($skill: SkillInput!, $correlationId: String) {
+  createSkill(skill: $skill, correlationId: $correlationId) {
+    id
+    name
+    state
+    skillOwner
+  }
+}
+"""
+
+DELETE_ALL_SKILLS_GQL = """
+mutation DeleteAllSkills($filter: SkillFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllSkills(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_SKILL_GQL = """
+mutation DeleteSkill($id: ID!) {
+  deleteSkill(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_SKILLS_GQL = """
+mutation DeleteSkills($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteSkills(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}
+"""
+
+DISABLE_SKILL_GQL = """
+mutation DisableSkill($id: ID!) {
+  disableSkill(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+ENABLE_SKILL_GQL = """
+mutation EnableSkill($id: ID!) {
+  enableSkill(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+GET_SKILL_GQL = """
+query GetSkill($id: ID!, $correlationId: String) {
+  skill(id: $id, correlationId: $correlationId) {
+    id
+    name
+    creationDate
+    modifiedDate
+    owner {
+      id
+    }
+    state
+    correlationId
+    text
+    skillOwner
+    collections {
+      id
+      name
+    }
+  }
+}
+"""
+
+QUERY_SKILLS_GQL = """
+query QuerySkills($filter: SkillFilter, $correlationId: String) {
+  skills(filter: $filter, correlationId: $correlationId) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      correlationId
+      text
+      skillOwner
+      collections {
+        id
+        name
+      }
+    }
+  }
+}
+"""
+
+UPDATE_SKILL_GQL = """
+mutation UpdateSkill($skill: SkillUpdateInput!) {
+  updateSkill(skill: $skill) {
+    id
+    name
+    state
+    skillOwner
+  }
+}
+"""
+
+UPSERT_SKILL_GQL = """
+mutation UpsertSkill($skill: SkillInput!) {
+  upsertSkill(skill: $skill) {
+    id
+    name
+    state
+    skillOwner
   }
 }
 """

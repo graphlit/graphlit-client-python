@@ -61,6 +61,7 @@ from .enums import (
     EmotionFacetTypes,
     EntityEnrichmentServiceTypes,
     EntityExtractionServiceTypes,
+    EntityOwners,
     EntityResolutionStrategyTypes,
     EntityState,
     EnvironmentTypes,
@@ -337,6 +338,14 @@ class PersonaInput(BaseModel):
     instructions: Optional[str] = None
 
 
+class SkillInput(BaseModel):
+    name: str
+    text: str
+    skill_owner: Optional[EntityOwners] = Field(alias="skillOwner", default=None)
+    description: Optional[str] = None
+    collections: Optional[list["EntityReferenceInput"]] = None
+
+
 class CalendarAttendeeInput(BaseModel):
     name: Optional[str] = None
     email: Optional[str] = None
@@ -428,6 +437,33 @@ class AlertSchedulePolicyInput(BaseModel):
     repeat_interval: Optional[Any] = Field(alias="repeatInterval", default=None)
     cron: Optional[str] = None
     time_zone_id: Optional[str] = Field(alias="timeZoneId", default=None)
+
+
+class SkillFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    skill_owners: Optional[list[EntityOwners]] = Field(
+        alias="skillOwners", default=None
+    )
+    collections: Optional[list["EntityReferenceFilter"]] = None
+    has_collections: Optional[bool] = Field(alias="hasCollections", default=None)
 
 
 class AttioMeetingPropertiesUpdateInput(BaseModel):
@@ -2773,6 +2809,16 @@ class SalesforceTasksFeedPropertiesInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
 
 
+class GoogleDriveDrivesInput(BaseModel):
+    authentication_type: Optional[GoogleDriveAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
 class HubSpotConversationsFeedPropertiesInput(BaseModel):
     type: Optional[FeedListingTypes] = None
     authentication_type: Optional[HubSpotFeedAuthenticationTypes] = Field(
@@ -4793,6 +4839,13 @@ class ProductFilter(BaseModel):
     products: Optional[list["EntityReferenceFilter"]] = None
 
 
+class SkillUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    text: Optional[str] = None
+    description: Optional[str] = None
+
+
 class ProjectInput(BaseModel):
     name: str
     environment_type: EnvironmentTypes = Field(alias="environmentType")
@@ -6803,8 +6856,10 @@ MicrosoftTeamsFeedPropertiesUpdateInput.model_rebuild()
 ZendeskTicketsFeedPropertiesUpdateInput.model_rebuild()
 AttioCRMFeedPropertiesUpdateInput.model_rebuild()
 PlaceInput.model_rebuild()
+SkillInput.model_rebuild()
 InvestmentFilter.model_rebuild()
 SlackChannelsInput.model_rebuild()
+SkillFilter.model_rebuild()
 AttioMeetingPropertiesUpdateInput.model_rebuild()
 PersonUpdateInput.model_rebuild()
 SpecificationInput.model_rebuild()
@@ -6906,6 +6961,7 @@ MedicalConditionUpdateInput.model_rebuild()
 PackageMetadataInput.model_rebuild()
 MedicalProcedureFilter.model_rebuild()
 SalesforceTasksFeedPropertiesInput.model_rebuild()
+GoogleDriveDrivesInput.model_rebuild()
 HubSpotConversationsFeedPropertiesInput.model_rebuild()
 AtlassianJiraFeedPropertiesUpdateInput.model_rebuild()
 ObservationCriteriaInput.model_rebuild()

@@ -45,6 +45,7 @@ from .count_persons import CountPersons
 from .count_places import CountPlaces
 from .count_products import CountProducts
 from .count_repos import CountRepos
+from .count_skills import CountSkills
 from .count_softwares import CountSoftwares
 from .count_specifications import CountSpecifications
 from .count_users import CountUsers
@@ -81,6 +82,7 @@ from .create_persona import CreatePersona
 from .create_place import CreatePlace
 from .create_product import CreateProduct
 from .create_repo import CreateRepo
+from .create_skill import CreateSkill
 from .create_software import CreateSoftware
 from .create_specification import CreateSpecification
 from .create_user import CreateUser
@@ -120,6 +122,7 @@ from .delete_all_persons import DeleteAllPersons
 from .delete_all_places import DeleteAllPlaces
 from .delete_all_products import DeleteAllProducts
 from .delete_all_repos import DeleteAllRepos
+from .delete_all_skills import DeleteAllSkills
 from .delete_all_softwares import DeleteAllSoftwares
 from .delete_all_specifications import DeleteAllSpecifications
 from .delete_all_views import DeleteAllViews
@@ -182,6 +185,8 @@ from .delete_product import DeleteProduct
 from .delete_products import DeleteProducts
 from .delete_repo import DeleteRepo
 from .delete_repos import DeleteRepos
+from .delete_skill import DeleteSkill
+from .delete_skills import DeleteSkills
 from .delete_software import DeleteSoftware
 from .delete_softwares import DeleteSoftwares
 from .delete_specification import DeleteSpecification
@@ -196,11 +201,13 @@ from .describe_image import DescribeImage
 from .disable_agent import DisableAgent
 from .disable_alert import DisableAlert
 from .disable_feed import DisableFeed
+from .disable_skill import DisableSkill
 from .disable_user import DisableUser
 from .distribute import Distribute
 from .enable_agent import EnableAgent
 from .enable_alert import EnableAlert
 from .enable_feed import EnableFeed
+from .enable_skill import EnableSkill
 from .enable_user import EnableUser
 from .enrich_organizations import EnrichOrganizations
 from .enrich_persons import EnrichPersons
@@ -252,6 +259,7 @@ from .get_product import GetProduct
 from .get_project import GetProject
 from .get_repo import GetRepo
 from .get_share_point_consent_uri import GetSharePointConsentUri
+from .get_skill import GetSkill
 from .get_software import GetSoftware
 from .get_specification import GetSpecification
 from .get_user import GetUser
@@ -321,6 +329,7 @@ from .input_types import (
     FeedUpdateInput,
     GitHubRepositoriesInput,
     GoogleCalendarsInput,
+    GoogleDriveDrivesInput,
     GoogleDriveFoldersInput,
     GraphFilter,
     GraphInput,
@@ -406,6 +415,9 @@ from .input_types import (
     RetrievalStrategyInput,
     SharePointFoldersInput,
     SharePointLibrariesInput,
+    SkillFilter,
+    SkillInput,
+    SkillUpdateInput,
     SlackChannelsInput,
     SoftwareFilter,
     SoftwareInput,
@@ -477,6 +489,7 @@ from .operations import (
     COUNT_PLACES_GQL,
     COUNT_PRODUCTS_GQL,
     COUNT_REPOS_GQL,
+    COUNT_SKILLS_GQL,
     COUNT_SOFTWARES_GQL,
     COUNT_SPECIFICATIONS_GQL,
     COUNT_USERS_GQL,
@@ -513,6 +526,7 @@ from .operations import (
     CREATE_PLACE_GQL,
     CREATE_PRODUCT_GQL,
     CREATE_REPO_GQL,
+    CREATE_SKILL_GQL,
     CREATE_SOFTWARE_GQL,
     CREATE_SPECIFICATION_GQL,
     CREATE_USER_GQL,
@@ -552,6 +566,7 @@ from .operations import (
     DELETE_ALL_PLACES_GQL,
     DELETE_ALL_PRODUCTS_GQL,
     DELETE_ALL_REPOS_GQL,
+    DELETE_ALL_SKILLS_GQL,
     DELETE_ALL_SOFTWARES_GQL,
     DELETE_ALL_SPECIFICATIONS_GQL,
     DELETE_ALL_VIEWS_GQL,
@@ -614,6 +629,8 @@ from .operations import (
     DELETE_PRODUCTS_GQL,
     DELETE_REPO_GQL,
     DELETE_REPOS_GQL,
+    DELETE_SKILL_GQL,
+    DELETE_SKILLS_GQL,
     DELETE_SOFTWARE_GQL,
     DELETE_SOFTWARES_GQL,
     DELETE_SPECIFICATION_GQL,
@@ -628,11 +645,13 @@ from .operations import (
     DISABLE_AGENT_GQL,
     DISABLE_ALERT_GQL,
     DISABLE_FEED_GQL,
+    DISABLE_SKILL_GQL,
     DISABLE_USER_GQL,
     DISTRIBUTE_GQL,
     ENABLE_AGENT_GQL,
     ENABLE_ALERT_GQL,
     ENABLE_FEED_GQL,
+    ENABLE_SKILL_GQL,
     ENABLE_USER_GQL,
     ENRICH_ORGANIZATIONS_GQL,
     ENRICH_PERSONS_GQL,
@@ -676,6 +695,7 @@ from .operations import (
     GET_PROJECT_GQL,
     GET_REPO_GQL,
     GET_SHARE_POINT_CONSENT_URI_GQL,
+    GET_SKILL_GQL,
     GET_SOFTWARE_GQL,
     GET_SPECIFICATION_GQL,
     GET_USER_BY_IDENTIFIER_GQL,
@@ -739,6 +759,7 @@ from .operations import (
     QUERY_FEEDS_GQL,
     QUERY_GIT_HUB_REPOSITORIES_GQL,
     QUERY_GOOGLE_CALENDARS_GQL,
+    QUERY_GOOGLE_DRIVE_DRIVES_GQL,
     QUERY_GOOGLE_DRIVE_FOLDERS_GQL,
     QUERY_GRAPH_GQL,
     QUERY_GUSTO_COMPANIES_GQL,
@@ -799,6 +820,7 @@ from .operations import (
     QUERY_REPOS_GQL,
     QUERY_SHARE_POINT_FOLDERS_GQL,
     QUERY_SHARE_POINT_LIBRARIES_GQL,
+    QUERY_SKILLS_GQL,
     QUERY_SLACK_CHANNELS_GQL,
     QUERY_SOFTWARES_CLUSTERS_GQL,
     QUERY_SOFTWARES_GQL,
@@ -864,6 +886,7 @@ from .operations import (
     UPDATE_PRODUCT_GQL,
     UPDATE_PROJECT_GQL,
     UPDATE_REPO_GQL,
+    UPDATE_SKILL_GQL,
     UPDATE_SOFTWARE_GQL,
     UPDATE_SPECIFICATION_GQL,
     UPDATE_USER_GQL,
@@ -873,6 +896,7 @@ from .operations import (
     UPSERT_ALERT_GQL,
     UPSERT_CATEGORY_GQL,
     UPSERT_LABEL_GQL,
+    UPSERT_SKILL_GQL,
     UPSERT_SPECIFICATION_GQL,
     UPSERT_VIEW_GQL,
     UPSERT_WORKFLOW_GQL,
@@ -919,6 +943,7 @@ from .query_facts_graph import QueryFactsGraph
 from .query_feeds import QueryFeeds
 from .query_git_hub_repositories import QueryGitHubRepositories
 from .query_google_calendars import QueryGoogleCalendars
+from .query_google_drive_drives import QueryGoogleDriveDrives
 from .query_google_drive_folders import QueryGoogleDriveFolders
 from .query_graph import QueryGraph
 from .query_gusto_companies import QueryGustoCompanies
@@ -981,6 +1006,7 @@ from .query_repos import QueryRepos
 from .query_repos_clusters import QueryReposClusters
 from .query_share_point_folders import QuerySharePointFolders
 from .query_share_point_libraries import QuerySharePointLibraries
+from .query_skills import QuerySkills
 from .query_slack_channels import QuerySlackChannels
 from .query_softwares import QuerySoftwares
 from .query_softwares_clusters import QuerySoftwaresClusters
@@ -1046,6 +1072,7 @@ from .update_place import UpdatePlace
 from .update_product import UpdateProduct
 from .update_project import UpdateProject
 from .update_repo import UpdateRepo
+from .update_skill import UpdateSkill
 from .update_software import UpdateSoftware
 from .update_specification import UpdateSpecification
 from .update_user import UpdateUser
@@ -1055,6 +1082,7 @@ from .upsert_agent import UpsertAgent
 from .upsert_alert import UpsertAlert
 from .upsert_category import UpsertCategory
 from .upsert_label import UpsertLabel
+from .upsert_skill import UpsertSkill
 from .upsert_specification import UpsertSpecification
 from .upsert_view import UpsertView
 from .upsert_workflow import UpsertWorkflow
@@ -2882,6 +2910,7 @@ class Client(AsyncBaseClient):
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         instructions: Union[Optional[str], UnsetType] = UNSET,
         scratchpad: Union[Optional[str], UnsetType] = UNSET,
+        skills: Union[Optional[list[EntityReferenceInput]], UnsetType] = UNSET,
         **kwargs: Any
     ) -> FormatConversation:
         variables: dict[str, object] = {
@@ -2895,6 +2924,7 @@ class Client(AsyncBaseClient):
             "correlationId": correlation_id,
             "instructions": instructions,
             "scratchpad": scratchpad,
+            "skills": skills,
         }
         response = await self.execute(
             query=FORMAT_CONVERSATION_GQL,
@@ -2964,6 +2994,7 @@ class Client(AsyncBaseClient):
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         instructions: Union[Optional[str], UnsetType] = UNSET,
         scratchpad: Union[Optional[str], UnsetType] = UNSET,
+        skills: Union[Optional[list[EntityReferenceInput]], UnsetType] = UNSET,
         **kwargs: Any
     ) -> PromptConversation:
         variables: dict[str, object] = {
@@ -2980,6 +3011,7 @@ class Client(AsyncBaseClient):
             "correlationId": correlation_id,
             "instructions": instructions,
             "scratchpad": scratchpad,
+            "skills": skills,
         }
         response = await self.execute(
             query=PROMPT_CONVERSATION_GQL,
@@ -4161,13 +4193,31 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryGoogleCalendars.model_validate(data)
 
+    async def query_google_drive_drives(
+        self, properties: GoogleDriveDrivesInput, **kwargs: Any
+    ) -> QueryGoogleDriveDrives:
+        variables: dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_GOOGLE_DRIVE_DRIVES_GQL,
+            operation_name="QueryGoogleDriveDrives",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryGoogleDriveDrives.model_validate(data)
+
     async def query_google_drive_folders(
         self,
         properties: GoogleDriveFoldersInput,
         folder_id: Union[Optional[str], UnsetType] = UNSET,
+        drive_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> QueryGoogleDriveFolders:
-        variables: dict[str, object] = {"properties": properties, "folderId": folder_id}
+        variables: dict[str, object] = {
+            "properties": properties,
+            "folderId": folder_id,
+            "driveId": drive_id,
+        }
         response = await self.execute(
             query=QUERY_GOOGLE_DRIVE_FOLDERS_GQL,
             operation_name="QueryGoogleDriveFolders",
@@ -7816,6 +7866,168 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return SearchWeb.model_validate(data)
+
+    async def count_skills(
+        self,
+        filter: Union[Optional[SkillFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountSkills:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=COUNT_SKILLS_GQL,
+            operation_name="CountSkills",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountSkills.model_validate(data)
+
+    async def create_skill(
+        self,
+        skill: SkillInput,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CreateSkill:
+        variables: dict[str, object] = {"skill": skill, "correlationId": correlation_id}
+        response = await self.execute(
+            query=CREATE_SKILL_GQL,
+            operation_name="CreateSkill",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CreateSkill.model_validate(data)
+
+    async def delete_all_skills(
+        self,
+        filter: Union[Optional[SkillFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllSkills:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DELETE_ALL_SKILLS_GQL,
+            operation_name="DeleteAllSkills",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllSkills.model_validate(data)
+
+    async def delete_skill(self, id: str, **kwargs: Any) -> DeleteSkill:
+        variables: dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DELETE_SKILL_GQL,
+            operation_name="DeleteSkill",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteSkill.model_validate(data)
+
+    async def delete_skills(
+        self,
+        ids: list[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteSkills:
+        variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
+        response = await self.execute(
+            query=DELETE_SKILLS_GQL,
+            operation_name="DeleteSkills",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteSkills.model_validate(data)
+
+    async def disable_skill(self, id: str, **kwargs: Any) -> DisableSkill:
+        variables: dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DISABLE_SKILL_GQL,
+            operation_name="DisableSkill",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DisableSkill.model_validate(data)
+
+    async def enable_skill(self, id: str, **kwargs: Any) -> EnableSkill:
+        variables: dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=ENABLE_SKILL_GQL,
+            operation_name="EnableSkill",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return EnableSkill.model_validate(data)
+
+    async def get_skill(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetSkill:
+        variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
+        response = await self.execute(
+            query=GET_SKILL_GQL,
+            operation_name="GetSkill",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return GetSkill.model_validate(data)
+
+    async def query_skills(
+        self,
+        filter: Union[Optional[SkillFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QuerySkills:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_SKILLS_GQL,
+            operation_name="QuerySkills",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QuerySkills.model_validate(data)
+
+    async def update_skill(self, skill: SkillUpdateInput, **kwargs: Any) -> UpdateSkill:
+        variables: dict[str, object] = {"skill": skill}
+        response = await self.execute(
+            query=UPDATE_SKILL_GQL,
+            operation_name="UpdateSkill",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateSkill.model_validate(data)
+
+    async def upsert_skill(self, skill: SkillInput, **kwargs: Any) -> UpsertSkill:
+        variables: dict[str, object] = {"skill": skill}
+        response = await self.execute(
+            query=UPSERT_SKILL_GQL,
+            operation_name="UpsertSkill",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpsertSkill.model_validate(data)
 
     async def count_softwares(
         self,

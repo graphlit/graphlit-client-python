@@ -163,6 +163,7 @@ from .count_persons import CountPersons, CountPersonsCountPersons
 from .count_places import CountPlaces, CountPlacesCountPlaces
 from .count_products import CountProducts, CountProductsCountProducts
 from .count_repos import CountRepos, CountReposCountRepos
+from .count_skills import CountSkills, CountSkillsCountSkills
 from .count_softwares import CountSoftwares, CountSoftwaresCountSoftwares
 from .count_specifications import (
     CountSpecifications,
@@ -238,6 +239,7 @@ from .create_persona import CreatePersona, CreatePersonaCreatePersona
 from .create_place import CreatePlace, CreatePlaceCreatePlace
 from .create_product import CreateProduct, CreateProductCreateProduct
 from .create_repo import CreateRepo, CreateRepoCreateRepo
+from .create_skill import CreateSkill, CreateSkillCreateSkill
 from .create_software import CreateSoftware, CreateSoftwareCreateSoftware
 from .create_specification import (
     CreateSpecification,
@@ -452,6 +454,7 @@ from .delete_all_persons import DeleteAllPersons, DeleteAllPersonsDeleteAllPerso
 from .delete_all_places import DeleteAllPlaces, DeleteAllPlacesDeleteAllPlaces
 from .delete_all_products import DeleteAllProducts, DeleteAllProductsDeleteAllProducts
 from .delete_all_repos import DeleteAllRepos, DeleteAllReposDeleteAllRepos
+from .delete_all_skills import DeleteAllSkills, DeleteAllSkillsDeleteAllSkills
 from .delete_all_softwares import (
     DeleteAllSoftwares,
     DeleteAllSoftwaresDeleteAllSoftwares,
@@ -601,6 +604,8 @@ from .delete_product import DeleteProduct, DeleteProductDeleteProduct
 from .delete_products import DeleteProducts, DeleteProductsDeleteProducts
 from .delete_repo import DeleteRepo, DeleteRepoDeleteRepo
 from .delete_repos import DeleteRepos, DeleteReposDeleteRepos
+from .delete_skill import DeleteSkill, DeleteSkillDeleteSkill
+from .delete_skills import DeleteSkills, DeleteSkillsDeleteSkills
 from .delete_software import DeleteSoftware, DeleteSoftwareDeleteSoftware
 from .delete_softwares import DeleteSoftwares, DeleteSoftwaresDeleteSoftwares
 from .delete_specification import (
@@ -643,11 +648,13 @@ from .describe_image import (
 from .disable_agent import DisableAgent, DisableAgentDisableAgent
 from .disable_alert import DisableAlert, DisableAlertDisableAlert
 from .disable_feed import DisableFeed, DisableFeedDisableFeed
+from .disable_skill import DisableSkill, DisableSkillDisableSkill
 from .disable_user import DisableUser, DisableUserDisableUser
 from .distribute import Distribute, DistributeDistribute
 from .enable_agent import EnableAgent, EnableAgentEnableAgent
 from .enable_alert import EnableAlert, EnableAlertEnableAlert
 from .enable_feed import EnableFeed, EnableFeedEnableFeed
+from .enable_skill import EnableSkill, EnableSkillEnableSkill
 from .enable_user import EnableUser, EnableUserEnableUser
 from .enrich_organizations import (
     EnrichOrganizations,
@@ -715,6 +722,7 @@ from .enums import (
     EmotionFacetTypes,
     EntityEnrichmentServiceTypes,
     EntityExtractionServiceTypes,
+    EntityOwners,
     EntityResolutionStrategyTypes,
     EntityState,
     EntityTypes,
@@ -1566,6 +1574,12 @@ from .get_share_point_consent_uri import (
     GetSharePointConsentUri,
     GetSharePointConsentUriSharePointConsentUri,
 )
+from .get_skill import (
+    GetSkill,
+    GetSkillSkill,
+    GetSkillSkillCollections,
+    GetSkillSkillOwner,
+)
 from .get_software import (
     GetSoftware,
     GetSoftwareSoftware,
@@ -2035,6 +2049,7 @@ from .input_types import (
     GoogleContactsCRMFeedPropertiesUpdateInput,
     GoogleDocsDistributionPropertiesInput,
     GoogleDriveDistributionPropertiesInput,
+    GoogleDriveDrivesInput,
     GoogleDriveFeedPropertiesInput,
     GoogleDriveFeedPropertiesUpdateInput,
     GoogleDriveFoldersInput,
@@ -2299,6 +2314,9 @@ from .input_types import (
     SharePointLibrariesInput,
     SiteFeedPropertiesInput,
     SiteFeedPropertiesUpdateInput,
+    SkillFilter,
+    SkillInput,
+    SkillUpdateInput,
     SlackChannelsInput,
     SlackDistributionPropertiesInput,
     SlackFeedPropertiesInput,
@@ -2475,6 +2493,7 @@ from .operations import (
     COUNT_PLACES_GQL,
     COUNT_PRODUCTS_GQL,
     COUNT_REPOS_GQL,
+    COUNT_SKILLS_GQL,
     COUNT_SOFTWARES_GQL,
     COUNT_SPECIFICATIONS_GQL,
     COUNT_USERS_GQL,
@@ -2511,6 +2530,7 @@ from .operations import (
     CREATE_PLACE_GQL,
     CREATE_PRODUCT_GQL,
     CREATE_REPO_GQL,
+    CREATE_SKILL_GQL,
     CREATE_SOFTWARE_GQL,
     CREATE_SPECIFICATION_GQL,
     CREATE_USER_GQL,
@@ -2550,6 +2570,7 @@ from .operations import (
     DELETE_ALL_PLACES_GQL,
     DELETE_ALL_PRODUCTS_GQL,
     DELETE_ALL_REPOS_GQL,
+    DELETE_ALL_SKILLS_GQL,
     DELETE_ALL_SOFTWARES_GQL,
     DELETE_ALL_SPECIFICATIONS_GQL,
     DELETE_ALL_VIEWS_GQL,
@@ -2612,6 +2633,8 @@ from .operations import (
     DELETE_PRODUCTS_GQL,
     DELETE_REPO_GQL,
     DELETE_REPOS_GQL,
+    DELETE_SKILL_GQL,
+    DELETE_SKILLS_GQL,
     DELETE_SOFTWARE_GQL,
     DELETE_SOFTWARES_GQL,
     DELETE_SPECIFICATION_GQL,
@@ -2626,11 +2649,13 @@ from .operations import (
     DISABLE_AGENT_GQL,
     DISABLE_ALERT_GQL,
     DISABLE_FEED_GQL,
+    DISABLE_SKILL_GQL,
     DISABLE_USER_GQL,
     DISTRIBUTE_GQL,
     ENABLE_AGENT_GQL,
     ENABLE_ALERT_GQL,
     ENABLE_FEED_GQL,
+    ENABLE_SKILL_GQL,
     ENABLE_USER_GQL,
     ENRICH_ORGANIZATIONS_GQL,
     ENRICH_PERSONS_GQL,
@@ -2674,6 +2699,7 @@ from .operations import (
     GET_PROJECT_GQL,
     GET_REPO_GQL,
     GET_SHARE_POINT_CONSENT_URI_GQL,
+    GET_SKILL_GQL,
     GET_SOFTWARE_GQL,
     GET_SPECIFICATION_GQL,
     GET_USER_BY_IDENTIFIER_GQL,
@@ -2737,6 +2763,7 @@ from .operations import (
     QUERY_FEEDS_GQL,
     QUERY_GIT_HUB_REPOSITORIES_GQL,
     QUERY_GOOGLE_CALENDARS_GQL,
+    QUERY_GOOGLE_DRIVE_DRIVES_GQL,
     QUERY_GOOGLE_DRIVE_FOLDERS_GQL,
     QUERY_GRAPH_GQL,
     QUERY_GUSTO_COMPANIES_GQL,
@@ -2797,6 +2824,7 @@ from .operations import (
     QUERY_REPOS_GQL,
     QUERY_SHARE_POINT_FOLDERS_GQL,
     QUERY_SHARE_POINT_LIBRARIES_GQL,
+    QUERY_SKILLS_GQL,
     QUERY_SLACK_CHANNELS_GQL,
     QUERY_SOFTWARES_CLUSTERS_GQL,
     QUERY_SOFTWARES_GQL,
@@ -2862,6 +2890,7 @@ from .operations import (
     UPDATE_PRODUCT_GQL,
     UPDATE_PROJECT_GQL,
     UPDATE_REPO_GQL,
+    UPDATE_SKILL_GQL,
     UPDATE_SOFTWARE_GQL,
     UPDATE_SPECIFICATION_GQL,
     UPDATE_USER_GQL,
@@ -2871,6 +2900,7 @@ from .operations import (
     UPSERT_ALERT_GQL,
     UPSERT_CATEGORY_GQL,
     UPSERT_LABEL_GQL,
+    UPSERT_SKILL_GQL,
     UPSERT_SPECIFICATION_GQL,
     UPSERT_VIEW_GQL,
     UPSERT_WORKFLOW_GQL,
@@ -3613,6 +3643,11 @@ from .query_google_calendars import (
     QueryGoogleCalendarsGoogleCalendars,
     QueryGoogleCalendarsGoogleCalendarsResults,
 )
+from .query_google_drive_drives import (
+    QueryGoogleDriveDrives,
+    QueryGoogleDriveDrivesGoogleDriveDrives,
+    QueryGoogleDriveDrivesGoogleDriveDrivesResults,
+)
 from .query_google_drive_folders import (
     QueryGoogleDriveFolders,
     QueryGoogleDriveFoldersGoogleDriveFolders,
@@ -4267,6 +4302,13 @@ from .query_share_point_libraries import (
     QuerySharePointLibrariesSharePointLibraries,
     QuerySharePointLibrariesSharePointLibrariesResults,
 )
+from .query_skills import (
+    QuerySkills,
+    QuerySkillsSkills,
+    QuerySkillsSkillsResults,
+    QuerySkillsSkillsResultsCollections,
+    QuerySkillsSkillsResultsOwner,
+)
 from .query_slack_channels import QuerySlackChannels, QuerySlackChannelsSlackChannels
 from .query_softwares import (
     QuerySoftwares,
@@ -4702,6 +4744,7 @@ from .update_place import UpdatePlace, UpdatePlaceUpdatePlace
 from .update_product import UpdateProduct, UpdateProductUpdateProduct
 from .update_project import UpdateProject, UpdateProjectUpdateProject
 from .update_repo import UpdateRepo, UpdateRepoUpdateRepo
+from .update_skill import UpdateSkill, UpdateSkillUpdateSkill
 from .update_software import UpdateSoftware, UpdateSoftwareUpdateSoftware
 from .update_specification import (
     UpdateSpecification,
@@ -4835,6 +4878,7 @@ from .upsert_agent import UpsertAgent, UpsertAgentUpsertAgent
 from .upsert_alert import UpsertAlert, UpsertAlertUpsertAlert
 from .upsert_category import UpsertCategory, UpsertCategoryUpsertCategory
 from .upsert_label import UpsertLabel, UpsertLabelUpsertLabel
+from .upsert_skill import UpsertSkill, UpsertSkillUpsertSkill
 from .upsert_specification import (
     UpsertSpecification,
     UpsertSpecificationUpsertSpecification,
@@ -5106,6 +5150,7 @@ __all__ = [
     "COUNT_PLACES_GQL",
     "COUNT_PRODUCTS_GQL",
     "COUNT_REPOS_GQL",
+    "COUNT_SKILLS_GQL",
     "COUNT_SOFTWARES_GQL",
     "COUNT_SPECIFICATIONS_GQL",
     "COUNT_USERS_GQL",
@@ -5142,6 +5187,7 @@ __all__ = [
     "CREATE_PLACE_GQL",
     "CREATE_PRODUCT_GQL",
     "CREATE_REPO_GQL",
+    "CREATE_SKILL_GQL",
     "CREATE_SOFTWARE_GQL",
     "CREATE_SPECIFICATION_GQL",
     "CREATE_USER_GQL",
@@ -5346,6 +5392,8 @@ __all__ = [
     "CountProductsCountProducts",
     "CountRepos",
     "CountReposCountRepos",
+    "CountSkills",
+    "CountSkillsCountSkills",
     "CountSoftwares",
     "CountSoftwaresCountSoftwares",
     "CountSpecifications",
@@ -5418,6 +5466,8 @@ __all__ = [
     "CreateProductCreateProduct",
     "CreateRepo",
     "CreateRepoCreateRepo",
+    "CreateSkill",
+    "CreateSkillCreateSkill",
     "CreateSoftware",
     "CreateSoftwareCreateSoftware",
     "CreateSpecification",
@@ -5585,6 +5635,7 @@ __all__ = [
     "DELETE_ALL_PLACES_GQL",
     "DELETE_ALL_PRODUCTS_GQL",
     "DELETE_ALL_REPOS_GQL",
+    "DELETE_ALL_SKILLS_GQL",
     "DELETE_ALL_SOFTWARES_GQL",
     "DELETE_ALL_SPECIFICATIONS_GQL",
     "DELETE_ALL_VIEWS_GQL",
@@ -5647,6 +5698,8 @@ __all__ = [
     "DELETE_PRODUCT_GQL",
     "DELETE_REPOS_GQL",
     "DELETE_REPO_GQL",
+    "DELETE_SKILLS_GQL",
+    "DELETE_SKILL_GQL",
     "DELETE_SOFTWARES_GQL",
     "DELETE_SOFTWARE_GQL",
     "DELETE_SPECIFICATIONS_GQL",
@@ -5661,6 +5714,7 @@ __all__ = [
     "DISABLE_AGENT_GQL",
     "DISABLE_ALERT_GQL",
     "DISABLE_FEED_GQL",
+    "DISABLE_SKILL_GQL",
     "DISABLE_USER_GQL",
     "DISTRIBUTE_GQL",
     "DateRangeFilter",
@@ -5738,6 +5792,8 @@ __all__ = [
     "DeleteAllProductsDeleteAllProducts",
     "DeleteAllRepos",
     "DeleteAllReposDeleteAllRepos",
+    "DeleteAllSkills",
+    "DeleteAllSkillsDeleteAllSkills",
     "DeleteAllSoftwares",
     "DeleteAllSoftwaresDeleteAllSoftwares",
     "DeleteAllSpecifications",
@@ -5862,6 +5918,10 @@ __all__ = [
     "DeleteRepoDeleteRepo",
     "DeleteRepos",
     "DeleteReposDeleteRepos",
+    "DeleteSkill",
+    "DeleteSkillDeleteSkill",
+    "DeleteSkills",
+    "DeleteSkillsDeleteSkills",
     "DeleteSoftware",
     "DeleteSoftwareDeleteSoftware",
     "DeleteSoftwares",
@@ -5908,6 +5968,8 @@ __all__ = [
     "DisableAlertDisableAlert",
     "DisableFeed",
     "DisableFeedDisableFeed",
+    "DisableSkill",
+    "DisableSkillDisableSkill",
     "DisableUser",
     "DisableUserDisableUser",
     "DiscordChannelsInput",
@@ -5929,6 +5991,7 @@ __all__ = [
     "ENABLE_AGENT_GQL",
     "ENABLE_ALERT_GQL",
     "ENABLE_FEED_GQL",
+    "ENABLE_SKILL_GQL",
     "ENABLE_USER_GQL",
     "ENRICH_ORGANIZATIONS_GQL",
     "ENRICH_PERSONS_GQL",
@@ -5960,6 +6023,8 @@ __all__ = [
     "EnableAlertEnableAlert",
     "EnableFeed",
     "EnableFeedEnableFeed",
+    "EnableSkill",
+    "EnableSkillEnableSkill",
     "EnableUser",
     "EnableUserEnableUser",
     "EnrichOrganizations",
@@ -5979,6 +6044,7 @@ __all__ = [
     "EntityExtractionServiceTypes",
     "EntityFeedPropertiesInput",
     "EntityFeedPropertiesUpdateInput",
+    "EntityOwners",
     "EntityReferenceFilter",
     "EntityReferenceInput",
     "EntityRelationshipsFilter",
@@ -6124,6 +6190,7 @@ __all__ = [
     "GET_PROJECT_GQL",
     "GET_REPO_GQL",
     "GET_SHARE_POINT_CONSENT_URI_GQL",
+    "GET_SKILL_GQL",
     "GET_SOFTWARE_GQL",
     "GET_SPECIFICATION_GQL",
     "GET_USER_BY_IDENTIFIER_GQL",
@@ -6697,6 +6764,10 @@ __all__ = [
     "GetRepoRepoWorkflow",
     "GetSharePointConsentUri",
     "GetSharePointConsentUriSharePointConsentUri",
+    "GetSkill",
+    "GetSkillSkill",
+    "GetSkillSkillCollections",
+    "GetSkillSkillOwner",
     "GetSoftware",
     "GetSoftwareSoftware",
     "GetSoftwareSoftwareFeeds",
@@ -6912,6 +6983,7 @@ __all__ = [
     "GoogleDocsDistributionPropertiesInput",
     "GoogleDriveAuthenticationTypes",
     "GoogleDriveDistributionPropertiesInput",
+    "GoogleDriveDrivesInput",
     "GoogleDriveFeedPropertiesInput",
     "GoogleDriveFeedPropertiesUpdateInput",
     "GoogleDriveFoldersInput",
@@ -7489,6 +7561,7 @@ __all__ = [
     "QUERY_FEEDS_GQL",
     "QUERY_GIT_HUB_REPOSITORIES_GQL",
     "QUERY_GOOGLE_CALENDARS_GQL",
+    "QUERY_GOOGLE_DRIVE_DRIVES_GQL",
     "QUERY_GOOGLE_DRIVE_FOLDERS_GQL",
     "QUERY_GRAPH_GQL",
     "QUERY_GUSTO_COMPANIES_GQL",
@@ -7549,6 +7622,7 @@ __all__ = [
     "QUERY_REPOS_GQL",
     "QUERY_SHARE_POINT_FOLDERS_GQL",
     "QUERY_SHARE_POINT_LIBRARIES_GQL",
+    "QUERY_SKILLS_GQL",
     "QUERY_SLACK_CHANNELS_GQL",
     "QUERY_SOFTWARES_CLUSTERS_GQL",
     "QUERY_SOFTWARES_GQL",
@@ -8140,6 +8214,9 @@ __all__ = [
     "QueryGoogleCalendars",
     "QueryGoogleCalendarsGoogleCalendars",
     "QueryGoogleCalendarsGoogleCalendarsResults",
+    "QueryGoogleDriveDrives",
+    "QueryGoogleDriveDrivesGoogleDriveDrives",
+    "QueryGoogleDriveDrivesGoogleDriveDrivesResults",
     "QueryGoogleDriveFolders",
     "QueryGoogleDriveFoldersGoogleDriveFolders",
     "QueryGoogleDriveFoldersGoogleDriveFoldersResults",
@@ -8677,6 +8754,11 @@ __all__ = [
     "QuerySharePointLibraries",
     "QuerySharePointLibrariesSharePointLibraries",
     "QuerySharePointLibrariesSharePointLibrariesResults",
+    "QuerySkills",
+    "QuerySkillsSkills",
+    "QuerySkillsSkillsResults",
+    "QuerySkillsSkillsResultsCollections",
+    "QuerySkillsSkillsResultsOwner",
     "QuerySlackChannels",
     "QuerySlackChannelsSlackChannels",
     "QuerySoftwares",
@@ -9066,6 +9148,9 @@ __all__ = [
     "SiteFeedPropertiesInput",
     "SiteFeedPropertiesUpdateInput",
     "SiteTypes",
+    "SkillFilter",
+    "SkillInput",
+    "SkillUpdateInput",
     "SlackAuthenticationTypes",
     "SlackChannelsInput",
     "SlackDistributionPropertiesInput",
@@ -9162,6 +9247,7 @@ __all__ = [
     "UPDATE_PRODUCT_GQL",
     "UPDATE_PROJECT_GQL",
     "UPDATE_REPO_GQL",
+    "UPDATE_SKILL_GQL",
     "UPDATE_SOFTWARE_GQL",
     "UPDATE_SPECIFICATION_GQL",
     "UPDATE_USER_GQL",
@@ -9171,6 +9257,7 @@ __all__ = [
     "UPSERT_ALERT_GQL",
     "UPSERT_CATEGORY_GQL",
     "UPSERT_LABEL_GQL",
+    "UPSERT_SKILL_GQL",
     "UPSERT_SPECIFICATION_GQL",
     "UPSERT_VIEW_GQL",
     "UPSERT_WORKFLOW_GQL",
@@ -9247,6 +9334,8 @@ __all__ = [
     "UpdateProjectUpdateProject",
     "UpdateRepo",
     "UpdateRepoUpdateRepo",
+    "UpdateSkill",
+    "UpdateSkillUpdateSkill",
     "UpdateSoftware",
     "UpdateSoftwareUpdateSoftware",
     "UpdateSpecification",
@@ -9381,6 +9470,8 @@ __all__ = [
     "UpsertCategoryUpsertCategory",
     "UpsertLabel",
     "UpsertLabelUpsertLabel",
+    "UpsertSkill",
+    "UpsertSkillUpsertSkill",
     "UpsertSpecification",
     "UpsertSpecificationUpsertSpecification",
     "UpsertView",

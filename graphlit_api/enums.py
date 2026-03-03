@@ -801,6 +801,11 @@ class InvestmentFundFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
 
+class EntityOwners(str, Enum):
+    SYSTEM = "SYSTEM"
+    PROJECT = "PROJECT"
+
+
 class ElevenLabsScribeModels(str, Enum):
     SCRIBE_V1 = "SCRIBE_V1"
     SCRIBE_V2 = "SCRIBE_V2"
@@ -1213,6 +1218,7 @@ class EntityTypes(str, Enum):
     RENDITION = "RENDITION"
     REPO = "REPO"
     SITE = "SITE"
+    SKILL = "SKILL"
     SOFTWARE = "SOFTWARE"
     SPECIFICATION = "SPECIFICATION"
     USER = "USER"
