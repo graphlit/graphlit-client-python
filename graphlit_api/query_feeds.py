@@ -240,6 +240,7 @@ class QueryFeedsFeedsResultsSiteGoogleDrive(BaseModel):
     authentication_type: Optional[GoogleDriveAuthenticationTypes] = Field(
         alias="authenticationType"
     )
+    drive_id: Optional[str] = Field(alias="driveId")
     folder_id: Optional[str] = Field(alias="folderId")
     files: Optional[list[Optional[str]]]
     refresh_token: Optional[str] = Field(alias="refreshToken")

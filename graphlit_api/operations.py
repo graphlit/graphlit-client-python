@@ -9724,6 +9724,7 @@ query GetFeed($id: ID!, $correlationId: String) {
       }
       googleDrive {
         authenticationType
+        driveId
         folderId
         files
         refreshToken
@@ -10647,6 +10648,7 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         }
         googleDrive {
           authenticationType
+          driveId
           folderId
           files
           refreshToken

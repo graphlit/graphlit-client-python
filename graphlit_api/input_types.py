@@ -5174,6 +5174,7 @@ class GoogleDriveFeedPropertiesInput(BaseModel):
     authentication_type: Optional[GoogleDriveAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
+    drive_id: Optional[str] = Field(alias="driveId", default=None)
     files: Optional[list[Optional[str]]] = None
     folder_id: Optional[str] = Field(alias="folderId", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
@@ -5987,6 +5988,7 @@ class GoogleDriveFeedPropertiesUpdateInput(BaseModel):
     authentication_type: Optional[GoogleDriveAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
+    drive_id: Optional[str] = Field(alias="driveId", default=None)
     files: Optional[list[Optional[str]]] = None
     folder_id: Optional[str] = Field(alias="folderId", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)

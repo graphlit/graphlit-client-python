@@ -71,6 +71,7 @@ query GetFeed($id: ID!, $correlationId: String) {
       }
       googleDrive {
         authenticationType
+        driveId
         folderId
         files
         refreshToken
