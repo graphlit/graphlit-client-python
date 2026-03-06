@@ -128,6 +128,8 @@ query GetFeed($id: ID!, $correlationId: String) {
         excludeSentItems
         includeDeletedItems
         inboxOnly
+        beforeDate
+        afterDate
         authenticationType
         refreshToken
         clientId
@@ -143,6 +145,8 @@ query GetFeed($id: ID!, $correlationId: String) {
         excludeSentItems
         includeDeletedItems
         inboxOnly
+        beforeDate
+        afterDate
         authenticationType
         refreshToken
         clientId
@@ -263,6 +267,8 @@ query GetFeed($id: ID!, $correlationId: String) {
         apiToken
         boardId
       }
+      beforeDate
+      afterDate
       readLimit
     }
     commit {
@@ -280,6 +286,8 @@ query GetFeed($id: ID!, $correlationId: String) {
           id
         }
       }
+      beforeDate
+      afterDate
       readLimit
     }
     pullRequest {
@@ -297,6 +305,8 @@ query GetFeed($id: ID!, $correlationId: String) {
           id
         }
       }
+      beforeDate
+      afterDate
       readLimit
     }
     crm {
@@ -591,6 +601,8 @@ query GetFeed($id: ID!, $correlationId: String) {
         id
       }
       channel
+      beforeDate
+      afterDate
       includeAttachments
     }
     microsoftTeams {
@@ -603,6 +615,8 @@ query GetFeed($id: ID!, $correlationId: String) {
       connector {
         id
       }
+      beforeDate
+      afterDate
       teamId
       channelId
       includeAttachments

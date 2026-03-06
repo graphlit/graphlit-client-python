@@ -17,7 +17,6 @@ class PreviewFeedPreviewFeed(BaseModel):
     is_complete: bool = Field(alias="isComplete")
     item_count: Any = Field(alias="itemCount")
     estimated_bytes: Optional[Any] = Field(alias="estimatedBytes")
-    estimated_tokens: Optional[Any] = Field(alias="estimatedTokens")
     content_type_summary: Optional[list["PreviewFeedPreviewFeedContentTypeSummary"]] = (
         Field(alias="contentTypeSummary")
     )

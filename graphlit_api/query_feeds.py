@@ -318,6 +318,8 @@ class QueryFeedsFeedsResultsEmailGoogle(BaseModel):
     exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems")
     include_deleted_items: Optional[bool] = Field(alias="includeDeletedItems")
     inbox_only: Optional[bool] = Field(alias="inboxOnly")
+    before_date: Optional[Any] = Field(alias="beforeDate")
+    after_date: Optional[Any] = Field(alias="afterDate")
     authentication_type: Optional[GoogleEmailAuthenticationTypes] = Field(
         alias="authenticationType"
     )
@@ -338,6 +340,8 @@ class QueryFeedsFeedsResultsEmailMicrosoft(BaseModel):
     exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems")
     include_deleted_items: Optional[bool] = Field(alias="includeDeletedItems")
     inbox_only: Optional[bool] = Field(alias="inboxOnly")
+    before_date: Optional[Any] = Field(alias="beforeDate")
+    after_date: Optional[Any] = Field(alias="afterDate")
     authentication_type: Optional[MicrosoftEmailAuthenticationTypes] = Field(
         alias="authenticationType"
     )
@@ -365,6 +369,8 @@ class QueryFeedsFeedsResultsIssue(BaseModel):
     hub_spot: Optional["QueryFeedsFeedsResultsIssueHubSpot"] = Field(alias="hubSpot")
     asana: Optional["QueryFeedsFeedsResultsIssueAsana"]
     monday: Optional["QueryFeedsFeedsResultsIssueMonday"]
+    before_date: Optional[Any] = Field(alias="beforeDate")
+    after_date: Optional[Any] = Field(alias="afterDate")
     read_limit: Optional[int] = Field(alias="readLimit")
 
 
@@ -523,6 +529,8 @@ class QueryFeedsFeedsResultsIssueMonday(BaseModel):
 class QueryFeedsFeedsResultsCommit(BaseModel):
     type: FeedServiceTypes
     github: Optional["QueryFeedsFeedsResultsCommitGithub"]
+    before_date: Optional[Any] = Field(alias="beforeDate")
+    after_date: Optional[Any] = Field(alias="afterDate")
     read_limit: Optional[int] = Field(alias="readLimit")
 
 
@@ -547,6 +555,8 @@ class QueryFeedsFeedsResultsCommitGithubConnector(BaseModel):
 class QueryFeedsFeedsResultsPullRequest(BaseModel):
     type: FeedServiceTypes
     github: Optional["QueryFeedsFeedsResultsPullRequestGithub"]
+    before_date: Optional[Any] = Field(alias="beforeDate")
+    after_date: Optional[Any] = Field(alias="afterDate")
     read_limit: Optional[int] = Field(alias="readLimit")
 
 
@@ -973,6 +983,8 @@ class QueryFeedsFeedsResultsSlack(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
     connector: Optional["QueryFeedsFeedsResultsSlackConnector"]
     channel: str
+    before_date: Optional[Any] = Field(alias="beforeDate")
+    after_date: Optional[Any] = Field(alias="afterDate")
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
 
 
@@ -990,6 +1002,8 @@ class QueryFeedsFeedsResultsMicrosoftTeams(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     connector: Optional["QueryFeedsFeedsResultsMicrosoftTeamsConnector"]
+    before_date: Optional[Any] = Field(alias="beforeDate")
+    after_date: Optional[Any] = Field(alias="afterDate")
     team_id: str = Field(alias="teamId")
     channel_id: str = Field(alias="channelId")
     include_attachments: Optional[bool] = Field(alias="includeAttachments")

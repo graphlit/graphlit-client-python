@@ -263,6 +263,8 @@ class MicrosoftTeamsFeedPropertiesUpdateInput(BaseModel):
     include_attachments: Optional[bool] = Field(
         alias="includeAttachments", default=None
     )
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -618,6 +620,8 @@ class MicrosoftEmailFeedPropertiesUpdateInput(BaseModel):
     )
     exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems", default=None)
     include_spam: Optional[bool] = Field(alias="includeSpam", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
     authentication_type: Optional[MicrosoftEmailAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
@@ -1041,6 +1045,8 @@ class GoogleEmailFeedPropertiesUpdateInput(BaseModel):
     )
     exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems", default=None)
     include_spam: Optional[bool] = Field(alias="includeSpam", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
     authentication_type: Optional[GoogleEmailAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
@@ -1151,6 +1157,8 @@ class SlackFeedPropertiesUpdateInput(BaseModel):
         alias="includeAttachments", default=None
     )
     signing_secret: Optional[str] = Field(alias="signingSecret", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -1229,6 +1237,8 @@ class GoogleContactsCRMFeedPropertiesInput(BaseModel):
 
 class PullRequestFeedPropertiesUpdateInput(BaseModel):
     github: Optional["GitHubPullRequestsFeedPropertiesUpdateInput"] = None
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -1476,6 +1486,8 @@ class MicrosoftTeamsFeedPropertiesInput(BaseModel):
     include_attachments: Optional[bool] = Field(
         alias="includeAttachments", default=None
     )
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -2069,6 +2081,8 @@ class GoogleEmailFeedPropertiesInput(BaseModel):
     )
     exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems", default=None)
     include_spam: Optional[bool] = Field(alias="includeSpam", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
     authentication_type: Optional[GoogleEmailAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
@@ -2206,6 +2220,8 @@ class IssueFeedPropertiesUpdateInput(BaseModel):
     )
     asana: Optional["AsanaFeedPropertiesUpdateInput"] = None
     monday: Optional["MondayFeedPropertiesUpdateInput"] = None
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -2678,6 +2694,8 @@ class EntityExtractionConnectorInput(BaseModel):
 class PullRequestFeedPropertiesInput(BaseModel):
     type: FeedServiceTypes
     github: Optional["GitHubPullRequestsFeedPropertiesInput"] = None
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -3619,6 +3637,8 @@ class EntityFeedPropertiesInput(BaseModel):
 class CommitFeedPropertiesInput(BaseModel):
     type: FeedServiceTypes
     github: Optional["GitHubCommitsFeedPropertiesInput"] = None
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -4616,6 +4636,8 @@ class SlackFeedPropertiesInput(BaseModel):
         alias="includeAttachments", default=None
     )
     signing_secret: Optional[str] = Field(alias="signingSecret", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -4750,6 +4772,8 @@ class MicrosoftEmailFeedPropertiesInput(BaseModel):
     )
     exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems", default=None)
     include_spam: Optional[bool] = Field(alias="includeSpam", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
     authentication_type: Optional[MicrosoftEmailAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
@@ -6752,6 +6776,8 @@ class IssueFeedPropertiesInput(BaseModel):
     )
     asana: Optional["AsanaFeedPropertiesInput"] = None
     monday: Optional["MondayFeedPropertiesInput"] = None
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -6830,6 +6856,8 @@ class ParallelPublishingPropertiesInput(BaseModel):
 
 class CommitFeedPropertiesUpdateInput(BaseModel):
     github: Optional["GitHubCommitsFeedPropertiesUpdateInput"] = None
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 

@@ -303,6 +303,8 @@ class GetFeedFeedEmailGoogle(BaseModel):
     exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems")
     include_deleted_items: Optional[bool] = Field(alias="includeDeletedItems")
     inbox_only: Optional[bool] = Field(alias="inboxOnly")
+    before_date: Optional[Any] = Field(alias="beforeDate")
+    after_date: Optional[Any] = Field(alias="afterDate")
     authentication_type: Optional[GoogleEmailAuthenticationTypes] = Field(
         alias="authenticationType"
     )
@@ -323,6 +325,8 @@ class GetFeedFeedEmailMicrosoft(BaseModel):
     exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems")
     include_deleted_items: Optional[bool] = Field(alias="includeDeletedItems")
     inbox_only: Optional[bool] = Field(alias="inboxOnly")
+    before_date: Optional[Any] = Field(alias="beforeDate")
+    after_date: Optional[Any] = Field(alias="afterDate")
     authentication_type: Optional[MicrosoftEmailAuthenticationTypes] = Field(
         alias="authenticationType"
     )
@@ -350,6 +354,8 @@ class GetFeedFeedIssue(BaseModel):
     hub_spot: Optional["GetFeedFeedIssueHubSpot"] = Field(alias="hubSpot")
     asana: Optional["GetFeedFeedIssueAsana"]
     monday: Optional["GetFeedFeedIssueMonday"]
+    before_date: Optional[Any] = Field(alias="beforeDate")
+    after_date: Optional[Any] = Field(alias="afterDate")
     read_limit: Optional[int] = Field(alias="readLimit")
 
 
@@ -508,6 +514,8 @@ class GetFeedFeedIssueMonday(BaseModel):
 class GetFeedFeedCommit(BaseModel):
     type: FeedServiceTypes
     github: Optional["GetFeedFeedCommitGithub"]
+    before_date: Optional[Any] = Field(alias="beforeDate")
+    after_date: Optional[Any] = Field(alias="afterDate")
     read_limit: Optional[int] = Field(alias="readLimit")
 
 
@@ -532,6 +540,8 @@ class GetFeedFeedCommitGithubConnector(BaseModel):
 class GetFeedFeedPullRequest(BaseModel):
     type: FeedServiceTypes
     github: Optional["GetFeedFeedPullRequestGithub"]
+    before_date: Optional[Any] = Field(alias="beforeDate")
+    after_date: Optional[Any] = Field(alias="afterDate")
     read_limit: Optional[int] = Field(alias="readLimit")
 
 
@@ -958,6 +968,8 @@ class GetFeedFeedSlack(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
     connector: Optional["GetFeedFeedSlackConnector"]
     channel: str
+    before_date: Optional[Any] = Field(alias="beforeDate")
+    after_date: Optional[Any] = Field(alias="afterDate")
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
 
 
@@ -975,6 +987,8 @@ class GetFeedFeedMicrosoftTeams(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     connector: Optional["GetFeedFeedMicrosoftTeamsConnector"]
+    before_date: Optional[Any] = Field(alias="beforeDate")
+    after_date: Optional[Any] = Field(alias="afterDate")
     team_id: str = Field(alias="teamId")
     channel_id: str = Field(alias="channelId")
     include_attachments: Optional[bool] = Field(alias="includeAttachments")

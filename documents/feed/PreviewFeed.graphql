@@ -3,7 +3,6 @@ mutation PreviewFeed($feed: FeedPreviewInput!) {
     isComplete
     itemCount
     estimatedBytes
-    estimatedTokens
     contentTypeSummary {
       contentType
       fileType
