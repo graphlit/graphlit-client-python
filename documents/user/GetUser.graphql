@@ -83,5 +83,11 @@ query GetUser {
         text
       }
     }
+    quota {
+      credits
+    }
+    credits
+    lastCreditsDate
+    accumulatedCredits
   }
 }

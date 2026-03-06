@@ -272,6 +272,7 @@ __all__ = [
     "LOOKUP_USAGE_GQL",
     "MAP_WEB_GQL",
     "MATCH_ENTITY_GQL",
+    "PREVIEW_FEED_GQL",
     "PROMPT_CONVERSATION_GQL",
     "PROMPT_GQL",
     "PROMPT_SPECIFICATIONS_GQL",
@@ -10444,6 +10445,24 @@ query LookupPersons($linkedInUrl: URL, $email: String) {
 }
 """
 
+PREVIEW_FEED_GQL = """
+mutation PreviewFeed($feed: FeedPreviewInput!) {
+  previewFeed(feed: $feed) {
+    isComplete
+    itemCount
+    estimatedBytes
+    estimatedTokens
+    contentTypeSummary {
+      contentType
+      fileType
+      itemCount
+      totalBytes
+    }
+    warnings
+  }
+}
+"""
+
 QUERY_ASANA_PROJECTS_GQL = """
 query QueryAsanaProjects($properties: AsanaProjectsInput!) {
   asanaProjects(properties: $properties) {
@@ -16886,6 +16905,7 @@ query GetProject {
       feeds
       posts
       conversations
+      userCredits
     }
     callbackUri
   }
@@ -18552,6 +18572,12 @@ query GetUser {
         text
       }
     }
+    quota {
+      credits
+    }
+    credits
+    lastCreditsDate
+    accumulatedCredits
   }
 }
 """
@@ -18642,6 +18668,12 @@ query GetUserByIdentifier($identifier: String!) {
         text
       }
     }
+    quota {
+      credits
+    }
+    credits
+    lastCreditsDate
+    accumulatedCredits
   }
 }
 """
@@ -18733,6 +18765,12 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
           text
         }
       }
+      quota {
+        credits
+      }
+      credits
+      lastCreditsDate
+      accumulatedCredits
     }
   }
 }

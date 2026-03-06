@@ -1635,6 +1635,7 @@ from .get_user import (
     GetUserUserOwner,
     GetUserUserPersonas,
     GetUserUserPersonasFacts,
+    GetUserUserQuota,
 )
 from .get_user_by_identifier import (
     GetUserByIdentifier,
@@ -1653,6 +1654,7 @@ from .get_user_by_identifier import (
     GetUserByIdentifierUserByIdentifierOwner,
     GetUserByIdentifierUserByIdentifierPersonas,
     GetUserByIdentifierUserByIdentifierPersonasFacts,
+    GetUserByIdentifierUserByIdentifierQuota,
 )
 from .get_view import (
     GetView,
@@ -2022,6 +2024,7 @@ from .input_types import (
     FathomPropertiesUpdateInput,
     FeedFilter,
     FeedInput,
+    FeedPreviewInput,
     FeedSchedulePolicyInput,
     FeedUpdateInput,
     FHIREnrichmentPropertiesInput,
@@ -2346,6 +2349,7 @@ from .input_types import (
     TwitterIntegrationPropertiesInput,
     UserFilter,
     UserInput,
+    UserQuotaInput,
     UserUpdateInput,
     VideoMetadataInput,
     ViewFilter,
@@ -2723,6 +2727,7 @@ from .operations import (
     LOOKUP_USAGE_GQL,
     MAP_WEB_GQL,
     MATCH_ENTITY_GQL,
+    PREVIEW_FEED_GQL,
     PROMPT_CONVERSATION_GQL,
     PROMPT_GQL,
     PROMPT_SPECIFICATIONS_GQL,
@@ -2906,6 +2911,11 @@ from .operations import (
     UPSERT_WORKFLOW_GQL,
     VIEW_EXISTS_GQL,
     WORKFLOW_EXISTS_GQL,
+)
+from .preview_feed import (
+    PreviewFeed,
+    PreviewFeedPreviewFeed,
+    PreviewFeedPreviewFeedContentTypeSummary,
 )
 from .prompt import (
     Prompt,
@@ -4384,6 +4394,7 @@ from .query_users import (
     QueryUsersUsersResultsOwner,
     QueryUsersUsersResultsPersonas,
     QueryUsersUsersResultsPersonasFacts,
+    QueryUsersUsersResultsQuota,
 )
 from .query_views import (
     QueryViews,
@@ -6117,6 +6128,7 @@ __all__ = [
     "FeedFilter",
     "FeedInput",
     "FeedListingTypes",
+    "FeedPreviewInput",
     "FeedSchedulePolicyInput",
     "FeedServiceTypes",
     "FeedSyncMode",
@@ -6819,6 +6831,7 @@ __all__ = [
     "GetUserByIdentifierUserByIdentifierOwner",
     "GetUserByIdentifierUserByIdentifierPersonas",
     "GetUserByIdentifierUserByIdentifierPersonasFacts",
+    "GetUserByIdentifierUserByIdentifierQuota",
     "GetUserUser",
     "GetUserUserConnectors",
     "GetUserUserConnectorsAuthentication",
@@ -6834,6 +6847,7 @@ __all__ = [
     "GetUserUserOwner",
     "GetUserUserPersonas",
     "GetUserUserPersonasFacts",
+    "GetUserUserQuota",
     "GetView",
     "GetViewView",
     "GetViewViewAugmentedFilter",
@@ -7396,6 +7410,7 @@ __all__ = [
     "OrganizationInput",
     "OrganizationUpdateInput",
     "OrientationTypes",
+    "PREVIEW_FEED_GQL",
     "PROMPT_CONVERSATION_GQL",
     "PROMPT_GQL",
     "PROMPT_SPECIFICATIONS_GQL",
@@ -7432,6 +7447,9 @@ __all__ = [
     "PostMetadataInput",
     "PreparationWorkflowJobInput",
     "PreparationWorkflowStageInput",
+    "PreviewFeed",
+    "PreviewFeedPreviewFeed",
+    "PreviewFeedPreviewFeedContentTypeSummary",
     "ProductFacetInput",
     "ProductFacetTypes",
     "ProductFilter",
@@ -8830,6 +8848,7 @@ __all__ = [
     "QueryUsersUsersResultsOwner",
     "QueryUsersUsersResultsPersonas",
     "QueryUsersUsersResultsPersonasFacts",
+    "QueryUsersUsersResultsQuota",
     "QueryViews",
     "QueryViewsViews",
     "QueryViewsViewsResults",
@@ -9595,6 +9614,7 @@ __all__ = [
     "UpsertWorkflowUpsertWorkflowStoragePolicy",
     "UserFilter",
     "UserInput",
+    "UserQuotaInput",
     "UserTypes",
     "UserUpdateInput",
     "VIEW_EXISTS_GQL",

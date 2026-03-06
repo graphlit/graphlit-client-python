@@ -72,6 +72,7 @@ class GetProjectProjectQuota(BaseModel):
     feeds: Optional[int]
     posts: Optional[int]
     conversations: Optional[int]
+    user_credits: Optional[int] = Field(alias="userCredits")
 
 
 GetProject.model_rebuild()

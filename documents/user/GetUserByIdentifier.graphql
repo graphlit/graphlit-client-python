@@ -83,5 +83,11 @@ query GetUserByIdentifier($identifier: String!) {
         text
       }
     }
+    quota {
+      credits
+    }
+    credits
+    lastCreditsDate
+    accumulatedCredits
   }
 }

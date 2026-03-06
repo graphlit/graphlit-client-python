@@ -1975,6 +1975,10 @@ class VideoMetadataInput(BaseModel):
     model: Optional[str] = None
 
 
+class UserQuotaInput(BaseModel):
+    credits: Optional[int] = None
+
+
 class RerankingStrategyInput(BaseModel):
     service_type: RerankingModelServiceTypes = Field(alias="serviceType")
     threshold: Optional[float] = None
@@ -3050,6 +3054,7 @@ class ProjectQuotaInput(BaseModel):
     feeds: Optional[int] = None
     posts: Optional[int] = None
     conversations: Optional[int] = None
+    user_credits: Optional[int] = Field(alias="userCredits", default=None)
 
 
 class NotionDatabasesInput(BaseModel):
@@ -3205,6 +3210,7 @@ class UserUpdateInput(BaseModel):
     type: Optional[UserTypes] = None
     identifier: Optional[str] = None
     description: Optional[str] = None
+    quota: Optional["UserQuotaInput"] = None
 
 
 class ViewUpdateInput(BaseModel):
@@ -5122,6 +5128,51 @@ class PromptClassificationRuleInput(BaseModel):
     then: Optional[str] = None
 
 
+class FeedPreviewInput(BaseModel):
+    name: Optional[str] = None
+    type: FeedTypes
+    site: Optional["SiteFeedPropertiesInput"] = None
+    calendar: Optional["CalendarFeedPropertiesInput"] = None
+    email: Optional["EmailFeedPropertiesInput"] = None
+    crm: Optional["CRMFeedPropertiesInput"] = None
+    hris: Optional["HRISFeedPropertiesInput"] = None
+    issue: Optional["IssueFeedPropertiesInput"] = None
+    pull_request: Optional["PullRequestFeedPropertiesInput"] = Field(
+        alias="pullRequest", default=None
+    )
+    commit: Optional["CommitFeedPropertiesInput"] = None
+    rss: Optional["RSSFeedPropertiesInput"] = None
+    web: Optional["WebFeedPropertiesInput"] = None
+    search: Optional["SearchFeedPropertiesInput"] = None
+    reddit: Optional["RedditFeedPropertiesInput"] = None
+    linked_in: Optional["LinkedInFeedPropertiesInput"] = Field(
+        alias="linkedIn", default=None
+    )
+    youtube: Optional["YouTubeFeedPropertiesInput"] = None
+    notion: Optional["NotionFeedPropertiesInput"] = None
+    confluence: Optional["ConfluenceFeedPropertiesInput"] = None
+    twitter: Optional["TwitterFeedPropertiesInput"] = None
+    slack: Optional["SlackFeedPropertiesInput"] = None
+    microsoft_teams: Optional["MicrosoftTeamsFeedPropertiesInput"] = Field(
+        alias="microsoftTeams", default=None
+    )
+    discord: Optional["DiscordFeedPropertiesInput"] = None
+    attio: Optional["AttioFeedPropertiesInput"] = None
+    salesforce: Optional["SalesforceFeedPropertiesInput"] = None
+    hub_spot_conversations: Optional["HubSpotConversationsFeedPropertiesInput"] = Field(
+        alias="hubSpotConversations", default=None
+    )
+    intercom: Optional["IntercomFeedPropertiesInput"] = None
+    zendesk: Optional["ZendeskFeedPropertiesInput"] = None
+    intercom_conversations: Optional["IntercomConversationsFeedPropertiesInput"] = (
+        Field(alias="intercomConversations", default=None)
+    )
+    research: Optional["ResearchFeedPropertiesInput"] = None
+    entity: Optional["EntityFeedPropertiesInput"] = None
+    meeting: Optional["MeetingFeedPropertiesInput"] = None
+    workflow: Optional["EntityReferenceInput"] = None
+
+
 class LinearDistributionPropertiesInput(BaseModel):
     team_id: str = Field(alias="teamId")
     title: Optional[str] = None
@@ -6979,6 +7030,7 @@ AlertInput.model_rebuild()
 GoogleDriveFoldersInput.model_rebuild()
 MedicalContraindicationFilter.model_rebuild()
 ShapeMetadataInput.model_rebuild()
+UserUpdateInput.model_rebuild()
 ViewUpdateInput.model_rebuild()
 DropboxFeedPropertiesInput.model_rebuild()
 ZendeskFeedPropertiesInput.model_rebuild()
@@ -7070,6 +7122,7 @@ AuthenticationConnectorInput.model_rebuild()
 ExtractionWorkflowJobInput.model_rebuild()
 PreparationWorkflowStageInput.model_rebuild()
 HRISFeedPropertiesUpdateInput.model_rebuild()
+FeedPreviewInput.model_rebuild()
 StorageGateInput.model_rebuild()
 GoogleImagePublishingPropertiesInput.model_rebuild()
 MedicalStudyUpdateInput.model_rebuild()

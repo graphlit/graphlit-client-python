@@ -326,6 +326,7 @@ from .input_types import (
     FactUpdateInput,
     FeedFilter,
     FeedInput,
+    FeedPreviewInput,
     FeedUpdateInput,
     GitHubRepositoriesInput,
     GoogleCalendarsInput,
@@ -719,6 +720,7 @@ from .operations import (
     LOOKUP_USAGE_GQL,
     MAP_WEB_GQL,
     MATCH_ENTITY_GQL,
+    PREVIEW_FEED_GQL,
     PROMPT_CONVERSATION_GQL,
     PROMPT_GQL,
     PROMPT_SPECIFICATIONS_GQL,
@@ -903,6 +905,7 @@ from .operations import (
     VIEW_EXISTS_GQL,
     WORKFLOW_EXISTS_GQL,
 )
+from .preview_feed import PreviewFeed
 from .prompt import Prompt
 from .prompt_conversation import PromptConversation
 from .prompt_specifications import PromptSpecifications
@@ -3979,6 +3982,17 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return LookupPersons.model_validate(data)
+
+    async def preview_feed(self, feed: FeedPreviewInput, **kwargs: Any) -> PreviewFeed:
+        variables: dict[str, object] = {"feed": feed}
+        response = await self.execute(
+            query=PREVIEW_FEED_GQL,
+            operation_name="PreviewFeed",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return PreviewFeed.model_validate(data)
 
     async def query_asana_projects(
         self, properties: AsanaProjectsInput, **kwargs: Any

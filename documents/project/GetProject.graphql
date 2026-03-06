@@ -36,6 +36,7 @@ query GetProject {
       feeds
       posts
       conversations
+      userCredits
     }
     callbackUri
   }

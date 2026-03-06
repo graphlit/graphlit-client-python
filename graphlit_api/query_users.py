@@ -39,6 +39,10 @@ class QueryUsersUsersResults(BaseModel):
     description: Optional[str]
     connectors: Optional[list[Optional["QueryUsersUsersResultsConnectors"]]]
     personas: Optional[list[Optional["QueryUsersUsersResultsPersonas"]]]
+    quota: Optional["QueryUsersUsersResultsQuota"]
+    credits: Optional[Any]
+    last_credits_date: Optional[Any] = Field(alias="lastCreditsDate")
+    accumulated_credits: Optional[Any] = Field(alias="accumulatedCredits")
 
 
 class QueryUsersUsersResultsOwner(BaseModel):
@@ -138,6 +142,10 @@ class QueryUsersUsersResultsPersonas(BaseModel):
 class QueryUsersUsersResultsPersonasFacts(BaseModel):
     id: Optional[str]
     text: Optional[str]
+
+
+class QueryUsersUsersResultsQuota(BaseModel):
+    credits: Optional[int]
 
 
 QueryUsers.model_rebuild()

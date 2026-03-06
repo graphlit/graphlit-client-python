@@ -39,6 +39,10 @@ class GetUserByIdentifierUserByIdentifier(BaseModel):
         list[Optional["GetUserByIdentifierUserByIdentifierConnectors"]]
     ]
     personas: Optional[list[Optional["GetUserByIdentifierUserByIdentifierPersonas"]]]
+    quota: Optional["GetUserByIdentifierUserByIdentifierQuota"]
+    credits: Optional[Any]
+    last_credits_date: Optional[Any] = Field(alias="lastCreditsDate")
+    accumulated_credits: Optional[Any] = Field(alias="accumulatedCredits")
 
 
 class GetUserByIdentifierUserByIdentifierOwner(BaseModel):
@@ -146,6 +150,10 @@ class GetUserByIdentifierUserByIdentifierPersonas(BaseModel):
 class GetUserByIdentifierUserByIdentifierPersonasFacts(BaseModel):
     id: Optional[str]
     text: Optional[str]
+
+
+class GetUserByIdentifierUserByIdentifierQuota(BaseModel):
+    credits: Optional[int]
 
 
 GetUserByIdentifier.model_rebuild()
