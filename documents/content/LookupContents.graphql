@@ -316,6 +316,11 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
           givenName
           familyName
         }
+        reactions {
+          emoji
+          count
+          isUnicode
+        }
       }
       post {
         identifier

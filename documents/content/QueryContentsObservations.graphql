@@ -284,6 +284,11 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
           givenName
           familyName
         }
+        reactions {
+          emoji
+          count
+          isUnicode
+        }
       }
       post {
         identifier

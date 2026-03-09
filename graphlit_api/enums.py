@@ -122,6 +122,7 @@ class FeedTypes(str, Enum):
     YOU_TUBE = "YOU_TUBE"
     EMAIL = "EMAIL"
     ISSUE = "ISSUE"
+    INITIATIVE = "INITIATIVE"
     PULL_REQUEST = "PULL_REQUEST"
     COMMIT = "COMMIT"
     SEARCH = "SEARCH"
@@ -137,6 +138,7 @@ class FeedTypes(str, Enum):
     MEETING = "MEETING"
     HRIS = "HRIS"
     INTERCOM_CONVERSATIONS = "INTERCOM_CONVERSATIONS"
+    PRODUCTLANE = "PRODUCTLANE"
 
 
 class H3ResolutionTypes(str, Enum):
@@ -174,6 +176,12 @@ class AnthropicEffortLevels(str, Enum):
     MEDIUM = "MEDIUM"
     HIGH = "HIGH"
     MAX = "MAX"
+
+
+class LinearAuthenticationTypes(str, Enum):
+    API_KEY = "API_KEY"
+    O_AUTH = "O_AUTH"
+    CONNECTOR = "CONNECTOR"
 
 
 class RerankingModelServiceTypes(str, Enum):
@@ -305,12 +313,6 @@ class AuthenticationServiceTypes(str, Enum):
     ARCADE = "ARCADE"
     TOKEN = "TOKEN"
     API_KEY = "API_KEY"
-
-
-class LinearIssueAuthenticationTypes(str, Enum):
-    API_KEY = "API_KEY"
-    O_AUTH = "O_AUTH"
-    CONNECTOR = "CONNECTOR"
 
 
 class RevisionStrategyTypes(str, Enum):
@@ -613,6 +615,7 @@ class ContentTypes(str, Enum):
     EMAIL = "EMAIL"
     EVENT = "EVENT"
     ISSUE = "ISSUE"
+    INITIATIVE = "INITIATIVE"
     PULL_REQUEST = "PULL_REQUEST"
     COMMIT = "COMMIT"
     MEMORY = "MEMORY"
@@ -654,12 +657,6 @@ class MailImportance(str, Enum):
     NORMAL = "NORMAL"
     LOW = "LOW"
     HIGH = "HIGH"
-
-
-class GitHubIssueAuthenticationTypes(str, Enum):
-    PERSONAL_ACCESS_TOKEN = "PERSONAL_ACCESS_TOKEN"
-    O_AUTH = "O_AUTH"
-    CONNECTOR = "CONNECTOR"
 
 
 class SalesforceIssueAuthenticationTypes(str, Enum):
@@ -1368,6 +1365,14 @@ class FeedServiceTypes(str, Enum):
     BAMBOO_HR = "BAMBOO_HR"
     GUSTO_HRIS = "GUSTO_HRIS"
     INTERCOM_CONVERSATIONS = "INTERCOM_CONVERSATIONS"
+    JIRA_EPICS = "JIRA_EPICS"
+    GIT_HUB_MILESTONES = "GIT_HUB_MILESTONES"
+    LINEAR_INITIATIVES = "LINEAR_INITIATIVES"
+    PRODUCTLANE_THREADS = "PRODUCTLANE_THREADS"
+    PRODUCTLANE_ISSUES = "PRODUCTLANE_ISSUES"
+    PRODUCTLANE_OBJECTS = "PRODUCTLANE_OBJECTS"
+    PRODUCTLANE_CHANGELOGS = "PRODUCTLANE_CHANGELOGS"
+    PRODUCTLANE_ARTICLES = "PRODUCTLANE_ARTICLES"
 
 
 class TextTypes(str, Enum):
@@ -1859,6 +1864,7 @@ class FeedConnectorTypes(str, Enum):
     PARALLEL = "PARALLEL"
     BAMBOO_HR = "BAMBOO_HR"
     GUSTO = "GUSTO"
+    PRODUCTLANE = "PRODUCTLANE"
 
 
 class BillableMetrics(str, Enum):

@@ -439,6 +439,9 @@ class LookupContentsLookupContentsResultsMessage(BaseModel):
     mentions: Optional[
         list[Optional["LookupContentsLookupContentsResultsMessageMentions"]]
     ]
+    reactions: Optional[
+        list[Optional["LookupContentsLookupContentsResultsMessageReactions"]]
+    ]
 
 
 class LookupContentsLookupContentsResultsMessageAuthor(BaseModel):
@@ -453,6 +456,12 @@ class LookupContentsLookupContentsResultsMessageMentions(BaseModel):
     email: Optional[str]
     given_name: Optional[str] = Field(alias="givenName")
     family_name: Optional[str] = Field(alias="familyName")
+
+
+class LookupContentsLookupContentsResultsMessageReactions(BaseModel):
+    emoji: str
+    count: int
+    is_unicode: Optional[bool] = Field(alias="isUnicode")
 
 
 class LookupContentsLookupContentsResultsPost(BaseModel):

@@ -397,6 +397,9 @@ class QueryContentsObservationsContentsResultsMessage(BaseModel):
     mentions: Optional[
         list[Optional["QueryContentsObservationsContentsResultsMessageMentions"]]
     ]
+    reactions: Optional[
+        list[Optional["QueryContentsObservationsContentsResultsMessageReactions"]]
+    ]
 
 
 class QueryContentsObservationsContentsResultsMessageAuthor(BaseModel):
@@ -411,6 +414,12 @@ class QueryContentsObservationsContentsResultsMessageMentions(BaseModel):
     email: Optional[str]
     given_name: Optional[str] = Field(alias="givenName")
     family_name: Optional[str] = Field(alias="familyName")
+
+
+class QueryContentsObservationsContentsResultsMessageReactions(BaseModel):
+    emoji: str
+    count: int
+    is_unicode: Optional[bool] = Field(alias="isUnicode")
 
 
 class QueryContentsObservationsContentsResultsPost(BaseModel):

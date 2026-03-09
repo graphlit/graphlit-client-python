@@ -2579,6 +2579,11 @@ query GetContent($id: ID!, $correlationId: String) {
         givenName
         familyName
       }
+      reactions {
+        emoji
+        count
+        isUnicode
+      }
     }
     post {
       identifier
@@ -3466,6 +3471,11 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
           givenName
           familyName
         }
+        reactions {
+          emoji
+          count
+          isUnicode
+        }
       }
       post {
         identifier
@@ -4194,6 +4204,11 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
           givenName
           familyName
         }
+        reactions {
+          emoji
+          count
+          isUnicode
+        }
       }
       post {
         identifier
@@ -4628,6 +4643,11 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
           email
           givenName
           familyName
+        }
+        reactions {
+          emoji
+          count
+          isUnicode
         }
       }
       post {
@@ -9921,6 +9941,55 @@ query GetFeed($id: ID!, $correlationId: String) {
         apiToken
         boardId
       }
+      productlane {
+        apiKey
+        workspaceId
+      }
+      beforeDate
+      afterDate
+      readLimit
+    }
+    initiative {
+      type
+      jira {
+        authenticationType
+        uri
+        project
+        email
+        token
+        offset
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
+        cloudId
+      }
+      github {
+        authenticationType
+        uri
+        repositoryOwner
+        repositoryName
+        personalAccessToken
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
+        authorizationId
+      }
+      linear {
+        authenticationType
+        key
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
+      }
       beforeDate
       afterDate
       readLimit
@@ -10018,6 +10087,10 @@ query GetFeed($id: ID!, $correlationId: String) {
         connector {
           id
         }
+        type
+      }
+      productlane {
+        apiKey
         type
       }
       readLimit
@@ -10329,6 +10402,12 @@ query GetFeed($id: ID!, $correlationId: String) {
       state
       includeNotes
       includeAttachments
+    }
+    productlane {
+      type
+      readLimit
+      apiKey
+      workspaceId
     }
     research {
       readLimit
@@ -10876,6 +10955,55 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           apiToken
           boardId
         }
+        productlane {
+          apiKey
+          workspaceId
+        }
+        beforeDate
+        afterDate
+        readLimit
+      }
+      initiative {
+        type
+        jira {
+          authenticationType
+          uri
+          project
+          email
+          token
+          offset
+          clientId
+          clientSecret
+          refreshToken
+          connector {
+            id
+          }
+          cloudId
+        }
+        github {
+          authenticationType
+          uri
+          repositoryOwner
+          repositoryName
+          personalAccessToken
+          clientId
+          clientSecret
+          refreshToken
+          connector {
+            id
+          }
+          authorizationId
+        }
+        linear {
+          authenticationType
+          key
+          clientId
+          clientSecret
+          refreshToken
+          connector {
+            id
+          }
+        }
         beforeDate
         afterDate
         readLimit
@@ -10973,6 +11101,10 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           connector {
             id
           }
+          type
+        }
+        productlane {
+          apiKey
           type
         }
         readLimit
@@ -11284,6 +11416,12 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         state
         includeNotes
         includeAttachments
+      }
+      productlane {
+        type
+        readLimit
+        apiKey
+        workspaceId
       }
       research {
         readLimit

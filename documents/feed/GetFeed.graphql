@@ -267,6 +267,55 @@ query GetFeed($id: ID!, $correlationId: String) {
         apiToken
         boardId
       }
+      productlane {
+        apiKey
+        workspaceId
+      }
+      beforeDate
+      afterDate
+      readLimit
+    }
+    initiative {
+      type
+      jira {
+        authenticationType
+        uri
+        project
+        email
+        token
+        offset
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
+        cloudId
+      }
+      github {
+        authenticationType
+        uri
+        repositoryOwner
+        repositoryName
+        personalAccessToken
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
+        authorizationId
+      }
+      linear {
+        authenticationType
+        key
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
+      }
       beforeDate
       afterDate
       readLimit
@@ -364,6 +413,10 @@ query GetFeed($id: ID!, $correlationId: String) {
         connector {
           id
         }
+        type
+      }
+      productlane {
+        apiKey
         type
       }
       readLimit
@@ -675,6 +728,12 @@ query GetFeed($id: ID!, $correlationId: String) {
       state
       includeNotes
       includeAttachments
+    }
+    productlane {
+      type
+      readLimit
+      apiKey
+      workspaceId
     }
     research {
       readLimit

@@ -413,6 +413,7 @@ class GetContentContentMessage(BaseModel):
     links: Optional[list[Optional[Any]]]
     author: Optional["GetContentContentMessageAuthor"]
     mentions: Optional[list[Optional["GetContentContentMessageMentions"]]]
+    reactions: Optional[list[Optional["GetContentContentMessageReactions"]]]
 
 
 class GetContentContentMessageAuthor(BaseModel):
@@ -427,6 +428,12 @@ class GetContentContentMessageMentions(BaseModel):
     email: Optional[str]
     given_name: Optional[str] = Field(alias="givenName")
     family_name: Optional[str] = Field(alias="familyName")
+
+
+class GetContentContentMessageReactions(BaseModel):
+    emoji: str
+    count: int
+    is_unicode: Optional[bool] = Field(alias="isUnicode")
 
 
 class GetContentContentPost(BaseModel):

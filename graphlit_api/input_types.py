@@ -78,7 +78,6 @@ from .enums import (
     FilterMode,
     GitHubAuthenticationTypes,
     GitHubCommitAuthenticationTypes,
-    GitHubIssueAuthenticationTypes,
     GitHubPullRequestAuthenticationTypes,
     GoogleCalendarAuthenticationTypes,
     GoogleContactsAuthenticationTypes,
@@ -107,7 +106,7 @@ from .enums import (
     JinaModels,
     JiraAuthenticationTypes,
     LabelFacetTypes,
-    LinearIssueAuthenticationTypes,
+    LinearAuthenticationTypes,
     LinkedInPostContentTypes,
     LinkedInPostListingTypes,
     LinkTypes,
@@ -575,6 +574,11 @@ class CerebrasModelPropertiesInput(BaseModel):
     )
 
 
+class ProductlaneThreadsFeedPropertiesUpdateInput(BaseModel):
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    workspace_id: Optional[str] = Field(alias="workspaceId", default=None)
+
+
 class IntegrationConnectorInput(BaseModel):
     type: IntegrationServiceTypes
     uri: Optional[str] = None
@@ -733,6 +737,13 @@ class MedicalIndicationFilter(BaseModel):
     )
 
 
+class ProductlaneFeedPropertiesInput(BaseModel):
+    type: FeedServiceTypes
+    api_key: str = Field(alias="apiKey")
+    workspace_id: str = Field(alias="workspaceId")
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
 class GoogleModelPropertiesInput(BaseModel):
     model: GoogleModels
     model_name: Optional[str] = Field(alias="modelName", default=None)
@@ -781,6 +792,16 @@ class EventInput(BaseModel):
     performer: Optional[str] = None
     sponsor: Optional[str] = None
     event_status: Optional[str] = Field(alias="eventStatus", default=None)
+
+
+class InitiativeFeedPropertiesInput(BaseModel):
+    type: FeedServiceTypes
+    jira: Optional["JiraEpicsFeedPropertiesInput"] = None
+    github: Optional["GitHubMilestonesFeedPropertiesInput"] = None
+    linear: Optional["LinearInitiativesFeedPropertiesInput"] = None
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class XAIModelPropertiesInput(BaseModel):
@@ -900,7 +921,7 @@ class ExaSearchPropertiesInput(BaseModel):
 
 
 class LinearFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[LinearIssueAuthenticationTypes] = Field(
+    authentication_type: Optional[LinearAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
     key: Optional[str] = None
@@ -977,6 +998,23 @@ class MedicalIndicationInput(BaseModel):
     description: Optional[str] = None
     location: Optional["PointInput"] = None
     boundary: Optional[str] = None
+
+
+class GitHubMilestonesFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[GitHubAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    uri: Optional[str] = None
+    repository_owner: Optional[str] = Field(alias="repositoryOwner", default=None)
+    repository_name: Optional[str] = Field(alias="repositoryName", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class JiraDistributionPropertiesInput(BaseModel):
@@ -1597,6 +1635,13 @@ class MicrosoftCalendarFeedPropertiesInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
 
 
+class ProductlaneFeedPropertiesUpdateInput(BaseModel):
+    type: Optional[FeedServiceTypes] = None
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    workspace_id: Optional[str] = Field(alias="workspaceId", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
 class MistralModelPropertiesInput(BaseModel):
     model: MistralModels
     model_name: Optional[str] = Field(alias="modelName", default=None)
@@ -1791,7 +1836,7 @@ class OneDriveFeedPropertiesInput(BaseModel):
 
 
 class GitHubIssuesFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[GitHubIssueAuthenticationTypes] = Field(
+    authentication_type: Optional[GitHubAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
     repository_owner: str = Field(alias="repositoryOwner")
@@ -1849,9 +1894,11 @@ class FeedUpdateInput(BaseModel):
     intercom_conversations: Optional[
         "IntercomConversationsFeedPropertiesUpdateInput"
     ] = Field(alias="intercomConversations", default=None)
+    productlane: Optional["ProductlaneFeedPropertiesUpdateInput"] = None
     research: Optional["ResearchFeedPropertiesUpdateInput"] = None
     entity: Optional["EntityFeedPropertiesUpdateInput"] = None
     meeting: Optional["MeetingFeedPropertiesUpdateInput"] = None
+    initiative: Optional["InitiativeFeedPropertiesUpdateInput"] = None
     schedule_policy: Optional["FeedSchedulePolicyInput"] = Field(
         alias="schedulePolicy", default=None
     )
@@ -2220,6 +2267,7 @@ class IssueFeedPropertiesUpdateInput(BaseModel):
     )
     asana: Optional["AsanaFeedPropertiesUpdateInput"] = None
     monday: Optional["MondayFeedPropertiesUpdateInput"] = None
+    productlane: Optional["ProductlaneThreadsFeedPropertiesUpdateInput"] = None
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
@@ -2550,7 +2598,7 @@ class ParallelEnrichmentPropertiesInput(BaseModel):
 
 
 class LinearFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[LinearIssueAuthenticationTypes] = Field(
+    authentication_type: Optional[LinearAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
     key: Optional[str] = None
@@ -3241,6 +3289,17 @@ class ViewUpdateInput(BaseModel):
     )
 
 
+class LinearInitiativesFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[LinearAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    key: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
 class OneDriveDistributionPropertiesInput(BaseModel):
     folder_id: Optional[str] = Field(alias="folderId", default=None)
     file_name: Optional[str] = Field(alias="fileName", default=None)
@@ -3284,6 +3343,17 @@ class ZendeskFeedPropertiesInput(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class LinearInitiativesFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[LinearAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    key: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class MedicalTherapyFacetInput(BaseModel):
@@ -3386,7 +3456,7 @@ class ContentInput(BaseModel):
 
 
 class LinearProjectsInput(BaseModel):
-    authentication_type: Optional[LinearIssueAuthenticationTypes] = Field(
+    authentication_type: Optional[LinearAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
     key: Optional[str] = None
@@ -3517,6 +3587,15 @@ class MicrosoftCalendarsInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
+
+
+class InitiativeFeedPropertiesUpdateInput(BaseModel):
+    jira: Optional["JiraEpicsFeedPropertiesUpdateInput"] = None
+    github: Optional["GitHubMilestonesFeedPropertiesUpdateInput"] = None
+    linear: Optional["LinearInitiativesFeedPropertiesUpdateInput"] = None
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class MedicalDrugClassFilter(BaseModel):
@@ -4600,6 +4679,22 @@ class MedicalTestFacetInput(BaseModel):
     facet: Optional[MedicalTestFacetTypes] = None
 
 
+class JiraEpicsFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[JiraAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    uri: Optional[str] = None
+    project: Optional[str] = None
+    email: Optional[str] = None
+    token: Optional[str] = None
+    offset: Optional[Any] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    cloud_id: Optional[str] = Field(alias="cloudId", default=None)
+
+
 class OAuthAuthenticationPropertiesInput(BaseModel):
     provider: OAuthProviders
     client_id: str = Field(alias="clientId")
@@ -4686,6 +4781,17 @@ class SoftwareFacetInput(BaseModel):
     )
     time_offset: Optional[int] = Field(alias="timeOffset", default=None)
     facet: Optional[SoftwareFacetTypes] = None
+
+
+class ReactionReferenceInput(BaseModel):
+    emoji: str
+    count: int
+    is_unicode: Optional[bool] = Field(alias="isUnicode", default=None)
+
+
+class ProductlaneCRMFeedPropertiesUpdateInput(BaseModel):
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    type: Optional[FeedListingTypes] = None
 
 
 class ObservationInput(BaseModel):
@@ -4931,6 +5037,7 @@ class CRMFeedPropertiesInput(BaseModel):
     hub_spot: Optional["HubSpotCRMFeedPropertiesInput"] = Field(
         alias="hubSpot", default=None
     )
+    productlane: Optional["ProductlaneCRMFeedPropertiesInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -5191,9 +5298,11 @@ class FeedPreviewInput(BaseModel):
     intercom_conversations: Optional["IntercomConversationsFeedPropertiesInput"] = (
         Field(alias="intercomConversations", default=None)
     )
+    productlane: Optional["ProductlaneFeedPropertiesInput"] = None
     research: Optional["ResearchFeedPropertiesInput"] = None
     entity: Optional["EntityFeedPropertiesInput"] = None
     meeting: Optional["MeetingFeedPropertiesInput"] = None
+    initiative: Optional["InitiativeFeedPropertiesInput"] = None
     workflow: Optional["EntityReferenceInput"] = None
 
 
@@ -5500,6 +5609,11 @@ class ConversationUpdateInput(BaseModel):
         alias="augmentedFilter", default=None
     )
     scratchpad: Optional[str] = None
+
+
+class ProductlaneCRMFeedPropertiesInput(BaseModel):
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    type: Optional[FeedListingTypes] = None
 
 
 class MedicalDeviceInput(BaseModel):
@@ -6020,6 +6134,22 @@ class MondayFeedPropertiesUpdateInput(BaseModel):
     board_id: Optional[str] = Field(alias="boardId", default=None)
 
 
+class JiraEpicsFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[JiraAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    uri: Optional[str] = None
+    project: Optional[str] = None
+    email: Optional[str] = None
+    token: Optional[str] = None
+    offset: Optional[Any] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    cloud_id: Optional[str] = Field(alias="cloudId", default=None)
+
+
 class CrustdataCompanyDiscoveryFilterInput(BaseModel):
     names: Optional[list[str]] = None
     domains: Optional[list[str]] = None
@@ -6105,6 +6235,23 @@ class JiraProjectsInput(BaseModel):
     token: Optional[str] = None
     connector: Optional["EntityReferenceInput"] = None
     cloud_id: Optional[str] = Field(alias="cloudId", default=None)
+
+
+class GitHubMilestonesFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[GitHubAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    uri: Optional[str] = None
+    repository_owner: Optional[str] = Field(alias="repositoryOwner", default=None)
+    repository_name: Optional[str] = Field(alias="repositoryName", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class ContentCriteriaInput(BaseModel):
@@ -6312,9 +6459,11 @@ class FeedInput(BaseModel):
     intercom_conversations: Optional["IntercomConversationsFeedPropertiesInput"] = (
         Field(alias="intercomConversations", default=None)
     )
+    productlane: Optional["ProductlaneFeedPropertiesInput"] = None
     research: Optional["ResearchFeedPropertiesInput"] = None
     entity: Optional["EntityFeedPropertiesInput"] = None
     meeting: Optional["MeetingFeedPropertiesInput"] = None
+    initiative: Optional["InitiativeFeedPropertiesInput"] = None
     schedule_policy: Optional["FeedSchedulePolicyInput"] = Field(
         alias="schedulePolicy", default=None
     )
@@ -6404,6 +6553,7 @@ class MessageMetadataInput(BaseModel):
     links: Optional[list[Optional["LinkReferenceInput"]]] = None
     author: Optional["PersonReferenceInput"] = None
     mentions: Optional[list[Optional["PersonReferenceInput"]]] = None
+    reactions: Optional[list[Optional["ReactionReferenceInput"]]] = None
 
 
 class DropboxFeedPropertiesUpdateInput(BaseModel):
@@ -6489,6 +6639,7 @@ class CRMFeedPropertiesUpdateInput(BaseModel):
     hub_spot: Optional["HubSpotCRMFeedPropertiesUpdateInput"] = Field(
         alias="hubSpot", default=None
     )
+    productlane: Optional["ProductlaneCRMFeedPropertiesUpdateInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -6776,6 +6927,7 @@ class IssueFeedPropertiesInput(BaseModel):
     )
     asana: Optional["AsanaFeedPropertiesInput"] = None
     monday: Optional["MondayFeedPropertiesInput"] = None
+    productlane: Optional["ProductlaneThreadsFeedPropertiesInput"] = None
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
@@ -6872,6 +7024,11 @@ class TwitterDistributionPropertiesInput(BaseModel):
     reply_to_tweet_id: Optional[str] = Field(alias="replyToTweetId", default=None)
 
 
+class ProductlaneThreadsFeedPropertiesInput(BaseModel):
+    api_key: str = Field(alias="apiKey")
+    workspace_id: Optional[str] = Field(alias="workspaceId", default=None)
+
+
 class RepoFacetInput(BaseModel):
     time_interval: Optional[TimeIntervalTypes] = Field(
         alias="timeInterval", default=None
@@ -6953,6 +7110,7 @@ SearchFeedPropertiesUpdateInput.model_rebuild()
 TwitterFeedPropertiesUpdateInput.model_rebuild()
 MedicalIndicationFilter.model_rebuild()
 EventInput.model_rebuild()
+InitiativeFeedPropertiesInput.model_rebuild()
 EmailFeedPropertiesInput.model_rebuild()
 FactAssertionInput.model_rebuild()
 LabelFilter.model_rebuild()
@@ -6965,6 +7123,7 @@ InvestmentFundInput.model_rebuild()
 PreparationWorkflowJobInput.model_rebuild()
 ObservationUpdateInput.model_rebuild()
 MedicalIndicationInput.model_rebuild()
+GitHubMilestonesFeedPropertiesUpdateInput.model_rebuild()
 FactFilter.model_rebuild()
 GoogleEmailFeedPropertiesUpdateInput.model_rebuild()
 PersonInput.model_rebuild()
@@ -7060,8 +7219,10 @@ MedicalContraindicationFilter.model_rebuild()
 ShapeMetadataInput.model_rebuild()
 UserUpdateInput.model_rebuild()
 ViewUpdateInput.model_rebuild()
+LinearInitiativesFeedPropertiesUpdateInput.model_rebuild()
 DropboxFeedPropertiesInput.model_rebuild()
 ZendeskFeedPropertiesInput.model_rebuild()
+LinearInitiativesFeedPropertiesInput.model_rebuild()
 MedicalDrugFilter.model_rebuild()
 InvestmentInput.model_rebuild()
 ContentInput.model_rebuild()
@@ -7071,6 +7232,7 @@ MeetingFeedPropertiesUpdateInput.model_rebuild()
 EntityResolutionStrategyInput.model_rebuild()
 SoftwareUpdateInput.model_rebuild()
 MicrosoftCalendarsInput.model_rebuild()
+InitiativeFeedPropertiesUpdateInput.model_rebuild()
 MedicalDrugClassFilter.model_rebuild()
 MetadataInput.model_rebuild()
 MedicalGuidelineUpdateInput.model_rebuild()
@@ -7120,6 +7282,7 @@ EnrichmentWorkflowStageInput.model_rebuild()
 FeedFilter.model_rebuild()
 ViewFilter.model_rebuild()
 EventFilter.model_rebuild()
+JiraEpicsFeedPropertiesUpdateInput.model_rebuild()
 SlackFeedPropertiesInput.model_rebuild()
 PersonaFilter.model_rebuild()
 RegexContentClassificationPropertiesInput.model_rebuild()
@@ -7186,9 +7349,11 @@ MedicalStudyInput.model_rebuild()
 SiteFeedPropertiesInput.model_rebuild()
 GitHubPullRequestsFeedPropertiesUpdateInput.model_rebuild()
 MedicalProcedureInput.model_rebuild()
+JiraEpicsFeedPropertiesInput.model_rebuild()
 GoogleDriveFeedPropertiesUpdateInput.model_rebuild()
 WorkflowUpdateInput.model_rebuild()
 JiraProjectsInput.model_rebuild()
+GitHubMilestonesFeedPropertiesInput.model_rebuild()
 ContentCriteriaInput.model_rebuild()
 MedicalGuidelineFilter.model_rebuild()
 CrustdataEntityFeedPropertiesUpdateInput.model_rebuild()

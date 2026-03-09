@@ -29,7 +29,6 @@ from .enums import (
     FeedTypes,
     GitHubAuthenticationTypes,
     GitHubCommitAuthenticationTypes,
-    GitHubIssueAuthenticationTypes,
     GitHubPullRequestAuthenticationTypes,
     GoogleCalendarAuthenticationTypes,
     GoogleContactsAuthenticationTypes,
@@ -43,7 +42,7 @@ from .enums import (
     IntercomConversationsAuthenticationTypes,
     IntercomIssueAuthenticationTypes,
     JiraAuthenticationTypes,
-    LinearIssueAuthenticationTypes,
+    LinearAuthenticationTypes,
     LinkedInPostContentTypes,
     LinkedInPostListingTypes,
     MeetingContentTypes,
@@ -97,6 +96,7 @@ class QueryFeedsFeedsResults(BaseModel):
     site: Optional["QueryFeedsFeedsResultsSite"]
     email: Optional["QueryFeedsFeedsResultsEmail"]
     issue: Optional["QueryFeedsFeedsResultsIssue"]
+    initiative: Optional["QueryFeedsFeedsResultsInitiative"]
     commit: Optional["QueryFeedsFeedsResultsCommit"]
     pull_request: Optional["QueryFeedsFeedsResultsPullRequest"] = Field(
         alias="pullRequest"
@@ -129,6 +129,7 @@ class QueryFeedsFeedsResults(BaseModel):
     intercom_conversations: Optional["QueryFeedsFeedsResultsIntercomConversations"] = (
         Field(alias="intercomConversations")
     )
+    productlane: Optional["QueryFeedsFeedsResultsProductlane"]
     research: Optional["QueryFeedsFeedsResultsResearch"]
     entity: Optional["QueryFeedsFeedsResultsEntity"]
     error: Optional[str]
@@ -369,6 +370,7 @@ class QueryFeedsFeedsResultsIssue(BaseModel):
     hub_spot: Optional["QueryFeedsFeedsResultsIssueHubSpot"] = Field(alias="hubSpot")
     asana: Optional["QueryFeedsFeedsResultsIssueAsana"]
     monday: Optional["QueryFeedsFeedsResultsIssueMonday"]
+    productlane: Optional["QueryFeedsFeedsResultsIssueProductlane"]
     before_date: Optional[Any] = Field(alias="beforeDate")
     after_date: Optional[Any] = Field(alias="afterDate")
     read_limit: Optional[int] = Field(alias="readLimit")
@@ -395,7 +397,7 @@ class QueryFeedsFeedsResultsIssueJiraConnector(BaseModel):
 
 
 class QueryFeedsFeedsResultsIssueLinear(BaseModel):
-    authentication_type: Optional[LinearIssueAuthenticationTypes] = Field(
+    authentication_type: Optional[LinearAuthenticationTypes] = Field(
         alias="authenticationType"
     )
     key: Optional[str]
@@ -411,7 +413,7 @@ class QueryFeedsFeedsResultsIssueLinearConnector(BaseModel):
 
 
 class QueryFeedsFeedsResultsIssueGithub(BaseModel):
-    authentication_type: Optional[GitHubIssueAuthenticationTypes] = Field(
+    authentication_type: Optional[GitHubAuthenticationTypes] = Field(
         alias="authenticationType"
     )
     uri: Optional[Any]
@@ -526,6 +528,75 @@ class QueryFeedsFeedsResultsIssueMonday(BaseModel):
     board_id: str = Field(alias="boardId")
 
 
+class QueryFeedsFeedsResultsIssueProductlane(BaseModel):
+    api_key: Optional[str] = Field(alias="apiKey")
+    workspace_id: Optional[str] = Field(alias="workspaceId")
+
+
+class QueryFeedsFeedsResultsInitiative(BaseModel):
+    type: FeedServiceTypes
+    jira: Optional["QueryFeedsFeedsResultsInitiativeJira"]
+    github: Optional["QueryFeedsFeedsResultsInitiativeGithub"]
+    linear: Optional["QueryFeedsFeedsResultsInitiativeLinear"]
+    before_date: Optional[Any] = Field(alias="beforeDate")
+    after_date: Optional[Any] = Field(alias="afterDate")
+    read_limit: Optional[int] = Field(alias="readLimit")
+
+
+class QueryFeedsFeedsResultsInitiativeJira(BaseModel):
+    authentication_type: Optional[JiraAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    uri: Optional[str]
+    project: Optional[str]
+    email: Optional[str]
+    token: Optional[str]
+    offset: Optional[Any]
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["QueryFeedsFeedsResultsInitiativeJiraConnector"]
+    cloud_id: Optional[str] = Field(alias="cloudId")
+
+
+class QueryFeedsFeedsResultsInitiativeJiraConnector(BaseModel):
+    id: str
+
+
+class QueryFeedsFeedsResultsInitiativeGithub(BaseModel):
+    authentication_type: Optional[GitHubAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    uri: Optional[str]
+    repository_owner: Optional[str] = Field(alias="repositoryOwner")
+    repository_name: Optional[str] = Field(alias="repositoryName")
+    personal_access_token: Optional[str] = Field(alias="personalAccessToken")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["QueryFeedsFeedsResultsInitiativeGithubConnector"]
+    authorization_id: Optional[str] = Field(alias="authorizationId")
+
+
+class QueryFeedsFeedsResultsInitiativeGithubConnector(BaseModel):
+    id: str
+
+
+class QueryFeedsFeedsResultsInitiativeLinear(BaseModel):
+    authentication_type: Optional[LinearAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    key: Optional[str]
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["QueryFeedsFeedsResultsInitiativeLinearConnector"]
+
+
+class QueryFeedsFeedsResultsInitiativeLinearConnector(BaseModel):
+    id: str
+
+
 class QueryFeedsFeedsResultsCommit(BaseModel):
     type: FeedServiceTypes
     github: Optional["QueryFeedsFeedsResultsCommitGithub"]
@@ -589,6 +660,7 @@ class QueryFeedsFeedsResultsCrm(BaseModel):
     )
     salesforce: Optional["QueryFeedsFeedsResultsCrmSalesforce"]
     hub_spot: Optional["QueryFeedsFeedsResultsCrmHubSpot"] = Field(alias="hubSpot")
+    productlane: Optional["QueryFeedsFeedsResultsCrmProductlane"]
     read_limit: Optional[int] = Field(alias="readLimit")
 
 
@@ -670,6 +742,11 @@ class QueryFeedsFeedsResultsCrmHubSpot(BaseModel):
 
 class QueryFeedsFeedsResultsCrmHubSpotConnector(BaseModel):
     id: str
+
+
+class QueryFeedsFeedsResultsCrmProductlane(BaseModel):
+    api_key: Optional[str] = Field(alias="apiKey")
+    type: Optional[FeedListingTypes]
 
 
 class QueryFeedsFeedsResultsHris(BaseModel):
@@ -1089,6 +1166,13 @@ class QueryFeedsFeedsResultsIntercomConversationsConnector(BaseModel):
     id: str
 
 
+class QueryFeedsFeedsResultsProductlane(BaseModel):
+    type: FeedServiceTypes
+    read_limit: Optional[int] = Field(alias="readLimit")
+    api_key: Optional[str] = Field(alias="apiKey")
+    workspace_id: Optional[str] = Field(alias="workspaceId")
+
+
 class QueryFeedsFeedsResultsResearch(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     type: Optional[FeedServiceTypes]
@@ -1195,6 +1279,10 @@ QueryFeedsFeedsResultsIssueZendesk.model_rebuild()
 QueryFeedsFeedsResultsIssueAttio.model_rebuild()
 QueryFeedsFeedsResultsIssueSalesforce.model_rebuild()
 QueryFeedsFeedsResultsIssueHubSpot.model_rebuild()
+QueryFeedsFeedsResultsInitiative.model_rebuild()
+QueryFeedsFeedsResultsInitiativeJira.model_rebuild()
+QueryFeedsFeedsResultsInitiativeGithub.model_rebuild()
+QueryFeedsFeedsResultsInitiativeLinear.model_rebuild()
 QueryFeedsFeedsResultsCommit.model_rebuild()
 QueryFeedsFeedsResultsCommitGithub.model_rebuild()
 QueryFeedsFeedsResultsPullRequest.model_rebuild()

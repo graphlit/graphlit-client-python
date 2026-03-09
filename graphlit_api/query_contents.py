@@ -379,6 +379,7 @@ class QueryContentsContentsResultsMessage(BaseModel):
     links: Optional[list[Optional[Any]]]
     author: Optional["QueryContentsContentsResultsMessageAuthor"]
     mentions: Optional[list[Optional["QueryContentsContentsResultsMessageMentions"]]]
+    reactions: Optional[list[Optional["QueryContentsContentsResultsMessageReactions"]]]
 
 
 class QueryContentsContentsResultsMessageAuthor(BaseModel):
@@ -393,6 +394,12 @@ class QueryContentsContentsResultsMessageMentions(BaseModel):
     email: Optional[str]
     given_name: Optional[str] = Field(alias="givenName")
     family_name: Optional[str] = Field(alias="familyName")
+
+
+class QueryContentsContentsResultsMessageReactions(BaseModel):
+    emoji: str
+    count: int
+    is_unicode: Optional[bool] = Field(alias="isUnicode")
 
 
 class QueryContentsContentsResultsPost(BaseModel):
