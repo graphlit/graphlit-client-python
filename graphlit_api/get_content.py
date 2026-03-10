@@ -91,6 +91,7 @@ class GetContentContent(BaseModel):
     email: Optional["GetContentContentEmail"]
     event: Optional["GetContentContentEvent"]
     issue: Optional["GetContentContentIssue"]
+    initiative: Optional["GetContentContentInitiative"]
     commit: Optional["GetContentContentCommit"]
     pull_request: Optional["GetContentContentPullRequest"] = Field(alias="pullRequest")
     message: Optional["GetContentContentMessage"]
@@ -331,6 +332,18 @@ class GetContentContentIssue(BaseModel):
     status: Optional[str]
     priority: Optional[str]
     type: Optional[str]
+    labels: Optional[list[Optional[str]]]
+
+
+class GetContentContentInitiative(BaseModel):
+    identifier: Optional[str]
+    title: Optional[str]
+    project: Optional[str]
+    team: Optional[str]
+    status: Optional[str]
+    priority: Optional[str]
+    type: Optional[str]
+    due_date: Optional[Any] = Field(alias="dueDate")
     labels: Optional[list[Optional[str]]]
 
 

@@ -1152,8 +1152,8 @@ class GetFeedFeedIntercomConversationsConnector(BaseModel):
 
 
 class GetFeedFeedProductlane(BaseModel):
-    type: FeedServiceTypes
     read_limit: Optional[int] = Field(alias="readLimit")
+    type: FeedServiceTypes
     api_key: Optional[str] = Field(alias="apiKey")
     workspace_id: Optional[str] = Field(alias="workspaceId")
 

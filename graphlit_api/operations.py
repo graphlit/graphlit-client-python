@@ -2500,6 +2500,17 @@ query GetContent($id: ID!, $correlationId: String) {
       type
       labels
     }
+    initiative {
+      identifier
+      title
+      project
+      team
+      status
+      priority
+      type
+      dueDate
+      labels
+    }
     commit {
       sha
       message
@@ -3392,6 +3403,17 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
         type
         labels
       }
+      initiative {
+        identifier
+        title
+        project
+        team
+        status
+        priority
+        type
+        dueDate
+        labels
+      }
       commit {
         sha
         message
@@ -4125,6 +4147,17 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
         type
         labels
       }
+      initiative {
+        identifier
+        title
+        project
+        team
+        status
+        priority
+        type
+        dueDate
+        labels
+      }
       commit {
         sha
         message
@@ -4563,6 +4596,17 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
         status
         priority
         type
+        labels
+      }
+      initiative {
+        identifier
+        title
+        project
+        team
+        status
+        priority
+        type
+        dueDate
         labels
       }
       commit {
@@ -10404,8 +10448,8 @@ query GetFeed($id: ID!, $correlationId: String) {
       includeAttachments
     }
     productlane {
-      type
       readLimit
+      type
       apiKey
       workspaceId
     }
@@ -11418,8 +11462,8 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         includeAttachments
       }
       productlane {
-        type
         readLimit
+        type
         apiKey
         workspaceId
       }

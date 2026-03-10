@@ -5715,6 +5715,7 @@ class ContentUpdateInput(BaseModel):
     email: Optional["EmailMetadataInput"] = None
     event: Optional["EventMetadataInput"] = None
     issue: Optional["IssueMetadataInput"] = None
+    initiative: Optional["InitiativeMetadataInput"] = None
     message: Optional["MessageMetadataInput"] = None
     post: Optional["PostMetadataInput"] = None
     drawing: Optional["DrawingMetadataInput"] = None
@@ -6832,6 +6833,22 @@ class DrawingMetadataInput(BaseModel):
     unit_type: Optional[UnitTypes] = Field(alias="unitType", default=None)
 
 
+class InitiativeMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    title: Optional[str] = None
+    project: Optional[str] = None
+    team: Optional[str] = None
+    status: Optional[str] = None
+    priority: Optional[str] = None
+    type: Optional[str] = None
+    identifier: Optional[str] = None
+    due_date: Optional[Any] = Field(alias="dueDate", default=None)
+    labels: Optional[list[Optional[str]]] = None
+    links: Optional[list[Optional[Any]]] = None
+
+
 class SalesforceTasksFeedPropertiesUpdateInput(BaseModel):
     authentication_type: Optional[SalesforceIssueAuthenticationTypes] = Field(
         alias="authenticationType", default=None
@@ -7377,6 +7394,7 @@ AttioTasksFeedPropertiesUpdateInput.model_rebuild()
 OrganizationInput.model_rebuild()
 HubSpotTasksFeedPropertiesInput.model_rebuild()
 DrawingMetadataInput.model_rebuild()
+InitiativeMetadataInput.model_rebuild()
 SalesforceTasksFeedPropertiesUpdateInput.model_rebuild()
 ResearchFeedPropertiesUpdateInput.model_rebuild()
 SalesforceFeedPropertiesUpdateInput.model_rebuild()

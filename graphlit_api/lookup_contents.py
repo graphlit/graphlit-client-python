@@ -97,6 +97,7 @@ class LookupContentsLookupContentsResults(BaseModel):
     email: Optional["LookupContentsLookupContentsResultsEmail"]
     event: Optional["LookupContentsLookupContentsResultsEvent"]
     issue: Optional["LookupContentsLookupContentsResultsIssue"]
+    initiative: Optional["LookupContentsLookupContentsResultsInitiative"]
     commit: Optional["LookupContentsLookupContentsResultsCommit"]
     pull_request: Optional["LookupContentsLookupContentsResultsPullRequest"] = Field(
         alias="pullRequest"
@@ -347,6 +348,18 @@ class LookupContentsLookupContentsResultsIssue(BaseModel):
     status: Optional[str]
     priority: Optional[str]
     type: Optional[str]
+    labels: Optional[list[Optional[str]]]
+
+
+class LookupContentsLookupContentsResultsInitiative(BaseModel):
+    identifier: Optional[str]
+    title: Optional[str]
+    project: Optional[str]
+    team: Optional[str]
+    status: Optional[str]
+    priority: Optional[str]
+    type: Optional[str]
+    due_date: Optional[Any] = Field(alias="dueDate")
     labels: Optional[list[Optional[str]]]
 
 

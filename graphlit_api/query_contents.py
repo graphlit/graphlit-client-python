@@ -76,6 +76,7 @@ class QueryContentsContentsResults(BaseModel):
     email: Optional["QueryContentsContentsResultsEmail"]
     event: Optional["QueryContentsContentsResultsEvent"]
     issue: Optional["QueryContentsContentsResultsIssue"]
+    initiative: Optional["QueryContentsContentsResultsInitiative"]
     commit: Optional["QueryContentsContentsResultsCommit"]
     pull_request: Optional["QueryContentsContentsResultsPullRequest"] = Field(
         alias="pullRequest"
@@ -295,6 +296,18 @@ class QueryContentsContentsResultsIssue(BaseModel):
     status: Optional[str]
     priority: Optional[str]
     type: Optional[str]
+    labels: Optional[list[Optional[str]]]
+
+
+class QueryContentsContentsResultsInitiative(BaseModel):
+    identifier: Optional[str]
+    title: Optional[str]
+    project: Optional[str]
+    team: Optional[str]
+    status: Optional[str]
+    priority: Optional[str]
+    type: Optional[str]
+    due_date: Optional[Any] = Field(alias="dueDate")
     labels: Optional[list[Optional[str]]]
 
 

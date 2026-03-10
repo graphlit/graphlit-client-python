@@ -205,6 +205,17 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
         type
         labels
       }
+      initiative {
+        identifier
+        title
+        project
+        team
+        status
+        priority
+        type
+        dueDate
+        labels
+      }
       commit {
         sha
         message

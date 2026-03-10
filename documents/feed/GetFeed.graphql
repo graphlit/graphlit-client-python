@@ -730,8 +730,8 @@ query GetFeed($id: ID!, $correlationId: String) {
       includeAttachments
     }
     productlane {
-      type
       readLimit
+      type
       apiKey
       workspaceId
     }
