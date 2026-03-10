@@ -2945,6 +2945,7 @@ from .preview_feed import (
     PreviewFeed,
     PreviewFeedPreviewFeed,
     PreviewFeedPreviewFeedContentTypeSummary,
+    PreviewFeedPreviewFeedObservableTypeSummary,
 )
 from .prompt import (
     Prompt,
@@ -7515,6 +7516,7 @@ __all__ = [
     "PreviewFeed",
     "PreviewFeedPreviewFeed",
     "PreviewFeedPreviewFeedContentTypeSummary",
+    "PreviewFeedPreviewFeedObservableTypeSummary",
     "ProductFacetInput",
     "ProductFacetTypes",
     "ProductFilter",

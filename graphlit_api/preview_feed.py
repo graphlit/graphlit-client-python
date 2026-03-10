@@ -6,7 +6,7 @@ from typing import Any, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import ContentTypes, FileTypes
+from .enums import ContentTypes, FileTypes, ObservableTypes
 
 
 class PreviewFeed(BaseModel):
@@ -20,6 +20,9 @@ class PreviewFeedPreviewFeed(BaseModel):
     content_type_summary: Optional[list["PreviewFeedPreviewFeedContentTypeSummary"]] = (
         Field(alias="contentTypeSummary")
     )
+    observable_type_summary: Optional[
+        list["PreviewFeedPreviewFeedObservableTypeSummary"]
+    ] = Field(alias="observableTypeSummary")
     warnings: Optional[list[str]]
 
 
@@ -28,6 +31,11 @@ class PreviewFeedPreviewFeedContentTypeSummary(BaseModel):
     file_type: Optional[FileTypes] = Field(alias="fileType")
     item_count: Any = Field(alias="itemCount")
     total_bytes: Optional[Any] = Field(alias="totalBytes")
+
+
+class PreviewFeedPreviewFeedObservableTypeSummary(BaseModel):
+    observable_type: ObservableTypes = Field(alias="observableType")
+    item_count: Any = Field(alias="itemCount")
 
 
 PreviewFeed.model_rebuild()

@@ -10594,6 +10594,10 @@ mutation PreviewFeed($feed: FeedPreviewInput!) {
       itemCount
       totalBytes
     }
+    observableTypeSummary {
+      observableType
+      itemCount
+    }
     warnings
   }
 }
