@@ -113,6 +113,12 @@ query GetAgent($id: ID!, $correlationId: String) {
       cron
       timeZoneId
     }
+    channels {
+      type
+      identifier
+      instructions
+      label
+    }
     timeout
     scratchpad
   }

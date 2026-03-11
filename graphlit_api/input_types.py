@@ -7,6 +7,7 @@ from pydantic import Field
 
 from .base_model import BaseModel
 from .enums import (
+    AgentChannelTypes,
     AgentTypes,
     AlertTypes,
     AnthropicEffortLevels,
@@ -2776,6 +2777,7 @@ class AgentInput(BaseModel):
     )
     timeout: Optional[Any] = None
     scratchpad: Optional[str] = None
+    channels: Optional[list["AgentChannelInput"]] = None
 
 
 class CrustdataPersonDiscoveryFilterInput(BaseModel):
@@ -6776,6 +6778,13 @@ class HubSpotTasksFeedPropertiesInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
 
 
+class AgentChannelInput(BaseModel):
+    type: AgentChannelTypes
+    identifier: str
+    instructions: Optional[str] = None
+    label: Optional[str] = None
+
+
 class MedicalStudyFacetInput(BaseModel):
     time_interval: Optional[TimeIntervalTypes] = Field(
         alias="timeInterval", default=None
@@ -6924,6 +6933,7 @@ class AgentUpdateInput(BaseModel):
     )
     timeout: Optional[Any] = None
     scratchpad: Optional[str] = None
+    channels: Optional[list["AgentChannelInput"]] = None
 
 
 class IssueFeedPropertiesInput(BaseModel):

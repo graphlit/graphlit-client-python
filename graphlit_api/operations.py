@@ -642,6 +642,12 @@ query GetAgent($id: ID!, $correlationId: String) {
       cron
       timeZoneId
     }
+    channels {
+      type
+      identifier
+      instructions
+      label
+    }
     timeout
     scratchpad
   }
@@ -765,6 +771,12 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
         repeatInterval
         cron
         timeZoneId
+      }
+      channels {
+        type
+        identifier
+        instructions
+        label
       }
       timeout
       scratchpad

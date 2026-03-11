@@ -7,6 +7,7 @@ from pydantic import Field
 
 from .base_model import BaseModel
 from .enums import (
+    AgentChannelTypes,
     AgentTypes,
     ContentTypes,
     EntityState,
@@ -40,6 +41,7 @@ class QueryAgentsAgentsResults(BaseModel):
     schedule_policy: Optional["QueryAgentsAgentsResultsSchedulePolicy"] = Field(
         alias="schedulePolicy"
     )
+    channels: Optional[list["QueryAgentsAgentsResultsChannels"]]
     timeout: Optional[Any]
     scratchpad: Optional[str]
 
@@ -212,6 +214,13 @@ class QueryAgentsAgentsResultsSchedulePolicy(BaseModel):
     repeat_interval: Optional[Any] = Field(alias="repeatInterval")
     cron: Optional[str]
     time_zone_id: Optional[str] = Field(alias="timeZoneId")
+
+
+class QueryAgentsAgentsResultsChannels(BaseModel):
+    type: AgentChannelTypes
+    identifier: str
+    instructions: Optional[str]
+    label: Optional[str]
 
 
 QueryAgents.model_rebuild()

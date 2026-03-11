@@ -1584,6 +1584,14 @@ class ModelServiceTypes(str, Enum):
     QUIVER = "QUIVER"
 
 
+class AgentChannelTypes(str, Enum):
+    VOICE = "VOICE"
+    EMAIL = "EMAIL"
+    SLACK = "SLACK"
+    TEAMS = "TEAMS"
+    DISCORD = "DISCORD"
+
+
 class AgentTypes(str, Enum):
     AGENT = "AGENT"
 
@@ -1822,6 +1830,7 @@ class GoogleModels(str, Enum):
     GEMINI_1_5_PRO_002 = "GEMINI_1_5_PRO_002"
     EMBEDDING_004 = "EMBEDDING_004"
     GEMINI_EMBEDDING_001 = "GEMINI_EMBEDDING_001"
+    GEMINI_EMBEDDING_2_PREVIEW = "GEMINI_EMBEDDING_2_PREVIEW"
     CUSTOM = "CUSTOM"
 
 

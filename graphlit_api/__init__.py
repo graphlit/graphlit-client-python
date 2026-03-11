@@ -664,6 +664,7 @@ from .enrich_persons import EnrichPersons, EnrichPersonsEnrichPersons
 from .enrich_places import EnrichPlaces, EnrichPlacesEnrichPlaces
 from .enrich_products import EnrichProducts, EnrichProductsEnrichProducts
 from .enums import (
+    AgentChannelTypes,
     AgentTypes,
     AlertTypes,
     AnthropicEffortLevels,
@@ -956,6 +957,7 @@ from .format_conversation import (
 from .get_agent import (
     GetAgent,
     GetAgentAgent,
+    GetAgentAgentChannels,
     GetAgentAgentFilter,
     GetAgentAgentFilterAnd,
     GetAgentAgentFilterAndCollections,
@@ -1865,6 +1867,7 @@ from .ingest_uri import (
 from .input_types import (
     AddressFilter,
     AddressInput,
+    AgentChannelInput,
     AgentFilter,
     AgentInput,
     AgentSchedulePolicyInput,
@@ -3043,6 +3046,7 @@ from .query_agents import (
     QueryAgents,
     QueryAgentsAgents,
     QueryAgentsAgentsResults,
+    QueryAgentsAgentsResultsChannels,
     QueryAgentsAgentsResultsFilter,
     QueryAgentsAgentsResultsFilterAnd,
     QueryAgentsAgentsResultsFilterAndCollections,
@@ -5077,6 +5081,8 @@ __all__ = [
     "AddConversationsToCollectionsAddConversationsToCollectionsContents",
     "AddressFilter",
     "AddressInput",
+    "AgentChannelInput",
+    "AgentChannelTypes",
     "AgentFilter",
     "AgentInput",
     "AgentSchedulePolicyInput",
@@ -6256,6 +6262,7 @@ __all__ = [
     "GeometryMetadataInput",
     "GetAgent",
     "GetAgentAgent",
+    "GetAgentAgentChannels",
     "GetAgentAgentFilter",
     "GetAgentAgentFilterAnd",
     "GetAgentAgentFilterAndCollections",
@@ -7726,6 +7733,7 @@ __all__ = [
     "QueryAgents",
     "QueryAgentsAgents",
     "QueryAgentsAgentsResults",
+    "QueryAgentsAgentsResultsChannels",
     "QueryAgentsAgentsResultsFilter",
     "QueryAgentsAgentsResultsFilterAnd",
     "QueryAgentsAgentsResultsFilterAndCollections",
