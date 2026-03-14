@@ -1,0 +1,3 @@
+mutation DeleteMicrosoftCalendarEvent($properties: MicrosoftCalendarEventsInput!, $eventId: String!) {
+  deleteMicrosoftCalendarEvent(properties: $properties, eventId: $eventId)
+}

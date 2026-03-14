@@ -1,0 +1,7 @@
+mutation UpdateLinearIssue($properties: LinearProjectsInput!, $issueId: String!, $input: LinearIssueUpdateInput!) {
+  updateLinearIssue(properties: $properties, issueId: $issueId, input: $input) {
+    identifier
+    uri
+    serviceType
+  }
+}

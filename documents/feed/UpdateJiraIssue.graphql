@@ -1,0 +1,7 @@
+mutation UpdateJiraIssue($properties: JiraProjectsInput!, $issueIdOrKey: String!, $input: JiraIssueUpdateInput!) {
+  updateJiraIssue(properties: $properties, issueIdOrKey: $issueIdOrKey, input: $input) {
+    identifier
+    uri
+    serviceType
+  }
+}

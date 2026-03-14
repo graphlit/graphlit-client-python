@@ -1,0 +1,12 @@
+mutation RemoveSkillsFromCollection($skills: [EntityReferenceInput!]!, $collection: EntityReferenceInput!) {
+  removeSkillsFromCollection(skills: $skills, collection: $collection) {
+    id
+    name
+    state
+    type
+    contents {
+      id
+      name
+    }
+  }
+}

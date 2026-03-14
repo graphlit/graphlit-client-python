@@ -1,0 +1,7 @@
+mutation UpdateConfluencePage($properties: ConfluenceSpacesInput!, $pageId: String!, $input: ConfluencePageUpdateInput!) {
+  updateConfluencePage(properties: $properties, pageId: $pageId, input: $input) {
+    identifier
+    uri
+    serviceType
+  }
+}

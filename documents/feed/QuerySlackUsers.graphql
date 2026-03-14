@@ -1,0 +1,10 @@
+query QuerySlackUsers($properties: SlackChannelsInput!) {
+  slackUsers(properties: $properties) {
+    results {
+      userId
+      displayName
+      realName
+      email
+    }
+  }
+}

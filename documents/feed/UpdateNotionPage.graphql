@@ -1,0 +1,7 @@
+mutation UpdateNotionPage($properties: NotionDatabasesInput!, $pageId: String!, $input: NotionPageUpdateInput!) {
+  updateNotionPage(properties: $properties, pageId: $pageId, input: $input) {
+    identifier
+    uri
+    serviceType
+  }
+}

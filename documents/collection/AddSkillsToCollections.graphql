@@ -1,0 +1,12 @@
+mutation AddSkillsToCollections($skills: [EntityReferenceInput!]!, $collections: [EntityReferenceInput!]!) {
+  addSkillsToCollections(skills: $skills, collections: $collections) {
+    id
+    name
+    state
+    type
+    contents {
+      id
+      name
+    }
+  }
+}
