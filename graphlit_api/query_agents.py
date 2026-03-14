@@ -12,8 +12,6 @@ from .enums import (
     ContentTypes,
     EntityState,
     FileTypes,
-    FilterMode,
-    ObservableTypes,
     TimedPolicyRecurrenceTypes,
 )
 
@@ -43,6 +41,7 @@ class QueryAgentsAgentsResults(BaseModel):
     )
     channels: Optional[list["QueryAgentsAgentsResultsChannels"]]
     timeout: Optional[Any]
+    prompt: Optional[str]
     scratchpad: Optional[str]
 
 
@@ -55,155 +54,12 @@ class QueryAgentsAgentsResultsSpecification(BaseModel):
 
 
 class QueryAgentsAgentsResultsFilter(BaseModel):
-    date_range: Optional["QueryAgentsAgentsResultsFilterDateRange"] = Field(
-        alias="dateRange"
-    )
-    in_last: Optional[Any] = Field(alias="inLast")
-    in_next: Optional[Any] = Field(alias="inNext")
-    creation_date_range: Optional["QueryAgentsAgentsResultsFilterCreationDateRange"] = (
-        Field(alias="creationDateRange")
-    )
-    created_in_last: Optional[Any] = Field(alias="createdInLast")
     types: Optional[list[ContentTypes]]
     file_types: Optional[list[FileTypes]] = Field(alias="fileTypes")
-    formats: Optional[list[str]]
-    file_extensions: Optional[list[str]] = Field(alias="fileExtensions")
-    file_size_range: Optional["QueryAgentsAgentsResultsFilterFileSizeRange"] = Field(
-        alias="fileSizeRange"
-    )
-    similar_contents: Optional[
-        list["QueryAgentsAgentsResultsFilterSimilarContents"]
-    ] = Field(alias="similarContents")
-    contents: Optional[list["QueryAgentsAgentsResultsFilterContents"]]
     feeds: Optional[list["QueryAgentsAgentsResultsFilterFeeds"]]
-    workflows: Optional[list["QueryAgentsAgentsResultsFilterWorkflows"]]
-    collections: Optional[list["QueryAgentsAgentsResultsFilterCollections"]]
-    users: Optional[list["QueryAgentsAgentsResultsFilterUsers"]]
-    observations: Optional[list["QueryAgentsAgentsResultsFilterObservations"]]
-    or_: Optional[list["QueryAgentsAgentsResultsFilterOr"]] = Field(alias="or")
-    and_: Optional[list["QueryAgentsAgentsResultsFilterAnd"]] = Field(alias="and")
-    has_observations: Optional[bool] = Field(alias="hasObservations")
-    has_feeds: Optional[bool] = Field(alias="hasFeeds")
-    has_collections: Optional[bool] = Field(alias="hasCollections")
-    has_workflows: Optional[bool] = Field(alias="hasWorkflows")
-    collection_mode: Optional[FilterMode] = Field(alias="collectionMode")
-    observation_mode: Optional[FilterMode] = Field(alias="observationMode")
-
-
-class QueryAgentsAgentsResultsFilterDateRange(BaseModel):
-    from_: Optional[Any] = Field(alias="from")
-    to: Optional[Any]
-
-
-class QueryAgentsAgentsResultsFilterCreationDateRange(BaseModel):
-    from_: Optional[Any] = Field(alias="from")
-    to: Optional[Any]
-
-
-class QueryAgentsAgentsResultsFilterFileSizeRange(BaseModel):
-    from_: Optional[Any] = Field(alias="from")
-    to: Optional[Any]
-
-
-class QueryAgentsAgentsResultsFilterSimilarContents(BaseModel):
-    id: str
-
-
-class QueryAgentsAgentsResultsFilterContents(BaseModel):
-    id: str
 
 
 class QueryAgentsAgentsResultsFilterFeeds(BaseModel):
-    id: str
-
-
-class QueryAgentsAgentsResultsFilterWorkflows(BaseModel):
-    id: str
-
-
-class QueryAgentsAgentsResultsFilterCollections(BaseModel):
-    id: str
-
-
-class QueryAgentsAgentsResultsFilterUsers(BaseModel):
-    id: str
-
-
-class QueryAgentsAgentsResultsFilterObservations(BaseModel):
-    type: ObservableTypes
-    observable: "QueryAgentsAgentsResultsFilterObservationsObservable"
-    states: Optional[list[EntityState]]
-
-
-class QueryAgentsAgentsResultsFilterObservationsObservable(BaseModel):
-    id: str
-
-
-class QueryAgentsAgentsResultsFilterOr(BaseModel):
-    feeds: Optional[list["QueryAgentsAgentsResultsFilterOrFeeds"]]
-    workflows: Optional[list["QueryAgentsAgentsResultsFilterOrWorkflows"]]
-    collections: Optional[list["QueryAgentsAgentsResultsFilterOrCollections"]]
-    users: Optional[list["QueryAgentsAgentsResultsFilterOrUsers"]]
-    observations: Optional[list["QueryAgentsAgentsResultsFilterOrObservations"]]
-
-
-class QueryAgentsAgentsResultsFilterOrFeeds(BaseModel):
-    id: str
-
-
-class QueryAgentsAgentsResultsFilterOrWorkflows(BaseModel):
-    id: str
-
-
-class QueryAgentsAgentsResultsFilterOrCollections(BaseModel):
-    id: str
-
-
-class QueryAgentsAgentsResultsFilterOrUsers(BaseModel):
-    id: str
-
-
-class QueryAgentsAgentsResultsFilterOrObservations(BaseModel):
-    type: ObservableTypes
-    observable: "QueryAgentsAgentsResultsFilterOrObservationsObservable"
-    states: Optional[list[EntityState]]
-
-
-class QueryAgentsAgentsResultsFilterOrObservationsObservable(BaseModel):
-    id: str
-
-
-class QueryAgentsAgentsResultsFilterAnd(BaseModel):
-    feeds: Optional[list["QueryAgentsAgentsResultsFilterAndFeeds"]]
-    workflows: Optional[list["QueryAgentsAgentsResultsFilterAndWorkflows"]]
-    collections: Optional[list["QueryAgentsAgentsResultsFilterAndCollections"]]
-    users: Optional[list["QueryAgentsAgentsResultsFilterAndUsers"]]
-    observations: Optional[list["QueryAgentsAgentsResultsFilterAndObservations"]]
-
-
-class QueryAgentsAgentsResultsFilterAndFeeds(BaseModel):
-    id: str
-
-
-class QueryAgentsAgentsResultsFilterAndWorkflows(BaseModel):
-    id: str
-
-
-class QueryAgentsAgentsResultsFilterAndCollections(BaseModel):
-    id: str
-
-
-class QueryAgentsAgentsResultsFilterAndUsers(BaseModel):
-    id: str
-
-
-class QueryAgentsAgentsResultsFilterAndObservations(BaseModel):
-    type: ObservableTypes
-    observable: "QueryAgentsAgentsResultsFilterAndObservationsObservable"
-    states: Optional[list[EntityState]]
-
-
-class QueryAgentsAgentsResultsFilterAndObservationsObservable(BaseModel):
     id: str
 
 
@@ -227,8 +83,3 @@ QueryAgents.model_rebuild()
 QueryAgentsAgents.model_rebuild()
 QueryAgentsAgentsResults.model_rebuild()
 QueryAgentsAgentsResultsFilter.model_rebuild()
-QueryAgentsAgentsResultsFilterObservations.model_rebuild()
-QueryAgentsAgentsResultsFilterOr.model_rebuild()
-QueryAgentsAgentsResultsFilterOrObservations.model_rebuild()
-QueryAgentsAgentsResultsFilterAnd.model_rebuild()
-QueryAgentsAgentsResultsFilterAndObservations.model_rebuild()

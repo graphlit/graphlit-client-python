@@ -562,6 +562,12 @@ class SpecificationInput(BaseModel):
     )
 
 
+class ConfluencePageUpdateInput(BaseModel):
+    title: Optional[str] = None
+    content: Optional[str] = None
+    append_content: Optional[bool] = Field(alias="appendContent", default=None)
+
+
 class CerebrasModelPropertiesInput(BaseModel):
     model: CerebrasModels
     model_name: Optional[str] = Field(alias="modelName", default=None)
@@ -656,6 +662,19 @@ class SalesforceCRMFeedPropertiesInput(BaseModel):
     type: Optional[FeedListingTypes] = None
 
 
+class GoogleCalendarEventsInput(BaseModel):
+    authentication_type: Optional[GoogleCalendarAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    calendar_id: Optional[str] = Field(alias="calendarId", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+
+
 class ElevenLabsScribeAudioPreparationPropertiesInput(BaseModel):
     model: Optional[ElevenLabsScribeModels] = None
     key: Optional[str] = None
@@ -736,6 +755,16 @@ class MedicalIndicationFilter(BaseModel):
     medical_indications: Optional[list["EntityReferenceFilter"]] = Field(
         alias="medicalIndications", default=None
     )
+
+
+class CalendarEventUpdateInput(BaseModel):
+    summary: Optional[str] = None
+    start_date_time: Optional[Any] = Field(alias="startDateTime", default=None)
+    end_date_time: Optional[Any] = Field(alias="endDateTime", default=None)
+    location: Optional[str] = None
+    attendees: Optional[list[Optional[str]]] = None
+    description: Optional[str] = None
+    is_online_meeting: Optional[bool] = Field(alias="isOnlineMeeting", default=None)
 
 
 class ProductlaneFeedPropertiesInput(BaseModel):
@@ -1370,6 +1399,13 @@ class GmailDistributionPropertiesInput(BaseModel):
     subject: str
     cc: Optional[list[str]] = None
     bcc: Optional[list[str]] = None
+    is_draft: Optional[bool] = Field(alias="isDraft", default=None)
+    in_reply_to_message_id: Optional[str] = Field(
+        alias="inReplyToMessageId", default=None
+    )
+    forward_from_message_id: Optional[str] = Field(
+        alias="forwardFromMessageId", default=None
+    )
 
 
 class MicrosoftTeamsDistributionPropertiesInput(BaseModel):
@@ -2140,6 +2176,12 @@ class GoogleEmailFeedPropertiesInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
 
 
+class NotionPageUpdateInput(BaseModel):
+    title: Optional[str] = None
+    content: Optional[str] = None
+    append_content: Optional[bool] = Field(alias="appendContent", default=None)
+
+
 class DocumentMetadataInput(BaseModel):
     creation_date: Optional[Any] = Field(alias="creationDate", default=None)
     modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
@@ -2771,11 +2813,12 @@ class AgentInput(BaseModel):
     type: AgentTypes
     description: Optional[str] = None
     specification: Optional["EntityReferenceInput"] = None
-    filter: Optional["ContentCriteriaInput"] = None
+    filter: Optional["AgentTriggerFilterInput"] = None
     schedule_policy: Optional["AgentSchedulePolicyInput"] = Field(
         alias="schedulePolicy", default=None
     )
     timeout: Optional[Any] = None
+    prompt: Optional[str] = None
     scratchpad: Optional[str] = None
     channels: Optional[list["AgentChannelInput"]] = None
 
@@ -3675,6 +3718,12 @@ class MedicalGuidelineUpdateInput(BaseModel):
     boundary: Optional[str] = None
 
 
+class AgentTriggerFilterInput(BaseModel):
+    types: Optional[list[ContentTypes]] = None
+    file_types: Optional[list[FileTypes]] = Field(alias="fileTypes", default=None)
+    feeds: Optional[list["EntityReferenceInput"]] = None
+
+
 class AtlassianSitesInput(BaseModel):
     authentication_type: Optional[ConfluenceAuthenticationTypes] = Field(
         alias="authenticationType", default=None
@@ -4358,6 +4407,19 @@ class AttioDistributionPropertiesInput(BaseModel):
     parent_object: str = Field(alias="parentObject")
     parent_record_id: str = Field(alias="parentRecordId")
     title: Optional[str] = None
+
+
+class MicrosoftCalendarEventsInput(BaseModel):
+    authentication_type: Optional[MicrosoftCalendarAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    calendar_id: Optional[str] = Field(alias="calendarId", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
 
 
 class LinkedInFeedPropertiesUpdateInput(BaseModel):
@@ -5318,6 +5380,15 @@ class LinearDistributionPropertiesInput(BaseModel):
     project_id: Optional[str] = Field(alias="projectId", default=None)
 
 
+class JiraIssueUpdateInput(BaseModel):
+    summary: Optional[str] = None
+    description: Optional[str] = None
+    priority: Optional[str] = None
+    assignee_id: Optional[str] = Field(alias="assigneeId", default=None)
+    labels: Optional[list[str]] = None
+    status: Optional[str] = None
+
+
 class RegexClassificationRuleInput(BaseModel):
     type: Optional[RegexSourceTypes] = None
     path: Optional[str] = None
@@ -6137,6 +6208,15 @@ class MondayFeedPropertiesUpdateInput(BaseModel):
     board_id: Optional[str] = Field(alias="boardId", default=None)
 
 
+class LinearIssueUpdateInput(BaseModel):
+    title: Optional[str] = None
+    description: Optional[str] = None
+    priority: Optional[int] = None
+    state_id: Optional[str] = Field(alias="stateId", default=None)
+    assignee_id: Optional[str] = Field(alias="assigneeId", default=None)
+    label_ids: Optional[list[str]] = Field(alias="labelIds", default=None)
+
+
 class JiraEpicsFeedPropertiesInput(BaseModel):
     authentication_type: Optional[JiraAuthenticationTypes] = Field(
         alias="authenticationType", default=None
@@ -6927,11 +7007,12 @@ class AgentUpdateInput(BaseModel):
     name: Optional[str] = None
     description: Optional[str] = None
     specification: Optional["EntityReferenceInput"] = None
-    filter: Optional["ContentCriteriaInput"] = None
+    filter: Optional["AgentTriggerFilterInput"] = None
     schedule_policy: Optional["AgentSchedulePolicyInput"] = Field(
         alias="schedulePolicy", default=None
     )
     timeout: Optional[Any] = None
+    prompt: Optional[str] = None
     scratchpad: Optional[str] = None
     channels: Optional[list["AgentChannelInput"]] = None
 
@@ -6987,6 +7068,13 @@ class MicrosoftOutlookDistributionPropertiesInput(BaseModel):
     cc: Optional[list[str]] = None
     bcc: Optional[list[str]] = None
     importance: Optional[str] = None
+    is_draft: Optional[bool] = Field(alias="isDraft", default=None)
+    in_reply_to_message_id: Optional[str] = Field(
+        alias="inReplyToMessageId", default=None
+    )
+    forward_from_message_id: Optional[str] = Field(
+        alias="forwardFromMessageId", default=None
+    )
 
 
 class EntityReferenceFilter(BaseModel):
@@ -7133,6 +7221,7 @@ SalesforceFeedPropertiesInput.model_rebuild()
 ModelImageExtractionPropertiesInput.model_rebuild()
 MicrosoftEmailFeedPropertiesUpdateInput.model_rebuild()
 SalesforceCRMFeedPropertiesInput.model_rebuild()
+GoogleCalendarEventsInput.model_rebuild()
 SearchFeedPropertiesUpdateInput.model_rebuild()
 TwitterFeedPropertiesUpdateInput.model_rebuild()
 MedicalIndicationFilter.model_rebuild()
@@ -7263,6 +7352,7 @@ InitiativeFeedPropertiesUpdateInput.model_rebuild()
 MedicalDrugClassFilter.model_rebuild()
 MetadataInput.model_rebuild()
 MedicalGuidelineUpdateInput.model_rebuild()
+AgentTriggerFilterInput.model_rebuild()
 AtlassianSitesInput.model_rebuild()
 ConfluenceSpacesInput.model_rebuild()
 EntityFeedPropertiesInput.model_rebuild()
@@ -7297,6 +7387,7 @@ BoxFeedPropertiesInput.model_rebuild()
 ContentFilterLevel.model_rebuild()
 H3Filter.model_rebuild()
 MedicalDeviceUpdateInput.model_rebuild()
+MicrosoftCalendarEventsInput.model_rebuild()
 AttioTasksFeedPropertiesInput.model_rebuild()
 MicrosoftContactsCRMFeedPropertiesInput.model_rebuild()
 SharePointFeedPropertiesUpdateInput.model_rebuild()

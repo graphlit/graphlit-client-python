@@ -38,6 +38,8 @@ class GetConversationConversation(BaseModel):
     messages: Optional[list[Optional["GetConversationConversationMessages"]]]
     transcript_uri: Optional[Any] = Field(alias="transcriptUri")
     turns: Optional[list[Optional["GetConversationConversationTurns"]]]
+    message_count: Optional[int] = Field(alias="messageCount")
+    turn_count: Optional[int] = Field(alias="turnCount")
     agent: Optional["GetConversationConversationAgent"]
     persona: Optional["GetConversationConversationPersona"]
     specification: Optional["GetConversationConversationSpecification"]

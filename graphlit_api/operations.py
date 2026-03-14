@@ -4,6 +4,7 @@
 __all__ = [
     "ADD_CONTENTS_TO_COLLECTIONS_GQL",
     "ADD_CONVERSATIONS_TO_COLLECTIONS_GQL",
+    "ADD_SKILLS_TO_COLLECTIONS_GQL",
     "APPROVE_CONTENT_GQL",
     "ASK_GRAPHLIT_GQL",
     "BRANCH_CONVERSATION_GQL",
@@ -141,6 +142,7 @@ __all__ = [
     "DELETE_FACT_GQL",
     "DELETE_FEEDS_GQL",
     "DELETE_FEED_GQL",
+    "DELETE_GOOGLE_CALENDAR_EVENT_GQL",
     "DELETE_INVESTMENTS_GQL",
     "DELETE_INVESTMENT_FUNDS_GQL",
     "DELETE_INVESTMENT_FUND_GQL",
@@ -169,6 +171,7 @@ __all__ = [
     "DELETE_MEDICAL_TEST_GQL",
     "DELETE_MEDICAL_THERAPIES_GQL",
     "DELETE_MEDICAL_THERAPY_GQL",
+    "DELETE_MICROSOFT_CALENDAR_EVENT_GQL",
     "DELETE_OBSERVATION_GQL",
     "DELETE_ORGANIZATIONS_GQL",
     "DELETE_ORGANIZATION_GQL",
@@ -376,6 +379,7 @@ __all__ = [
     "QUERY_SHARE_POINT_LIBRARIES_GQL",
     "QUERY_SKILLS_GQL",
     "QUERY_SLACK_CHANNELS_GQL",
+    "QUERY_SLACK_USERS_GQL",
     "QUERY_SOFTWARES_CLUSTERS_GQL",
     "QUERY_SOFTWARES_GQL",
     "QUERY_SPECIFICATIONS_GQL",
@@ -387,6 +391,7 @@ __all__ = [
     "REJECT_CONTENT_GQL",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
     "REMOVE_CONVERSATIONS_FROM_COLLECTION_GQL",
+    "REMOVE_SKILLS_FROM_COLLECTION_GQL",
     "RESEARCH_CONTENTS_GQL",
     "RESOLVE_ENTITIES_GQL",
     "RESOLVE_ENTITY_GQL",
@@ -411,6 +416,7 @@ __all__ = [
     "UPDATE_ALERT_GQL",
     "UPDATE_CATEGORY_GQL",
     "UPDATE_COLLECTION_GQL",
+    "UPDATE_CONFLUENCE_PAGE_GQL",
     "UPDATE_CONNECTOR_GQL",
     "UPDATE_CONTENT_GQL",
     "UPDATE_CONVERSATION_GQL",
@@ -418,9 +424,12 @@ __all__ = [
     "UPDATE_EVENT_GQL",
     "UPDATE_FACT_GQL",
     "UPDATE_FEED_GQL",
+    "UPDATE_GOOGLE_CALENDAR_EVENT_GQL",
     "UPDATE_INVESTMENT_FUND_GQL",
     "UPDATE_INVESTMENT_GQL",
+    "UPDATE_JIRA_ISSUE_GQL",
     "UPDATE_LABEL_GQL",
+    "UPDATE_LINEAR_ISSUE_GQL",
     "UPDATE_MEDICAL_CONDITION_GQL",
     "UPDATE_MEDICAL_CONTRAINDICATION_GQL",
     "UPDATE_MEDICAL_DEVICE_GQL",
@@ -432,6 +441,8 @@ __all__ = [
     "UPDATE_MEDICAL_STUDY_GQL",
     "UPDATE_MEDICAL_TEST_GQL",
     "UPDATE_MEDICAL_THERAPY_GQL",
+    "UPDATE_MICROSOFT_CALENDAR_EVENT_GQL",
+    "UPDATE_NOTION_PAGE_GQL",
     "UPDATE_OBSERVATION_GQL",
     "UPDATE_ORGANIZATION_GQL",
     "UPDATE_PERSONA_GQL",
@@ -543,98 +554,11 @@ query GetAgent($id: ID!, $correlationId: String) {
       id
     }
     filter {
-      dateRange {
-        from
-        to
-      }
-      inLast
-      inNext
-      creationDateRange {
-        from
-        to
-      }
-      createdInLast
       types
       fileTypes
-      formats
-      fileExtensions
-      fileSizeRange {
-        from
-        to
-      }
-      similarContents {
-        id
-      }
-      contents {
-        id
-      }
       feeds {
         id
       }
-      workflows {
-        id
-      }
-      collections {
-        id
-      }
-      users {
-        id
-      }
-      observations {
-        type
-        observable {
-          id
-        }
-        states
-      }
-      or {
-        feeds {
-          id
-        }
-        workflows {
-          id
-        }
-        collections {
-          id
-        }
-        users {
-          id
-        }
-        observations {
-          type
-          observable {
-            id
-          }
-          states
-        }
-      }
-      and {
-        feeds {
-          id
-        }
-        workflows {
-          id
-        }
-        collections {
-          id
-        }
-        users {
-          id
-        }
-        observations {
-          type
-          observable {
-            id
-          }
-          states
-        }
-      }
-      hasObservations
-      hasFeeds
-      hasCollections
-      hasWorkflows
-      collectionMode
-      observationMode
     }
     schedulePolicy {
       recurrenceType
@@ -649,6 +573,7 @@ query GetAgent($id: ID!, $correlationId: String) {
       label
     }
     timeout
+    prompt
     scratchpad
   }
 }
@@ -673,98 +598,11 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
         id
       }
       filter {
-        dateRange {
-          from
-          to
-        }
-        inLast
-        inNext
-        creationDateRange {
-          from
-          to
-        }
-        createdInLast
         types
         fileTypes
-        formats
-        fileExtensions
-        fileSizeRange {
-          from
-          to
-        }
-        similarContents {
-          id
-        }
-        contents {
-          id
-        }
         feeds {
           id
         }
-        workflows {
-          id
-        }
-        collections {
-          id
-        }
-        users {
-          id
-        }
-        observations {
-          type
-          observable {
-            id
-          }
-          states
-        }
-        or {
-          feeds {
-            id
-          }
-          workflows {
-            id
-          }
-          collections {
-            id
-          }
-          users {
-            id
-          }
-          observations {
-            type
-            observable {
-              id
-            }
-            states
-          }
-        }
-        and {
-          feeds {
-            id
-          }
-          workflows {
-            id
-          }
-          collections {
-            id
-          }
-          users {
-            id
-          }
-          observations {
-            type
-            observable {
-              id
-            }
-            states
-          }
-        }
-        hasObservations
-        hasFeeds
-        hasCollections
-        hasWorkflows
-        collectionMode
-        observationMode
       }
       schedulePolicy {
         recurrenceType
@@ -779,6 +617,7 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
         label
       }
       timeout
+      prompt
       scratchpad
     }
   }
@@ -1438,6 +1277,21 @@ mutation AddConversationsToCollections($conversations: [EntityReferenceInput!]!,
 }
 """
 
+ADD_SKILLS_TO_COLLECTIONS_GQL = """
+mutation AddSkillsToCollections($skills: [EntityReferenceInput!]!, $collections: [EntityReferenceInput!]!) {
+  addSkillsToCollections(skills: $skills, collections: $collections) {
+    id
+    name
+    state
+    type
+    contents {
+      id
+      name
+    }
+  }
+}
+"""
+
 COUNT_COLLECTIONS_GQL = """
 query CountCollections($filter: CollectionFilter, $correlationId: String) {
   countCollections(filter: $filter, correlationId: $correlationId) {
@@ -1552,6 +1406,21 @@ mutation RemoveConversationsFromCollection($conversations: [EntityReferenceInput
     conversations: $conversations
     collection: $collection
   ) {
+    id
+    name
+    state
+    type
+    contents {
+      id
+      name
+    }
+  }
+}
+"""
+
+REMOVE_SKILLS_FROM_COLLECTION_GQL = """
+mutation RemoveSkillsFromCollection($skills: [EntityReferenceInput!]!, $collection: EntityReferenceInput!) {
+  removeSkillsFromCollection(skills: $skills, collection: $collection) {
     id
     name
     state
@@ -6525,6 +6394,8 @@ query GetConversation($id: ID!, $correlationId: String) {
       text
       relevance
     }
+    messageCount
+    turnCount
     agent {
       id
     }
@@ -7436,161 +7307,9 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
       state
       correlationId
       type
-      messages {
-        role
-        author
-        message
-        citations {
-          content {
-            id
-            name
-            state
-            originalDate
-            identifier
-            uri
-            type
-            fileType
-            mimeType
-            format
-            formatName
-            fileExtension
-            fileName
-            fileSize
-            fileMetadata
-            relativeFolderPath
-            masterUri
-            imageUri
-            textUri
-            audioUri
-            transcriptUri
-            snapshotsUri
-            snapshotCount
-            summary
-            customSummary
-            keywords
-            bullets
-            headlines
-            posts
-            chapters
-            questions
-            quotes
-            video {
-              width
-              height
-              duration
-              make
-              model
-              software
-              title
-              description
-              keywords
-              author
-            }
-            audio {
-              keywords
-              author
-              series
-              episode
-              episodeType
-              season
-              publisher
-              copyright
-              genre
-              title
-              description
-              bitrate
-              channels
-              sampleRate
-              bitsPerSample
-              duration
-            }
-            image {
-              width
-              height
-              resolutionX
-              resolutionY
-              bitsPerComponent
-              components
-              projectionType
-              orientation
-              description
-              make
-              model
-              software
-              lens
-              focalLength
-              exposureTime
-              fNumber
-              iso
-              heading
-              pitch
-            }
-            document {
-              title
-              subject
-              summary
-              author
-              lastModifiedBy
-              publisher
-              description
-              keywords
-              pageCount
-              worksheetCount
-              slideCount
-              wordCount
-              lineCount
-              paragraphCount
-              isEncrypted
-              hasDigitalSignature
-            }
-          }
-          index
-          text
-          startTime
-          endTime
-          pageNumber
-          frameNumber
-        }
-        toolCalls {
-          id
-          name
-          arguments
-        }
-        tokens
-        throughput
-        ttft
-        completionTime
-        timestamp
-        modelService
-        model
-        data
-        mimeType
-        toolCallId
-        toolCallResponse
-        artifacts {
-          id
-          name
-          mimeType
-          uri
-        }
-        thinkingContent
-        thinkingSignature
-      }
       transcriptUri
-      turns {
-        index
-        messages {
-          role
-          author
-          message
-          tokens
-          timestamp
-        }
-        tokens
-        timestamp
-        text
-        relevance
-      }
+      messageCount
+      turnCount
       agent {
         id
       }
@@ -7819,161 +7538,9 @@ query QueryConversationsClusters($filter: ConversationFilter, $clusters: EntityC
       state
       correlationId
       type
-      messages {
-        role
-        author
-        message
-        citations {
-          content {
-            id
-            name
-            state
-            originalDate
-            identifier
-            uri
-            type
-            fileType
-            mimeType
-            format
-            formatName
-            fileExtension
-            fileName
-            fileSize
-            fileMetadata
-            relativeFolderPath
-            masterUri
-            imageUri
-            textUri
-            audioUri
-            transcriptUri
-            snapshotsUri
-            snapshotCount
-            summary
-            customSummary
-            keywords
-            bullets
-            headlines
-            posts
-            chapters
-            questions
-            quotes
-            video {
-              width
-              height
-              duration
-              make
-              model
-              software
-              title
-              description
-              keywords
-              author
-            }
-            audio {
-              keywords
-              author
-              series
-              episode
-              episodeType
-              season
-              publisher
-              copyright
-              genre
-              title
-              description
-              bitrate
-              channels
-              sampleRate
-              bitsPerSample
-              duration
-            }
-            image {
-              width
-              height
-              resolutionX
-              resolutionY
-              bitsPerComponent
-              components
-              projectionType
-              orientation
-              description
-              make
-              model
-              software
-              lens
-              focalLength
-              exposureTime
-              fNumber
-              iso
-              heading
-              pitch
-            }
-            document {
-              title
-              subject
-              summary
-              author
-              lastModifiedBy
-              publisher
-              description
-              keywords
-              pageCount
-              worksheetCount
-              slideCount
-              wordCount
-              lineCount
-              paragraphCount
-              isEncrypted
-              hasDigitalSignature
-            }
-          }
-          index
-          text
-          startTime
-          endTime
-          pageNumber
-          frameNumber
-        }
-        toolCalls {
-          id
-          name
-          arguments
-        }
-        tokens
-        throughput
-        ttft
-        completionTime
-        timestamp
-        modelService
-        model
-        data
-        mimeType
-        toolCallId
-        toolCallResponse
-        artifacts {
-          id
-          name
-          mimeType
-          uri
-        }
-        thinkingContent
-        thinkingSignature
-      }
       transcriptUri
-      turns {
-        index
-        messages {
-          role
-          author
-          message
-          tokens
-          timestamp
-        }
-        tokens
-        timestamp
-        text
-        relevance
-      }
+      messageCount
+      turnCount
       agent {
         id
       }
@@ -9698,6 +9265,18 @@ mutation DeleteFeeds($ids: [ID!]!, $isSynchronous: Boolean) {
     id
     state
   }
+}
+"""
+
+DELETE_GOOGLE_CALENDAR_EVENT_GQL = """
+mutation DeleteGoogleCalendarEvent($properties: GoogleCalendarEventsInput!, $eventId: String!) {
+  deleteGoogleCalendarEvent(properties: $properties, eventId: $eventId)
+}
+"""
+
+DELETE_MICROSOFT_CALENDAR_EVENT_GQL = """
+mutation DeleteMicrosoftCalendarEvent($properties: MicrosoftCalendarEventsInput!, $eventId: String!) {
+  deleteMicrosoftCalendarEvent(properties: $properties, eventId: $eventId)
 }
 """
 
@@ -11787,11 +11366,34 @@ query QuerySlackChannels($properties: SlackChannelsInput!) {
 }
 """
 
+QUERY_SLACK_USERS_GQL = """
+query QuerySlackUsers($properties: SlackChannelsInput!) {
+  slackUsers(properties: $properties) {
+    results {
+      userId
+      displayName
+      realName
+      email
+    }
+  }
+}
+"""
+
 TRIGGER_FEED_GQL = """
 mutation TriggerFeed($id: ID!) {
   triggerFeed(id: $id) {
     id
     state
+  }
+}
+"""
+
+UPDATE_CONFLUENCE_PAGE_GQL = """
+mutation UpdateConfluencePage($properties: ConfluenceSpacesInput!, $pageId: String!, $input: ConfluencePageUpdateInput!) {
+  updateConfluencePage(properties: $properties, pageId: $pageId, input: $input) {
+    identifier
+    uri
+    serviceType
   }
 }
 """
@@ -11804,6 +11406,84 @@ mutation UpdateFeed($feed: FeedUpdateInput!) {
     state
     identifier
     type
+  }
+}
+"""
+
+UPDATE_GOOGLE_CALENDAR_EVENT_GQL = """
+mutation UpdateGoogleCalendarEvent($properties: GoogleCalendarEventsInput!, $eventId: String!, $input: CalendarEventUpdateInput!) {
+  updateGoogleCalendarEvent(
+    properties: $properties
+    eventId: $eventId
+    input: $input
+  ) {
+    eventId
+    summary
+    startDateTime
+    endDateTime
+    location
+    attendees
+    isOnlineMeeting
+    meetingLink
+    description
+    status
+    organizer
+  }
+}
+"""
+
+UPDATE_JIRA_ISSUE_GQL = """
+mutation UpdateJiraIssue($properties: JiraProjectsInput!, $issueIdOrKey: String!, $input: JiraIssueUpdateInput!) {
+  updateJiraIssue(
+    properties: $properties
+    issueIdOrKey: $issueIdOrKey
+    input: $input
+  ) {
+    identifier
+    uri
+    serviceType
+  }
+}
+"""
+
+UPDATE_LINEAR_ISSUE_GQL = """
+mutation UpdateLinearIssue($properties: LinearProjectsInput!, $issueId: String!, $input: LinearIssueUpdateInput!) {
+  updateLinearIssue(properties: $properties, issueId: $issueId, input: $input) {
+    identifier
+    uri
+    serviceType
+  }
+}
+"""
+
+UPDATE_MICROSOFT_CALENDAR_EVENT_GQL = """
+mutation UpdateMicrosoftCalendarEvent($properties: MicrosoftCalendarEventsInput!, $eventId: String!, $input: CalendarEventUpdateInput!) {
+  updateMicrosoftCalendarEvent(
+    properties: $properties
+    eventId: $eventId
+    input: $input
+  ) {
+    eventId
+    summary
+    startDateTime
+    endDateTime
+    location
+    attendees
+    isOnlineMeeting
+    meetingLink
+    description
+    status
+    organizer
+  }
+}
+"""
+
+UPDATE_NOTION_PAGE_GQL = """
+mutation UpdateNotionPage($properties: NotionDatabasesInput!, $pageId: String!, $input: NotionPageUpdateInput!) {
+  updateNotionPage(properties: $properties, pageId: $pageId, input: $input) {
+    identifier
+    uri
+    serviceType
   }
 }
 """

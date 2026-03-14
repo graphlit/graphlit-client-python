@@ -8,15 +8,11 @@ from pydantic import Field
 from .base_model import BaseModel
 from .enums import (
     ContentTypes,
-    ConversationRoleTypes,
     ConversationTypes,
     EntityState,
     FileTypes,
     FilterMode,
-    ImageProjectionTypes,
-    ModelServiceTypes,
     ObservableTypes,
-    OrientationTypes,
 )
 
 
@@ -38,9 +34,9 @@ class QueryConversationsConversationsResults(BaseModel):
     state: EntityState
     correlation_id: Optional[str] = Field(alias="correlationId")
     type: Optional[ConversationTypes]
-    messages: Optional[list[Optional["QueryConversationsConversationsResultsMessages"]]]
     transcript_uri: Optional[Any] = Field(alias="transcriptUri")
-    turns: Optional[list[Optional["QueryConversationsConversationsResultsTurns"]]]
+    message_count: Optional[int] = Field(alias="messageCount")
+    turn_count: Optional[int] = Field(alias="turnCount")
     agent: Optional["QueryConversationsConversationsResultsAgent"]
     persona: Optional["QueryConversationsConversationsResultsPersona"]
     specification: Optional["QueryConversationsConversationsResultsSpecification"]
@@ -56,196 +52,6 @@ class QueryConversationsConversationsResults(BaseModel):
 
 class QueryConversationsConversationsResultsOwner(BaseModel):
     id: str
-
-
-class QueryConversationsConversationsResultsMessages(BaseModel):
-    role: ConversationRoleTypes
-    author: Optional[str]
-    message: Optional[str]
-    citations: Optional[
-        list[Optional["QueryConversationsConversationsResultsMessagesCitations"]]
-    ]
-    tool_calls: Optional[
-        list[Optional["QueryConversationsConversationsResultsMessagesToolCalls"]]
-    ] = Field(alias="toolCalls")
-    tokens: Optional[int]
-    throughput: Optional[float]
-    ttft: Optional[Any]
-    completion_time: Optional[Any] = Field(alias="completionTime")
-    timestamp: Optional[Any]
-    model_service: Optional[ModelServiceTypes] = Field(alias="modelService")
-    model: Optional[str]
-    data: Optional[str]
-    mime_type: Optional[str] = Field(alias="mimeType")
-    tool_call_id: Optional[str] = Field(alias="toolCallId")
-    tool_call_response: Optional[str] = Field(alias="toolCallResponse")
-    artifacts: Optional[
-        list[Optional["QueryConversationsConversationsResultsMessagesArtifacts"]]
-    ]
-    thinking_content: Optional[str] = Field(alias="thinkingContent")
-    thinking_signature: Optional[str] = Field(alias="thinkingSignature")
-
-
-class QueryConversationsConversationsResultsMessagesCitations(BaseModel):
-    content: Optional["QueryConversationsConversationsResultsMessagesCitationsContent"]
-    index: Optional[int]
-    text: str
-    start_time: Optional[Any] = Field(alias="startTime")
-    end_time: Optional[Any] = Field(alias="endTime")
-    page_number: Optional[int] = Field(alias="pageNumber")
-    frame_number: Optional[int] = Field(alias="frameNumber")
-
-
-class QueryConversationsConversationsResultsMessagesCitationsContent(BaseModel):
-    id: str
-    name: str
-    state: EntityState
-    original_date: Optional[Any] = Field(alias="originalDate")
-    identifier: Optional[str]
-    uri: Optional[Any]
-    type: Optional[ContentTypes]
-    file_type: Optional[FileTypes] = Field(alias="fileType")
-    mime_type: Optional[str] = Field(alias="mimeType")
-    format: Optional[str]
-    format_name: Optional[str] = Field(alias="formatName")
-    file_extension: Optional[str] = Field(alias="fileExtension")
-    file_name: Optional[str] = Field(alias="fileName")
-    file_size: Optional[Any] = Field(alias="fileSize")
-    file_metadata: Optional[str] = Field(alias="fileMetadata")
-    relative_folder_path: Optional[str] = Field(alias="relativeFolderPath")
-    master_uri: Optional[Any] = Field(alias="masterUri")
-    image_uri: Optional[Any] = Field(alias="imageUri")
-    text_uri: Optional[Any] = Field(alias="textUri")
-    audio_uri: Optional[Any] = Field(alias="audioUri")
-    transcript_uri: Optional[Any] = Field(alias="transcriptUri")
-    snapshots_uri: Optional[Any] = Field(alias="snapshotsUri")
-    snapshot_count: Optional[int] = Field(alias="snapshotCount")
-    summary: Optional[str]
-    custom_summary: Optional[str] = Field(alias="customSummary")
-    keywords: Optional[list[str]]
-    bullets: Optional[list[str]]
-    headlines: Optional[list[str]]
-    posts: Optional[list[str]]
-    chapters: Optional[list[str]]
-    questions: Optional[list[str]]
-    quotes: Optional[list[str]]
-    video: Optional[
-        "QueryConversationsConversationsResultsMessagesCitationsContentVideo"
-    ]
-    audio: Optional[
-        "QueryConversationsConversationsResultsMessagesCitationsContentAudio"
-    ]
-    image: Optional[
-        "QueryConversationsConversationsResultsMessagesCitationsContentImage"
-    ]
-    document: Optional[
-        "QueryConversationsConversationsResultsMessagesCitationsContentDocument"
-    ]
-
-
-class QueryConversationsConversationsResultsMessagesCitationsContentVideo(BaseModel):
-    width: Optional[int]
-    height: Optional[int]
-    duration: Optional[Any]
-    make: Optional[str]
-    model: Optional[str]
-    software: Optional[str]
-    title: Optional[str]
-    description: Optional[str]
-    keywords: Optional[list[Optional[str]]]
-    author: Optional[str]
-
-
-class QueryConversationsConversationsResultsMessagesCitationsContentAudio(BaseModel):
-    keywords: Optional[list[Optional[str]]]
-    author: Optional[str]
-    series: Optional[str]
-    episode: Optional[str]
-    episode_type: Optional[str] = Field(alias="episodeType")
-    season: Optional[str]
-    publisher: Optional[str]
-    copyright: Optional[str]
-    genre: Optional[str]
-    title: Optional[str]
-    description: Optional[str]
-    bitrate: Optional[int]
-    channels: Optional[int]
-    sample_rate: Optional[int] = Field(alias="sampleRate")
-    bits_per_sample: Optional[int] = Field(alias="bitsPerSample")
-    duration: Optional[Any]
-
-
-class QueryConversationsConversationsResultsMessagesCitationsContentImage(BaseModel):
-    width: Optional[int]
-    height: Optional[int]
-    resolution_x: Optional[int] = Field(alias="resolutionX")
-    resolution_y: Optional[int] = Field(alias="resolutionY")
-    bits_per_component: Optional[int] = Field(alias="bitsPerComponent")
-    components: Optional[int]
-    projection_type: Optional[ImageProjectionTypes] = Field(alias="projectionType")
-    orientation: Optional[OrientationTypes]
-    description: Optional[str]
-    make: Optional[str]
-    model: Optional[str]
-    software: Optional[str]
-    lens: Optional[str]
-    focal_length: Optional[float] = Field(alias="focalLength")
-    exposure_time: Optional[str] = Field(alias="exposureTime")
-    f_number: Optional[str] = Field(alias="fNumber")
-    iso: Optional[str]
-    heading: Optional[float]
-    pitch: Optional[float]
-
-
-class QueryConversationsConversationsResultsMessagesCitationsContentDocument(BaseModel):
-    title: Optional[str]
-    subject: Optional[str]
-    summary: Optional[str]
-    author: Optional[str]
-    last_modified_by: Optional[str] = Field(alias="lastModifiedBy")
-    publisher: Optional[str]
-    description: Optional[str]
-    keywords: Optional[list[Optional[str]]]
-    page_count: Optional[int] = Field(alias="pageCount")
-    worksheet_count: Optional[int] = Field(alias="worksheetCount")
-    slide_count: Optional[int] = Field(alias="slideCount")
-    word_count: Optional[int] = Field(alias="wordCount")
-    line_count: Optional[int] = Field(alias="lineCount")
-    paragraph_count: Optional[int] = Field(alias="paragraphCount")
-    is_encrypted: Optional[bool] = Field(alias="isEncrypted")
-    has_digital_signature: Optional[bool] = Field(alias="hasDigitalSignature")
-
-
-class QueryConversationsConversationsResultsMessagesToolCalls(BaseModel):
-    id: str
-    name: str
-    arguments: str
-
-
-class QueryConversationsConversationsResultsMessagesArtifacts(BaseModel):
-    id: str
-    name: str
-    mime_type: Optional[str] = Field(alias="mimeType")
-    uri: Optional[Any]
-
-
-class QueryConversationsConversationsResultsTurns(BaseModel):
-    index: Optional[int]
-    messages: Optional[
-        list[Optional["QueryConversationsConversationsResultsTurnsMessages"]]
-    ]
-    tokens: Optional[int]
-    timestamp: Optional[Any]
-    text: Optional[str]
-    relevance: Optional[float]
-
-
-class QueryConversationsConversationsResultsTurnsMessages(BaseModel):
-    role: ConversationRoleTypes
-    author: Optional[str]
-    message: Optional[str]
-    tokens: Optional[int]
-    timestamp: Optional[Any]
 
 
 class QueryConversationsConversationsResultsAgent(BaseModel):
@@ -638,10 +444,6 @@ class QueryConversationsConversationsResultsAugmentedFilterAndObservationsObserv
 QueryConversations.model_rebuild()
 QueryConversationsConversations.model_rebuild()
 QueryConversationsConversationsResults.model_rebuild()
-QueryConversationsConversationsResultsMessages.model_rebuild()
-QueryConversationsConversationsResultsMessagesCitations.model_rebuild()
-QueryConversationsConversationsResultsMessagesCitationsContent.model_rebuild()
-QueryConversationsConversationsResultsTurns.model_rebuild()
 QueryConversationsConversationsResultsFilter.model_rebuild()
 QueryConversationsConversationsResultsFilterObservations.model_rebuild()
 QueryConversationsConversationsResultsFilterOr.model_rebuild()
