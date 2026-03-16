@@ -244,7 +244,11 @@ from .create_persona import CreatePersona, CreatePersonaCreatePersona
 from .create_place import CreatePlace, CreatePlaceCreatePlace
 from .create_product import CreateProduct, CreateProductCreateProduct
 from .create_repo import CreateRepo, CreateRepoCreateRepo
-from .create_skill import CreateSkill, CreateSkillCreateSkill
+from .create_skill import (
+    CreateSkill,
+    CreateSkillCreateSkill,
+    CreateSkillCreateSkillArguments,
+)
 from .create_software import CreateSoftware, CreateSoftwareCreateSoftware
 from .create_specification import (
     CreateSpecification,
@@ -1136,6 +1140,7 @@ from .get_conversation import (
     GetConversationConversationAugmentedFilterSimilarContents,
     GetConversationConversationAugmentedFilterUsers,
     GetConversationConversationAugmentedFilterWorkflows,
+    GetConversationConversationChildren,
     GetConversationConversationFacts,
     GetConversationConversationFallbacks,
     GetConversationConversationFilter,
@@ -1179,6 +1184,7 @@ from .get_conversation import (
     GetConversationConversationObservationsOccurrencesBoundingBox,
     GetConversationConversationObservationsRelated,
     GetConversationConversationOwner,
+    GetConversationConversationParent,
     GetConversationConversationPersona,
     GetConversationConversationSpecification,
     GetConversationConversationTurns,
@@ -1573,6 +1579,7 @@ from .get_share_point_consent_uri import (
 from .get_skill import (
     GetSkill,
     GetSkillSkill,
+    GetSkillSkillArguments,
     GetSkillSkillCollections,
     GetSkillSkillOwner,
 )
@@ -2338,6 +2345,7 @@ from .input_types import (
     SharePointLibrariesInput,
     SiteFeedPropertiesInput,
     SiteFeedPropertiesUpdateInput,
+    SkillArgumentInput,
     SkillFilter,
     SkillInput,
     SkillUpdateInput,
@@ -4320,6 +4328,7 @@ from .query_skills import (
     QuerySkills,
     QuerySkillsSkills,
     QuerySkillsSkillsResults,
+    QuerySkillsSkillsResultsArguments,
     QuerySkillsSkillsResultsCollections,
     QuerySkillsSkillsResultsOwner,
 )
@@ -4784,7 +4793,11 @@ from .update_place import UpdatePlace, UpdatePlaceUpdatePlace
 from .update_product import UpdateProduct, UpdateProductUpdateProduct
 from .update_project import UpdateProject, UpdateProjectUpdateProject
 from .update_repo import UpdateRepo, UpdateRepoUpdateRepo
-from .update_skill import UpdateSkill, UpdateSkillUpdateSkill
+from .update_skill import (
+    UpdateSkill,
+    UpdateSkillUpdateSkill,
+    UpdateSkillUpdateSkillArguments,
+)
 from .update_software import UpdateSoftware, UpdateSoftwareUpdateSoftware
 from .update_specification import (
     UpdateSpecification,
@@ -4918,7 +4931,11 @@ from .upsert_agent import UpsertAgent, UpsertAgentUpsertAgent
 from .upsert_alert import UpsertAlert, UpsertAlertUpsertAlert
 from .upsert_category import UpsertCategory, UpsertCategoryUpsertCategory
 from .upsert_label import UpsertLabel, UpsertLabelUpsertLabel
-from .upsert_skill import UpsertSkill, UpsertSkillUpsertSkill
+from .upsert_skill import (
+    UpsertSkill,
+    UpsertSkillUpsertSkill,
+    UpsertSkillUpsertSkillArguments,
+)
 from .upsert_specification import (
     UpsertSpecification,
     UpsertSpecificationUpsertSpecification,
@@ -5517,6 +5534,7 @@ __all__ = [
     "CreateRepoCreateRepo",
     "CreateSkill",
     "CreateSkillCreateSkill",
+    "CreateSkillCreateSkillArguments",
     "CreateSoftware",
     "CreateSoftwareCreateSoftware",
     "CreateSpecification",
@@ -6418,6 +6436,7 @@ __all__ = [
     "GetConversationConversationAugmentedFilterSimilarContents",
     "GetConversationConversationAugmentedFilterUsers",
     "GetConversationConversationAugmentedFilterWorkflows",
+    "GetConversationConversationChildren",
     "GetConversationConversationFacts",
     "GetConversationConversationFallbacks",
     "GetConversationConversationFilter",
@@ -6461,6 +6480,7 @@ __all__ = [
     "GetConversationConversationObservationsOccurrencesBoundingBox",
     "GetConversationConversationObservationsRelated",
     "GetConversationConversationOwner",
+    "GetConversationConversationParent",
     "GetConversationConversationPersona",
     "GetConversationConversationSpecification",
     "GetConversationConversationTurns",
@@ -6809,6 +6829,7 @@ __all__ = [
     "GetSharePointConsentUriSharePointConsentUri",
     "GetSkill",
     "GetSkillSkill",
+    "GetSkillSkillArguments",
     "GetSkillSkillCollections",
     "GetSkillSkillOwner",
     "GetSoftware",
@@ -8798,6 +8819,7 @@ __all__ = [
     "QuerySkills",
     "QuerySkillsSkills",
     "QuerySkillsSkillsResults",
+    "QuerySkillsSkillsResultsArguments",
     "QuerySkillsSkillsResultsCollections",
     "QuerySkillsSkillsResultsOwner",
     "QuerySlackChannels",
@@ -9198,6 +9220,7 @@ __all__ = [
     "SiteFeedPropertiesInput",
     "SiteFeedPropertiesUpdateInput",
     "SiteTypes",
+    "SkillArgumentInput",
     "SkillFilter",
     "SkillInput",
     "SkillUpdateInput",
@@ -9404,6 +9427,7 @@ __all__ = [
     "UpdateRepoUpdateRepo",
     "UpdateSkill",
     "UpdateSkillUpdateSkill",
+    "UpdateSkillUpdateSkillArguments",
     "UpdateSoftware",
     "UpdateSoftwareUpdateSoftware",
     "UpdateSpecification",
@@ -9540,6 +9564,7 @@ __all__ = [
     "UpsertLabelUpsertLabel",
     "UpsertSkill",
     "UpsertSkillUpsertSkill",
+    "UpsertSkillUpsertSkillArguments",
     "UpsertSpecification",
     "UpsertSpecificationUpsertSpecification",
     "UpsertView",

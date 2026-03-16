@@ -4,5 +4,10 @@ mutation UpsertSkill($skill: SkillInput!) {
     name
     state
     skillOwner
+    arguments {
+      name
+      description
+      required
+    }
   }
 }

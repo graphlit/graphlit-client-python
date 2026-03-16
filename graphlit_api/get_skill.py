@@ -23,11 +23,18 @@ class GetSkillSkill(BaseModel):
     correlation_id: Optional[str] = Field(alias="correlationId")
     text: str
     skill_owner: Optional[EntityOwners] = Field(alias="skillOwner")
+    arguments: Optional[list["GetSkillSkillArguments"]]
     collections: Optional[list[Optional["GetSkillSkillCollections"]]]
 
 
 class GetSkillSkillOwner(BaseModel):
     id: str
+
+
+class GetSkillSkillArguments(BaseModel):
+    name: str
+    description: Optional[str]
+    required: Optional[bool]
 
 
 class GetSkillSkillCollections(BaseModel):

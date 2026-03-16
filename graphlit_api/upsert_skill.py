@@ -18,6 +18,14 @@ class UpsertSkillUpsertSkill(BaseModel):
     name: str
     state: EntityState
     skill_owner: Optional[EntityOwners] = Field(alias="skillOwner")
+    arguments: Optional[list["UpsertSkillUpsertSkillArguments"]]
+
+
+class UpsertSkillUpsertSkillArguments(BaseModel):
+    name: str
+    description: Optional[str]
+    required: Optional[bool]
 
 
 UpsertSkill.model_rebuild()
+UpsertSkillUpsertSkill.model_rebuild()

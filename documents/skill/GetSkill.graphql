@@ -11,6 +11,11 @@ query GetSkill($id: ID!, $correlationId: String) {
     correlationId
     text
     skillOwner
+    arguments {
+      name
+      description
+      required
+    }
     collections {
       id
       name

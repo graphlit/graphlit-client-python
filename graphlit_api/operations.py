@@ -6393,6 +6393,7 @@ query GetConversation($id: ID!, $correlationId: String) {
       timestamp
       text
       relevance
+      summary
     }
     messageCount
     turnCount
@@ -6638,6 +6639,14 @@ query GetConversation($id: ID!, $correlationId: String) {
       confidence
     }
     summary
+    parent {
+      id
+      name
+    }
+    children {
+      id
+      name
+    }
   }
 }
 """
@@ -17259,6 +17268,11 @@ mutation CreateSkill($skill: SkillInput!, $correlationId: String) {
     name
     state
     skillOwner
+    arguments {
+      name
+      description
+      required
+    }
   }
 }
 """
@@ -17326,6 +17340,11 @@ query GetSkill($id: ID!, $correlationId: String) {
     correlationId
     text
     skillOwner
+    arguments {
+      name
+      description
+      required
+    }
     collections {
       id
       name
@@ -17350,6 +17369,11 @@ query QuerySkills($filter: SkillFilter, $correlationId: String) {
       correlationId
       text
       skillOwner
+      arguments {
+        name
+        description
+        required
+      }
       collections {
         id
         name
@@ -17366,6 +17390,11 @@ mutation UpdateSkill($skill: SkillUpdateInput!) {
     name
     state
     skillOwner
+    arguments {
+      name
+      description
+      required
+    }
   }
 }
 """
@@ -17377,6 +17406,11 @@ mutation UpsertSkill($skill: SkillInput!) {
     name
     state
     skillOwner
+    arguments {
+      name
+      description
+      required
+    }
   }
 }
 """

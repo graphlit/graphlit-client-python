@@ -18,6 +18,14 @@ class UpdateSkillUpdateSkill(BaseModel):
     name: str
     state: EntityState
     skill_owner: Optional[EntityOwners] = Field(alias="skillOwner")
+    arguments: Optional[list["UpdateSkillUpdateSkillArguments"]]
+
+
+class UpdateSkillUpdateSkillArguments(BaseModel):
+    name: str
+    description: Optional[str]
+    required: Optional[bool]
 
 
 UpdateSkill.model_rebuild()
+UpdateSkillUpdateSkill.model_rebuild()

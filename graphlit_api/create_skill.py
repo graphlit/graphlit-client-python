@@ -18,6 +18,14 @@ class CreateSkillCreateSkill(BaseModel):
     name: str
     state: EntityState
     skill_owner: Optional[EntityOwners] = Field(alias="skillOwner")
+    arguments: Optional[list["CreateSkillCreateSkillArguments"]]
+
+
+class CreateSkillCreateSkillArguments(BaseModel):
+    name: str
+    description: Optional[str]
+    required: Optional[bool]
 
 
 CreateSkill.model_rebuild()
+CreateSkillCreateSkill.model_rebuild()

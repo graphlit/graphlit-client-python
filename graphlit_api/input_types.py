@@ -346,6 +346,7 @@ class SkillInput(BaseModel):
     skill_owner: Optional[EntityOwners] = Field(alias="skillOwner", default=None)
     description: Optional[str] = None
     collections: Optional[list["EntityReferenceInput"]] = None
+    arguments: Optional[list["SkillArgumentInput"]] = None
 
 
 class CalendarAttendeeInput(BaseModel):
@@ -4244,6 +4245,12 @@ class DeepgramAudioPreparationPropertiesInput(BaseModel):
     language: Optional[str] = None
 
 
+class SkillArgumentInput(BaseModel):
+    name: str
+    description: Optional[str] = None
+    required: Optional[bool] = None
+
+
 class GustoHRISFeedPropertiesUpdateInput(BaseModel):
     authentication_type: Optional[GustoAuthenticationTypes] = Field(
         alias="authenticationType", default=None
@@ -4268,6 +4275,7 @@ class ConversationInput(BaseModel):
         alias="augmentedFilter", default=None
     )
     scratchpad: Optional[str] = None
+    parent: Optional["EntityReferenceInput"] = None
 
 
 class MedicalTestUpdateInput(BaseModel):
@@ -5044,6 +5052,7 @@ class SkillUpdateInput(BaseModel):
     name: Optional[str] = None
     text: Optional[str] = None
     description: Optional[str] = None
+    arguments: Optional[list["SkillArgumentInput"]] = None
 
 
 class ProjectInput(BaseModel):
@@ -5682,6 +5691,7 @@ class ConversationUpdateInput(BaseModel):
         alias="augmentedFilter", default=None
     )
     scratchpad: Optional[str] = None
+    parent: Optional["EntityReferenceInput"] = None
 
 
 class ProductlaneCRMFeedPropertiesInput(BaseModel):
@@ -7413,6 +7423,7 @@ ProjectUpdateInput.model_rebuild()
 ProjectFilter.model_rebuild()
 SummarizationStrategyInput.model_rebuild()
 ProductFilter.model_rebuild()
+SkillUpdateInput.model_rebuild()
 ProjectInput.model_rebuild()
 ContentClassificationConnectorInput.model_rebuild()
 ContentPublishingConnectorUpdateInput.model_rebuild()

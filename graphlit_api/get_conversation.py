@@ -51,6 +51,8 @@ class GetConversationConversation(BaseModel):
     observations: Optional[list[Optional["GetConversationConversationObservations"]]]
     facts: Optional[list[Optional["GetConversationConversationFacts"]]]
     summary: Optional[str]
+    parent: Optional["GetConversationConversationParent"]
+    children: Optional[list[Optional["GetConversationConversationChildren"]]]
 
 
 class GetConversationConversationOwner(BaseModel):
@@ -223,6 +225,7 @@ class GetConversationConversationTurns(BaseModel):
     timestamp: Optional[Any]
     text: Optional[str]
     relevance: Optional[float]
+    summary: Optional[str]
 
 
 class GetConversationConversationTurnsMessages(BaseModel):
@@ -622,6 +625,16 @@ class GetConversationConversationFacts(BaseModel):
     state: EntityState
     category: Optional[FactCategory]
     confidence: Optional[float]
+
+
+class GetConversationConversationParent(BaseModel):
+    id: str
+    name: str
+
+
+class GetConversationConversationChildren(BaseModel):
+    id: str
+    name: str
 
 
 GetConversation.model_rebuild()
