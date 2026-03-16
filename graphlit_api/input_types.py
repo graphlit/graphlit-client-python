@@ -342,6 +342,7 @@ class PersonaInput(BaseModel):
 
 class SkillInput(BaseModel):
     name: str
+    identifier: Optional[str] = None
     text: str
     skill_owner: Optional[EntityOwners] = Field(alias="skillOwner", default=None)
     description: Optional[str] = None
@@ -462,6 +463,7 @@ class SkillFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    identifier: Optional[str] = None
     skill_owners: Optional[list[EntityOwners]] = Field(
         alias="skillOwners", default=None
     )
@@ -5050,6 +5052,7 @@ class ProductFilter(BaseModel):
 class SkillUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
+    identifier: Optional[str] = None
     text: Optional[str] = None
     description: Optional[str] = None
     arguments: Optional[list["SkillArgumentInput"]] = None
