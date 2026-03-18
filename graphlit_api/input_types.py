@@ -2825,6 +2825,7 @@ class AgentInput(BaseModel):
     prompt: Optional[str] = None
     scratchpad: Optional[str] = None
     channels: Optional[list["AgentChannelInput"]] = None
+    connectors: Optional[list["EntityReferenceInput"]] = None
 
 
 class CrustdataPersonDiscoveryFilterInput(BaseModel):
@@ -7034,6 +7035,7 @@ class AgentUpdateInput(BaseModel):
     prompt: Optional[str] = None
     scratchpad: Optional[str] = None
     channels: Optional[list["AgentChannelInput"]] = None
+    connectors: Optional[list["EntityReferenceInput"]] = None
 
 
 class IssueFeedPropertiesInput(BaseModel):

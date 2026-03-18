@@ -3,6 +3,7 @@
 
 __all__ = [
     "ADD_CONTENTS_TO_COLLECTIONS_GQL",
+    "ADD_CONTENT_LABEL_GQL",
     "ADD_CONVERSATIONS_TO_COLLECTIONS_GQL",
     "ADD_SKILLS_TO_COLLECTIONS_GQL",
     "APPROVE_CONTENT_GQL",
@@ -390,6 +391,7 @@ __all__ = [
     "QUERY_WORKFLOWS_GQL",
     "REJECT_CONTENT_GQL",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
+    "REMOVE_CONTENT_LABEL_GQL",
     "REMOVE_CONVERSATIONS_FROM_COLLECTION_GQL",
     "REMOVE_SKILLS_FROM_COLLECTION_GQL",
     "RESEARCH_CONTENTS_GQL",
@@ -572,6 +574,9 @@ query GetAgent($id: ID!, $correlationId: String) {
       instructions
       label
     }
+    connectors {
+      id
+    }
     timeout
     prompt
     scratchpad
@@ -615,6 +620,9 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
         identifier
         instructions
         label
+      }
+      connectors {
+        id
       }
       timeout
       prompt
@@ -1614,6 +1622,15 @@ mutation UpdateConnector($connector: ConnectorUpdateInput!) {
     name
     state
     type
+  }
+}
+"""
+
+ADD_CONTENT_LABEL_GQL = """
+mutation AddContentLabel($id: ID!, $label: String!) {
+  addContentLabel(id: $id, label: $label) {
+    id
+    name
   }
 }
 """
@@ -4745,6 +4762,15 @@ mutation RejectContent($id: ID!, $reason: String) {
   rejectContent(id: $id, reason: $reason) {
     id
     state
+  }
+}
+"""
+
+REMOVE_CONTENT_LABEL_GQL = """
+mutation RemoveContentLabel($id: ID!, $label: String!) {
+  removeContentLabel(id: $id, label: $label) {
+    id
+    name
   }
 }
 """

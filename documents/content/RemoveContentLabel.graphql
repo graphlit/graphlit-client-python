@@ -1,0 +1,6 @@
+mutation RemoveContentLabel($id: ID!, $label: String!) {
+  removeContentLabel(id: $id, label: $label) {
+    id
+    name
+  }
+}

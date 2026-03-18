@@ -40,6 +40,7 @@ class QueryAgentsAgentsResults(BaseModel):
         alias="schedulePolicy"
     )
     channels: Optional[list["QueryAgentsAgentsResultsChannels"]]
+    connectors: Optional[list["QueryAgentsAgentsResultsConnectors"]]
     timeout: Optional[Any]
     prompt: Optional[str]
     scratchpad: Optional[str]
@@ -77,6 +78,10 @@ class QueryAgentsAgentsResultsChannels(BaseModel):
     identifier: str
     instructions: Optional[str]
     label: Optional[str]
+
+
+class QueryAgentsAgentsResultsConnectors(BaseModel):
+    id: str
 
 
 QueryAgents.model_rebuild()

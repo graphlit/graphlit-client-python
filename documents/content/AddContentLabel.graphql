@@ -1,0 +1,6 @@
+mutation AddContentLabel($id: ID!, $label: String!) {
+  addContentLabel(id: $id, label: $label) {
+    id
+    name
+  }
+}

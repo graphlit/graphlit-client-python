@@ -34,6 +34,9 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
         instructions
         label
       }
+      connectors {
+        id
+      }
       timeout
       prompt
       scratchpad

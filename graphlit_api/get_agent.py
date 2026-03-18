@@ -35,6 +35,7 @@ class GetAgentAgent(BaseModel):
         alias="schedulePolicy"
     )
     channels: Optional[list["GetAgentAgentChannels"]]
+    connectors: Optional[list["GetAgentAgentConnectors"]]
     timeout: Optional[Any]
     prompt: Optional[str]
     scratchpad: Optional[str]
@@ -72,6 +73,10 @@ class GetAgentAgentChannels(BaseModel):
     identifier: str
     instructions: Optional[str]
     label: Optional[str]
+
+
+class GetAgentAgentConnectors(BaseModel):
+    id: str
 
 
 GetAgent.model_rebuild()

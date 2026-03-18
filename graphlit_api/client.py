@@ -3,6 +3,7 @@
 
 from typing import Any, Optional, Union
 
+from .add_content_label import AddContentLabel
 from .add_contents_to_collections import AddContentsToCollections
 from .add_conversations_to_collections import AddConversationsToCollections
 from .add_skills_to_collections import AddSkillsToCollections
@@ -460,6 +461,7 @@ from .lookup_usage import LookupUsage
 from .map_web import MapWeb
 from .match_entity import MatchEntity
 from .operations import (
+    ADD_CONTENT_LABEL_GQL,
     ADD_CONTENTS_TO_COLLECTIONS_GQL,
     ADD_CONVERSATIONS_TO_COLLECTIONS_GQL,
     ADD_SKILLS_TO_COLLECTIONS_GQL,
@@ -847,6 +849,7 @@ from .operations import (
     QUERY_VIEWS_GQL,
     QUERY_WORKFLOWS_GQL,
     REJECT_CONTENT_GQL,
+    REMOVE_CONTENT_LABEL_GQL,
     REMOVE_CONTENTS_FROM_COLLECTION_GQL,
     REMOVE_CONVERSATIONS_FROM_COLLECTION_GQL,
     REMOVE_SKILLS_FROM_COLLECTION_GQL,
@@ -1042,6 +1045,7 @@ from .query_users import QueryUsers
 from .query_views import QueryViews
 from .query_workflows import QueryWorkflows
 from .reject_content import RejectContent
+from .remove_content_label import RemoveContentLabel
 from .remove_contents_from_collection import RemoveContentsFromCollection
 from .remove_conversations_from_collection import RemoveConversationsFromCollection
 from .remove_skills_from_collection import RemoveSkillsFromCollection
@@ -1916,6 +1920,19 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return UpdateConnector.model_validate(data)
 
+    async def add_content_label(
+        self, id: str, label: str, **kwargs: Any
+    ) -> AddContentLabel:
+        variables: dict[str, object] = {"id": id, "label": label}
+        response = await self.execute(
+            query=ADD_CONTENT_LABEL_GQL,
+            operation_name="AddContentLabel",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return AddContentLabel.model_validate(data)
+
     async def approve_content(self, id: str, **kwargs: Any) -> ApproveContent:
         variables: dict[str, object] = {"id": id}
         response = await self.execute(
@@ -2641,6 +2658,19 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return RejectContent.model_validate(data)
+
+    async def remove_content_label(
+        self, id: str, label: str, **kwargs: Any
+    ) -> RemoveContentLabel:
+        variables: dict[str, object] = {"id": id, "label": label}
+        response = await self.execute(
+            query=REMOVE_CONTENT_LABEL_GQL,
+            operation_name="RemoveContentLabel",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return RemoveContentLabel.model_validate(data)
 
     async def research_contents(
         self,

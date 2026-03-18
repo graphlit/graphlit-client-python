@@ -32,6 +32,9 @@ query GetAgent($id: ID!, $correlationId: String) {
       instructions
       label
     }
+    connectors {
+      id
+    }
     timeout
     prompt
     scratchpad
