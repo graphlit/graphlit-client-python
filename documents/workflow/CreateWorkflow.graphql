@@ -205,6 +205,9 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
           crustdata {
             isRealtime
           }
+          waterfall {
+            depth
+          }
         }
       }
       entityResolution {

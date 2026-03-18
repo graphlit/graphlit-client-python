@@ -25,6 +25,7 @@ class QuerySkillsSkillsResults(BaseModel):
     relevance: Optional[float]
     owner: "QuerySkillsSkillsResultsOwner"
     state: EntityState
+    identifier: Optional[str]
     correlation_id: Optional[str] = Field(alias="correlationId")
     text: str
     skill_owner: Optional[EntityOwners] = Field(alias="skillOwner")

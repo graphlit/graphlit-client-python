@@ -37,6 +37,7 @@ from .enums import (
     StorageGateTypes,
     StoragePolicyTypes,
     SummarizationTypes,
+    WaterfallDepths,
 )
 
 
@@ -411,6 +412,9 @@ class QueryWorkflowsWorkflowsResultsEnrichmentJobsConnector(BaseModel):
     crustdata: Optional[
         "QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorCrustdata"
     ]
+    waterfall: Optional[
+        "QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorWaterfall"
+    ]
 
 
 class QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorFhir(BaseModel):
@@ -428,6 +432,10 @@ class QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorParallel(BaseModel):
 
 class QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorCrustdata(BaseModel):
     is_realtime: Optional[bool] = Field(alias="isRealtime")
+
+
+class QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorWaterfall(BaseModel):
+    depth: Optional[WaterfallDepths]
 
 
 class QueryWorkflowsWorkflowsResultsEnrichmentEntityResolution(BaseModel):

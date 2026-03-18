@@ -17267,6 +17267,7 @@ mutation CreateSkill($skill: SkillInput!, $correlationId: String) {
     id
     name
     state
+    identifier
     skillOwner
     arguments {
       name
@@ -17337,6 +17338,7 @@ query GetSkill($id: ID!, $correlationId: String) {
       id
     }
     state
+    identifier
     correlationId
     text
     skillOwner
@@ -17366,6 +17368,7 @@ query QuerySkills($filter: SkillFilter, $correlationId: String) {
         id
       }
       state
+      identifier
       correlationId
       text
       skillOwner
@@ -17389,6 +17392,7 @@ mutation UpdateSkill($skill: SkillUpdateInput!) {
     id
     name
     state
+    identifier
     skillOwner
     arguments {
       name
@@ -17405,6 +17409,7 @@ mutation UpsertSkill($skill: SkillInput!) {
     id
     name
     state
+    identifier
     skillOwner
     arguments {
       name
@@ -19999,6 +20004,9 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
           crustdata {
             isRealtime
           }
+          waterfall {
+            depth
+          }
         }
       }
       entityResolution {
@@ -20302,6 +20310,9 @@ query GetWorkflow($id: ID!, $correlationId: String) {
           crustdata {
             isRealtime
           }
+          waterfall {
+            depth
+          }
         }
       }
       entityResolution {
@@ -20576,6 +20587,9 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
             crustdata {
               isRealtime
             }
+            waterfall {
+              depth
+            }
           }
         }
         entityResolution {
@@ -20844,6 +20858,9 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
           crustdata {
             isRealtime
           }
+          waterfall {
+            depth
+          }
         }
       }
       entityResolution {
@@ -21110,6 +21127,9 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
           }
           crustdata {
             isRealtime
+          }
+          waterfall {
+            depth
           }
         }
       }

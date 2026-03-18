@@ -198,6 +198,7 @@ from .enums import (
     VideoSizeTypes,
     ViewTypes,
     VoyageModels,
+    WaterfallDepths,
     XAIModels,
     YouTubeTypes,
     ZendeskAuthenticationTypes,
@@ -4012,6 +4013,7 @@ class EntityEnrichmentConnectorInput(BaseModel):
     fhir: Optional["FHIREnrichmentPropertiesInput"] = None
     diffbot: Optional["DiffbotEnrichmentPropertiesInput"] = None
     crustdata: Optional["CrustdataEnrichmentPropertiesInput"] = None
+    waterfall: Optional["WaterfallEnrichmentPropertiesInput"] = None
 
 
 class AttioFeedPropertiesUpdateInput(BaseModel):
@@ -5333,6 +5335,10 @@ class HRISFeedPropertiesUpdateInput(BaseModel):
 class PromptClassificationRuleInput(BaseModel):
     if_: Optional[str] = Field(alias="if", default=None)
     then: Optional[str] = None
+
+
+class WaterfallEnrichmentPropertiesInput(BaseModel):
+    depth: Optional[WaterfallDepths] = None
 
 
 class FeedPreviewInput(BaseModel):

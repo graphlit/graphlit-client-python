@@ -10,6 +10,7 @@ query QuerySkills($filter: SkillFilter, $correlationId: String) {
         id
       }
       state
+      identifier
       correlationId
       text
       skillOwner
