@@ -9843,6 +9843,18 @@ query GetFeed($id: ID!, $correlationId: String) {
         beforeDate
         type
       }
+      zoom {
+        authenticationType
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
+        afterDate
+        beforeDate
+        type
+      }
       hubSpot {
         authenticationType
         clientId
@@ -10857,6 +10869,18 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         }
         fathom {
           apiKey
+          afterDate
+          beforeDate
+          type
+        }
+        zoom {
+          authenticationType
+          clientId
+          clientSecret
+          refreshToken
+          connector {
+            id
+          }
           afterDate
           beforeDate
           type
@@ -20087,6 +20111,7 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
           type
         }
       }
+      observableTypes
     }
   }
 }
@@ -20393,6 +20418,7 @@ query GetWorkflow($id: ID!, $correlationId: String) {
           type
         }
       }
+      observableTypes
     }
   }
 }
@@ -20670,6 +20696,7 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
             type
           }
         }
+        observableTypes
       }
     }
   }
@@ -20941,6 +20968,7 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
           type
         }
       }
+      observableTypes
     }
   }
 }
@@ -21211,6 +21239,7 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
           type
         }
       }
+      observableTypes
     }
   }
 }

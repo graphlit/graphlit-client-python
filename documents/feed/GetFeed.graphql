@@ -499,6 +499,18 @@ query GetFeed($id: ID!, $correlationId: String) {
         beforeDate
         type
       }
+      zoom {
+        authenticationType
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
+        afterDate
+        beforeDate
+        type
+      }
       hubSpot {
         authenticationType
         clientId

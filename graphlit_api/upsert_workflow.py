@@ -467,6 +467,7 @@ class UpsertWorkflowUpsertWorkflowStorageGateRules(BaseModel):
 
 class UpsertWorkflowUpsertWorkflowActions(BaseModel):
     connector: Optional["UpsertWorkflowUpsertWorkflowActionsConnector"]
+    observable_types: Optional[list[ObservableTypes]] = Field(alias="observableTypes")
 
 
 class UpsertWorkflowUpsertWorkflowActionsConnector(BaseModel):

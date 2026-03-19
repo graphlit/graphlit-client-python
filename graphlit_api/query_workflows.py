@@ -481,6 +481,7 @@ class QueryWorkflowsWorkflowsResultsStorageGateRules(BaseModel):
 
 class QueryWorkflowsWorkflowsResultsActions(BaseModel):
     connector: Optional["QueryWorkflowsWorkflowsResultsActionsConnector"]
+    observable_types: Optional[list[ObservableTypes]] = Field(alias="observableTypes")
 
 
 class QueryWorkflowsWorkflowsResultsActionsConnector(BaseModel):

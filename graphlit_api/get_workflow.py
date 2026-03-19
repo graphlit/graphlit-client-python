@@ -450,6 +450,7 @@ class GetWorkflowWorkflowStorageGateRules(BaseModel):
 
 class GetWorkflowWorkflowActions(BaseModel):
     connector: Optional["GetWorkflowWorkflowActionsConnector"]
+    observable_types: Optional[list[ObservableTypes]] = Field(alias="observableTypes")
 
 
 class GetWorkflowWorkflowActionsConnector(BaseModel):

@@ -69,6 +69,7 @@ from .enums import (
     YouTubeTypes,
     ZendeskAuthenticationTypes,
     ZendeskIssueAuthenticationTypes,
+    ZoomAuthenticationTypes,
 )
 
 
@@ -827,6 +828,7 @@ class QueryFeedsFeedsResultsMeeting(BaseModel):
     fireflies: Optional["QueryFeedsFeedsResultsMeetingFireflies"]
     attio: Optional["QueryFeedsFeedsResultsMeetingAttio"]
     fathom: Optional["QueryFeedsFeedsResultsMeetingFathom"]
+    zoom: Optional["QueryFeedsFeedsResultsMeetingZoom"]
     hub_spot: Optional["QueryFeedsFeedsResultsMeetingHubSpot"] = Field(alias="hubSpot")
     krisp: Optional["QueryFeedsFeedsResultsMeetingKrisp"]
 
@@ -861,6 +863,23 @@ class QueryFeedsFeedsResultsMeetingFathom(BaseModel):
     after_date: Optional[Any] = Field(alias="afterDate")
     before_date: Optional[Any] = Field(alias="beforeDate")
     type: Optional[FeedListingTypes]
+
+
+class QueryFeedsFeedsResultsMeetingZoom(BaseModel):
+    authentication_type: Optional[ZoomAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["QueryFeedsFeedsResultsMeetingZoomConnector"]
+    after_date: Optional[Any] = Field(alias="afterDate")
+    before_date: Optional[Any] = Field(alias="beforeDate")
+    type: Optional[FeedListingTypes]
+
+
+class QueryFeedsFeedsResultsMeetingZoomConnector(BaseModel):
+    id: str
 
 
 class QueryFeedsFeedsResultsMeetingHubSpot(BaseModel):
@@ -1299,6 +1318,7 @@ QueryFeedsFeedsResultsCalendarGoogle.model_rebuild()
 QueryFeedsFeedsResultsCalendarMicrosoft.model_rebuild()
 QueryFeedsFeedsResultsMeeting.model_rebuild()
 QueryFeedsFeedsResultsMeetingAttio.model_rebuild()
+QueryFeedsFeedsResultsMeetingZoom.model_rebuild()
 QueryFeedsFeedsResultsMeetingHubSpot.model_rebuild()
 QueryFeedsFeedsResultsSearch.model_rebuild()
 QueryFeedsFeedsResultsNotion.model_rebuild()

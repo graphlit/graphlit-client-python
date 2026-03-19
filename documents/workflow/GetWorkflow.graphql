@@ -267,6 +267,7 @@ query GetWorkflow($id: ID!, $correlationId: String) {
           type
         }
       }
+      observableTypes
     }
   }
 }

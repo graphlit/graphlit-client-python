@@ -203,6 +203,7 @@ from .enums import (
     YouTubeTypes,
     ZendeskAuthenticationTypes,
     ZendeskIssueAuthenticationTypes,
+    ZoomAuthenticationTypes,
 )
 
 
@@ -2858,6 +2859,9 @@ class CrustdataPersonDiscoveryFilterInput(BaseModel):
 
 class WorkflowActionInput(BaseModel):
     connector: Optional["IntegrationConnectorInput"] = None
+    observable_types: Optional[list[ObservableTypes]] = Field(
+        alias="observableTypes", default=None
+    )
 
 
 class MedicalConditionUpdateInput(BaseModel):
@@ -3563,6 +3567,7 @@ class MeetingFeedPropertiesUpdateInput(BaseModel):
     fireflies: Optional["FirefliesFeedPropertiesUpdateInput"] = None
     attio: Optional["AttioMeetingPropertiesUpdateInput"] = None
     fathom: Optional["FathomPropertiesUpdateInput"] = None
+    zoom: Optional["ZoomPropertiesUpdateInput"] = None
     hub_spot: Optional["HubSpotMeetingPropertiesUpdateInput"] = Field(
         alias="hubSpot", default=None
     )
@@ -4233,6 +4238,19 @@ class GitHubRepositoriesInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
 
 
+class ZoomPropertiesInput(BaseModel):
+    authentication_type: Optional[ZoomAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    type: Optional[FeedListingTypes] = None
+
+
 class PointFilter(BaseModel):
     latitude: float
     longitude: float
@@ -4291,6 +4309,19 @@ class MedicalTestUpdateInput(BaseModel):
     description: Optional[str] = None
     location: Optional["PointInput"] = None
     boundary: Optional[str] = None
+
+
+class ZoomPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[ZoomAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    type: Optional[FeedListingTypes] = None
 
 
 class ProductUpdateInput(BaseModel):
@@ -5961,6 +5992,7 @@ class MeetingFeedPropertiesInput(BaseModel):
     fireflies: Optional["FirefliesFeedPropertiesInput"] = None
     attio: Optional["AttioMeetingPropertiesInput"] = None
     fathom: Optional["FathomPropertiesInput"] = None
+    zoom: Optional["ZoomPropertiesInput"] = None
     hub_spot: Optional["HubSpotMeetingPropertiesInput"] = Field(
         alias="hubSpot", default=None
     )
@@ -7398,8 +7430,10 @@ NotionFeedPropertiesInput.model_rebuild()
 CrustdataEntityFeedPropertiesInput.model_rebuild()
 PlaceUpdateInput.model_rebuild()
 GitHubRepositoriesInput.model_rebuild()
+ZoomPropertiesInput.model_rebuild()
 ConversationInput.model_rebuild()
 MedicalTestUpdateInput.model_rebuild()
+ZoomPropertiesUpdateInput.model_rebuild()
 ProductUpdateInput.model_rebuild()
 MentionReferenceInput.model_rebuild()
 IngestionWorkflowStageInput.model_rebuild()

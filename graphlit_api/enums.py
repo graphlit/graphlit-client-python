@@ -1172,6 +1172,11 @@ class EmotionFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
 
+class ZoomAuthenticationTypes(str, Enum):
+    USER = "USER"
+    CONNECTOR = "CONNECTOR"
+
+
 class QuiverImageModels(str, Enum):
     ARROW_PREVIEW = "ARROW_PREVIEW"
     CUSTOM = "CUSTOM"
@@ -1368,6 +1373,7 @@ class FeedServiceTypes(str, Enum):
     FIREFLIES = "FIREFLIES"
     ATTIO_MEETING = "ATTIO_MEETING"
     FATHOM = "FATHOM"
+    ZOOM = "ZOOM"
     KRISP = "KRISP"
     SALESFORCE_ECI = "SALESFORCE_ECI"
     PARALLEL = "PARALLEL"
@@ -1881,6 +1887,7 @@ class FeedConnectorTypes(str, Enum):
     FIREFLIES = "FIREFLIES"
     ATTIO_MEETING = "ATTIO_MEETING"
     FATHOM = "FATHOM"
+    ZOOM = "ZOOM"
     KRISP = "KRISP"
     SALESFORCE_ECI = "SALESFORCE_ECI"
     PARALLEL = "PARALLEL"

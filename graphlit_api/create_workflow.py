@@ -467,6 +467,7 @@ class CreateWorkflowCreateWorkflowStorageGateRules(BaseModel):
 
 class CreateWorkflowCreateWorkflowActions(BaseModel):
     connector: Optional["CreateWorkflowCreateWorkflowActionsConnector"]
+    observable_types: Optional[list[ObservableTypes]] = Field(alias="observableTypes")
 
 
 class CreateWorkflowCreateWorkflowActionsConnector(BaseModel):

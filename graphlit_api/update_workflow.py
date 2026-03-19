@@ -467,6 +467,7 @@ class UpdateWorkflowUpdateWorkflowStorageGateRules(BaseModel):
 
 class UpdateWorkflowUpdateWorkflowActions(BaseModel):
     connector: Optional["UpdateWorkflowUpdateWorkflowActionsConnector"]
+    observable_types: Optional[list[ObservableTypes]] = Field(alias="observableTypes")
 
 
 class UpdateWorkflowUpdateWorkflowActionsConnector(BaseModel):

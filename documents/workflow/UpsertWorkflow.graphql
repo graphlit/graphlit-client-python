@@ -262,6 +262,7 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
           type
         }
       }
+      observableTypes
     }
   }
 }

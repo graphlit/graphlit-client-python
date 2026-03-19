@@ -889,6 +889,7 @@ from .enums import (
     YouTubeTypes,
     ZendeskAuthenticationTypes,
     ZendeskIssueAuthenticationTypes,
+    ZoomAuthenticationTypes,
 )
 from .exceptions import (
     GraphQLClientError,
@@ -1304,6 +1305,8 @@ from .get_feed import (
     GetFeedFeedMeetingHubSpot,
     GetFeedFeedMeetingHubSpotConnector,
     GetFeedFeedMeetingKrisp,
+    GetFeedFeedMeetingZoom,
+    GetFeedFeedMeetingZoomConnector,
     GetFeedFeedMicrosoftTeams,
     GetFeedFeedMicrosoftTeamsConnector,
     GetFeedFeedNotion,
@@ -2406,6 +2409,8 @@ from .input_types import (
     ZendeskFeedPropertiesUpdateInput,
     ZendeskTicketsFeedPropertiesInput,
     ZendeskTicketsFeedPropertiesUpdateInput,
+    ZoomPropertiesInput,
+    ZoomPropertiesUpdateInput,
 )
 from .is_content_done import IsContentDone, IsContentDoneIsContentDone
 from .is_feed_done import IsFeedDone, IsFeedDoneIsFeedDone
@@ -3618,6 +3623,8 @@ from .query_feeds import (
     QueryFeedsFeedsResultsMeetingHubSpot,
     QueryFeedsFeedsResultsMeetingHubSpotConnector,
     QueryFeedsFeedsResultsMeetingKrisp,
+    QueryFeedsFeedsResultsMeetingZoom,
+    QueryFeedsFeedsResultsMeetingZoomConnector,
     QueryFeedsFeedsResultsMicrosoftTeams,
     QueryFeedsFeedsResultsMicrosoftTeamsConnector,
     QueryFeedsFeedsResultsNotion,
@@ -6613,6 +6620,8 @@ __all__ = [
     "GetFeedFeedMeetingHubSpot",
     "GetFeedFeedMeetingHubSpotConnector",
     "GetFeedFeedMeetingKrisp",
+    "GetFeedFeedMeetingZoom",
+    "GetFeedFeedMeetingZoomConnector",
     "GetFeedFeedMicrosoftTeams",
     "GetFeedFeedMicrosoftTeamsConnector",
     "GetFeedFeedNotion",
@@ -8248,6 +8257,8 @@ __all__ = [
     "QueryFeedsFeedsResultsMeetingHubSpot",
     "QueryFeedsFeedsResultsMeetingHubSpotConnector",
     "QueryFeedsFeedsResultsMeetingKrisp",
+    "QueryFeedsFeedsResultsMeetingZoom",
+    "QueryFeedsFeedsResultsMeetingZoomConnector",
     "QueryFeedsFeedsResultsMicrosoftTeams",
     "QueryFeedsFeedsResultsMicrosoftTeamsConnector",
     "QueryFeedsFeedsResultsNotion",
@@ -9756,4 +9767,7 @@ __all__ = [
     "ZendeskIssueAuthenticationTypes",
     "ZendeskTicketsFeedPropertiesInput",
     "ZendeskTicketsFeedPropertiesUpdateInput",
+    "ZoomAuthenticationTypes",
+    "ZoomPropertiesInput",
+    "ZoomPropertiesUpdateInput",
 ]
