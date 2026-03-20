@@ -2996,7 +2996,7 @@ mutation IngestEvent($markdown: String!, $name: String, $description: String, $e
 """
 
 INGEST_MEMORY_GQL = """
-mutation IngestMemory($text: String!, $name: String, $textType: TextTypes, $id: ID, $identifier: String, $collections: [EntityReferenceInput!], $correlationId: String) {
+mutation IngestMemory($text: String!, $name: String, $textType: TextTypes, $id: ID, $identifier: String, $collections: [EntityReferenceInput!], $agent: EntityReferenceInput, $correlationId: String) {
   ingestMemory(
     name: $name
     text: $text
@@ -3004,6 +3004,7 @@ mutation IngestMemory($text: String!, $name: String, $textType: TextTypes, $id: 
     id: $id
     identifier: $identifier
     collections: $collections
+    agent: $agent
     correlationId: $correlationId
   ) {
     id
@@ -3052,7 +3053,7 @@ mutation IngestMemory($text: String!, $name: String, $textType: TextTypes, $id: 
 """
 
 INGEST_TEXT_GQL = """
-mutation IngestText($text: String!, $name: String, $textType: TextTypes, $uri: URL, $id: ID, $identifier: String, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $correlationId: String) {
+mutation IngestText($text: String!, $name: String, $textType: TextTypes, $uri: URL, $id: ID, $identifier: String, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $agent: EntityReferenceInput, $correlationId: String) {
   ingestText(
     name: $name
     text: $text
@@ -3064,6 +3065,7 @@ mutation IngestText($text: String!, $name: String, $textType: TextTypes, $uri: U
     identifier: $identifier
     collections: $collections
     observations: $observations
+    agent: $agent
     correlationId: $correlationId
   ) {
     id
@@ -3167,7 +3169,7 @@ mutation IngestTextBatch($batch: [TextContentInput!]!, $textType: TextTypes, $wo
 """
 
 INGEST_URI_GQL = """
-mutation IngestUri($name: String, $uri: URL!, $id: ID, $mimeType: String, $identifier: String, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $correlationId: String) {
+mutation IngestUri($name: String, $uri: URL!, $id: ID, $mimeType: String, $identifier: String, $isSynchronous: Boolean, $workflow: EntityReferenceInput, $collections: [EntityReferenceInput!], $observations: [ObservationReferenceInput!], $agent: EntityReferenceInput, $correlationId: String) {
   ingestUri(
     name: $name
     uri: $uri
@@ -3176,6 +3178,7 @@ mutation IngestUri($name: String, $uri: URL!, $id: ID, $mimeType: String, $ident
     workflow: $workflow
     collections: $collections
     observations: $observations
+    agent: $agent
     identifier: $identifier
     isSynchronous: $isSynchronous
     correlationId: $correlationId

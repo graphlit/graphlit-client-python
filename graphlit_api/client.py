@@ -2492,6 +2492,7 @@ class Client(AsyncBaseClient):
         id: Union[Optional[str], UnsetType] = UNSET,
         identifier: Union[Optional[str], UnsetType] = UNSET,
         collections: Union[Optional[list[EntityReferenceInput]], UnsetType] = UNSET,
+        agent: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> IngestMemory:
@@ -2502,6 +2503,7 @@ class Client(AsyncBaseClient):
             "id": id,
             "identifier": identifier,
             "collections": collections,
+            "agent": agent,
             "correlationId": correlation_id,
         }
         response = await self.execute(
@@ -2527,6 +2529,7 @@ class Client(AsyncBaseClient):
         observations: Union[
             Optional[list[ObservationReferenceInput]], UnsetType
         ] = UNSET,
+        agent: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> IngestText:
@@ -2541,6 +2544,7 @@ class Client(AsyncBaseClient):
             "workflow": workflow,
             "collections": collections,
             "observations": observations,
+            "agent": agent,
             "correlationId": correlation_id,
         }
         response = await self.execute(
@@ -2594,6 +2598,7 @@ class Client(AsyncBaseClient):
         observations: Union[
             Optional[list[ObservationReferenceInput]], UnsetType
         ] = UNSET,
+        agent: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> IngestUri:
@@ -2607,6 +2612,7 @@ class Client(AsyncBaseClient):
             "workflow": workflow,
             "collections": collections,
             "observations": observations,
+            "agent": agent,
             "correlationId": correlation_id,
         }
         response = await self.execute(

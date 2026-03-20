@@ -3518,6 +3518,7 @@ class ContentInput(BaseModel):
     creation_date: Optional[Any] = Field(alias="creationDate", default=None)
     modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
     workflow: Optional["EntityReferenceInput"] = None
+    agent: Optional["EntityReferenceInput"] = None
 
 
 class LinearProjectsInput(BaseModel):
@@ -5891,6 +5892,7 @@ class ContentUpdateInput(BaseModel):
     file_modified_date: Optional[Any] = Field(alias="fileModifiedDate", default=None)
     creation_date: Optional[Any] = Field(alias="creationDate", default=None)
     modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    agent: Optional["EntityReferenceInput"] = None
     summary: Optional[str] = None
     custom_summary: Optional[str] = Field(alias="customSummary", default=None)
     keywords: Optional[list[str]] = None
@@ -7178,6 +7180,7 @@ class PagePreparationPropertiesInput(BaseModel):
 
 class FactInput(BaseModel):
     content: Optional["EntityReferenceInput"] = None
+    conversation: Optional["EntityReferenceInput"] = None
     persona: Optional["EntityReferenceInput"] = None
     text: str
     valid_at: Optional[Any] = Field(alias="validAt", default=None)
