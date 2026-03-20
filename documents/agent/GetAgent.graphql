@@ -10,6 +10,7 @@ query GetAgent($id: ID!, $correlationId: String) {
     state
     correlationId
     type
+    description
     specification {
       id
     }

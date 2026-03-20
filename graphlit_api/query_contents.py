@@ -88,6 +88,7 @@ class QueryContentsContentsResults(BaseModel):
     transcript: Optional["QueryContentsContentsResultsTranscript"]
     language: Optional["QueryContentsContentsResultsLanguage"]
     feed: Optional["QueryContentsContentsResultsFeed"]
+    agent: Optional["QueryContentsContentsResultsAgent"]
     workflow: Optional["QueryContentsContentsResultsWorkflow"]
     pages: Optional[list["QueryContentsContentsResultsPages"]]
     segments: Optional[list["QueryContentsContentsResultsSegments"]]
@@ -477,6 +478,11 @@ class QueryContentsContentsResultsLanguage(BaseModel):
 
 
 class QueryContentsContentsResultsFeed(BaseModel):
+    id: str
+    name: str
+
+
+class QueryContentsContentsResultsAgent(BaseModel):
     id: str
     name: str
 

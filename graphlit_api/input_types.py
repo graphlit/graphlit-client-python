@@ -1082,6 +1082,7 @@ class FactFilter(BaseModel):
         alias="modifiedDateRange", default=None
     )
     content: Optional["EntityReferenceFilter"] = None
+    conversation: Optional["EntityReferenceFilter"] = None
     valid_at: Optional[Any] = Field(alias="validAt", default=None)
     mentions: Optional[list[Optional["MentionReferenceFilter"]]] = None
     feeds: Optional[list[Optional["EntityReferenceFilter"]]] = None
@@ -3131,6 +3132,7 @@ class ContentFilter(BaseModel):
     )
     contents: Optional[list["EntityReferenceFilter"]] = None
     feeds: Optional[list["EntityReferenceFilter"]] = None
+    agents: Optional[list["EntityReferenceFilter"]] = None
     workflows: Optional[list["EntityReferenceFilter"]] = None
     collections: Optional[list["EntityReferenceFilter"]] = None
     users: Optional[list["EntityReferenceFilter"]] = None
@@ -3274,6 +3276,15 @@ class GoogleDriveFoldersInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
+
+
+class DeskInput(BaseModel):
+    name: str
+    description: Optional[str] = None
+    objectives: Optional[str] = None
+    instructions: Optional[str] = None
+    bureau: Optional["EntityReferenceInput"] = None
+    agents: Optional[list["EntityReferenceInput"]] = None
 
 
 class MedicalContraindicationFilter(BaseModel):
@@ -3551,6 +3562,30 @@ class H3IndexFilter(BaseModel):
 
 class FactGraphInput(BaseModel):
     types: Optional[list[ObservableTypes]] = None
+
+
+class DeskFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    bureau: Optional["EntityReferenceFilter"] = None
+    agents: Optional[list["EntityReferenceFilter"]] = None
 
 
 class FirefliesFeedPropertiesUpdateInput(BaseModel):
@@ -4156,6 +4191,16 @@ class RepoUpdateInput(BaseModel):
 class MicrosoftWordDistributionPropertiesInput(BaseModel):
     folder_id: Optional[str] = Field(alias="folderId", default=None)
     file_name: Optional[str] = Field(alias="fileName", default=None)
+
+
+class DeskUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    description: Optional[str] = None
+    objectives: Optional[str] = None
+    instructions: Optional[str] = None
+    bureau: Optional["EntityReferenceInput"] = None
+    agents: Optional[list["EntityReferenceInput"]] = None
 
 
 class NotionFeedPropertiesInput(BaseModel):
@@ -5341,6 +5386,29 @@ class ConversationToolCallInput(BaseModel):
     arguments: Optional[str] = None
 
 
+class BureauFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    desks: Optional[list["EntityReferenceFilter"]] = None
+
+
 class ExtractionWorkflowJobInput(BaseModel):
     connector: Optional["EntityExtractionConnectorInput"] = None
 
@@ -6079,6 +6147,7 @@ class ConversationFilter(BaseModel):
         alias="similarConversations", default=None
     )
     conversations: Optional[list["EntityReferenceFilter"]] = None
+    agents: Optional[list["EntityReferenceFilter"]] = None
     collections: Optional[list["EntityReferenceFilter"]] = None
     has_collections: Optional[bool] = Field(alias="hasCollections", default=None)
     collection_mode: Optional[FilterMode] = Field(alias="collectionMode", default=None)
@@ -6937,6 +7006,15 @@ class CalendarRecurrenceInput(BaseModel):
     month_of_year: Optional[int] = Field(alias="monthOfYear", default=None)
 
 
+class BureauUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    description: Optional[str] = None
+    mission: Optional[str] = None
+    directives: Optional[str] = None
+    desks: Optional[list["EntityReferenceInput"]] = None
+
+
 class XAIModelPropertiesUpdateInput(BaseModel):
     model: Optional[XAIModels] = None
     model_name: Optional[str] = Field(alias="modelName", default=None)
@@ -7128,6 +7206,14 @@ class MicrosoftOutlookDistributionPropertiesInput(BaseModel):
     forward_from_message_id: Optional[str] = Field(
         alias="forwardFromMessageId", default=None
     )
+
+
+class BureauInput(BaseModel):
+    name: str
+    description: Optional[str] = None
+    mission: Optional[str] = None
+    directives: Optional[str] = None
+    desks: Optional[list["EntityReferenceInput"]] = None
 
 
 class EntityReferenceFilter(BaseModel):
@@ -7384,6 +7470,7 @@ EmailFeedPropertiesUpdateInput.model_rebuild()
 DropboxFoldersInput.model_rebuild()
 AlertInput.model_rebuild()
 GoogleDriveFoldersInput.model_rebuild()
+DeskInput.model_rebuild()
 MedicalContraindicationFilter.model_rebuild()
 ShapeMetadataInput.model_rebuild()
 UserUpdateInput.model_rebuild()
@@ -7397,6 +7484,7 @@ InvestmentInput.model_rebuild()
 ContentInput.model_rebuild()
 LinearProjectsInput.model_rebuild()
 ContentCriteriaLevelInput.model_rebuild()
+DeskFilter.model_rebuild()
 MeetingFeedPropertiesUpdateInput.model_rebuild()
 EntityResolutionStrategyInput.model_rebuild()
 SoftwareUpdateInput.model_rebuild()
@@ -7426,6 +7514,7 @@ ObservationReferenceInput.model_rebuild()
 TwitterFeedPropertiesInput.model_rebuild()
 WorkflowInput.model_rebuild()
 RepoUpdateInput.model_rebuild()
+DeskUpdateInput.model_rebuild()
 NotionFeedPropertiesInput.model_rebuild()
 CrustdataEntityFeedPropertiesInput.model_rebuild()
 PlaceUpdateInput.model_rebuild()
@@ -7484,6 +7573,7 @@ HubSpotCRMFeedPropertiesUpdateInput.model_rebuild()
 NotionFeedPropertiesUpdateInput.model_rebuild()
 ResearchFeedPropertiesInput.model_rebuild()
 AuthenticationConnectorInput.model_rebuild()
+BureauFilter.model_rebuild()
 ExtractionWorkflowJobInput.model_rebuild()
 PreparationWorkflowStageInput.model_rebuild()
 HRISFeedPropertiesUpdateInput.model_rebuild()
@@ -7550,6 +7640,7 @@ ConnectorInput.model_rebuild()
 AttioTasksFeedPropertiesUpdateInput.model_rebuild()
 OrganizationInput.model_rebuild()
 HubSpotTasksFeedPropertiesInput.model_rebuild()
+BureauUpdateInput.model_rebuild()
 DrawingMetadataInput.model_rebuild()
 InitiativeMetadataInput.model_rebuild()
 SalesforceTasksFeedPropertiesUpdateInput.model_rebuild()
@@ -7558,6 +7649,7 @@ SalesforceFeedPropertiesUpdateInput.model_rebuild()
 AgentUpdateInput.model_rebuild()
 IssueFeedPropertiesInput.model_rebuild()
 FactInput.model_rebuild()
+BureauInput.model_rebuild()
 EnrichmentWorkflowJobInput.model_rebuild()
 GitHubPullRequestsFeedPropertiesInput.model_rebuild()
 MedicalContraindicationUpdateInput.model_rebuild()

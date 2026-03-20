@@ -1,0 +1,6 @@
+mutation DeleteBureau($id: ID!) {
+  deleteBureau(id: $id) {
+    id
+    state
+  }
+}

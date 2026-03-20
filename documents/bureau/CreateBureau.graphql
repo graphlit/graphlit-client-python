@@ -1,0 +1,10 @@
+mutation CreateBureau($bureau: BureauInput!) {
+  createBureau(bureau: $bureau) {
+    id
+    name
+    state
+    description
+    mission
+    directives
+  }
+}

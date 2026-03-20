@@ -1,0 +1,20 @@
+query GetBureau($id: ID!, $correlationId: String) {
+  bureau(id: $id, correlationId: $correlationId) {
+    id
+    name
+    creationDate
+    modifiedDate
+    owner {
+      id
+    }
+    state
+    description
+    mission
+    directives
+    desks {
+      id
+      name
+    }
+    deskCount
+  }
+}

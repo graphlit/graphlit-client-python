@@ -29,6 +29,7 @@ class GetAgentAgent(BaseModel):
     state: EntityState
     correlation_id: Optional[str] = Field(alias="correlationId")
     type: AgentTypes
+    description: Optional[str]
     specification: Optional["GetAgentAgentSpecification"]
     filter: Optional["GetAgentAgentFilter"]
     schedule_policy: Optional["GetAgentAgentSchedulePolicy"] = Field(

@@ -34,6 +34,7 @@ class QueryAgentsAgentsResults(BaseModel):
     state: EntityState
     correlation_id: Optional[str] = Field(alias="correlationId")
     type: AgentTypes
+    description: Optional[str]
     specification: Optional["QueryAgentsAgentsResultsSpecification"]
     filter: Optional["QueryAgentsAgentsResultsFilter"]
     schedule_policy: Optional["QueryAgentsAgentsResultsSchedulePolicy"] = Field(

@@ -103,6 +103,7 @@ class GetContentContent(BaseModel):
     parent: Optional["GetContentContentParent"]
     children: Optional[list[Optional["GetContentContentChildren"]]]
     feed: Optional["GetContentContentFeed"]
+    agent: Optional["GetContentContentAgent"]
     collections: Optional[list[Optional["GetContentContentCollections"]]]
     links: Optional[list["GetContentContentLinks"]]
     observations: Optional[list[Optional["GetContentContentObservations"]]]
@@ -519,6 +520,11 @@ class GetContentContentChildren(BaseModel):
 
 
 class GetContentContentFeed(BaseModel):
+    id: str
+    name: str
+
+
+class GetContentContentAgent(BaseModel):
     id: str
     name: str
 

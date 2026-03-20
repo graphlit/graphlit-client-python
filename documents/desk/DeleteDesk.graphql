@@ -1,0 +1,6 @@
+mutation DeleteDesk($id: ID!) {
+  deleteDesk(id: $id) {
+    id
+    state
+  }
+}

@@ -385,6 +385,10 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
         id
         name
       }
+      agent {
+        id
+        name
+      }
       collections {
         id
         name

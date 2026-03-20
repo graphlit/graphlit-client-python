@@ -1,0 +1,15 @@
+mutation RemoveDesksFromBureau($desks: [EntityReferenceInput!]!, $bureau: EntityReferenceInput!) {
+  removeDesksFromBureau(desks: $desks, bureau: $bureau) {
+    id
+    name
+    state
+    description
+    mission
+    directives
+    desks {
+      id
+      name
+    }
+    deskCount
+  }
+}

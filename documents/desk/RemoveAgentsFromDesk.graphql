@@ -1,0 +1,18 @@
+mutation RemoveAgentsFromDesk($agents: [EntityReferenceInput!]!, $desk: EntityReferenceInput!) {
+  removeAgentsFromDesk(agents: $agents, desk: $desk) {
+    id
+    name
+    state
+    description
+    objectives
+    instructions
+    bureau {
+      id
+    }
+    agents {
+      id
+      name
+    }
+    agentCount
+  }
+}

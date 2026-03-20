@@ -1,0 +1,6 @@
+mutation DeleteDesks($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteDesks(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}

@@ -1,0 +1,5 @@
+query CountBureaus($filter: BureauFilter, $correlationId: String) {
+  countBureaus(filter: $filter, correlationId: $correlationId) {
+    count
+  }
+}

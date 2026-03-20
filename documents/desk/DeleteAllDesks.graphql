@@ -1,0 +1,6 @@
+mutation DeleteAllDesks($filter: DeskFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllDesks(filter: $filter, isSynchronous: $isSynchronous, correlationId: $correlationId) {
+    id
+    state
+  }
+}

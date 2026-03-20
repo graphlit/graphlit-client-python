@@ -1,0 +1,6 @@
+mutation DeleteAllBureaus($filter: BureauFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllBureaus(filter: $filter, isSynchronous: $isSynchronous, correlationId: $correlationId) {
+    id
+    state
+  }
+}

@@ -1,0 +1,10 @@
+mutation UpdateBureau($bureau: BureauUpdateInput!) {
+  updateBureau(bureau: $bureau) {
+    id
+    name
+    state
+    description
+    mission
+    directives
+  }
+}

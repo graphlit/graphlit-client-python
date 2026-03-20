@@ -23,6 +23,8 @@ class FactCategory(str, Enum):
     RATIONALE = "RATIONALE"
     COMMITMENT = "COMMITMENT"
     DELEGATION = "DELEGATION"
+    ENDORSEMENT = "ENDORSEMENT"
+    REJECTION = "REJECTION"
 
 
 class TwitterAuthenticationTypes(str, Enum):
@@ -1186,11 +1188,13 @@ class EntityTypes(str, Enum):
     ACTIVITY = "ACTIVITY"
     AGENT = "AGENT"
     ALERT = "ALERT"
+    BUREAU = "BUREAU"
     CATEGORY = "CATEGORY"
     COLLECTION = "COLLECTION"
     CONNECTOR = "CONNECTOR"
     CONTENT = "CONTENT"
     CONVERSATION = "CONVERSATION"
+    DESK = "DESK"
     EVENT = "EVENT"
     FACT = "FACT"
     FEED = "FEED"
@@ -1688,6 +1692,7 @@ class OAuthProviders(str, Enum):
     SALESFORCE = "SALESFORCE"
     LINEAR = "LINEAR"
     TWITTER = "TWITTER"
+    ZOOM = "ZOOM"
 
 
 class ConfluenceAuthenticationTypes(str, Enum):

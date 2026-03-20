@@ -353,6 +353,10 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
         id
         name
       }
+      agent {
+        id
+        name
+      }
       workflow {
         id
         name

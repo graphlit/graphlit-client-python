@@ -12,6 +12,7 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
       state
       correlationId
       type
+      description
       specification {
         id
       }

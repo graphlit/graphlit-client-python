@@ -1,0 +1,22 @@
+query GetDesk($id: ID!, $correlationId: String) {
+  desk(id: $id, correlationId: $correlationId) {
+    id
+    name
+    creationDate
+    modifiedDate
+    owner {
+      id
+    }
+    state
+    description
+    objectives
+    instructions
+    bureau {
+      id
+    }
+    agents {
+      id
+    }
+    agentCount
+  }
+}

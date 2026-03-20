@@ -109,6 +109,7 @@ class LookupContentsLookupContentsResults(BaseModel):
     transcript: Optional["LookupContentsLookupContentsResultsTranscript"]
     language: Optional["LookupContentsLookupContentsResultsLanguage"]
     feed: Optional["LookupContentsLookupContentsResultsFeed"]
+    agent: Optional["LookupContentsLookupContentsResultsAgent"]
     collections: Optional[
         list[Optional["LookupContentsLookupContentsResultsCollections"]]
     ]
@@ -541,6 +542,11 @@ class LookupContentsLookupContentsResultsLanguage(BaseModel):
 
 
 class LookupContentsLookupContentsResultsFeed(BaseModel):
+    id: str
+    name: str
+
+
+class LookupContentsLookupContentsResultsAgent(BaseModel):
     id: str
     name: str
 

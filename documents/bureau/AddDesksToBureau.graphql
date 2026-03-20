@@ -1,0 +1,15 @@
+mutation AddDesksToBureau($desks: [EntityReferenceInput!]!, $bureau: EntityReferenceInput!) {
+  addDesksToBureau(desks: $desks, bureau: $bureau) {
+    id
+    name
+    state
+    description
+    mission
+    directives
+    desks {
+      id
+      name
+    }
+    deskCount
+  }
+}

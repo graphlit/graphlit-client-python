@@ -1,0 +1,13 @@
+mutation UpdateDesk($desk: DeskUpdateInput!) {
+  updateDesk(desk: $desk) {
+    id
+    name
+    state
+    description
+    objectives
+    instructions
+    bureau {
+      id
+    }
+  }
+}

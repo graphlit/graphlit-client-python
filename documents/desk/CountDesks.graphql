@@ -1,0 +1,5 @@
+query CountDesks($filter: DeskFilter, $correlationId: String) {
+  countDesks(filter: $filter, correlationId: $correlationId) {
+    count
+  }
+}

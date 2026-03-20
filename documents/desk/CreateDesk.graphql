@@ -1,0 +1,13 @@
+mutation CreateDesk($desk: DeskInput!) {
+  createDesk(desk: $desk) {
+    id
+    name
+    state
+    description
+    objectives
+    instructions
+    bureau {
+      id
+    }
+  }
+}

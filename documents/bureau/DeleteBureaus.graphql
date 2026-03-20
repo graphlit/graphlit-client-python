@@ -1,0 +1,6 @@
+mutation DeleteBureaus($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteBureaus(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}

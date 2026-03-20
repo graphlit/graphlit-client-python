@@ -2,9 +2,11 @@
 # Source: ./documents
 
 __all__ = [
+    "ADD_AGENTS_TO_DESK_GQL",
     "ADD_CONTENTS_TO_COLLECTIONS_GQL",
     "ADD_CONTENT_LABEL_GQL",
     "ADD_CONVERSATIONS_TO_COLLECTIONS_GQL",
+    "ADD_DESKS_TO_BUREAU_GQL",
     "ADD_SKILLS_TO_COLLECTIONS_GQL",
     "APPROVE_CONTENT_GQL",
     "ASK_GRAPHLIT_GQL",
@@ -15,11 +17,13 @@ __all__ = [
     "CONTINUE_CONVERSATION_GQL",
     "COUNT_AGENTS_GQL",
     "COUNT_ALERTS_GQL",
+    "COUNT_BUREAUS_GQL",
     "COUNT_CATEGORIES_GQL",
     "COUNT_COLLECTIONS_GQL",
     "COUNT_CONNECTORS_GQL",
     "COUNT_CONTENTS_GQL",
     "COUNT_CONVERSATIONS_GQL",
+    "COUNT_DESKS_GQL",
     "COUNT_EMOTIONS_GQL",
     "COUNT_EVENTS_GQL",
     "COUNT_FACTS_GQL",
@@ -52,10 +56,12 @@ __all__ = [
     "COUNT_WORKFLOWS_GQL",
     "CREATE_AGENT_GQL",
     "CREATE_ALERT_GQL",
+    "CREATE_BUREAU_GQL",
     "CREATE_CATEGORY_GQL",
     "CREATE_COLLECTION_GQL",
     "CREATE_CONNECTOR_GQL",
     "CREATE_CONVERSATION_GQL",
+    "CREATE_DESK_GQL",
     "CREATE_EMOTION_GQL",
     "CREATE_EVENT_GQL",
     "CREATE_FACT_GQL",
@@ -93,10 +99,12 @@ __all__ = [
     "DELETE_ALERT_GQL",
     "DELETE_ALL_AGENTS_GQL",
     "DELETE_ALL_ALERTS_GQL",
+    "DELETE_ALL_BUREAUS_GQL",
     "DELETE_ALL_CATEGORIES_GQL",
     "DELETE_ALL_COLLECTIONS_GQL",
     "DELETE_ALL_CONTENTS_GQL",
     "DELETE_ALL_CONVERSATIONS_GQL",
+    "DELETE_ALL_DESKS_GQL",
     "DELETE_ALL_EMOTIONS_GQL",
     "DELETE_ALL_EVENTS_GQL",
     "DELETE_ALL_FACTS_GQL",
@@ -126,6 +134,8 @@ __all__ = [
     "DELETE_ALL_SPECIFICATIONS_GQL",
     "DELETE_ALL_VIEWS_GQL",
     "DELETE_ALL_WORKFLOWS_GQL",
+    "DELETE_BUREAUS_GQL",
+    "DELETE_BUREAU_GQL",
     "DELETE_CATEGORIES_GQL",
     "DELETE_CATEGORY_GQL",
     "DELETE_COLLECTIONS_GQL",
@@ -135,6 +145,8 @@ __all__ = [
     "DELETE_CONTENT_GQL",
     "DELETE_CONVERSATIONS_GQL",
     "DELETE_CONVERSATION_GQL",
+    "DELETE_DESKS_GQL",
+    "DELETE_DESK_GQL",
     "DELETE_EMOTIONS_GQL",
     "DELETE_EMOTION_GQL",
     "DELETE_EVENTS_GQL",
@@ -221,11 +233,13 @@ __all__ = [
     "FORMAT_CONVERSATION_GQL",
     "GET_AGENT_GQL",
     "GET_ALERT_GQL",
+    "GET_BUREAU_GQL",
     "GET_CATEGORY_GQL",
     "GET_COLLECTION_GQL",
     "GET_CONNECTOR_GQL",
     "GET_CONTENT_GQL",
     "GET_CONVERSATION_GQL",
+    "GET_DESK_GQL",
     "GET_EMOTION_GQL",
     "GET_EVENT_GQL",
     "GET_FACT_GQL",
@@ -293,6 +307,7 @@ __all__ = [
     "QUERY_BAMBOO_HR_EMPLOYMENT_STATUSES_GQL",
     "QUERY_BAMBOO_HR_LOCATIONS_GQL",
     "QUERY_BOX_FOLDERS_GQL",
+    "QUERY_BUREAUS_GQL",
     "QUERY_CATEGORIES_GQL",
     "QUERY_COLLECTIONS_GQL",
     "QUERY_CONFLUENCE_SPACES_GQL",
@@ -305,6 +320,7 @@ __all__ = [
     "QUERY_CONVERSATIONS_GQL",
     "QUERY_CONVERSATIONS_GRAPH_GQL",
     "QUERY_CREDITS_GQL",
+    "QUERY_DESKS_GQL",
     "QUERY_DISCORD_CHANNELS_GQL",
     "QUERY_DISCORD_GUILDS_GQL",
     "QUERY_DROPBOX_FOLDERS_GQL",
@@ -390,9 +406,11 @@ __all__ = [
     "QUERY_VIEWS_GQL",
     "QUERY_WORKFLOWS_GQL",
     "REJECT_CONTENT_GQL",
+    "REMOVE_AGENTS_FROM_DESK_GQL",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
     "REMOVE_CONTENT_LABEL_GQL",
     "REMOVE_CONVERSATIONS_FROM_COLLECTION_GQL",
+    "REMOVE_DESKS_FROM_BUREAU_GQL",
     "REMOVE_SKILLS_FROM_COLLECTION_GQL",
     "RESEARCH_CONTENTS_GQL",
     "RESOLVE_ENTITIES_GQL",
@@ -416,12 +434,14 @@ __all__ = [
     "TRIGGER_FEED_GQL",
     "UPDATE_AGENT_GQL",
     "UPDATE_ALERT_GQL",
+    "UPDATE_BUREAU_GQL",
     "UPDATE_CATEGORY_GQL",
     "UPDATE_COLLECTION_GQL",
     "UPDATE_CONFLUENCE_PAGE_GQL",
     "UPDATE_CONNECTOR_GQL",
     "UPDATE_CONTENT_GQL",
     "UPDATE_CONVERSATION_GQL",
+    "UPDATE_DESK_GQL",
     "UPDATE_EMOTION_GQL",
     "UPDATE_EVENT_GQL",
     "UPDATE_FACT_GQL",
@@ -552,6 +572,7 @@ query GetAgent($id: ID!, $correlationId: String) {
     state
     correlationId
     type
+    description
     specification {
       id
     }
@@ -599,6 +620,7 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
       state
       correlationId
       type
+      description
       specification {
         id
       }
@@ -1149,6 +1171,152 @@ mutation UpsertAlert($alert: AlertInput!) {
     name
     state
     type
+  }
+}
+"""
+
+ADD_DESKS_TO_BUREAU_GQL = """
+mutation AddDesksToBureau($desks: [EntityReferenceInput!]!, $bureau: EntityReferenceInput!) {
+  addDesksToBureau(desks: $desks, bureau: $bureau) {
+    id
+    name
+    state
+    description
+    mission
+    directives
+    desks {
+      id
+      name
+    }
+    deskCount
+  }
+}
+"""
+
+COUNT_BUREAUS_GQL = """
+query CountBureaus($filter: BureauFilter, $correlationId: String) {
+  countBureaus(filter: $filter, correlationId: $correlationId) {
+    count
+  }
+}
+"""
+
+CREATE_BUREAU_GQL = """
+mutation CreateBureau($bureau: BureauInput!) {
+  createBureau(bureau: $bureau) {
+    id
+    name
+    state
+    description
+    mission
+    directives
+  }
+}
+"""
+
+DELETE_ALL_BUREAUS_GQL = """
+mutation DeleteAllBureaus($filter: BureauFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllBureaus(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_BUREAU_GQL = """
+mutation DeleteBureau($id: ID!) {
+  deleteBureau(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_BUREAUS_GQL = """
+mutation DeleteBureaus($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteBureaus(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}
+"""
+
+GET_BUREAU_GQL = """
+query GetBureau($id: ID!, $correlationId: String) {
+  bureau(id: $id, correlationId: $correlationId) {
+    id
+    name
+    creationDate
+    modifiedDate
+    owner {
+      id
+    }
+    state
+    description
+    mission
+    directives
+    desks {
+      id
+      name
+    }
+    deskCount
+  }
+}
+"""
+
+QUERY_BUREAUS_GQL = """
+query QueryBureaus($filter: BureauFilter, $correlationId: String) {
+  bureaus(filter: $filter, correlationId: $correlationId) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      description
+      mission
+      directives
+      deskCount
+    }
+  }
+}
+"""
+
+REMOVE_DESKS_FROM_BUREAU_GQL = """
+mutation RemoveDesksFromBureau($desks: [EntityReferenceInput!]!, $bureau: EntityReferenceInput!) {
+  removeDesksFromBureau(desks: $desks, bureau: $bureau) {
+    id
+    name
+    state
+    description
+    mission
+    directives
+    desks {
+      id
+      name
+    }
+    deskCount
+  }
+}
+"""
+
+UPDATE_BUREAU_GQL = """
+mutation UpdateBureau($bureau: BureauUpdateInput!) {
+  updateBureau(bureau: $bureau) {
+    id
+    name
+    state
+    description
+    mission
+    directives
   }
 }
 """
@@ -2554,6 +2722,10 @@ query GetContent($id: ID!, $correlationId: String) {
       id
       name
     }
+    agent {
+      id
+      name
+    }
     collections {
       id
       name
@@ -3449,6 +3621,10 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
         id
         name
       }
+      agent {
+        id
+        name
+      }
       collections {
         id
         name
@@ -4193,6 +4369,10 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
         id
         name
       }
+      agent {
+        id
+        name
+      }
       workflow {
         id
         name
@@ -4641,6 +4821,10 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
         languages
       }
       feed {
+        id
+        name
+      }
+      agent {
         id
         name
       }
@@ -8599,6 +8783,169 @@ mutation UpdateConversation($conversation: ConversationUpdateInput!) {
     name
     state
     type
+  }
+}
+"""
+
+ADD_AGENTS_TO_DESK_GQL = """
+mutation AddAgentsToDesk($agents: [EntityReferenceInput!]!, $desk: EntityReferenceInput!) {
+  addAgentsToDesk(agents: $agents, desk: $desk) {
+    id
+    name
+    state
+    description
+    objectives
+    instructions
+    bureau {
+      id
+    }
+    agents {
+      id
+      name
+    }
+    agentCount
+  }
+}
+"""
+
+COUNT_DESKS_GQL = """
+query CountDesks($filter: DeskFilter, $correlationId: String) {
+  countDesks(filter: $filter, correlationId: $correlationId) {
+    count
+  }
+}
+"""
+
+CREATE_DESK_GQL = """
+mutation CreateDesk($desk: DeskInput!) {
+  createDesk(desk: $desk) {
+    id
+    name
+    state
+    description
+    objectives
+    instructions
+    bureau {
+      id
+    }
+  }
+}
+"""
+
+DELETE_ALL_DESKS_GQL = """
+mutation DeleteAllDesks($filter: DeskFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllDesks(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_DESK_GQL = """
+mutation DeleteDesk($id: ID!) {
+  deleteDesk(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_DESKS_GQL = """
+mutation DeleteDesks($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteDesks(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}
+"""
+
+GET_DESK_GQL = """
+query GetDesk($id: ID!, $correlationId: String) {
+  desk(id: $id, correlationId: $correlationId) {
+    id
+    name
+    creationDate
+    modifiedDate
+    owner {
+      id
+    }
+    state
+    description
+    objectives
+    instructions
+    bureau {
+      id
+    }
+    agents {
+      id
+    }
+    agentCount
+  }
+}
+"""
+
+QUERY_DESKS_GQL = """
+query QueryDesks($filter: DeskFilter, $correlationId: String) {
+  desks(filter: $filter, correlationId: $correlationId) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      description
+      objectives
+      instructions
+      bureau {
+        id
+      }
+      agentCount
+    }
+  }
+}
+"""
+
+REMOVE_AGENTS_FROM_DESK_GQL = """
+mutation RemoveAgentsFromDesk($agents: [EntityReferenceInput!]!, $desk: EntityReferenceInput!) {
+  removeAgentsFromDesk(agents: $agents, desk: $desk) {
+    id
+    name
+    state
+    description
+    objectives
+    instructions
+    bureau {
+      id
+    }
+    agents {
+      id
+      name
+    }
+    agentCount
+  }
+}
+"""
+
+UPDATE_DESK_GQL = """
+mutation UpdateDesk($desk: DeskUpdateInput!) {
+  updateDesk(desk: $desk) {
+    id
+    name
+    state
+    description
+    objectives
+    instructions
+    bureau {
+      id
+    }
   }
 }
 """

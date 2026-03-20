@@ -1,0 +1,18 @@
+mutation AddAgentsToDesk($agents: [EntityReferenceInput!]!, $desk: EntityReferenceInput!) {
+  addAgentsToDesk(agents: $agents, desk: $desk) {
+    id
+    name
+    state
+    description
+    objectives
+    instructions
+    bureau {
+      id
+    }
+    agents {
+      id
+      name
+    }
+    agentCount
+  }
+}

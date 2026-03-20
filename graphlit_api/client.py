@@ -3,9 +3,11 @@
 
 from typing import Any, Optional, Union
 
+from .add_agents_to_desk import AddAgentsToDesk
 from .add_content_label import AddContentLabel
 from .add_contents_to_collections import AddContentsToCollections
 from .add_conversations_to_collections import AddConversationsToCollections
+from .add_desks_to_bureau import AddDesksToBureau
 from .add_skills_to_collections import AddSkillsToCollections
 from .approve_content import ApproveContent
 from .ask_graphlit import AskGraphlit
@@ -18,11 +20,13 @@ from .complete_conversation import CompleteConversation
 from .continue_conversation import ContinueConversation
 from .count_agents import CountAgents
 from .count_alerts import CountAlerts
+from .count_bureaus import CountBureaus
 from .count_categories import CountCategories
 from .count_collections import CountCollections
 from .count_connectors import CountConnectors
 from .count_contents import CountContents
 from .count_conversations import CountConversations
+from .count_desks import CountDesks
 from .count_emotions import CountEmotions
 from .count_events import CountEvents
 from .count_facts import CountFacts
@@ -55,10 +59,12 @@ from .count_views import CountViews
 from .count_workflows import CountWorkflows
 from .create_agent import CreateAgent
 from .create_alert import CreateAlert
+from .create_bureau import CreateBureau
 from .create_category import CreateCategory
 from .create_collection import CreateCollection
 from .create_connector import CreateConnector
 from .create_conversation import CreateConversation
+from .create_desk import CreateDesk
 from .create_emotion import CreateEmotion
 from .create_event import CreateEvent
 from .create_fact import CreateFact
@@ -96,10 +102,12 @@ from .delete_alert import DeleteAlert
 from .delete_alerts import DeleteAlerts
 from .delete_all_agents import DeleteAllAgents
 from .delete_all_alerts import DeleteAllAlerts
+from .delete_all_bureaus import DeleteAllBureaus
 from .delete_all_categories import DeleteAllCategories
 from .delete_all_collections import DeleteAllCollections
 from .delete_all_contents import DeleteAllContents
 from .delete_all_conversations import DeleteAllConversations
+from .delete_all_desks import DeleteAllDesks
 from .delete_all_emotions import DeleteAllEmotions
 from .delete_all_events import DeleteAllEvents
 from .delete_all_facts import DeleteAllFacts
@@ -129,6 +137,8 @@ from .delete_all_softwares import DeleteAllSoftwares
 from .delete_all_specifications import DeleteAllSpecifications
 from .delete_all_views import DeleteAllViews
 from .delete_all_workflows import DeleteAllWorkflows
+from .delete_bureau import DeleteBureau
+from .delete_bureaus import DeleteBureaus
 from .delete_categories import DeleteCategories
 from .delete_category import DeleteCategory
 from .delete_collection import DeleteCollection
@@ -138,6 +148,8 @@ from .delete_content import DeleteContent
 from .delete_contents import DeleteContents
 from .delete_conversation import DeleteConversation
 from .delete_conversations import DeleteConversations
+from .delete_desk import DeleteDesk
+from .delete_desks import DeleteDesks
 from .delete_emotion import DeleteEmotion
 from .delete_emotions import DeleteEmotions
 from .delete_event import DeleteEvent
@@ -232,11 +244,13 @@ from .feed_exists import FeedExists
 from .format_conversation import FormatConversation
 from .get_agent import GetAgent
 from .get_alert import GetAlert
+from .get_bureau import GetBureau
 from .get_category import GetCategory
 from .get_collection import GetCollection
 from .get_connector import GetConnector
 from .get_content import GetContent
 from .get_conversation import GetConversation
+from .get_desk import GetDesk
 from .get_emotion import GetEmotion
 from .get_event import GetEvent
 from .get_fact import GetFact
@@ -289,6 +303,9 @@ from .input_types import (
     AtlassianSitesInput,
     BambooHROptionsInput,
     BoxFoldersInput,
+    BureauFilter,
+    BureauInput,
+    BureauUpdateInput,
     CalendarEventUpdateInput,
     CategoryFilter,
     CategoryInput,
@@ -312,6 +329,9 @@ from .input_types import (
     ConversationMessageInput,
     ConversationToolResponseInput,
     ConversationUpdateInput,
+    DeskFilter,
+    DeskInput,
+    DeskUpdateInput,
     DiscordChannelsInput,
     DiscordGuildsInput,
     DistributionConnectorInput,
@@ -461,9 +481,11 @@ from .lookup_usage import LookupUsage
 from .map_web import MapWeb
 from .match_entity import MatchEntity
 from .operations import (
+    ADD_AGENTS_TO_DESK_GQL,
     ADD_CONTENT_LABEL_GQL,
     ADD_CONTENTS_TO_COLLECTIONS_GQL,
     ADD_CONVERSATIONS_TO_COLLECTIONS_GQL,
+    ADD_DESKS_TO_BUREAU_GQL,
     ADD_SKILLS_TO_COLLECTIONS_GQL,
     APPROVE_CONTENT_GQL,
     ASK_GRAPHLIT_GQL,
@@ -474,11 +496,13 @@ from .operations import (
     CONTINUE_CONVERSATION_GQL,
     COUNT_AGENTS_GQL,
     COUNT_ALERTS_GQL,
+    COUNT_BUREAUS_GQL,
     COUNT_CATEGORIES_GQL,
     COUNT_COLLECTIONS_GQL,
     COUNT_CONNECTORS_GQL,
     COUNT_CONTENTS_GQL,
     COUNT_CONVERSATIONS_GQL,
+    COUNT_DESKS_GQL,
     COUNT_EMOTIONS_GQL,
     COUNT_EVENTS_GQL,
     COUNT_FACTS_GQL,
@@ -511,10 +535,12 @@ from .operations import (
     COUNT_WORKFLOWS_GQL,
     CREATE_AGENT_GQL,
     CREATE_ALERT_GQL,
+    CREATE_BUREAU_GQL,
     CREATE_CATEGORY_GQL,
     CREATE_COLLECTION_GQL,
     CREATE_CONNECTOR_GQL,
     CREATE_CONVERSATION_GQL,
+    CREATE_DESK_GQL,
     CREATE_EMOTION_GQL,
     CREATE_EVENT_GQL,
     CREATE_FACT_GQL,
@@ -552,10 +578,12 @@ from .operations import (
     DELETE_ALERTS_GQL,
     DELETE_ALL_AGENTS_GQL,
     DELETE_ALL_ALERTS_GQL,
+    DELETE_ALL_BUREAUS_GQL,
     DELETE_ALL_CATEGORIES_GQL,
     DELETE_ALL_COLLECTIONS_GQL,
     DELETE_ALL_CONTENTS_GQL,
     DELETE_ALL_CONVERSATIONS_GQL,
+    DELETE_ALL_DESKS_GQL,
     DELETE_ALL_EMOTIONS_GQL,
     DELETE_ALL_EVENTS_GQL,
     DELETE_ALL_FACTS_GQL,
@@ -585,6 +613,8 @@ from .operations import (
     DELETE_ALL_SPECIFICATIONS_GQL,
     DELETE_ALL_VIEWS_GQL,
     DELETE_ALL_WORKFLOWS_GQL,
+    DELETE_BUREAU_GQL,
+    DELETE_BUREAUS_GQL,
     DELETE_CATEGORIES_GQL,
     DELETE_CATEGORY_GQL,
     DELETE_COLLECTION_GQL,
@@ -594,6 +624,8 @@ from .operations import (
     DELETE_CONTENTS_GQL,
     DELETE_CONVERSATION_GQL,
     DELETE_CONVERSATIONS_GQL,
+    DELETE_DESK_GQL,
+    DELETE_DESKS_GQL,
     DELETE_EMOTION_GQL,
     DELETE_EMOTIONS_GQL,
     DELETE_EVENT_GQL,
@@ -680,11 +712,13 @@ from .operations import (
     FORMAT_CONVERSATION_GQL,
     GET_AGENT_GQL,
     GET_ALERT_GQL,
+    GET_BUREAU_GQL,
     GET_CATEGORY_GQL,
     GET_COLLECTION_GQL,
     GET_CONNECTOR_GQL,
     GET_CONTENT_GQL,
     GET_CONVERSATION_GQL,
+    GET_DESK_GQL,
     GET_EMOTION_GQL,
     GET_EVENT_GQL,
     GET_FACT_GQL,
@@ -752,6 +786,7 @@ from .operations import (
     QUERY_BAMBOO_HR_EMPLOYMENT_STATUSES_GQL,
     QUERY_BAMBOO_HR_LOCATIONS_GQL,
     QUERY_BOX_FOLDERS_GQL,
+    QUERY_BUREAUS_GQL,
     QUERY_CATEGORIES_GQL,
     QUERY_COLLECTIONS_GQL,
     QUERY_CONFLUENCE_SPACES_GQL,
@@ -764,6 +799,7 @@ from .operations import (
     QUERY_CONVERSATIONS_GQL,
     QUERY_CONVERSATIONS_GRAPH_GQL,
     QUERY_CREDITS_GQL,
+    QUERY_DESKS_GQL,
     QUERY_DISCORD_CHANNELS_GQL,
     QUERY_DISCORD_GUILDS_GQL,
     QUERY_DROPBOX_FOLDERS_GQL,
@@ -849,9 +885,11 @@ from .operations import (
     QUERY_VIEWS_GQL,
     QUERY_WORKFLOWS_GQL,
     REJECT_CONTENT_GQL,
+    REMOVE_AGENTS_FROM_DESK_GQL,
     REMOVE_CONTENT_LABEL_GQL,
     REMOVE_CONTENTS_FROM_COLLECTION_GQL,
     REMOVE_CONVERSATIONS_FROM_COLLECTION_GQL,
+    REMOVE_DESKS_FROM_BUREAU_GQL,
     REMOVE_SKILLS_FROM_COLLECTION_GQL,
     RESEARCH_CONTENTS_GQL,
     RESOLVE_ENTITIES_GQL,
@@ -875,12 +913,14 @@ from .operations import (
     TRIGGER_FEED_GQL,
     UPDATE_AGENT_GQL,
     UPDATE_ALERT_GQL,
+    UPDATE_BUREAU_GQL,
     UPDATE_CATEGORY_GQL,
     UPDATE_COLLECTION_GQL,
     UPDATE_CONFLUENCE_PAGE_GQL,
     UPDATE_CONNECTOR_GQL,
     UPDATE_CONTENT_GQL,
     UPDATE_CONVERSATION_GQL,
+    UPDATE_DESK_GQL,
     UPDATE_EMOTION_GQL,
     UPDATE_EVENT_GQL,
     UPDATE_FACT_GQL,
@@ -946,6 +986,7 @@ from .query_bamboo_hr_divisions import QueryBambooHRDivisions
 from .query_bamboo_hr_employment_statuses import QueryBambooHREmploymentStatuses
 from .query_bamboo_hr_locations import QueryBambooHRLocations
 from .query_box_folders import QueryBoxFolders
+from .query_bureaus import QueryBureaus
 from .query_categories import QueryCategories
 from .query_collections import QueryCollections
 from .query_confluence_spaces import QueryConfluenceSpaces
@@ -958,6 +999,7 @@ from .query_conversations import QueryConversations
 from .query_conversations_clusters import QueryConversationsClusters
 from .query_conversations_graph import QueryConversationsGraph
 from .query_credits import QueryCredits
+from .query_desks import QueryDesks
 from .query_discord_channels import QueryDiscordChannels
 from .query_discord_guilds import QueryDiscordGuilds
 from .query_dropbox_folders import QueryDropboxFolders
@@ -1045,9 +1087,11 @@ from .query_users import QueryUsers
 from .query_views import QueryViews
 from .query_workflows import QueryWorkflows
 from .reject_content import RejectContent
+from .remove_agents_from_desk import RemoveAgentsFromDesk
 from .remove_content_label import RemoveContentLabel
 from .remove_contents_from_collection import RemoveContentsFromCollection
 from .remove_conversations_from_collection import RemoveConversationsFromCollection
+from .remove_desks_from_bureau import RemoveDesksFromBureau
 from .remove_skills_from_collection import RemoveSkillsFromCollection
 from .research_contents import ResearchContents
 from .resolve_entities import ResolveEntities
@@ -1071,12 +1115,14 @@ from .summarize_text import SummarizeText
 from .trigger_feed import TriggerFeed
 from .update_agent import UpdateAgent
 from .update_alert import UpdateAlert
+from .update_bureau import UpdateBureau
 from .update_category import UpdateCategory
 from .update_collection import UpdateCollection
 from .update_confluence_page import UpdateConfluencePage
 from .update_connector import UpdateConnector
 from .update_content import UpdateContent
 from .update_conversation import UpdateConversation
+from .update_desk import UpdateDesk
 from .update_emotion import UpdateEmotion
 from .update_event import UpdateEvent
 from .update_fact import UpdateFact
@@ -1454,6 +1500,164 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpsertAlert.model_validate(data)
+
+    async def add_desks_to_bureau(
+        self,
+        desks: list[EntityReferenceInput],
+        bureau: EntityReferenceInput,
+        **kwargs: Any
+    ) -> AddDesksToBureau:
+        variables: dict[str, object] = {"desks": desks, "bureau": bureau}
+        response = await self.execute(
+            query=ADD_DESKS_TO_BUREAU_GQL,
+            operation_name="AddDesksToBureau",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return AddDesksToBureau.model_validate(data)
+
+    async def count_bureaus(
+        self,
+        filter: Union[Optional[BureauFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountBureaus:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=COUNT_BUREAUS_GQL,
+            operation_name="CountBureaus",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountBureaus.model_validate(data)
+
+    async def create_bureau(self, bureau: BureauInput, **kwargs: Any) -> CreateBureau:
+        variables: dict[str, object] = {"bureau": bureau}
+        response = await self.execute(
+            query=CREATE_BUREAU_GQL,
+            operation_name="CreateBureau",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CreateBureau.model_validate(data)
+
+    async def delete_all_bureaus(
+        self,
+        filter: Union[Optional[BureauFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllBureaus:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DELETE_ALL_BUREAUS_GQL,
+            operation_name="DeleteAllBureaus",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllBureaus.model_validate(data)
+
+    async def delete_bureau(self, id: str, **kwargs: Any) -> DeleteBureau:
+        variables: dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DELETE_BUREAU_GQL,
+            operation_name="DeleteBureau",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteBureau.model_validate(data)
+
+    async def delete_bureaus(
+        self,
+        ids: list[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteBureaus:
+        variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
+        response = await self.execute(
+            query=DELETE_BUREAUS_GQL,
+            operation_name="DeleteBureaus",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteBureaus.model_validate(data)
+
+    async def get_bureau(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetBureau:
+        variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
+        response = await self.execute(
+            query=GET_BUREAU_GQL,
+            operation_name="GetBureau",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return GetBureau.model_validate(data)
+
+    async def query_bureaus(
+        self,
+        filter: Union[Optional[BureauFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryBureaus:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_BUREAUS_GQL,
+            operation_name="QueryBureaus",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryBureaus.model_validate(data)
+
+    async def remove_desks_from_bureau(
+        self,
+        desks: list[EntityReferenceInput],
+        bureau: EntityReferenceInput,
+        **kwargs: Any
+    ) -> RemoveDesksFromBureau:
+        variables: dict[str, object] = {"desks": desks, "bureau": bureau}
+        response = await self.execute(
+            query=REMOVE_DESKS_FROM_BUREAU_GQL,
+            operation_name="RemoveDesksFromBureau",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return RemoveDesksFromBureau.model_validate(data)
+
+    async def update_bureau(
+        self, bureau: BureauUpdateInput, **kwargs: Any
+    ) -> UpdateBureau:
+        variables: dict[str, object] = {"bureau": bureau}
+        response = await self.execute(
+            query=UPDATE_BUREAU_GQL,
+            operation_name="UpdateBureau",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateBureau.model_validate(data)
 
     async def count_categories(
         self,
@@ -3439,6 +3643,159 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdateConversation.model_validate(data)
+
+    async def add_agents_to_desk(
+        self,
+        agents: list[EntityReferenceInput],
+        desk: EntityReferenceInput,
+        **kwargs: Any
+    ) -> AddAgentsToDesk:
+        variables: dict[str, object] = {"agents": agents, "desk": desk}
+        response = await self.execute(
+            query=ADD_AGENTS_TO_DESK_GQL,
+            operation_name="AddAgentsToDesk",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return AddAgentsToDesk.model_validate(data)
+
+    async def count_desks(
+        self,
+        filter: Union[Optional[DeskFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountDesks:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=COUNT_DESKS_GQL,
+            operation_name="CountDesks",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountDesks.model_validate(data)
+
+    async def create_desk(self, desk: DeskInput, **kwargs: Any) -> CreateDesk:
+        variables: dict[str, object] = {"desk": desk}
+        response = await self.execute(
+            query=CREATE_DESK_GQL,
+            operation_name="CreateDesk",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CreateDesk.model_validate(data)
+
+    async def delete_all_desks(
+        self,
+        filter: Union[Optional[DeskFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllDesks:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DELETE_ALL_DESKS_GQL,
+            operation_name="DeleteAllDesks",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllDesks.model_validate(data)
+
+    async def delete_desk(self, id: str, **kwargs: Any) -> DeleteDesk:
+        variables: dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DELETE_DESK_GQL,
+            operation_name="DeleteDesk",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteDesk.model_validate(data)
+
+    async def delete_desks(
+        self,
+        ids: list[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteDesks:
+        variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
+        response = await self.execute(
+            query=DELETE_DESKS_GQL,
+            operation_name="DeleteDesks",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteDesks.model_validate(data)
+
+    async def get_desk(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetDesk:
+        variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
+        response = await self.execute(
+            query=GET_DESK_GQL, operation_name="GetDesk", variables=variables, **kwargs
+        )
+        data = self.get_data(response)
+        return GetDesk.model_validate(data)
+
+    async def query_desks(
+        self,
+        filter: Union[Optional[DeskFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryDesks:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_DESKS_GQL,
+            operation_name="QueryDesks",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryDesks.model_validate(data)
+
+    async def remove_agents_from_desk(
+        self,
+        agents: list[EntityReferenceInput],
+        desk: EntityReferenceInput,
+        **kwargs: Any
+    ) -> RemoveAgentsFromDesk:
+        variables: dict[str, object] = {"agents": agents, "desk": desk}
+        response = await self.execute(
+            query=REMOVE_AGENTS_FROM_DESK_GQL,
+            operation_name="RemoveAgentsFromDesk",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return RemoveAgentsFromDesk.model_validate(data)
+
+    async def update_desk(self, desk: DeskUpdateInput, **kwargs: Any) -> UpdateDesk:
+        variables: dict[str, object] = {"desk": desk}
+        response = await self.execute(
+            query=UPDATE_DESK_GQL,
+            operation_name="UpdateDesk",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateDesk.model_validate(data)
 
     async def count_emotions(
         self,

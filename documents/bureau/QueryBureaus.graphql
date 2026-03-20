@@ -1,0 +1,19 @@
+query QueryBureaus($filter: BureauFilter, $correlationId: String) {
+  bureaus(filter: $filter, correlationId: $correlationId) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      description
+      mission
+      directives
+      deskCount
+    }
+  }
+}
