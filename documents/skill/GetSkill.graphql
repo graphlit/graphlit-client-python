@@ -8,6 +8,7 @@ query GetSkill($id: ID!, $correlationId: String) {
       id
     }
     state
+    description
     identifier
     correlationId
     text

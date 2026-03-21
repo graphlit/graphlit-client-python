@@ -17759,6 +17759,7 @@ query GetSkill($id: ID!, $correlationId: String) {
       id
     }
     state
+    description
     identifier
     correlationId
     text
@@ -17789,6 +17790,7 @@ query QuerySkills($filter: SkillFilter, $correlationId: String) {
         id
       }
       state
+      description
       identifier
       correlationId
       text
