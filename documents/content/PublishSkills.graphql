@@ -1,0 +1,17 @@
+mutation PublishSkills($filter: ContentFilter, $correlationId: String) {
+  publishSkills(filter: $filter, correlationId: $correlationId) {
+    skills {
+      id
+      name
+      state
+      identifier
+      skillOwner
+      arguments {
+        name
+        description
+        required
+      }
+      text
+    }
+  }
+}

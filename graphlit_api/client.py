@@ -775,6 +775,7 @@ from .operations import (
     PROMPT_SPECIFICATIONS_GQL,
     PUBLISH_CONTENTS_GQL,
     PUBLISH_CONVERSATION_GQL,
+    PUBLISH_SKILLS_GQL,
     PUBLISH_TEXT_GQL,
     QUERY_AGENTS_GQL,
     QUERY_ALERTS_GQL,
@@ -975,6 +976,7 @@ from .prompt_conversation import PromptConversation
 from .prompt_specifications import PromptSpecifications
 from .publish_contents import PublishContents
 from .publish_conversation import PublishConversation
+from .publish_skills import PublishSkills
 from .publish_text import PublishText
 from .query_agents import QueryAgents
 from .query_alerts import QueryAlerts
@@ -2706,6 +2708,25 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return PublishContents.model_validate(data)
+
+    async def publish_skills(
+        self,
+        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> PublishSkills:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=PUBLISH_SKILLS_GQL,
+            operation_name="PublishSkills",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return PublishSkills.model_validate(data)
 
     async def publish_text(
         self,

@@ -2835,6 +2835,7 @@ from .operations import (
     PROMPT_SPECIFICATIONS_GQL,
     PUBLISH_CONTENTS_GQL,
     PUBLISH_CONVERSATION_GQL,
+    PUBLISH_SKILLS_GQL,
     PUBLISH_TEXT_GQL,
     QUERY_AGENTS_GQL,
     QUERY_ALERTS_GQL,
@@ -3115,6 +3116,12 @@ from .publish_conversation import (
     PublishConversationPublishConversationContentsVideo,
     PublishConversationPublishConversationDetails,
     PublishConversationPublishConversationDetailsContents,
+)
+from .publish_skills import (
+    PublishSkills,
+    PublishSkillsPublishSkills,
+    PublishSkillsPublishSkillsSkills,
+    PublishSkillsPublishSkillsSkillsArguments,
 )
 from .publish_text import (
     PublishText,
@@ -7663,6 +7670,7 @@ __all__ = [
     "PROMPT_SPECIFICATIONS_GQL",
     "PUBLISH_CONTENTS_GQL",
     "PUBLISH_CONVERSATION_GQL",
+    "PUBLISH_SKILLS_GQL",
     "PUBLISH_TEXT_GQL",
     "PackageMetadataInput",
     "PagePreparationPropertiesInput",
@@ -7788,6 +7796,10 @@ __all__ = [
     "PublishConversationPublishConversationContentsVideo",
     "PublishConversationPublishConversationDetails",
     "PublishConversationPublishConversationDetailsContents",
+    "PublishSkills",
+    "PublishSkillsPublishSkills",
+    "PublishSkillsPublishSkillsSkills",
+    "PublishSkillsPublishSkillsSkillsArguments",
     "PublishText",
     "PublishTextPublishText",
     "PublishTextPublishTextContents",

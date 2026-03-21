@@ -296,6 +296,7 @@ __all__ = [
     "PROMPT_SPECIFICATIONS_GQL",
     "PUBLISH_CONTENTS_GQL",
     "PUBLISH_CONVERSATION_GQL",
+    "PUBLISH_SKILLS_GQL",
     "PUBLISH_TEXT_GQL",
     "QUERY_AGENTS_GQL",
     "QUERY_ALERTS_GQL",
@@ -3880,6 +3881,26 @@ mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $conne
       publishSpecification
       summaryTime
       publishTime
+    }
+  }
+}
+"""
+
+PUBLISH_SKILLS_GQL = """
+mutation PublishSkills($filter: ContentFilter, $correlationId: String) {
+  publishSkills(filter: $filter, correlationId: $correlationId) {
+    skills {
+      id
+      name
+      state
+      identifier
+      skillOwner
+      arguments {
+        name
+        description
+        required
+      }
+      text
     }
   }
 }
