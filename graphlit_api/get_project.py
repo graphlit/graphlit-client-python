@@ -22,6 +22,7 @@ class GetProjectProject(BaseModel):
     environment_type: Optional[EnvironmentTypes] = Field(alias="environmentType")
     platform: Optional[ResourceConnectorTypes]
     region: Optional[str]
+    jwt_secret: Optional[str] = Field(alias="jwtSecret")
     credits: Optional[Any]
     last_credits_date: Optional[Any] = Field(alias="lastCreditsDate")
     workflow: Optional["GetProjectProjectWorkflow"]

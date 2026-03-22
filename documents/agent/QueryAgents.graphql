@@ -41,6 +41,7 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
       timeout
       prompt
       scratchpad
+      callbackUri
     }
   }
 }

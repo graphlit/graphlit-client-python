@@ -8,6 +8,7 @@ query GetProject {
     environmentType
     platform
     region
+    jwtSecret
     credits
     lastCreditsDate
     workflow {

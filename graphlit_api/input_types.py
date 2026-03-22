@@ -2849,6 +2849,7 @@ class AgentInput(BaseModel):
     scratchpad: Optional[str] = None
     channels: Optional[list["AgentChannelInput"]] = None
     connectors: Optional[list["EntityReferenceInput"]] = None
+    callback_uri: Optional[Any] = Field(alias="callbackUri", default=None)
 
 
 class CrustdataPersonDiscoveryFilterInput(BaseModel):
@@ -7182,6 +7183,7 @@ class AgentUpdateInput(BaseModel):
     scratchpad: Optional[str] = None
     channels: Optional[list["AgentChannelInput"]] = None
     connectors: Optional[list["EntityReferenceInput"]] = None
+    callback_uri: Optional[Any] = Field(alias="callbackUri", default=None)
 
 
 class IssueFeedPropertiesInput(BaseModel):

@@ -602,6 +602,7 @@ query GetAgent($id: ID!, $correlationId: String) {
     timeout
     prompt
     scratchpad
+    callbackUri
   }
 }
 """
@@ -650,6 +651,7 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
       timeout
       prompt
       scratchpad
+      callbackUri
     }
   }
 }
@@ -17248,6 +17250,7 @@ query GetProject {
     environmentType
     platform
     region
+    jwtSecret
     credits
     lastCreditsDate
     workflow {

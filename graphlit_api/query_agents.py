@@ -45,6 +45,7 @@ class QueryAgentsAgentsResults(BaseModel):
     timeout: Optional[Any]
     prompt: Optional[str]
     scratchpad: Optional[str]
+    callback_uri: Optional[Any] = Field(alias="callbackUri")
 
 
 class QueryAgentsAgentsResultsOwner(BaseModel):
