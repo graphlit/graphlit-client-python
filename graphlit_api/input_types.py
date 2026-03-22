@@ -35,6 +35,7 @@ from .enums import (
     CalendarReminderMethod,
     CategoryFacetTypes,
     CerebrasModels,
+    ChannelServiceTypes,
     CohereModels,
     CollectionTypes,
     ConfluenceAuthenticationTypes,
@@ -1579,6 +1580,12 @@ class AzureTextExtractionPropertiesInput(BaseModel):
     )
 
 
+class TeamsChannelPropertiesInput(BaseModel):
+    bot_id: str = Field(alias="botId")
+    bot_password: str = Field(alias="botPassword")
+    tenant_id: Optional[str] = Field(alias="tenantId", default=None)
+
+
 class AzureImageExtractionPropertiesInput(BaseModel):
     confidence_threshold: Optional[float] = Field(
         alias="confidenceThreshold", default=None
@@ -1946,6 +1953,12 @@ class FeedUpdateInput(BaseModel):
         alias="schedulePolicy", default=None
     )
     workflow: Optional["EntityReferenceInput"] = None
+
+
+class DiscordChannelPropertiesInput(BaseModel):
+    bot_token: str = Field(alias="botToken")
+    application_id: Optional[str] = Field(alias="applicationId", default=None)
+    public_key: Optional[str] = Field(alias="publicKey", default=None)
 
 
 class IssueMetadataInput(BaseModel):
@@ -2551,6 +2564,7 @@ class ConnectorUpdateInput(BaseModel):
     name: Optional[str] = None
     authentication: Optional["AuthenticationConnectorInput"] = None
     integration: Optional["IntegrationConnectorInput"] = None
+    channel: Optional["ChannelConnectorUpdateInput"] = None
 
 
 class MedicalConditionFilter(BaseModel):
@@ -2786,6 +2800,13 @@ class EntityExtractionConnectorInput(BaseModel):
         alias="modelImage", default=None
     )
     hume: Optional["HumeExtractionPropertiesInput"] = None
+
+
+class ChannelConnectorInput(BaseModel):
+    type: ChannelServiceTypes
+    slack: Optional["SlackChannelPropertiesInput"] = None
+    teams: Optional["TeamsChannelPropertiesInput"] = None
+    discord: Optional["DiscordChannelPropertiesInput"] = None
 
 
 class PullRequestFeedPropertiesInput(BaseModel):
@@ -4422,6 +4443,12 @@ class IngestionWorkflowStageInput(BaseModel):
     enable_message_collections: Optional[bool] = Field(
         alias="enableMessageCollections", default=None
     )
+
+
+class ChannelConnectorUpdateInput(BaseModel):
+    slack: Optional["SlackChannelPropertiesInput"] = None
+    teams: Optional["TeamsChannelPropertiesInput"] = None
+    discord: Optional["DiscordChannelPropertiesInput"] = None
 
 
 class AtlassianJiraFeedPropertiesInput(BaseModel):
@@ -6419,6 +6446,12 @@ class MedicalDrugClassFacetInput(BaseModel):
     facet: Optional[MedicalDrugClassFacetTypes] = None
 
 
+class SlackChannelPropertiesInput(BaseModel):
+    bot_token: str = Field(alias="botToken")
+    signing_secret: Optional[str] = Field(alias="signingSecret", default=None)
+    app_id: Optional[str] = Field(alias="appId", default=None)
+
+
 class WorkflowUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
@@ -6930,6 +6963,7 @@ class ConnectorInput(BaseModel):
     type: ConnectorTypes
     authentication: Optional["AuthenticationConnectorInput"] = None
     integration: Optional["IntegrationConnectorInput"] = None
+    channel: Optional["ChannelConnectorInput"] = None
 
 
 class AttioTasksFeedPropertiesUpdateInput(BaseModel):
@@ -7451,6 +7485,7 @@ AlertUpdateInput.model_rebuild()
 ConfluenceFeedPropertiesUpdateInput.model_rebuild()
 NotionPagesInput.model_rebuild()
 EntityExtractionConnectorInput.model_rebuild()
+ChannelConnectorInput.model_rebuild()
 PullRequestFeedPropertiesInput.model_rebuild()
 CalendarFeedPropertiesUpdateInput.model_rebuild()
 AgentInput.model_rebuild()
@@ -7529,6 +7564,7 @@ ZoomPropertiesUpdateInput.model_rebuild()
 ProductUpdateInput.model_rebuild()
 MentionReferenceInput.model_rebuild()
 IngestionWorkflowStageInput.model_rebuild()
+ChannelConnectorUpdateInput.model_rebuild()
 AtlassianJiraFeedPropertiesInput.model_rebuild()
 BoxFeedPropertiesInput.model_rebuild()
 ContentFilterLevel.model_rebuild()

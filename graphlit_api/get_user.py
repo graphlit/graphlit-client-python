@@ -9,6 +9,7 @@ from .base_model import BaseModel
 from .enums import (
     ArcadeProviders,
     AuthenticationServiceTypes,
+    ChannelServiceTypes,
     ConnectorTypes,
     EntityState,
     IntegrationServiceTypes,
@@ -52,6 +53,7 @@ class GetUserUserConnectors(BaseModel):
     type: Optional[ConnectorTypes]
     authentication: Optional["GetUserUserConnectorsAuthentication"]
     integration: Optional["GetUserUserConnectorsIntegration"]
+    channel: Optional["GetUserUserConnectorsChannel"]
 
 
 class GetUserUserConnectorsAuthentication(BaseModel):
@@ -122,6 +124,31 @@ class GetUserUserConnectorsIntegrationMcp(BaseModel):
     type: MCPServerTypes
 
 
+class GetUserUserConnectorsChannel(BaseModel):
+    type: ChannelServiceTypes
+    slack: Optional["GetUserUserConnectorsChannelSlack"]
+    teams: Optional["GetUserUserConnectorsChannelTeams"]
+    discord: Optional["GetUserUserConnectorsChannelDiscord"]
+
+
+class GetUserUserConnectorsChannelSlack(BaseModel):
+    bot_token: str = Field(alias="botToken")
+    signing_secret: Optional[str] = Field(alias="signingSecret")
+    app_id: Optional[str] = Field(alias="appId")
+
+
+class GetUserUserConnectorsChannelTeams(BaseModel):
+    bot_id: str = Field(alias="botId")
+    bot_password: str = Field(alias="botPassword")
+    tenant_id: Optional[str] = Field(alias="tenantId")
+
+
+class GetUserUserConnectorsChannelDiscord(BaseModel):
+    bot_token: str = Field(alias="botToken")
+    application_id: Optional[str] = Field(alias="applicationId")
+    public_key: Optional[str] = Field(alias="publicKey")
+
+
 class GetUserUserPersonas(BaseModel):
     id: str
     name: str
@@ -149,4 +176,5 @@ GetUserUser.model_rebuild()
 GetUserUserConnectors.model_rebuild()
 GetUserUserConnectorsAuthentication.model_rebuild()
 GetUserUserConnectorsIntegration.model_rebuild()
+GetUserUserConnectorsChannel.model_rebuild()
 GetUserUserPersonas.model_rebuild()

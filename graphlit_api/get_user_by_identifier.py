@@ -9,6 +9,7 @@ from .base_model import BaseModel
 from .enums import (
     ArcadeProviders,
     AuthenticationServiceTypes,
+    ChannelServiceTypes,
     ConnectorTypes,
     EntityState,
     IntegrationServiceTypes,
@@ -58,6 +59,7 @@ class GetUserByIdentifierUserByIdentifierConnectors(BaseModel):
         "GetUserByIdentifierUserByIdentifierConnectorsAuthentication"
     ]
     integration: Optional["GetUserByIdentifierUserByIdentifierConnectorsIntegration"]
+    channel: Optional["GetUserByIdentifierUserByIdentifierConnectorsChannel"]
 
 
 class GetUserByIdentifierUserByIdentifierConnectorsAuthentication(BaseModel):
@@ -134,6 +136,31 @@ class GetUserByIdentifierUserByIdentifierConnectorsIntegrationMcp(BaseModel):
     type: MCPServerTypes
 
 
+class GetUserByIdentifierUserByIdentifierConnectorsChannel(BaseModel):
+    type: ChannelServiceTypes
+    slack: Optional["GetUserByIdentifierUserByIdentifierConnectorsChannelSlack"]
+    teams: Optional["GetUserByIdentifierUserByIdentifierConnectorsChannelTeams"]
+    discord: Optional["GetUserByIdentifierUserByIdentifierConnectorsChannelDiscord"]
+
+
+class GetUserByIdentifierUserByIdentifierConnectorsChannelSlack(BaseModel):
+    bot_token: str = Field(alias="botToken")
+    signing_secret: Optional[str] = Field(alias="signingSecret")
+    app_id: Optional[str] = Field(alias="appId")
+
+
+class GetUserByIdentifierUserByIdentifierConnectorsChannelTeams(BaseModel):
+    bot_id: str = Field(alias="botId")
+    bot_password: str = Field(alias="botPassword")
+    tenant_id: Optional[str] = Field(alias="tenantId")
+
+
+class GetUserByIdentifierUserByIdentifierConnectorsChannelDiscord(BaseModel):
+    bot_token: str = Field(alias="botToken")
+    application_id: Optional[str] = Field(alias="applicationId")
+    public_key: Optional[str] = Field(alias="publicKey")
+
+
 class GetUserByIdentifierUserByIdentifierPersonas(BaseModel):
     id: str
     name: str
@@ -161,4 +188,5 @@ GetUserByIdentifierUserByIdentifier.model_rebuild()
 GetUserByIdentifierUserByIdentifierConnectors.model_rebuild()
 GetUserByIdentifierUserByIdentifierConnectorsAuthentication.model_rebuild()
 GetUserByIdentifierUserByIdentifierConnectorsIntegration.model_rebuild()
+GetUserByIdentifierUserByIdentifierConnectorsChannel.model_rebuild()
 GetUserByIdentifierUserByIdentifierPersonas.model_rebuild()

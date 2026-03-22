@@ -9,6 +9,7 @@ from .base_model import BaseModel
 from .enums import (
     ArcadeProviders,
     AuthenticationServiceTypes,
+    ChannelServiceTypes,
     ConnectorTypes,
     EntityState,
     IntegrationServiceTypes,
@@ -31,6 +32,7 @@ class GetConnectorConnector(BaseModel):
     type: Optional[ConnectorTypes]
     authentication: Optional["GetConnectorConnectorAuthentication"]
     integration: Optional["GetConnectorConnectorIntegration"]
+    channel: Optional["GetConnectorConnectorChannel"]
 
 
 class GetConnectorConnectorOwner(BaseModel):
@@ -105,7 +107,33 @@ class GetConnectorConnectorIntegrationMcp(BaseModel):
     type: MCPServerTypes
 
 
+class GetConnectorConnectorChannel(BaseModel):
+    type: ChannelServiceTypes
+    slack: Optional["GetConnectorConnectorChannelSlack"]
+    teams: Optional["GetConnectorConnectorChannelTeams"]
+    discord: Optional["GetConnectorConnectorChannelDiscord"]
+
+
+class GetConnectorConnectorChannelSlack(BaseModel):
+    bot_token: str = Field(alias="botToken")
+    signing_secret: Optional[str] = Field(alias="signingSecret")
+    app_id: Optional[str] = Field(alias="appId")
+
+
+class GetConnectorConnectorChannelTeams(BaseModel):
+    bot_id: str = Field(alias="botId")
+    bot_password: str = Field(alias="botPassword")
+    tenant_id: Optional[str] = Field(alias="tenantId")
+
+
+class GetConnectorConnectorChannelDiscord(BaseModel):
+    bot_token: str = Field(alias="botToken")
+    application_id: Optional[str] = Field(alias="applicationId")
+    public_key: Optional[str] = Field(alias="publicKey")
+
+
 GetConnector.model_rebuild()
 GetConnectorConnector.model_rebuild()
 GetConnectorConnectorAuthentication.model_rebuild()
 GetConnectorConnectorIntegration.model_rebuild()
+GetConnectorConnectorChannel.model_rebuild()

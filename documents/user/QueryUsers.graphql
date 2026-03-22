@@ -68,6 +68,24 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
             type
           }
         }
+        channel {
+          type
+          slack {
+            botToken
+            signingSecret
+            appId
+          }
+          teams {
+            botId
+            botPassword
+            tenantId
+          }
+          discord {
+            botToken
+            applicationId
+            publicKey
+          }
+        }
       }
       personas {
         id

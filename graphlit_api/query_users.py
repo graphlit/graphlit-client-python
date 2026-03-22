@@ -9,6 +9,7 @@ from .base_model import BaseModel
 from .enums import (
     ArcadeProviders,
     AuthenticationServiceTypes,
+    ChannelServiceTypes,
     ConnectorTypes,
     EntityState,
     IntegrationServiceTypes,
@@ -56,6 +57,7 @@ class QueryUsersUsersResultsConnectors(BaseModel):
     type: Optional[ConnectorTypes]
     authentication: Optional["QueryUsersUsersResultsConnectorsAuthentication"]
     integration: Optional["QueryUsersUsersResultsConnectorsIntegration"]
+    channel: Optional["QueryUsersUsersResultsConnectorsChannel"]
 
 
 class QueryUsersUsersResultsConnectorsAuthentication(BaseModel):
@@ -126,6 +128,31 @@ class QueryUsersUsersResultsConnectorsIntegrationMcp(BaseModel):
     type: MCPServerTypes
 
 
+class QueryUsersUsersResultsConnectorsChannel(BaseModel):
+    type: ChannelServiceTypes
+    slack: Optional["QueryUsersUsersResultsConnectorsChannelSlack"]
+    teams: Optional["QueryUsersUsersResultsConnectorsChannelTeams"]
+    discord: Optional["QueryUsersUsersResultsConnectorsChannelDiscord"]
+
+
+class QueryUsersUsersResultsConnectorsChannelSlack(BaseModel):
+    bot_token: str = Field(alias="botToken")
+    signing_secret: Optional[str] = Field(alias="signingSecret")
+    app_id: Optional[str] = Field(alias="appId")
+
+
+class QueryUsersUsersResultsConnectorsChannelTeams(BaseModel):
+    bot_id: str = Field(alias="botId")
+    bot_password: str = Field(alias="botPassword")
+    tenant_id: Optional[str] = Field(alias="tenantId")
+
+
+class QueryUsersUsersResultsConnectorsChannelDiscord(BaseModel):
+    bot_token: str = Field(alias="botToken")
+    application_id: Optional[str] = Field(alias="applicationId")
+    public_key: Optional[str] = Field(alias="publicKey")
+
+
 class QueryUsersUsersResultsPersonas(BaseModel):
     id: str
     name: str
@@ -154,4 +181,5 @@ QueryUsersUsersResults.model_rebuild()
 QueryUsersUsersResultsConnectors.model_rebuild()
 QueryUsersUsersResultsConnectorsAuthentication.model_rebuild()
 QueryUsersUsersResultsConnectorsIntegration.model_rebuild()
+QueryUsersUsersResultsConnectorsChannel.model_rebuild()
 QueryUsersUsersResultsPersonas.model_rebuild()

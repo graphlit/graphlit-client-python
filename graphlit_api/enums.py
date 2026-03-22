@@ -439,6 +439,7 @@ class ConnectorTypes(str, Enum):
     INTEGRATION = "INTEGRATION"
     AUTHENTICATION = "AUTHENTICATION"
     SITE = "SITE"
+    CHANNEL = "CHANNEL"
 
 
 class ModelTypes(str, Enum):
@@ -1643,6 +1644,12 @@ class SiteTypes(str, Enum):
 class ExtractionTypes(str, Enum):
     ENTITIES = "ENTITIES"
     FACTS = "FACTS"
+
+
+class ChannelServiceTypes(str, Enum):
+    SLACK = "SLACK"
+    TEAMS = "TEAMS"
+    DISCORD = "DISCORD"
 
 
 class TimeIntervalTypes(str, Enum):

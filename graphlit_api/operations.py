@@ -1711,6 +1711,24 @@ query GetConnector($id: ID!, $correlationId: String) {
         type
       }
     }
+    channel {
+      type
+      slack {
+        botToken
+        signingSecret
+        appId
+      }
+      teams {
+        botId
+        botPassword
+        tenantId
+      }
+      discord {
+        botToken
+        applicationId
+        publicKey
+      }
+    }
   }
 }
 """
@@ -1777,6 +1795,24 @@ query QueryConnectors($filter: ConnectorFilter, $correlationId: String) {
         mcp {
           token
           type
+        }
+      }
+      channel {
+        type
+        slack {
+          botToken
+          signingSecret
+          appId
+        }
+        teams {
+          botId
+          botPassword
+          tenantId
+        }
+        discord {
+          botToken
+          applicationId
+          publicKey
         }
       }
     }
@@ -18923,6 +18959,24 @@ query GetUser {
           type
         }
       }
+      channel {
+        type
+        slack {
+          botToken
+          signingSecret
+          appId
+        }
+        teams {
+          botId
+          botPassword
+          tenantId
+        }
+        discord {
+          botToken
+          applicationId
+          publicKey
+        }
+      }
     }
     personas {
       id
@@ -19017,6 +19071,24 @@ query GetUserByIdentifier($identifier: String!) {
         mcp {
           token
           type
+        }
+      }
+      channel {
+        type
+        slack {
+          botToken
+          signingSecret
+          appId
+        }
+        teams {
+          botId
+          botPassword
+          tenantId
+        }
+        discord {
+          botToken
+          applicationId
+          publicKey
         }
       }
     }
@@ -19114,6 +19186,24 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
           mcp {
             token
             type
+          }
+        }
+        channel {
+          type
+          slack {
+            botToken
+            signingSecret
+            appId
+          }
+          teams {
+            botId
+            botPassword
+            tenantId
+          }
+          discord {
+            botToken
+            applicationId
+            publicKey
           }
         }
       }
