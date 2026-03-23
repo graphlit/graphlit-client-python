@@ -27,6 +27,7 @@ class GetAgentAgent(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetAgentAgentOwner"
     state: EntityState
+    user: Optional["GetAgentAgentUser"]
     correlation_id: Optional[str] = Field(alias="correlationId")
     type: AgentTypes
     description: Optional[str]
@@ -44,6 +45,10 @@ class GetAgentAgent(BaseModel):
 
 
 class GetAgentAgentOwner(BaseModel):
+    id: str
+
+
+class GetAgentAgentUser(BaseModel):
     id: str
 
 

@@ -8,6 +8,9 @@ query GetSpecification($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     type
     serviceType
     systemPrompt

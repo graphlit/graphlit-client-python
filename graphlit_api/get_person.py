@@ -20,6 +20,7 @@ class GetPersonPerson(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetPersonPersonOwner"
     state: EntityState
+    user: Optional["GetPersonPersonUser"]
     alternate_names: Optional[list[Optional[str]]] = Field(alias="alternateNames")
     uri: Optional[Any]
     description: Optional[str]
@@ -60,6 +61,10 @@ class GetPersonPerson(BaseModel):
 
 
 class GetPersonPersonOwner(BaseModel):
+    id: str
+
+
+class GetPersonPersonUser(BaseModel):
     id: str
 
 

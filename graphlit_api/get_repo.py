@@ -20,6 +20,7 @@ class GetRepoRepo(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetRepoRepoOwner"
     state: EntityState
+    user: Optional["GetRepoRepoUser"]
     alternate_names: Optional[list[Optional[str]]] = Field(alias="alternateNames")
     uri: Optional[Any]
     description: Optional[str]
@@ -33,6 +34,10 @@ class GetRepoRepo(BaseModel):
 
 
 class GetRepoRepoOwner(BaseModel):
+    id: str
+
+
+class GetRepoRepoUser(BaseModel):
     id: str
 
 

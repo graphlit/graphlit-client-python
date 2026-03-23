@@ -8,6 +8,9 @@ query GetAlert($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     correlationId
     type
     summaryPrompt

@@ -1001,6 +1001,7 @@ from .get_agent import (
     GetAgentAgentOwner,
     GetAgentAgentSchedulePolicy,
     GetAgentAgentSpecification,
+    GetAgentAgentUser,
 )
 from .get_alert import (
     GetAlert,
@@ -1053,6 +1054,7 @@ from .get_alert import (
     GetAlertAlertPublishSpecification,
     GetAlertAlertSchedulePolicy,
     GetAlertAlertSummarySpecification,
+    GetAlertAlertUser,
     GetAlertAlertView,
 )
 from .get_bureau import (
@@ -1061,13 +1063,19 @@ from .get_bureau import (
     GetBureauBureauDesks,
     GetBureauBureauOwner,
 )
-from .get_category import GetCategory, GetCategoryCategory, GetCategoryCategoryFeeds
+from .get_category import (
+    GetCategory,
+    GetCategoryCategory,
+    GetCategoryCategoryFeeds,
+    GetCategoryCategoryUser,
+)
 from .get_collection import (
     GetCollection,
     GetCollectionCollection,
     GetCollectionCollectionContents,
     GetCollectionCollectionConversations,
     GetCollectionCollectionOwner,
+    GetCollectionCollectionUser,
 )
 from .get_connector import (
     GetConnector,
@@ -1087,6 +1095,7 @@ from .get_connector import (
     GetConnectorConnectorIntegrationSlack,
     GetConnectorConnectorIntegrationTwitter,
     GetConnectorConnectorOwner,
+    GetConnectorConnectorUser,
 )
 from .get_content import (
     GetContent,
@@ -1145,6 +1154,7 @@ from .get_content import (
     GetContentContentPullRequestReviewers,
     GetContentContentSegments,
     GetContentContentTranscript,
+    GetContentContentUser,
     GetContentContentVideo,
     GetContentContentWorkflow,
 )
@@ -1227,6 +1237,7 @@ from .get_conversation import (
     GetConversationConversationSpecification,
     GetConversationConversationTurns,
     GetConversationConversationTurnsMessages,
+    GetConversationConversationUser,
 )
 from .get_desk import (
     GetDesk,
@@ -1235,7 +1246,12 @@ from .get_desk import (
     GetDeskDeskBureau,
     GetDeskDeskOwner,
 )
-from .get_emotion import GetEmotion, GetEmotionEmotion, GetEmotionEmotionFeeds
+from .get_emotion import (
+    GetEmotion,
+    GetEmotionEmotion,
+    GetEmotionEmotionFeeds,
+    GetEmotionEmotionUser,
+)
 from .get_event import (
     GetEvent,
     GetEventEvent,
@@ -1245,6 +1261,7 @@ from .get_event import (
     GetEventEventLinks,
     GetEventEventLocation,
     GetEventEventOwner,
+    GetEventEventUser,
     GetEventEventWorkflow,
 )
 from .get_fact import (
@@ -1260,6 +1277,7 @@ from .get_fact import (
     GetFactFactMentionsObservable,
     GetFactFactOwner,
     GetFactFactPersona,
+    GetFactFactUser,
 )
 from .get_feed import (
     GetFeed,
@@ -1387,6 +1405,7 @@ from .get_feed import (
     GetFeedFeedSlackConnector,
     GetFeedFeedTwitter,
     GetFeedFeedTwitterConnector,
+    GetFeedFeedUser,
     GetFeedFeedWeb,
     GetFeedFeedWorkflow,
     GetFeedFeedYoutube,
@@ -1403,6 +1422,7 @@ from .get_investment import (
     GetInvestmentInvestmentLocation,
     GetInvestmentInvestmentOrganization,
     GetInvestmentInvestmentOwner,
+    GetInvestmentInvestmentUser,
     GetInvestmentInvestmentWorkflow,
 )
 from .get_investment_fund import (
@@ -1417,9 +1437,10 @@ from .get_investment_fund import (
     GetInvestmentFundInvestmentFundOrganizations,
     GetInvestmentFundInvestmentFundOwner,
     GetInvestmentFundInvestmentFundParentFund,
+    GetInvestmentFundInvestmentFundUser,
     GetInvestmentFundInvestmentFundWorkflow,
 )
-from .get_label import GetLabel, GetLabelLabel, GetLabelLabelFeeds
+from .get_label import GetLabel, GetLabelLabel, GetLabelLabelFeeds, GetLabelLabelUser
 from .get_medical_condition import (
     GetMedicalCondition,
     GetMedicalConditionMedicalCondition,
@@ -1428,6 +1449,7 @@ from .get_medical_condition import (
     GetMedicalConditionMedicalConditionLinks,
     GetMedicalConditionMedicalConditionLocation,
     GetMedicalConditionMedicalConditionOwner,
+    GetMedicalConditionMedicalConditionUser,
     GetMedicalConditionMedicalConditionWorkflow,
 )
 from .get_medical_contraindication import (
@@ -1438,6 +1460,7 @@ from .get_medical_contraindication import (
     GetMedicalContraindicationMedicalContraindicationLinks,
     GetMedicalContraindicationMedicalContraindicationLocation,
     GetMedicalContraindicationMedicalContraindicationOwner,
+    GetMedicalContraindicationMedicalContraindicationUser,
     GetMedicalContraindicationMedicalContraindicationWorkflow,
 )
 from .get_medical_device import (
@@ -1448,6 +1471,7 @@ from .get_medical_device import (
     GetMedicalDeviceMedicalDeviceLinks,
     GetMedicalDeviceMedicalDeviceLocation,
     GetMedicalDeviceMedicalDeviceOwner,
+    GetMedicalDeviceMedicalDeviceUser,
     GetMedicalDeviceMedicalDeviceWorkflow,
 )
 from .get_medical_drug import (
@@ -1458,6 +1482,7 @@ from .get_medical_drug import (
     GetMedicalDrugMedicalDrugLinks,
     GetMedicalDrugMedicalDrugLocation,
     GetMedicalDrugMedicalDrugOwner,
+    GetMedicalDrugMedicalDrugUser,
     GetMedicalDrugMedicalDrugWorkflow,
 )
 from .get_medical_drug_class import (
@@ -1468,6 +1493,7 @@ from .get_medical_drug_class import (
     GetMedicalDrugClassMedicalDrugClassLinks,
     GetMedicalDrugClassMedicalDrugClassLocation,
     GetMedicalDrugClassMedicalDrugClassOwner,
+    GetMedicalDrugClassMedicalDrugClassUser,
     GetMedicalDrugClassMedicalDrugClassWorkflow,
 )
 from .get_medical_guideline import (
@@ -1478,6 +1504,7 @@ from .get_medical_guideline import (
     GetMedicalGuidelineMedicalGuidelineLinks,
     GetMedicalGuidelineMedicalGuidelineLocation,
     GetMedicalGuidelineMedicalGuidelineOwner,
+    GetMedicalGuidelineMedicalGuidelineUser,
     GetMedicalGuidelineMedicalGuidelineWorkflow,
 )
 from .get_medical_indication import (
@@ -1488,6 +1515,7 @@ from .get_medical_indication import (
     GetMedicalIndicationMedicalIndicationLinks,
     GetMedicalIndicationMedicalIndicationLocation,
     GetMedicalIndicationMedicalIndicationOwner,
+    GetMedicalIndicationMedicalIndicationUser,
     GetMedicalIndicationMedicalIndicationWorkflow,
 )
 from .get_medical_procedure import (
@@ -1498,6 +1526,7 @@ from .get_medical_procedure import (
     GetMedicalProcedureMedicalProcedureLinks,
     GetMedicalProcedureMedicalProcedureLocation,
     GetMedicalProcedureMedicalProcedureOwner,
+    GetMedicalProcedureMedicalProcedureUser,
     GetMedicalProcedureMedicalProcedureWorkflow,
 )
 from .get_medical_study import (
@@ -1509,6 +1538,7 @@ from .get_medical_study import (
     GetMedicalStudyMedicalStudyLinks,
     GetMedicalStudyMedicalStudyLocation,
     GetMedicalStudyMedicalStudyOwner,
+    GetMedicalStudyMedicalStudyUser,
     GetMedicalStudyMedicalStudyWorkflow,
 )
 from .get_medical_test import (
@@ -1519,6 +1549,7 @@ from .get_medical_test import (
     GetMedicalTestMedicalTestLinks,
     GetMedicalTestMedicalTestLocation,
     GetMedicalTestMedicalTestOwner,
+    GetMedicalTestMedicalTestUser,
     GetMedicalTestMedicalTestWorkflow,
 )
 from .get_medical_therapy import (
@@ -1529,6 +1560,7 @@ from .get_medical_therapy import (
     GetMedicalTherapyMedicalTherapyLinks,
     GetMedicalTherapyMedicalTherapyLocation,
     GetMedicalTherapyMedicalTherapyOwner,
+    GetMedicalTherapyMedicalTherapyUser,
     GetMedicalTherapyMedicalTherapyWorkflow,
 )
 from .get_organization import (
@@ -1549,6 +1581,7 @@ from .get_organization import (
     GetOrganizationOrganizationOwner,
     GetOrganizationOrganizationParentOrganization,
     GetOrganizationOrganizationSubOrganizations,
+    GetOrganizationOrganizationUser,
     GetOrganizationOrganizationWorkflow,
 )
 from .get_person import (
@@ -1566,6 +1599,7 @@ from .get_person import (
     GetPersonPersonLocation,
     GetPersonPersonMemberOf,
     GetPersonPersonOwner,
+    GetPersonPersonUser,
     GetPersonPersonWorkflow,
     GetPersonPersonWorkLocation,
     GetPersonPersonWorksFor,
@@ -1575,6 +1609,7 @@ from .get_persona import (
     GetPersonaPersona,
     GetPersonaPersonaFacts,
     GetPersonaPersonaOwner,
+    GetPersonaPersonaUser,
 )
 from .get_place import (
     GetPlace,
@@ -1585,6 +1620,7 @@ from .get_place import (
     GetPlacePlaceLinks,
     GetPlacePlaceLocation,
     GetPlacePlaceOwner,
+    GetPlacePlaceUser,
     GetPlacePlaceWorkflow,
 )
 from .get_product import (
@@ -1596,6 +1632,7 @@ from .get_product import (
     GetProductProductLinks,
     GetProductProductLocation,
     GetProductProductOwner,
+    GetProductProductUser,
     GetProductProductWorkflow,
 )
 from .get_project import (
@@ -1617,6 +1654,7 @@ from .get_repo import (
     GetRepoRepoLinks,
     GetRepoRepoLocation,
     GetRepoRepoOwner,
+    GetRepoRepoUser,
     GetRepoRepoWorkflow,
 )
 from .get_share_point_consent_uri import (
@@ -1629,6 +1667,7 @@ from .get_skill import (
     GetSkillSkillArguments,
     GetSkillSkillCollections,
     GetSkillSkillOwner,
+    GetSkillSkillUser,
 )
 from .get_software import (
     GetSoftware,
@@ -1638,6 +1677,7 @@ from .get_software import (
     GetSoftwareSoftwareLinks,
     GetSoftwareSoftwareLocation,
     GetSoftwareSoftwareOwner,
+    GetSoftwareSoftwareUser,
     GetSoftwareSoftwareWorkflow,
 )
 from .get_specification import (
@@ -1665,6 +1705,7 @@ from .get_specification import (
     GetSpecificationSpecificationRevisionStrategy,
     GetSpecificationSpecificationStrategy,
     GetSpecificationSpecificationTwelveLabs,
+    GetSpecificationSpecificationUser,
     GetSpecificationSpecificationVoyage,
     GetSpecificationSpecificationXai,
 )
@@ -1770,6 +1811,7 @@ from .get_view import (
     GetViewViewFilterUsers,
     GetViewViewFilterWorkflows,
     GetViewViewOwner,
+    GetViewViewUser,
 )
 from .get_workflow import (
     GetWorkflow,
@@ -1839,6 +1881,7 @@ from .get_workflow import (
     GetWorkflowWorkflowStorageGateRules,
     GetWorkflowWorkflowStorageGateSpecification,
     GetWorkflowWorkflowStoragePolicy,
+    GetWorkflowWorkflowUser,
 )
 from .ingest_batch import (
     IngestBatch,
@@ -2534,6 +2577,7 @@ from .lookup_contents import (
     LookupContentsLookupContentsResultsPullRequestReviewers,
     LookupContentsLookupContentsResultsSegments,
     LookupContentsLookupContentsResultsTranscript,
+    LookupContentsLookupContentsResultsUser,
     LookupContentsLookupContentsResultsVideo,
     LookupContentsLookupContentsResultsWorkflow,
 )
@@ -6481,6 +6525,7 @@ __all__ = [
     "GetAgentAgentOwner",
     "GetAgentAgentSchedulePolicy",
     "GetAgentAgentSpecification",
+    "GetAgentAgentUser",
     "GetAlert",
     "GetAlertAlert",
     "GetAlertAlertFilter",
@@ -6531,6 +6576,7 @@ __all__ = [
     "GetAlertAlertPublishingQuiverImageSeed",
     "GetAlertAlertSchedulePolicy",
     "GetAlertAlertSummarySpecification",
+    "GetAlertAlertUser",
     "GetAlertAlertView",
     "GetBureau",
     "GetBureauBureau",
@@ -6539,11 +6585,13 @@ __all__ = [
     "GetCategory",
     "GetCategoryCategory",
     "GetCategoryCategoryFeeds",
+    "GetCategoryCategoryUser",
     "GetCollection",
     "GetCollectionCollection",
     "GetCollectionCollectionContents",
     "GetCollectionCollectionConversations",
     "GetCollectionCollectionOwner",
+    "GetCollectionCollectionUser",
     "GetConnector",
     "GetConnectorConnector",
     "GetConnectorConnectorAuthentication",
@@ -6561,6 +6609,7 @@ __all__ = [
     "GetConnectorConnectorIntegrationSlack",
     "GetConnectorConnectorIntegrationTwitter",
     "GetConnectorConnectorOwner",
+    "GetConnectorConnectorUser",
     "GetContent",
     "GetContentContent",
     "GetContentContentAddress",
@@ -6617,6 +6666,7 @@ __all__ = [
     "GetContentContentPullRequestReviewers",
     "GetContentContentSegments",
     "GetContentContentTranscript",
+    "GetContentContentUser",
     "GetContentContentVideo",
     "GetContentContentWorkflow",
     "GetConversation",
@@ -6697,6 +6747,7 @@ __all__ = [
     "GetConversationConversationSpecification",
     "GetConversationConversationTurns",
     "GetConversationConversationTurnsMessages",
+    "GetConversationConversationUser",
     "GetDesk",
     "GetDeskDesk",
     "GetDeskDeskAgents",
@@ -6705,6 +6756,7 @@ __all__ = [
     "GetEmotion",
     "GetEmotionEmotion",
     "GetEmotionEmotionFeeds",
+    "GetEmotionEmotionUser",
     "GetEvent",
     "GetEventEvent",
     "GetEventEventAddress",
@@ -6713,6 +6765,7 @@ __all__ = [
     "GetEventEventLinks",
     "GetEventEventLocation",
     "GetEventEventOwner",
+    "GetEventEventUser",
     "GetEventEventWorkflow",
     "GetFact",
     "GetFactFact",
@@ -6726,6 +6779,7 @@ __all__ = [
     "GetFactFactMentionsObservable",
     "GetFactFactOwner",
     "GetFactFactPersona",
+    "GetFactFactUser",
     "GetFeed",
     "GetFeedFeed",
     "GetFeedFeedAttio",
@@ -6851,6 +6905,7 @@ __all__ = [
     "GetFeedFeedSlackConnector",
     "GetFeedFeedTwitter",
     "GetFeedFeedTwitterConnector",
+    "GetFeedFeedUser",
     "GetFeedFeedWeb",
     "GetFeedFeedWorkflow",
     "GetFeedFeedYoutube",
@@ -6868,6 +6923,7 @@ __all__ = [
     "GetInvestmentFundInvestmentFundOrganizations",
     "GetInvestmentFundInvestmentFundOwner",
     "GetInvestmentFundInvestmentFundParentFund",
+    "GetInvestmentFundInvestmentFundUser",
     "GetInvestmentFundInvestmentFundWorkflow",
     "GetInvestmentInvestment",
     "GetInvestmentInvestmentFeeds",
@@ -6877,10 +6933,12 @@ __all__ = [
     "GetInvestmentInvestmentLocation",
     "GetInvestmentInvestmentOrganization",
     "GetInvestmentInvestmentOwner",
+    "GetInvestmentInvestmentUser",
     "GetInvestmentInvestmentWorkflow",
     "GetLabel",
     "GetLabelLabel",
     "GetLabelLabelFeeds",
+    "GetLabelLabelUser",
     "GetMedicalCondition",
     "GetMedicalConditionMedicalCondition",
     "GetMedicalConditionMedicalConditionFeeds",
@@ -6888,6 +6946,7 @@ __all__ = [
     "GetMedicalConditionMedicalConditionLinks",
     "GetMedicalConditionMedicalConditionLocation",
     "GetMedicalConditionMedicalConditionOwner",
+    "GetMedicalConditionMedicalConditionUser",
     "GetMedicalConditionMedicalConditionWorkflow",
     "GetMedicalContraindication",
     "GetMedicalContraindicationMedicalContraindication",
@@ -6896,6 +6955,7 @@ __all__ = [
     "GetMedicalContraindicationMedicalContraindicationLinks",
     "GetMedicalContraindicationMedicalContraindicationLocation",
     "GetMedicalContraindicationMedicalContraindicationOwner",
+    "GetMedicalContraindicationMedicalContraindicationUser",
     "GetMedicalContraindicationMedicalContraindicationWorkflow",
     "GetMedicalDevice",
     "GetMedicalDeviceMedicalDevice",
@@ -6904,6 +6964,7 @@ __all__ = [
     "GetMedicalDeviceMedicalDeviceLinks",
     "GetMedicalDeviceMedicalDeviceLocation",
     "GetMedicalDeviceMedicalDeviceOwner",
+    "GetMedicalDeviceMedicalDeviceUser",
     "GetMedicalDeviceMedicalDeviceWorkflow",
     "GetMedicalDrug",
     "GetMedicalDrugClass",
@@ -6913,6 +6974,7 @@ __all__ = [
     "GetMedicalDrugClassMedicalDrugClassLinks",
     "GetMedicalDrugClassMedicalDrugClassLocation",
     "GetMedicalDrugClassMedicalDrugClassOwner",
+    "GetMedicalDrugClassMedicalDrugClassUser",
     "GetMedicalDrugClassMedicalDrugClassWorkflow",
     "GetMedicalDrugMedicalDrug",
     "GetMedicalDrugMedicalDrugFeeds",
@@ -6920,6 +6982,7 @@ __all__ = [
     "GetMedicalDrugMedicalDrugLinks",
     "GetMedicalDrugMedicalDrugLocation",
     "GetMedicalDrugMedicalDrugOwner",
+    "GetMedicalDrugMedicalDrugUser",
     "GetMedicalDrugMedicalDrugWorkflow",
     "GetMedicalGuideline",
     "GetMedicalGuidelineMedicalGuideline",
@@ -6928,6 +6991,7 @@ __all__ = [
     "GetMedicalGuidelineMedicalGuidelineLinks",
     "GetMedicalGuidelineMedicalGuidelineLocation",
     "GetMedicalGuidelineMedicalGuidelineOwner",
+    "GetMedicalGuidelineMedicalGuidelineUser",
     "GetMedicalGuidelineMedicalGuidelineWorkflow",
     "GetMedicalIndication",
     "GetMedicalIndicationMedicalIndication",
@@ -6936,6 +7000,7 @@ __all__ = [
     "GetMedicalIndicationMedicalIndicationLinks",
     "GetMedicalIndicationMedicalIndicationLocation",
     "GetMedicalIndicationMedicalIndicationOwner",
+    "GetMedicalIndicationMedicalIndicationUser",
     "GetMedicalIndicationMedicalIndicationWorkflow",
     "GetMedicalProcedure",
     "GetMedicalProcedureMedicalProcedure",
@@ -6944,6 +7009,7 @@ __all__ = [
     "GetMedicalProcedureMedicalProcedureLinks",
     "GetMedicalProcedureMedicalProcedureLocation",
     "GetMedicalProcedureMedicalProcedureOwner",
+    "GetMedicalProcedureMedicalProcedureUser",
     "GetMedicalProcedureMedicalProcedureWorkflow",
     "GetMedicalStudy",
     "GetMedicalStudyMedicalStudy",
@@ -6953,6 +7019,7 @@ __all__ = [
     "GetMedicalStudyMedicalStudyLinks",
     "GetMedicalStudyMedicalStudyLocation",
     "GetMedicalStudyMedicalStudyOwner",
+    "GetMedicalStudyMedicalStudyUser",
     "GetMedicalStudyMedicalStudyWorkflow",
     "GetMedicalTest",
     "GetMedicalTestMedicalTest",
@@ -6961,6 +7028,7 @@ __all__ = [
     "GetMedicalTestMedicalTestLinks",
     "GetMedicalTestMedicalTestLocation",
     "GetMedicalTestMedicalTestOwner",
+    "GetMedicalTestMedicalTestUser",
     "GetMedicalTestMedicalTestWorkflow",
     "GetMedicalTherapy",
     "GetMedicalTherapyMedicalTherapy",
@@ -6969,6 +7037,7 @@ __all__ = [
     "GetMedicalTherapyMedicalTherapyLinks",
     "GetMedicalTherapyMedicalTherapyLocation",
     "GetMedicalTherapyMedicalTherapyOwner",
+    "GetMedicalTherapyMedicalTherapyUser",
     "GetMedicalTherapyMedicalTherapyWorkflow",
     "GetOrganization",
     "GetOrganizationOrganization",
@@ -6987,6 +7056,7 @@ __all__ = [
     "GetOrganizationOrganizationOwner",
     "GetOrganizationOrganizationParentOrganization",
     "GetOrganizationOrganizationSubOrganizations",
+    "GetOrganizationOrganizationUser",
     "GetOrganizationOrganizationWorkflow",
     "GetPerson",
     "GetPersonPerson",
@@ -7002,6 +7072,7 @@ __all__ = [
     "GetPersonPersonLocation",
     "GetPersonPersonMemberOf",
     "GetPersonPersonOwner",
+    "GetPersonPersonUser",
     "GetPersonPersonWorkLocation",
     "GetPersonPersonWorkflow",
     "GetPersonPersonWorksFor",
@@ -7009,6 +7080,7 @@ __all__ = [
     "GetPersonaPersona",
     "GetPersonaPersonaFacts",
     "GetPersonaPersonaOwner",
+    "GetPersonaPersonaUser",
     "GetPlace",
     "GetPlacePlace",
     "GetPlacePlaceAddress",
@@ -7017,6 +7089,7 @@ __all__ = [
     "GetPlacePlaceLinks",
     "GetPlacePlaceLocation",
     "GetPlacePlaceOwner",
+    "GetPlacePlaceUser",
     "GetPlacePlaceWorkflow",
     "GetProduct",
     "GetProductProduct",
@@ -7026,6 +7099,7 @@ __all__ = [
     "GetProductProductLinks",
     "GetProductProductLocation",
     "GetProductProductOwner",
+    "GetProductProductUser",
     "GetProductProductWorkflow",
     "GetProject",
     "GetProjectProject",
@@ -7043,6 +7117,7 @@ __all__ = [
     "GetRepoRepoLinks",
     "GetRepoRepoLocation",
     "GetRepoRepoOwner",
+    "GetRepoRepoUser",
     "GetRepoRepoWorkflow",
     "GetSharePointConsentUri",
     "GetSharePointConsentUriSharePointConsentUri",
@@ -7051,6 +7126,7 @@ __all__ = [
     "GetSkillSkillArguments",
     "GetSkillSkillCollections",
     "GetSkillSkillOwner",
+    "GetSkillSkillUser",
     "GetSoftware",
     "GetSoftwareSoftware",
     "GetSoftwareSoftwareFeeds",
@@ -7058,6 +7134,7 @@ __all__ = [
     "GetSoftwareSoftwareLinks",
     "GetSoftwareSoftwareLocation",
     "GetSoftwareSoftwareOwner",
+    "GetSoftwareSoftwareUser",
     "GetSoftwareSoftwareWorkflow",
     "GetSpecification",
     "GetSpecificationSpecification",
@@ -7083,6 +7160,7 @@ __all__ = [
     "GetSpecificationSpecificationRevisionStrategy",
     "GetSpecificationSpecificationStrategy",
     "GetSpecificationSpecificationTwelveLabs",
+    "GetSpecificationSpecificationUser",
     "GetSpecificationSpecificationVoyage",
     "GetSpecificationSpecificationXai",
     "GetUser",
@@ -7182,6 +7260,7 @@ __all__ = [
     "GetViewViewFilterUsers",
     "GetViewViewFilterWorkflows",
     "GetViewViewOwner",
+    "GetViewViewUser",
     "GetWorkflow",
     "GetWorkflowWorkflow",
     "GetWorkflowWorkflowActions",
@@ -7249,6 +7328,7 @@ __all__ = [
     "GetWorkflowWorkflowStorageGateRules",
     "GetWorkflowWorkflowStorageGateSpecification",
     "GetWorkflowWorkflowStoragePolicy",
+    "GetWorkflowWorkflowUser",
     "GitHubAuthenticationTypes",
     "GitHubCommitAuthenticationTypes",
     "GitHubCommitsFeedPropertiesInput",
@@ -7535,6 +7615,7 @@ __all__ = [
     "LookupContentsLookupContentsResultsPullRequestReviewers",
     "LookupContentsLookupContentsResultsSegments",
     "LookupContentsLookupContentsResultsTranscript",
+    "LookupContentsLookupContentsResultsUser",
     "LookupContentsLookupContentsResultsVideo",
     "LookupContentsLookupContentsResultsWorkflow",
     "LookupCredits",

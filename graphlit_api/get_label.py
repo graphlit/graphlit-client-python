@@ -15,9 +15,14 @@ class GetLabel(BaseModel):
 class GetLabelLabel(BaseModel):
     id: str
     name: str
+    user: Optional["GetLabelLabelUser"]
     description: Optional[str]
     creation_date: Any = Field(alias="creationDate")
     feeds: Optional[list[Optional["GetLabelLabelFeeds"]]]
+
+
+class GetLabelLabelUser(BaseModel):
+    id: str
 
 
 class GetLabelLabelFeeds(BaseModel):

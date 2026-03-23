@@ -8,6 +8,9 @@ query GetEvent($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     alternateNames
     uri
     description

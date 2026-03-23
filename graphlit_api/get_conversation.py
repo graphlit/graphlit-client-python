@@ -33,6 +33,7 @@ class GetConversationConversation(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetConversationConversationOwner"
     state: EntityState
+    user: Optional["GetConversationConversationUser"]
     correlation_id: Optional[str] = Field(alias="correlationId")
     type: Optional[ConversationTypes]
     messages: Optional[list[Optional["GetConversationConversationMessages"]]]
@@ -56,6 +57,10 @@ class GetConversationConversation(BaseModel):
 
 
 class GetConversationConversationOwner(BaseModel):
+    id: str
+
+
+class GetConversationConversationUser(BaseModel):
     id: str
 
 

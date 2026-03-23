@@ -1,6 +1,9 @@
 query GetFact($id: ID!, $correlationId: String) {
   fact(id: $id, correlationId: $correlationId) {
     id
+    user {
+      id
+    }
     creationDate
     owner {
       id

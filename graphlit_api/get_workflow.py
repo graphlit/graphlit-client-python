@@ -52,6 +52,7 @@ class GetWorkflowWorkflow(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetWorkflowWorkflowOwner"
     state: EntityState
+    user: Optional["GetWorkflowWorkflowUser"]
     ingestion: Optional["GetWorkflowWorkflowIngestion"]
     indexing: Optional["GetWorkflowWorkflowIndexing"]
     preparation: Optional["GetWorkflowWorkflowPreparation"]
@@ -63,6 +64,10 @@ class GetWorkflowWorkflow(BaseModel):
 
 
 class GetWorkflowWorkflowOwner(BaseModel):
+    id: str
+
+
+class GetWorkflowWorkflowUser(BaseModel):
     id: str
 
 

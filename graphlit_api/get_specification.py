@@ -53,6 +53,7 @@ class GetSpecificationSpecification(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetSpecificationSpecificationOwner"
     state: EntityState
+    user: Optional["GetSpecificationSpecificationUser"]
     type: Optional[SpecificationTypes]
     service_type: Optional[ModelServiceTypes] = Field(alias="serviceType")
     system_prompt: Optional[str] = Field(alias="systemPrompt")
@@ -102,6 +103,10 @@ class GetSpecificationSpecification(BaseModel):
 
 
 class GetSpecificationSpecificationOwner(BaseModel):
+    id: str
+
+
+class GetSpecificationSpecificationUser(BaseModel):
     id: str
 
 

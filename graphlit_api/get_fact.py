@@ -15,6 +15,7 @@ class GetFact(BaseModel):
 
 class GetFactFact(BaseModel):
     id: str
+    user: Optional["GetFactFactUser"]
     creation_date: Any = Field(alias="creationDate")
     owner: "GetFactFactOwner"
     state: EntityState
@@ -31,6 +32,10 @@ class GetFactFact(BaseModel):
     source_type: Optional[SourceTypes] = Field(alias="sourceType")
     category: Optional[FactCategory]
     confidence: Optional[float]
+
+
+class GetFactFactUser(BaseModel):
+    id: str
 
 
 class GetFactFactOwner(BaseModel):

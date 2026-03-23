@@ -20,6 +20,7 @@ class GetInvestmentInvestment(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetInvestmentInvestmentOwner"
     state: EntityState
+    user: Optional["GetInvestmentInvestmentUser"]
     alternate_names: Optional[list[Optional[str]]] = Field(alias="alternateNames")
     uri: Optional[Any]
     description: Optional[str]
@@ -50,6 +51,10 @@ class GetInvestmentInvestment(BaseModel):
 
 
 class GetInvestmentInvestmentOwner(BaseModel):
+    id: str
+
+
+class GetInvestmentInvestmentUser(BaseModel):
     id: str
 
 

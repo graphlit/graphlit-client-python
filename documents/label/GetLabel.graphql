@@ -2,6 +2,9 @@ query GetLabel($id: ID!, $correlationId: String) {
   label(id: $id, correlationId: $correlationId) {
     id
     name
+    user {
+      id
+    }
     description
     creationDate
     feeds {

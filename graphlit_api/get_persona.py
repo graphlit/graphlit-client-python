@@ -20,6 +20,7 @@ class GetPersonaPersona(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetPersonaPersonaOwner"
     state: EntityState
+    user: Optional["GetPersonaPersonaUser"]
     identifier: Optional[str]
     platform: Optional[str]
     display_name: Optional[str] = Field(alias="displayName")
@@ -30,6 +31,10 @@ class GetPersonaPersona(BaseModel):
 
 
 class GetPersonaPersonaOwner(BaseModel):
+    id: str
+
+
+class GetPersonaPersonaUser(BaseModel):
     id: str
 
 

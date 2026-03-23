@@ -8,6 +8,9 @@ query GetView($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     type
     filter {
       dateRange {

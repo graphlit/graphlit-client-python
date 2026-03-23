@@ -20,6 +20,7 @@ class GetSoftwareSoftware(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetSoftwareSoftwareOwner"
     state: EntityState
+    user: Optional["GetSoftwareSoftwareUser"]
     alternate_names: Optional[list[Optional[str]]] = Field(alias="alternateNames")
     uri: Optional[Any]
     description: Optional[str]
@@ -35,6 +36,10 @@ class GetSoftwareSoftware(BaseModel):
 
 
 class GetSoftwareSoftwareOwner(BaseModel):
+    id: str
+
+
+class GetSoftwareSoftwareUser(BaseModel):
     id: str
 
 

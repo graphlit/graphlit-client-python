@@ -8,6 +8,9 @@ query GetPersona($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     identifier
     platform
     displayName

@@ -27,6 +27,7 @@ class GetViewView(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetViewViewOwner"
     state: EntityState
+    user: Optional["GetViewViewUser"]
     type: Optional[ViewTypes]
     filter: Optional["GetViewViewFilter"]
     augmented_filter: Optional["GetViewViewAugmentedFilter"] = Field(
@@ -35,6 +36,10 @@ class GetViewView(BaseModel):
 
 
 class GetViewViewOwner(BaseModel):
+    id: str
+
+
+class GetViewViewUser(BaseModel):
     id: str
 
 

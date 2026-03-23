@@ -15,9 +15,14 @@ class GetCategory(BaseModel):
 class GetCategoryCategory(BaseModel):
     id: str
     name: str
+    user: Optional["GetCategoryCategoryUser"]
     description: Optional[str]
     creation_date: Any = Field(alias="creationDate")
     feeds: Optional[list[Optional["GetCategoryCategoryFeeds"]]]
+
+
+class GetCategoryCategoryUser(BaseModel):
+    id: str
 
 
 class GetCategoryCategoryFeeds(BaseModel):

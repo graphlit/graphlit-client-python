@@ -20,6 +20,7 @@ class GetOrganizationOrganization(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetOrganizationOrganizationOwner"
     state: EntityState
+    user: Optional["GetOrganizationOrganizationUser"]
     alternate_names: Optional[list[Optional[str]]] = Field(alias="alternateNames")
     uri: Optional[Any]
     description: Optional[str]
@@ -62,6 +63,10 @@ class GetOrganizationOrganization(BaseModel):
 
 
 class GetOrganizationOrganizationOwner(BaseModel):
+    id: str
+
+
+class GetOrganizationOrganizationUser(BaseModel):
     id: str
 
 

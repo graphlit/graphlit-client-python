@@ -20,6 +20,7 @@ class GetSkillSkill(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetSkillSkillOwner"
     state: EntityState
+    user: Optional["GetSkillSkillUser"]
     description: Optional[str]
     identifier: Optional[str]
     correlation_id: Optional[str] = Field(alias="correlationId")
@@ -30,6 +31,10 @@ class GetSkillSkill(BaseModel):
 
 
 class GetSkillSkillOwner(BaseModel):
+    id: str
+
+
+class GetSkillSkillUser(BaseModel):
     id: str
 
 

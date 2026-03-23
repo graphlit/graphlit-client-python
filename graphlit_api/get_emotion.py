@@ -15,9 +15,14 @@ class GetEmotion(BaseModel):
 class GetEmotionEmotion(BaseModel):
     id: str
     name: str
+    user: Optional["GetEmotionEmotionUser"]
     description: Optional[str]
     creation_date: Any = Field(alias="creationDate")
     feeds: Optional[list[Optional["GetEmotionEmotionFeeds"]]]
+
+
+class GetEmotionEmotionUser(BaseModel):
+    id: str
 
 
 class GetEmotionEmotionFeeds(BaseModel):

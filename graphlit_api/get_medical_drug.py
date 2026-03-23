@@ -20,6 +20,7 @@ class GetMedicalDrugMedicalDrug(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetMedicalDrugMedicalDrugOwner"
     state: EntityState
+    user: Optional["GetMedicalDrugMedicalDrugUser"]
     alternate_names: Optional[list[Optional[str]]] = Field(alias="alternateNames")
     uri: Optional[Any]
     description: Optional[str]
@@ -33,6 +34,10 @@ class GetMedicalDrugMedicalDrug(BaseModel):
 
 
 class GetMedicalDrugMedicalDrugOwner(BaseModel):
+    id: str
+
+
+class GetMedicalDrugMedicalDrugUser(BaseModel):
     id: str
 
 

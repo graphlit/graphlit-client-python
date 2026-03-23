@@ -84,6 +84,7 @@ class GetFeedFeed(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetFeedFeedOwner"
     state: EntityState
+    user: Optional["GetFeedFeedUser"]
     identifier: Optional[str]
     description: Optional[str]
     correlation_id: Optional[str] = Field(alias="correlationId")
@@ -137,6 +138,10 @@ class GetFeedFeed(BaseModel):
 
 
 class GetFeedFeedOwner(BaseModel):
+    id: str
+
+
+class GetFeedFeedUser(BaseModel):
     id: str
 
 

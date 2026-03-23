@@ -8,6 +8,9 @@ query GetCollection($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     type
     contents {
       id

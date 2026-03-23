@@ -20,6 +20,7 @@ class GetEventEvent(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetEventEventOwner"
     state: EntityState
+    user: Optional["GetEventEventUser"]
     alternate_names: Optional[list[Optional[str]]] = Field(alias="alternateNames")
     uri: Optional[Any]
     description: Optional[str]
@@ -48,6 +49,10 @@ class GetEventEvent(BaseModel):
 
 
 class GetEventEventOwner(BaseModel):
+    id: str
+
+
+class GetEventEventUser(BaseModel):
     id: str
 
 

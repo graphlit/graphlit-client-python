@@ -29,6 +29,7 @@ class GetConnectorConnector(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetConnectorConnectorOwner"
     state: EntityState
+    user: Optional["GetConnectorConnectorUser"]
     type: Optional[ConnectorTypes]
     authentication: Optional["GetConnectorConnectorAuthentication"]
     integration: Optional["GetConnectorConnectorIntegration"]
@@ -36,6 +37,10 @@ class GetConnectorConnector(BaseModel):
 
 
 class GetConnectorConnectorOwner(BaseModel):
+    id: str
+
+
+class GetConnectorConnectorUser(BaseModel):
     id: str
 
 

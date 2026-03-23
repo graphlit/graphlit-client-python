@@ -571,6 +571,9 @@ query GetAgent($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     correlationId
     type
     description
@@ -758,6 +761,9 @@ query GetAlert($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     correlationId
     type
     summaryPrompt
@@ -1377,6 +1383,9 @@ query GetCategory($id: ID!, $correlationId: String) {
   category(id: $id, correlationId: $correlationId) {
     id
     name
+    user {
+      id
+    }
     description
     creationDate
     feeds {
@@ -1532,6 +1541,9 @@ query GetCollection($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     type
     contents {
       id
@@ -1662,6 +1674,9 @@ query GetConnector($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     type
     authentication {
       type
@@ -2377,6 +2392,9 @@ query GetContent($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     originalDate
     finishedDate
     fileCreationDate
@@ -3287,6 +3305,9 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
         id
       }
       state
+      user {
+        id
+      }
       originalDate
       finishedDate
       fileCreationDate
@@ -6509,6 +6530,9 @@ query GetConversation($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     correlationId
     type
     messages {
@@ -9065,6 +9089,9 @@ query GetEmotion($id: ID!, $correlationId: String) {
   emotion(id: $id, correlationId: $correlationId) {
     id
     name
+    user {
+      id
+    }
     description
     creationDate
     feeds {
@@ -9161,6 +9188,9 @@ query GetEvent($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     alternateNames
     uri
     description
@@ -9454,6 +9484,9 @@ GET_FACT_GQL = """
 query GetFact($id: ID!, $correlationId: String) {
   fact(id: $id, correlationId: $correlationId) {
     id
+    user {
+      id
+    }
     creationDate
     owner {
       id
@@ -9761,6 +9794,9 @@ query GetFeed($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     identifier
     description
     correlationId
@@ -12015,6 +12051,9 @@ query GetInvestment($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     alternateNames
     uri
     description
@@ -12394,6 +12433,9 @@ query GetInvestmentFund($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     alternateNames
     uri
     description
@@ -12759,6 +12801,9 @@ query GetLabel($id: ID!, $correlationId: String) {
   label(id: $id, correlationId: $correlationId) {
     id
     name
+    user {
+      id
+    }
     description
     creationDate
     feeds {
@@ -12864,6 +12909,9 @@ query GetMedicalCondition($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     alternateNames
     uri
     description
@@ -13105,6 +13153,9 @@ query GetMedicalContraindication($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     alternateNames
     uri
     description
@@ -13346,6 +13397,9 @@ query GetMedicalDevice($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     alternateNames
     uri
     description
@@ -13587,6 +13641,9 @@ query GetMedicalDrug($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     alternateNames
     uri
     description
@@ -13828,6 +13885,9 @@ query GetMedicalDrugClass($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     alternateNames
     uri
     description
@@ -14069,6 +14129,9 @@ query GetMedicalGuideline($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     alternateNames
     uri
     description
@@ -14310,6 +14373,9 @@ query GetMedicalIndication($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     alternateNames
     uri
     description
@@ -14551,6 +14617,9 @@ query GetMedicalProcedure($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     alternateNames
     uri
     description
@@ -14792,6 +14861,9 @@ query GetMedicalStudy($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     alternateNames
     uri
     description
@@ -15054,6 +15126,9 @@ query GetMedicalTest($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     alternateNames
     uri
     description
@@ -15295,6 +15370,9 @@ query GetMedicalTherapy($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     alternateNames
     uri
     description
@@ -15663,6 +15741,9 @@ query GetOrganization($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     alternateNames
     uri
     description
@@ -16147,6 +16228,9 @@ query GetPerson($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     alternateNames
     uri
     description
@@ -16604,6 +16688,9 @@ query GetPersona($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     identifier
     platform
     displayName
@@ -16733,6 +16820,9 @@ query GetPlace($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     alternateNames
     uri
     description
@@ -17013,6 +17103,9 @@ query GetProduct($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     alternateNames
     uri
     description
@@ -17504,6 +17597,9 @@ query GetRepo($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     alternateNames
     uri
     description
@@ -17798,6 +17894,9 @@ query GetSkill($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     description
     identifier
     correlationId
@@ -17941,6 +18040,9 @@ query GetSoftware($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     alternateNames
     uri
     description
@@ -18187,6 +18289,9 @@ query GetSpecification($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     type
     serviceType
     systemPrompt
@@ -19498,6 +19603,9 @@ query GetView($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     type
     filter {
       dateRange {
@@ -20625,6 +20733,9 @@ query GetWorkflow($id: ID!, $correlationId: String) {
       id
     }
     state
+    user {
+      id
+    }
     ingestion {
       if {
         types

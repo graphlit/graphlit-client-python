@@ -22,6 +22,7 @@ class GetMedicalContraindicationMedicalContraindication(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetMedicalContraindicationMedicalContraindicationOwner"
     state: EntityState
+    user: Optional["GetMedicalContraindicationMedicalContraindicationUser"]
     alternate_names: Optional[list[Optional[str]]] = Field(alias="alternateNames")
     uri: Optional[Any]
     description: Optional[str]
@@ -41,6 +42,10 @@ class GetMedicalContraindicationMedicalContraindication(BaseModel):
 
 
 class GetMedicalContraindicationMedicalContraindicationOwner(BaseModel):
+    id: str
+
+
+class GetMedicalContraindicationMedicalContraindicationUser(BaseModel):
     id: str
 
 

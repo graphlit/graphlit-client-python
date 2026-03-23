@@ -43,6 +43,7 @@ class GetAlertAlert(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetAlertAlertOwner"
     state: EntityState
+    user: Optional["GetAlertAlertUser"]
     correlation_id: Optional[str] = Field(alias="correlationId")
     type: AlertTypes
     summary_prompt: Optional[str] = Field(alias="summaryPrompt")
@@ -64,6 +65,10 @@ class GetAlertAlert(BaseModel):
 
 
 class GetAlertAlertOwner(BaseModel):
+    id: str
+
+
+class GetAlertAlertUser(BaseModel):
     id: str
 
 

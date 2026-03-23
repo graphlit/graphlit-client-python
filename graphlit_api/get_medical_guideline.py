@@ -22,6 +22,7 @@ class GetMedicalGuidelineMedicalGuideline(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetMedicalGuidelineMedicalGuidelineOwner"
     state: EntityState
+    user: Optional["GetMedicalGuidelineMedicalGuidelineUser"]
     alternate_names: Optional[list[Optional[str]]] = Field(alias="alternateNames")
     uri: Optional[Any]
     description: Optional[str]
@@ -35,6 +36,10 @@ class GetMedicalGuidelineMedicalGuideline(BaseModel):
 
 
 class GetMedicalGuidelineMedicalGuidelineOwner(BaseModel):
+    id: str
+
+
+class GetMedicalGuidelineMedicalGuidelineUser(BaseModel):
     id: str
 
 

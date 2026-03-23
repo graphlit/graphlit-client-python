@@ -40,6 +40,7 @@ class GetContentContent(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetContentContentOwner"
     state: EntityState
+    user: Optional["GetContentContentUser"]
     original_date: Optional[Any] = Field(alias="originalDate")
     finished_date: Optional[Any] = Field(alias="finishedDate")
     file_creation_date: Optional[Any] = Field(alias="fileCreationDate")
@@ -116,6 +117,10 @@ class GetContentContent(BaseModel):
 
 
 class GetContentContentOwner(BaseModel):
+    id: str
+
+
+class GetContentContentUser(BaseModel):
     id: str
 
 

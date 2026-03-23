@@ -20,6 +20,7 @@ class GetProductProduct(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetProductProductOwner"
     state: EntityState
+    user: Optional["GetProductProductUser"]
     alternate_names: Optional[list[Optional[str]]] = Field(alias="alternateNames")
     uri: Optional[Any]
     description: Optional[str]
@@ -43,6 +44,10 @@ class GetProductProduct(BaseModel):
 
 
 class GetProductProductOwner(BaseModel):
+    id: str
+
+
+class GetProductProductUser(BaseModel):
     id: str
 
 

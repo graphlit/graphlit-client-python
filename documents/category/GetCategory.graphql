@@ -2,6 +2,9 @@ query GetCategory($id: ID!, $correlationId: String) {
   category(id: $id, correlationId: $correlationId) {
     id
     name
+    user {
+      id
+    }
     description
     creationDate
     feeds {

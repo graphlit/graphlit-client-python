@@ -20,6 +20,7 @@ class GetMedicalTestMedicalTest(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetMedicalTestMedicalTestOwner"
     state: EntityState
+    user: Optional["GetMedicalTestMedicalTestUser"]
     alternate_names: Optional[list[Optional[str]]] = Field(alias="alternateNames")
     uri: Optional[Any]
     description: Optional[str]
@@ -33,6 +34,10 @@ class GetMedicalTestMedicalTest(BaseModel):
 
 
 class GetMedicalTestMedicalTestOwner(BaseModel):
+    id: str
+
+
+class GetMedicalTestMedicalTestUser(BaseModel):
     id: str
 
 

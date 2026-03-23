@@ -20,6 +20,7 @@ class GetPlacePlace(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetPlacePlaceOwner"
     state: EntityState
+    user: Optional["GetPlacePlaceUser"]
     alternate_names: Optional[list[Optional[str]]] = Field(alias="alternateNames")
     uri: Optional[Any]
     description: Optional[str]
@@ -37,6 +38,10 @@ class GetPlacePlace(BaseModel):
 
 
 class GetPlacePlaceOwner(BaseModel):
+    id: str
+
+
+class GetPlacePlaceUser(BaseModel):
     id: str
 
 

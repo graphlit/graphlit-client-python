@@ -46,6 +46,7 @@ class LookupContentsLookupContentsResults(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "LookupContentsLookupContentsResultsOwner"
     state: EntityState
+    user: Optional["LookupContentsLookupContentsResultsUser"]
     original_date: Optional[Any] = Field(alias="originalDate")
     finished_date: Optional[Any] = Field(alias="finishedDate")
     file_creation_date: Optional[Any] = Field(alias="fileCreationDate")
@@ -126,6 +127,10 @@ class LookupContentsLookupContentsResults(BaseModel):
 
 
 class LookupContentsLookupContentsResultsOwner(BaseModel):
+    id: str
+
+
+class LookupContentsLookupContentsResultsUser(BaseModel):
     id: str
 
 
