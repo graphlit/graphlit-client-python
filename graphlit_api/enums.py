@@ -1612,6 +1612,7 @@ class AgentChannelTypes(str, Enum):
     SLACK = "SLACK"
     TEAMS = "TEAMS"
     DISCORD = "DISCORD"
+    MESSAGING = "MESSAGING"
 
 
 class AgentTypes(str, Enum):
