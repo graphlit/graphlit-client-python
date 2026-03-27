@@ -119,6 +119,18 @@ query GetFeed($id: ID!, $correlationId: String) {
           id
         }
       }
+      gitlab {
+        authenticationType
+        projectPath
+        branch
+        clientId
+        clientSecret
+        refreshToken
+        personalAccessToken
+        connector {
+          id
+        }
+      }
       readLimit
     }
     email {
@@ -194,6 +206,17 @@ query GetFeed($id: ID!, $correlationId: String) {
         uri
         repositoryOwner
         repositoryName
+        clientId
+        clientSecret
+        refreshToken
+        personalAccessToken
+        connector {
+          id
+        }
+      }
+      gitlab {
+        authenticationType
+        projectPath
         clientId
         clientSecret
         refreshToken
@@ -309,6 +332,19 @@ query GetFeed($id: ID!, $correlationId: String) {
         }
         authorizationId
       }
+      gitlab {
+        authenticationType
+        uri
+        projectPath
+        personalAccessToken
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
+        authorizationId
+      }
       linear {
         authenticationType
         key
@@ -330,6 +366,19 @@ query GetFeed($id: ID!, $correlationId: String) {
         uri
         repositoryOwner
         repositoryName
+        branch
+        clientId
+        clientSecret
+        refreshToken
+        personalAccessToken
+        connector {
+          id
+        }
+      }
+      gitlab {
+        authenticationType
+        projectPath
+        branch
         clientId
         clientSecret
         refreshToken
@@ -349,6 +398,18 @@ query GetFeed($id: ID!, $correlationId: String) {
         uri
         repositoryOwner
         repositoryName
+        clientId
+        clientSecret
+        refreshToken
+        personalAccessToken
+        connector {
+          id
+        }
+      }
+      gitlab {
+        authenticationType
+        projectPath
+        branch
         clientId
         clientSecret
         refreshToken

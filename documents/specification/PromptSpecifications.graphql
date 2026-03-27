@@ -122,6 +122,12 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
         id
         name
         arguments
+        startedAt
+        completedAt
+        durationMs
+        status
+        failedAt
+        firstStatusAt
       }
       tokens
       throughput

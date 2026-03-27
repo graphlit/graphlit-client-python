@@ -122,6 +122,12 @@ mutation Prompt($prompt: String, $mimeType: String, $data: String, $specificatio
         id
         name
         arguments
+        startedAt
+        completedAt
+        durationMs
+        status
+        failedAt
+        firstStatusAt
       }
       tokens
       throughput

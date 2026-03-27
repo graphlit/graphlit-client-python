@@ -118,6 +118,12 @@ mutation DescribeEncodedImage($prompt: String!, $mimeType: String!, $data: Strin
       id
       name
       arguments
+      startedAt
+      completedAt
+      durationMs
+      status
+      failedAt
+      firstStatusAt
     }
     tokens
     throughput

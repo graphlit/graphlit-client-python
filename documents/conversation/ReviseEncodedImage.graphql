@@ -122,6 +122,12 @@ mutation ReviseEncodedImage($prompt: String!, $mimeType: String!, $data: String!
         id
         name
         arguments
+        startedAt
+        completedAt
+        durationMs
+        status
+        failedAt
+        firstStatusAt
       }
       tokens
       throughput

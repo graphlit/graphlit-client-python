@@ -122,6 +122,12 @@ mutation AskGraphlit($prompt: String!, $type: SdkTypes, $id: ID, $specification:
         id
         name
         arguments
+        startedAt
+        completedAt
+        durationMs
+        status
+        failedAt
+        firstStatusAt
       }
       tokens
       throughput

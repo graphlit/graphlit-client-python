@@ -132,6 +132,12 @@ query GetConversation($id: ID!, $correlationId: String) {
         id
         name
         arguments
+        startedAt
+        completedAt
+        durationMs
+        status
+        failedAt
+        firstStatusAt
       }
       tokens
       throughput
@@ -275,6 +281,12 @@ query GetConversation($id: ID!, $correlationId: String) {
           id
           name
           arguments
+          startedAt
+          completedAt
+          durationMs
+          status
+          failedAt
+          firstStatusAt
         }
         tokens
         throughput

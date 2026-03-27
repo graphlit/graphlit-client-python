@@ -81,6 +81,9 @@ from .enums import (
     GitHubAuthenticationTypes,
     GitHubCommitAuthenticationTypes,
     GitHubPullRequestAuthenticationTypes,
+    GitLabAuthenticationTypes,
+    GitLabCommitAuthenticationTypes,
+    GitLabMergeRequestAuthenticationTypes,
     GoogleCalendarAuthenticationTypes,
     GoogleContactsAuthenticationTypes,
     GoogleDriveAuthenticationTypes,
@@ -186,6 +189,7 @@ from .enums import (
     SummarizationTypes,
     TimedPolicyRecurrenceTypes,
     TimeIntervalTypes,
+    ToolExecutionStatus,
     TrelloTypes,
     TwelveLabsEmbeddingOptions,
     TwelveLabsEmbeddingScopes,
@@ -416,6 +420,21 @@ class SlackChannelsInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class GitLabCommitsFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[GitLabCommitAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    project_path: Optional[str] = Field(alias="projectPath", default=None)
+    branch: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
     connector: Optional["EntityReferenceInput"] = None
 
 
@@ -834,6 +853,7 @@ class InitiativeFeedPropertiesInput(BaseModel):
     type: FeedServiceTypes
     jira: Optional["JiraEpicsFeedPropertiesInput"] = None
     github: Optional["GitHubMilestonesFeedPropertiesInput"] = None
+    gitlab: Optional["GitLabMilestonesFeedPropertiesInput"] = None
     linear: Optional["LinearInitiativesFeedPropertiesInput"] = None
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
@@ -1312,6 +1332,7 @@ class GoogleContactsCRMFeedPropertiesInput(BaseModel):
 
 class PullRequestFeedPropertiesUpdateInput(BaseModel):
     github: Optional["GitHubPullRequestsFeedPropertiesUpdateInput"] = None
+    gitlab: Optional["GitLabPullRequestsFeedPropertiesUpdateInput"] = None
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
@@ -2055,6 +2076,7 @@ class DistributionConnectorInput(BaseModel):
     )
     twitter: Optional["TwitterDistributionPropertiesInput"] = None
     github: Optional["GitHubDistributionPropertiesInput"] = None
+    gitlab: Optional["GitLabDistributionPropertiesInput"] = None
     attio_tasks: Optional["AttioTasksDistributionPropertiesInput"] = Field(
         alias="attioTasks", default=None
     )
@@ -2319,6 +2341,7 @@ class IssueFeedPropertiesUpdateInput(BaseModel):
     jira: Optional["AtlassianJiraFeedPropertiesUpdateInput"] = None
     linear: Optional["LinearFeedPropertiesUpdateInput"] = None
     github: Optional["GitHubIssuesFeedPropertiesUpdateInput"] = None
+    gitlab: Optional["GitLabIssuesFeedPropertiesUpdateInput"] = None
     intercom: Optional["IntercomTicketsFeedPropertiesUpdateInput"] = None
     zendesk: Optional["ZendeskTicketsFeedPropertiesUpdateInput"] = None
     trello: Optional["TrelloFeedPropertiesUpdateInput"] = None
@@ -2526,6 +2549,20 @@ class MistralModelPropertiesUpdateInput(BaseModel):
 class AsanaProjectsInput(BaseModel):
     personal_access_token: str = Field(alias="personalAccessToken")
     workspace_id: str = Field(alias="workspaceId")
+
+
+class GitLabIssuesFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[GitLabAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    project_path: str = Field(alias="projectPath")
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class RepoInput(BaseModel):
@@ -2812,6 +2849,7 @@ class ChannelConnectorInput(BaseModel):
 class PullRequestFeedPropertiesInput(BaseModel):
     type: FeedServiceTypes
     github: Optional["GitHubPullRequestsFeedPropertiesInput"] = None
+    gitlab: Optional["GitLabPullRequestsFeedPropertiesInput"] = None
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
@@ -3007,6 +3045,21 @@ class EventFacetInput(BaseModel):
     )
     time_offset: Optional[int] = Field(alias="timeOffset", default=None)
     facet: Optional[EventFacetTypes] = None
+
+
+class GitLabFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[GitLabAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    project_path: str = Field(alias="projectPath")
+    branch: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class AtlassianJiraFeedPropertiesUpdateInput(BaseModel):
@@ -3451,6 +3504,22 @@ class MedicalTherapyFacetInput(BaseModel):
     facet: Optional[MedicalTherapyFacetTypes] = None
 
 
+class GitLabMilestonesFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[GitLabAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    uri: Optional[str] = None
+    project_path: Optional[str] = Field(alias="projectPath", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+
+
 class MedicalDrugFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
@@ -3692,6 +3761,21 @@ class FHIREnrichmentPropertiesInput(BaseModel):
     endpoint: Optional[Any] = None
 
 
+class GitLabFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[GitLabAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    project_path: Optional[str] = Field(alias="projectPath", default=None)
+    branch: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    connector: Optional["EntityReferenceInput"] = None
+
+
 class MicrosoftCalendarsInput(BaseModel):
     authentication_type: Optional[MicrosoftCalendarAuthenticationTypes] = Field(
         alias="authenticationType", default=None
@@ -3705,6 +3789,7 @@ class MicrosoftCalendarsInput(BaseModel):
 class InitiativeFeedPropertiesUpdateInput(BaseModel):
     jira: Optional["JiraEpicsFeedPropertiesUpdateInput"] = None
     github: Optional["GitHubMilestonesFeedPropertiesUpdateInput"] = None
+    gitlab: Optional["GitLabMilestonesFeedPropertiesUpdateInput"] = None
     linear: Optional["LinearInitiativesFeedPropertiesUpdateInput"] = None
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
@@ -3835,6 +3920,7 @@ class EntityFeedPropertiesInput(BaseModel):
 class CommitFeedPropertiesInput(BaseModel):
     type: FeedServiceTypes
     github: Optional["GitHubCommitsFeedPropertiesInput"] = None
+    gitlab: Optional["GitLabCommitsFeedPropertiesInput"] = None
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
@@ -4560,6 +4646,22 @@ class LinkedInFeedPropertiesUpdateInput(BaseModel):
     include_comments: Optional[bool] = Field(alias="includeComments", default=None)
     max_comments: Optional[int] = Field(alias="maxComments", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class GitLabMilestonesFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[GitLabAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    uri: Optional[str] = None
+    project_path: Optional[str] = Field(alias="projectPath", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class AttioTasksFeedPropertiesInput(BaseModel):
@@ -5319,6 +5421,21 @@ class ObservationReferenceFilter(BaseModel):
     states: Optional[list[EntityState]] = None
 
 
+class GitLabCommitsFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[GitLabCommitAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    project_path: str = Field(alias="projectPath")
+    branch: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    connector: Optional["EntityReferenceInput"] = None
+
+
 class PromptStrategyInput(BaseModel):
     type: Optional[PromptStrategyTypes] = None
 
@@ -5413,6 +5530,12 @@ class ConversationToolCallInput(BaseModel):
     id: str
     name: str
     arguments: Optional[str] = None
+    started_at: Optional[Any] = Field(alias="startedAt", default=None)
+    completed_at: Optional[Any] = Field(alias="completedAt", default=None)
+    duration_ms: Optional[int] = Field(alias="durationMs", default=None)
+    status: Optional[ToolExecutionStatus] = None
+    failed_at: Optional[Any] = Field(alias="failedAt", default=None)
+    first_status_at: Optional[Any] = Field(alias="firstStatusAt", default=None)
 
 
 class BureauFilter(BaseModel):
@@ -5709,6 +5832,21 @@ class HRISFeedPropertiesInput(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
+class GitLabPullRequestsFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[GitLabMergeRequestAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    project_path: str = Field(alias="projectPath")
+    branch: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    connector: Optional["EntityReferenceInput"] = None
+
+
 class WebFeedPropertiesUpdateInput(BaseModel):
     uri: Optional[Any] = None
     allowed_paths: Optional[list[str]] = Field(alias="allowedPaths", default=None)
@@ -5906,6 +6044,7 @@ class SiteFeedPropertiesUpdateInput(BaseModel):
         alias="googleDrive", default=None
     )
     github: Optional["GitHubFeedPropertiesUpdateInput"] = None
+    gitlab: Optional["GitLabFeedPropertiesUpdateInput"] = None
     dropbox: Optional["DropboxFeedPropertiesUpdateInput"] = None
     box: Optional["BoxFeedPropertiesUpdateInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
@@ -6000,6 +6139,21 @@ class AzureDocumentPreparationPropertiesInput(BaseModel):
     endpoint: Optional[Any] = None
     key: Optional[str] = None
     version: Optional[AzureDocumentIntelligenceVersions] = None
+
+
+class GitLabPullRequestsFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[GitLabMergeRequestAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    project_path: Optional[str] = Field(alias="projectPath", default=None)
+    branch: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class MicrosoftCalendarDistributionPropertiesInput(BaseModel):
@@ -6147,6 +6301,17 @@ class ConversationStrategyInput(BaseModel):
     tool_budget_threshold: Optional[float] = Field(
         alias="toolBudgetThreshold", default=None
     )
+
+
+class GitLabIssuesFeedPropertiesUpdateInput(BaseModel):
+    project_path: Optional[str] = Field(alias="projectPath", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class ConversationFilter(BaseModel):
@@ -6302,6 +6467,7 @@ class SiteFeedPropertiesInput(BaseModel):
         alias="googleDrive", default=None
     )
     github: Optional["GitHubFeedPropertiesInput"] = None
+    gitlab: Optional["GitLabFeedPropertiesInput"] = None
     dropbox: Optional["DropboxFeedPropertiesInput"] = None
     box: Optional["BoxFeedPropertiesInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
@@ -7128,6 +7294,14 @@ class ResearchFeedPropertiesUpdateInput(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
+class GitLabDistributionPropertiesInput(BaseModel):
+    project_path: str = Field(alias="projectPath")
+    title: Optional[str] = None
+    labels: Optional[list[str]] = None
+    assignees: Optional[list[str]] = None
+    milestone: Optional[int] = None
+
+
 class SalesforceFeedPropertiesUpdateInput(BaseModel):
     authentication_type: Optional[SalesforceFeedAuthenticationTypes] = Field(
         alias="authenticationType", default=None
@@ -7194,6 +7368,7 @@ class IssueFeedPropertiesInput(BaseModel):
     jira: Optional["AtlassianJiraFeedPropertiesInput"] = None
     linear: Optional["LinearFeedPropertiesInput"] = None
     github: Optional["GitHubIssuesFeedPropertiesInput"] = None
+    gitlab: Optional["GitLabIssuesFeedPropertiesInput"] = None
     intercom: Optional["IntercomTicketsFeedPropertiesInput"] = None
     zendesk: Optional["ZendeskTicketsFeedPropertiesInput"] = None
     trello: Optional["TrelloFeedPropertiesInput"] = None
@@ -7301,6 +7476,7 @@ class ParallelPublishingPropertiesInput(BaseModel):
 
 class CommitFeedPropertiesUpdateInput(BaseModel):
     github: Optional["GitHubCommitsFeedPropertiesUpdateInput"] = None
+    gitlab: Optional["GitLabCommitsFeedPropertiesUpdateInput"] = None
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
@@ -7390,6 +7566,7 @@ PlaceInput.model_rebuild()
 SkillInput.model_rebuild()
 InvestmentFilter.model_rebuild()
 SlackChannelsInput.model_rebuild()
+GitLabCommitsFeedPropertiesUpdateInput.model_rebuild()
 SkillFilter.model_rebuild()
 AttioMeetingPropertiesUpdateInput.model_rebuild()
 PersonUpdateInput.model_rebuild()
@@ -7473,6 +7650,7 @@ SharePointFoldersInput.model_rebuild()
 ModelTextExtractionPropertiesInput.model_rebuild()
 ClassificationWorkflowJobInput.model_rebuild()
 RepoFilter.model_rebuild()
+GitLabIssuesFeedPropertiesInput.model_rebuild()
 RepoInput.model_rebuild()
 IntercomFeedPropertiesInput.model_rebuild()
 ConnectorUpdateInput.model_rebuild()
@@ -7498,6 +7676,7 @@ MedicalProcedureFilter.model_rebuild()
 SalesforceTasksFeedPropertiesInput.model_rebuild()
 GoogleDriveDrivesInput.model_rebuild()
 HubSpotConversationsFeedPropertiesInput.model_rebuild()
+GitLabFeedPropertiesInput.model_rebuild()
 AtlassianJiraFeedPropertiesUpdateInput.model_rebuild()
 ObservationCriteriaInput.model_rebuild()
 InvestmentUpdateInput.model_rebuild()
@@ -7519,6 +7698,7 @@ LinearInitiativesFeedPropertiesUpdateInput.model_rebuild()
 DropboxFeedPropertiesInput.model_rebuild()
 ZendeskFeedPropertiesInput.model_rebuild()
 LinearInitiativesFeedPropertiesInput.model_rebuild()
+GitLabMilestonesFeedPropertiesUpdateInput.model_rebuild()
 MedicalDrugFilter.model_rebuild()
 InvestmentInput.model_rebuild()
 ContentInput.model_rebuild()
@@ -7528,6 +7708,7 @@ DeskFilter.model_rebuild()
 MeetingFeedPropertiesUpdateInput.model_rebuild()
 EntityResolutionStrategyInput.model_rebuild()
 SoftwareUpdateInput.model_rebuild()
+GitLabFeedPropertiesUpdateInput.model_rebuild()
 MicrosoftCalendarsInput.model_rebuild()
 InitiativeFeedPropertiesUpdateInput.model_rebuild()
 MedicalDrugClassFilter.model_rebuild()
@@ -7573,6 +7754,7 @@ ContentFilterLevel.model_rebuild()
 H3Filter.model_rebuild()
 MedicalDeviceUpdateInput.model_rebuild()
 MicrosoftCalendarEventsInput.model_rebuild()
+GitLabMilestonesFeedPropertiesInput.model_rebuild()
 AttioTasksFeedPropertiesInput.model_rebuild()
 MicrosoftContactsCRMFeedPropertiesInput.model_rebuild()
 SharePointFeedPropertiesUpdateInput.model_rebuild()
@@ -7608,6 +7790,7 @@ GoogleCalendarFeedPropertiesUpdateInput.model_rebuild()
 SalesforceCRMFeedPropertiesUpdateInput.model_rebuild()
 PointCloudMetadataInput.model_rebuild()
 ObservationReferenceFilter.model_rebuild()
+GitLabCommitsFeedPropertiesInput.model_rebuild()
 ConversationMessageInput.model_rebuild()
 GitHubCommitsFeedPropertiesInput.model_rebuild()
 HubSpotCRMFeedPropertiesUpdateInput.model_rebuild()
@@ -7629,6 +7812,7 @@ GoogleVideoPublishingPropertiesInput.model_rebuild()
 SearchFeedPropertiesInput.model_rebuild()
 MedicalDrugClassInput.model_rebuild()
 HRISFeedPropertiesInput.model_rebuild()
+GitLabPullRequestsFeedPropertiesInput.model_rebuild()
 HubSpotMeetingPropertiesUpdateInput.model_rebuild()
 MedicalTherapyFilter.model_rebuild()
 GraphFilter.model_rebuild()
@@ -7640,11 +7824,13 @@ SiteFeedPropertiesUpdateInput.model_rebuild()
 ContentUpdateInput.model_rebuild()
 EmotionFilter.model_rebuild()
 SoftwareInput.model_rebuild()
+GitLabPullRequestsFeedPropertiesUpdateInput.model_rebuild()
 GoogleCalendarFeedPropertiesInput.model_rebuild()
 CategoryFilter.model_rebuild()
 GeometryMetadataInput.model_rebuild()
 MeetingFeedPropertiesInput.model_rebuild()
 ProductInput.model_rebuild()
+GitLabIssuesFeedPropertiesUpdateInput.model_rebuild()
 ConversationFilter.model_rebuild()
 InvestmentFundFilter.model_rebuild()
 GoogleContactsCRMFeedPropertiesUpdateInput.model_rebuild()

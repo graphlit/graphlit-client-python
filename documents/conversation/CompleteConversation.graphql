@@ -122,6 +122,12 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
         id
         name
         arguments
+        startedAt
+        completedAt
+        durationMs
+        status
+        failedAt
+        firstStatusAt
       }
       tokens
       throughput
@@ -316,6 +322,12 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
           id
           name
           arguments
+          startedAt
+          completedAt
+          durationMs
+          status
+          failedAt
+          firstStatusAt
         }
         tokens
         throughput

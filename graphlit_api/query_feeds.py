@@ -30,6 +30,9 @@ from .enums import (
     GitHubAuthenticationTypes,
     GitHubCommitAuthenticationTypes,
     GitHubPullRequestAuthenticationTypes,
+    GitLabAuthenticationTypes,
+    GitLabCommitAuthenticationTypes,
+    GitLabMergeRequestAuthenticationTypes,
     GoogleCalendarAuthenticationTypes,
     GoogleContactsAuthenticationTypes,
     GoogleDriveAuthenticationTypes,
@@ -171,6 +174,7 @@ class QueryFeedsFeedsResultsSite(BaseModel):
     dropbox: Optional["QueryFeedsFeedsResultsSiteDropbox"]
     box: Optional["QueryFeedsFeedsResultsSiteBox"]
     github: Optional["QueryFeedsFeedsResultsSiteGithub"]
+    gitlab: Optional["QueryFeedsFeedsResultsSiteGitlab"]
     read_limit: Optional[int] = Field(alias="readLimit")
 
 
@@ -305,6 +309,23 @@ class QueryFeedsFeedsResultsSiteGithubConnector(BaseModel):
     id: str
 
 
+class QueryFeedsFeedsResultsSiteGitlab(BaseModel):
+    authentication_type: Optional[GitLabAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    project_path: str = Field(alias="projectPath")
+    branch: Optional[str]
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    personal_access_token: Optional[str] = Field(alias="personalAccessToken")
+    connector: Optional["QueryFeedsFeedsResultsSiteGitlabConnector"]
+
+
+class QueryFeedsFeedsResultsSiteGitlabConnector(BaseModel):
+    id: str
+
+
 class QueryFeedsFeedsResultsEmail(BaseModel):
     type: FeedServiceTypes
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
@@ -363,6 +384,7 @@ class QueryFeedsFeedsResultsIssue(BaseModel):
     jira: Optional["QueryFeedsFeedsResultsIssueJira"]
     linear: Optional["QueryFeedsFeedsResultsIssueLinear"]
     github: Optional["QueryFeedsFeedsResultsIssueGithub"]
+    gitlab: Optional["QueryFeedsFeedsResultsIssueGitlab"]
     intercom: Optional["QueryFeedsFeedsResultsIssueIntercom"]
     zendesk: Optional["QueryFeedsFeedsResultsIssueZendesk"]
     trello: Optional["QueryFeedsFeedsResultsIssueTrello"]
@@ -428,6 +450,22 @@ class QueryFeedsFeedsResultsIssueGithub(BaseModel):
 
 
 class QueryFeedsFeedsResultsIssueGithubConnector(BaseModel):
+    id: str
+
+
+class QueryFeedsFeedsResultsIssueGitlab(BaseModel):
+    authentication_type: Optional[GitLabAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    project_path: str = Field(alias="projectPath")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    personal_access_token: Optional[str] = Field(alias="personalAccessToken")
+    connector: Optional["QueryFeedsFeedsResultsIssueGitlabConnector"]
+
+
+class QueryFeedsFeedsResultsIssueGitlabConnector(BaseModel):
     id: str
 
 
@@ -538,6 +576,7 @@ class QueryFeedsFeedsResultsInitiative(BaseModel):
     type: FeedServiceTypes
     jira: Optional["QueryFeedsFeedsResultsInitiativeJira"]
     github: Optional["QueryFeedsFeedsResultsInitiativeGithub"]
+    gitlab: Optional["QueryFeedsFeedsResultsInitiativeGitlab"]
     linear: Optional["QueryFeedsFeedsResultsInitiativeLinear"]
     before_date: Optional[Any] = Field(alias="beforeDate")
     after_date: Optional[Any] = Field(alias="afterDate")
@@ -583,6 +622,24 @@ class QueryFeedsFeedsResultsInitiativeGithubConnector(BaseModel):
     id: str
 
 
+class QueryFeedsFeedsResultsInitiativeGitlab(BaseModel):
+    authentication_type: Optional[GitLabAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    uri: Optional[str]
+    project_path: Optional[str] = Field(alias="projectPath")
+    personal_access_token: Optional[str] = Field(alias="personalAccessToken")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["QueryFeedsFeedsResultsInitiativeGitlabConnector"]
+    authorization_id: Optional[str] = Field(alias="authorizationId")
+
+
+class QueryFeedsFeedsResultsInitiativeGitlabConnector(BaseModel):
+    id: str
+
+
 class QueryFeedsFeedsResultsInitiativeLinear(BaseModel):
     authentication_type: Optional[LinearAuthenticationTypes] = Field(
         alias="authenticationType"
@@ -601,6 +658,7 @@ class QueryFeedsFeedsResultsInitiativeLinearConnector(BaseModel):
 class QueryFeedsFeedsResultsCommit(BaseModel):
     type: FeedServiceTypes
     github: Optional["QueryFeedsFeedsResultsCommitGithub"]
+    gitlab: Optional["QueryFeedsFeedsResultsCommitGitlab"]
     before_date: Optional[Any] = Field(alias="beforeDate")
     after_date: Optional[Any] = Field(alias="afterDate")
     read_limit: Optional[int] = Field(alias="readLimit")
@@ -613,6 +671,7 @@ class QueryFeedsFeedsResultsCommitGithub(BaseModel):
     uri: Optional[Any]
     repository_owner: str = Field(alias="repositoryOwner")
     repository_name: str = Field(alias="repositoryName")
+    branch: Optional[str]
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
@@ -624,9 +683,27 @@ class QueryFeedsFeedsResultsCommitGithubConnector(BaseModel):
     id: str
 
 
+class QueryFeedsFeedsResultsCommitGitlab(BaseModel):
+    authentication_type: Optional[GitLabCommitAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    project_path: str = Field(alias="projectPath")
+    branch: Optional[str]
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    personal_access_token: Optional[str] = Field(alias="personalAccessToken")
+    connector: Optional["QueryFeedsFeedsResultsCommitGitlabConnector"]
+
+
+class QueryFeedsFeedsResultsCommitGitlabConnector(BaseModel):
+    id: str
+
+
 class QueryFeedsFeedsResultsPullRequest(BaseModel):
     type: FeedServiceTypes
     github: Optional["QueryFeedsFeedsResultsPullRequestGithub"]
+    gitlab: Optional["QueryFeedsFeedsResultsPullRequestGitlab"]
     before_date: Optional[Any] = Field(alias="beforeDate")
     after_date: Optional[Any] = Field(alias="afterDate")
     read_limit: Optional[int] = Field(alias="readLimit")
@@ -647,6 +724,23 @@ class QueryFeedsFeedsResultsPullRequestGithub(BaseModel):
 
 
 class QueryFeedsFeedsResultsPullRequestGithubConnector(BaseModel):
+    id: str
+
+
+class QueryFeedsFeedsResultsPullRequestGitlab(BaseModel):
+    authentication_type: Optional[GitLabMergeRequestAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    project_path: str = Field(alias="projectPath")
+    branch: Optional[str]
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    personal_access_token: Optional[str] = Field(alias="personalAccessToken")
+    connector: Optional["QueryFeedsFeedsResultsPullRequestGitlabConnector"]
+
+
+class QueryFeedsFeedsResultsPullRequestGitlabConnector(BaseModel):
     id: str
 
 
@@ -1286,6 +1380,7 @@ QueryFeedsFeedsResultsSiteGoogleDrive.model_rebuild()
 QueryFeedsFeedsResultsSiteDropbox.model_rebuild()
 QueryFeedsFeedsResultsSiteBox.model_rebuild()
 QueryFeedsFeedsResultsSiteGithub.model_rebuild()
+QueryFeedsFeedsResultsSiteGitlab.model_rebuild()
 QueryFeedsFeedsResultsEmail.model_rebuild()
 QueryFeedsFeedsResultsEmailGoogle.model_rebuild()
 QueryFeedsFeedsResultsEmailMicrosoft.model_rebuild()
@@ -1293,6 +1388,7 @@ QueryFeedsFeedsResultsIssue.model_rebuild()
 QueryFeedsFeedsResultsIssueJira.model_rebuild()
 QueryFeedsFeedsResultsIssueLinear.model_rebuild()
 QueryFeedsFeedsResultsIssueGithub.model_rebuild()
+QueryFeedsFeedsResultsIssueGitlab.model_rebuild()
 QueryFeedsFeedsResultsIssueIntercom.model_rebuild()
 QueryFeedsFeedsResultsIssueZendesk.model_rebuild()
 QueryFeedsFeedsResultsIssueAttio.model_rebuild()
@@ -1301,11 +1397,14 @@ QueryFeedsFeedsResultsIssueHubSpot.model_rebuild()
 QueryFeedsFeedsResultsInitiative.model_rebuild()
 QueryFeedsFeedsResultsInitiativeJira.model_rebuild()
 QueryFeedsFeedsResultsInitiativeGithub.model_rebuild()
+QueryFeedsFeedsResultsInitiativeGitlab.model_rebuild()
 QueryFeedsFeedsResultsInitiativeLinear.model_rebuild()
 QueryFeedsFeedsResultsCommit.model_rebuild()
 QueryFeedsFeedsResultsCommitGithub.model_rebuild()
+QueryFeedsFeedsResultsCommitGitlab.model_rebuild()
 QueryFeedsFeedsResultsPullRequest.model_rebuild()
 QueryFeedsFeedsResultsPullRequestGithub.model_rebuild()
+QueryFeedsFeedsResultsPullRequestGitlab.model_rebuild()
 QueryFeedsFeedsResultsCrm.model_rebuild()
 QueryFeedsFeedsResultsCrmAttio.model_rebuild()
 QueryFeedsFeedsResultsCrmGoogleContacts.model_rebuild()

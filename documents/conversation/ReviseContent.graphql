@@ -122,6 +122,12 @@ mutation ReviseContent($prompt: String!, $content: EntityReferenceInput!, $id: I
         id
         name
         arguments
+        startedAt
+        completedAt
+        durationMs
+        status
+        failedAt
+        firstStatusAt
       }
       tokens
       throughput

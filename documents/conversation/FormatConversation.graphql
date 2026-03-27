@@ -122,6 +122,12 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
         id
         name
         arguments
+        startedAt
+        completedAt
+        durationMs
+        status
+        failedAt
+        firstStatusAt
       }
       tokens
       throughput
@@ -316,6 +322,12 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
           id
           name
           arguments
+          startedAt
+          completedAt
+          durationMs
+          status
+          failedAt
+          firstStatusAt
         }
         tokens
         throughput

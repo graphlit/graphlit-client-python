@@ -306,6 +306,11 @@ class MicrosoftTeamsAuthenticationTypes(str, Enum):
     CONNECTOR = "CONNECTOR"
 
 
+class ToolExecutionStatus(str, Enum):
+    COMPLETED = "COMPLETED"
+    FAILED = "FAILED"
+
+
 class AuthenticationServiceTypes(str, Enum):
     AUTH0 = "AUTH0"
     MICROSOFT_GRAPH = "MICROSOFT_GRAPH"
@@ -321,6 +326,12 @@ class RevisionStrategyTypes(str, Enum):
     REVISE = "REVISE"
     CUSTOM = "CUSTOM"
     NONE = "NONE"
+
+
+class GitLabMergeRequestAuthenticationTypes(str, Enum):
+    PERSONAL_ACCESS_TOKEN = "PERSONAL_ACCESS_TOKEN"
+    O_AUTH = "O_AUTH"
+    CONNECTOR = "CONNECTOR"
 
 
 class DeepseekModels(str, Enum):
@@ -848,6 +859,7 @@ class DistributionServiceTypes(str, Enum):
     MICROSOFT_TEAMS = "MICROSOFT_TEAMS"
     TWITTER = "TWITTER"
     GIT_HUB = "GIT_HUB"
+    GIT_LAB = "GIT_LAB"
     ATTIO_TASKS = "ATTIO_TASKS"
 
 
@@ -1350,9 +1362,13 @@ class FeedServiceTypes(str, Enum):
     TRELLO = "TRELLO"
     LINEAR = "LINEAR"
     GIT_HUB_ISSUES = "GIT_HUB_ISSUES"
+    GIT_LAB_ISSUES = "GIT_LAB_ISSUES"
     GIT_HUB_PULL_REQUESTS = "GIT_HUB_PULL_REQUESTS"
+    GIT_LAB_MERGE_REQUESTS = "GIT_LAB_MERGE_REQUESTS"
     GIT_HUB_COMMITS = "GIT_HUB_COMMITS"
+    GIT_LAB_COMMITS = "GIT_LAB_COMMITS"
     GIT_HUB = "GIT_HUB"
+    GIT_LAB = "GIT_LAB"
     INTERCOM_ARTICLES = "INTERCOM_ARTICLES"
     ZENDESK_ARTICLES = "ZENDESK_ARTICLES"
     INTERCOM_TICKETS = "INTERCOM_TICKETS"
@@ -1388,6 +1404,7 @@ class FeedServiceTypes(str, Enum):
     INTERCOM_CONVERSATIONS = "INTERCOM_CONVERSATIONS"
     JIRA_EPICS = "JIRA_EPICS"
     GIT_HUB_MILESTONES = "GIT_HUB_MILESTONES"
+    GIT_LAB_MILESTONES = "GIT_LAB_MILESTONES"
     LINEAR_INITIATIVES = "LINEAR_INITIATIVES"
     PRODUCTLANE_THREADS = "PRODUCTLANE_THREADS"
     PRODUCTLANE_ISSUES = "PRODUCTLANE_ISSUES"
@@ -1690,6 +1707,7 @@ class OAuthProviders(str, Enum):
     GOOGLE = "GOOGLE"
     MICROSOFT = "MICROSOFT"
     GIT_HUB = "GIT_HUB"
+    GIT_LAB = "GIT_LAB"
     SLACK = "SLACK"
     HUB_SPOT = "HUB_SPOT"
     NOTION = "NOTION"
@@ -1801,6 +1819,12 @@ class EntityEnrichmentServiceTypes(str, Enum):
     WATERFALL = "WATERFALL"
 
 
+class GitLabCommitAuthenticationTypes(str, Enum):
+    PERSONAL_ACCESS_TOKEN = "PERSONAL_ACCESS_TOKEN"
+    O_AUTH = "O_AUTH"
+    CONNECTOR = "CONNECTOR"
+
+
 class DeviceTypes(str, Enum):
     DRONE = "DRONE"
     ROBOT = "ROBOT"
@@ -1887,6 +1911,7 @@ class FeedConnectorTypes(str, Enum):
     ATLASSIAN = "ATLASSIAN"
     LINEAR = "LINEAR"
     GIT_HUB = "GIT_HUB"
+    GIT_LAB = "GIT_LAB"
     INTERCOM = "INTERCOM"
     ZENDESK = "ZENDESK"
     GOOGLE_CALENDAR = "GOOGLE_CALENDAR"
@@ -1948,3 +1973,9 @@ class XAIModels(str, Enum):
     GROK_3 = "GROK_3"
     GROK_3_MINI = "GROK_3_MINI"
     CUSTOM = "CUSTOM"
+
+
+class GitLabAuthenticationTypes(str, Enum):
+    PERSONAL_ACCESS_TOKEN = "PERSONAL_ACCESS_TOKEN"
+    O_AUTH = "O_AUTH"
+    CONNECTOR = "CONNECTOR"

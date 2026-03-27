@@ -18,6 +18,7 @@ from .enums import (
     ModelServiceTypes,
     ObservableTypes,
     OrientationTypes,
+    ToolExecutionStatus,
 )
 
 
@@ -204,6 +205,12 @@ class ContinueConversationContinueConversationMessageToolCalls(BaseModel):
     id: str
     name: str
     arguments: str
+    started_at: Optional[Any] = Field(alias="startedAt")
+    completed_at: Optional[Any] = Field(alias="completedAt")
+    duration_ms: Optional[int] = Field(alias="durationMs")
+    status: Optional[ToolExecutionStatus]
+    failed_at: Optional[Any] = Field(alias="failedAt")
+    first_status_at: Optional[Any] = Field(alias="firstStatusAt")
 
 
 class ContinueConversationContinueConversationMessageArtifacts(BaseModel):
@@ -469,6 +476,12 @@ class ContinueConversationContinueConversationDetailsMessagesToolCalls(BaseModel
     id: str
     name: str
     arguments: str
+    started_at: Optional[Any] = Field(alias="startedAt")
+    completed_at: Optional[Any] = Field(alias="completedAt")
+    duration_ms: Optional[int] = Field(alias="durationMs")
+    status: Optional[ToolExecutionStatus]
+    failed_at: Optional[Any] = Field(alias="failedAt")
+    first_status_at: Optional[Any] = Field(alias="firstStatusAt")
 
 
 class ContinueConversationContinueConversationDetailsMessagesArtifacts(BaseModel):

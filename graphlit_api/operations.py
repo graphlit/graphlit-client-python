@@ -2032,6 +2032,12 @@ mutation DescribeEncodedImage($prompt: String!, $mimeType: String!, $data: Strin
       id
       name
       arguments
+      startedAt
+      completedAt
+      durationMs
+      status
+      failedAt
+      firstStatusAt
     }
     tokens
     throughput
@@ -2182,6 +2188,12 @@ mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityRefer
       id
       name
       arguments
+      startedAt
+      completedAt
+      durationMs
+      status
+      failedAt
+      firstStatusAt
     }
     tokens
     throughput
@@ -5350,6 +5362,12 @@ mutation AskGraphlit($prompt: String!, $type: SdkTypes, $id: ID, $specification:
         id
         name
         arguments
+        startedAt
+        completedAt
+        durationMs
+        status
+        failedAt
+        firstStatusAt
       }
       tokens
       throughput
@@ -5543,6 +5561,12 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
         id
         name
         arguments
+        startedAt
+        completedAt
+        durationMs
+        status
+        failedAt
+        firstStatusAt
       }
       tokens
       throughput
@@ -5737,6 +5761,12 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
           id
           name
           arguments
+          startedAt
+          completedAt
+          durationMs
+          status
+          failedAt
+          firstStatusAt
         }
         tokens
         throughput
@@ -5892,6 +5922,12 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
         id
         name
         arguments
+        startedAt
+        completedAt
+        durationMs
+        status
+        failedAt
+        firstStatusAt
       }
       tokens
       throughput
@@ -6086,6 +6122,12 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
           id
           name
           arguments
+          startedAt
+          completedAt
+          durationMs
+          status
+          failedAt
+          firstStatusAt
         }
         tokens
         throughput
@@ -6299,6 +6341,12 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
         id
         name
         arguments
+        startedAt
+        completedAt
+        durationMs
+        status
+        failedAt
+        firstStatusAt
       }
       tokens
       throughput
@@ -6493,6 +6541,12 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
           id
           name
           arguments
+          startedAt
+          completedAt
+          durationMs
+          status
+          failedAt
+          firstStatusAt
         }
         tokens
         throughput
@@ -6654,6 +6708,12 @@ query GetConversation($id: ID!, $correlationId: String) {
         id
         name
         arguments
+        startedAt
+        completedAt
+        durationMs
+        status
+        failedAt
+        firstStatusAt
       }
       tokens
       throughput
@@ -6797,6 +6857,12 @@ query GetConversation($id: ID!, $correlationId: String) {
           id
           name
           arguments
+          startedAt
+          completedAt
+          durationMs
+          status
+          failedAt
+          firstStatusAt
         }
         tokens
         throughput
@@ -7214,6 +7280,12 @@ mutation Prompt($prompt: String, $mimeType: String, $data: String, $specificatio
         id
         name
         arguments
+        startedAt
+        completedAt
+        durationMs
+        status
+        failedAt
+        firstStatusAt
       }
       tokens
       throughput
@@ -7380,6 +7452,12 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
         id
         name
         arguments
+        startedAt
+        completedAt
+        durationMs
+        status
+        failedAt
+        firstStatusAt
       }
       tokens
       throughput
@@ -7574,6 +7652,12 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
           id
           name
           arguments
+          startedAt
+          completedAt
+          durationMs
+          status
+          failedAt
+          firstStatusAt
         }
         tokens
         throughput
@@ -8484,6 +8568,12 @@ mutation ReviseContent($prompt: String!, $content: EntityReferenceInput!, $id: I
         id
         name
         arguments
+        startedAt
+        completedAt
+        durationMs
+        status
+        failedAt
+        firstStatusAt
       }
       tokens
       throughput
@@ -8642,6 +8732,12 @@ mutation ReviseEncodedImage($prompt: String!, $mimeType: String!, $data: String!
         id
         name
         arguments
+        startedAt
+        completedAt
+        durationMs
+        status
+        failedAt
+        firstStatusAt
       }
       tokens
       throughput
@@ -8799,6 +8895,12 @@ mutation ReviseImage($prompt: String!, $uri: URL!, $id: ID, $specification: Enti
         id
         name
         arguments
+        startedAt
+        completedAt
+        durationMs
+        status
+        failedAt
+        firstStatusAt
       }
       tokens
       throughput
@@ -8956,6 +9058,12 @@ mutation ReviseText($prompt: String!, $text: String!, $id: ID, $specification: E
         id
         name
         arguments
+        startedAt
+        completedAt
+        durationMs
+        status
+        failedAt
+        firstStatusAt
       }
       tokens
       throughput
@@ -10038,6 +10146,18 @@ query GetFeed($id: ID!, $correlationId: String) {
           id
         }
       }
+      gitlab {
+        authenticationType
+        projectPath
+        branch
+        clientId
+        clientSecret
+        refreshToken
+        personalAccessToken
+        connector {
+          id
+        }
+      }
       readLimit
     }
     email {
@@ -10113,6 +10233,17 @@ query GetFeed($id: ID!, $correlationId: String) {
         uri
         repositoryOwner
         repositoryName
+        clientId
+        clientSecret
+        refreshToken
+        personalAccessToken
+        connector {
+          id
+        }
+      }
+      gitlab {
+        authenticationType
+        projectPath
         clientId
         clientSecret
         refreshToken
@@ -10228,6 +10359,19 @@ query GetFeed($id: ID!, $correlationId: String) {
         }
         authorizationId
       }
+      gitlab {
+        authenticationType
+        uri
+        projectPath
+        personalAccessToken
+        clientId
+        clientSecret
+        refreshToken
+        connector {
+          id
+        }
+        authorizationId
+      }
       linear {
         authenticationType
         key
@@ -10249,6 +10393,19 @@ query GetFeed($id: ID!, $correlationId: String) {
         uri
         repositoryOwner
         repositoryName
+        branch
+        clientId
+        clientSecret
+        refreshToken
+        personalAccessToken
+        connector {
+          id
+        }
+      }
+      gitlab {
+        authenticationType
+        projectPath
+        branch
         clientId
         clientSecret
         refreshToken
@@ -10268,6 +10425,18 @@ query GetFeed($id: ID!, $correlationId: String) {
         uri
         repositoryOwner
         repositoryName
+        clientId
+        clientSecret
+        refreshToken
+        personalAccessToken
+        connector {
+          id
+        }
+      }
+      gitlab {
+        authenticationType
+        projectPath
+        branch
         clientId
         clientSecret
         refreshToken
@@ -11068,6 +11237,18 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
             id
           }
         }
+        gitlab {
+          authenticationType
+          projectPath
+          branch
+          clientId
+          clientSecret
+          refreshToken
+          personalAccessToken
+          connector {
+            id
+          }
+        }
         readLimit
       }
       email {
@@ -11143,6 +11324,17 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           uri
           repositoryOwner
           repositoryName
+          clientId
+          clientSecret
+          refreshToken
+          personalAccessToken
+          connector {
+            id
+          }
+        }
+        gitlab {
+          authenticationType
+          projectPath
           clientId
           clientSecret
           refreshToken
@@ -11258,6 +11450,19 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           }
           authorizationId
         }
+        gitlab {
+          authenticationType
+          uri
+          projectPath
+          personalAccessToken
+          clientId
+          clientSecret
+          refreshToken
+          connector {
+            id
+          }
+          authorizationId
+        }
         linear {
           authenticationType
           key
@@ -11279,6 +11484,19 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           uri
           repositoryOwner
           repositoryName
+          branch
+          clientId
+          clientSecret
+          refreshToken
+          personalAccessToken
+          connector {
+            id
+          }
+        }
+        gitlab {
+          authenticationType
+          projectPath
+          branch
           clientId
           clientSecret
           refreshToken
@@ -11298,6 +11516,18 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           uri
           repositoryOwner
           repositoryName
+          clientId
+          clientSecret
+          refreshToken
+          personalAccessToken
+          connector {
+            id
+          }
+        }
+        gitlab {
+          authenticationType
+          projectPath
+          branch
           clientId
           clientSecret
           refreshToken
@@ -18762,6 +18992,12 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
         id
         name
         arguments
+        startedAt
+        completedAt
+        durationMs
+        status
+        failedAt
+        firstStatusAt
       }
       tokens
       throughput

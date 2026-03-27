@@ -118,6 +118,12 @@ mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityRefer
       id
       name
       arguments
+      startedAt
+      completedAt
+      durationMs
+      status
+      failedAt
+      firstStatusAt
     }
     tokens
     throughput

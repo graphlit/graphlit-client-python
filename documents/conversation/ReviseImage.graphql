@@ -122,6 +122,12 @@ mutation ReviseImage($prompt: String!, $uri: URL!, $id: ID, $specification: Enti
         id
         name
         arguments
+        startedAt
+        completedAt
+        durationMs
+        status
+        failedAt
+        firstStatusAt
       }
       tokens
       throughput

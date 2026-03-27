@@ -118,6 +118,18 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
             id
           }
         }
+        gitlab {
+          authenticationType
+          projectPath
+          branch
+          clientId
+          clientSecret
+          refreshToken
+          personalAccessToken
+          connector {
+            id
+          }
+        }
         readLimit
       }
       email {
@@ -193,6 +205,17 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           uri
           repositoryOwner
           repositoryName
+          clientId
+          clientSecret
+          refreshToken
+          personalAccessToken
+          connector {
+            id
+          }
+        }
+        gitlab {
+          authenticationType
+          projectPath
           clientId
           clientSecret
           refreshToken
@@ -308,6 +331,19 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           }
           authorizationId
         }
+        gitlab {
+          authenticationType
+          uri
+          projectPath
+          personalAccessToken
+          clientId
+          clientSecret
+          refreshToken
+          connector {
+            id
+          }
+          authorizationId
+        }
         linear {
           authenticationType
           key
@@ -329,6 +365,19 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           uri
           repositoryOwner
           repositoryName
+          branch
+          clientId
+          clientSecret
+          refreshToken
+          personalAccessToken
+          connector {
+            id
+          }
+        }
+        gitlab {
+          authenticationType
+          projectPath
+          branch
           clientId
           clientSecret
           refreshToken
@@ -348,6 +397,18 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           uri
           repositoryOwner
           repositoryName
+          clientId
+          clientSecret
+          refreshToken
+          personalAccessToken
+          connector {
+            id
+          }
+        }
+        gitlab {
+          authenticationType
+          projectPath
+          branch
           clientId
           clientSecret
           refreshToken

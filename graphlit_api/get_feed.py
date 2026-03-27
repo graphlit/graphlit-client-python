@@ -30,6 +30,9 @@ from .enums import (
     GitHubAuthenticationTypes,
     GitHubCommitAuthenticationTypes,
     GitHubPullRequestAuthenticationTypes,
+    GitLabAuthenticationTypes,
+    GitLabCommitAuthenticationTypes,
+    GitLabMergeRequestAuthenticationTypes,
     GoogleCalendarAuthenticationTypes,
     GoogleContactsAuthenticationTypes,
     GoogleDriveAuthenticationTypes,
@@ -161,6 +164,7 @@ class GetFeedFeedSite(BaseModel):
     dropbox: Optional["GetFeedFeedSiteDropbox"]
     box: Optional["GetFeedFeedSiteBox"]
     github: Optional["GetFeedFeedSiteGithub"]
+    gitlab: Optional["GetFeedFeedSiteGitlab"]
     read_limit: Optional[int] = Field(alias="readLimit")
 
 
@@ -295,6 +299,23 @@ class GetFeedFeedSiteGithubConnector(BaseModel):
     id: str
 
 
+class GetFeedFeedSiteGitlab(BaseModel):
+    authentication_type: Optional[GitLabAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    project_path: str = Field(alias="projectPath")
+    branch: Optional[str]
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    personal_access_token: Optional[str] = Field(alias="personalAccessToken")
+    connector: Optional["GetFeedFeedSiteGitlabConnector"]
+
+
+class GetFeedFeedSiteGitlabConnector(BaseModel):
+    id: str
+
+
 class GetFeedFeedEmail(BaseModel):
     type: FeedServiceTypes
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
@@ -353,6 +374,7 @@ class GetFeedFeedIssue(BaseModel):
     jira: Optional["GetFeedFeedIssueJira"]
     linear: Optional["GetFeedFeedIssueLinear"]
     github: Optional["GetFeedFeedIssueGithub"]
+    gitlab: Optional["GetFeedFeedIssueGitlab"]
     intercom: Optional["GetFeedFeedIssueIntercom"]
     zendesk: Optional["GetFeedFeedIssueZendesk"]
     trello: Optional["GetFeedFeedIssueTrello"]
@@ -418,6 +440,22 @@ class GetFeedFeedIssueGithub(BaseModel):
 
 
 class GetFeedFeedIssueGithubConnector(BaseModel):
+    id: str
+
+
+class GetFeedFeedIssueGitlab(BaseModel):
+    authentication_type: Optional[GitLabAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    project_path: str = Field(alias="projectPath")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    personal_access_token: Optional[str] = Field(alias="personalAccessToken")
+    connector: Optional["GetFeedFeedIssueGitlabConnector"]
+
+
+class GetFeedFeedIssueGitlabConnector(BaseModel):
     id: str
 
 
@@ -528,6 +566,7 @@ class GetFeedFeedInitiative(BaseModel):
     type: FeedServiceTypes
     jira: Optional["GetFeedFeedInitiativeJira"]
     github: Optional["GetFeedFeedInitiativeGithub"]
+    gitlab: Optional["GetFeedFeedInitiativeGitlab"]
     linear: Optional["GetFeedFeedInitiativeLinear"]
     before_date: Optional[Any] = Field(alias="beforeDate")
     after_date: Optional[Any] = Field(alias="afterDate")
@@ -573,6 +612,24 @@ class GetFeedFeedInitiativeGithubConnector(BaseModel):
     id: str
 
 
+class GetFeedFeedInitiativeGitlab(BaseModel):
+    authentication_type: Optional[GitLabAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    uri: Optional[str]
+    project_path: Optional[str] = Field(alias="projectPath")
+    personal_access_token: Optional[str] = Field(alias="personalAccessToken")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    connector: Optional["GetFeedFeedInitiativeGitlabConnector"]
+    authorization_id: Optional[str] = Field(alias="authorizationId")
+
+
+class GetFeedFeedInitiativeGitlabConnector(BaseModel):
+    id: str
+
+
 class GetFeedFeedInitiativeLinear(BaseModel):
     authentication_type: Optional[LinearAuthenticationTypes] = Field(
         alias="authenticationType"
@@ -591,6 +648,7 @@ class GetFeedFeedInitiativeLinearConnector(BaseModel):
 class GetFeedFeedCommit(BaseModel):
     type: FeedServiceTypes
     github: Optional["GetFeedFeedCommitGithub"]
+    gitlab: Optional["GetFeedFeedCommitGitlab"]
     before_date: Optional[Any] = Field(alias="beforeDate")
     after_date: Optional[Any] = Field(alias="afterDate")
     read_limit: Optional[int] = Field(alias="readLimit")
@@ -603,6 +661,7 @@ class GetFeedFeedCommitGithub(BaseModel):
     uri: Optional[Any]
     repository_owner: str = Field(alias="repositoryOwner")
     repository_name: str = Field(alias="repositoryName")
+    branch: Optional[str]
     client_id: Optional[str] = Field(alias="clientId")
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
@@ -614,9 +673,27 @@ class GetFeedFeedCommitGithubConnector(BaseModel):
     id: str
 
 
+class GetFeedFeedCommitGitlab(BaseModel):
+    authentication_type: Optional[GitLabCommitAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    project_path: str = Field(alias="projectPath")
+    branch: Optional[str]
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    personal_access_token: Optional[str] = Field(alias="personalAccessToken")
+    connector: Optional["GetFeedFeedCommitGitlabConnector"]
+
+
+class GetFeedFeedCommitGitlabConnector(BaseModel):
+    id: str
+
+
 class GetFeedFeedPullRequest(BaseModel):
     type: FeedServiceTypes
     github: Optional["GetFeedFeedPullRequestGithub"]
+    gitlab: Optional["GetFeedFeedPullRequestGitlab"]
     before_date: Optional[Any] = Field(alias="beforeDate")
     after_date: Optional[Any] = Field(alias="afterDate")
     read_limit: Optional[int] = Field(alias="readLimit")
@@ -637,6 +714,23 @@ class GetFeedFeedPullRequestGithub(BaseModel):
 
 
 class GetFeedFeedPullRequestGithubConnector(BaseModel):
+    id: str
+
+
+class GetFeedFeedPullRequestGitlab(BaseModel):
+    authentication_type: Optional[GitLabMergeRequestAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    project_path: str = Field(alias="projectPath")
+    branch: Optional[str]
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    personal_access_token: Optional[str] = Field(alias="personalAccessToken")
+    connector: Optional["GetFeedFeedPullRequestGitlabConnector"]
+
+
+class GetFeedFeedPullRequestGitlabConnector(BaseModel):
     id: str
 
 
@@ -1275,6 +1369,7 @@ GetFeedFeedSiteGoogleDrive.model_rebuild()
 GetFeedFeedSiteDropbox.model_rebuild()
 GetFeedFeedSiteBox.model_rebuild()
 GetFeedFeedSiteGithub.model_rebuild()
+GetFeedFeedSiteGitlab.model_rebuild()
 GetFeedFeedEmail.model_rebuild()
 GetFeedFeedEmailGoogle.model_rebuild()
 GetFeedFeedEmailMicrosoft.model_rebuild()
@@ -1282,6 +1377,7 @@ GetFeedFeedIssue.model_rebuild()
 GetFeedFeedIssueJira.model_rebuild()
 GetFeedFeedIssueLinear.model_rebuild()
 GetFeedFeedIssueGithub.model_rebuild()
+GetFeedFeedIssueGitlab.model_rebuild()
 GetFeedFeedIssueIntercom.model_rebuild()
 GetFeedFeedIssueZendesk.model_rebuild()
 GetFeedFeedIssueAttio.model_rebuild()
@@ -1290,11 +1386,14 @@ GetFeedFeedIssueHubSpot.model_rebuild()
 GetFeedFeedInitiative.model_rebuild()
 GetFeedFeedInitiativeJira.model_rebuild()
 GetFeedFeedInitiativeGithub.model_rebuild()
+GetFeedFeedInitiativeGitlab.model_rebuild()
 GetFeedFeedInitiativeLinear.model_rebuild()
 GetFeedFeedCommit.model_rebuild()
 GetFeedFeedCommitGithub.model_rebuild()
+GetFeedFeedCommitGitlab.model_rebuild()
 GetFeedFeedPullRequest.model_rebuild()
 GetFeedFeedPullRequestGithub.model_rebuild()
+GetFeedFeedPullRequestGitlab.model_rebuild()
 GetFeedFeedCrm.model_rebuild()
 GetFeedFeedCrmAttio.model_rebuild()
 GetFeedFeedCrmGoogleContacts.model_rebuild()
