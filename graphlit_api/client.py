@@ -355,6 +355,7 @@ from .input_types import (
     FeedPreviewInput,
     FeedUpdateInput,
     GitHubRepositoriesInput,
+    GitLabProjectsInput,
     GoogleCalendarEventsInput,
     GoogleCalendarsInput,
     GoogleDriveDrivesInput,
@@ -812,6 +813,7 @@ from .operations import (
     QUERY_FACTS_GRAPH_GQL,
     QUERY_FEEDS_GQL,
     QUERY_GIT_HUB_REPOSITORIES_GQL,
+    QUERY_GIT_LAB_PROJECTS_GQL,
     QUERY_GOOGLE_CALENDARS_GQL,
     QUERY_GOOGLE_DRIVE_DRIVES_GQL,
     QUERY_GOOGLE_DRIVE_FOLDERS_GQL,
@@ -1013,6 +1015,7 @@ from .query_facts_clusters import QueryFactsClusters
 from .query_facts_graph import QueryFactsGraph
 from .query_feeds import QueryFeeds
 from .query_git_hub_repositories import QueryGitHubRepositories
+from .query_git_lab_projects import QueryGitLabProjects
 from .query_google_calendars import QueryGoogleCalendars
 from .query_google_drive_drives import QueryGoogleDriveDrives
 from .query_google_drive_folders import QueryGoogleDriveFolders
@@ -4694,6 +4697,19 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryGitHubRepositories.model_validate(data)
+
+    async def query_git_lab_projects(
+        self, properties: GitLabProjectsInput, **kwargs: Any
+    ) -> QueryGitLabProjects:
+        variables: dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_GIT_LAB_PROJECTS_GQL,
+            operation_name="QueryGitLabProjects",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryGitLabProjects.model_validate(data)
 
     async def query_google_calendars(
         self, properties: GoogleCalendarsInput, **kwargs: Any

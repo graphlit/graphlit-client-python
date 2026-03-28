@@ -1,0 +1,16 @@
+query QueryGitLabProjects($properties: GitLabProjectsInput!) {
+  gitLabProjects(properties: $properties) {
+    results {
+      projectId
+      projectName
+      projectPath
+      description
+      isPrivate
+      starCount
+      forksCount
+      lastActivityAt
+      createdAt
+      webUrl
+    }
+  }
+}

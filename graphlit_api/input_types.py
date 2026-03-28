@@ -4092,6 +4092,17 @@ class FilePreparationConnectorInput(BaseModel):
     reducto: Optional["ReductoDocumentPreparationPropertiesInput"] = None
 
 
+class GitLabProjectsInput(BaseModel):
+    authentication_type: GitLabAuthenticationTypes = Field(alias="authenticationType")
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    connector: Optional["EntityReferenceInput"] = None
+
+
 class CrustdataSearchFeedPropertiesUpdateInput(BaseModel):
     signal_type: Optional[CrustdataWatcherSignalTypes] = Field(
         alias="signalType", default=None
@@ -7727,6 +7738,7 @@ SharePointFeedPropertiesInput.model_rebuild()
 OpenAIImagePublishingPropertiesInput.model_rebuild()
 ModelDocumentPreparationPropertiesInput.model_rebuild()
 FilePreparationConnectorInput.model_rebuild()
+GitLabProjectsInput.model_rebuild()
 HubSpotTasksFeedPropertiesUpdateInput.model_rebuild()
 IntercomTicketsFeedPropertiesInput.model_rebuild()
 EntityEnrichmentConnectorInput.model_rebuild()

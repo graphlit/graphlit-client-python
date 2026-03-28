@@ -333,6 +333,7 @@ __all__ = [
     "QUERY_FACTS_GRAPH_GQL",
     "QUERY_FEEDS_GQL",
     "QUERY_GIT_HUB_REPOSITORIES_GQL",
+    "QUERY_GIT_LAB_PROJECTS_GQL",
     "QUERY_GOOGLE_CALENDARS_GQL",
     "QUERY_GOOGLE_DRIVE_DRIVES_GQL",
     "QUERY_GOOGLE_DRIVE_FOLDERS_GQL",
@@ -12017,6 +12018,25 @@ query QueryGitHubRepositories($properties: GitHubRepositoriesInput!, $sortBy: Gi
       createdAt
       isOwner
       language
+    }
+  }
+}
+"""
+
+QUERY_GIT_LAB_PROJECTS_GQL = """
+query QueryGitLabProjects($properties: GitLabProjectsInput!) {
+  gitLabProjects(properties: $properties) {
+    results {
+      projectId
+      projectName
+      projectPath
+      description
+      isPrivate
+      starCount
+      forksCount
+      lastActivityAt
+      createdAt
+      webUrl
     }
   }
 }

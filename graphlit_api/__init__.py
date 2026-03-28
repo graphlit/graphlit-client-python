@@ -2190,6 +2190,7 @@ from .input_types import (
     GitLabIssuesFeedPropertiesUpdateInput,
     GitLabMilestonesFeedPropertiesInput,
     GitLabMilestonesFeedPropertiesUpdateInput,
+    GitLabProjectsInput,
     GitLabPullRequestsFeedPropertiesInput,
     GitLabPullRequestsFeedPropertiesUpdateInput,
     GmailDistributionPropertiesInput,
@@ -2967,6 +2968,7 @@ from .operations import (
     QUERY_FACTS_GRAPH_GQL,
     QUERY_FEEDS_GQL,
     QUERY_GIT_HUB_REPOSITORIES_GQL,
+    QUERY_GIT_LAB_PROJECTS_GQL,
     QUERY_GOOGLE_CALENDARS_GQL,
     QUERY_GOOGLE_DRIVE_DRIVES_GQL,
     QUERY_GOOGLE_DRIVE_FOLDERS_GQL,
@@ -3868,6 +3870,11 @@ from .query_git_hub_repositories import (
     QueryGitHubRepositories,
     QueryGitHubRepositoriesGitHubRepositories,
     QueryGitHubRepositoriesGitHubRepositoriesResults,
+)
+from .query_git_lab_projects import (
+    QueryGitLabProjects,
+    QueryGitLabProjectsGitLabProjects,
+    QueryGitLabProjectsGitLabProjectsResults,
 )
 from .query_google_calendars import (
     QueryGoogleCalendars,
@@ -7418,6 +7425,7 @@ __all__ = [
     "GitLabMergeRequestAuthenticationTypes",
     "GitLabMilestonesFeedPropertiesInput",
     "GitLabMilestonesFeedPropertiesUpdateInput",
+    "GitLabProjectsInput",
     "GitLabPullRequestsFeedPropertiesInput",
     "GitLabPullRequestsFeedPropertiesUpdateInput",
     "GmailDistributionPropertiesInput",
@@ -8044,6 +8052,7 @@ __all__ = [
     "QUERY_FACTS_GRAPH_GQL",
     "QUERY_FEEDS_GQL",
     "QUERY_GIT_HUB_REPOSITORIES_GQL",
+    "QUERY_GIT_LAB_PROJECTS_GQL",
     "QUERY_GOOGLE_CALENDARS_GQL",
     "QUERY_GOOGLE_DRIVE_DRIVES_GQL",
     "QUERY_GOOGLE_DRIVE_FOLDERS_GQL",
@@ -8693,6 +8702,9 @@ __all__ = [
     "QueryGitHubRepositories",
     "QueryGitHubRepositoriesGitHubRepositories",
     "QueryGitHubRepositoriesGitHubRepositoriesResults",
+    "QueryGitLabProjects",
+    "QueryGitLabProjectsGitLabProjects",
+    "QueryGitLabProjectsGitLabProjectsResults",
     "QueryGoogleCalendars",
     "QueryGoogleCalendarsGoogleCalendars",
     "QueryGoogleCalendarsGoogleCalendarsResults",
