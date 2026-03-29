@@ -133,6 +133,13 @@ class QueryUsersUsersResultsConnectorsChannel(BaseModel):
     slack: Optional["QueryUsersUsersResultsConnectorsChannelSlack"]
     teams: Optional["QueryUsersUsersResultsConnectorsChannelTeams"]
     discord: Optional["QueryUsersUsersResultsConnectorsChannelDiscord"]
+    telegram: Optional["QueryUsersUsersResultsConnectorsChannelTelegram"]
+    whats_app: Optional["QueryUsersUsersResultsConnectorsChannelWhatsApp"] = Field(
+        alias="whatsApp"
+    )
+    google_chat: Optional["QueryUsersUsersResultsConnectorsChannelGoogleChat"] = Field(
+        alias="googleChat"
+    )
 
 
 class QueryUsersUsersResultsConnectorsChannelSlack(BaseModel):
@@ -151,6 +158,24 @@ class QueryUsersUsersResultsConnectorsChannelDiscord(BaseModel):
     bot_token: str = Field(alias="botToken")
     application_id: Optional[str] = Field(alias="applicationId")
     public_key: Optional[str] = Field(alias="publicKey")
+
+
+class QueryUsersUsersResultsConnectorsChannelTelegram(BaseModel):
+    bot_token: str = Field(alias="botToken")
+    secret_token: Optional[str] = Field(alias="secretToken")
+    bot_username: Optional[str] = Field(alias="botUsername")
+
+
+class QueryUsersUsersResultsConnectorsChannelWhatsApp(BaseModel):
+    access_token: str = Field(alias="accessToken")
+    app_secret: Optional[str] = Field(alias="appSecret")
+    phone_number_id: str = Field(alias="phoneNumberId")
+    verify_token: Optional[str] = Field(alias="verifyToken")
+
+
+class QueryUsersUsersResultsConnectorsChannelGoogleChat(BaseModel):
+    credentials: str
+    project_id: Optional[str] = Field(alias="projectId")
 
 
 class QueryUsersUsersResultsPersonas(BaseModel):

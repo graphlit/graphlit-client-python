@@ -1746,6 +1746,21 @@ query GetConnector($id: ID!, $correlationId: String) {
         applicationId
         publicKey
       }
+      telegram {
+        botToken
+        secretToken
+        botUsername
+      }
+      whatsApp {
+        accessToken
+        appSecret
+        phoneNumberId
+        verifyToken
+      }
+      googleChat {
+        credentials
+        projectId
+      }
     }
   }
 }
@@ -1831,6 +1846,21 @@ query QueryConnectors($filter: ConnectorFilter, $correlationId: String) {
           botToken
           applicationId
           publicKey
+        }
+        telegram {
+          botToken
+          secretToken
+          botUsername
+        }
+        whatsApp {
+          accessToken
+          appSecret
+          phoneNumberId
+          verifyToken
+        }
+        googleChat {
+          credentials
+          projectId
         }
       }
     }
@@ -19473,6 +19503,21 @@ query GetUser {
           applicationId
           publicKey
         }
+        telegram {
+          botToken
+          secretToken
+          botUsername
+        }
+        whatsApp {
+          accessToken
+          appSecret
+          phoneNumberId
+          verifyToken
+        }
+        googleChat {
+          credentials
+          projectId
+        }
       }
     }
     personas {
@@ -19586,6 +19631,21 @@ query GetUserByIdentifier($identifier: String!) {
           botToken
           applicationId
           publicKey
+        }
+        telegram {
+          botToken
+          secretToken
+          botUsername
+        }
+        whatsApp {
+          accessToken
+          appSecret
+          phoneNumberId
+          verifyToken
+        }
+        googleChat {
+          credentials
+          projectId
         }
       }
     }
@@ -19701,6 +19761,21 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
             botToken
             applicationId
             publicKey
+          }
+          telegram {
+            botToken
+            secretToken
+            botUsername
+          }
+          whatsApp {
+            accessToken
+            appSecret
+            phoneNumberId
+            verifyToken
+          }
+          googleChat {
+            credentials
+            projectId
           }
         }
       }

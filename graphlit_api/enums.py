@@ -1630,6 +1630,9 @@ class AgentChannelTypes(str, Enum):
     TEAMS = "TEAMS"
     DISCORD = "DISCORD"
     MESSAGING = "MESSAGING"
+    WHATS_APP = "WHATS_APP"
+    TELEGRAM = "TELEGRAM"
+    GOOGLE_CHAT = "GOOGLE_CHAT"
 
 
 class AgentTypes(str, Enum):
@@ -1668,6 +1671,9 @@ class ChannelServiceTypes(str, Enum):
     SLACK = "SLACK"
     TEAMS = "TEAMS"
     DISCORD = "DISCORD"
+    TELEGRAM = "TELEGRAM"
+    WHATS_APP = "WHATS_APP"
+    GOOGLE_CHAT = "GOOGLE_CHAT"
 
 
 class TimeIntervalTypes(str, Enum):

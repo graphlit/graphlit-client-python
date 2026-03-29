@@ -129,6 +129,13 @@ class GetUserUserConnectorsChannel(BaseModel):
     slack: Optional["GetUserUserConnectorsChannelSlack"]
     teams: Optional["GetUserUserConnectorsChannelTeams"]
     discord: Optional["GetUserUserConnectorsChannelDiscord"]
+    telegram: Optional["GetUserUserConnectorsChannelTelegram"]
+    whats_app: Optional["GetUserUserConnectorsChannelWhatsApp"] = Field(
+        alias="whatsApp"
+    )
+    google_chat: Optional["GetUserUserConnectorsChannelGoogleChat"] = Field(
+        alias="googleChat"
+    )
 
 
 class GetUserUserConnectorsChannelSlack(BaseModel):
@@ -147,6 +154,24 @@ class GetUserUserConnectorsChannelDiscord(BaseModel):
     bot_token: str = Field(alias="botToken")
     application_id: Optional[str] = Field(alias="applicationId")
     public_key: Optional[str] = Field(alias="publicKey")
+
+
+class GetUserUserConnectorsChannelTelegram(BaseModel):
+    bot_token: str = Field(alias="botToken")
+    secret_token: Optional[str] = Field(alias="secretToken")
+    bot_username: Optional[str] = Field(alias="botUsername")
+
+
+class GetUserUserConnectorsChannelWhatsApp(BaseModel):
+    access_token: str = Field(alias="accessToken")
+    app_secret: Optional[str] = Field(alias="appSecret")
+    phone_number_id: str = Field(alias="phoneNumberId")
+    verify_token: Optional[str] = Field(alias="verifyToken")
+
+
+class GetUserUserConnectorsChannelGoogleChat(BaseModel):
+    credentials: str
+    project_id: Optional[str] = Field(alias="projectId")
 
 
 class GetUserUserPersonas(BaseModel):

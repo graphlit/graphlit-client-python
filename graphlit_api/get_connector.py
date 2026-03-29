@@ -117,6 +117,13 @@ class GetConnectorConnectorChannel(BaseModel):
     slack: Optional["GetConnectorConnectorChannelSlack"]
     teams: Optional["GetConnectorConnectorChannelTeams"]
     discord: Optional["GetConnectorConnectorChannelDiscord"]
+    telegram: Optional["GetConnectorConnectorChannelTelegram"]
+    whats_app: Optional["GetConnectorConnectorChannelWhatsApp"] = Field(
+        alias="whatsApp"
+    )
+    google_chat: Optional["GetConnectorConnectorChannelGoogleChat"] = Field(
+        alias="googleChat"
+    )
 
 
 class GetConnectorConnectorChannelSlack(BaseModel):
@@ -135,6 +142,24 @@ class GetConnectorConnectorChannelDiscord(BaseModel):
     bot_token: str = Field(alias="botToken")
     application_id: Optional[str] = Field(alias="applicationId")
     public_key: Optional[str] = Field(alias="publicKey")
+
+
+class GetConnectorConnectorChannelTelegram(BaseModel):
+    bot_token: str = Field(alias="botToken")
+    secret_token: Optional[str] = Field(alias="secretToken")
+    bot_username: Optional[str] = Field(alias="botUsername")
+
+
+class GetConnectorConnectorChannelWhatsApp(BaseModel):
+    access_token: str = Field(alias="accessToken")
+    app_secret: Optional[str] = Field(alias="appSecret")
+    phone_number_id: str = Field(alias="phoneNumberId")
+    verify_token: Optional[str] = Field(alias="verifyToken")
+
+
+class GetConnectorConnectorChannelGoogleChat(BaseModel):
+    credentials: str
+    project_id: Optional[str] = Field(alias="projectId")
 
 
 GetConnector.model_rebuild()

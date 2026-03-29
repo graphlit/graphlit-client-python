@@ -374,6 +374,12 @@ class EntityReferenceInput(BaseModel):
     id: str
 
 
+class TelegramChannelPropertiesInput(BaseModel):
+    bot_token: str = Field(alias="botToken")
+    secret_token: Optional[str] = Field(alias="secretToken", default=None)
+    bot_username: Optional[str] = Field(alias="botUsername", default=None)
+
+
 class InvestmentFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
@@ -1031,6 +1037,11 @@ class InvestmentFundInput(BaseModel):
     target_size_currency: Optional[str] = Field(
         alias="targetSizeCurrency", default=None
     )
+
+
+class GoogleChatChannelPropertiesInput(BaseModel):
+    credentials: str
+    project_id: Optional[str] = Field(alias="projectId", default=None)
 
 
 class PreparationWorkflowJobInput(BaseModel):
@@ -2844,6 +2855,13 @@ class ChannelConnectorInput(BaseModel):
     slack: Optional["SlackChannelPropertiesInput"] = None
     teams: Optional["TeamsChannelPropertiesInput"] = None
     discord: Optional["DiscordChannelPropertiesInput"] = None
+    telegram: Optional["TelegramChannelPropertiesInput"] = None
+    whats_app: Optional["WhatsAppChannelPropertiesInput"] = Field(
+        alias="whatsApp", default=None
+    )
+    google_chat: Optional["GoogleChatChannelPropertiesInput"] = Field(
+        alias="googleChat", default=None
+    )
 
 
 class PullRequestFeedPropertiesInput(BaseModel):
@@ -4547,6 +4565,13 @@ class ChannelConnectorUpdateInput(BaseModel):
     slack: Optional["SlackChannelPropertiesInput"] = None
     teams: Optional["TeamsChannelPropertiesInput"] = None
     discord: Optional["DiscordChannelPropertiesInput"] = None
+    telegram: Optional["TelegramChannelPropertiesInput"] = None
+    whats_app: Optional["WhatsAppChannelPropertiesInput"] = Field(
+        alias="whatsApp", default=None
+    )
+    google_chat: Optional["GoogleChatChannelPropertiesInput"] = Field(
+        alias="googleChat", default=None
+    )
 
 
 class AtlassianJiraFeedPropertiesInput(BaseModel):
@@ -6614,6 +6639,13 @@ class GoogleDriveFeedPropertiesUpdateInput(BaseModel):
         alias="serviceAccountJson", default=None
     )
     connector: Optional["EntityReferenceInput"] = None
+
+
+class WhatsAppChannelPropertiesInput(BaseModel):
+    access_token: str = Field(alias="accessToken")
+    app_secret: Optional[str] = Field(alias="appSecret", default=None)
+    phone_number_id: str = Field(alias="phoneNumberId")
+    verify_token: Optional[str] = Field(alias="verifyToken", default=None)
 
 
 class MedicalDrugClassFacetInput(BaseModel):
