@@ -84,6 +84,21 @@ query GetUserByIdentifier($identifier: String!) {
           applicationId
           publicKey
         }
+        telegram {
+          botToken
+          secretToken
+          botUsername
+        }
+        whatsApp {
+          accessToken
+          appSecret
+          phoneNumberId
+          verifyToken
+        }
+        googleChat {
+          credentials
+          projectId
+        }
       }
     }
     personas {

@@ -85,6 +85,21 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
             applicationId
             publicKey
           }
+          telegram {
+            botToken
+            secretToken
+            botUsername
+          }
+          whatsApp {
+            accessToken
+            appSecret
+            phoneNumberId
+            verifyToken
+          }
+          googleChat {
+            credentials
+            projectId
+          }
         }
       }
       personas {
