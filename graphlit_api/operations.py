@@ -581,12 +581,200 @@ query GetAgent($id: ID!, $correlationId: String) {
     specification {
       id
     }
-    filter {
+    trigger {
       types
       fileTypes
       feeds {
         id
       }
+    }
+    filter {
+      dateRange {
+        from
+        to
+      }
+      inLast
+      inNext
+      creationDateRange {
+        from
+        to
+      }
+      createdInLast
+      types
+      fileTypes
+      formats
+      fileExtensions
+      fileSizeRange {
+        from
+        to
+      }
+      similarContents {
+        id
+      }
+      contents {
+        id
+      }
+      feeds {
+        id
+      }
+      workflows {
+        id
+      }
+      collections {
+        id
+      }
+      users {
+        id
+      }
+      observations {
+        type
+        observable {
+          id
+        }
+        states
+      }
+      or {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+      and {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+      hasObservations
+      hasFeeds
+      hasCollections
+      hasWorkflows
+      collectionMode
+      observationMode
+    }
+    augmentedFilter {
+      dateRange {
+        from
+        to
+      }
+      inLast
+      inNext
+      creationDateRange {
+        from
+        to
+      }
+      createdInLast
+      types
+      fileTypes
+      formats
+      fileExtensions
+      fileSizeRange {
+        from
+        to
+      }
+      similarContents {
+        id
+      }
+      contents {
+        id
+      }
+      feeds {
+        id
+      }
+      workflows {
+        id
+      }
+      collections {
+        id
+      }
+      users {
+        id
+      }
+      observations {
+        type
+        observable {
+          id
+        }
+        states
+      }
+      or {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+      and {
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+      }
+      hasObservations
+      hasFeeds
+      hasCollections
+      hasWorkflows
+      collectionMode
+      observationMode
     }
     schedulePolicy {
       recurrenceType
@@ -630,12 +818,200 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
       specification {
         id
       }
-      filter {
+      trigger {
         types
         fileTypes
         feeds {
           id
         }
+      }
+      filter {
+        dateRange {
+          from
+          to
+        }
+        inLast
+        inNext
+        creationDateRange {
+          from
+          to
+        }
+        createdInLast
+        types
+        fileTypes
+        formats
+        fileExtensions
+        fileSizeRange {
+          from
+          to
+        }
+        similarContents {
+          id
+        }
+        contents {
+          id
+        }
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+        or {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        and {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        hasObservations
+        hasFeeds
+        hasCollections
+        hasWorkflows
+        collectionMode
+        observationMode
+      }
+      augmentedFilter {
+        dateRange {
+          from
+          to
+        }
+        inLast
+        inNext
+        creationDateRange {
+          from
+          to
+        }
+        createdInLast
+        types
+        fileTypes
+        formats
+        fileExtensions
+        fileSizeRange {
+          from
+          to
+        }
+        similarContents {
+          id
+        }
+        contents {
+          id
+        }
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+        or {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        and {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        hasObservations
+        hasFeeds
+        hasCollections
+        hasWorkflows
+        collectionMode
+        observationMode
       }
       schedulePolicy {
         recurrenceType

@@ -2896,7 +2896,11 @@ class AgentInput(BaseModel):
     type: AgentTypes
     description: Optional[str] = None
     specification: Optional["EntityReferenceInput"] = None
-    filter: Optional["AgentTriggerFilterInput"] = None
+    trigger: Optional["AgentTriggerFilterInput"] = None
+    filter: Optional["ContentCriteriaInput"] = None
+    augmented_filter: Optional["ContentCriteriaInput"] = Field(
+        alias="augmentedFilter", default=None
+    )
     schedule_policy: Optional["AgentSchedulePolicyInput"] = Field(
         alias="schedulePolicy", default=None
     )
@@ -7391,7 +7395,11 @@ class AgentUpdateInput(BaseModel):
     name: Optional[str] = None
     description: Optional[str] = None
     specification: Optional["EntityReferenceInput"] = None
-    filter: Optional["AgentTriggerFilterInput"] = None
+    trigger: Optional["AgentTriggerFilterInput"] = None
+    filter: Optional["ContentCriteriaInput"] = None
+    augmented_filter: Optional["ContentCriteriaInput"] = Field(
+        alias="augmentedFilter", default=None
+    )
     schedule_policy: Optional["AgentSchedulePolicyInput"] = Field(
         alias="schedulePolicy", default=None
     )

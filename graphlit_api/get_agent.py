@@ -12,6 +12,8 @@ from .enums import (
     ContentTypes,
     EntityState,
     FileTypes,
+    FilterMode,
+    ObservableTypes,
     TimedPolicyRecurrenceTypes,
 )
 
@@ -32,7 +34,11 @@ class GetAgentAgent(BaseModel):
     type: AgentTypes
     description: Optional[str]
     specification: Optional["GetAgentAgentSpecification"]
+    trigger: Optional["GetAgentAgentTrigger"]
     filter: Optional["GetAgentAgentFilter"]
+    augmented_filter: Optional["GetAgentAgentAugmentedFilter"] = Field(
+        alias="augmentedFilter"
+    )
     schedule_policy: Optional["GetAgentAgentSchedulePolicy"] = Field(
         alias="schedulePolicy"
     )
@@ -56,13 +62,317 @@ class GetAgentAgentSpecification(BaseModel):
     id: str
 
 
-class GetAgentAgentFilter(BaseModel):
+class GetAgentAgentTrigger(BaseModel):
     types: Optional[list[ContentTypes]]
     file_types: Optional[list[FileTypes]] = Field(alias="fileTypes")
+    feeds: Optional[list["GetAgentAgentTriggerFeeds"]]
+
+
+class GetAgentAgentTriggerFeeds(BaseModel):
+    id: str
+
+
+class GetAgentAgentFilter(BaseModel):
+    date_range: Optional["GetAgentAgentFilterDateRange"] = Field(alias="dateRange")
+    in_last: Optional[Any] = Field(alias="inLast")
+    in_next: Optional[Any] = Field(alias="inNext")
+    creation_date_range: Optional["GetAgentAgentFilterCreationDateRange"] = Field(
+        alias="creationDateRange"
+    )
+    created_in_last: Optional[Any] = Field(alias="createdInLast")
+    types: Optional[list[ContentTypes]]
+    file_types: Optional[list[FileTypes]] = Field(alias="fileTypes")
+    formats: Optional[list[str]]
+    file_extensions: Optional[list[str]] = Field(alias="fileExtensions")
+    file_size_range: Optional["GetAgentAgentFilterFileSizeRange"] = Field(
+        alias="fileSizeRange"
+    )
+    similar_contents: Optional[list["GetAgentAgentFilterSimilarContents"]] = Field(
+        alias="similarContents"
+    )
+    contents: Optional[list["GetAgentAgentFilterContents"]]
     feeds: Optional[list["GetAgentAgentFilterFeeds"]]
+    workflows: Optional[list["GetAgentAgentFilterWorkflows"]]
+    collections: Optional[list["GetAgentAgentFilterCollections"]]
+    users: Optional[list["GetAgentAgentFilterUsers"]]
+    observations: Optional[list["GetAgentAgentFilterObservations"]]
+    or_: Optional[list["GetAgentAgentFilterOr"]] = Field(alias="or")
+    and_: Optional[list["GetAgentAgentFilterAnd"]] = Field(alias="and")
+    has_observations: Optional[bool] = Field(alias="hasObservations")
+    has_feeds: Optional[bool] = Field(alias="hasFeeds")
+    has_collections: Optional[bool] = Field(alias="hasCollections")
+    has_workflows: Optional[bool] = Field(alias="hasWorkflows")
+    collection_mode: Optional[FilterMode] = Field(alias="collectionMode")
+    observation_mode: Optional[FilterMode] = Field(alias="observationMode")
+
+
+class GetAgentAgentFilterDateRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class GetAgentAgentFilterCreationDateRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class GetAgentAgentFilterFileSizeRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class GetAgentAgentFilterSimilarContents(BaseModel):
+    id: str
+
+
+class GetAgentAgentFilterContents(BaseModel):
+    id: str
 
 
 class GetAgentAgentFilterFeeds(BaseModel):
+    id: str
+
+
+class GetAgentAgentFilterWorkflows(BaseModel):
+    id: str
+
+
+class GetAgentAgentFilterCollections(BaseModel):
+    id: str
+
+
+class GetAgentAgentFilterUsers(BaseModel):
+    id: str
+
+
+class GetAgentAgentFilterObservations(BaseModel):
+    type: ObservableTypes
+    observable: "GetAgentAgentFilterObservationsObservable"
+    states: Optional[list[EntityState]]
+
+
+class GetAgentAgentFilterObservationsObservable(BaseModel):
+    id: str
+
+
+class GetAgentAgentFilterOr(BaseModel):
+    feeds: Optional[list["GetAgentAgentFilterOrFeeds"]]
+    workflows: Optional[list["GetAgentAgentFilterOrWorkflows"]]
+    collections: Optional[list["GetAgentAgentFilterOrCollections"]]
+    users: Optional[list["GetAgentAgentFilterOrUsers"]]
+    observations: Optional[list["GetAgentAgentFilterOrObservations"]]
+
+
+class GetAgentAgentFilterOrFeeds(BaseModel):
+    id: str
+
+
+class GetAgentAgentFilterOrWorkflows(BaseModel):
+    id: str
+
+
+class GetAgentAgentFilterOrCollections(BaseModel):
+    id: str
+
+
+class GetAgentAgentFilterOrUsers(BaseModel):
+    id: str
+
+
+class GetAgentAgentFilterOrObservations(BaseModel):
+    type: ObservableTypes
+    observable: "GetAgentAgentFilterOrObservationsObservable"
+    states: Optional[list[EntityState]]
+
+
+class GetAgentAgentFilterOrObservationsObservable(BaseModel):
+    id: str
+
+
+class GetAgentAgentFilterAnd(BaseModel):
+    feeds: Optional[list["GetAgentAgentFilterAndFeeds"]]
+    workflows: Optional[list["GetAgentAgentFilterAndWorkflows"]]
+    collections: Optional[list["GetAgentAgentFilterAndCollections"]]
+    users: Optional[list["GetAgentAgentFilterAndUsers"]]
+    observations: Optional[list["GetAgentAgentFilterAndObservations"]]
+
+
+class GetAgentAgentFilterAndFeeds(BaseModel):
+    id: str
+
+
+class GetAgentAgentFilterAndWorkflows(BaseModel):
+    id: str
+
+
+class GetAgentAgentFilterAndCollections(BaseModel):
+    id: str
+
+
+class GetAgentAgentFilterAndUsers(BaseModel):
+    id: str
+
+
+class GetAgentAgentFilterAndObservations(BaseModel):
+    type: ObservableTypes
+    observable: "GetAgentAgentFilterAndObservationsObservable"
+    states: Optional[list[EntityState]]
+
+
+class GetAgentAgentFilterAndObservationsObservable(BaseModel):
+    id: str
+
+
+class GetAgentAgentAugmentedFilter(BaseModel):
+    date_range: Optional["GetAgentAgentAugmentedFilterDateRange"] = Field(
+        alias="dateRange"
+    )
+    in_last: Optional[Any] = Field(alias="inLast")
+    in_next: Optional[Any] = Field(alias="inNext")
+    creation_date_range: Optional["GetAgentAgentAugmentedFilterCreationDateRange"] = (
+        Field(alias="creationDateRange")
+    )
+    created_in_last: Optional[Any] = Field(alias="createdInLast")
+    types: Optional[list[ContentTypes]]
+    file_types: Optional[list[FileTypes]] = Field(alias="fileTypes")
+    formats: Optional[list[str]]
+    file_extensions: Optional[list[str]] = Field(alias="fileExtensions")
+    file_size_range: Optional["GetAgentAgentAugmentedFilterFileSizeRange"] = Field(
+        alias="fileSizeRange"
+    )
+    similar_contents: Optional[list["GetAgentAgentAugmentedFilterSimilarContents"]] = (
+        Field(alias="similarContents")
+    )
+    contents: Optional[list["GetAgentAgentAugmentedFilterContents"]]
+    feeds: Optional[list["GetAgentAgentAugmentedFilterFeeds"]]
+    workflows: Optional[list["GetAgentAgentAugmentedFilterWorkflows"]]
+    collections: Optional[list["GetAgentAgentAugmentedFilterCollections"]]
+    users: Optional[list["GetAgentAgentAugmentedFilterUsers"]]
+    observations: Optional[list["GetAgentAgentAugmentedFilterObservations"]]
+    or_: Optional[list["GetAgentAgentAugmentedFilterOr"]] = Field(alias="or")
+    and_: Optional[list["GetAgentAgentAugmentedFilterAnd"]] = Field(alias="and")
+    has_observations: Optional[bool] = Field(alias="hasObservations")
+    has_feeds: Optional[bool] = Field(alias="hasFeeds")
+    has_collections: Optional[bool] = Field(alias="hasCollections")
+    has_workflows: Optional[bool] = Field(alias="hasWorkflows")
+    collection_mode: Optional[FilterMode] = Field(alias="collectionMode")
+    observation_mode: Optional[FilterMode] = Field(alias="observationMode")
+
+
+class GetAgentAgentAugmentedFilterDateRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class GetAgentAgentAugmentedFilterCreationDateRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class GetAgentAgentAugmentedFilterFileSizeRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class GetAgentAgentAugmentedFilterSimilarContents(BaseModel):
+    id: str
+
+
+class GetAgentAgentAugmentedFilterContents(BaseModel):
+    id: str
+
+
+class GetAgentAgentAugmentedFilterFeeds(BaseModel):
+    id: str
+
+
+class GetAgentAgentAugmentedFilterWorkflows(BaseModel):
+    id: str
+
+
+class GetAgentAgentAugmentedFilterCollections(BaseModel):
+    id: str
+
+
+class GetAgentAgentAugmentedFilterUsers(BaseModel):
+    id: str
+
+
+class GetAgentAgentAugmentedFilterObservations(BaseModel):
+    type: ObservableTypes
+    observable: "GetAgentAgentAugmentedFilterObservationsObservable"
+    states: Optional[list[EntityState]]
+
+
+class GetAgentAgentAugmentedFilterObservationsObservable(BaseModel):
+    id: str
+
+
+class GetAgentAgentAugmentedFilterOr(BaseModel):
+    feeds: Optional[list["GetAgentAgentAugmentedFilterOrFeeds"]]
+    workflows: Optional[list["GetAgentAgentAugmentedFilterOrWorkflows"]]
+    collections: Optional[list["GetAgentAgentAugmentedFilterOrCollections"]]
+    users: Optional[list["GetAgentAgentAugmentedFilterOrUsers"]]
+    observations: Optional[list["GetAgentAgentAugmentedFilterOrObservations"]]
+
+
+class GetAgentAgentAugmentedFilterOrFeeds(BaseModel):
+    id: str
+
+
+class GetAgentAgentAugmentedFilterOrWorkflows(BaseModel):
+    id: str
+
+
+class GetAgentAgentAugmentedFilterOrCollections(BaseModel):
+    id: str
+
+
+class GetAgentAgentAugmentedFilterOrUsers(BaseModel):
+    id: str
+
+
+class GetAgentAgentAugmentedFilterOrObservations(BaseModel):
+    type: ObservableTypes
+    observable: "GetAgentAgentAugmentedFilterOrObservationsObservable"
+    states: Optional[list[EntityState]]
+
+
+class GetAgentAgentAugmentedFilterOrObservationsObservable(BaseModel):
+    id: str
+
+
+class GetAgentAgentAugmentedFilterAnd(BaseModel):
+    feeds: Optional[list["GetAgentAgentAugmentedFilterAndFeeds"]]
+    workflows: Optional[list["GetAgentAgentAugmentedFilterAndWorkflows"]]
+    collections: Optional[list["GetAgentAgentAugmentedFilterAndCollections"]]
+    users: Optional[list["GetAgentAgentAugmentedFilterAndUsers"]]
+    observations: Optional[list["GetAgentAgentAugmentedFilterAndObservations"]]
+
+
+class GetAgentAgentAugmentedFilterAndFeeds(BaseModel):
+    id: str
+
+
+class GetAgentAgentAugmentedFilterAndWorkflows(BaseModel):
+    id: str
+
+
+class GetAgentAgentAugmentedFilterAndCollections(BaseModel):
+    id: str
+
+
+class GetAgentAgentAugmentedFilterAndUsers(BaseModel):
+    id: str
+
+
+class GetAgentAgentAugmentedFilterAndObservations(BaseModel):
+    type: ObservableTypes
+    observable: "GetAgentAgentAugmentedFilterAndObservationsObservable"
+    states: Optional[list[EntityState]]
+
+
+class GetAgentAgentAugmentedFilterAndObservationsObservable(BaseModel):
     id: str
 
 
@@ -88,4 +398,16 @@ class GetAgentAgentConnectors(BaseModel):
 
 GetAgent.model_rebuild()
 GetAgentAgent.model_rebuild()
+GetAgentAgentTrigger.model_rebuild()
 GetAgentAgentFilter.model_rebuild()
+GetAgentAgentFilterObservations.model_rebuild()
+GetAgentAgentFilterOr.model_rebuild()
+GetAgentAgentFilterOrObservations.model_rebuild()
+GetAgentAgentFilterAnd.model_rebuild()
+GetAgentAgentFilterAndObservations.model_rebuild()
+GetAgentAgentAugmentedFilter.model_rebuild()
+GetAgentAgentAugmentedFilterObservations.model_rebuild()
+GetAgentAgentAugmentedFilterOr.model_rebuild()
+GetAgentAgentAugmentedFilterOrObservations.model_rebuild()
+GetAgentAgentAugmentedFilterAnd.model_rebuild()
+GetAgentAgentAugmentedFilterAndObservations.model_rebuild()

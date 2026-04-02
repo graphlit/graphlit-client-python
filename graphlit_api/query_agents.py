@@ -12,6 +12,8 @@ from .enums import (
     ContentTypes,
     EntityState,
     FileTypes,
+    FilterMode,
+    ObservableTypes,
     TimedPolicyRecurrenceTypes,
 )
 
@@ -36,7 +38,11 @@ class QueryAgentsAgentsResults(BaseModel):
     type: AgentTypes
     description: Optional[str]
     specification: Optional["QueryAgentsAgentsResultsSpecification"]
+    trigger: Optional["QueryAgentsAgentsResultsTrigger"]
     filter: Optional["QueryAgentsAgentsResultsFilter"]
+    augmented_filter: Optional["QueryAgentsAgentsResultsAugmentedFilter"] = Field(
+        alias="augmentedFilter"
+    )
     schedule_policy: Optional["QueryAgentsAgentsResultsSchedulePolicy"] = Field(
         alias="schedulePolicy"
     )
@@ -56,13 +62,325 @@ class QueryAgentsAgentsResultsSpecification(BaseModel):
     id: str
 
 
-class QueryAgentsAgentsResultsFilter(BaseModel):
+class QueryAgentsAgentsResultsTrigger(BaseModel):
     types: Optional[list[ContentTypes]]
     file_types: Optional[list[FileTypes]] = Field(alias="fileTypes")
+    feeds: Optional[list["QueryAgentsAgentsResultsTriggerFeeds"]]
+
+
+class QueryAgentsAgentsResultsTriggerFeeds(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsFilter(BaseModel):
+    date_range: Optional["QueryAgentsAgentsResultsFilterDateRange"] = Field(
+        alias="dateRange"
+    )
+    in_last: Optional[Any] = Field(alias="inLast")
+    in_next: Optional[Any] = Field(alias="inNext")
+    creation_date_range: Optional["QueryAgentsAgentsResultsFilterCreationDateRange"] = (
+        Field(alias="creationDateRange")
+    )
+    created_in_last: Optional[Any] = Field(alias="createdInLast")
+    types: Optional[list[ContentTypes]]
+    file_types: Optional[list[FileTypes]] = Field(alias="fileTypes")
+    formats: Optional[list[str]]
+    file_extensions: Optional[list[str]] = Field(alias="fileExtensions")
+    file_size_range: Optional["QueryAgentsAgentsResultsFilterFileSizeRange"] = Field(
+        alias="fileSizeRange"
+    )
+    similar_contents: Optional[
+        list["QueryAgentsAgentsResultsFilterSimilarContents"]
+    ] = Field(alias="similarContents")
+    contents: Optional[list["QueryAgentsAgentsResultsFilterContents"]]
     feeds: Optional[list["QueryAgentsAgentsResultsFilterFeeds"]]
+    workflows: Optional[list["QueryAgentsAgentsResultsFilterWorkflows"]]
+    collections: Optional[list["QueryAgentsAgentsResultsFilterCollections"]]
+    users: Optional[list["QueryAgentsAgentsResultsFilterUsers"]]
+    observations: Optional[list["QueryAgentsAgentsResultsFilterObservations"]]
+    or_: Optional[list["QueryAgentsAgentsResultsFilterOr"]] = Field(alias="or")
+    and_: Optional[list["QueryAgentsAgentsResultsFilterAnd"]] = Field(alias="and")
+    has_observations: Optional[bool] = Field(alias="hasObservations")
+    has_feeds: Optional[bool] = Field(alias="hasFeeds")
+    has_collections: Optional[bool] = Field(alias="hasCollections")
+    has_workflows: Optional[bool] = Field(alias="hasWorkflows")
+    collection_mode: Optional[FilterMode] = Field(alias="collectionMode")
+    observation_mode: Optional[FilterMode] = Field(alias="observationMode")
+
+
+class QueryAgentsAgentsResultsFilterDateRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class QueryAgentsAgentsResultsFilterCreationDateRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class QueryAgentsAgentsResultsFilterFileSizeRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class QueryAgentsAgentsResultsFilterSimilarContents(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsFilterContents(BaseModel):
+    id: str
 
 
 class QueryAgentsAgentsResultsFilterFeeds(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsFilterWorkflows(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsFilterCollections(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsFilterUsers(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsFilterObservations(BaseModel):
+    type: ObservableTypes
+    observable: "QueryAgentsAgentsResultsFilterObservationsObservable"
+    states: Optional[list[EntityState]]
+
+
+class QueryAgentsAgentsResultsFilterObservationsObservable(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsFilterOr(BaseModel):
+    feeds: Optional[list["QueryAgentsAgentsResultsFilterOrFeeds"]]
+    workflows: Optional[list["QueryAgentsAgentsResultsFilterOrWorkflows"]]
+    collections: Optional[list["QueryAgentsAgentsResultsFilterOrCollections"]]
+    users: Optional[list["QueryAgentsAgentsResultsFilterOrUsers"]]
+    observations: Optional[list["QueryAgentsAgentsResultsFilterOrObservations"]]
+
+
+class QueryAgentsAgentsResultsFilterOrFeeds(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsFilterOrWorkflows(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsFilterOrCollections(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsFilterOrUsers(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsFilterOrObservations(BaseModel):
+    type: ObservableTypes
+    observable: "QueryAgentsAgentsResultsFilterOrObservationsObservable"
+    states: Optional[list[EntityState]]
+
+
+class QueryAgentsAgentsResultsFilterOrObservationsObservable(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsFilterAnd(BaseModel):
+    feeds: Optional[list["QueryAgentsAgentsResultsFilterAndFeeds"]]
+    workflows: Optional[list["QueryAgentsAgentsResultsFilterAndWorkflows"]]
+    collections: Optional[list["QueryAgentsAgentsResultsFilterAndCollections"]]
+    users: Optional[list["QueryAgentsAgentsResultsFilterAndUsers"]]
+    observations: Optional[list["QueryAgentsAgentsResultsFilterAndObservations"]]
+
+
+class QueryAgentsAgentsResultsFilterAndFeeds(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsFilterAndWorkflows(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsFilterAndCollections(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsFilterAndUsers(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsFilterAndObservations(BaseModel):
+    type: ObservableTypes
+    observable: "QueryAgentsAgentsResultsFilterAndObservationsObservable"
+    states: Optional[list[EntityState]]
+
+
+class QueryAgentsAgentsResultsFilterAndObservationsObservable(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsAugmentedFilter(BaseModel):
+    date_range: Optional["QueryAgentsAgentsResultsAugmentedFilterDateRange"] = Field(
+        alias="dateRange"
+    )
+    in_last: Optional[Any] = Field(alias="inLast")
+    in_next: Optional[Any] = Field(alias="inNext")
+    creation_date_range: Optional[
+        "QueryAgentsAgentsResultsAugmentedFilterCreationDateRange"
+    ] = Field(alias="creationDateRange")
+    created_in_last: Optional[Any] = Field(alias="createdInLast")
+    types: Optional[list[ContentTypes]]
+    file_types: Optional[list[FileTypes]] = Field(alias="fileTypes")
+    formats: Optional[list[str]]
+    file_extensions: Optional[list[str]] = Field(alias="fileExtensions")
+    file_size_range: Optional[
+        "QueryAgentsAgentsResultsAugmentedFilterFileSizeRange"
+    ] = Field(alias="fileSizeRange")
+    similar_contents: Optional[
+        list["QueryAgentsAgentsResultsAugmentedFilterSimilarContents"]
+    ] = Field(alias="similarContents")
+    contents: Optional[list["QueryAgentsAgentsResultsAugmentedFilterContents"]]
+    feeds: Optional[list["QueryAgentsAgentsResultsAugmentedFilterFeeds"]]
+    workflows: Optional[list["QueryAgentsAgentsResultsAugmentedFilterWorkflows"]]
+    collections: Optional[list["QueryAgentsAgentsResultsAugmentedFilterCollections"]]
+    users: Optional[list["QueryAgentsAgentsResultsAugmentedFilterUsers"]]
+    observations: Optional[list["QueryAgentsAgentsResultsAugmentedFilterObservations"]]
+    or_: Optional[list["QueryAgentsAgentsResultsAugmentedFilterOr"]] = Field(alias="or")
+    and_: Optional[list["QueryAgentsAgentsResultsAugmentedFilterAnd"]] = Field(
+        alias="and"
+    )
+    has_observations: Optional[bool] = Field(alias="hasObservations")
+    has_feeds: Optional[bool] = Field(alias="hasFeeds")
+    has_collections: Optional[bool] = Field(alias="hasCollections")
+    has_workflows: Optional[bool] = Field(alias="hasWorkflows")
+    collection_mode: Optional[FilterMode] = Field(alias="collectionMode")
+    observation_mode: Optional[FilterMode] = Field(alias="observationMode")
+
+
+class QueryAgentsAgentsResultsAugmentedFilterDateRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class QueryAgentsAgentsResultsAugmentedFilterCreationDateRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class QueryAgentsAgentsResultsAugmentedFilterFileSizeRange(BaseModel):
+    from_: Optional[Any] = Field(alias="from")
+    to: Optional[Any]
+
+
+class QueryAgentsAgentsResultsAugmentedFilterSimilarContents(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsAugmentedFilterContents(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsAugmentedFilterFeeds(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsAugmentedFilterWorkflows(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsAugmentedFilterCollections(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsAugmentedFilterUsers(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsAugmentedFilterObservations(BaseModel):
+    type: ObservableTypes
+    observable: "QueryAgentsAgentsResultsAugmentedFilterObservationsObservable"
+    states: Optional[list[EntityState]]
+
+
+class QueryAgentsAgentsResultsAugmentedFilterObservationsObservable(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsAugmentedFilterOr(BaseModel):
+    feeds: Optional[list["QueryAgentsAgentsResultsAugmentedFilterOrFeeds"]]
+    workflows: Optional[list["QueryAgentsAgentsResultsAugmentedFilterOrWorkflows"]]
+    collections: Optional[list["QueryAgentsAgentsResultsAugmentedFilterOrCollections"]]
+    users: Optional[list["QueryAgentsAgentsResultsAugmentedFilterOrUsers"]]
+    observations: Optional[
+        list["QueryAgentsAgentsResultsAugmentedFilterOrObservations"]
+    ]
+
+
+class QueryAgentsAgentsResultsAugmentedFilterOrFeeds(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsAugmentedFilterOrWorkflows(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsAugmentedFilterOrCollections(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsAugmentedFilterOrUsers(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsAugmentedFilterOrObservations(BaseModel):
+    type: ObservableTypes
+    observable: "QueryAgentsAgentsResultsAugmentedFilterOrObservationsObservable"
+    states: Optional[list[EntityState]]
+
+
+class QueryAgentsAgentsResultsAugmentedFilterOrObservationsObservable(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsAugmentedFilterAnd(BaseModel):
+    feeds: Optional[list["QueryAgentsAgentsResultsAugmentedFilterAndFeeds"]]
+    workflows: Optional[list["QueryAgentsAgentsResultsAugmentedFilterAndWorkflows"]]
+    collections: Optional[list["QueryAgentsAgentsResultsAugmentedFilterAndCollections"]]
+    users: Optional[list["QueryAgentsAgentsResultsAugmentedFilterAndUsers"]]
+    observations: Optional[
+        list["QueryAgentsAgentsResultsAugmentedFilterAndObservations"]
+    ]
+
+
+class QueryAgentsAgentsResultsAugmentedFilterAndFeeds(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsAugmentedFilterAndWorkflows(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsAugmentedFilterAndCollections(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsAugmentedFilterAndUsers(BaseModel):
+    id: str
+
+
+class QueryAgentsAgentsResultsAugmentedFilterAndObservations(BaseModel):
+    type: ObservableTypes
+    observable: "QueryAgentsAgentsResultsAugmentedFilterAndObservationsObservable"
+    states: Optional[list[EntityState]]
+
+
+class QueryAgentsAgentsResultsAugmentedFilterAndObservationsObservable(BaseModel):
     id: str
 
 
@@ -89,4 +407,16 @@ class QueryAgentsAgentsResultsConnectors(BaseModel):
 QueryAgents.model_rebuild()
 QueryAgentsAgents.model_rebuild()
 QueryAgentsAgentsResults.model_rebuild()
+QueryAgentsAgentsResultsTrigger.model_rebuild()
 QueryAgentsAgentsResultsFilter.model_rebuild()
+QueryAgentsAgentsResultsFilterObservations.model_rebuild()
+QueryAgentsAgentsResultsFilterOr.model_rebuild()
+QueryAgentsAgentsResultsFilterOrObservations.model_rebuild()
+QueryAgentsAgentsResultsFilterAnd.model_rebuild()
+QueryAgentsAgentsResultsFilterAndObservations.model_rebuild()
+QueryAgentsAgentsResultsAugmentedFilter.model_rebuild()
+QueryAgentsAgentsResultsAugmentedFilterObservations.model_rebuild()
+QueryAgentsAgentsResultsAugmentedFilterOr.model_rebuild()
+QueryAgentsAgentsResultsAugmentedFilterOrObservations.model_rebuild()
+QueryAgentsAgentsResultsAugmentedFilterAnd.model_rebuild()
+QueryAgentsAgentsResultsAugmentedFilterAndObservations.model_rebuild()
