@@ -8,6 +8,7 @@ from pydantic import Field
 from .base_model import BaseModel
 from .enums import (
     AgentChannelTypes,
+    AgentResearchDepths,
     AgentTypes,
     AlertTypes,
     AnthropicEffortLevels,
@@ -2907,6 +2908,9 @@ class AgentInput(BaseModel):
     timeout: Optional[Any] = None
     prompt: Optional[str] = None
     scratchpad: Optional[str] = None
+    research_depth: Optional[AgentResearchDepths] = Field(
+        alias="researchDepth", default=None
+    )
     channels: Optional[list["AgentChannelInput"]] = None
     connectors: Optional[list["EntityReferenceInput"]] = None
     callback_uri: Optional[Any] = Field(alias="callbackUri", default=None)
@@ -7406,6 +7410,9 @@ class AgentUpdateInput(BaseModel):
     timeout: Optional[Any] = None
     prompt: Optional[str] = None
     scratchpad: Optional[str] = None
+    research_depth: Optional[AgentResearchDepths] = Field(
+        alias="researchDepth", default=None
+    )
     channels: Optional[list["AgentChannelInput"]] = None
     connectors: Optional[list["EntityReferenceInput"]] = None
     callback_uri: Optional[Any] = Field(alias="callbackUri", default=None)

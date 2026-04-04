@@ -794,6 +794,7 @@ query GetAgent($id: ID!, $correlationId: String) {
     timeout
     prompt
     scratchpad
+    researchDepth
     callbackUri
   }
 }
@@ -1031,6 +1032,7 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
       timeout
       prompt
       scratchpad
+      researchDepth
       callbackUri
     }
   }

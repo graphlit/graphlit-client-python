@@ -8,6 +8,7 @@ from pydantic import Field
 from .base_model import BaseModel
 from .enums import (
     AgentChannelTypes,
+    AgentResearchDepths,
     AgentTypes,
     ContentTypes,
     EntityState,
@@ -51,6 +52,7 @@ class QueryAgentsAgentsResults(BaseModel):
     timeout: Optional[Any]
     prompt: Optional[str]
     scratchpad: Optional[str]
+    research_depth: Optional[AgentResearchDepths] = Field(alias="researchDepth")
     callback_uri: Optional[Any] = Field(alias="callbackUri")
 
 

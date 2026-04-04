@@ -699,6 +699,7 @@ from .enrich_places import EnrichPlaces, EnrichPlacesEnrichPlaces
 from .enrich_products import EnrichProducts, EnrichProductsEnrichProducts
 from .enums import (
     AgentChannelTypes,
+    AgentResearchDepths,
     AgentTypes,
     AlertTypes,
     AnthropicEffortLevels,
@@ -5461,6 +5462,7 @@ __all__ = [
     "AgentChannelTypes",
     "AgentFilter",
     "AgentInput",
+    "AgentResearchDepths",
     "AgentSchedulePolicyInput",
     "AgentTriggerFilterInput",
     "AgentTypes",

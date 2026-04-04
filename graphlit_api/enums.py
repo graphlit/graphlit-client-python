@@ -388,6 +388,13 @@ class TwelveLabsSegmentationMethods(str, Enum):
     FIXED = "FIXED"
 
 
+class AgentResearchDepths(str, Enum):
+    QUICK = "QUICK"
+    STANDARD = "STANDARD"
+    DEEP = "DEEP"
+    EXHAUSTIVE = "EXHAUSTIVE"
+
+
 class TimedPolicyRecurrenceTypes(str, Enum):
     ONCE = "ONCE"
     REPEAT = "REPEAT"
