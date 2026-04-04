@@ -8,6 +8,7 @@ from pydantic import Field
 from .base_model import BaseModel
 from .enums import (
     AgentChannelTypes,
+    AgentCommandActionTypes,
     AgentResearchDepths,
     AgentTypes,
     ContentTypes,
@@ -48,6 +49,7 @@ class QueryAgentsAgentsResults(BaseModel):
         alias="schedulePolicy"
     )
     channels: Optional[list["QueryAgentsAgentsResultsChannels"]]
+    commands: Optional[list["QueryAgentsAgentsResultsCommands"]]
     connectors: Optional[list["QueryAgentsAgentsResultsConnectors"]]
     timeout: Optional[Any]
     prompt: Optional[str]
@@ -400,6 +402,15 @@ class QueryAgentsAgentsResultsChannels(BaseModel):
     identifier: str
     instructions: Optional[str]
     label: Optional[str]
+
+
+class QueryAgentsAgentsResultsCommands(BaseModel):
+    keyword: str
+    name: str
+    description: Optional[str]
+    type: AgentCommandActionTypes
+    template: str
+    enabled: bool
 
 
 class QueryAgentsAgentsResultsConnectors(BaseModel):

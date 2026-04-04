@@ -72,6 +72,7 @@ query GetContent($id: ID!, $correlationId: String) {
     transcriptUri
     snapshotsUri
     snapshotCount
+    snippet
     summary
     customSummary
     keywords

@@ -236,6 +236,11 @@ class OpenAIVisionDetailLevels(str, Enum):
     LOW = "LOW"
 
 
+class AgentCommandActionTypes(str, Enum):
+    PROMPT = "PROMPT"
+    REPLY = "REPLY"
+
+
 class ContentPublishingFormats(str, Enum):
     PNG = "PNG"
     JPEG = "JPEG"

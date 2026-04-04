@@ -8,6 +8,7 @@ from pydantic import Field
 from .base_model import BaseModel
 from .enums import (
     AgentChannelTypes,
+    AgentCommandActionTypes,
     AgentResearchDepths,
     AgentTypes,
     AlertTypes,
@@ -598,6 +599,15 @@ class ConfluencePageUpdateInput(BaseModel):
     title: Optional[str] = None
     content: Optional[str] = None
     append_content: Optional[bool] = Field(alias="appendContent", default=None)
+
+
+class AgentCommandInput(BaseModel):
+    keyword: str
+    name: str
+    description: Optional[str] = None
+    type: AgentCommandActionTypes
+    template: str
+    enabled: Optional[bool] = None
 
 
 class CerebrasModelPropertiesInput(BaseModel):
@@ -2912,6 +2922,7 @@ class AgentInput(BaseModel):
         alias="researchDepth", default=None
     )
     channels: Optional[list["AgentChannelInput"]] = None
+    commands: Optional[list["AgentCommandInput"]] = None
     connectors: Optional[list["EntityReferenceInput"]] = None
     callback_uri: Optional[Any] = Field(alias="callbackUri", default=None)
 
@@ -7414,6 +7425,7 @@ class AgentUpdateInput(BaseModel):
         alias="researchDepth", default=None
     )
     channels: Optional[list["AgentChannelInput"]] = None
+    commands: Optional[list["AgentCommandInput"]] = None
     connectors: Optional[list["EntityReferenceInput"]] = None
     callback_uri: Optional[Any] = Field(alias="callbackUri", default=None)
 

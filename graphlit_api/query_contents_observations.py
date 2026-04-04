@@ -68,6 +68,7 @@ class QueryContentsObservationsContentsResults(BaseModel):
     transcript_uri: Optional[Any] = Field(alias="transcriptUri")
     snapshots_uri: Optional[Any] = Field(alias="snapshotsUri")
     snapshot_count: Optional[int] = Field(alias="snapshotCount")
+    snippet: Optional[str]
     summary: Optional[str]
     custom_summary: Optional[str] = Field(alias="customSummary")
     quotes: Optional[list[str]]

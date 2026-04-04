@@ -224,6 +224,14 @@ query GetAgent($id: ID!, $correlationId: String) {
       instructions
       label
     }
+    commands {
+      keyword
+      name
+      description
+      type
+      template
+      enabled
+    }
     connectors {
       id
     }

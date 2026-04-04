@@ -788,6 +788,14 @@ query GetAgent($id: ID!, $correlationId: String) {
       instructions
       label
     }
+    commands {
+      keyword
+      name
+      description
+      type
+      template
+      enabled
+    }
     connectors {
       id
     }
@@ -1025,6 +1033,14 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
         identifier
         instructions
         label
+      }
+      commands {
+        keyword
+        name
+        description
+        type
+        template
+        enabled
       }
       connectors {
         id
@@ -2877,6 +2893,7 @@ query GetContent($id: ID!, $correlationId: String) {
     transcriptUri
     snapshotsUri
     snapshotCount
+    snippet
     summary
     customSummary
     keywords
@@ -3790,6 +3807,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
       transcriptUri
       snapshotsUri
       snapshotCount
+      snippet
       summary
       customSummary
       keywords
@@ -4564,6 +4582,7 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
       transcriptUri
       snapshotsUri
       snapshotCount
+      snippet
       summary
       customSummary
       quotes
@@ -5019,6 +5038,7 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
       transcriptUri
       snapshotsUri
       snapshotCount
+      snippet
       summary
       customSummary
       quotes

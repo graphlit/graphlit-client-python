@@ -73,6 +73,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
       transcriptUri
       snapshotsUri
       snapshotCount
+      snippet
       summary
       customSummary
       keywords

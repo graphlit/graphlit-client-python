@@ -44,6 +44,7 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
       transcriptUri
       snapshotsUri
       snapshotCount
+      snippet
       summary
       customSummary
       quotes

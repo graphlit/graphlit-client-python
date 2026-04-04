@@ -223,6 +223,14 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
         instructions
         label
       }
+      commands {
+        keyword
+        name
+        description
+        type
+        template
+        enabled
+      }
       connectors {
         id
       }
