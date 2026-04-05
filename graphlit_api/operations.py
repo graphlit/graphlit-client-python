@@ -580,6 +580,7 @@ query GetAgent($id: ID!, $correlationId: String) {
     description
     specification {
       id
+      name
     }
     trigger {
       types
@@ -826,6 +827,7 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
       description
       specification {
         id
+        name
       }
       trigger {
         types

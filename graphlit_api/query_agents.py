@@ -64,6 +64,7 @@ class QueryAgentsAgentsResultsOwner(BaseModel):
 
 class QueryAgentsAgentsResultsSpecification(BaseModel):
     id: str
+    name: str
 
 
 class QueryAgentsAgentsResultsTrigger(BaseModel):

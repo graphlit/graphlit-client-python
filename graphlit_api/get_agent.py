@@ -64,6 +64,7 @@ class GetAgentAgentUser(BaseModel):
 
 class GetAgentAgentSpecification(BaseModel):
     id: str
+    name: str
 
 
 class GetAgentAgentTrigger(BaseModel):

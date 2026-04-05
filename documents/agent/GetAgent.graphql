@@ -16,6 +16,7 @@ query GetAgent($id: ID!, $correlationId: String) {
     description
     specification {
       id
+      name
     }
     trigger {
       types
