@@ -219,6 +219,14 @@ query QueryConversationsClusters($filter: ConversationFilter, $clusters: EntityC
         observationMode
       }
       summary
+      parent {
+        id
+        name
+      }
+      children {
+        id
+        name
+      }
     }
     clusters {
       entities {

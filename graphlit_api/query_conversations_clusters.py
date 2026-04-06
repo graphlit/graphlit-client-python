@@ -53,6 +53,10 @@ class QueryConversationsClustersConversationsResults(BaseModel):
         "QueryConversationsClustersConversationsResultsAugmentedFilter"
     ] = Field(alias="augmentedFilter")
     summary: Optional[str]
+    parent: Optional["QueryConversationsClustersConversationsResultsParent"]
+    children: Optional[
+        list[Optional["QueryConversationsClustersConversationsResultsChildren"]]
+    ]
 
 
 class QueryConversationsClustersConversationsResultsOwner(BaseModel):
@@ -500,6 +504,16 @@ class QueryConversationsClustersConversationsResultsAugmentedFilterAndObservatio
     BaseModel
 ):
     id: str
+
+
+class QueryConversationsClustersConversationsResultsParent(BaseModel):
+    id: str
+    name: str
+
+
+class QueryConversationsClustersConversationsResultsChildren(BaseModel):
+    id: str
+    name: str
 
 
 class QueryConversationsClustersConversationsClusters(BaseModel):

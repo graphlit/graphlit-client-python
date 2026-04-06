@@ -8467,6 +8467,14 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         observationMode
       }
       summary
+      parent {
+        id
+        name
+      }
+      children {
+        id
+        name
+      }
     }
   }
 }
@@ -8698,6 +8706,14 @@ query QueryConversationsClusters($filter: ConversationFilter, $clusters: EntityC
         observationMode
       }
       summary
+      parent {
+        id
+        name
+      }
+      children {
+        id
+        name
+      }
     }
     clusters {
       entities {

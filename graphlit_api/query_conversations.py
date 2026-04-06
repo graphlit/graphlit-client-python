@@ -48,6 +48,8 @@ class QueryConversationsConversationsResults(BaseModel):
         "QueryConversationsConversationsResultsAugmentedFilter"
     ] = Field(alias="augmentedFilter")
     summary: Optional[str]
+    parent: Optional["QueryConversationsConversationsResultsParent"]
+    children: Optional[list[Optional["QueryConversationsConversationsResultsChildren"]]]
 
 
 class QueryConversationsConversationsResultsOwner(BaseModel):
@@ -439,6 +441,16 @@ class QueryConversationsConversationsResultsAugmentedFilterAndObservationsObserv
     BaseModel
 ):
     id: str
+
+
+class QueryConversationsConversationsResultsParent(BaseModel):
+    id: str
+    name: str
+
+
+class QueryConversationsConversationsResultsChildren(BaseModel):
+    id: str
+    name: str
 
 
 QueryConversations.model_rebuild()

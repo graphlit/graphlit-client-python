@@ -219,6 +219,14 @@ query QueryConversations($filter: ConversationFilter, $correlationId: String) {
         observationMode
       }
       summary
+      parent {
+        id
+        name
+      }
+      children {
+        id
+        name
+      }
     }
   }
 }
