@@ -582,6 +582,10 @@ query GetAgent($id: ID!, $correlationId: String) {
       id
       name
     }
+    persona {
+      id
+      name
+    }
     trigger {
       types
       fileTypes
@@ -826,6 +830,10 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
       type
       description
       specification {
+        id
+        name
+      }
+      persona {
         id
         name
       }

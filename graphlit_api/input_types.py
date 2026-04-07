@@ -2907,6 +2907,7 @@ class AgentInput(BaseModel):
     type: AgentTypes
     description: Optional[str] = None
     specification: Optional["EntityReferenceInput"] = None
+    persona: Optional["EntityReferenceInput"] = None
     trigger: Optional["AgentTriggerFilterInput"] = None
     filter: Optional["ContentCriteriaInput"] = None
     augmented_filter: Optional["ContentCriteriaInput"] = Field(
@@ -7410,6 +7411,7 @@ class AgentUpdateInput(BaseModel):
     name: Optional[str] = None
     description: Optional[str] = None
     specification: Optional["EntityReferenceInput"] = None
+    persona: Optional["EntityReferenceInput"] = None
     trigger: Optional["AgentTriggerFilterInput"] = None
     filter: Optional["ContentCriteriaInput"] = None
     augmented_filter: Optional["ContentCriteriaInput"] = Field(

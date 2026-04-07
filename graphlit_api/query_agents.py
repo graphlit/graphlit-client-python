@@ -40,6 +40,7 @@ class QueryAgentsAgentsResults(BaseModel):
     type: AgentTypes
     description: Optional[str]
     specification: Optional["QueryAgentsAgentsResultsSpecification"]
+    persona: Optional["QueryAgentsAgentsResultsPersona"]
     trigger: Optional["QueryAgentsAgentsResultsTrigger"]
     filter: Optional["QueryAgentsAgentsResultsFilter"]
     augmented_filter: Optional["QueryAgentsAgentsResultsAugmentedFilter"] = Field(
@@ -63,6 +64,11 @@ class QueryAgentsAgentsResultsOwner(BaseModel):
 
 
 class QueryAgentsAgentsResultsSpecification(BaseModel):
+    id: str
+    name: str
+
+
+class QueryAgentsAgentsResultsPersona(BaseModel):
     id: str
     name: str
 

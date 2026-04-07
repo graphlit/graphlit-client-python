@@ -18,6 +18,10 @@ query GetAgent($id: ID!, $correlationId: String) {
       id
       name
     }
+    persona {
+      id
+      name
+    }
     trigger {
       types
       fileTypes

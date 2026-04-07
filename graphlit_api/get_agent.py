@@ -36,6 +36,7 @@ class GetAgentAgent(BaseModel):
     type: AgentTypes
     description: Optional[str]
     specification: Optional["GetAgentAgentSpecification"]
+    persona: Optional["GetAgentAgentPersona"]
     trigger: Optional["GetAgentAgentTrigger"]
     filter: Optional["GetAgentAgentFilter"]
     augmented_filter: Optional["GetAgentAgentAugmentedFilter"] = Field(
@@ -63,6 +64,11 @@ class GetAgentAgentUser(BaseModel):
 
 
 class GetAgentAgentSpecification(BaseModel):
+    id: str
+    name: str
+
+
+class GetAgentAgentPersona(BaseModel):
     id: str
     name: str
 

@@ -17,6 +17,10 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
         id
         name
       }
+      persona {
+        id
+        name
+      }
       trigger {
         types
         fileTypes
