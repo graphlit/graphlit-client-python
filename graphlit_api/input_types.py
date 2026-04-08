@@ -3246,6 +3246,9 @@ class ContentFilter(BaseModel):
         alias="similarContents", default=None
     )
     contents: Optional[list["EntityReferenceFilter"]] = None
+    exclude_contents: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="excludeContents", default=None
+    )
     feeds: Optional[list["EntityReferenceFilter"]] = None
     agents: Optional[list["EntityReferenceFilter"]] = None
     workflows: Optional[list["EntityReferenceFilter"]] = None
@@ -6401,6 +6404,9 @@ class ConversationFilter(BaseModel):
         alias="similarConversations", default=None
     )
     conversations: Optional[list["EntityReferenceFilter"]] = None
+    exclude_conversations: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="excludeConversations", default=None
+    )
     agents: Optional[list["EntityReferenceFilter"]] = None
     collections: Optional[list["EntityReferenceFilter"]] = None
     has_collections: Optional[bool] = Field(alias="hasCollections", default=None)
