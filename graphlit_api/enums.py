@@ -570,6 +570,11 @@ class CalendarEventVisibility(str, Enum):
     CONFIDENTIAL = "CONFIDENTIAL"
 
 
+class PersonaTypes(str, Enum):
+    USER = "USER"
+    AGENT = "AGENT"
+
+
 class MedicalDeviceFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 

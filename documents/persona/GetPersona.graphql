@@ -8,6 +8,7 @@ query GetPersona($id: ID!, $correlationId: String) {
       id
     }
     state
+    type
     user {
       id
     }

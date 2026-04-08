@@ -3,6 +3,7 @@ mutation CreatePersona($persona: PersonaInput!) {
     id
     name
     state
+    type
     identifier
     platform
     displayName

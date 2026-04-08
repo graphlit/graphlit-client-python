@@ -6,7 +6,7 @@ from typing import Any, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import EntityState
+from .enums import EntityState, PersonaTypes
 
 
 class GetPersona(BaseModel):
@@ -20,6 +20,7 @@ class GetPersonaPersona(BaseModel):
     modified_date: Optional[Any] = Field(alias="modifiedDate")
     owner: "GetPersonaPersonaOwner"
     state: EntityState
+    type: Optional[PersonaTypes]
     user: Optional["GetPersonaPersonaUser"]
     identifier: Optional[str]
     platform: Optional[str]

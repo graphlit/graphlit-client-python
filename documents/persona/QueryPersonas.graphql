@@ -10,6 +10,7 @@ query QueryPersonas($filter: PersonaFilter, $correlationId: String) {
         id
       }
       state
+      type
       identifier
       platform
       displayName

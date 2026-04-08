@@ -17474,6 +17474,7 @@ mutation CreatePersona($persona: PersonaInput!) {
     id
     name
     state
+    type
     identifier
     platform
     displayName
@@ -17525,6 +17526,7 @@ query GetPersona($id: ID!, $correlationId: String) {
       id
     }
     state
+    type
     user {
       id
     }
@@ -17555,6 +17557,7 @@ query QueryPersonas($filter: PersonaFilter, $correlationId: String) {
         id
       }
       state
+      type
       identifier
       platform
       displayName
@@ -17576,6 +17579,7 @@ mutation UpdatePersona($persona: PersonaUpdateInput!) {
     id
     name
     state
+    type
     identifier
     platform
     displayName
@@ -19948,6 +19952,7 @@ query GetUser {
       id
       name
       state
+      type
       identifier
       platform
       displayName
@@ -20077,6 +20082,7 @@ query GetUserByIdentifier($identifier: String!) {
       id
       name
       state
+      type
       identifier
       platform
       displayName
@@ -20207,6 +20213,7 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
         id
         name
         state
+        type
         identifier
         platform
         displayName

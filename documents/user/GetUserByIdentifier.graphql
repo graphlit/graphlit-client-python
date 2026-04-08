@@ -105,6 +105,7 @@ query GetUserByIdentifier($identifier: String!) {
       id
       name
       state
+      type
       identifier
       platform
       displayName

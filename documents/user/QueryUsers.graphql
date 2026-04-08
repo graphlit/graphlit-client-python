@@ -106,6 +106,7 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
         id
         name
         state
+        type
         identifier
         platform
         displayName

@@ -6,7 +6,7 @@ from typing import Any, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import EntityState
+from .enums import EntityState, PersonaTypes
 
 
 class QueryPersonas(BaseModel):
@@ -25,6 +25,7 @@ class QueryPersonasPersonasResults(BaseModel):
     relevance: Optional[float]
     owner: "QueryPersonasPersonasResultsOwner"
     state: EntityState
+    type: Optional[PersonaTypes]
     identifier: Optional[str]
     platform: Optional[str]
     display_name: Optional[str] = Field(alias="displayName")

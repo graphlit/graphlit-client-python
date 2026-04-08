@@ -159,6 +159,7 @@ from .enums import (
     OrientationTypes,
     ParallelGenerators,
     ParallelProcessors,
+    PersonaTypes,
     PersonFacetTypes,
     PlaceFacetTypes,
     ProductFacetTypes,
@@ -341,6 +342,7 @@ class PlaceInput(BaseModel):
 
 class PersonaInput(BaseModel):
     name: str
+    type: Optional[PersonaTypes] = None
     identifier: Optional[str] = None
     platform: Optional[str] = None
     display_name: Optional[str] = Field(alias="displayName", default=None)
@@ -5097,6 +5099,7 @@ class PersonaFilter(BaseModel):
         alias="modifiedDateRange", default=None
     )
     identifier: Optional[str] = None
+    types: Optional[list[PersonaTypes]] = None
 
 
 class RegexContentClassificationPropertiesInput(BaseModel):
@@ -6532,6 +6535,7 @@ class SiteFeedPropertiesInput(BaseModel):
 class PersonaUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
+    type: Optional[PersonaTypes] = None
     identifier: Optional[str] = None
     platform: Optional[str] = None
     display_name: Optional[str] = Field(alias="displayName", default=None)

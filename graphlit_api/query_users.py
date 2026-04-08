@@ -15,6 +15,7 @@ from .enums import (
     IntegrationServiceTypes,
     MCPServerTypes,
     OAuthProviders,
+    PersonaTypes,
     UserTypes,
 )
 
@@ -182,6 +183,7 @@ class QueryUsersUsersResultsPersonas(BaseModel):
     id: str
     name: str
     state: EntityState
+    type: Optional[PersonaTypes]
     identifier: Optional[str]
     platform: Optional[str]
     display_name: Optional[str] = Field(alias="displayName")

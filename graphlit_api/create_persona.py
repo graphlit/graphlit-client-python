@@ -6,7 +6,7 @@ from typing import Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import EntityState
+from .enums import EntityState, PersonaTypes
 
 
 class CreatePersona(BaseModel):
@@ -19,6 +19,7 @@ class CreatePersonaCreatePersona(BaseModel):
     id: str
     name: str
     state: EntityState
+    type: Optional[PersonaTypes]
     identifier: Optional[str]
     platform: Optional[str]
     display_name: Optional[str] = Field(alias="displayName")
