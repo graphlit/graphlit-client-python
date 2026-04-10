@@ -844,6 +844,14 @@ class EmailListingTypes(str, Enum):
     NEW = "NEW"
 
 
+class LinkedInSearchDateTypes(str, Enum):
+    PAST_DAY = "PAST_DAY"
+    PAST_WEEK = "PAST_WEEK"
+    PAST_MONTH = "PAST_MONTH"
+    PAST_QUARTER = "PAST_QUARTER"
+    PAST_YEAR = "PAST_YEAR"
+
+
 class BambooHRAuthenticationTypes(str, Enum):
     API_KEY = "API_KEY"
 
@@ -1445,6 +1453,7 @@ class SearchServiceTypes(str, Enum):
     PERPLEXITY = "PERPLEXITY"
     PODSCAN = "PODSCAN"
     CRUSTDATA = "CRUSTDATA"
+    LINKED_IN = "LINKED_IN"
 
 
 class FeedSyncMode(str, Enum):

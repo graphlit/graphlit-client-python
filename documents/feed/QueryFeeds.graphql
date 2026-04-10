@@ -620,6 +620,9 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           jobRegion
           jobDescription
         }
+        linkedin {
+          dateRange
+        }
       }
       reddit {
         readLimit

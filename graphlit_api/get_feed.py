@@ -48,6 +48,7 @@ from .enums import (
     LinearAuthenticationTypes,
     LinkedInPostContentTypes,
     LinkedInPostListingTypes,
+    LinkedInSearchDateTypes,
     MeetingContentTypes,
     MicrosoftCalendarAuthenticationTypes,
     MicrosoftContactsAuthenticationTypes,
@@ -1008,6 +1009,7 @@ class GetFeedFeedSearch(BaseModel):
     text: Optional[str]
     exa: Optional["GetFeedFeedSearchExa"]
     crustdata: Optional["GetFeedFeedSearchCrustdata"]
+    linkedin: Optional["GetFeedFeedSearchLinkedin"]
 
 
 class GetFeedFeedSearchExa(BaseModel):
@@ -1023,6 +1025,10 @@ class GetFeedFeedSearchCrustdata(BaseModel):
     job_title: Optional[str] = Field(alias="jobTitle")
     job_region: Optional[str] = Field(alias="jobRegion")
     job_description: Optional[str] = Field(alias="jobDescription")
+
+
+class GetFeedFeedSearchLinkedin(BaseModel):
+    date_range: Optional[LinkedInSearchDateTypes] = Field(alias="dateRange")
 
 
 class GetFeedFeedReddit(BaseModel):

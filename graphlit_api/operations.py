@@ -11103,6 +11103,9 @@ query GetFeed($id: ID!, $correlationId: String) {
         jobRegion
         jobDescription
       }
+      linkedin {
+        dateRange
+      }
     }
     reddit {
       readLimit
@@ -12193,6 +12196,9 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           jobTitle
           jobRegion
           jobDescription
+        }
+        linkedin {
+          dateRange
         }
       }
       reddit {

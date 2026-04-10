@@ -116,6 +116,7 @@ from .enums import (
     LinearAuthenticationTypes,
     LinkedInPostContentTypes,
     LinkedInPostListingTypes,
+    LinkedInSearchDateTypes,
     LinkTypes,
     MailImportance,
     MailPriority,
@@ -740,6 +741,7 @@ class SearchFeedPropertiesUpdateInput(BaseModel):
     text: Optional[str] = None
     exa: Optional["ExaSearchPropertiesInput"] = None
     crustdata: Optional["CrustdataSearchFeedPropertiesUpdateInput"] = None
+    linkedin: Optional["LinkedInSearchPropertiesInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -5588,6 +5590,12 @@ class AuthenticationConnectorInput(BaseModel):
     oauth: Optional["OAuthAuthenticationPropertiesInput"] = None
 
 
+class LinkedInSearchPropertiesInput(BaseModel):
+    date_range: Optional[LinkedInSearchDateTypes] = Field(
+        alias="dateRange", default=None
+    )
+
+
 class ConversationToolCallInput(BaseModel):
     id: str
     name: str
@@ -5873,6 +5881,7 @@ class SearchFeedPropertiesInput(BaseModel):
     text: Optional[str] = None
     exa: Optional["ExaSearchPropertiesInput"] = None
     crustdata: Optional["CrustdataSearchFeedPropertiesInput"] = None
+    linkedin: Optional["LinkedInSearchPropertiesInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
