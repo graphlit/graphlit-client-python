@@ -1454,6 +1454,7 @@ class SearchServiceTypes(str, Enum):
     PODSCAN = "PODSCAN"
     CRUSTDATA = "CRUSTDATA"
     LINKED_IN = "LINKED_IN"
+    TWITTER = "TWITTER"
 
 
 class FeedSyncMode(str, Enum):
