@@ -6,7 +6,7 @@ from typing import Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import DistributionServiceTypes
+from .enums import DistributionOperationTypes, DistributionServiceTypes
 
 
 class Distribute(BaseModel):
@@ -17,6 +17,9 @@ class DistributeDistribute(BaseModel):
     uri: Optional[str]
     identifier: Optional[str]
     service_type: Optional[DistributionServiceTypes] = Field(alias="serviceType")
+    operation: Optional[DistributionOperationTypes]
+    resolved_target_identifier: Optional[str] = Field(alias="resolvedTargetIdentifier")
+    resolved_target_uri: Optional[str] = Field(alias="resolvedTargetUri")
     error: Optional[str]
 
 

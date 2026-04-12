@@ -1,3 +1,0 @@
-mutation DeleteGoogleCalendarEvent($properties: GoogleCalendarEventsInput!, $eventId: String!) {
-  deleteGoogleCalendarEvent(properties: $properties, eventId: $eventId)
-}

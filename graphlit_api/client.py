@@ -158,7 +158,6 @@ from .delete_fact import DeleteFact
 from .delete_facts import DeleteFacts
 from .delete_feed import DeleteFeed
 from .delete_feeds import DeleteFeeds
-from .delete_google_calendar_event import DeleteGoogleCalendarEvent
 from .delete_investment import DeleteInvestment
 from .delete_investment_fund import DeleteInvestmentFund
 from .delete_investment_funds import DeleteInvestmentFunds
@@ -187,7 +186,6 @@ from .delete_medical_test import DeleteMedicalTest
 from .delete_medical_tests import DeleteMedicalTests
 from .delete_medical_therapies import DeleteMedicalTherapies
 from .delete_medical_therapy import DeleteMedicalTherapy
-from .delete_microsoft_calendar_event import DeleteMicrosoftCalendarEvent
 from .delete_observation import DeleteObservation
 from .delete_organization import DeleteOrganization
 from .delete_organizations import DeleteOrganizations
@@ -306,14 +304,12 @@ from .input_types import (
     BureauFilter,
     BureauInput,
     BureauUpdateInput,
-    CalendarEventUpdateInput,
     CategoryFilter,
     CategoryInput,
     CategoryUpdateInput,
     CollectionFilter,
     CollectionInput,
     CollectionUpdateInput,
-    ConfluencePageUpdateInput,
     ConfluenceSpacesInput,
     ConnectorFilter,
     ConnectorInput,
@@ -356,7 +352,6 @@ from .input_types import (
     FeedUpdateInput,
     GitHubRepositoriesInput,
     GitLabProjectsInput,
-    GoogleCalendarEventsInput,
     GoogleCalendarsInput,
     GoogleDriveDrivesInput,
     GoogleDriveFoldersInput,
@@ -371,12 +366,10 @@ from .input_types import (
     InvestmentFundUpdateInput,
     InvestmentInput,
     InvestmentUpdateInput,
-    JiraIssueUpdateInput,
     JiraProjectsInput,
     LabelFilter,
     LabelInput,
     LabelUpdateInput,
-    LinearIssueUpdateInput,
     LinearProjectsInput,
     MedicalConditionFilter,
     MedicalConditionInput,
@@ -411,7 +404,6 @@ from .input_types import (
     MedicalTherapyFilter,
     MedicalTherapyInput,
     MedicalTherapyUpdateInput,
-    MicrosoftCalendarEventsInput,
     MicrosoftCalendarsInput,
     MicrosoftTeamsChannelsInput,
     MicrosoftTeamsTeamsInput,
@@ -419,7 +411,6 @@ from .input_types import (
     MondayBoardsInput,
     NotionDatabasesInput,
     NotionPagesInput,
-    NotionPageUpdateInput,
     ObservableInput,
     ObservationInput,
     ObservationReferenceInput,
@@ -635,7 +626,6 @@ from .operations import (
     DELETE_FACTS_GQL,
     DELETE_FEED_GQL,
     DELETE_FEEDS_GQL,
-    DELETE_GOOGLE_CALENDAR_EVENT_GQL,
     DELETE_INVESTMENT_FUND_GQL,
     DELETE_INVESTMENT_FUNDS_GQL,
     DELETE_INVESTMENT_GQL,
@@ -664,7 +654,6 @@ from .operations import (
     DELETE_MEDICAL_TESTS_GQL,
     DELETE_MEDICAL_THERAPIES_GQL,
     DELETE_MEDICAL_THERAPY_GQL,
-    DELETE_MICROSOFT_CALENDAR_EVENT_GQL,
     DELETE_OBSERVATION_GQL,
     DELETE_ORGANIZATION_GQL,
     DELETE_ORGANIZATIONS_GQL,
@@ -887,6 +876,7 @@ from .operations import (
     QUERY_USERS_GQL,
     QUERY_VIEWS_GQL,
     QUERY_WORKFLOWS_GQL,
+    READ_GQL,
     REJECT_CONTENT_GQL,
     REMOVE_AGENTS_FROM_DESK_GQL,
     REMOVE_CONTENT_LABEL_GQL,
@@ -919,7 +909,6 @@ from .operations import (
     UPDATE_BUREAU_GQL,
     UPDATE_CATEGORY_GQL,
     UPDATE_COLLECTION_GQL,
-    UPDATE_CONFLUENCE_PAGE_GQL,
     UPDATE_CONNECTOR_GQL,
     UPDATE_CONTENT_GQL,
     UPDATE_CONVERSATION_GQL,
@@ -928,12 +917,9 @@ from .operations import (
     UPDATE_EVENT_GQL,
     UPDATE_FACT_GQL,
     UPDATE_FEED_GQL,
-    UPDATE_GOOGLE_CALENDAR_EVENT_GQL,
     UPDATE_INVESTMENT_FUND_GQL,
     UPDATE_INVESTMENT_GQL,
-    UPDATE_JIRA_ISSUE_GQL,
     UPDATE_LABEL_GQL,
-    UPDATE_LINEAR_ISSUE_GQL,
     UPDATE_MEDICAL_CONDITION_GQL,
     UPDATE_MEDICAL_CONTRAINDICATION_GQL,
     UPDATE_MEDICAL_DEVICE_GQL,
@@ -945,8 +931,6 @@ from .operations import (
     UPDATE_MEDICAL_STUDY_GQL,
     UPDATE_MEDICAL_TEST_GQL,
     UPDATE_MEDICAL_THERAPY_GQL,
-    UPDATE_MICROSOFT_CALENDAR_EVENT_GQL,
-    UPDATE_NOTION_PAGE_GQL,
     UPDATE_OBSERVATION_GQL,
     UPDATE_ORGANIZATION_GQL,
     UPDATE_PERSON_GQL,
@@ -1091,6 +1075,7 @@ from .query_usage import QueryUsage
 from .query_users import QueryUsers
 from .query_views import QueryViews
 from .query_workflows import QueryWorkflows
+from .read import Read
 from .reject_content import RejectContent
 from .remove_agents_from_desk import RemoveAgentsFromDesk
 from .remove_content_label import RemoveContentLabel
@@ -1123,7 +1108,6 @@ from .update_alert import UpdateAlert
 from .update_bureau import UpdateBureau
 from .update_category import UpdateCategory
 from .update_collection import UpdateCollection
-from .update_confluence_page import UpdateConfluencePage
 from .update_connector import UpdateConnector
 from .update_content import UpdateContent
 from .update_conversation import UpdateConversation
@@ -1132,12 +1116,9 @@ from .update_emotion import UpdateEmotion
 from .update_event import UpdateEvent
 from .update_fact import UpdateFact
 from .update_feed import UpdateFeed
-from .update_google_calendar_event import UpdateGoogleCalendarEvent
 from .update_investment import UpdateInvestment
 from .update_investment_fund import UpdateInvestmentFund
-from .update_jira_issue import UpdateJiraIssue
 from .update_label import UpdateLabel
-from .update_linear_issue import UpdateLinearIssue
 from .update_medical_condition import UpdateMedicalCondition
 from .update_medical_contraindication import UpdateMedicalContraindication
 from .update_medical_device import UpdateMedicalDevice
@@ -1149,8 +1130,6 @@ from .update_medical_procedure import UpdateMedicalProcedure
 from .update_medical_study import UpdateMedicalStudy
 from .update_medical_test import UpdateMedicalTest
 from .update_medical_therapy import UpdateMedicalTherapy
-from .update_microsoft_calendar_event import UpdateMicrosoftCalendarEvent
-from .update_notion_page import UpdateNotionPage
 from .update_observation import UpdateObservation
 from .update_organization import UpdateOrganization
 from .update_person import UpdatePerson
@@ -2880,6 +2859,22 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryObservables.model_validate(data)
 
+    async def read(
+        self,
+        connector: DistributionConnectorInput,
+        authentication: EntityReferenceInput,
+        **kwargs: Any
+    ) -> Read:
+        variables: dict[str, object] = {
+            "connector": connector,
+            "authentication": authentication,
+        }
+        response = await self.execute(
+            query=READ_GQL, operation_name="Read", variables=variables, **kwargs
+        )
+        data = self.get_data(response)
+        return Read.model_validate(data)
+
     async def reject_content(
         self, id: str, reason: Union[Optional[str], UnsetType] = UNSET, **kwargs: Any
     ) -> RejectContent:
@@ -4346,32 +4341,6 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return DeleteFeeds.model_validate(data)
 
-    async def delete_google_calendar_event(
-        self, properties: GoogleCalendarEventsInput, event_id: str, **kwargs: Any
-    ) -> DeleteGoogleCalendarEvent:
-        variables: dict[str, object] = {"properties": properties, "eventId": event_id}
-        response = await self.execute(
-            query=DELETE_GOOGLE_CALENDAR_EVENT_GQL,
-            operation_name="DeleteGoogleCalendarEvent",
-            variables=variables,
-            **kwargs
-        )
-        data = self.get_data(response)
-        return DeleteGoogleCalendarEvent.model_validate(data)
-
-    async def delete_microsoft_calendar_event(
-        self, properties: MicrosoftCalendarEventsInput, event_id: str, **kwargs: Any
-    ) -> DeleteMicrosoftCalendarEvent:
-        variables: dict[str, object] = {"properties": properties, "eventId": event_id}
-        response = await self.execute(
-            query=DELETE_MICROSOFT_CALENDAR_EVENT_GQL,
-            operation_name="DeleteMicrosoftCalendarEvent",
-            variables=variables,
-            **kwargs
-        )
-        data = self.get_data(response)
-        return DeleteMicrosoftCalendarEvent.model_validate(data)
-
     async def disable_feed(self, id: str, **kwargs: Any) -> DisableFeed:
         variables: dict[str, object] = {"id": id}
         response = await self.execute(
@@ -4991,27 +4960,6 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return TriggerFeed.model_validate(data)
 
-    async def update_confluence_page(
-        self,
-        properties: ConfluenceSpacesInput,
-        page_id: str,
-        input: ConfluencePageUpdateInput,
-        **kwargs: Any
-    ) -> UpdateConfluencePage:
-        variables: dict[str, object] = {
-            "properties": properties,
-            "pageId": page_id,
-            "input": input,
-        }
-        response = await self.execute(
-            query=UPDATE_CONFLUENCE_PAGE_GQL,
-            operation_name="UpdateConfluencePage",
-            variables=variables,
-            **kwargs
-        )
-        data = self.get_data(response)
-        return UpdateConfluencePage.model_validate(data)
-
     async def update_feed(self, feed: FeedUpdateInput, **kwargs: Any) -> UpdateFeed:
         variables: dict[str, object] = {"feed": feed}
         response = await self.execute(
@@ -5022,111 +4970,6 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdateFeed.model_validate(data)
-
-    async def update_google_calendar_event(
-        self,
-        properties: GoogleCalendarEventsInput,
-        event_id: str,
-        input: CalendarEventUpdateInput,
-        **kwargs: Any
-    ) -> UpdateGoogleCalendarEvent:
-        variables: dict[str, object] = {
-            "properties": properties,
-            "eventId": event_id,
-            "input": input,
-        }
-        response = await self.execute(
-            query=UPDATE_GOOGLE_CALENDAR_EVENT_GQL,
-            operation_name="UpdateGoogleCalendarEvent",
-            variables=variables,
-            **kwargs
-        )
-        data = self.get_data(response)
-        return UpdateGoogleCalendarEvent.model_validate(data)
-
-    async def update_jira_issue(
-        self,
-        properties: JiraProjectsInput,
-        issue_id_or_key: str,
-        input: JiraIssueUpdateInput,
-        **kwargs: Any
-    ) -> UpdateJiraIssue:
-        variables: dict[str, object] = {
-            "properties": properties,
-            "issueIdOrKey": issue_id_or_key,
-            "input": input,
-        }
-        response = await self.execute(
-            query=UPDATE_JIRA_ISSUE_GQL,
-            operation_name="UpdateJiraIssue",
-            variables=variables,
-            **kwargs
-        )
-        data = self.get_data(response)
-        return UpdateJiraIssue.model_validate(data)
-
-    async def update_linear_issue(
-        self,
-        properties: LinearProjectsInput,
-        issue_id: str,
-        input: LinearIssueUpdateInput,
-        **kwargs: Any
-    ) -> UpdateLinearIssue:
-        variables: dict[str, object] = {
-            "properties": properties,
-            "issueId": issue_id,
-            "input": input,
-        }
-        response = await self.execute(
-            query=UPDATE_LINEAR_ISSUE_GQL,
-            operation_name="UpdateLinearIssue",
-            variables=variables,
-            **kwargs
-        )
-        data = self.get_data(response)
-        return UpdateLinearIssue.model_validate(data)
-
-    async def update_microsoft_calendar_event(
-        self,
-        properties: MicrosoftCalendarEventsInput,
-        event_id: str,
-        input: CalendarEventUpdateInput,
-        **kwargs: Any
-    ) -> UpdateMicrosoftCalendarEvent:
-        variables: dict[str, object] = {
-            "properties": properties,
-            "eventId": event_id,
-            "input": input,
-        }
-        response = await self.execute(
-            query=UPDATE_MICROSOFT_CALENDAR_EVENT_GQL,
-            operation_name="UpdateMicrosoftCalendarEvent",
-            variables=variables,
-            **kwargs
-        )
-        data = self.get_data(response)
-        return UpdateMicrosoftCalendarEvent.model_validate(data)
-
-    async def update_notion_page(
-        self,
-        properties: NotionDatabasesInput,
-        page_id: str,
-        input: NotionPageUpdateInput,
-        **kwargs: Any
-    ) -> UpdateNotionPage:
-        variables: dict[str, object] = {
-            "properties": properties,
-            "pageId": page_id,
-            "input": input,
-        }
-        response = await self.execute(
-            query=UPDATE_NOTION_PAGE_GQL,
-            operation_name="UpdateNotionPage",
-            variables=variables,
-            **kwargs
-        )
-        data = self.get_data(response)
-        return UpdateNotionPage.model_validate(data)
 
     async def count_investments(
         self,

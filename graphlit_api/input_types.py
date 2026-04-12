@@ -57,6 +57,8 @@ from .enums import (
     DeepgramModels,
     DeepseekModels,
     DistributionServiceTypes,
+    DistributionTargetKindTypes,
+    DistributionTargetOperationTypes,
     DropboxAuthenticationTypes,
     ElevenLabsModels,
     ElevenLabsScribeModels,
@@ -519,6 +521,14 @@ class AttioMeetingPropertiesUpdateInput(BaseModel):
 
 
 class SharePointDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
     site_id: str = Field(alias="siteId")
     title: Optional[str] = None
 
@@ -596,12 +606,6 @@ class SpecificationInput(BaseModel):
     twelve_labs: Optional["TwelveLabsModelPropertiesInput"] = Field(
         alias="twelveLabs", default=None
     )
-
-
-class ConfluencePageUpdateInput(BaseModel):
-    title: Optional[str] = None
-    content: Optional[str] = None
-    append_content: Optional[bool] = Field(alias="appendContent", default=None)
 
 
 class AgentCommandInput(BaseModel):
@@ -707,19 +711,6 @@ class SalesforceCRMFeedPropertiesInput(BaseModel):
     type: Optional[FeedListingTypes] = None
 
 
-class GoogleCalendarEventsInput(BaseModel):
-    authentication_type: Optional[GoogleCalendarAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    calendar_id: Optional[str] = Field(alias="calendarId", default=None)
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-
-
 class ElevenLabsScribeAudioPreparationPropertiesInput(BaseModel):
     model: Optional[ElevenLabsScribeModels] = None
     key: Optional[str] = None
@@ -732,6 +723,14 @@ class ElevenLabsScribeAudioPreparationPropertiesInput(BaseModel):
 
 
 class DiscordDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
     channel_id: str = Field(alias="channelId")
     thread_id: Optional[str] = Field(alias="threadId", default=None)
 
@@ -801,16 +800,6 @@ class MedicalIndicationFilter(BaseModel):
     medical_indications: Optional[list["EntityReferenceFilter"]] = Field(
         alias="medicalIndications", default=None
     )
-
-
-class CalendarEventUpdateInput(BaseModel):
-    summary: Optional[str] = None
-    start_date_time: Optional[Any] = Field(alias="startDateTime", default=None)
-    end_date_time: Optional[Any] = Field(alias="endDateTime", default=None)
-    location: Optional[str] = None
-    attendees: Optional[list[Optional[str]]] = None
-    description: Optional[str] = None
-    is_online_meeting: Optional[bool] = Field(alias="isOnlineMeeting", default=None)
 
 
 class ProductlaneFeedPropertiesInput(BaseModel):
@@ -1100,12 +1089,21 @@ class GitHubMilestonesFeedPropertiesUpdateInput(BaseModel):
 
 
 class JiraDistributionPropertiesInput(BaseModel):
-    project_key: str = Field(alias="projectKey")
-    issue_type: str = Field(alias="issueType")
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
+    project_key: Optional[str] = Field(alias="projectKey", default=None)
+    issue_type: Optional[str] = Field(alias="issueType", default=None)
     summary: Optional[str] = None
     priority: Optional[str] = None
     assignee_id: Optional[str] = Field(alias="assigneeId", default=None)
     labels: Optional[list[str]] = None
+    status: Optional[str] = None
 
 
 class FactFilter(BaseModel):
@@ -1341,6 +1339,14 @@ class OrganizationFilter(BaseModel):
 
 
 class GoogleDocsDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
     folder_id: Optional[str] = Field(alias="folderId", default=None)
     title: Optional[str] = None
 
@@ -1449,6 +1455,14 @@ class AzureAIModelPropertiesInput(BaseModel):
 
 
 class GmailDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
     to: list[str]
     subject: str
     cc: Optional[list[str]] = None
@@ -1463,6 +1477,14 @@ class GmailDistributionPropertiesInput(BaseModel):
 
 
 class MicrosoftTeamsDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
     team_id: str = Field(alias="teamId")
     channel_id: str = Field(alias="channelId")
     thread_id: Optional[str] = Field(alias="threadId", default=None)
@@ -1840,10 +1862,18 @@ class IntercomTicketsFeedPropertiesUpdateInput(BaseModel):
 
 
 class GoogleCalendarDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
     calendar_id: Optional[str] = Field(alias="calendarId", default=None)
     summary: Optional[str] = None
-    start_date_time: Any = Field(alias="startDateTime")
-    end_date_time: Any = Field(alias="endDateTime")
+    start_date_time: Optional[Any] = Field(alias="startDateTime", default=None)
+    end_date_time: Optional[Any] = Field(alias="endDateTime", default=None)
     time_zone: Optional[str] = Field(alias="timeZone", default=None)
     location: Optional[str] = None
     attendees: Optional[list[str]] = None
@@ -2049,11 +2079,27 @@ class MedicalDrugUpdateInput(BaseModel):
 
 
 class SlackDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
     channel_id: str = Field(alias="channelId")
     thread_ts: Optional[str] = Field(alias="threadTs", default=None)
 
 
 class SalesforceDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
     object_type: str = Field(alias="objectType")
     object_id: str = Field(alias="objectId")
     title: Optional[str] = None
@@ -2192,6 +2238,34 @@ class CrustdataSearchFeedPropertiesInput(BaseModel):
     job_title: Optional[str] = Field(alias="jobTitle", default=None)
     job_region: Optional[str] = Field(alias="jobRegion", default=None)
     job_description: Optional[str] = Field(alias="jobDescription", default=None)
+    fields_to_track: Optional[list[str]] = Field(alias="fieldsToTrack", default=None)
+    headcount_growth_min: Optional[Any] = Field(
+        alias="headcountGrowthMin", default=None
+    )
+    headcount_growth_max: Optional[Any] = Field(
+        alias="headcountGrowthMax", default=None
+    )
+    headcount_growth_timeframe: Optional[str] = Field(
+        alias="headcountGrowthTimeframe", default=None
+    )
+    baseline_headcount: Optional[int] = Field(alias="baselineHeadcount", default=None)
+    headcount_growth_from_baseline: Optional[int] = Field(
+        alias="headcountGrowthFromBaseline", default=None
+    )
+    annual_revenue_min: Optional[Any] = Field(alias="annualRevenueMin", default=None)
+    annual_revenue_max: Optional[Any] = Field(alias="annualRevenueMax", default=None)
+    post_categories: Optional[list[str]] = Field(alias="postCategories", default=None)
+    keyword: Optional[str] = None
+    industry: Optional[str] = None
+    funding_round_types: Optional[list[str]] = Field(
+        alias="fundingRoundTypes", default=None
+    )
+    company_department: Optional[str] = Field(alias="companyDepartment", default=None)
+    company_headcount_ranges: Optional[list[str]] = Field(
+        alias="companyHeadcountRanges", default=None
+    )
+    frequency: Optional[int] = None
+    expiration_date: Optional[Any] = Field(alias="expirationDate", default=None)
 
 
 class InvestmentFundUpdateInput(BaseModel):
@@ -2241,12 +2315,6 @@ class GoogleEmailFeedPropertiesInput(BaseModel):
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     connector: Optional["EntityReferenceInput"] = None
-
-
-class NotionPageUpdateInput(BaseModel):
-    title: Optional[str] = None
-    content: Optional[str] = None
-    append_content: Optional[bool] = Field(alias="appendContent", default=None)
 
 
 class DocumentMetadataInput(BaseModel):
@@ -3486,6 +3554,14 @@ class LinearInitiativesFeedPropertiesUpdateInput(BaseModel):
 
 
 class OneDriveDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
     folder_id: Optional[str] = Field(alias="folderId", default=None)
     file_name: Optional[str] = Field(alias="fileName", default=None)
 
@@ -3776,12 +3852,28 @@ class SoftwareUpdateInput(BaseModel):
 
 
 class NotionDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
     parent_page_id: Optional[str] = Field(alias="parentPageId", default=None)
     database_id: Optional[str] = Field(alias="databaseId", default=None)
     title: Optional[str] = None
 
 
 class GoogleDriveDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
     folder_id: Optional[str] = Field(alias="folderId", default=None)
     file_name: Optional[str] = Field(alias="fileName", default=None)
 
@@ -4096,6 +4188,14 @@ class EmailIntegrationPropertiesInput(BaseModel):
 
 
 class AttioTasksDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
     title: Optional[str] = None
     assignees: Optional[list[str]] = None
     linked_record_id: Optional[str] = Field(alias="linkedRecordId", default=None)
@@ -4163,6 +4263,34 @@ class CrustdataSearchFeedPropertiesUpdateInput(BaseModel):
     job_title: Optional[str] = Field(alias="jobTitle", default=None)
     job_region: Optional[str] = Field(alias="jobRegion", default=None)
     job_description: Optional[str] = Field(alias="jobDescription", default=None)
+    fields_to_track: Optional[list[str]] = Field(alias="fieldsToTrack", default=None)
+    headcount_growth_min: Optional[Any] = Field(
+        alias="headcountGrowthMin", default=None
+    )
+    headcount_growth_max: Optional[Any] = Field(
+        alias="headcountGrowthMax", default=None
+    )
+    headcount_growth_timeframe: Optional[str] = Field(
+        alias="headcountGrowthTimeframe", default=None
+    )
+    baseline_headcount: Optional[int] = Field(alias="baselineHeadcount", default=None)
+    headcount_growth_from_baseline: Optional[int] = Field(
+        alias="headcountGrowthFromBaseline", default=None
+    )
+    annual_revenue_min: Optional[Any] = Field(alias="annualRevenueMin", default=None)
+    annual_revenue_max: Optional[Any] = Field(alias="annualRevenueMax", default=None)
+    post_categories: Optional[list[str]] = Field(alias="postCategories", default=None)
+    keyword: Optional[str] = None
+    industry: Optional[str] = None
+    funding_round_types: Optional[list[str]] = Field(
+        alias="fundingRoundTypes", default=None
+    )
+    company_department: Optional[str] = Field(alias="companyDepartment", default=None)
+    company_headcount_ranges: Optional[list[str]] = Field(
+        alias="companyHeadcountRanges", default=None
+    )
+    frequency: Optional[int] = None
+    expiration_date: Optional[Any] = Field(alias="expirationDate", default=None)
 
 
 class ParallelEntityFeedPropertiesUpdateInput(BaseModel):
@@ -4354,6 +4482,14 @@ class RepoUpdateInput(BaseModel):
 
 
 class MicrosoftWordDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
     folder_id: Optional[str] = Field(alias="folderId", default=None)
     file_name: Optional[str] = Field(alias="fileName", default=None)
 
@@ -4400,6 +4536,14 @@ class ReplicateModelPropertiesUpdateInput(BaseModel):
 
 
 class GitHubDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
     repository_owner: str = Field(alias="repositoryOwner")
     repository_name: str = Field(alias="repositoryName")
     title: Optional[str] = None
@@ -4671,22 +4815,17 @@ class MondayBoardsInput(BaseModel):
 
 
 class AttioDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
     parent_object: str = Field(alias="parentObject")
     parent_record_id: str = Field(alias="parentRecordId")
     title: Optional[str] = None
-
-
-class MicrosoftCalendarEventsInput(BaseModel):
-    authentication_type: Optional[MicrosoftCalendarAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    calendar_id: Optional[str] = Field(alias="calendarId", default=None)
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
 
 
 class LinkedInFeedPropertiesUpdateInput(BaseModel):
@@ -5711,22 +5850,21 @@ class FeedPreviewInput(BaseModel):
 
 
 class LinearDistributionPropertiesInput(BaseModel):
-    team_id: str = Field(alias="teamId")
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
+    team_id: Optional[str] = Field(alias="teamId", default=None)
     title: Optional[str] = None
     priority: Optional[int] = None
     state_id: Optional[str] = Field(alias="stateId", default=None)
     assignee_id: Optional[str] = Field(alias="assigneeId", default=None)
     label_ids: Optional[list[str]] = Field(alias="labelIds", default=None)
     project_id: Optional[str] = Field(alias="projectId", default=None)
-
-
-class JiraIssueUpdateInput(BaseModel):
-    summary: Optional[str] = None
-    description: Optional[str] = None
-    priority: Optional[str] = None
-    assignee_id: Optional[str] = Field(alias="assigneeId", default=None)
-    labels: Optional[list[str]] = None
-    status: Optional[str] = None
 
 
 class RegexClassificationRuleInput(BaseModel):
@@ -5836,6 +5974,14 @@ class HubSpotConversationsFeedPropertiesUpdateInput(BaseModel):
 
 
 class HubSpotDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
     object_type: str = Field(alias="objectType")
     object_id: str = Field(alias="objectId")
 
@@ -6228,10 +6374,18 @@ class GitLabPullRequestsFeedPropertiesUpdateInput(BaseModel):
 
 
 class MicrosoftCalendarDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
     calendar_id: Optional[str] = Field(alias="calendarId", default=None)
     subject: Optional[str] = None
-    start_date_time: Any = Field(alias="startDateTime")
-    end_date_time: Any = Field(alias="endDateTime")
+    start_date_time: Optional[Any] = Field(alias="startDateTime", default=None)
+    end_date_time: Optional[Any] = Field(alias="endDateTime", default=None)
     time_zone: Optional[str] = Field(alias="timeZone", default=None)
     location: Optional[str] = None
     attendees: Optional[list[str]] = None
@@ -6598,15 +6752,6 @@ class CrustdataEnrichmentPropertiesInput(BaseModel):
 class MondayFeedPropertiesUpdateInput(BaseModel):
     api_token: Optional[str] = Field(alias="apiToken", default=None)
     board_id: Optional[str] = Field(alias="boardId", default=None)
-
-
-class LinearIssueUpdateInput(BaseModel):
-    title: Optional[str] = None
-    description: Optional[str] = None
-    priority: Optional[int] = None
-    state_id: Optional[str] = Field(alias="stateId", default=None)
-    assignee_id: Optional[str] = Field(alias="assigneeId", default=None)
-    label_ids: Optional[list[str]] = Field(alias="labelIds", default=None)
 
 
 class JiraEpicsFeedPropertiesInput(BaseModel):
@@ -7066,6 +7211,14 @@ class DiscordFeedPropertiesUpdateInput(BaseModel):
 
 
 class ConfluenceDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
     space_id: str = Field(alias="spaceId")
     parent_page_id: Optional[str] = Field(alias="parentPageId", default=None)
     title: Optional[str] = None
@@ -7377,6 +7530,14 @@ class ResearchFeedPropertiesUpdateInput(BaseModel):
 
 
 class GitLabDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
     project_path: str = Field(alias="projectPath")
     title: Optional[str] = None
     labels: Optional[list[str]] = None
@@ -7499,6 +7660,14 @@ class BambooHROptionsInput(BaseModel):
 
 
 class MicrosoftOutlookDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
     to: list[str]
     subject: str
     cc: Optional[list[str]] = None
@@ -7581,6 +7750,14 @@ class JinaModelPropertiesUpdateInput(BaseModel):
 
 
 class TwitterDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
     reply_to_tweet_id: Optional[str] = Field(alias="replyToTweetId", default=None)
 
 
@@ -7667,7 +7844,6 @@ SalesforceFeedPropertiesInput.model_rebuild()
 ModelImageExtractionPropertiesInput.model_rebuild()
 MicrosoftEmailFeedPropertiesUpdateInput.model_rebuild()
 SalesforceCRMFeedPropertiesInput.model_rebuild()
-GoogleCalendarEventsInput.model_rebuild()
 SearchFeedPropertiesUpdateInput.model_rebuild()
 TwitterFeedPropertiesUpdateInput.model_rebuild()
 MedicalIndicationFilter.model_rebuild()
@@ -7845,7 +8021,6 @@ BoxFeedPropertiesInput.model_rebuild()
 ContentFilterLevel.model_rebuild()
 H3Filter.model_rebuild()
 MedicalDeviceUpdateInput.model_rebuild()
-MicrosoftCalendarEventsInput.model_rebuild()
 GitLabMilestonesFeedPropertiesInput.model_rebuild()
 AttioTasksFeedPropertiesInput.model_rebuild()
 MicrosoftContactsCRMFeedPropertiesInput.model_rebuild()

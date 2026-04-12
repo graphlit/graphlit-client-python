@@ -527,6 +527,11 @@ class MCPServerTypes(str, Enum):
     LOCAL_NPX = "LOCAL_NPX"
 
 
+class DistributionTargetKindTypes(str, Enum):
+    BODY = "BODY"
+    COMMENT = "COMMENT"
+
+
 class MailPriority(str, Enum):
     NORMAL = "NORMAL"
     LOW = "LOW"
@@ -741,6 +746,14 @@ class MedicalIndicationFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
 
+class DistributionTargetOperationTypes(str, Enum):
+    CREATE = "CREATE"
+    REPLACE = "REPLACE"
+    APPEND = "APPEND"
+    DELETE = "DELETE"
+    UPSERT = "UPSERT"
+
+
 class ViewTypes(str, Enum):
     CONTENT = "CONTENT"
 
@@ -823,6 +836,14 @@ class OccurrenceTypes(str, Enum):
     TIME = "TIME"
     TEXT = "TEXT"
     TURN = "TURN"
+
+
+class DistributionOperationTypes(str, Enum):
+    CREATED = "CREATED"
+    REPLACED = "REPLACED"
+    APPENDED = "APPENDED"
+    DELETED = "DELETED"
+    COMMENTED = "COMMENTED"
 
 
 class InvestmentFundFacetTypes(str, Enum):

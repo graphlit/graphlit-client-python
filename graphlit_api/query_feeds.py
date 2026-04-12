@@ -1035,6 +1035,26 @@ class QueryFeedsFeedsResultsSearchCrustdata(BaseModel):
     job_title: Optional[str] = Field(alias="jobTitle")
     job_region: Optional[str] = Field(alias="jobRegion")
     job_description: Optional[str] = Field(alias="jobDescription")
+    fields_to_track: Optional[list[str]] = Field(alias="fieldsToTrack")
+    headcount_growth_min: Optional[Any] = Field(alias="headcountGrowthMin")
+    headcount_growth_max: Optional[Any] = Field(alias="headcountGrowthMax")
+    headcount_growth_timeframe: Optional[str] = Field(alias="headcountGrowthTimeframe")
+    baseline_headcount: Optional[int] = Field(alias="baselineHeadcount")
+    headcount_growth_from_baseline: Optional[int] = Field(
+        alias="headcountGrowthFromBaseline"
+    )
+    annual_revenue_min: Optional[Any] = Field(alias="annualRevenueMin")
+    annual_revenue_max: Optional[Any] = Field(alias="annualRevenueMax")
+    post_categories: Optional[list[str]] = Field(alias="postCategories")
+    keyword: Optional[str]
+    industry: Optional[str]
+    funding_round_types: Optional[list[str]] = Field(alias="fundingRoundTypes")
+    company_department: Optional[str] = Field(alias="companyDepartment")
+    company_headcount_ranges: Optional[list[str]] = Field(
+        alias="companyHeadcountRanges"
+    )
+    frequency: Optional[int]
+    expiration_date: Optional[Any] = Field(alias="expirationDate")
 
 
 class QueryFeedsFeedsResultsSearchLinkedin(BaseModel):

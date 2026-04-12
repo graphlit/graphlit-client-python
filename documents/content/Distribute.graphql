@@ -3,6 +3,9 @@ mutation Distribute($connector: DistributionConnectorInput!, $authentication: En
     uri
     identifier
     serviceType
+    operation
+    resolvedTargetIdentifier
+    resolvedTargetUri
     error
   }
 }

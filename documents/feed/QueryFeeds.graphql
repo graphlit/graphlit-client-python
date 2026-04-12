@@ -619,6 +619,22 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           jobTitle
           jobRegion
           jobDescription
+          fieldsToTrack
+          headcountGrowthMin
+          headcountGrowthMax
+          headcountGrowthTimeframe
+          baselineHeadcount
+          headcountGrowthFromBaseline
+          annualRevenueMin
+          annualRevenueMax
+          postCategories
+          keyword
+          industry
+          fundingRoundTypes
+          companyDepartment
+          companyHeadcountRanges
+          frequency
+          expirationDate
         }
         linkedin {
           dateRange

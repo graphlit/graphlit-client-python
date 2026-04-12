@@ -1,0 +1,10 @@
+query Read($connector: DistributionConnectorInput!, $authentication: EntityReferenceInput!) {
+  read(connector: $connector, authentication: $authentication) {
+    identifier
+    name
+    markdown
+    uri
+    modifiedDate
+    serviceType
+  }
+}

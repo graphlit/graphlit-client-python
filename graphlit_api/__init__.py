@@ -523,7 +523,6 @@ from .delete_fact import DeleteFact, DeleteFactDeleteFact
 from .delete_facts import DeleteFacts, DeleteFactsDeleteFacts
 from .delete_feed import DeleteFeed, DeleteFeedDeleteFeed
 from .delete_feeds import DeleteFeeds, DeleteFeedsDeleteFeeds
-from .delete_google_calendar_event import DeleteGoogleCalendarEvent
 from .delete_investment import DeleteInvestment, DeleteInvestmentDeleteInvestment
 from .delete_investment_fund import (
     DeleteInvestmentFund,
@@ -618,7 +617,6 @@ from .delete_medical_therapy import (
     DeleteMedicalTherapy,
     DeleteMedicalTherapyDeleteMedicalTherapy,
 )
-from .delete_microsoft_calendar_event import DeleteMicrosoftCalendarEvent
 from .delete_observation import DeleteObservation, DeleteObservationDeleteObservation
 from .delete_organization import (
     DeleteOrganization,
@@ -751,7 +749,10 @@ from .enums import (
     DeepgramModels,
     DeepseekModels,
     DeviceTypes,
+    DistributionOperationTypes,
     DistributionServiceTypes,
+    DistributionTargetKindTypes,
+    DistributionTargetOperationTypes,
     DropboxAuthenticationTypes,
     ElevenLabsModels,
     ElevenLabsScribeModels,
@@ -2106,7 +2107,6 @@ from .input_types import (
     BureauInput,
     BureauUpdateInput,
     CalendarAttendeeInput,
-    CalendarEventUpdateInput,
     CalendarFeedPropertiesInput,
     CalendarFeedPropertiesUpdateInput,
     CalendarRecurrenceInput,
@@ -2131,7 +2131,6 @@ from .input_types import (
     ConfluenceDistributionPropertiesInput,
     ConfluenceFeedPropertiesInput,
     ConfluenceFeedPropertiesUpdateInput,
-    ConfluencePageUpdateInput,
     ConfluenceSpacesInput,
     ConnectorFilter,
     ConnectorInput,
@@ -2265,7 +2264,6 @@ from .input_types import (
     GmailDistributionPropertiesInput,
     GoogleAuthenticationPropertiesInput,
     GoogleCalendarDistributionPropertiesInput,
-    GoogleCalendarEventsInput,
     GoogleCalendarFeedPropertiesInput,
     GoogleCalendarFeedPropertiesUpdateInput,
     GoogleCalendarsInput,
@@ -2344,7 +2342,6 @@ from .input_types import (
     JiraDistributionPropertiesInput,
     JiraEpicsFeedPropertiesInput,
     JiraEpicsFeedPropertiesUpdateInput,
-    JiraIssueUpdateInput,
     JiraProjectsInput,
     KrispPropertiesInput,
     KrispPropertiesUpdateInput,
@@ -2358,7 +2355,6 @@ from .input_types import (
     LinearFeedPropertiesUpdateInput,
     LinearInitiativesFeedPropertiesInput,
     LinearInitiativesFeedPropertiesUpdateInput,
-    LinearIssueUpdateInput,
     LinearProjectsInput,
     LinkedInFeedPropertiesInput,
     LinkedInFeedPropertiesUpdateInput,
@@ -2420,7 +2416,6 @@ from .input_types import (
     MetadataUpdateInput,
     MicrosoftAuthenticationPropertiesInput,
     MicrosoftCalendarDistributionPropertiesInput,
-    MicrosoftCalendarEventsInput,
     MicrosoftCalendarFeedPropertiesInput,
     MicrosoftCalendarFeedPropertiesUpdateInput,
     MicrosoftCalendarsInput,
@@ -2452,7 +2447,6 @@ from .input_types import (
     NotionFeedPropertiesInput,
     NotionFeedPropertiesUpdateInput,
     NotionPagesInput,
-    NotionPageUpdateInput,
     OAuthAuthenticationPropertiesInput,
     ObservableInput,
     ObservationCriteriaInput,
@@ -2863,7 +2857,6 @@ from .operations import (
     DELETE_FACTS_GQL,
     DELETE_FEED_GQL,
     DELETE_FEEDS_GQL,
-    DELETE_GOOGLE_CALENDAR_EVENT_GQL,
     DELETE_INVESTMENT_FUND_GQL,
     DELETE_INVESTMENT_FUNDS_GQL,
     DELETE_INVESTMENT_GQL,
@@ -2892,7 +2885,6 @@ from .operations import (
     DELETE_MEDICAL_TESTS_GQL,
     DELETE_MEDICAL_THERAPIES_GQL,
     DELETE_MEDICAL_THERAPY_GQL,
-    DELETE_MICROSOFT_CALENDAR_EVENT_GQL,
     DELETE_OBSERVATION_GQL,
     DELETE_ORGANIZATION_GQL,
     DELETE_ORGANIZATIONS_GQL,
@@ -3115,6 +3107,7 @@ from .operations import (
     QUERY_USERS_GQL,
     QUERY_VIEWS_GQL,
     QUERY_WORKFLOWS_GQL,
+    READ_GQL,
     REJECT_CONTENT_GQL,
     REMOVE_AGENTS_FROM_DESK_GQL,
     REMOVE_CONTENT_LABEL_GQL,
@@ -3147,7 +3140,6 @@ from .operations import (
     UPDATE_BUREAU_GQL,
     UPDATE_CATEGORY_GQL,
     UPDATE_COLLECTION_GQL,
-    UPDATE_CONFLUENCE_PAGE_GQL,
     UPDATE_CONNECTOR_GQL,
     UPDATE_CONTENT_GQL,
     UPDATE_CONVERSATION_GQL,
@@ -3156,12 +3148,9 @@ from .operations import (
     UPDATE_EVENT_GQL,
     UPDATE_FACT_GQL,
     UPDATE_FEED_GQL,
-    UPDATE_GOOGLE_CALENDAR_EVENT_GQL,
     UPDATE_INVESTMENT_FUND_GQL,
     UPDATE_INVESTMENT_GQL,
-    UPDATE_JIRA_ISSUE_GQL,
     UPDATE_LABEL_GQL,
-    UPDATE_LINEAR_ISSUE_GQL,
     UPDATE_MEDICAL_CONDITION_GQL,
     UPDATE_MEDICAL_CONTRAINDICATION_GQL,
     UPDATE_MEDICAL_DEVICE_GQL,
@@ -3173,8 +3162,6 @@ from .operations import (
     UPDATE_MEDICAL_STUDY_GQL,
     UPDATE_MEDICAL_TEST_GQL,
     UPDATE_MEDICAL_THERAPY_GQL,
-    UPDATE_MICROSOFT_CALENDAR_EVENT_GQL,
-    UPDATE_NOTION_PAGE_GQL,
     UPDATE_OBSERVATION_GQL,
     UPDATE_ORGANIZATION_GQL,
     UPDATE_PERSON_GQL,
@@ -4900,6 +4887,7 @@ from .query_workflows import (
     QueryWorkflowsWorkflowsResultsStorageGateSpecification,
     QueryWorkflowsWorkflowsResultsStoragePolicy,
 )
+from .read import Read, ReadRead
 from .reject_content import RejectContent, RejectContentRejectContent
 from .remove_agents_from_desk import (
     RemoveAgentsFromDesk,
@@ -5079,10 +5067,6 @@ from .update_alert import UpdateAlert, UpdateAlertUpdateAlert
 from .update_bureau import UpdateBureau, UpdateBureauUpdateBureau
 from .update_category import UpdateCategory, UpdateCategoryUpdateCategory
 from .update_collection import UpdateCollection, UpdateCollectionUpdateCollection
-from .update_confluence_page import (
-    UpdateConfluencePage,
-    UpdateConfluencePageUpdateConfluencePage,
-)
 from .update_connector import UpdateConnector, UpdateConnectorUpdateConnector
 from .update_content import (
     UpdateContent,
@@ -5103,18 +5087,12 @@ from .update_emotion import UpdateEmotion, UpdateEmotionUpdateEmotion
 from .update_event import UpdateEvent, UpdateEventUpdateEvent
 from .update_fact import UpdateFact, UpdateFactUpdateFact
 from .update_feed import UpdateFeed, UpdateFeedUpdateFeed
-from .update_google_calendar_event import (
-    UpdateGoogleCalendarEvent,
-    UpdateGoogleCalendarEventUpdateGoogleCalendarEvent,
-)
 from .update_investment import UpdateInvestment, UpdateInvestmentUpdateInvestment
 from .update_investment_fund import (
     UpdateInvestmentFund,
     UpdateInvestmentFundUpdateInvestmentFund,
 )
-from .update_jira_issue import UpdateJiraIssue, UpdateJiraIssueUpdateJiraIssue
 from .update_label import UpdateLabel, UpdateLabelUpdateLabel
-from .update_linear_issue import UpdateLinearIssue, UpdateLinearIssueUpdateLinearIssue
 from .update_medical_condition import (
     UpdateMedicalCondition,
     UpdateMedicalConditionUpdateMedicalCondition,
@@ -5153,11 +5131,6 @@ from .update_medical_therapy import (
     UpdateMedicalTherapy,
     UpdateMedicalTherapyUpdateMedicalTherapy,
 )
-from .update_microsoft_calendar_event import (
-    UpdateMicrosoftCalendarEvent,
-    UpdateMicrosoftCalendarEventUpdateMicrosoftCalendarEvent,
-)
-from .update_notion_page import UpdateNotionPage, UpdateNotionPageUpdateNotionPage
 from .update_observation import UpdateObservation, UpdateObservationUpdateObservation
 from .update_organization import (
     UpdateOrganization,
@@ -5662,7 +5635,6 @@ __all__ = [
     "CalendarAttendeeInput",
     "CalendarAttendeeResponseStatus",
     "CalendarEventStatus",
-    "CalendarEventUpdateInput",
     "CalendarEventVisibility",
     "CalendarFeedPropertiesInput",
     "CalendarFeedPropertiesUpdateInput",
@@ -5731,7 +5703,6 @@ __all__ = [
     "ConfluenceDistributionPropertiesInput",
     "ConfluenceFeedPropertiesInput",
     "ConfluenceFeedPropertiesUpdateInput",
-    "ConfluencePageUpdateInput",
     "ConfluenceSpacesInput",
     "ConfluenceTypes",
     "ConnectorFilter",
@@ -6143,7 +6114,6 @@ __all__ = [
     "DELETE_FACT_GQL",
     "DELETE_FEEDS_GQL",
     "DELETE_FEED_GQL",
-    "DELETE_GOOGLE_CALENDAR_EVENT_GQL",
     "DELETE_INVESTMENTS_GQL",
     "DELETE_INVESTMENT_FUNDS_GQL",
     "DELETE_INVESTMENT_FUND_GQL",
@@ -6172,7 +6142,6 @@ __all__ = [
     "DELETE_MEDICAL_TEST_GQL",
     "DELETE_MEDICAL_THERAPIES_GQL",
     "DELETE_MEDICAL_THERAPY_GQL",
-    "DELETE_MICROSOFT_CALENDAR_EVENT_GQL",
     "DELETE_OBSERVATION_GQL",
     "DELETE_ORGANIZATIONS_GQL",
     "DELETE_ORGANIZATION_GQL",
@@ -6336,7 +6305,6 @@ __all__ = [
     "DeleteFeedDeleteFeed",
     "DeleteFeeds",
     "DeleteFeedsDeleteFeeds",
-    "DeleteGoogleCalendarEvent",
     "DeleteInvestment",
     "DeleteInvestmentDeleteInvestment",
     "DeleteInvestmentFund",
@@ -6393,7 +6361,6 @@ __all__ = [
     "DeleteMedicalTherapiesDeleteMedicalTherapies",
     "DeleteMedicalTherapy",
     "DeleteMedicalTherapyDeleteMedicalTherapy",
-    "DeleteMicrosoftCalendarEvent",
     "DeleteObservation",
     "DeleteObservationDeleteObservation",
     "DeleteOrganization",
@@ -6486,7 +6453,10 @@ __all__ = [
     "Distribute",
     "DistributeDistribute",
     "DistributionConnectorInput",
+    "DistributionOperationTypes",
     "DistributionServiceTypes",
+    "DistributionTargetKindTypes",
+    "DistributionTargetOperationTypes",
     "DocumentMetadataInput",
     "DocumentPreparationPropertiesInput",
     "DrawingMetadataInput",
@@ -7637,7 +7607,6 @@ __all__ = [
     "GoogleAuthenticationPropertiesInput",
     "GoogleCalendarAuthenticationTypes",
     "GoogleCalendarDistributionPropertiesInput",
-    "GoogleCalendarEventsInput",
     "GoogleCalendarFeedPropertiesInput",
     "GoogleCalendarFeedPropertiesUpdateInput",
     "GoogleCalendarsInput",
@@ -7815,7 +7784,6 @@ __all__ = [
     "JiraDistributionPropertiesInput",
     "JiraEpicsFeedPropertiesInput",
     "JiraEpicsFeedPropertiesUpdateInput",
-    "JiraIssueUpdateInput",
     "JiraProjectsInput",
     "KrispPropertiesInput",
     "KrispPropertiesUpdateInput",
@@ -7837,7 +7805,6 @@ __all__ = [
     "LinearFeedPropertiesUpdateInput",
     "LinearInitiativesFeedPropertiesInput",
     "LinearInitiativesFeedPropertiesUpdateInput",
-    "LinearIssueUpdateInput",
     "LinearProjectsInput",
     "LinkReferenceInput",
     "LinkStrategyInput",
@@ -8002,7 +7969,6 @@ __all__ = [
     "MicrosoftAuthenticationPropertiesInput",
     "MicrosoftCalendarAuthenticationTypes",
     "MicrosoftCalendarDistributionPropertiesInput",
-    "MicrosoftCalendarEventsInput",
     "MicrosoftCalendarFeedPropertiesInput",
     "MicrosoftCalendarFeedPropertiesUpdateInput",
     "MicrosoftCalendarsInput",
@@ -8040,7 +8006,6 @@ __all__ = [
     "NotionDistributionPropertiesInput",
     "NotionFeedPropertiesInput",
     "NotionFeedPropertiesUpdateInput",
-    "NotionPageUpdateInput",
     "NotionPagesInput",
     "NotionTypes",
     "OAuthAuthenticationPropertiesInput",
@@ -9733,6 +9698,7 @@ __all__ = [
     "QueryWorkflowsWorkflowsResultsStoragePolicy",
     "QuiverImageModels",
     "QuiverImagePublishingPropertiesInput",
+    "READ_GQL",
     "REJECT_CONTENT_GQL",
     "REMOVE_AGENTS_FROM_DESK_GQL",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
@@ -9755,6 +9721,8 @@ __all__ = [
     "RSSFeedPropertiesInput",
     "RSSFeedPropertiesUpdateInput",
     "ReactionReferenceInput",
+    "Read",
+    "ReadRead",
     "RedditFeedPropertiesInput",
     "RedditFeedPropertiesUpdateInput",
     "ReductoDocumentPreparationPropertiesInput",
@@ -10019,7 +9987,6 @@ __all__ = [
     "UPDATE_BUREAU_GQL",
     "UPDATE_CATEGORY_GQL",
     "UPDATE_COLLECTION_GQL",
-    "UPDATE_CONFLUENCE_PAGE_GQL",
     "UPDATE_CONNECTOR_GQL",
     "UPDATE_CONTENT_GQL",
     "UPDATE_CONVERSATION_GQL",
@@ -10028,12 +9995,9 @@ __all__ = [
     "UPDATE_EVENT_GQL",
     "UPDATE_FACT_GQL",
     "UPDATE_FEED_GQL",
-    "UPDATE_GOOGLE_CALENDAR_EVENT_GQL",
     "UPDATE_INVESTMENT_FUND_GQL",
     "UPDATE_INVESTMENT_GQL",
-    "UPDATE_JIRA_ISSUE_GQL",
     "UPDATE_LABEL_GQL",
-    "UPDATE_LINEAR_ISSUE_GQL",
     "UPDATE_MEDICAL_CONDITION_GQL",
     "UPDATE_MEDICAL_CONTRAINDICATION_GQL",
     "UPDATE_MEDICAL_DEVICE_GQL",
@@ -10045,8 +10009,6 @@ __all__ = [
     "UPDATE_MEDICAL_STUDY_GQL",
     "UPDATE_MEDICAL_TEST_GQL",
     "UPDATE_MEDICAL_THERAPY_GQL",
-    "UPDATE_MICROSOFT_CALENDAR_EVENT_GQL",
-    "UPDATE_NOTION_PAGE_GQL",
     "UPDATE_OBSERVATION_GQL",
     "UPDATE_ORGANIZATION_GQL",
     "UPDATE_PERSONA_GQL",
@@ -10080,8 +10042,6 @@ __all__ = [
     "UpdateCategoryUpdateCategory",
     "UpdateCollection",
     "UpdateCollectionUpdateCollection",
-    "UpdateConfluencePage",
-    "UpdateConfluencePageUpdateConfluencePage",
     "UpdateConnector",
     "UpdateConnectorUpdateConnector",
     "UpdateContent",
@@ -10105,18 +10065,12 @@ __all__ = [
     "UpdateFactUpdateFact",
     "UpdateFeed",
     "UpdateFeedUpdateFeed",
-    "UpdateGoogleCalendarEvent",
-    "UpdateGoogleCalendarEventUpdateGoogleCalendarEvent",
     "UpdateInvestment",
     "UpdateInvestmentFund",
     "UpdateInvestmentFundUpdateInvestmentFund",
     "UpdateInvestmentUpdateInvestment",
-    "UpdateJiraIssue",
-    "UpdateJiraIssueUpdateJiraIssue",
     "UpdateLabel",
     "UpdateLabelUpdateLabel",
-    "UpdateLinearIssue",
-    "UpdateLinearIssueUpdateLinearIssue",
     "UpdateMedicalCondition",
     "UpdateMedicalConditionUpdateMedicalCondition",
     "UpdateMedicalContraindication",
@@ -10139,10 +10093,6 @@ __all__ = [
     "UpdateMedicalTestUpdateMedicalTest",
     "UpdateMedicalTherapy",
     "UpdateMedicalTherapyUpdateMedicalTherapy",
-    "UpdateMicrosoftCalendarEvent",
-    "UpdateMicrosoftCalendarEventUpdateMicrosoftCalendarEvent",
-    "UpdateNotionPage",
-    "UpdateNotionPageUpdateNotionPage",
     "UpdateObservation",
     "UpdateObservationUpdateObservation",
     "UpdateOrganization",

@@ -155,7 +155,6 @@ __all__ = [
     "DELETE_FACT_GQL",
     "DELETE_FEEDS_GQL",
     "DELETE_FEED_GQL",
-    "DELETE_GOOGLE_CALENDAR_EVENT_GQL",
     "DELETE_INVESTMENTS_GQL",
     "DELETE_INVESTMENT_FUNDS_GQL",
     "DELETE_INVESTMENT_FUND_GQL",
@@ -184,7 +183,6 @@ __all__ = [
     "DELETE_MEDICAL_TEST_GQL",
     "DELETE_MEDICAL_THERAPIES_GQL",
     "DELETE_MEDICAL_THERAPY_GQL",
-    "DELETE_MICROSOFT_CALENDAR_EVENT_GQL",
     "DELETE_OBSERVATION_GQL",
     "DELETE_ORGANIZATIONS_GQL",
     "DELETE_ORGANIZATION_GQL",
@@ -407,6 +405,7 @@ __all__ = [
     "QUERY_USERS_GQL",
     "QUERY_VIEWS_GQL",
     "QUERY_WORKFLOWS_GQL",
+    "READ_GQL",
     "REJECT_CONTENT_GQL",
     "REMOVE_AGENTS_FROM_DESK_GQL",
     "REMOVE_CONTENTS_FROM_COLLECTION_GQL",
@@ -439,7 +438,6 @@ __all__ = [
     "UPDATE_BUREAU_GQL",
     "UPDATE_CATEGORY_GQL",
     "UPDATE_COLLECTION_GQL",
-    "UPDATE_CONFLUENCE_PAGE_GQL",
     "UPDATE_CONNECTOR_GQL",
     "UPDATE_CONTENT_GQL",
     "UPDATE_CONVERSATION_GQL",
@@ -448,12 +446,9 @@ __all__ = [
     "UPDATE_EVENT_GQL",
     "UPDATE_FACT_GQL",
     "UPDATE_FEED_GQL",
-    "UPDATE_GOOGLE_CALENDAR_EVENT_GQL",
     "UPDATE_INVESTMENT_FUND_GQL",
     "UPDATE_INVESTMENT_GQL",
-    "UPDATE_JIRA_ISSUE_GQL",
     "UPDATE_LABEL_GQL",
-    "UPDATE_LINEAR_ISSUE_GQL",
     "UPDATE_MEDICAL_CONDITION_GQL",
     "UPDATE_MEDICAL_CONTRAINDICATION_GQL",
     "UPDATE_MEDICAL_DEVICE_GQL",
@@ -465,8 +460,6 @@ __all__ = [
     "UPDATE_MEDICAL_STUDY_GQL",
     "UPDATE_MEDICAL_TEST_GQL",
     "UPDATE_MEDICAL_THERAPY_GQL",
-    "UPDATE_MICROSOFT_CALENDAR_EVENT_GQL",
-    "UPDATE_NOTION_PAGE_GQL",
     "UPDATE_OBSERVATION_GQL",
     "UPDATE_ORGANIZATION_GQL",
     "UPDATE_PERSONA_GQL",
@@ -2667,6 +2660,9 @@ mutation Distribute($connector: DistributionConnectorInput!, $authentication: En
     uri
     identifier
     serviceType
+    operation
+    resolvedTargetIdentifier
+    resolvedTargetUri
     error
   }
 }
@@ -5471,6 +5467,19 @@ query QueryObservables($filter: ContentFilter, $correlationId: String) {
         name
       }
     }
+  }
+}
+"""
+
+READ_GQL = """
+query Read($connector: DistributionConnectorInput!, $authentication: EntityReferenceInput!) {
+  read(connector: $connector, authentication: $authentication) {
+    identifier
+    name
+    markdown
+    uri
+    modifiedDate
+    serviceType
   }
 }
 """
@@ -10441,18 +10450,6 @@ mutation DeleteFeeds($ids: [ID!]!, $isSynchronous: Boolean) {
 }
 """
 
-DELETE_GOOGLE_CALENDAR_EVENT_GQL = """
-mutation DeleteGoogleCalendarEvent($properties: GoogleCalendarEventsInput!, $eventId: String!) {
-  deleteGoogleCalendarEvent(properties: $properties, eventId: $eventId)
-}
-"""
-
-DELETE_MICROSOFT_CALENDAR_EVENT_GQL = """
-mutation DeleteMicrosoftCalendarEvent($properties: MicrosoftCalendarEventsInput!, $eventId: String!) {
-  deleteMicrosoftCalendarEvent(properties: $properties, eventId: $eventId)
-}
-"""
-
 DISABLE_FEED_GQL = """
 mutation DisableFeed($id: ID!) {
   disableFeed(id: $id) {
@@ -11102,6 +11099,22 @@ query GetFeed($id: ID!, $correlationId: String) {
         jobTitle
         jobRegion
         jobDescription
+        fieldsToTrack
+        headcountGrowthMin
+        headcountGrowthMax
+        headcountGrowthTimeframe
+        baselineHeadcount
+        headcountGrowthFromBaseline
+        annualRevenueMin
+        annualRevenueMax
+        postCategories
+        keyword
+        industry
+        fundingRoundTypes
+        companyDepartment
+        companyHeadcountRanges
+        frequency
+        expirationDate
       }
       linkedin {
         dateRange
@@ -12196,6 +12209,22 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
           jobTitle
           jobRegion
           jobDescription
+          fieldsToTrack
+          headcountGrowthMin
+          headcountGrowthMax
+          headcountGrowthTimeframe
+          baselineHeadcount
+          headcountGrowthFromBaseline
+          annualRevenueMin
+          annualRevenueMax
+          postCategories
+          keyword
+          industry
+          fundingRoundTypes
+          companyDepartment
+          companyHeadcountRanges
+          frequency
+          expirationDate
         }
         linkedin {
           dateRange
@@ -12735,16 +12764,6 @@ mutation TriggerFeed($id: ID!) {
 }
 """
 
-UPDATE_CONFLUENCE_PAGE_GQL = """
-mutation UpdateConfluencePage($properties: ConfluenceSpacesInput!, $pageId: String!, $input: ConfluencePageUpdateInput!) {
-  updateConfluencePage(properties: $properties, pageId: $pageId, input: $input) {
-    identifier
-    uri
-    serviceType
-  }
-}
-"""
-
 UPDATE_FEED_GQL = """
 mutation UpdateFeed($feed: FeedUpdateInput!) {
   updateFeed(feed: $feed) {
@@ -12753,84 +12772,6 @@ mutation UpdateFeed($feed: FeedUpdateInput!) {
     state
     identifier
     type
-  }
-}
-"""
-
-UPDATE_GOOGLE_CALENDAR_EVENT_GQL = """
-mutation UpdateGoogleCalendarEvent($properties: GoogleCalendarEventsInput!, $eventId: String!, $input: CalendarEventUpdateInput!) {
-  updateGoogleCalendarEvent(
-    properties: $properties
-    eventId: $eventId
-    input: $input
-  ) {
-    eventId
-    summary
-    startDateTime
-    endDateTime
-    location
-    attendees
-    isOnlineMeeting
-    meetingLink
-    description
-    status
-    organizer
-  }
-}
-"""
-
-UPDATE_JIRA_ISSUE_GQL = """
-mutation UpdateJiraIssue($properties: JiraProjectsInput!, $issueIdOrKey: String!, $input: JiraIssueUpdateInput!) {
-  updateJiraIssue(
-    properties: $properties
-    issueIdOrKey: $issueIdOrKey
-    input: $input
-  ) {
-    identifier
-    uri
-    serviceType
-  }
-}
-"""
-
-UPDATE_LINEAR_ISSUE_GQL = """
-mutation UpdateLinearIssue($properties: LinearProjectsInput!, $issueId: String!, $input: LinearIssueUpdateInput!) {
-  updateLinearIssue(properties: $properties, issueId: $issueId, input: $input) {
-    identifier
-    uri
-    serviceType
-  }
-}
-"""
-
-UPDATE_MICROSOFT_CALENDAR_EVENT_GQL = """
-mutation UpdateMicrosoftCalendarEvent($properties: MicrosoftCalendarEventsInput!, $eventId: String!, $input: CalendarEventUpdateInput!) {
-  updateMicrosoftCalendarEvent(
-    properties: $properties
-    eventId: $eventId
-    input: $input
-  ) {
-    eventId
-    summary
-    startDateTime
-    endDateTime
-    location
-    attendees
-    isOnlineMeeting
-    meetingLink
-    description
-    status
-    organizer
-  }
-}
-"""
-
-UPDATE_NOTION_PAGE_GQL = """
-mutation UpdateNotionPage($properties: NotionDatabasesInput!, $pageId: String!, $input: NotionPageUpdateInput!) {
-  updateNotionPage(properties: $properties, pageId: $pageId, input: $input) {
-    identifier
-    uri
-    serviceType
   }
 }
 """
