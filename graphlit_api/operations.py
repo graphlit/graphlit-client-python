@@ -433,7 +433,9 @@ __all__ = [
     "SUMMARIZE_CONTENTS_GQL",
     "SUMMARIZE_TEXT_GQL",
     "TRIGGER_FEED_GQL",
+    "UPDATE_AGENT_FOCUS_GQL",
     "UPDATE_AGENT_GQL",
+    "UPDATE_AGENT_SCRATCHPAD_GQL",
     "UPDATE_ALERT_GQL",
     "UPDATE_BUREAU_GQL",
     "UPDATE_CATEGORY_GQL",
@@ -800,6 +802,7 @@ query GetAgent($id: ID!, $correlationId: String) {
     timeout
     prompt
     scratchpad
+    focus
     researchDepth
     callbackUri
   }
@@ -1051,6 +1054,7 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
       timeout
       prompt
       scratchpad
+      focus
       researchDepth
       callbackUri
     }
@@ -1061,6 +1065,28 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
 UPDATE_AGENT_GQL = """
 mutation UpdateAgent($agent: AgentUpdateInput!) {
   updateAgent(agent: $agent) {
+    id
+    name
+    state
+    type
+  }
+}
+"""
+
+UPDATE_AGENT_FOCUS_GQL = """
+mutation UpdateAgentFocus($id: ID!, $focus: String) {
+  updateAgentFocus(id: $id, focus: $focus) {
+    id
+    name
+    state
+    type
+  }
+}
+"""
+
+UPDATE_AGENT_SCRATCHPAD_GQL = """
+mutation UpdateAgentScratchpad($id: ID!, $scratchpad: String!) {
+  updateAgentScratchpad(id: $id, scratchpad: $scratchpad) {
     id
     name
     state

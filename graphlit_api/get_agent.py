@@ -51,6 +51,7 @@ class GetAgentAgent(BaseModel):
     timeout: Optional[Any]
     prompt: Optional[str]
     scratchpad: Optional[str]
+    focus: Optional[str]
     research_depth: Optional[AgentResearchDepths] = Field(alias="researchDepth")
     callback_uri: Optional[Any] = Field(alias="callbackUri")
 

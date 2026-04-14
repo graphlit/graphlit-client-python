@@ -3135,7 +3135,9 @@ from .operations import (
     SUMMARIZE_CONTENTS_GQL,
     SUMMARIZE_TEXT_GQL,
     TRIGGER_FEED_GQL,
+    UPDATE_AGENT_FOCUS_GQL,
     UPDATE_AGENT_GQL,
+    UPDATE_AGENT_SCRATCHPAD_GQL,
     UPDATE_ALERT_GQL,
     UPDATE_BUREAU_GQL,
     UPDATE_CATEGORY_GQL,
@@ -5063,6 +5065,11 @@ from .summarize_text import (
 )
 from .trigger_feed import TriggerFeed, TriggerFeedTriggerFeed
 from .update_agent import UpdateAgent, UpdateAgentUpdateAgent
+from .update_agent_focus import UpdateAgentFocus, UpdateAgentFocusUpdateAgentFocus
+from .update_agent_scratchpad import (
+    UpdateAgentScratchpad,
+    UpdateAgentScratchpadUpdateAgentScratchpad,
+)
 from .update_alert import UpdateAlert, UpdateAlertUpdateAlert
 from .update_bureau import UpdateBureau, UpdateBureauUpdateBureau
 from .update_category import UpdateCategory, UpdateCategoryUpdateCategory
@@ -9982,7 +9989,9 @@ __all__ = [
     "TwitterFeedPropertiesUpdateInput",
     "TwitterIntegrationPropertiesInput",
     "TwitterListingTypes",
+    "UPDATE_AGENT_FOCUS_GQL",
     "UPDATE_AGENT_GQL",
+    "UPDATE_AGENT_SCRATCHPAD_GQL",
     "UPDATE_ALERT_GQL",
     "UPDATE_BUREAU_GQL",
     "UPDATE_CATEGORY_GQL",
@@ -10033,6 +10042,10 @@ __all__ = [
     "UPSERT_WORKFLOW_GQL",
     "UnitTypes",
     "UpdateAgent",
+    "UpdateAgentFocus",
+    "UpdateAgentFocusUpdateAgentFocus",
+    "UpdateAgentScratchpad",
+    "UpdateAgentScratchpadUpdateAgentScratchpad",
     "UpdateAgentUpdateAgent",
     "UpdateAlert",
     "UpdateAlertUpdateAlert",

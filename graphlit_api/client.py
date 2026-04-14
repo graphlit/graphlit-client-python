@@ -904,7 +904,9 @@ from .operations import (
     SUMMARIZE_CONTENTS_GQL,
     SUMMARIZE_TEXT_GQL,
     TRIGGER_FEED_GQL,
+    UPDATE_AGENT_FOCUS_GQL,
     UPDATE_AGENT_GQL,
+    UPDATE_AGENT_SCRATCHPAD_GQL,
     UPDATE_ALERT_GQL,
     UPDATE_BUREAU_GQL,
     UPDATE_CATEGORY_GQL,
@@ -1104,6 +1106,8 @@ from .summarize_contents import SummarizeContents
 from .summarize_text import SummarizeText
 from .trigger_feed import TriggerFeed
 from .update_agent import UpdateAgent
+from .update_agent_focus import UpdateAgentFocus
+from .update_agent_scratchpad import UpdateAgentScratchpad
 from .update_alert import UpdateAlert
 from .update_bureau import UpdateBureau
 from .update_category import UpdateCategory
@@ -1311,6 +1315,32 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdateAgent.model_validate(data)
+
+    async def update_agent_focus(
+        self, id: str, focus: Union[Optional[str], UnsetType] = UNSET, **kwargs: Any
+    ) -> UpdateAgentFocus:
+        variables: dict[str, object] = {"id": id, "focus": focus}
+        response = await self.execute(
+            query=UPDATE_AGENT_FOCUS_GQL,
+            operation_name="UpdateAgentFocus",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateAgentFocus.model_validate(data)
+
+    async def update_agent_scratchpad(
+        self, id: str, scratchpad: str, **kwargs: Any
+    ) -> UpdateAgentScratchpad:
+        variables: dict[str, object] = {"id": id, "scratchpad": scratchpad}
+        response = await self.execute(
+            query=UPDATE_AGENT_SCRATCHPAD_GQL,
+            operation_name="UpdateAgentScratchpad",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateAgentScratchpad.model_validate(data)
 
     async def upsert_agent(self, agent: AgentInput, **kwargs: Any) -> UpsertAgent:
         variables: dict[str, object] = {"agent": agent}

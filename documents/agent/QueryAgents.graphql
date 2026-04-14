@@ -242,6 +242,7 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
       timeout
       prompt
       scratchpad
+      focus
       researchDepth
       callbackUri
     }

@@ -2991,6 +2991,7 @@ class AgentInput(BaseModel):
     timeout: Optional[Any] = None
     prompt: Optional[str] = None
     scratchpad: Optional[str] = None
+    focus: Optional[str] = None
     research_depth: Optional[AgentResearchDepths] = Field(
         alias="researchDepth", default=None
     )
@@ -7603,6 +7604,7 @@ class AgentUpdateInput(BaseModel):
     timeout: Optional[Any] = None
     prompt: Optional[str] = None
     scratchpad: Optional[str] = None
+    focus: Optional[str] = None
     research_depth: Optional[AgentResearchDepths] = Field(
         alias="researchDepth", default=None
     )

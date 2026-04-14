@@ -243,6 +243,7 @@ query GetAgent($id: ID!, $correlationId: String) {
     timeout
     prompt
     scratchpad
+    focus
     researchDepth
     callbackUri
   }
