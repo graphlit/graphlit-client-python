@@ -12,6 +12,7 @@ from .enums import (
     AgentResearchDepths,
     AgentTypes,
     ContentTypes,
+    DistributionServiceTypes,
     EntityState,
     FileTypes,
     FilterMode,
@@ -51,7 +52,7 @@ class QueryAgentsAgentsResults(BaseModel):
     )
     channels: Optional[list["QueryAgentsAgentsResultsChannels"]]
     commands: Optional[list["QueryAgentsAgentsResultsCommands"]]
-    connectors: Optional[list["QueryAgentsAgentsResultsConnectors"]]
+    targets: Optional[list["QueryAgentsAgentsResultsTargets"]]
     timeout: Optional[Any]
     prompt: Optional[str]
     scratchpad: Optional[str]
@@ -421,7 +422,222 @@ class QueryAgentsAgentsResultsCommands(BaseModel):
     enabled: bool
 
 
-class QueryAgentsAgentsResultsConnectors(BaseModel):
+class QueryAgentsAgentsResultsTargets(BaseModel):
+    connector: "QueryAgentsAgentsResultsTargetsConnector"
+    authentication: Optional["QueryAgentsAgentsResultsTargetsAuthentication"]
+
+
+class QueryAgentsAgentsResultsTargetsConnector(BaseModel):
+    type: DistributionServiceTypes
+    notion: Optional["QueryAgentsAgentsResultsTargetsConnectorNotion"]
+    google_drive: Optional["QueryAgentsAgentsResultsTargetsConnectorGoogleDrive"] = (
+        Field(alias="googleDrive")
+    )
+    one_drive: Optional["QueryAgentsAgentsResultsTargetsConnectorOneDrive"] = Field(
+        alias="oneDrive"
+    )
+    confluence: Optional["QueryAgentsAgentsResultsTargetsConnectorConfluence"]
+    slack: Optional["QueryAgentsAgentsResultsTargetsConnectorSlack"]
+    gmail: Optional["QueryAgentsAgentsResultsTargetsConnectorGmail"]
+    microsoft_outlook: Optional[
+        "QueryAgentsAgentsResultsTargetsConnectorMicrosoftOutlook"
+    ] = Field(alias="microsoftOutlook")
+    hub_spot: Optional["QueryAgentsAgentsResultsTargetsConnectorHubSpot"] = Field(
+        alias="hubSpot"
+    )
+    salesforce: Optional["QueryAgentsAgentsResultsTargetsConnectorSalesforce"]
+    attio: Optional["QueryAgentsAgentsResultsTargetsConnectorAttio"]
+    google_calendar: Optional[
+        "QueryAgentsAgentsResultsTargetsConnectorGoogleCalendar"
+    ] = Field(alias="googleCalendar")
+    microsoft_calendar: Optional[
+        "QueryAgentsAgentsResultsTargetsConnectorMicrosoftCalendar"
+    ] = Field(alias="microsoftCalendar")
+    linear: Optional["QueryAgentsAgentsResultsTargetsConnectorLinear"]
+    jira: Optional["QueryAgentsAgentsResultsTargetsConnectorJira"]
+    google_docs: Optional["QueryAgentsAgentsResultsTargetsConnectorGoogleDocs"] = Field(
+        alias="googleDocs"
+    )
+    microsoft_word: Optional[
+        "QueryAgentsAgentsResultsTargetsConnectorMicrosoftWord"
+    ] = Field(alias="microsoftWord")
+    share_point: Optional["QueryAgentsAgentsResultsTargetsConnectorSharePoint"] = Field(
+        alias="sharePoint"
+    )
+    discord: Optional["QueryAgentsAgentsResultsTargetsConnectorDiscord"]
+    microsoft_teams: Optional[
+        "QueryAgentsAgentsResultsTargetsConnectorMicrosoftTeams"
+    ] = Field(alias="microsoftTeams")
+    twitter: Optional["QueryAgentsAgentsResultsTargetsConnectorTwitter"]
+    github: Optional["QueryAgentsAgentsResultsTargetsConnectorGithub"]
+    gitlab: Optional["QueryAgentsAgentsResultsTargetsConnectorGitlab"]
+    attio_tasks: Optional["QueryAgentsAgentsResultsTargetsConnectorAttioTasks"] = Field(
+        alias="attioTasks"
+    )
+
+
+class QueryAgentsAgentsResultsTargetsConnectorNotion(BaseModel):
+    parent_page_id: Optional[str] = Field(alias="parentPageId")
+    database_id: Optional[str] = Field(alias="databaseId")
+    title: Optional[str]
+
+
+class QueryAgentsAgentsResultsTargetsConnectorGoogleDrive(BaseModel):
+    folder_id: Optional[str] = Field(alias="folderId")
+    file_name: Optional[str] = Field(alias="fileName")
+
+
+class QueryAgentsAgentsResultsTargetsConnectorOneDrive(BaseModel):
+    folder_id: Optional[str] = Field(alias="folderId")
+    file_name: Optional[str] = Field(alias="fileName")
+
+
+class QueryAgentsAgentsResultsTargetsConnectorConfluence(BaseModel):
+    space_id: str = Field(alias="spaceId")
+    parent_page_id: Optional[str] = Field(alias="parentPageId")
+    title: Optional[str]
+
+
+class QueryAgentsAgentsResultsTargetsConnectorSlack(BaseModel):
+    channel_id: str = Field(alias="channelId")
+    thread_ts: Optional[str] = Field(alias="threadTs")
+
+
+class QueryAgentsAgentsResultsTargetsConnectorGmail(BaseModel):
+    to: list[str]
+    subject: str
+    cc: Optional[list[str]]
+    bcc: Optional[list[str]]
+    is_draft: Optional[bool] = Field(alias="isDraft")
+    in_reply_to_message_id: Optional[str] = Field(alias="inReplyToMessageId")
+    forward_from_message_id: Optional[str] = Field(alias="forwardFromMessageId")
+
+
+class QueryAgentsAgentsResultsTargetsConnectorMicrosoftOutlook(BaseModel):
+    to: list[str]
+    subject: str
+    cc: Optional[list[str]]
+    bcc: Optional[list[str]]
+    importance: Optional[str]
+    is_draft: Optional[bool] = Field(alias="isDraft")
+    in_reply_to_message_id: Optional[str] = Field(alias="inReplyToMessageId")
+    forward_from_message_id: Optional[str] = Field(alias="forwardFromMessageId")
+
+
+class QueryAgentsAgentsResultsTargetsConnectorHubSpot(BaseModel):
+    object_type: str = Field(alias="objectType")
+    object_id: str = Field(alias="objectId")
+
+
+class QueryAgentsAgentsResultsTargetsConnectorSalesforce(BaseModel):
+    object_type: str = Field(alias="objectType")
+    object_id: str = Field(alias="objectId")
+    title: Optional[str]
+
+
+class QueryAgentsAgentsResultsTargetsConnectorAttio(BaseModel):
+    parent_object: str = Field(alias="parentObject")
+    parent_record_id: str = Field(alias="parentRecordId")
+    title: Optional[str]
+
+
+class QueryAgentsAgentsResultsTargetsConnectorGoogleCalendar(BaseModel):
+    calendar_id: Optional[str] = Field(alias="calendarId")
+    summary: Optional[str]
+    start_date_time: Optional[Any] = Field(alias="startDateTime")
+    end_date_time: Optional[Any] = Field(alias="endDateTime")
+    time_zone: Optional[str] = Field(alias="timeZone")
+    location: Optional[str]
+    attendees: Optional[list[str]]
+
+
+class QueryAgentsAgentsResultsTargetsConnectorMicrosoftCalendar(BaseModel):
+    calendar_id: Optional[str] = Field(alias="calendarId")
+    subject: Optional[str]
+    start_date_time: Optional[Any] = Field(alias="startDateTime")
+    end_date_time: Optional[Any] = Field(alias="endDateTime")
+    time_zone: Optional[str] = Field(alias="timeZone")
+    location: Optional[str]
+    attendees: Optional[list[str]]
+    is_online_meeting: Optional[bool] = Field(alias="isOnlineMeeting")
+
+
+class QueryAgentsAgentsResultsTargetsConnectorLinear(BaseModel):
+    team_id: Optional[str] = Field(alias="teamId")
+    title: Optional[str]
+    priority: Optional[int]
+    state_id: Optional[str] = Field(alias="stateId")
+    assignee_id: Optional[str] = Field(alias="assigneeId")
+    label_ids: Optional[list[str]] = Field(alias="labelIds")
+    project_id: Optional[str] = Field(alias="projectId")
+
+
+class QueryAgentsAgentsResultsTargetsConnectorJira(BaseModel):
+    project_key: Optional[str] = Field(alias="projectKey")
+    issue_type: Optional[str] = Field(alias="issueType")
+    summary: Optional[str]
+    priority: Optional[str]
+    assignee_id: Optional[str] = Field(alias="assigneeId")
+    labels: Optional[list[str]]
+    status: Optional[str]
+
+
+class QueryAgentsAgentsResultsTargetsConnectorGoogleDocs(BaseModel):
+    folder_id: Optional[str] = Field(alias="folderId")
+    title: Optional[str]
+
+
+class QueryAgentsAgentsResultsTargetsConnectorMicrosoftWord(BaseModel):
+    folder_id: Optional[str] = Field(alias="folderId")
+    file_name: Optional[str] = Field(alias="fileName")
+
+
+class QueryAgentsAgentsResultsTargetsConnectorSharePoint(BaseModel):
+    site_id: str = Field(alias="siteId")
+    title: Optional[str]
+
+
+class QueryAgentsAgentsResultsTargetsConnectorDiscord(BaseModel):
+    channel_id: str = Field(alias="channelId")
+    thread_id: Optional[str] = Field(alias="threadId")
+
+
+class QueryAgentsAgentsResultsTargetsConnectorMicrosoftTeams(BaseModel):
+    team_id: str = Field(alias="teamId")
+    channel_id: str = Field(alias="channelId")
+    thread_id: Optional[str] = Field(alias="threadId")
+
+
+class QueryAgentsAgentsResultsTargetsConnectorTwitter(BaseModel):
+    reply_to_tweet_id: Optional[str] = Field(alias="replyToTweetId")
+
+
+class QueryAgentsAgentsResultsTargetsConnectorGithub(BaseModel):
+    repository_owner: str = Field(alias="repositoryOwner")
+    repository_name: str = Field(alias="repositoryName")
+    title: Optional[str]
+    labels: Optional[list[str]]
+    assignees: Optional[list[str]]
+    milestone: Optional[int]
+
+
+class QueryAgentsAgentsResultsTargetsConnectorGitlab(BaseModel):
+    project_path: str = Field(alias="projectPath")
+    title: Optional[str]
+    labels: Optional[list[str]]
+    assignees: Optional[list[str]]
+    milestone: Optional[int]
+
+
+class QueryAgentsAgentsResultsTargetsConnectorAttioTasks(BaseModel):
+    title: Optional[str]
+    assignees: Optional[list[str]]
+    linked_record_id: Optional[str] = Field(alias="linkedRecordId")
+    linked_object_type: Optional[str] = Field(alias="linkedObjectType")
+    deadline: Optional[Any]
+
+
+class QueryAgentsAgentsResultsTargetsAuthentication(BaseModel):
     id: str
 
 
@@ -441,3 +657,5 @@ QueryAgentsAgentsResultsAugmentedFilterOr.model_rebuild()
 QueryAgentsAgentsResultsAugmentedFilterOrObservations.model_rebuild()
 QueryAgentsAgentsResultsAugmentedFilterAnd.model_rebuild()
 QueryAgentsAgentsResultsAugmentedFilterAndObservations.model_rebuild()
+QueryAgentsAgentsResultsTargets.model_rebuild()
+QueryAgentsAgentsResultsTargetsConnector.model_rebuild()

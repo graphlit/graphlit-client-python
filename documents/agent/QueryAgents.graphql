@@ -236,8 +236,151 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
         template
         enabled
       }
-      connectors {
-        id
+      targets {
+        connector {
+          type
+          notion {
+            parentPageId
+            databaseId
+            title
+          }
+          googleDrive {
+            folderId
+            fileName
+          }
+          oneDrive {
+            folderId
+            fileName
+          }
+          confluence {
+            spaceId
+            parentPageId
+            title
+          }
+          slack {
+            channelId
+            threadTs
+          }
+          gmail {
+            to
+            subject
+            cc
+            bcc
+            isDraft
+            inReplyToMessageId
+            forwardFromMessageId
+          }
+          microsoftOutlook {
+            to
+            subject
+            cc
+            bcc
+            importance
+            isDraft
+            inReplyToMessageId
+            forwardFromMessageId
+          }
+          hubSpot {
+            objectType
+            objectId
+          }
+          salesforce {
+            objectType
+            objectId
+            title
+          }
+          attio {
+            parentObject
+            parentRecordId
+            title
+          }
+          googleCalendar {
+            calendarId
+            summary
+            startDateTime
+            endDateTime
+            timeZone
+            location
+            attendees
+          }
+          microsoftCalendar {
+            calendarId
+            subject
+            startDateTime
+            endDateTime
+            timeZone
+            location
+            attendees
+            isOnlineMeeting
+          }
+          linear {
+            teamId
+            title
+            priority
+            stateId
+            assigneeId
+            labelIds
+            projectId
+          }
+          jira {
+            projectKey
+            issueType
+            summary
+            priority
+            assigneeId
+            labels
+            status
+          }
+          googleDocs {
+            folderId
+            title
+          }
+          microsoftWord {
+            folderId
+            fileName
+          }
+          sharePoint {
+            siteId
+            title
+          }
+          discord {
+            channelId
+            threadId
+          }
+          microsoftTeams {
+            teamId
+            channelId
+            threadId
+          }
+          twitter {
+            replyToTweetId
+          }
+          github {
+            repositoryOwner
+            repositoryName
+            title
+            labels
+            assignees
+            milestone
+          }
+          gitlab {
+            projectPath
+            title
+            labels
+            assignees
+            milestone
+          }
+          attioTasks {
+            title
+            assignees
+            linkedRecordId
+            linkedObjectType
+            deadline
+          }
+        }
+        authentication {
+          id
+        }
       }
       timeout
       prompt

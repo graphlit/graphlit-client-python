@@ -2997,7 +2997,7 @@ class AgentInput(BaseModel):
     )
     channels: Optional[list["AgentChannelInput"]] = None
     commands: Optional[list["AgentCommandInput"]] = None
-    connectors: Optional[list["EntityReferenceInput"]] = None
+    targets: Optional[list["DistributionTargetInput"]] = None
     callback_uri: Optional[Any] = Field(alias="callbackUri", default=None)
 
 
@@ -3866,6 +3866,17 @@ class NotionDistributionPropertiesInput(BaseModel):
     title: Optional[str] = None
 
 
+class AssemblyAIAudioPreparationPropertiesInput(BaseModel):
+    model: Optional[AssemblyAIModels] = None
+    key: Optional[str] = None
+    enable_redaction: Optional[bool] = Field(alias="enableRedaction", default=None)
+    enable_speaker_diarization: Optional[bool] = Field(
+        alias="enableSpeakerDiarization", default=None
+    )
+    detect_language: Optional[bool] = Field(alias="detectLanguage", default=None)
+    language: Optional[str] = None
+
+
 class GoogleDriveDistributionPropertiesInput(BaseModel):
     target_operation: Optional[DistributionTargetOperationTypes] = Field(
         alias="targetOperation", default=None
@@ -3877,17 +3888,6 @@ class GoogleDriveDistributionPropertiesInput(BaseModel):
     target_uri: Optional[str] = Field(alias="targetUri", default=None)
     folder_id: Optional[str] = Field(alias="folderId", default=None)
     file_name: Optional[str] = Field(alias="fileName", default=None)
-
-
-class AssemblyAIAudioPreparationPropertiesInput(BaseModel):
-    model: Optional[AssemblyAIModels] = None
-    key: Optional[str] = None
-    enable_redaction: Optional[bool] = Field(alias="enableRedaction", default=None)
-    enable_speaker_diarization: Optional[bool] = Field(
-        alias="enableSpeakerDiarization", default=None
-    )
-    detect_language: Optional[bool] = Field(alias="detectLanguage", default=None)
-    language: Optional[str] = None
 
 
 class FeedSchedulePolicyInput(BaseModel):
@@ -4813,6 +4813,11 @@ class MedicalDeviceUpdateInput(BaseModel):
 
 class MondayBoardsInput(BaseModel):
     api_token: str = Field(alias="apiToken")
+
+
+class DistributionTargetInput(BaseModel):
+    connector: "DistributionConnectorInput"
+    authentication: Optional["EntityReferenceInput"] = None
 
 
 class AttioDistributionPropertiesInput(BaseModel):
@@ -7610,7 +7615,7 @@ class AgentUpdateInput(BaseModel):
     )
     channels: Optional[list["AgentChannelInput"]] = None
     commands: Optional[list["AgentCommandInput"]] = None
-    connectors: Optional[list["EntityReferenceInput"]] = None
+    targets: Optional[list["DistributionTargetInput"]] = None
     callback_uri: Optional[Any] = Field(alias="callbackUri", default=None)
 
 
@@ -8023,6 +8028,7 @@ BoxFeedPropertiesInput.model_rebuild()
 ContentFilterLevel.model_rebuild()
 H3Filter.model_rebuild()
 MedicalDeviceUpdateInput.model_rebuild()
+DistributionTargetInput.model_rebuild()
 GitLabMilestonesFeedPropertiesInput.model_rebuild()
 AttioTasksFeedPropertiesInput.model_rebuild()
 MicrosoftContactsCRMFeedPropertiesInput.model_rebuild()
