@@ -6,7 +6,7 @@ from typing import Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import AgentTypes, EntityState
+from .enums import AgentModes, AgentTypes, EntityState
 
 
 class UpdateAgent(BaseModel):
@@ -18,6 +18,7 @@ class UpdateAgentUpdateAgent(BaseModel):
     name: str
     state: EntityState
     type: AgentTypes
+    mode: AgentModes
 
 
 UpdateAgent.model_rebuild()

@@ -9,6 +9,7 @@ from .base_model import BaseModel
 from .enums import (
     AgentChannelTypes,
     AgentCommandActionTypes,
+    AgentModes,
     AgentResearchDepths,
     AgentTypes,
     AlertTypes,
@@ -2977,6 +2978,7 @@ class CalendarFeedPropertiesUpdateInput(BaseModel):
 class AgentInput(BaseModel):
     name: str
     type: AgentTypes
+    mode: Optional[AgentModes] = None
     description: Optional[str] = None
     specification: Optional["EntityReferenceInput"] = None
     persona: Optional["EntityReferenceInput"] = None
@@ -2988,6 +2990,7 @@ class AgentInput(BaseModel):
     schedule_policy: Optional["AgentSchedulePolicyInput"] = Field(
         alias="schedulePolicy", default=None
     )
+    heartbeat: Optional["AgentHeartbeatPropertiesInput"] = None
     timeout: Optional[Any] = None
     prompt: Optional[str] = None
     scratchpad: Optional[str] = None
@@ -2996,6 +2999,7 @@ class AgentInput(BaseModel):
         alias="researchDepth", default=None
     )
     channels: Optional[list["AgentChannelInput"]] = None
+    rules: Optional[list["PromptClassificationRuleInput"]] = None
     commands: Optional[list["AgentCommandInput"]] = None
     targets: Optional[list["DistributionTargetInput"]] = None
     callback_uri: Optional[Any] = Field(alias="callbackUri", default=None)
@@ -4310,6 +4314,13 @@ class HubSpotTasksFeedPropertiesUpdateInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
 
 
+class AgentHeartbeatProbeThresholdsInput(BaseModel):
+    new_content_min: Optional[float] = Field(alias="newContentMin", default=None)
+    volume_spike_multiplier: Optional[float] = Field(
+        alias="volumeSpikeMultiplier", default=None
+    )
+
+
 class AnthropicModelPropertiesUpdateInput(BaseModel):
     model: Optional[AnthropicModels] = None
     model_name: Optional[str] = Field(alias="modelName", default=None)
@@ -5346,6 +5357,21 @@ class EntityFeedPropertiesUpdateInput(BaseModel):
     parallel: Optional["ParallelEntityFeedPropertiesUpdateInput"] = None
     crustdata: Optional["CrustdataEntityFeedPropertiesUpdateInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class AgentHeartbeatPropertiesInput(BaseModel):
+    enabled: bool
+    frequency_minutes: int = Field(alias="frequencyMinutes")
+    off_hours_frequency_minutes: Optional[int] = Field(
+        alias="offHoursFrequencyMinutes", default=None
+    )
+    active_hours_start: str = Field(alias="activeHoursStart")
+    active_hours_end: str = Field(alias="activeHoursEnd")
+    active_days: list[int] = Field(alias="activeDays")
+    timezone: str
+    probe_thresholds: Optional["AgentHeartbeatProbeThresholdsInput"] = Field(
+        alias="probeThresholds", default=None
+    )
 
 
 class CalendarFeedPropertiesInput(BaseModel):
@@ -7595,6 +7621,7 @@ class OpenAIModelPropertiesInput(BaseModel):
 class AgentUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
+    mode: Optional[AgentModes] = None
     description: Optional[str] = None
     specification: Optional["EntityReferenceInput"] = None
     persona: Optional["EntityReferenceInput"] = None
@@ -7606,6 +7633,7 @@ class AgentUpdateInput(BaseModel):
     schedule_policy: Optional["AgentSchedulePolicyInput"] = Field(
         alias="schedulePolicy", default=None
     )
+    heartbeat: Optional["AgentHeartbeatPropertiesInput"] = None
     timeout: Optional[Any] = None
     prompt: Optional[str] = None
     scratchpad: Optional[str] = None
@@ -7614,6 +7642,7 @@ class AgentUpdateInput(BaseModel):
         alias="researchDepth", default=None
     )
     channels: Optional[list["AgentChannelInput"]] = None
+    rules: Optional[list["PromptClassificationRuleInput"]] = None
     commands: Optional[list["AgentCommandInput"]] = None
     targets: Optional[list["DistributionTargetInput"]] = None
     callback_uri: Optional[Any] = Field(alias="callbackUri", default=None)
@@ -8049,6 +8078,7 @@ RegexContentClassificationPropertiesInput.model_rebuild()
 ObservationInput.model_rebuild()
 MedicalDeviceFilter.model_rebuild()
 EntityFeedPropertiesUpdateInput.model_rebuild()
+AgentHeartbeatPropertiesInput.model_rebuild()
 CalendarFeedPropertiesInput.model_rebuild()
 MicrosoftEmailFeedPropertiesInput.model_rebuild()
 ProjectUpdateInput.model_rebuild()

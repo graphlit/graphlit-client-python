@@ -4,5 +4,6 @@ mutation UpdateAgentScratchpad($id: ID!, $scratchpad: String!) {
     name
     state
     type
+    mode
   }
 }

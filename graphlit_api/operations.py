@@ -505,6 +505,7 @@ mutation CreateAgent($agent: AgentInput!, $correlationId: String) {
     name
     state
     type
+    mode
   }
 }
 """
@@ -574,6 +575,7 @@ query GetAgent($id: ID!, $correlationId: String) {
     }
     correlationId
     type
+    mode
     description
     specification {
       id
@@ -784,11 +786,28 @@ query GetAgent($id: ID!, $correlationId: String) {
       cron
       timeZoneId
     }
+    heartbeat {
+      enabled
+      frequencyMinutes
+      offHoursFrequencyMinutes
+      activeHoursStart
+      activeHoursEnd
+      activeDays
+      timezone
+      probeThresholds {
+        newContentMin
+        volumeSpikeMultiplier
+      }
+    }
     channels {
       type
       identifier
       instructions
       label
+    }
+    rules {
+      then
+      if
     }
     commands {
       keyword
@@ -969,6 +988,7 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
       state
       correlationId
       type
+      mode
       description
       specification {
         id
@@ -1179,11 +1199,28 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
         cron
         timeZoneId
       }
+      heartbeat {
+        enabled
+        frequencyMinutes
+        offHoursFrequencyMinutes
+        activeHoursStart
+        activeHoursEnd
+        activeDays
+        timezone
+        probeThresholds {
+          newContentMin
+          volumeSpikeMultiplier
+        }
+      }
       channels {
         type
         identifier
         instructions
         label
+      }
+      rules {
+        then
+        if
       }
       commands {
         keyword
@@ -1357,6 +1394,7 @@ mutation UpdateAgent($agent: AgentUpdateInput!) {
     name
     state
     type
+    mode
   }
 }
 """
@@ -1368,6 +1406,7 @@ mutation UpdateAgentFocus($id: ID!, $focus: String) {
     name
     state
     type
+    mode
   }
 }
 """
@@ -1379,6 +1418,7 @@ mutation UpdateAgentScratchpad($id: ID!, $scratchpad: String!) {
     name
     state
     type
+    mode
   }
 }
 """
@@ -1390,6 +1430,7 @@ mutation UpsertAgent($agent: AgentInput!) {
     name
     state
     type
+    mode
   }
 }
 """

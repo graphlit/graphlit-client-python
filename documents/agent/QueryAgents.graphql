@@ -12,6 +12,7 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
       state
       correlationId
       type
+      mode
       description
       specification {
         id
@@ -222,11 +223,28 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
         cron
         timeZoneId
       }
+      heartbeat {
+        enabled
+        frequencyMinutes
+        offHoursFrequencyMinutes
+        activeHoursStart
+        activeHoursEnd
+        activeDays
+        timezone
+        probeThresholds {
+          newContentMin
+          volumeSpikeMultiplier
+        }
+      }
       channels {
         type
         identifier
         instructions
         label
+      }
+      rules {
+        then
+        if
       }
       commands {
         keyword

@@ -9,6 +9,7 @@ from .base_model import BaseModel
 from .enums import (
     AgentChannelTypes,
     AgentCommandActionTypes,
+    AgentModes,
     AgentResearchDepths,
     AgentTypes,
     ContentTypes,
@@ -39,6 +40,7 @@ class QueryAgentsAgentsResults(BaseModel):
     state: EntityState
     correlation_id: Optional[str] = Field(alias="correlationId")
     type: AgentTypes
+    mode: AgentModes
     description: Optional[str]
     specification: Optional["QueryAgentsAgentsResultsSpecification"]
     persona: Optional["QueryAgentsAgentsResultsPersona"]
@@ -50,7 +52,9 @@ class QueryAgentsAgentsResults(BaseModel):
     schedule_policy: Optional["QueryAgentsAgentsResultsSchedulePolicy"] = Field(
         alias="schedulePolicy"
     )
+    heartbeat: Optional["QueryAgentsAgentsResultsHeartbeat"]
     channels: Optional[list["QueryAgentsAgentsResultsChannels"]]
+    rules: Optional[list["QueryAgentsAgentsResultsRules"]]
     commands: Optional[list["QueryAgentsAgentsResultsCommands"]]
     targets: Optional[list["QueryAgentsAgentsResultsTargets"]]
     timeout: Optional[Any]
@@ -406,11 +410,34 @@ class QueryAgentsAgentsResultsSchedulePolicy(BaseModel):
     time_zone_id: Optional[str] = Field(alias="timeZoneId")
 
 
+class QueryAgentsAgentsResultsHeartbeat(BaseModel):
+    enabled: bool
+    frequency_minutes: int = Field(alias="frequencyMinutes")
+    off_hours_frequency_minutes: Optional[int] = Field(alias="offHoursFrequencyMinutes")
+    active_hours_start: str = Field(alias="activeHoursStart")
+    active_hours_end: str = Field(alias="activeHoursEnd")
+    active_days: list[int] = Field(alias="activeDays")
+    timezone: str
+    probe_thresholds: Optional["QueryAgentsAgentsResultsHeartbeatProbeThresholds"] = (
+        Field(alias="probeThresholds")
+    )
+
+
+class QueryAgentsAgentsResultsHeartbeatProbeThresholds(BaseModel):
+    new_content_min: Optional[float] = Field(alias="newContentMin")
+    volume_spike_multiplier: Optional[float] = Field(alias="volumeSpikeMultiplier")
+
+
 class QueryAgentsAgentsResultsChannels(BaseModel):
     type: AgentChannelTypes
     identifier: str
     instructions: Optional[str]
     label: Optional[str]
+
+
+class QueryAgentsAgentsResultsRules(BaseModel):
+    then: Optional[str]
+    if_: Optional[str] = Field(alias="if")
 
 
 class QueryAgentsAgentsResultsCommands(BaseModel):
@@ -657,5 +684,6 @@ QueryAgentsAgentsResultsAugmentedFilterOr.model_rebuild()
 QueryAgentsAgentsResultsAugmentedFilterOrObservations.model_rebuild()
 QueryAgentsAgentsResultsAugmentedFilterAnd.model_rebuild()
 QueryAgentsAgentsResultsAugmentedFilterAndObservations.model_rebuild()
+QueryAgentsAgentsResultsHeartbeat.model_rebuild()
 QueryAgentsAgentsResultsTargets.model_rebuild()
 QueryAgentsAgentsResultsTargetsConnector.model_rebuild()

@@ -4,5 +4,6 @@ mutation UpsertAgent($agent: AgentInput!) {
     name
     state
     type
+    mode
   }
 }

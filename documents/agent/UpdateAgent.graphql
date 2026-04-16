@@ -4,5 +4,6 @@ mutation UpdateAgent($agent: AgentUpdateInput!) {
     name
     state
     type
+    mode
   }
 }

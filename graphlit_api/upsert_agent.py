@@ -6,7 +6,7 @@ from typing import Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import AgentTypes, EntityState
+from .enums import AgentModes, AgentTypes, EntityState
 
 
 class UpsertAgent(BaseModel):
@@ -18,6 +18,7 @@ class UpsertAgentUpsertAgent(BaseModel):
     name: str
     state: EntityState
     type: AgentTypes
+    mode: AgentModes
 
 
 UpsertAgent.model_rebuild()

@@ -1736,6 +1736,14 @@ class TimeIntervalTypes(str, Enum):
     YEAR = "YEAR"
 
 
+class AgentModes(str, Enum):
+    INTERACTIVE = "INTERACTIVE"
+    SCHEDULED = "SCHEDULED"
+    CONTENT_EVENT = "CONTENT_EVENT"
+    WEBHOOK = "WEBHOOK"
+    HEARTBEAT = "HEARTBEAT"
+
+
 class OrientationTypes(str, Enum):
     TOP_LEFT = "TOP_LEFT"
     TOP_RIGHT = "TOP_RIGHT"

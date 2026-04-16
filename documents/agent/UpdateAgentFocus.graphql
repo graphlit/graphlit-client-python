@@ -4,5 +4,6 @@ mutation UpdateAgentFocus($id: ID!, $focus: String) {
     name
     state
     type
+    mode
   }
 }

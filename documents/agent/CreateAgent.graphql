@@ -4,5 +4,6 @@ mutation CreateAgent($agent: AgentInput!, $correlationId: String) {
     name
     state
     type
+    mode
   }
 }

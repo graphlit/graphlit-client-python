@@ -13,6 +13,7 @@ query GetAgent($id: ID!, $correlationId: String) {
     }
     correlationId
     type
+    mode
     description
     specification {
       id
@@ -223,11 +224,28 @@ query GetAgent($id: ID!, $correlationId: String) {
       cron
       timeZoneId
     }
+    heartbeat {
+      enabled
+      frequencyMinutes
+      offHoursFrequencyMinutes
+      activeHoursStart
+      activeHoursEnd
+      activeDays
+      timezone
+      probeThresholds {
+        newContentMin
+        volumeSpikeMultiplier
+      }
+    }
     channels {
       type
       identifier
       instructions
       label
+    }
+    rules {
+      then
+      if
     }
     commands {
       keyword

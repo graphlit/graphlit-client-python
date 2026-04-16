@@ -9,6 +9,7 @@ from .base_model import BaseModel
 from .enums import (
     AgentChannelTypes,
     AgentCommandActionTypes,
+    AgentModes,
     AgentResearchDepths,
     AgentTypes,
     ContentTypes,
@@ -35,6 +36,7 @@ class GetAgentAgent(BaseModel):
     user: Optional["GetAgentAgentUser"]
     correlation_id: Optional[str] = Field(alias="correlationId")
     type: AgentTypes
+    mode: AgentModes
     description: Optional[str]
     specification: Optional["GetAgentAgentSpecification"]
     persona: Optional["GetAgentAgentPersona"]
@@ -46,7 +48,9 @@ class GetAgentAgent(BaseModel):
     schedule_policy: Optional["GetAgentAgentSchedulePolicy"] = Field(
         alias="schedulePolicy"
     )
+    heartbeat: Optional["GetAgentAgentHeartbeat"]
     channels: Optional[list["GetAgentAgentChannels"]]
+    rules: Optional[list["GetAgentAgentRules"]]
     commands: Optional[list["GetAgentAgentCommands"]]
     targets: Optional[list["GetAgentAgentTargets"]]
     timeout: Optional[Any]
@@ -398,11 +402,34 @@ class GetAgentAgentSchedulePolicy(BaseModel):
     time_zone_id: Optional[str] = Field(alias="timeZoneId")
 
 
+class GetAgentAgentHeartbeat(BaseModel):
+    enabled: bool
+    frequency_minutes: int = Field(alias="frequencyMinutes")
+    off_hours_frequency_minutes: Optional[int] = Field(alias="offHoursFrequencyMinutes")
+    active_hours_start: str = Field(alias="activeHoursStart")
+    active_hours_end: str = Field(alias="activeHoursEnd")
+    active_days: list[int] = Field(alias="activeDays")
+    timezone: str
+    probe_thresholds: Optional["GetAgentAgentHeartbeatProbeThresholds"] = Field(
+        alias="probeThresholds"
+    )
+
+
+class GetAgentAgentHeartbeatProbeThresholds(BaseModel):
+    new_content_min: Optional[float] = Field(alias="newContentMin")
+    volume_spike_multiplier: Optional[float] = Field(alias="volumeSpikeMultiplier")
+
+
 class GetAgentAgentChannels(BaseModel):
     type: AgentChannelTypes
     identifier: str
     instructions: Optional[str]
     label: Optional[str]
+
+
+class GetAgentAgentRules(BaseModel):
+    then: Optional[str]
+    if_: Optional[str] = Field(alias="if")
 
 
 class GetAgentAgentCommands(BaseModel):
@@ -646,5 +673,6 @@ GetAgentAgentAugmentedFilterOr.model_rebuild()
 GetAgentAgentAugmentedFilterOrObservations.model_rebuild()
 GetAgentAgentAugmentedFilterAnd.model_rebuild()
 GetAgentAgentAugmentedFilterAndObservations.model_rebuild()
+GetAgentAgentHeartbeat.model_rebuild()
 GetAgentAgentTargets.model_rebuild()
 GetAgentAgentTargetsConnector.model_rebuild()
