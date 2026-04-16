@@ -48,6 +48,12 @@ from .branch_conversation import (
     BranchConversation,
     BranchConversationBranchConversation,
 )
+from .classify_contents import (
+    ClassifyContents,
+    ClassifyContentsClassifyContents,
+    ClassifyContentsClassifyContentsContent,
+)
+from .classify_text import ClassifyText
 from .clear_conversation import ClearConversation, ClearConversationClearConversation
 from .client import Client
 from .close_conversation import CloseConversation, CloseConversationCloseConversation
@@ -2739,6 +2745,8 @@ from .operations import (
     APPROVE_CONTENT_GQL,
     ASK_GRAPHLIT_GQL,
     BRANCH_CONVERSATION_GQL,
+    CLASSIFY_CONTENTS_GQL,
+    CLASSIFY_TEXT_GQL,
     CLEAR_CONVERSATION_GQL,
     CLOSE_CONVERSATION_GQL,
     COMPLETE_CONVERSATION_GQL,
@@ -5606,6 +5614,8 @@ __all__ = [
     "BureauFilter",
     "BureauInput",
     "BureauUpdateInput",
+    "CLASSIFY_CONTENTS_GQL",
+    "CLASSIFY_TEXT_GQL",
     "CLEAR_CONVERSATION_GQL",
     "CLOSE_CONVERSATION_GQL",
     "COMPLETE_CONVERSATION_GQL",
@@ -5714,6 +5724,10 @@ __all__ = [
     "ChannelServiceTypes",
     "ClassificationWorkflowJobInput",
     "ClassificationWorkflowStageInput",
+    "ClassifyContents",
+    "ClassifyContentsClassifyContents",
+    "ClassifyContentsClassifyContentsContent",
+    "ClassifyText",
     "ClearConversation",
     "ClearConversationClearConversation",
     "Client",

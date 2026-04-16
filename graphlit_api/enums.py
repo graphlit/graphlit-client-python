@@ -1630,7 +1630,9 @@ class ExaSearchTypes(str, Enum):
     AUTO = "AUTO"
     INSTANT = "INSTANT"
     FAST = "FAST"
+    DEEP_LITE = "DEEP_LITE"
     DEEP = "DEEP"
+    DEEP_REASONING = "DEEP_REASONING"
     NEURAL = "NEURAL"
 
 

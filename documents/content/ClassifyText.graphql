@@ -1,0 +1,3 @@
+mutation ClassifyText($text: String!, $textType: TextTypes, $classification: ContentClassificationConnectorInput!, $correlationId: String) {
+  classifyText(text: $text, textType: $textType, classification: $classification, correlationId: $correlationId)
+}

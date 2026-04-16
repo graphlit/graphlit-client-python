@@ -1,0 +1,12 @@
+mutation ClassifyContents($classification: ContentClassificationConnectorInput!, $filter: ContentFilter, $correlationId: String) {
+  classifyContents(classification: $classification, filter: $filter, correlationId: $correlationId) {
+    content {
+      id
+      name
+    }
+    labels
+    type
+    classificationTime
+    error
+  }
+}

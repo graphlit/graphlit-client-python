@@ -14,6 +14,8 @@ from .ask_graphlit import AskGraphlit
 from .async_base_client import AsyncBaseClient
 from .base_model import UNSET, UnsetType
 from .branch_conversation import BranchConversation
+from .classify_contents import ClassifyContents
+from .classify_text import ClassifyText
 from .clear_conversation import ClearConversation
 from .close_conversation import CloseConversation
 from .complete_conversation import CompleteConversation
@@ -314,6 +316,7 @@ from .input_types import (
     ConnectorFilter,
     ConnectorInput,
     ConnectorUpdateInput,
+    ContentClassificationConnectorInput,
     ContentFacetInput,
     ContentFilter,
     ContentGraphInput,
@@ -482,6 +485,8 @@ from .operations import (
     APPROVE_CONTENT_GQL,
     ASK_GRAPHLIT_GQL,
     BRANCH_CONVERSATION_GQL,
+    CLASSIFY_CONTENTS_GQL,
+    CLASSIFY_TEXT_GQL,
     CLEAR_CONVERSATION_GQL,
     CLOSE_CONVERSATION_GQL,
     COMPLETE_CONVERSATION_GQL,
@@ -2161,6 +2166,50 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return ApproveContent.model_validate(data)
+
+    async def classify_contents(
+        self,
+        classification: ContentClassificationConnectorInput,
+        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> ClassifyContents:
+        variables: dict[str, object] = {
+            "classification": classification,
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=CLASSIFY_CONTENTS_GQL,
+            operation_name="ClassifyContents",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return ClassifyContents.model_validate(data)
+
+    async def classify_text(
+        self,
+        text: str,
+        classification: ContentClassificationConnectorInput,
+        text_type: Union[Optional[TextTypes], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> ClassifyText:
+        variables: dict[str, object] = {
+            "text": text,
+            "textType": text_type,
+            "classification": classification,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=CLASSIFY_TEXT_GQL,
+            operation_name="ClassifyText",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return ClassifyText.model_validate(data)
 
     async def count_contents(
         self,

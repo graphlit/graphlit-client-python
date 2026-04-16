@@ -11,6 +11,8 @@ __all__ = [
     "APPROVE_CONTENT_GQL",
     "ASK_GRAPHLIT_GQL",
     "BRANCH_CONVERSATION_GQL",
+    "CLASSIFY_CONTENTS_GQL",
+    "CLASSIFY_TEXT_GQL",
     "CLEAR_CONVERSATION_GQL",
     "CLOSE_CONVERSATION_GQL",
     "COMPLETE_CONVERSATION_GQL",
@@ -2603,6 +2605,36 @@ mutation ApproveContent($id: ID!) {
     id
     state
   }
+}
+"""
+
+CLASSIFY_CONTENTS_GQL = """
+mutation ClassifyContents($classification: ContentClassificationConnectorInput!, $filter: ContentFilter, $correlationId: String) {
+  classifyContents(
+    classification: $classification
+    filter: $filter
+    correlationId: $correlationId
+  ) {
+    content {
+      id
+      name
+    }
+    labels
+    type
+    classificationTime
+    error
+  }
+}
+"""
+
+CLASSIFY_TEXT_GQL = """
+mutation ClassifyText($text: String!, $textType: TextTypes, $classification: ContentClassificationConnectorInput!, $correlationId: String) {
+  classifyText(
+    text: $text
+    textType: $textType
+    classification: $classification
+    correlationId: $correlationId
+  )
 }
 """
 
