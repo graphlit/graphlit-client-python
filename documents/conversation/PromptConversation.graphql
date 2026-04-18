@@ -26,6 +26,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
           fileMetadata
           relativeFolderPath
           masterUri
+          markdownUri
           imageUri
           textUri
           audioUri
@@ -226,6 +227,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
             fileMetadata
             relativeFolderPath
             masterUri
+            markdownUri
             imageUri
             textUri
             audioUri

@@ -19,6 +19,7 @@ mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $conne
       fileMetadata
       relativeFolderPath
       masterUri
+      markdownUri
       imageUri
       textUri
       audioUri

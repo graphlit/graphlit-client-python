@@ -26,6 +26,7 @@ mutation Prompt($prompt: String, $mimeType: String, $data: String, $specificatio
           fileMetadata
           relativeFolderPath
           masterUri
+          markdownUri
           imageUri
           textUri
           audioUri

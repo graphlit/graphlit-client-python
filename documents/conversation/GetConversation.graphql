@@ -36,6 +36,7 @@ query GetConversation($id: ID!, $correlationId: String) {
           fileMetadata
           relativeFolderPath
           masterUri
+          markdownUri
           imageUri
           textUri
           audioUri
@@ -185,6 +186,7 @@ query GetConversation($id: ID!, $correlationId: String) {
             fileMetadata
             relativeFolderPath
             masterUri
+            markdownUri
             imageUri
             textUri
             audioUri

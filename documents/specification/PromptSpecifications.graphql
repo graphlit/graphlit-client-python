@@ -26,6 +26,7 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
           fileMetadata
           relativeFolderPath
           masterUri
+          markdownUri
           imageUri
           textUri
           audioUri

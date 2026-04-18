@@ -22,6 +22,7 @@ mutation DescribeEncodedImage($prompt: String!, $mimeType: String!, $data: Strin
         fileMetadata
         relativeFolderPath
         masterUri
+        markdownUri
         imageUri
         textUri
         audioUri

@@ -67,6 +67,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
       fileMetadata
       relativeFolderPath
       masterUri
+      markdownUri
       imageUri
       textUri
       audioUri

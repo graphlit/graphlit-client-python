@@ -26,6 +26,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
           fileMetadata
           relativeFolderPath
           masterUri
+          markdownUri
           imageUri
           textUri
           audioUri
@@ -226,6 +227,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
             fileMetadata
             relativeFolderPath
             masterUri
+            markdownUri
             imageUri
             textUri
             audioUri

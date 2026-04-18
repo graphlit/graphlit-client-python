@@ -66,6 +66,7 @@ query GetContent($id: ID!, $correlationId: String) {
     fileMetadata
     relativeFolderPath
     masterUri
+    markdownUri
     imageUri
     textUri
     audioUri

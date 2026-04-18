@@ -26,6 +26,7 @@ mutation ReviseContent($prompt: String!, $content: EntityReferenceInput!, $id: I
           fileMetadata
           relativeFolderPath
           masterUri
+          markdownUri
           imageUri
           textUri
           audioUri

@@ -62,6 +62,7 @@ class QueryContentsObservationsContentsResults(BaseModel):
     file_size: Optional[Any] = Field(alias="fileSize")
     relative_folder_path: Optional[str] = Field(alias="relativeFolderPath")
     master_uri: Optional[Any] = Field(alias="masterUri")
+    markdown_uri: Optional[Any] = Field(alias="markdownUri")
     image_uri: Optional[Any] = Field(alias="imageUri")
     text_uri: Optional[Any] = Field(alias="textUri")
     audio_uri: Optional[Any] = Field(alias="audioUri")

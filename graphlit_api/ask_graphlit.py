@@ -84,6 +84,7 @@ class AskGraphlitAskGraphlitMessageCitationsContent(BaseModel):
     file_metadata: Optional[str] = Field(alias="fileMetadata")
     relative_folder_path: Optional[str] = Field(alias="relativeFolderPath")
     master_uri: Optional[Any] = Field(alias="masterUri")
+    markdown_uri: Optional[Any] = Field(alias="markdownUri")
     image_uri: Optional[Any] = Field(alias="imageUri")
     text_uri: Optional[Any] = Field(alias="textUri")
     audio_uri: Optional[Any] = Field(alias="audioUri")

@@ -19,6 +19,7 @@ mutation PublishConversation($id: ID!, $connector: ContentPublishingConnectorInp
       fileMetadata
       relativeFolderPath
       masterUri
+      markdownUri
       imageUri
       textUri
       audioUri

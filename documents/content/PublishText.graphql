@@ -19,6 +19,7 @@ mutation PublishText($text: String!, $textType: TextTypes, $connector: ContentPu
       fileMetadata
       relativeFolderPath
       masterUri
+      markdownUri
       imageUri
       textUri
       audioUri

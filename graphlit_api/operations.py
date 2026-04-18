@@ -2749,6 +2749,7 @@ mutation DescribeEncodedImage($prompt: String!, $mimeType: String!, $data: Strin
         fileMetadata
         relativeFolderPath
         masterUri
+        markdownUri
         imageUri
         textUri
         audioUri
@@ -2905,6 +2906,7 @@ mutation DescribeImage($prompt: String!, $uri: URL!, $specification: EntityRefer
         fileMetadata
         relativeFolderPath
         masterUri
+        markdownUri
         imageUri
         textUri
         audioUri
@@ -3278,6 +3280,7 @@ query GetContent($id: ID!, $correlationId: String) {
     fileMetadata
     relativeFolderPath
     masterUri
+    markdownUri
     imageUri
     textUri
     audioUri
@@ -4192,6 +4195,7 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
       fileMetadata
       relativeFolderPath
       masterUri
+      markdownUri
       imageUri
       textUri
       audioUri
@@ -4674,6 +4678,7 @@ mutation PublishContents($summaryPrompt: String, $publishPrompt: String!, $conne
       fileMetadata
       relativeFolderPath
       masterUri
+      markdownUri
       imageUri
       textUri
       audioUri
@@ -4825,6 +4830,7 @@ mutation PublishText($text: String!, $textType: TextTypes, $connector: ContentPu
       fileMetadata
       relativeFolderPath
       masterUri
+      markdownUri
       imageUri
       textUri
       audioUri
@@ -4967,6 +4973,7 @@ query QueryContents($filter: ContentFilter, $correlationId: String) {
       fileSize
       relativeFolderPath
       masterUri
+      markdownUri
       imageUri
       textUri
       audioUri
@@ -5423,6 +5430,7 @@ query QueryContentsObservations($filter: ContentFilter, $correlationId: String) 
       fileSize
       relativeFolderPath
       masterUri
+      markdownUri
       imageUri
       textUri
       audioUri
@@ -6099,6 +6107,7 @@ mutation AskGraphlit($prompt: String!, $type: SdkTypes, $id: ID, $specification:
           fileMetadata
           relativeFolderPath
           masterUri
+          markdownUri
           imageUri
           textUri
           audioUri
@@ -6298,6 +6307,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
           fileMetadata
           relativeFolderPath
           masterUri
+          markdownUri
           imageUri
           textUri
           audioUri
@@ -6498,6 +6508,7 @@ mutation CompleteConversation($completion: String!, $id: ID!, $completionTime: T
             fileMetadata
             relativeFolderPath
             masterUri
+            markdownUri
             imageUri
             textUri
             audioUri
@@ -6659,6 +6670,7 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
           fileMetadata
           relativeFolderPath
           masterUri
+          markdownUri
           imageUri
           textUri
           audioUri
@@ -6859,6 +6871,7 @@ mutation ContinueConversation($id: ID!, $responses: [ConversationToolResponseInp
             fileMetadata
             relativeFolderPath
             masterUri
+            markdownUri
             imageUri
             textUri
             audioUri
@@ -7078,6 +7091,7 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
           fileMetadata
           relativeFolderPath
           masterUri
+          markdownUri
           imageUri
           textUri
           audioUri
@@ -7278,6 +7292,7 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
             fileMetadata
             relativeFolderPath
             masterUri
+            markdownUri
             imageUri
             textUri
             audioUri
@@ -7445,6 +7460,7 @@ query GetConversation($id: ID!, $correlationId: String) {
           fileMetadata
           relativeFolderPath
           masterUri
+          markdownUri
           imageUri
           textUri
           audioUri
@@ -7594,6 +7610,7 @@ query GetConversation($id: ID!, $correlationId: String) {
             fileMetadata
             relativeFolderPath
             masterUri
+            markdownUri
             imageUri
             textUri
             audioUri
@@ -8017,6 +8034,7 @@ mutation Prompt($prompt: String, $mimeType: String, $data: String, $specificatio
           fileMetadata
           relativeFolderPath
           masterUri
+          markdownUri
           imageUri
           textUri
           audioUri
@@ -8189,6 +8207,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
           fileMetadata
           relativeFolderPath
           masterUri
+          markdownUri
           imageUri
           textUri
           audioUri
@@ -8389,6 +8408,7 @@ mutation PromptConversation($prompt: String!, $mimeType: String, $data: String, 
             fileMetadata
             relativeFolderPath
             masterUri
+            markdownUri
             imageUri
             textUri
             audioUri
@@ -8546,6 +8566,7 @@ mutation PublishConversation($id: ID!, $connector: ContentPublishingConnectorInp
       fileMetadata
       relativeFolderPath
       masterUri
+      markdownUri
       imageUri
       textUri
       audioUri
@@ -9321,6 +9342,7 @@ mutation ReviseContent($prompt: String!, $content: EntityReferenceInput!, $id: I
           fileMetadata
           relativeFolderPath
           masterUri
+          markdownUri
           imageUri
           textUri
           audioUri
@@ -9485,6 +9507,7 @@ mutation ReviseEncodedImage($prompt: String!, $mimeType: String!, $data: String!
           fileMetadata
           relativeFolderPath
           masterUri
+          markdownUri
           imageUri
           textUri
           audioUri
@@ -9648,6 +9671,7 @@ mutation ReviseImage($prompt: String!, $uri: URL!, $id: ID, $specification: Enti
           fileMetadata
           relativeFolderPath
           masterUri
+          markdownUri
           imageUri
           textUri
           audioUri
@@ -9811,6 +9835,7 @@ mutation ReviseText($prompt: String!, $text: String!, $id: ID, $specification: E
           fileMetadata
           relativeFolderPath
           masterUri
+          markdownUri
           imageUri
           textUri
           audioUri
@@ -19706,6 +19731,7 @@ mutation PromptSpecifications($prompt: String!, $ids: [ID!]!) {
           fileMetadata
           relativeFolderPath
           masterUri
+          markdownUri
           imageUri
           textUri
           audioUri
