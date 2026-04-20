@@ -1,0 +1,6 @@
+mutation DeleteReplica($id: ID!) {
+  deleteReplica(id: $id) {
+    id
+    state
+  }
+}

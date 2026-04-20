@@ -1,0 +1,6 @@
+mutation TriggerReplica($id: ID!) {
+  triggerReplica(id: $id) {
+    id
+    state
+  }
+}

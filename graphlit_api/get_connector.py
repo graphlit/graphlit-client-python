@@ -69,7 +69,8 @@ class GetConnectorConnectorAuthenticationOauth(BaseModel):
     provider: OAuthProviders
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
-    refresh_token: str = Field(alias="refreshToken")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    access_token: Optional[str] = Field(alias="accessToken")
     redirect_uri: Optional[str] = Field(alias="redirectUri")
     metadata: Optional[str]
 

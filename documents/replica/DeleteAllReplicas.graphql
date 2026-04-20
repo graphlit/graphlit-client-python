@@ -1,0 +1,6 @@
+mutation DeleteAllReplicas($filter: ReplicaFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllReplicas(filter: $filter, isSynchronous: $isSynchronous, correlationId: $correlationId) {
+    id
+    state
+  }
+}

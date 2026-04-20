@@ -52,6 +52,7 @@ from .count_personas import CountPersonas
 from .count_persons import CountPersons
 from .count_places import CountPlaces
 from .count_products import CountProducts
+from .count_replicas import CountReplicas
 from .count_repos import CountRepos
 from .count_skills import CountSkills
 from .count_softwares import CountSoftwares
@@ -91,6 +92,7 @@ from .create_person import CreatePerson
 from .create_persona import CreatePersona
 from .create_place import CreatePlace
 from .create_product import CreateProduct
+from .create_replica import CreateReplica
 from .create_repo import CreateRepo
 from .create_skill import CreateSkill
 from .create_software import CreateSoftware
@@ -133,6 +135,7 @@ from .delete_all_personas import DeleteAllPersonas
 from .delete_all_persons import DeleteAllPersons
 from .delete_all_places import DeleteAllPlaces
 from .delete_all_products import DeleteAllProducts
+from .delete_all_replicas import DeleteAllReplicas
 from .delete_all_repos import DeleteAllRepos
 from .delete_all_skills import DeleteAllSkills
 from .delete_all_softwares import DeleteAllSoftwares
@@ -199,6 +202,8 @@ from .delete_place import DeletePlace
 from .delete_places import DeletePlaces
 from .delete_product import DeleteProduct
 from .delete_products import DeleteProducts
+from .delete_replica import DeleteReplica
+from .delete_replicas import DeleteReplicas
 from .delete_repo import DeleteRepo
 from .delete_repos import DeleteRepos
 from .delete_skill import DeleteSkill
@@ -217,12 +222,14 @@ from .describe_image import DescribeImage
 from .disable_agent import DisableAgent
 from .disable_alert import DisableAlert
 from .disable_feed import DisableFeed
+from .disable_replica import DisableReplica
 from .disable_skill import DisableSkill
 from .disable_user import DisableUser
 from .distribute import Distribute
 from .enable_agent import EnableAgent
 from .enable_alert import EnableAlert
 from .enable_feed import EnableFeed
+from .enable_replica import EnableReplica
 from .enable_skill import EnableSkill
 from .enable_user import EnableUser
 from .enrich_organizations import EnrichOrganizations
@@ -275,6 +282,7 @@ from .get_persona import GetPersona
 from .get_place import GetPlace
 from .get_product import GetProduct
 from .get_project import GetProject
+from .get_replica import GetReplica
 from .get_repo import GetRepo
 from .get_share_point_consent_uri import GetSharePointConsentUri
 from .get_skill import GetSkill
@@ -435,6 +443,9 @@ from .input_types import (
     ProductInput,
     ProductUpdateInput,
     ProjectUpdateInput,
+    ReplicaFilter,
+    ReplicaInput,
+    ReplicaUpdateInput,
     RepoFilter,
     RepoInput,
     RepoUpdateInput,
@@ -523,6 +534,7 @@ from .operations import (
     COUNT_PERSONS_GQL,
     COUNT_PLACES_GQL,
     COUNT_PRODUCTS_GQL,
+    COUNT_REPLICAS_GQL,
     COUNT_REPOS_GQL,
     COUNT_SKILLS_GQL,
     COUNT_SOFTWARES_GQL,
@@ -562,6 +574,7 @@ from .operations import (
     CREATE_PERSONA_GQL,
     CREATE_PLACE_GQL,
     CREATE_PRODUCT_GQL,
+    CREATE_REPLICA_GQL,
     CREATE_REPO_GQL,
     CREATE_SKILL_GQL,
     CREATE_SOFTWARE_GQL,
@@ -604,6 +617,7 @@ from .operations import (
     DELETE_ALL_PERSONS_GQL,
     DELETE_ALL_PLACES_GQL,
     DELETE_ALL_PRODUCTS_GQL,
+    DELETE_ALL_REPLICAS_GQL,
     DELETE_ALL_REPOS_GQL,
     DELETE_ALL_SKILLS_GQL,
     DELETE_ALL_SOFTWARES_GQL,
@@ -670,6 +684,8 @@ from .operations import (
     DELETE_PLACES_GQL,
     DELETE_PRODUCT_GQL,
     DELETE_PRODUCTS_GQL,
+    DELETE_REPLICA_GQL,
+    DELETE_REPLICAS_GQL,
     DELETE_REPO_GQL,
     DELETE_REPOS_GQL,
     DELETE_SKILL_GQL,
@@ -688,12 +704,14 @@ from .operations import (
     DISABLE_AGENT_GQL,
     DISABLE_ALERT_GQL,
     DISABLE_FEED_GQL,
+    DISABLE_REPLICA_GQL,
     DISABLE_SKILL_GQL,
     DISABLE_USER_GQL,
     DISTRIBUTE_GQL,
     ENABLE_AGENT_GQL,
     ENABLE_ALERT_GQL,
     ENABLE_FEED_GQL,
+    ENABLE_REPLICA_GQL,
     ENABLE_SKILL_GQL,
     ENABLE_USER_GQL,
     ENRICH_ORGANIZATIONS_GQL,
@@ -738,6 +756,7 @@ from .operations import (
     GET_PLACE_GQL,
     GET_PRODUCT_GQL,
     GET_PROJECT_GQL,
+    GET_REPLICA_GQL,
     GET_REPO_GQL,
     GET_SHARE_POINT_CONSENT_URI_GQL,
     GET_SKILL_GQL,
@@ -866,6 +885,7 @@ from .operations import (
     QUERY_PLACES_GQL,
     QUERY_PRODUCTS_CLUSTERS_GQL,
     QUERY_PRODUCTS_GQL,
+    QUERY_REPLICAS_GQL,
     QUERY_REPOS_CLUSTERS_GQL,
     QUERY_REPOS_GQL,
     QUERY_SHARE_POINT_FOLDERS_GQL,
@@ -889,6 +909,7 @@ from .operations import (
     REMOVE_CONVERSATIONS_FROM_COLLECTION_GQL,
     REMOVE_DESKS_FROM_BUREAU_GQL,
     REMOVE_SKILLS_FROM_COLLECTION_GQL,
+    REPLICA_EXISTS_GQL,
     RESEARCH_CONTENTS_GQL,
     RESOLVE_ENTITIES_GQL,
     RESOLVE_ENTITY_GQL,
@@ -909,6 +930,7 @@ from .operations import (
     SUMMARIZE_CONTENTS_GQL,
     SUMMARIZE_TEXT_GQL,
     TRIGGER_FEED_GQL,
+    TRIGGER_REPLICA_GQL,
     UPDATE_AGENT_FOCUS_GQL,
     UPDATE_AGENT_GQL,
     UPDATE_AGENT_SCRATCHPAD_GQL,
@@ -945,6 +967,7 @@ from .operations import (
     UPDATE_PLACE_GQL,
     UPDATE_PRODUCT_GQL,
     UPDATE_PROJECT_GQL,
+    UPDATE_REPLICA_GQL,
     UPDATE_REPO_GQL,
     UPDATE_SKILL_GQL,
     UPDATE_SOFTWARE_GQL,
@@ -956,6 +979,7 @@ from .operations import (
     UPSERT_ALERT_GQL,
     UPSERT_CATEGORY_GQL,
     UPSERT_LABEL_GQL,
+    UPSERT_REPLICA_GQL,
     UPSERT_SKILL_GQL,
     UPSERT_SPECIFICATION_GQL,
     UPSERT_VIEW_GQL,
@@ -1067,6 +1091,7 @@ from .query_places import QueryPlaces
 from .query_places_clusters import QueryPlacesClusters
 from .query_products import QueryProducts
 from .query_products_clusters import QueryProductsClusters
+from .query_replicas import QueryReplicas
 from .query_repos import QueryRepos
 from .query_repos_clusters import QueryReposClusters
 from .query_share_point_folders import QuerySharePointFolders
@@ -1090,6 +1115,7 @@ from .remove_contents_from_collection import RemoveContentsFromCollection
 from .remove_conversations_from_collection import RemoveConversationsFromCollection
 from .remove_desks_from_bureau import RemoveDesksFromBureau
 from .remove_skills_from_collection import RemoveSkillsFromCollection
+from .replica_exists import ReplicaExists
 from .research_contents import ResearchContents
 from .resolve_entities import ResolveEntities
 from .resolve_entity import ResolveEntity
@@ -1110,6 +1136,7 @@ from .suggest_conversation import SuggestConversation
 from .summarize_contents import SummarizeContents
 from .summarize_text import SummarizeText
 from .trigger_feed import TriggerFeed
+from .trigger_replica import TriggerReplica
 from .update_agent import UpdateAgent
 from .update_agent_focus import UpdateAgentFocus
 from .update_agent_scratchpad import UpdateAgentScratchpad
@@ -1146,6 +1173,7 @@ from .update_persona import UpdatePersona
 from .update_place import UpdatePlace
 from .update_product import UpdateProduct
 from .update_project import UpdateProject
+from .update_replica import UpdateReplica
 from .update_repo import UpdateRepo
 from .update_skill import UpdateSkill
 from .update_software import UpdateSoftware
@@ -1157,6 +1185,7 @@ from .upsert_agent import UpsertAgent
 from .upsert_alert import UpsertAlert
 from .upsert_category import UpsertCategory
 from .upsert_label import UpsertLabel
+from .upsert_replica import UpsertReplica
 from .upsert_skill import UpsertSkill
 from .upsert_specification import UpsertSpecification
 from .upsert_view import UpsertView
@@ -8273,6 +8302,199 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdateProject.model_validate(data)
+
+    async def count_replicas(
+        self,
+        filter: Union[Optional[ReplicaFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> CountReplicas:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=COUNT_REPLICAS_GQL,
+            operation_name="CountReplicas",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CountReplicas.model_validate(data)
+
+    async def create_replica(
+        self, replica: ReplicaInput, **kwargs: Any
+    ) -> CreateReplica:
+        variables: dict[str, object] = {"replica": replica}
+        response = await self.execute(
+            query=CREATE_REPLICA_GQL,
+            operation_name="CreateReplica",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return CreateReplica.model_validate(data)
+
+    async def delete_all_replicas(
+        self,
+        filter: Union[Optional[ReplicaFilter], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteAllReplicas:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "isSynchronous": is_synchronous,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=DELETE_ALL_REPLICAS_GQL,
+            operation_name="DeleteAllReplicas",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteAllReplicas.model_validate(data)
+
+    async def delete_replica(self, id: str, **kwargs: Any) -> DeleteReplica:
+        variables: dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DELETE_REPLICA_GQL,
+            operation_name="DeleteReplica",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteReplica.model_validate(data)
+
+    async def delete_replicas(
+        self,
+        ids: list[str],
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> DeleteReplicas:
+        variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
+        response = await self.execute(
+            query=DELETE_REPLICAS_GQL,
+            operation_name="DeleteReplicas",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DeleteReplicas.model_validate(data)
+
+    async def disable_replica(self, id: str, **kwargs: Any) -> DisableReplica:
+        variables: dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=DISABLE_REPLICA_GQL,
+            operation_name="DisableReplica",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return DisableReplica.model_validate(data)
+
+    async def enable_replica(self, id: str, **kwargs: Any) -> EnableReplica:
+        variables: dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=ENABLE_REPLICA_GQL,
+            operation_name="EnableReplica",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return EnableReplica.model_validate(data)
+
+    async def get_replica(
+        self,
+        id: str,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> GetReplica:
+        variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
+        response = await self.execute(
+            query=GET_REPLICA_GQL,
+            operation_name="GetReplica",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return GetReplica.model_validate(data)
+
+    async def query_replicas(
+        self,
+        filter: Union[Optional[ReplicaFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryReplicas:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=QUERY_REPLICAS_GQL,
+            operation_name="QueryReplicas",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryReplicas.model_validate(data)
+
+    async def replica_exists(
+        self,
+        filter: Union[Optional[ReplicaFilter], UnsetType] = UNSET,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> ReplicaExists:
+        variables: dict[str, object] = {
+            "filter": filter,
+            "correlationId": correlation_id,
+        }
+        response = await self.execute(
+            query=REPLICA_EXISTS_GQL,
+            operation_name="ReplicaExists",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return ReplicaExists.model_validate(data)
+
+    async def trigger_replica(self, id: str, **kwargs: Any) -> TriggerReplica:
+        variables: dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=TRIGGER_REPLICA_GQL,
+            operation_name="TriggerReplica",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return TriggerReplica.model_validate(data)
+
+    async def update_replica(
+        self, replica: ReplicaUpdateInput, **kwargs: Any
+    ) -> UpdateReplica:
+        variables: dict[str, object] = {"replica": replica}
+        response = await self.execute(
+            query=UPDATE_REPLICA_GQL,
+            operation_name="UpdateReplica",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpdateReplica.model_validate(data)
+
+    async def upsert_replica(
+        self, replica: ReplicaInput, **kwargs: Any
+    ) -> UpsertReplica:
+        variables: dict[str, object] = {"replica": replica}
+        response = await self.execute(
+            query=UPSERT_REPLICA_GQL,
+            operation_name="UpsertReplica",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpsertReplica.model_validate(data)
 
     async def count_repos(
         self,

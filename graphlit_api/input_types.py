@@ -71,6 +71,7 @@ from .enums import (
     EntityOwners,
     EntityResolutionStrategyTypes,
     EntityState,
+    EntityTypes,
     EnvironmentTypes,
     EventFacetTypes,
     ExaSearchTypes,
@@ -174,6 +175,8 @@ from .enums import (
     ReductoOcrModes,
     ReductoOcrSystems,
     RegexSourceTypes,
+    ReplicaArtifactTypes,
+    ReplicaBranchTypes,
     ReplicateModels,
     RepoFacetTypes,
     RerankingModelServiceTypes,
@@ -1292,6 +1295,23 @@ class MCPIntegrationPropertiesInput(BaseModel):
     token: Optional[str] = None
 
 
+class ConversationCriteriaInput(BaseModel):
+    types: Optional[list[ConversationTypes]] = None
+    conversations: Optional[list["EntityReferenceInput"]] = None
+    exclude_conversations: Optional[list["EntityReferenceInput"]] = Field(
+        alias="excludeConversations", default=None
+    )
+    agents: Optional[list["EntityReferenceInput"]] = None
+    collections: Optional[list["EntityReferenceInput"]] = None
+    observations: Optional[list["ObservationCriteriaInput"]] = None
+    has_collections: Optional[bool] = Field(alias="hasCollections", default=None)
+    has_observations: Optional[bool] = Field(alias="hasObservations", default=None)
+    collection_mode: Optional[FilterMode] = Field(alias="collectionMode", default=None)
+    observation_mode: Optional[FilterMode] = Field(
+        alias="observationMode", default=None
+    )
+
+
 class OrganizationFacetInput(BaseModel):
     time_interval: Optional[TimeIntervalTypes] = Field(
         alias="timeInterval", default=None
@@ -1489,6 +1509,38 @@ class MicrosoftTeamsDistributionPropertiesInput(BaseModel):
     team_id: str = Field(alias="teamId")
     channel_id: str = Field(alias="channelId")
     thread_id: Optional[str] = Field(alias="threadId", default=None)
+
+
+class ReplicaUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    type: Optional[EntityTypes] = None
+    content: Optional["ReplicaContentPropertiesInput"] = None
+    conversation: Optional["ReplicaConversationPropertiesInput"] = None
+    git: Optional["ReplicaGitPropertiesInput"] = None
+    connector: Optional["EntityReferenceInput"] = None
+    marker_slug: Optional[str] = Field(alias="markerSlug", default=None)
+    artifact_types: Optional[list[Optional[ReplicaArtifactTypes]]] = Field(
+        alias="artifactTypes", default=None
+    )
+    synchronize_deletes: Optional[bool] = Field(
+        alias="synchronizeDeletes", default=None
+    )
+    commit_message: Optional[str] = Field(alias="commitMessage", default=None)
+    schedule_policy: Optional["ReplicaSchedulePolicyInput"] = Field(
+        alias="schedulePolicy", default=None
+    )
+
+
+class ReplicaGitPropertiesInput(BaseModel):
+    branch_type: Optional[ReplicaBranchTypes] = Field(alias="branchType", default=None)
+    branch: Optional[str] = None
+    repository_owner: Optional[str] = Field(alias="repositoryOwner", default=None)
+    repository_name: Optional[str] = Field(alias="repositoryName", default=None)
+    project_path: Optional[str] = Field(alias="projectPath", default=None)
+    target_path: Optional[str] = Field(alias="targetPath", default=None)
+    create_if_missing: Optional[bool] = Field(alias="createIfMissing", default=None)
+    project_name: Optional[str] = Field(alias="projectName", default=None)
 
 
 class OneDriveFeedPropertiesUpdateInput(BaseModel):
@@ -1783,6 +1835,16 @@ class VoyageModelPropertiesUpdateInput(BaseModel):
     chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
 
 
+class EvernoteFeedPropertiesInput(BaseModel):
+    type: Optional[FeedListingTypes] = None
+    connector: "EntityReferenceInput"
+    query: Optional[str] = None
+    tag_guids: Optional[list[str]] = Field(alias="tagGuids", default=None)
+    include_resources: Optional[bool] = Field(alias="includeResources", default=None)
+    include_inactive: Optional[bool] = Field(alias="includeInactive", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
 class MedicalDrugClassUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
@@ -1878,6 +1940,10 @@ class GoogleCalendarDistributionPropertiesInput(BaseModel):
     time_zone: Optional[str] = Field(alias="timeZone", default=None)
     location: Optional[str] = None
     attendees: Optional[list[str]] = None
+
+
+class ReplicaContentPropertiesInput(BaseModel):
+    filter: Optional["ContentCriteriaInput"] = None
 
 
 class QuiverImagePublishingPropertiesInput(BaseModel):
@@ -2005,6 +2071,7 @@ class FeedUpdateInput(BaseModel):
     )
     youtube: Optional["YouTubeFeedPropertiesUpdateInput"] = None
     notion: Optional["NotionFeedPropertiesUpdateInput"] = None
+    evernote: Optional["EvernoteFeedPropertiesUpdateInput"] = None
     confluence: Optional["ConfluenceFeedPropertiesUpdateInput"] = None
     twitter: Optional["TwitterFeedPropertiesUpdateInput"] = None
     slack: Optional["SlackFeedPropertiesUpdateInput"] = None
@@ -2739,6 +2806,10 @@ class MedicalConditionFilter(BaseModel):
     )
 
 
+class EvernoteTagsInput(BaseModel):
+    connector: "EntityReferenceInput"
+
+
 class MetadataUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
@@ -3261,6 +3332,24 @@ class ObservationOccurrenceInput(BaseModel):
     end_time: Optional[Any] = Field(alias="endTime", default=None)
 
 
+class ReplicaInput(BaseModel):
+    name: str
+    type: EntityTypes
+    content: Optional["ReplicaContentPropertiesInput"] = None
+    conversation: Optional["ReplicaConversationPropertiesInput"] = None
+    git: Optional["ReplicaGitPropertiesInput"] = None
+    connector: "EntityReferenceInput"
+    marker_slug: Optional[str] = Field(alias="markerSlug", default=None)
+    artifact_types: list[ReplicaArtifactTypes] = Field(alias="artifactTypes")
+    synchronize_deletes: Optional[bool] = Field(
+        alias="synchronizeDeletes", default=None
+    )
+    commit_message: Optional[str] = Field(alias="commitMessage", default=None)
+    schedule_policy: Optional["ReplicaSchedulePolicyInput"] = Field(
+        alias="schedulePolicy", default=None
+    )
+
+
 class JinaModelPropertiesInput(BaseModel):
     model: JinaModels
     model_name: Optional[str] = Field(alias="modelName", default=None)
@@ -3689,6 +3778,29 @@ class MedicalDrugFilter(BaseModel):
 class ConversationToolResponseInput(BaseModel):
     id: str
     content: str
+
+
+class ReplicaFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    types: Optional[list[EntityTypes]] = None
 
 
 class InvestmentInput(BaseModel):
@@ -4217,6 +4329,16 @@ class OpenAIImagePublishingPropertiesInput(BaseModel):
 
 class ModelDocumentPreparationPropertiesInput(BaseModel):
     specification: Optional["EntityReferenceInput"] = None
+
+
+class EvernoteFeedPropertiesUpdateInput(BaseModel):
+    type: Optional[FeedListingTypes] = None
+    connector: Optional["EntityReferenceInput"] = None
+    query: Optional[str] = None
+    tag_guids: Optional[list[str]] = Field(alias="tagGuids", default=None)
+    include_resources: Optional[bool] = Field(alias="includeResources", default=None)
+    include_inactive: Optional[bool] = Field(alias="includeInactive", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class FilePreparationConnectorInput(BaseModel):
@@ -5202,7 +5324,8 @@ class OAuthAuthenticationPropertiesInput(BaseModel):
     provider: OAuthProviders
     client_id: str = Field(alias="clientId")
     client_secret: str = Field(alias="clientSecret")
-    refresh_token: str = Field(alias="refreshToken")
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    access_token: Optional[str] = Field(alias="accessToken", default=None)
     redirect_uri: Optional[str] = Field(alias="redirectUri", default=None)
     metadata: Optional[str] = None
 
@@ -5806,6 +5929,10 @@ class ExtractionWorkflowJobInput(BaseModel):
     connector: Optional["EntityExtractionConnectorInput"] = None
 
 
+class ReplicaConversationPropertiesInput(BaseModel):
+    filter: Optional["ConversationCriteriaInput"] = None
+
+
 class PreparationWorkflowStageInput(BaseModel):
     enable_unblocked_capture: Optional[bool] = Field(
         alias="enableUnblockedCapture", default=None
@@ -5856,6 +5983,7 @@ class FeedPreviewInput(BaseModel):
     )
     youtube: Optional["YouTubeFeedPropertiesInput"] = None
     notion: Optional["NotionFeedPropertiesInput"] = None
+    evernote: Optional["EvernoteFeedPropertiesInput"] = None
     confluence: Optional["ConfluenceFeedPropertiesInput"] = None
     twitter: Optional["TwitterFeedPropertiesInput"] = None
     slack: Optional["SlackFeedPropertiesInput"] = None
@@ -6052,6 +6180,13 @@ class GoogleVideoPublishingPropertiesInput(BaseModel):
         alias="aspectRatio", default=None
     )
     seed: Optional["EntityReferenceInput"] = None
+
+
+class ReplicaSchedulePolicyInput(BaseModel):
+    recurrence_type: Optional[TimedPolicyRecurrenceTypes] = Field(
+        alias="recurrenceType", default=None
+    )
+    repeat_interval: Optional[Any] = Field(alias="repeatInterval", default=None)
 
 
 class SearchFeedPropertiesInput(BaseModel):
@@ -6681,6 +6816,10 @@ class HubSpotCRMFeedPropertiesInput(BaseModel):
     type: Optional[FeedListingTypes] = None
 
 
+class EvernoteAuthorizedNotebookInput(BaseModel):
+    connector: "EntityReferenceInput"
+
+
 class DateRangeFilter(BaseModel):
     from_: Optional[Any] = Field(alias="from", default=None)
     to: Optional[Any] = None
@@ -7107,6 +7246,7 @@ class FeedInput(BaseModel):
     )
     youtube: Optional["YouTubeFeedPropertiesInput"] = None
     notion: Optional["NotionFeedPropertiesInput"] = None
+    evernote: Optional["EvernoteFeedPropertiesInput"] = None
     confluence: Optional["ConfluenceFeedPropertiesInput"] = None
     twitter: Optional["TwitterFeedPropertiesInput"] = None
     slack: Optional["SlackFeedPropertiesInput"] = None
@@ -7906,11 +8046,13 @@ MedicalTestInput.model_rebuild()
 MedicalTherapyUpdateInput.model_rebuild()
 SlackFeedPropertiesUpdateInput.model_rebuild()
 ModelContentClassificationPropertiesInput.model_rebuild()
+ConversationCriteriaInput.model_rebuild()
 OrganizationFilter.model_rebuild()
 GoogleContactsCRMFeedPropertiesInput.model_rebuild()
 PullRequestFeedPropertiesUpdateInput.model_rebuild()
 ZendeskTicketsFeedPropertiesInput.model_rebuild()
 MedicalTestFilter.model_rebuild()
+ReplicaUpdateInput.model_rebuild()
 OneDriveFeedPropertiesUpdateInput.model_rebuild()
 EventUpdateInput.model_rebuild()
 UserFilter.model_rebuild()
@@ -7919,11 +8061,13 @@ MetadataFilter.model_rebuild()
 ZendeskFeedPropertiesUpdateInput.model_rebuild()
 MedicalStudyFilter.model_rebuild()
 MicrosoftCalendarFeedPropertiesInput.model_rebuild()
+EvernoteFeedPropertiesInput.model_rebuild()
 MedicalDrugClassUpdateInput.model_rebuild()
 IntercomFeedPropertiesUpdateInput.model_rebuild()
 ConfluenceFeedPropertiesInput.model_rebuild()
 MicrosoftTeamsTeamsInput.model_rebuild()
 IntercomTicketsFeedPropertiesUpdateInput.model_rebuild()
+ReplicaContentPropertiesInput.model_rebuild()
 QuiverImagePublishingPropertiesInput.model_rebuild()
 ViewInput.model_rebuild()
 GoogleCalendarsInput.model_rebuild()
@@ -7958,6 +8102,7 @@ RepoInput.model_rebuild()
 IntercomFeedPropertiesInput.model_rebuild()
 ConnectorUpdateInput.model_rebuild()
 MedicalConditionFilter.model_rebuild()
+EvernoteTagsInput.model_rebuild()
 MetadataUpdateInput.model_rebuild()
 AttioFeedPropertiesInput.model_rebuild()
 PostMetadataInput.model_rebuild()
@@ -7985,6 +8130,7 @@ ObservationCriteriaInput.model_rebuild()
 InvestmentUpdateInput.model_rebuild()
 MedicalIndicationUpdateInput.model_rebuild()
 ObservationOccurrenceInput.model_rebuild()
+ReplicaInput.model_rebuild()
 ContentFilter.model_rebuild()
 MedicalConditionInput.model_rebuild()
 NotionDatabasesInput.model_rebuild()
@@ -8003,6 +8149,7 @@ ZendeskFeedPropertiesInput.model_rebuild()
 LinearInitiativesFeedPropertiesInput.model_rebuild()
 GitLabMilestonesFeedPropertiesUpdateInput.model_rebuild()
 MedicalDrugFilter.model_rebuild()
+ReplicaFilter.model_rebuild()
 InvestmentInput.model_rebuild()
 ContentInput.model_rebuild()
 LinearProjectsInput.model_rebuild()
@@ -8029,6 +8176,7 @@ SharePointLibrariesInput.model_rebuild()
 SharePointFeedPropertiesInput.model_rebuild()
 OpenAIImagePublishingPropertiesInput.model_rebuild()
 ModelDocumentPreparationPropertiesInput.model_rebuild()
+EvernoteFeedPropertiesUpdateInput.model_rebuild()
 FilePreparationConnectorInput.model_rebuild()
 GitLabProjectsInput.model_rebuild()
 HubSpotTasksFeedPropertiesUpdateInput.model_rebuild()
@@ -8104,6 +8252,7 @@ ResearchFeedPropertiesInput.model_rebuild()
 AuthenticationConnectorInput.model_rebuild()
 BureauFilter.model_rebuild()
 ExtractionWorkflowJobInput.model_rebuild()
+ReplicaConversationPropertiesInput.model_rebuild()
 PreparationWorkflowStageInput.model_rebuild()
 HRISFeedPropertiesUpdateInput.model_rebuild()
 FeedPreviewInput.model_rebuild()
@@ -8141,6 +8290,7 @@ InvestmentFundFilter.model_rebuild()
 GoogleContactsCRMFeedPropertiesUpdateInput.model_rebuild()
 MentionReferenceFilter.model_rebuild()
 HubSpotCRMFeedPropertiesInput.model_rebuild()
+EvernoteAuthorizedNotebookInput.model_rebuild()
 MedicalStudyInput.model_rebuild()
 SiteFeedPropertiesInput.model_rebuild()
 GitHubPullRequestsFeedPropertiesUpdateInput.model_rebuild()

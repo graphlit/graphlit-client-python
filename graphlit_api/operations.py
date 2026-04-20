@@ -49,6 +49,7 @@ __all__ = [
     "COUNT_PERSONS_GQL",
     "COUNT_PLACES_GQL",
     "COUNT_PRODUCTS_GQL",
+    "COUNT_REPLICAS_GQL",
     "COUNT_REPOS_GQL",
     "COUNT_SKILLS_GQL",
     "COUNT_SOFTWARES_GQL",
@@ -88,6 +89,7 @@ __all__ = [
     "CREATE_PERSON_GQL",
     "CREATE_PLACE_GQL",
     "CREATE_PRODUCT_GQL",
+    "CREATE_REPLICA_GQL",
     "CREATE_REPO_GQL",
     "CREATE_SKILL_GQL",
     "CREATE_SOFTWARE_GQL",
@@ -130,6 +132,7 @@ __all__ = [
     "DELETE_ALL_PERSONS_GQL",
     "DELETE_ALL_PLACES_GQL",
     "DELETE_ALL_PRODUCTS_GQL",
+    "DELETE_ALL_REPLICAS_GQL",
     "DELETE_ALL_REPOS_GQL",
     "DELETE_ALL_SKILLS_GQL",
     "DELETE_ALL_SOFTWARES_GQL",
@@ -196,6 +199,8 @@ __all__ = [
     "DELETE_PLACE_GQL",
     "DELETE_PRODUCTS_GQL",
     "DELETE_PRODUCT_GQL",
+    "DELETE_REPLICAS_GQL",
+    "DELETE_REPLICA_GQL",
     "DELETE_REPOS_GQL",
     "DELETE_REPO_GQL",
     "DELETE_SKILLS_GQL",
@@ -214,12 +219,14 @@ __all__ = [
     "DISABLE_AGENT_GQL",
     "DISABLE_ALERT_GQL",
     "DISABLE_FEED_GQL",
+    "DISABLE_REPLICA_GQL",
     "DISABLE_SKILL_GQL",
     "DISABLE_USER_GQL",
     "DISTRIBUTE_GQL",
     "ENABLE_AGENT_GQL",
     "ENABLE_ALERT_GQL",
     "ENABLE_FEED_GQL",
+    "ENABLE_REPLICA_GQL",
     "ENABLE_SKILL_GQL",
     "ENABLE_USER_GQL",
     "ENRICH_ORGANIZATIONS_GQL",
@@ -264,6 +271,7 @@ __all__ = [
     "GET_PLACE_GQL",
     "GET_PRODUCT_GQL",
     "GET_PROJECT_GQL",
+    "GET_REPLICA_GQL",
     "GET_REPO_GQL",
     "GET_SHARE_POINT_CONSENT_URI_GQL",
     "GET_SKILL_GQL",
@@ -392,6 +400,7 @@ __all__ = [
     "QUERY_PLACES_GQL",
     "QUERY_PRODUCTS_CLUSTERS_GQL",
     "QUERY_PRODUCTS_GQL",
+    "QUERY_REPLICAS_GQL",
     "QUERY_REPOS_CLUSTERS_GQL",
     "QUERY_REPOS_GQL",
     "QUERY_SHARE_POINT_FOLDERS_GQL",
@@ -415,6 +424,7 @@ __all__ = [
     "REMOVE_CONVERSATIONS_FROM_COLLECTION_GQL",
     "REMOVE_DESKS_FROM_BUREAU_GQL",
     "REMOVE_SKILLS_FROM_COLLECTION_GQL",
+    "REPLICA_EXISTS_GQL",
     "RESEARCH_CONTENTS_GQL",
     "RESOLVE_ENTITIES_GQL",
     "RESOLVE_ENTITY_GQL",
@@ -435,6 +445,7 @@ __all__ = [
     "SUMMARIZE_CONTENTS_GQL",
     "SUMMARIZE_TEXT_GQL",
     "TRIGGER_FEED_GQL",
+    "TRIGGER_REPLICA_GQL",
     "UPDATE_AGENT_FOCUS_GQL",
     "UPDATE_AGENT_GQL",
     "UPDATE_AGENT_SCRATCHPAD_GQL",
@@ -471,6 +482,7 @@ __all__ = [
     "UPDATE_PLACE_GQL",
     "UPDATE_PRODUCT_GQL",
     "UPDATE_PROJECT_GQL",
+    "UPDATE_REPLICA_GQL",
     "UPDATE_REPO_GQL",
     "UPDATE_SKILL_GQL",
     "UPDATE_SOFTWARE_GQL",
@@ -482,6 +494,7 @@ __all__ = [
     "UPSERT_ALERT_GQL",
     "UPSERT_CATEGORY_GQL",
     "UPSERT_LABEL_GQL",
+    "UPSERT_REPLICA_GQL",
     "UPSERT_SKILL_GQL",
     "UPSERT_SPECIFICATION_GQL",
     "UPSERT_VIEW_GQL",
@@ -2449,6 +2462,7 @@ query GetConnector($id: ID!, $correlationId: String) {
         clientId
         clientSecret
         refreshToken
+        accessToken
         redirectUri
         metadata
       }
@@ -2550,6 +2564,7 @@ query QueryConnectors($filter: ConnectorFilter, $correlationId: String) {
           clientId
           clientSecret
           refreshToken
+          accessToken
           redirectUri
           metadata
         }
@@ -11562,6 +11577,17 @@ query GetFeed($id: ID!, $correlationId: String) {
       identifiers
       type
     }
+    evernote {
+      readLimit
+      type
+      connector {
+        id
+      }
+      query
+      tagGuids
+      includeResources
+      includeInactive
+    }
     confluence {
       readLimit
       authenticationType
@@ -12671,6 +12697,17 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
         }
         identifiers
         type
+      }
+      evernote {
+        readLimit
+        type
+        connector {
+          id
+        }
+        query
+        tagGuids
+        includeResources
+        includeInactive
       }
       confluence {
         readLimit
@@ -18736,6 +18773,1361 @@ mutation UpdateProject($project: ProjectUpdateInput!) {
 }
 """
 
+COUNT_REPLICAS_GQL = """
+query CountReplicas($filter: ReplicaFilter, $correlationId: String) {
+  countReplicas(filter: $filter, correlationId: $correlationId) {
+    count
+  }
+}
+"""
+
+CREATE_REPLICA_GQL = """
+mutation CreateReplica($replica: ReplicaInput!) {
+  createReplica(replica: $replica) {
+    id
+    name
+    state
+    type
+    content {
+      filter {
+        dateRange {
+          from
+          to
+        }
+        inLast
+        inNext
+        creationDateRange {
+          from
+          to
+        }
+        createdInLast
+        types
+        fileTypes
+        formats
+        fileExtensions
+        fileSizeRange {
+          from
+          to
+        }
+        similarContents {
+          id
+        }
+        contents {
+          id
+        }
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+        or {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        and {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        hasObservations
+        hasFeeds
+        hasCollections
+        hasWorkflows
+        collectionMode
+        observationMode
+      }
+    }
+    conversation {
+      filter {
+        types
+        conversations {
+          id
+        }
+        excludeConversations {
+          id
+        }
+        agents {
+          id
+        }
+        collections {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+        hasCollections
+        hasObservations
+        collectionMode
+        observationMode
+      }
+    }
+    git {
+      branchType
+      branch
+      resolvedBranch
+      repositoryOwner
+      repositoryName
+      projectPath
+      targetPath
+    }
+    connector {
+      id
+      name
+      state
+      type
+      authentication {
+        type
+        token
+        apiKey
+        microsoft {
+          tenantId
+          clientId
+          clientSecret
+        }
+        google {
+          clientId
+          clientSecret
+        }
+        oauth {
+          provider
+          clientId
+          clientSecret
+          refreshToken
+          accessToken
+          redirectUri
+          metadata
+        }
+        arcade {
+          authorizationId
+          provider
+          metadata
+        }
+      }
+      integration {
+        type
+        uri
+        slack {
+          token
+          channel
+        }
+        email {
+          from
+          subject
+          to
+        }
+        twitter {
+          consumerKey
+          consumerSecret
+          accessTokenKey
+          accessTokenSecret
+        }
+        mcp {
+          token
+          type
+        }
+      }
+      channel {
+        type
+        slack {
+          botToken
+          signingSecret
+          appId
+        }
+        teams {
+          botId
+          botPassword
+          tenantId
+        }
+        discord {
+          botToken
+          applicationId
+          publicKey
+        }
+        telegram {
+          botToken
+          secretToken
+          botUsername
+        }
+        whatsApp {
+          accessToken
+          appSecret
+          phoneNumberId
+          verifyToken
+        }
+        googleChat {
+          credentials
+          projectId
+        }
+      }
+    }
+    markerSlug
+    artifactTypes
+    synchronizeDeletes
+    commitMessage
+    schedulePolicy {
+      recurrenceType
+      repeatInterval
+    }
+    lastReconcileDate
+    nextReconcileDate
+    lastReplicaDate
+    lastRevisionId
+    lastRevisionUri
+    lastErrorCode
+    lastErrorMessage
+    lastFileUpsertCount
+    lastFileDeleteCount
+    lastFileSkipCount
+    lastFileUnchangedCount
+  }
+}
+"""
+
+DELETE_ALL_REPLICAS_GQL = """
+mutation DeleteAllReplicas($filter: ReplicaFilter, $isSynchronous: Boolean, $correlationId: String) {
+  deleteAllReplicas(
+    filter: $filter
+    isSynchronous: $isSynchronous
+    correlationId: $correlationId
+  ) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_REPLICA_GQL = """
+mutation DeleteReplica($id: ID!) {
+  deleteReplica(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+DELETE_REPLICAS_GQL = """
+mutation DeleteReplicas($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteReplicas(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}
+"""
+
+DISABLE_REPLICA_GQL = """
+mutation DisableReplica($id: ID!) {
+  disableReplica(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+ENABLE_REPLICA_GQL = """
+mutation EnableReplica($id: ID!) {
+  enableReplica(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+GET_REPLICA_GQL = """
+query GetReplica($id: ID!, $correlationId: String) {
+  replica(id: $id, correlationId: $correlationId) {
+    id
+    name
+    creationDate
+    modifiedDate
+    owner {
+      id
+    }
+    state
+    user {
+      id
+    }
+    type
+    content {
+      filter {
+        dateRange {
+          from
+          to
+        }
+        inLast
+        inNext
+        creationDateRange {
+          from
+          to
+        }
+        createdInLast
+        types
+        fileTypes
+        formats
+        fileExtensions
+        fileSizeRange {
+          from
+          to
+        }
+        similarContents {
+          id
+        }
+        contents {
+          id
+        }
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+        or {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        and {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        hasObservations
+        hasFeeds
+        hasCollections
+        hasWorkflows
+        collectionMode
+        observationMode
+      }
+    }
+    conversation {
+      filter {
+        types
+        conversations {
+          id
+        }
+        excludeConversations {
+          id
+        }
+        agents {
+          id
+        }
+        collections {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+        hasCollections
+        hasObservations
+        collectionMode
+        observationMode
+      }
+    }
+    git {
+      branchType
+      branch
+      resolvedBranch
+      repositoryOwner
+      repositoryName
+      projectPath
+      targetPath
+    }
+    connector {
+      id
+      name
+      state
+      type
+      authentication {
+        type
+        token
+        apiKey
+        microsoft {
+          tenantId
+          clientId
+          clientSecret
+        }
+        google {
+          clientId
+          clientSecret
+        }
+        oauth {
+          provider
+          clientId
+          clientSecret
+          refreshToken
+          accessToken
+          redirectUri
+          metadata
+        }
+        arcade {
+          authorizationId
+          provider
+          metadata
+        }
+      }
+      integration {
+        type
+        uri
+        slack {
+          token
+          channel
+        }
+        email {
+          from
+          subject
+          to
+        }
+        twitter {
+          consumerKey
+          consumerSecret
+          accessTokenKey
+          accessTokenSecret
+        }
+        mcp {
+          token
+          type
+        }
+      }
+      channel {
+        type
+        slack {
+          botToken
+          signingSecret
+          appId
+        }
+        teams {
+          botId
+          botPassword
+          tenantId
+        }
+        discord {
+          botToken
+          applicationId
+          publicKey
+        }
+        telegram {
+          botToken
+          secretToken
+          botUsername
+        }
+        whatsApp {
+          accessToken
+          appSecret
+          phoneNumberId
+          verifyToken
+        }
+        googleChat {
+          credentials
+          projectId
+        }
+      }
+    }
+    markerSlug
+    artifactTypes
+    synchronizeDeletes
+    commitMessage
+    schedulePolicy {
+      recurrenceType
+      repeatInterval
+    }
+    lastReconcileDate
+    nextReconcileDate
+    lastReplicaDate
+    lastRevisionId
+    lastRevisionUri
+    lastErrorCode
+    lastErrorMessage
+    lastFileUpsertCount
+    lastFileDeleteCount
+    lastFileSkipCount
+    lastFileUnchangedCount
+  }
+}
+"""
+
+QUERY_REPLICAS_GQL = """
+query QueryReplicas($filter: ReplicaFilter, $correlationId: String) {
+  replicas(filter: $filter, correlationId: $correlationId) {
+    results {
+      id
+      name
+      creationDate
+      modifiedDate
+      relevance
+      owner {
+        id
+      }
+      state
+      type
+      content {
+        filter {
+          dateRange {
+            from
+            to
+          }
+          inLast
+          inNext
+          creationDateRange {
+            from
+            to
+          }
+          createdInLast
+          types
+          fileTypes
+          formats
+          fileExtensions
+          fileSizeRange {
+            from
+            to
+          }
+          similarContents {
+            id
+          }
+          contents {
+            id
+          }
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+          or {
+            feeds {
+              id
+            }
+            workflows {
+              id
+            }
+            collections {
+              id
+            }
+            users {
+              id
+            }
+            observations {
+              type
+              observable {
+                id
+              }
+              states
+            }
+          }
+          and {
+            feeds {
+              id
+            }
+            workflows {
+              id
+            }
+            collections {
+              id
+            }
+            users {
+              id
+            }
+            observations {
+              type
+              observable {
+                id
+              }
+              states
+            }
+          }
+          hasObservations
+          hasFeeds
+          hasCollections
+          hasWorkflows
+          collectionMode
+          observationMode
+        }
+      }
+      conversation {
+        filter {
+          types
+          conversations {
+            id
+          }
+          excludeConversations {
+            id
+          }
+          agents {
+            id
+          }
+          collections {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+          hasCollections
+          hasObservations
+          collectionMode
+          observationMode
+        }
+      }
+      git {
+        branchType
+        branch
+        resolvedBranch
+        repositoryOwner
+        repositoryName
+        projectPath
+        targetPath
+      }
+      connector {
+        id
+        name
+        state
+        type
+        authentication {
+          type
+          token
+          apiKey
+          microsoft {
+            tenantId
+            clientId
+            clientSecret
+          }
+          google {
+            clientId
+            clientSecret
+          }
+          oauth {
+            provider
+            clientId
+            clientSecret
+            refreshToken
+            accessToken
+            redirectUri
+            metadata
+          }
+          arcade {
+            authorizationId
+            provider
+            metadata
+          }
+        }
+        integration {
+          type
+          uri
+          slack {
+            token
+            channel
+          }
+          email {
+            from
+            subject
+            to
+          }
+          twitter {
+            consumerKey
+            consumerSecret
+            accessTokenKey
+            accessTokenSecret
+          }
+          mcp {
+            token
+            type
+          }
+        }
+        channel {
+          type
+          slack {
+            botToken
+            signingSecret
+            appId
+          }
+          teams {
+            botId
+            botPassword
+            tenantId
+          }
+          discord {
+            botToken
+            applicationId
+            publicKey
+          }
+          telegram {
+            botToken
+            secretToken
+            botUsername
+          }
+          whatsApp {
+            accessToken
+            appSecret
+            phoneNumberId
+            verifyToken
+          }
+          googleChat {
+            credentials
+            projectId
+          }
+        }
+      }
+      markerSlug
+      artifactTypes
+      synchronizeDeletes
+      commitMessage
+      schedulePolicy {
+        recurrenceType
+        repeatInterval
+      }
+      lastReconcileDate
+      nextReconcileDate
+      lastReplicaDate
+      lastRevisionId
+      lastRevisionUri
+      lastErrorCode
+      lastErrorMessage
+      lastFileUpsertCount
+      lastFileDeleteCount
+      lastFileSkipCount
+      lastFileUnchangedCount
+    }
+  }
+}
+"""
+
+REPLICA_EXISTS_GQL = """
+query ReplicaExists($filter: ReplicaFilter, $correlationId: String) {
+  replicaExists(filter: $filter, correlationId: $correlationId) {
+    result
+  }
+}
+"""
+
+TRIGGER_REPLICA_GQL = """
+mutation TriggerReplica($id: ID!) {
+  triggerReplica(id: $id) {
+    id
+    state
+  }
+}
+"""
+
+UPDATE_REPLICA_GQL = """
+mutation UpdateReplica($replica: ReplicaUpdateInput!) {
+  updateReplica(replica: $replica) {
+    id
+    name
+    state
+    type
+    content {
+      filter {
+        dateRange {
+          from
+          to
+        }
+        inLast
+        inNext
+        creationDateRange {
+          from
+          to
+        }
+        createdInLast
+        types
+        fileTypes
+        formats
+        fileExtensions
+        fileSizeRange {
+          from
+          to
+        }
+        similarContents {
+          id
+        }
+        contents {
+          id
+        }
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+        or {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        and {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        hasObservations
+        hasFeeds
+        hasCollections
+        hasWorkflows
+        collectionMode
+        observationMode
+      }
+    }
+    conversation {
+      filter {
+        types
+        conversations {
+          id
+        }
+        excludeConversations {
+          id
+        }
+        agents {
+          id
+        }
+        collections {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+        hasCollections
+        hasObservations
+        collectionMode
+        observationMode
+      }
+    }
+    git {
+      branchType
+      branch
+      resolvedBranch
+      repositoryOwner
+      repositoryName
+      projectPath
+      targetPath
+    }
+    connector {
+      id
+      name
+      state
+      type
+      authentication {
+        type
+        token
+        apiKey
+        microsoft {
+          tenantId
+          clientId
+          clientSecret
+        }
+        google {
+          clientId
+          clientSecret
+        }
+        oauth {
+          provider
+          clientId
+          clientSecret
+          refreshToken
+          accessToken
+          redirectUri
+          metadata
+        }
+        arcade {
+          authorizationId
+          provider
+          metadata
+        }
+      }
+      integration {
+        type
+        uri
+        slack {
+          token
+          channel
+        }
+        email {
+          from
+          subject
+          to
+        }
+        twitter {
+          consumerKey
+          consumerSecret
+          accessTokenKey
+          accessTokenSecret
+        }
+        mcp {
+          token
+          type
+        }
+      }
+      channel {
+        type
+        slack {
+          botToken
+          signingSecret
+          appId
+        }
+        teams {
+          botId
+          botPassword
+          tenantId
+        }
+        discord {
+          botToken
+          applicationId
+          publicKey
+        }
+        telegram {
+          botToken
+          secretToken
+          botUsername
+        }
+        whatsApp {
+          accessToken
+          appSecret
+          phoneNumberId
+          verifyToken
+        }
+        googleChat {
+          credentials
+          projectId
+        }
+      }
+    }
+    markerSlug
+    artifactTypes
+    synchronizeDeletes
+    commitMessage
+    schedulePolicy {
+      recurrenceType
+      repeatInterval
+    }
+    lastReconcileDate
+    nextReconcileDate
+    lastReplicaDate
+    lastRevisionId
+    lastRevisionUri
+    lastErrorCode
+    lastErrorMessage
+    lastFileUpsertCount
+    lastFileDeleteCount
+    lastFileSkipCount
+    lastFileUnchangedCount
+  }
+}
+"""
+
+UPSERT_REPLICA_GQL = """
+mutation UpsertReplica($replica: ReplicaInput!) {
+  upsertReplica(replica: $replica) {
+    id
+    name
+    state
+    type
+    content {
+      filter {
+        dateRange {
+          from
+          to
+        }
+        inLast
+        inNext
+        creationDateRange {
+          from
+          to
+        }
+        createdInLast
+        types
+        fileTypes
+        formats
+        fileExtensions
+        fileSizeRange {
+          from
+          to
+        }
+        similarContents {
+          id
+        }
+        contents {
+          id
+        }
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+        or {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        and {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        hasObservations
+        hasFeeds
+        hasCollections
+        hasWorkflows
+        collectionMode
+        observationMode
+      }
+    }
+    conversation {
+      filter {
+        types
+        conversations {
+          id
+        }
+        excludeConversations {
+          id
+        }
+        agents {
+          id
+        }
+        collections {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+        hasCollections
+        hasObservations
+        collectionMode
+        observationMode
+      }
+    }
+    git {
+      branchType
+      branch
+      resolvedBranch
+      repositoryOwner
+      repositoryName
+      projectPath
+      targetPath
+    }
+    connector {
+      id
+      name
+      state
+      type
+      authentication {
+        type
+        token
+        apiKey
+        microsoft {
+          tenantId
+          clientId
+          clientSecret
+        }
+        google {
+          clientId
+          clientSecret
+        }
+        oauth {
+          provider
+          clientId
+          clientSecret
+          refreshToken
+          accessToken
+          redirectUri
+          metadata
+        }
+        arcade {
+          authorizationId
+          provider
+          metadata
+        }
+      }
+      integration {
+        type
+        uri
+        slack {
+          token
+          channel
+        }
+        email {
+          from
+          subject
+          to
+        }
+        twitter {
+          consumerKey
+          consumerSecret
+          accessTokenKey
+          accessTokenSecret
+        }
+        mcp {
+          token
+          type
+        }
+      }
+      channel {
+        type
+        slack {
+          botToken
+          signingSecret
+          appId
+        }
+        teams {
+          botId
+          botPassword
+          tenantId
+        }
+        discord {
+          botToken
+          applicationId
+          publicKey
+        }
+        telegram {
+          botToken
+          secretToken
+          botUsername
+        }
+        whatsApp {
+          accessToken
+          appSecret
+          phoneNumberId
+          verifyToken
+        }
+        googleChat {
+          credentials
+          projectId
+        }
+      }
+    }
+    markerSlug
+    artifactTypes
+    synchronizeDeletes
+    commitMessage
+    schedulePolicy {
+      recurrenceType
+      repeatInterval
+    }
+    lastReconcileDate
+    nextReconcileDate
+    lastReplicaDate
+    lastRevisionId
+    lastRevisionUri
+    lastErrorCode
+    lastErrorMessage
+    lastFileUpsertCount
+    lastFileDeleteCount
+    lastFileSkipCount
+    lastFileUnchangedCount
+  }
+}
+"""
+
 COUNT_REPOS_GQL = """
 query CountRepos($filter: RepoFilter, $correlationId: String) {
   countRepos(filter: $filter, correlationId: $correlationId) {
@@ -20240,6 +21632,7 @@ query GetUser {
           clientId
           clientSecret
           refreshToken
+          accessToken
           redirectUri
           metadata
         }
@@ -20370,6 +21763,7 @@ query GetUserByIdentifier($identifier: String!) {
           clientId
           clientSecret
           refreshToken
+          accessToken
           redirectUri
           metadata
         }
@@ -20501,6 +21895,7 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
             clientId
             clientSecret
             refreshToken
+            accessToken
             redirectUri
             metadata
           }

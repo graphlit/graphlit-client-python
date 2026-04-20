@@ -673,6 +673,17 @@ query GetFeed($id: ID!, $correlationId: String) {
       identifiers
       type
     }
+    evernote {
+      readLimit
+      type
+      connector {
+        id
+      }
+      query
+      tagGuids
+      includeResources
+      includeInactive
+    }
     confluence {
       readLimit
       authenticationType

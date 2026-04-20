@@ -1,0 +1,6 @@
+mutation DeleteReplicas($ids: [ID!]!, $isSynchronous: Boolean) {
+  deleteReplicas(ids: $ids, isSynchronous: $isSynchronous) {
+    id
+    state
+  }
+}

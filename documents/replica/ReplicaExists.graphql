@@ -1,0 +1,5 @@
+query ReplicaExists($filter: ReplicaFilter, $correlationId: String) {
+  replicaExists(filter: $filter, correlationId: $correlationId) {
+    result
+  }
+}

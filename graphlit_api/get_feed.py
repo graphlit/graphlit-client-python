@@ -110,6 +110,7 @@ class GetFeedFeed(BaseModel):
     reddit: Optional["GetFeedFeedReddit"]
     linked_in: Optional["GetFeedFeedLinkedIn"] = Field(alias="linkedIn")
     notion: Optional["GetFeedFeedNotion"]
+    evernote: Optional["GetFeedFeedEvernote"]
     confluence: Optional["GetFeedFeedConfluence"]
     intercom: Optional["GetFeedFeedIntercom"]
     zendesk: Optional["GetFeedFeedZendesk"]
@@ -1092,6 +1093,20 @@ class GetFeedFeedNotionConnector(BaseModel):
     id: str
 
 
+class GetFeedFeedEvernote(BaseModel):
+    read_limit: Optional[int] = Field(alias="readLimit")
+    type: Optional[FeedListingTypes]
+    connector: Optional["GetFeedFeedEvernoteConnector"]
+    query: Optional[str]
+    tag_guids: Optional[list[str]] = Field(alias="tagGuids")
+    include_resources: Optional[bool] = Field(alias="includeResources")
+    include_inactive: Optional[bool] = Field(alias="includeInactive")
+
+
+class GetFeedFeedEvernoteConnector(BaseModel):
+    id: str
+
+
 class GetFeedFeedConfluence(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     authentication_type: Optional[ConfluenceAuthenticationTypes] = Field(
@@ -1436,6 +1451,7 @@ GetFeedFeedMeetingZoom.model_rebuild()
 GetFeedFeedMeetingHubSpot.model_rebuild()
 GetFeedFeedSearch.model_rebuild()
 GetFeedFeedNotion.model_rebuild()
+GetFeedFeedEvernote.model_rebuild()
 GetFeedFeedConfluence.model_rebuild()
 GetFeedFeedIntercom.model_rebuild()
 GetFeedFeedZendesk.model_rebuild()

@@ -1,0 +1,6 @@
+mutation EnableReplica($id: ID!) {
+  enableReplica(id: $id) {
+    id
+    state
+  }
+}

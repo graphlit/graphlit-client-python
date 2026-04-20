@@ -35,6 +35,7 @@ query GetUserByIdentifier($identifier: String!) {
           clientId
           clientSecret
           refreshToken
+          accessToken
           redirectUri
           metadata
         }

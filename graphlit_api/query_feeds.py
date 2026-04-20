@@ -116,6 +116,7 @@ class QueryFeedsFeedsResults(BaseModel):
     reddit: Optional["QueryFeedsFeedsResultsReddit"]
     linked_in: Optional["QueryFeedsFeedsResultsLinkedIn"] = Field(alias="linkedIn")
     notion: Optional["QueryFeedsFeedsResultsNotion"]
+    evernote: Optional["QueryFeedsFeedsResultsEvernote"]
     confluence: Optional["QueryFeedsFeedsResultsConfluence"]
     intercom: Optional["QueryFeedsFeedsResultsIntercom"]
     zendesk: Optional["QueryFeedsFeedsResultsZendesk"]
@@ -1102,6 +1103,20 @@ class QueryFeedsFeedsResultsNotionConnector(BaseModel):
     id: str
 
 
+class QueryFeedsFeedsResultsEvernote(BaseModel):
+    read_limit: Optional[int] = Field(alias="readLimit")
+    type: Optional[FeedListingTypes]
+    connector: Optional["QueryFeedsFeedsResultsEvernoteConnector"]
+    query: Optional[str]
+    tag_guids: Optional[list[str]] = Field(alias="tagGuids")
+    include_resources: Optional[bool] = Field(alias="includeResources")
+    include_inactive: Optional[bool] = Field(alias="includeInactive")
+
+
+class QueryFeedsFeedsResultsEvernoteConnector(BaseModel):
+    id: str
+
+
 class QueryFeedsFeedsResultsConfluence(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
     authentication_type: Optional[ConfluenceAuthenticationTypes] = Field(
@@ -1447,6 +1462,7 @@ QueryFeedsFeedsResultsMeetingZoom.model_rebuild()
 QueryFeedsFeedsResultsMeetingHubSpot.model_rebuild()
 QueryFeedsFeedsResultsSearch.model_rebuild()
 QueryFeedsFeedsResultsNotion.model_rebuild()
+QueryFeedsFeedsResultsEvernote.model_rebuild()
 QueryFeedsFeedsResultsConfluence.model_rebuild()
 QueryFeedsFeedsResultsIntercom.model_rebuild()
 QueryFeedsFeedsResultsZendesk.model_rebuild()

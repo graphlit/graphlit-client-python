@@ -35,6 +35,7 @@ query GetUser {
           clientId
           clientSecret
           refreshToken
+          accessToken
           redirectUri
           metadata
         }

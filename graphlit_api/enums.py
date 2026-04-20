@@ -112,6 +112,7 @@ class FeedTypes(str, Enum):
     INTERCOM = "INTERCOM"
     ZENDESK = "ZENDESK"
     NOTION = "NOTION"
+    EVERNOTE = "EVERNOTE"
     TWITTER = "TWITTER"
     SLACK = "SLACK"
     MICROSOFT_TEAMS = "MICROSOFT_TEAMS"
@@ -737,6 +738,11 @@ class GoogleVideoModels(str, Enum):
     CUSTOM = "CUSTOM"
 
 
+class ReplicaBranchTypes(str, Enum):
+    BRANCH = "BRANCH"
+    AUTO = "AUTO"
+
+
 class OpenAIImageSizeTypes(str, Enum):
     SQUARE = "SQUARE"
     LANDSCAPE = "LANDSCAPE"
@@ -1281,6 +1287,7 @@ class EntityTypes(str, Enum):
     PERSON = "PERSON"
     PERSONA = "PERSONA"
     PLACE = "PLACE"
+    REPLICA = "REPLICA"
     PRODUCT = "PRODUCT"
     PROJECT = "PROJECT"
     RENDITION = "RENDITION"
@@ -1777,6 +1784,7 @@ class OAuthProviders(str, Enum):
     SLACK = "SLACK"
     HUB_SPOT = "HUB_SPOT"
     NOTION = "NOTION"
+    EVERNOTE = "EVERNOTE"
     ATLASSIAN = "ATLASSIAN"
     INTERCOM = "INTERCOM"
     ZENDESK = "ZENDESK"
@@ -1907,6 +1915,12 @@ class VideoSizeTypes(str, Enum):
     HD_LANDSCAPE = "HD_LANDSCAPE"
     FULL_HD_PORTRAIT = "FULL_HD_PORTRAIT"
     FULL_HD_LANDSCAPE = "FULL_HD_LANDSCAPE"
+
+
+class ReplicaArtifactTypes(str, Enum):
+    MARKDOWN = "MARKDOWN"
+    MASTER = "MASTER"
+    WEB_VTT = "WEB_VTT"
 
 
 class ContentClassificationServiceTypes(str, Enum):

@@ -36,6 +36,7 @@ query QueryUsers($filter: UserFilter, $correlationId: String) {
             clientId
             clientSecret
             refreshToken
+            accessToken
             redirectUri
             metadata
           }

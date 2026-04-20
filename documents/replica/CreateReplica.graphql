@@ -1,0 +1,250 @@
+mutation CreateReplica($replica: ReplicaInput!) {
+  createReplica(replica: $replica) {
+    id
+    name
+    state
+    type
+    content {
+      filter {
+        dateRange {
+          from
+          to
+        }
+        inLast
+        inNext
+        creationDateRange {
+          from
+          to
+        }
+        createdInLast
+        types
+        fileTypes
+        formats
+        fileExtensions
+        fileSizeRange {
+          from
+          to
+        }
+        similarContents {
+          id
+        }
+        contents {
+          id
+        }
+        feeds {
+          id
+        }
+        workflows {
+          id
+        }
+        collections {
+          id
+        }
+        users {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+        or {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        and {
+          feeds {
+            id
+          }
+          workflows {
+            id
+          }
+          collections {
+            id
+          }
+          users {
+            id
+          }
+          observations {
+            type
+            observable {
+              id
+            }
+            states
+          }
+        }
+        hasObservations
+        hasFeeds
+        hasCollections
+        hasWorkflows
+        collectionMode
+        observationMode
+      }
+    }
+    conversation {
+      filter {
+        types
+        conversations {
+          id
+        }
+        excludeConversations {
+          id
+        }
+        agents {
+          id
+        }
+        collections {
+          id
+        }
+        observations {
+          type
+          observable {
+            id
+          }
+          states
+        }
+        hasCollections
+        hasObservations
+        collectionMode
+        observationMode
+      }
+    }
+    git {
+      branchType
+      branch
+      resolvedBranch
+      repositoryOwner
+      repositoryName
+      projectPath
+      targetPath
+    }
+    connector {
+      id
+      name
+      state
+      type
+      authentication {
+        type
+        token
+        apiKey
+        microsoft {
+          tenantId
+          clientId
+          clientSecret
+        }
+        google {
+          clientId
+          clientSecret
+        }
+        oauth {
+          provider
+          clientId
+          clientSecret
+          refreshToken
+          accessToken
+          redirectUri
+          metadata
+        }
+        arcade {
+          authorizationId
+          provider
+          metadata
+        }
+      }
+      integration {
+        type
+        uri
+        slack {
+          token
+          channel
+        }
+        email {
+          from
+          subject
+          to
+        }
+        twitter {
+          consumerKey
+          consumerSecret
+          accessTokenKey
+          accessTokenSecret
+        }
+        mcp {
+          token
+          type
+        }
+      }
+      channel {
+        type
+        slack {
+          botToken
+          signingSecret
+          appId
+        }
+        teams {
+          botId
+          botPassword
+          tenantId
+        }
+        discord {
+          botToken
+          applicationId
+          publicKey
+        }
+        telegram {
+          botToken
+          secretToken
+          botUsername
+        }
+        whatsApp {
+          accessToken
+          appSecret
+          phoneNumberId
+          verifyToken
+        }
+        googleChat {
+          credentials
+          projectId
+        }
+      }
+    }
+    markerSlug
+    artifactTypes
+    synchronizeDeletes
+    commitMessage
+    schedulePolicy {
+      recurrenceType
+      repeatInterval
+    }
+    lastReconcileDate
+    nextReconcileDate
+    lastReplicaDate
+    lastRevisionId
+    lastRevisionUri
+    lastErrorCode
+    lastErrorMessage
+    lastFileUpsertCount
+    lastFileDeleteCount
+    lastFileSkipCount
+    lastFileUnchangedCount
+  }
+}

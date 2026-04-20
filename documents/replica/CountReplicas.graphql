@@ -1,0 +1,5 @@
+query CountReplicas($filter: ReplicaFilter, $correlationId: String) {
+  countReplicas(filter: $filter, correlationId: $correlationId) {
+    count
+  }
+}
