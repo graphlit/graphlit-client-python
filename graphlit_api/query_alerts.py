@@ -22,6 +22,9 @@ from .enums import (
     MCPServerTypes,
     ObservableTypes,
     OpenAIImageModels,
+    OpenAIImageModerationTypes,
+    OpenAIImageOutputFormatTypes,
+    OpenAIImageQualityTypes,
     OpenAIImageSizeTypes,
     OpenAIVideoModels,
     ParallelProcessors,
@@ -294,6 +297,12 @@ class QueryAlertsAlertsResultsPublishingOpenAiImage(BaseModel):
     count: Optional[int]
     seed: Optional["QueryAlertsAlertsResultsPublishingOpenAiImageSeed"]
     size: Optional[OpenAIImageSizeTypes]
+    quality: Optional[OpenAIImageQualityTypes]
+    width: Optional[int]
+    height: Optional[int]
+    output_format: Optional[OpenAIImageOutputFormatTypes] = Field(alias="outputFormat")
+    compression: Optional[int]
+    moderation: Optional[OpenAIImageModerationTypes]
 
 
 class QueryAlertsAlertsResultsPublishingOpenAiImageSeed(BaseModel):

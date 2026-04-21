@@ -1667,6 +1667,12 @@ query GetAlert($id: ID!, $correlationId: String) {
           id
         }
         size
+        quality
+        width
+        height
+        outputFormat
+        compression
+        moderation
       }
       googleImage {
         model
@@ -1872,6 +1878,12 @@ query QueryAlerts($filter: AlertFilter, $correlationId: String) {
             id
           }
           size
+          quality
+          width
+          height
+          outputFormat
+          compression
+          moderation
         }
         googleImage {
           model

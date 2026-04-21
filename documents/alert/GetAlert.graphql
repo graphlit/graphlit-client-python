@@ -148,6 +148,12 @@ query GetAlert($id: ID!, $correlationId: String) {
           id
         }
         size
+        quality
+        width
+        height
+        outputFormat
+        compression
+        moderation
       }
       googleImage {
         model

@@ -419,6 +419,13 @@ class ElevenLabsModels(str, Enum):
     TURBO_V2_5 = "TURBO_V2_5"
 
 
+class OpenAIImageQualityTypes(str, Enum):
+    LOW = "LOW"
+    MEDIUM = "MEDIUM"
+    HIGH = "HIGH"
+    AUTO = "AUTO"
+
+
 class BlobListingTypes(str, Enum):
     PAST = "PAST"
     NEW = "NEW"
@@ -550,6 +557,7 @@ class OpenAIImageModels(str, Enum):
     GPT_IMAGE_1 = "GPT_IMAGE_1"
     GPT_IMAGE_1_MINI = "GPT_IMAGE_1_MINI"
     GPT_IMAGE_1_5 = "GPT_IMAGE_1_5"
+    GPT_IMAGE_2 = "GPT_IMAGE_2"
     CUSTOM = "CUSTOM"
 
 
@@ -1046,6 +1054,12 @@ class GoogleImageAspectRatioTypes(str, Enum):
     PORTRAIT_9X16 = "PORTRAIT_9X16"
     LANDSCAPE_16X9 = "LANDSCAPE_16X9"
     LANDSCAPE_21X9 = "LANDSCAPE_21X9"
+
+
+class OpenAIImageOutputFormatTypes(str, Enum):
+    PNG = "PNG"
+    JPEG = "JPEG"
+    WEBP = "WEBP"
 
 
 class EmbeddingTypes(str, Enum):
@@ -1848,6 +1862,11 @@ class MicrosoftContactsAuthenticationTypes(str, Enum):
 
 class CategoryFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
+
+
+class OpenAIImageModerationTypes(str, Enum):
+    AUTO = "AUTO"
+    LOW = "LOW"
 
 
 class PersonFacetTypes(str, Enum):

@@ -153,6 +153,9 @@ from .enums import (
     OccurrenceTypes,
     OneDriveAuthenticationTypes,
     OpenAIImageModels,
+    OpenAIImageModerationTypes,
+    OpenAIImageOutputFormatTypes,
+    OpenAIImageQualityTypes,
     OpenAIImageSizeTypes,
     OpenAIModels,
     OpenAIReasoningEffortLevels,
@@ -4325,6 +4328,14 @@ class OpenAIImagePublishingPropertiesInput(BaseModel):
     count: Optional[int] = None
     seed: Optional["EntityReferenceInput"] = None
     size: Optional[OpenAIImageSizeTypes] = None
+    quality: Optional[OpenAIImageQualityTypes] = None
+    width: Optional[int] = None
+    height: Optional[int] = None
+    output_format: Optional[OpenAIImageOutputFormatTypes] = Field(
+        alias="outputFormat", default=None
+    )
+    compression: Optional[int] = None
+    moderation: Optional[OpenAIImageModerationTypes] = None
 
 
 class ModelDocumentPreparationPropertiesInput(BaseModel):
