@@ -55,6 +55,7 @@ from .classify_contents import (
 )
 from .classify_text import ClassifyText
 from .clear_conversation import ClearConversation, ClearConversationClearConversation
+from .clear_replica import ClearReplica, ClearReplicaClearReplica
 from .client import Client
 from .close_conversation import CloseConversation, CloseConversationCloseConversation
 from .complete_conversation import (
@@ -2899,6 +2900,7 @@ from .operations import (
     CLASSIFY_CONTENTS_GQL,
     CLASSIFY_TEXT_GQL,
     CLEAR_CONVERSATION_GQL,
+    CLEAR_REPLICA_GQL,
     CLOSE_CONVERSATION_GQL,
     COMPLETE_CONVERSATION_GQL,
     CONTINUE_CONVERSATION_GQL,
@@ -5970,6 +5972,7 @@ __all__ = [
     "CLASSIFY_CONTENTS_GQL",
     "CLASSIFY_TEXT_GQL",
     "CLEAR_CONVERSATION_GQL",
+    "CLEAR_REPLICA_GQL",
     "CLOSE_CONVERSATION_GQL",
     "COMPLETE_CONVERSATION_GQL",
     "CONTINUE_CONVERSATION_GQL",
@@ -6085,6 +6088,8 @@ __all__ = [
     "ClassifyText",
     "ClearConversation",
     "ClearConversationClearConversation",
+    "ClearReplica",
+    "ClearReplicaClearReplica",
     "Client",
     "CloseConversation",
     "CloseConversationCloseConversation",

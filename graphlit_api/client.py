@@ -17,6 +17,7 @@ from .branch_conversation import BranchConversation
 from .classify_contents import ClassifyContents
 from .classify_text import ClassifyText
 from .clear_conversation import ClearConversation
+from .clear_replica import ClearReplica
 from .close_conversation import CloseConversation
 from .complete_conversation import CompleteConversation
 from .continue_conversation import ContinueConversation
@@ -499,6 +500,7 @@ from .operations import (
     CLASSIFY_CONTENTS_GQL,
     CLASSIFY_TEXT_GQL,
     CLEAR_CONVERSATION_GQL,
+    CLEAR_REPLICA_GQL,
     CLOSE_CONVERSATION_GQL,
     COMPLETE_CONVERSATION_GQL,
     CONTINUE_CONVERSATION_GQL,
@@ -8302,6 +8304,17 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdateProject.model_validate(data)
+
+    async def clear_replica(self, id: str, **kwargs: Any) -> ClearReplica:
+        variables: dict[str, object] = {"id": id}
+        response = await self.execute(
+            query=CLEAR_REPLICA_GQL,
+            operation_name="ClearReplica",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return ClearReplica.model_validate(data)
 
     async def count_replicas(
         self,

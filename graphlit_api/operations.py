@@ -14,6 +14,7 @@ __all__ = [
     "CLASSIFY_CONTENTS_GQL",
     "CLASSIFY_TEXT_GQL",
     "CLEAR_CONVERSATION_GQL",
+    "CLEAR_REPLICA_GQL",
     "CLOSE_CONVERSATION_GQL",
     "COMPLETE_CONVERSATION_GQL",
     "CONTINUE_CONVERSATION_GQL",
@@ -18781,6 +18782,15 @@ mutation UpdateProject($project: ProjectUpdateInput!) {
   updateProject(project: $project) {
     id
     name
+  }
+}
+"""
+
+CLEAR_REPLICA_GQL = """
+mutation ClearReplica($id: ID!) {
+  clearReplica(id: $id) {
+    id
+    state
   }
 }
 """

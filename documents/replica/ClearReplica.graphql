@@ -1,0 +1,6 @@
+mutation ClearReplica($id: ID!) {
+  clearReplica(id: $id) {
+    id
+    state
+  }
+}
