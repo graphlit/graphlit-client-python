@@ -7,9 +7,6 @@ from pydantic import Field
 
 from .base_model import BaseModel
 from .enums import (
-    ArcadeProviders,
-    AuthenticationServiceTypes,
-    ChannelServiceTypes,
     ConnectorTypes,
     ContentTypes,
     ConversationTypes,
@@ -17,9 +14,6 @@ from .enums import (
     EntityTypes,
     FileTypes,
     FilterMode,
-    IntegrationServiceTypes,
-    MCPServerTypes,
-    OAuthProviders,
     ObservableTypes,
     ReplicaArtifactTypes,
     ReplicaBranchTypes,
@@ -311,128 +305,6 @@ class QueryReplicasReplicasResultsConnector(BaseModel):
     name: str
     state: EntityState
     type: Optional[ConnectorTypes]
-    authentication: Optional["QueryReplicasReplicasResultsConnectorAuthentication"]
-    integration: Optional["QueryReplicasReplicasResultsConnectorIntegration"]
-    channel: Optional["QueryReplicasReplicasResultsConnectorChannel"]
-
-
-class QueryReplicasReplicasResultsConnectorAuthentication(BaseModel):
-    type: AuthenticationServiceTypes
-    token: Optional[str]
-    api_key: Optional[str] = Field(alias="apiKey")
-    microsoft: Optional["QueryReplicasReplicasResultsConnectorAuthenticationMicrosoft"]
-    google: Optional["QueryReplicasReplicasResultsConnectorAuthenticationGoogle"]
-    oauth: Optional["QueryReplicasReplicasResultsConnectorAuthenticationOauth"]
-    arcade: Optional["QueryReplicasReplicasResultsConnectorAuthenticationArcade"]
-
-
-class QueryReplicasReplicasResultsConnectorAuthenticationMicrosoft(BaseModel):
-    tenant_id: str = Field(alias="tenantId")
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-
-
-class QueryReplicasReplicasResultsConnectorAuthenticationGoogle(BaseModel):
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-
-
-class QueryReplicasReplicasResultsConnectorAuthenticationOauth(BaseModel):
-    provider: OAuthProviders
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-    refresh_token: Optional[str] = Field(alias="refreshToken")
-    access_token: Optional[str] = Field(alias="accessToken")
-    redirect_uri: Optional[str] = Field(alias="redirectUri")
-    metadata: Optional[str]
-
-
-class QueryReplicasReplicasResultsConnectorAuthenticationArcade(BaseModel):
-    authorization_id: str = Field(alias="authorizationId")
-    provider: ArcadeProviders
-    metadata: Optional[str]
-
-
-class QueryReplicasReplicasResultsConnectorIntegration(BaseModel):
-    type: IntegrationServiceTypes
-    uri: Optional[str]
-    slack: Optional["QueryReplicasReplicasResultsConnectorIntegrationSlack"]
-    email: Optional["QueryReplicasReplicasResultsConnectorIntegrationEmail"]
-    twitter: Optional["QueryReplicasReplicasResultsConnectorIntegrationTwitter"]
-    mcp: Optional["QueryReplicasReplicasResultsConnectorIntegrationMcp"]
-
-
-class QueryReplicasReplicasResultsConnectorIntegrationSlack(BaseModel):
-    token: str
-    channel: str
-
-
-class QueryReplicasReplicasResultsConnectorIntegrationEmail(BaseModel):
-    from_: str = Field(alias="from")
-    subject: str
-    to: list[str]
-
-
-class QueryReplicasReplicasResultsConnectorIntegrationTwitter(BaseModel):
-    consumer_key: str = Field(alias="consumerKey")
-    consumer_secret: str = Field(alias="consumerSecret")
-    access_token_key: str = Field(alias="accessTokenKey")
-    access_token_secret: str = Field(alias="accessTokenSecret")
-
-
-class QueryReplicasReplicasResultsConnectorIntegrationMcp(BaseModel):
-    token: Optional[str]
-    type: MCPServerTypes
-
-
-class QueryReplicasReplicasResultsConnectorChannel(BaseModel):
-    type: ChannelServiceTypes
-    slack: Optional["QueryReplicasReplicasResultsConnectorChannelSlack"]
-    teams: Optional["QueryReplicasReplicasResultsConnectorChannelTeams"]
-    discord: Optional["QueryReplicasReplicasResultsConnectorChannelDiscord"]
-    telegram: Optional["QueryReplicasReplicasResultsConnectorChannelTelegram"]
-    whats_app: Optional["QueryReplicasReplicasResultsConnectorChannelWhatsApp"] = Field(
-        alias="whatsApp"
-    )
-    google_chat: Optional["QueryReplicasReplicasResultsConnectorChannelGoogleChat"] = (
-        Field(alias="googleChat")
-    )
-
-
-class QueryReplicasReplicasResultsConnectorChannelSlack(BaseModel):
-    bot_token: str = Field(alias="botToken")
-    signing_secret: Optional[str] = Field(alias="signingSecret")
-    app_id: Optional[str] = Field(alias="appId")
-
-
-class QueryReplicasReplicasResultsConnectorChannelTeams(BaseModel):
-    bot_id: str = Field(alias="botId")
-    bot_password: str = Field(alias="botPassword")
-    tenant_id: Optional[str] = Field(alias="tenantId")
-
-
-class QueryReplicasReplicasResultsConnectorChannelDiscord(BaseModel):
-    bot_token: str = Field(alias="botToken")
-    application_id: Optional[str] = Field(alias="applicationId")
-    public_key: Optional[str] = Field(alias="publicKey")
-
-
-class QueryReplicasReplicasResultsConnectorChannelTelegram(BaseModel):
-    bot_token: str = Field(alias="botToken")
-    secret_token: Optional[str] = Field(alias="secretToken")
-    bot_username: Optional[str] = Field(alias="botUsername")
-
-
-class QueryReplicasReplicasResultsConnectorChannelWhatsApp(BaseModel):
-    access_token: str = Field(alias="accessToken")
-    app_secret: Optional[str] = Field(alias="appSecret")
-    phone_number_id: str = Field(alias="phoneNumberId")
-    verify_token: Optional[str] = Field(alias="verifyToken")
-
-
-class QueryReplicasReplicasResultsConnectorChannelGoogleChat(BaseModel):
-    credentials: str
-    project_id: Optional[str] = Field(alias="projectId")
 
 
 class QueryReplicasReplicasResultsSchedulePolicy(BaseModel):
@@ -455,7 +327,3 @@ QueryReplicasReplicasResultsContentFilterAndObservations.model_rebuild()
 QueryReplicasReplicasResultsConversation.model_rebuild()
 QueryReplicasReplicasResultsConversationFilter.model_rebuild()
 QueryReplicasReplicasResultsConversationFilterObservations.model_rebuild()
-QueryReplicasReplicasResultsConnector.model_rebuild()
-QueryReplicasReplicasResultsConnectorAuthentication.model_rebuild()
-QueryReplicasReplicasResultsConnectorIntegration.model_rebuild()
-QueryReplicasReplicasResultsConnectorChannel.model_rebuild()

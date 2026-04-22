@@ -7,9 +7,6 @@ from pydantic import Field
 
 from .base_model import BaseModel
 from .enums import (
-    ArcadeProviders,
-    AuthenticationServiceTypes,
-    ChannelServiceTypes,
     ConnectorTypes,
     ContentTypes,
     ConversationTypes,
@@ -17,9 +14,6 @@ from .enums import (
     EntityTypes,
     FileTypes,
     FilterMode,
-    IntegrationServiceTypes,
-    MCPServerTypes,
-    OAuthProviders,
     ObservableTypes,
     ReplicaArtifactTypes,
     ReplicaBranchTypes,
@@ -293,128 +287,6 @@ class UpsertReplicaUpsertReplicaConnector(BaseModel):
     name: str
     state: EntityState
     type: Optional[ConnectorTypes]
-    authentication: Optional["UpsertReplicaUpsertReplicaConnectorAuthentication"]
-    integration: Optional["UpsertReplicaUpsertReplicaConnectorIntegration"]
-    channel: Optional["UpsertReplicaUpsertReplicaConnectorChannel"]
-
-
-class UpsertReplicaUpsertReplicaConnectorAuthentication(BaseModel):
-    type: AuthenticationServiceTypes
-    token: Optional[str]
-    api_key: Optional[str] = Field(alias="apiKey")
-    microsoft: Optional["UpsertReplicaUpsertReplicaConnectorAuthenticationMicrosoft"]
-    google: Optional["UpsertReplicaUpsertReplicaConnectorAuthenticationGoogle"]
-    oauth: Optional["UpsertReplicaUpsertReplicaConnectorAuthenticationOauth"]
-    arcade: Optional["UpsertReplicaUpsertReplicaConnectorAuthenticationArcade"]
-
-
-class UpsertReplicaUpsertReplicaConnectorAuthenticationMicrosoft(BaseModel):
-    tenant_id: str = Field(alias="tenantId")
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-
-
-class UpsertReplicaUpsertReplicaConnectorAuthenticationGoogle(BaseModel):
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-
-
-class UpsertReplicaUpsertReplicaConnectorAuthenticationOauth(BaseModel):
-    provider: OAuthProviders
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-    refresh_token: Optional[str] = Field(alias="refreshToken")
-    access_token: Optional[str] = Field(alias="accessToken")
-    redirect_uri: Optional[str] = Field(alias="redirectUri")
-    metadata: Optional[str]
-
-
-class UpsertReplicaUpsertReplicaConnectorAuthenticationArcade(BaseModel):
-    authorization_id: str = Field(alias="authorizationId")
-    provider: ArcadeProviders
-    metadata: Optional[str]
-
-
-class UpsertReplicaUpsertReplicaConnectorIntegration(BaseModel):
-    type: IntegrationServiceTypes
-    uri: Optional[str]
-    slack: Optional["UpsertReplicaUpsertReplicaConnectorIntegrationSlack"]
-    email: Optional["UpsertReplicaUpsertReplicaConnectorIntegrationEmail"]
-    twitter: Optional["UpsertReplicaUpsertReplicaConnectorIntegrationTwitter"]
-    mcp: Optional["UpsertReplicaUpsertReplicaConnectorIntegrationMcp"]
-
-
-class UpsertReplicaUpsertReplicaConnectorIntegrationSlack(BaseModel):
-    token: str
-    channel: str
-
-
-class UpsertReplicaUpsertReplicaConnectorIntegrationEmail(BaseModel):
-    from_: str = Field(alias="from")
-    subject: str
-    to: list[str]
-
-
-class UpsertReplicaUpsertReplicaConnectorIntegrationTwitter(BaseModel):
-    consumer_key: str = Field(alias="consumerKey")
-    consumer_secret: str = Field(alias="consumerSecret")
-    access_token_key: str = Field(alias="accessTokenKey")
-    access_token_secret: str = Field(alias="accessTokenSecret")
-
-
-class UpsertReplicaUpsertReplicaConnectorIntegrationMcp(BaseModel):
-    token: Optional[str]
-    type: MCPServerTypes
-
-
-class UpsertReplicaUpsertReplicaConnectorChannel(BaseModel):
-    type: ChannelServiceTypes
-    slack: Optional["UpsertReplicaUpsertReplicaConnectorChannelSlack"]
-    teams: Optional["UpsertReplicaUpsertReplicaConnectorChannelTeams"]
-    discord: Optional["UpsertReplicaUpsertReplicaConnectorChannelDiscord"]
-    telegram: Optional["UpsertReplicaUpsertReplicaConnectorChannelTelegram"]
-    whats_app: Optional["UpsertReplicaUpsertReplicaConnectorChannelWhatsApp"] = Field(
-        alias="whatsApp"
-    )
-    google_chat: Optional["UpsertReplicaUpsertReplicaConnectorChannelGoogleChat"] = (
-        Field(alias="googleChat")
-    )
-
-
-class UpsertReplicaUpsertReplicaConnectorChannelSlack(BaseModel):
-    bot_token: str = Field(alias="botToken")
-    signing_secret: Optional[str] = Field(alias="signingSecret")
-    app_id: Optional[str] = Field(alias="appId")
-
-
-class UpsertReplicaUpsertReplicaConnectorChannelTeams(BaseModel):
-    bot_id: str = Field(alias="botId")
-    bot_password: str = Field(alias="botPassword")
-    tenant_id: Optional[str] = Field(alias="tenantId")
-
-
-class UpsertReplicaUpsertReplicaConnectorChannelDiscord(BaseModel):
-    bot_token: str = Field(alias="botToken")
-    application_id: Optional[str] = Field(alias="applicationId")
-    public_key: Optional[str] = Field(alias="publicKey")
-
-
-class UpsertReplicaUpsertReplicaConnectorChannelTelegram(BaseModel):
-    bot_token: str = Field(alias="botToken")
-    secret_token: Optional[str] = Field(alias="secretToken")
-    bot_username: Optional[str] = Field(alias="botUsername")
-
-
-class UpsertReplicaUpsertReplicaConnectorChannelWhatsApp(BaseModel):
-    access_token: str = Field(alias="accessToken")
-    app_secret: Optional[str] = Field(alias="appSecret")
-    phone_number_id: str = Field(alias="phoneNumberId")
-    verify_token: Optional[str] = Field(alias="verifyToken")
-
-
-class UpsertReplicaUpsertReplicaConnectorChannelGoogleChat(BaseModel):
-    credentials: str
-    project_id: Optional[str] = Field(alias="projectId")
 
 
 class UpsertReplicaUpsertReplicaSchedulePolicy(BaseModel):
@@ -436,7 +308,3 @@ UpsertReplicaUpsertReplicaContentFilterAndObservations.model_rebuild()
 UpsertReplicaUpsertReplicaConversation.model_rebuild()
 UpsertReplicaUpsertReplicaConversationFilter.model_rebuild()
 UpsertReplicaUpsertReplicaConversationFilterObservations.model_rebuild()
-UpsertReplicaUpsertReplicaConnector.model_rebuild()
-UpsertReplicaUpsertReplicaConnectorAuthentication.model_rebuild()
-UpsertReplicaUpsertReplicaConnectorIntegration.model_rebuild()
-UpsertReplicaUpsertReplicaConnectorChannel.model_rebuild()

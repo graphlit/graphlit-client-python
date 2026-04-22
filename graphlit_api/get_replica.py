@@ -7,9 +7,6 @@ from pydantic import Field
 
 from .base_model import BaseModel
 from .enums import (
-    ArcadeProviders,
-    AuthenticationServiceTypes,
-    ChannelServiceTypes,
     ConnectorTypes,
     ContentTypes,
     ConversationTypes,
@@ -17,9 +14,6 @@ from .enums import (
     EntityTypes,
     FileTypes,
     FilterMode,
-    IntegrationServiceTypes,
-    MCPServerTypes,
-    OAuthProviders,
     ObservableTypes,
     ReplicaArtifactTypes,
     ReplicaBranchTypes,
@@ -291,128 +285,6 @@ class GetReplicaReplicaConnector(BaseModel):
     name: str
     state: EntityState
     type: Optional[ConnectorTypes]
-    authentication: Optional["GetReplicaReplicaConnectorAuthentication"]
-    integration: Optional["GetReplicaReplicaConnectorIntegration"]
-    channel: Optional["GetReplicaReplicaConnectorChannel"]
-
-
-class GetReplicaReplicaConnectorAuthentication(BaseModel):
-    type: AuthenticationServiceTypes
-    token: Optional[str]
-    api_key: Optional[str] = Field(alias="apiKey")
-    microsoft: Optional["GetReplicaReplicaConnectorAuthenticationMicrosoft"]
-    google: Optional["GetReplicaReplicaConnectorAuthenticationGoogle"]
-    oauth: Optional["GetReplicaReplicaConnectorAuthenticationOauth"]
-    arcade: Optional["GetReplicaReplicaConnectorAuthenticationArcade"]
-
-
-class GetReplicaReplicaConnectorAuthenticationMicrosoft(BaseModel):
-    tenant_id: str = Field(alias="tenantId")
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-
-
-class GetReplicaReplicaConnectorAuthenticationGoogle(BaseModel):
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-
-
-class GetReplicaReplicaConnectorAuthenticationOauth(BaseModel):
-    provider: OAuthProviders
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-    refresh_token: Optional[str] = Field(alias="refreshToken")
-    access_token: Optional[str] = Field(alias="accessToken")
-    redirect_uri: Optional[str] = Field(alias="redirectUri")
-    metadata: Optional[str]
-
-
-class GetReplicaReplicaConnectorAuthenticationArcade(BaseModel):
-    authorization_id: str = Field(alias="authorizationId")
-    provider: ArcadeProviders
-    metadata: Optional[str]
-
-
-class GetReplicaReplicaConnectorIntegration(BaseModel):
-    type: IntegrationServiceTypes
-    uri: Optional[str]
-    slack: Optional["GetReplicaReplicaConnectorIntegrationSlack"]
-    email: Optional["GetReplicaReplicaConnectorIntegrationEmail"]
-    twitter: Optional["GetReplicaReplicaConnectorIntegrationTwitter"]
-    mcp: Optional["GetReplicaReplicaConnectorIntegrationMcp"]
-
-
-class GetReplicaReplicaConnectorIntegrationSlack(BaseModel):
-    token: str
-    channel: str
-
-
-class GetReplicaReplicaConnectorIntegrationEmail(BaseModel):
-    from_: str = Field(alias="from")
-    subject: str
-    to: list[str]
-
-
-class GetReplicaReplicaConnectorIntegrationTwitter(BaseModel):
-    consumer_key: str = Field(alias="consumerKey")
-    consumer_secret: str = Field(alias="consumerSecret")
-    access_token_key: str = Field(alias="accessTokenKey")
-    access_token_secret: str = Field(alias="accessTokenSecret")
-
-
-class GetReplicaReplicaConnectorIntegrationMcp(BaseModel):
-    token: Optional[str]
-    type: MCPServerTypes
-
-
-class GetReplicaReplicaConnectorChannel(BaseModel):
-    type: ChannelServiceTypes
-    slack: Optional["GetReplicaReplicaConnectorChannelSlack"]
-    teams: Optional["GetReplicaReplicaConnectorChannelTeams"]
-    discord: Optional["GetReplicaReplicaConnectorChannelDiscord"]
-    telegram: Optional["GetReplicaReplicaConnectorChannelTelegram"]
-    whats_app: Optional["GetReplicaReplicaConnectorChannelWhatsApp"] = Field(
-        alias="whatsApp"
-    )
-    google_chat: Optional["GetReplicaReplicaConnectorChannelGoogleChat"] = Field(
-        alias="googleChat"
-    )
-
-
-class GetReplicaReplicaConnectorChannelSlack(BaseModel):
-    bot_token: str = Field(alias="botToken")
-    signing_secret: Optional[str] = Field(alias="signingSecret")
-    app_id: Optional[str] = Field(alias="appId")
-
-
-class GetReplicaReplicaConnectorChannelTeams(BaseModel):
-    bot_id: str = Field(alias="botId")
-    bot_password: str = Field(alias="botPassword")
-    tenant_id: Optional[str] = Field(alias="tenantId")
-
-
-class GetReplicaReplicaConnectorChannelDiscord(BaseModel):
-    bot_token: str = Field(alias="botToken")
-    application_id: Optional[str] = Field(alias="applicationId")
-    public_key: Optional[str] = Field(alias="publicKey")
-
-
-class GetReplicaReplicaConnectorChannelTelegram(BaseModel):
-    bot_token: str = Field(alias="botToken")
-    secret_token: Optional[str] = Field(alias="secretToken")
-    bot_username: Optional[str] = Field(alias="botUsername")
-
-
-class GetReplicaReplicaConnectorChannelWhatsApp(BaseModel):
-    access_token: str = Field(alias="accessToken")
-    app_secret: Optional[str] = Field(alias="appSecret")
-    phone_number_id: str = Field(alias="phoneNumberId")
-    verify_token: Optional[str] = Field(alias="verifyToken")
-
-
-class GetReplicaReplicaConnectorChannelGoogleChat(BaseModel):
-    credentials: str
-    project_id: Optional[str] = Field(alias="projectId")
 
 
 class GetReplicaReplicaSchedulePolicy(BaseModel):
@@ -434,7 +306,3 @@ GetReplicaReplicaContentFilterAndObservations.model_rebuild()
 GetReplicaReplicaConversation.model_rebuild()
 GetReplicaReplicaConversationFilter.model_rebuild()
 GetReplicaReplicaConversationFilterObservations.model_rebuild()
-GetReplicaReplicaConnector.model_rebuild()
-GetReplicaReplicaConnectorAuthentication.model_rebuild()
-GetReplicaReplicaConnectorIntegration.model_rebuild()
-GetReplicaReplicaConnectorChannel.model_rebuild()

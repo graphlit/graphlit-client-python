@@ -1938,7 +1938,6 @@ class VideoSizeTypes(str, Enum):
 
 class ReplicaArtifactTypes(str, Enum):
     MARKDOWN = "MARKDOWN"
-    MASTER = "MASTER"
     WEB_VTT = "WEB_VTT"
 
 

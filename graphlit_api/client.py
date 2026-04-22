@@ -3460,8 +3460,12 @@ class Client(AsyncBaseClient):
         id: str,
         connector: ContentPublishingConnectorInput,
         name: Union[Optional[str], UnsetType] = UNSET,
-        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        publish_prompt: Union[Optional[str], UnsetType] = UNSET,
+        publish_specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        include_details: Union[Optional[bool], UnsetType] = UNSET,
+        is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
+        collections: Union[Optional[list[EntityReferenceInput]], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         **kwargs: Any
     ) -> PublishConversation:
@@ -3469,8 +3473,12 @@ class Client(AsyncBaseClient):
             "id": id,
             "connector": connector,
             "name": name,
-            "isSynchronous": is_synchronous,
             "workflow": workflow,
+            "publishPrompt": publish_prompt,
+            "publishSpecification": publish_specification,
+            "includeDetails": include_details,
+            "isSynchronous": is_synchronous,
+            "collections": collections,
             "correlationId": correlation_id,
         }
         response = await self.execute(
