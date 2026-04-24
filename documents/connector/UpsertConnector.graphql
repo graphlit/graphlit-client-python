@@ -1,0 +1,8 @@
+mutation UpsertConnector($connector: ConnectorInput!) {
+  upsertConnector(connector: $connector) {
+    id
+    name
+    state
+    type
+  }
+}

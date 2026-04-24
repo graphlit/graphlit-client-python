@@ -980,6 +980,7 @@ from .operations import (
     UPSERT_AGENT_GQL,
     UPSERT_ALERT_GQL,
     UPSERT_CATEGORY_GQL,
+    UPSERT_CONNECTOR_GQL,
     UPSERT_LABEL_GQL,
     UPSERT_REPLICA_GQL,
     UPSERT_SKILL_GQL,
@@ -1186,6 +1187,7 @@ from .update_workflow import UpdateWorkflow
 from .upsert_agent import UpsertAgent
 from .upsert_alert import UpsertAlert
 from .upsert_category import UpsertCategory
+from .upsert_connector import UpsertConnector
 from .upsert_label import UpsertLabel
 from .upsert_replica import UpsertReplica
 from .upsert_skill import UpsertSkill
@@ -2173,6 +2175,19 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return UpdateConnector.model_validate(data)
+
+    async def upsert_connector(
+        self, connector: ConnectorInput, **kwargs: Any
+    ) -> UpsertConnector:
+        variables: dict[str, object] = {"connector": connector}
+        response = await self.execute(
+            query=UPSERT_CONNECTOR_GQL,
+            operation_name="UpsertConnector",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return UpsertConnector.model_validate(data)
 
     async def add_content_label(
         self, id: str, label: str, **kwargs: Any

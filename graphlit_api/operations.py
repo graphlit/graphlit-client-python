@@ -494,6 +494,7 @@ __all__ = [
     "UPSERT_AGENT_GQL",
     "UPSERT_ALERT_GQL",
     "UPSERT_CATEGORY_GQL",
+    "UPSERT_CONNECTOR_GQL",
     "UPSERT_LABEL_GQL",
     "UPSERT_REPLICA_GQL",
     "UPSERT_SKILL_GQL",
@@ -2651,6 +2652,17 @@ query QueryConnectors($filter: ConnectorFilter, $correlationId: String) {
 UPDATE_CONNECTOR_GQL = """
 mutation UpdateConnector($connector: ConnectorUpdateInput!) {
   updateConnector(connector: $connector) {
+    id
+    name
+    state
+    type
+  }
+}
+"""
+
+UPSERT_CONNECTOR_GQL = """
+mutation UpsertConnector($connector: ConnectorInput!) {
+  upsertConnector(connector: $connector) {
     id
     name
     state

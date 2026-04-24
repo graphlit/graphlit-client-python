@@ -3346,6 +3346,7 @@ from .operations import (
     UPSERT_AGENT_GQL,
     UPSERT_ALERT_GQL,
     UPSERT_CATEGORY_GQL,
+    UPSERT_CONNECTOR_GQL,
     UPSERT_LABEL_GQL,
     UPSERT_REPLICA_GQL,
     UPSERT_SKILL_GQL,
@@ -5571,6 +5572,7 @@ from .update_workflow import (
 from .upsert_agent import UpsertAgent, UpsertAgentUpsertAgent
 from .upsert_alert import UpsertAlert, UpsertAlertUpsertAlert
 from .upsert_category import UpsertCategory, UpsertCategoryUpsertCategory
+from .upsert_connector import UpsertConnector, UpsertConnectorUpsertConnector
 from .upsert_label import UpsertLabel, UpsertLabelUpsertLabel
 from .upsert_replica import (
     UpsertReplica,
@@ -10603,6 +10605,7 @@ __all__ = [
     "UPSERT_AGENT_GQL",
     "UPSERT_ALERT_GQL",
     "UPSERT_CATEGORY_GQL",
+    "UPSERT_CONNECTOR_GQL",
     "UPSERT_LABEL_GQL",
     "UPSERT_REPLICA_GQL",
     "UPSERT_SKILL_GQL",
@@ -10867,6 +10870,8 @@ __all__ = [
     "UpsertAlertUpsertAlert",
     "UpsertCategory",
     "UpsertCategoryUpsertCategory",
+    "UpsertConnector",
+    "UpsertConnectorUpsertConnector",
     "UpsertLabel",
     "UpsertLabelUpsertLabel",
     "UpsertReplica",
