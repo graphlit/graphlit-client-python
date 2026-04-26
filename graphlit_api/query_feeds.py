@@ -99,6 +99,7 @@ class QueryFeedsFeedsResults(BaseModel):
     type: FeedTypes
     sync_mode: Optional[FeedSyncMode] = Field(alias="syncMode")
     site: Optional["QueryFeedsFeedsResultsSite"]
+    skill: Optional["QueryFeedsFeedsResultsSkill"]
     email: Optional["QueryFeedsFeedsResultsEmail"]
     issue: Optional["QueryFeedsFeedsResultsIssue"]
     initiative: Optional["QueryFeedsFeedsResultsInitiative"]
@@ -325,6 +326,51 @@ class QueryFeedsFeedsResultsSiteGitlab(BaseModel):
 
 
 class QueryFeedsFeedsResultsSiteGitlabConnector(BaseModel):
+    id: str
+
+
+class QueryFeedsFeedsResultsSkill(BaseModel):
+    type: FeedServiceTypes
+    is_recursive: Optional[bool] = Field(alias="isRecursive")
+    allowed_paths: Optional[list[str]] = Field(alias="allowedPaths")
+    excluded_paths: Optional[list[str]] = Field(alias="excludedPaths")
+    github: Optional["QueryFeedsFeedsResultsSkillGithub"]
+    gitlab: Optional["QueryFeedsFeedsResultsSkillGitlab"]
+    read_limit: Optional[int] = Field(alias="readLimit")
+
+
+class QueryFeedsFeedsResultsSkillGithub(BaseModel):
+    authentication_type: Optional[GitHubAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    uri: Optional[Any]
+    repository_owner: str = Field(alias="repositoryOwner")
+    repository_name: str = Field(alias="repositoryName")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    personal_access_token: Optional[str] = Field(alias="personalAccessToken")
+    connector: Optional["QueryFeedsFeedsResultsSkillGithubConnector"]
+
+
+class QueryFeedsFeedsResultsSkillGithubConnector(BaseModel):
+    id: str
+
+
+class QueryFeedsFeedsResultsSkillGitlab(BaseModel):
+    authentication_type: Optional[GitLabAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    project_path: str = Field(alias="projectPath")
+    branch: Optional[str]
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    personal_access_token: Optional[str] = Field(alias="personalAccessToken")
+    connector: Optional["QueryFeedsFeedsResultsSkillGitlabConnector"]
+
+
+class QueryFeedsFeedsResultsSkillGitlabConnector(BaseModel):
     id: str
 
 
@@ -1422,6 +1468,9 @@ QueryFeedsFeedsResultsSiteDropbox.model_rebuild()
 QueryFeedsFeedsResultsSiteBox.model_rebuild()
 QueryFeedsFeedsResultsSiteGithub.model_rebuild()
 QueryFeedsFeedsResultsSiteGitlab.model_rebuild()
+QueryFeedsFeedsResultsSkill.model_rebuild()
+QueryFeedsFeedsResultsSkillGithub.model_rebuild()
+QueryFeedsFeedsResultsSkillGitlab.model_rebuild()
 QueryFeedsFeedsResultsEmail.model_rebuild()
 QueryFeedsFeedsResultsEmailGoogle.model_rebuild()
 QueryFeedsFeedsResultsEmailMicrosoft.model_rebuild()

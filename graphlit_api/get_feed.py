@@ -95,6 +95,7 @@ class GetFeedFeed(BaseModel):
     type: FeedTypes
     sync_mode: Optional[FeedSyncMode] = Field(alias="syncMode")
     site: Optional["GetFeedFeedSite"]
+    skill: Optional["GetFeedFeedSkill"]
     email: Optional["GetFeedFeedEmail"]
     issue: Optional["GetFeedFeedIssue"]
     initiative: Optional["GetFeedFeedInitiative"]
@@ -315,6 +316,51 @@ class GetFeedFeedSiteGitlab(BaseModel):
 
 
 class GetFeedFeedSiteGitlabConnector(BaseModel):
+    id: str
+
+
+class GetFeedFeedSkill(BaseModel):
+    type: FeedServiceTypes
+    is_recursive: Optional[bool] = Field(alias="isRecursive")
+    allowed_paths: Optional[list[str]] = Field(alias="allowedPaths")
+    excluded_paths: Optional[list[str]] = Field(alias="excludedPaths")
+    github: Optional["GetFeedFeedSkillGithub"]
+    gitlab: Optional["GetFeedFeedSkillGitlab"]
+    read_limit: Optional[int] = Field(alias="readLimit")
+
+
+class GetFeedFeedSkillGithub(BaseModel):
+    authentication_type: Optional[GitHubAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    uri: Optional[Any]
+    repository_owner: str = Field(alias="repositoryOwner")
+    repository_name: str = Field(alias="repositoryName")
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    personal_access_token: Optional[str] = Field(alias="personalAccessToken")
+    connector: Optional["GetFeedFeedSkillGithubConnector"]
+
+
+class GetFeedFeedSkillGithubConnector(BaseModel):
+    id: str
+
+
+class GetFeedFeedSkillGitlab(BaseModel):
+    authentication_type: Optional[GitLabAuthenticationTypes] = Field(
+        alias="authenticationType"
+    )
+    project_path: str = Field(alias="projectPath")
+    branch: Optional[str]
+    client_id: Optional[str] = Field(alias="clientId")
+    client_secret: Optional[str] = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken")
+    personal_access_token: Optional[str] = Field(alias="personalAccessToken")
+    connector: Optional["GetFeedFeedSkillGitlabConnector"]
+
+
+class GetFeedFeedSkillGitlabConnector(BaseModel):
     id: str
 
 
@@ -1411,6 +1457,9 @@ GetFeedFeedSiteDropbox.model_rebuild()
 GetFeedFeedSiteBox.model_rebuild()
 GetFeedFeedSiteGithub.model_rebuild()
 GetFeedFeedSiteGitlab.model_rebuild()
+GetFeedFeedSkill.model_rebuild()
+GetFeedFeedSkillGithub.model_rebuild()
+GetFeedFeedSkillGitlab.model_rebuild()
 GetFeedFeedEmail.model_rebuild()
 GetFeedFeedEmailGoogle.model_rebuild()
 GetFeedFeedEmailMicrosoft.model_rebuild()

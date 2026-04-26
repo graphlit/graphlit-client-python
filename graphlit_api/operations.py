@@ -11066,6 +11066,38 @@ query GetFeed($id: ID!, $correlationId: String) {
       }
       readLimit
     }
+    skill {
+      type
+      isRecursive
+      allowedPaths
+      excludedPaths
+      github {
+        authenticationType
+        uri
+        repositoryOwner
+        repositoryName
+        clientId
+        clientSecret
+        refreshToken
+        personalAccessToken
+        connector {
+          id
+        }
+      }
+      gitlab {
+        authenticationType
+        projectPath
+        branch
+        clientId
+        clientSecret
+        refreshToken
+        personalAccessToken
+        connector {
+          id
+        }
+      }
+      readLimit
+    }
     email {
       type
       includeAttachments
@@ -12160,6 +12192,38 @@ query QueryFeeds($filter: FeedFilter, $correlationId: String) {
             id
           }
         }
+        github {
+          authenticationType
+          uri
+          repositoryOwner
+          repositoryName
+          clientId
+          clientSecret
+          refreshToken
+          personalAccessToken
+          connector {
+            id
+          }
+        }
+        gitlab {
+          authenticationType
+          projectPath
+          branch
+          clientId
+          clientSecret
+          refreshToken
+          personalAccessToken
+          connector {
+            id
+          }
+        }
+        readLimit
+      }
+      skill {
+        type
+        isRecursive
+        allowedPaths
+        excludedPaths
         github {
           authenticationType
           uri
@@ -20110,6 +20174,10 @@ query GetSkill($id: ID!, $correlationId: String) {
     correlationId
     text
     skillOwner
+    feed {
+      id
+      name
+    }
     arguments {
       name
       description
@@ -20141,6 +20209,10 @@ query QuerySkills($filter: SkillFilter, $correlationId: String) {
       correlationId
       text
       skillOwner
+      feed {
+        id
+        name
+      }
       arguments {
         name
         description

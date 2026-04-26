@@ -15,6 +15,10 @@ query QuerySkills($filter: SkillFilter, $correlationId: String) {
       correlationId
       text
       skillOwner
+      feed {
+        id
+        name
+      }
       arguments {
         name
         description

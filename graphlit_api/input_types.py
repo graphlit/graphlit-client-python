@@ -225,41 +225,7 @@ from .enums import (
 )
 
 
-class MicrosoftContactsCRMFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[MicrosoftContactsAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    tenant_id: Optional[str] = Field(alias="tenantId", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
-
-
-class DiffbotEnrichmentPropertiesInput(BaseModel):
-    key: Optional[str] = None
-
-
-class AnthropicModelPropertiesInput(BaseModel):
-    model: AnthropicModels
-    model_name: Optional[str] = Field(alias="modelName", default=None)
-    key: Optional[str] = None
-    temperature: Optional[float] = None
-    probability: Optional[float] = None
-    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
-    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
-    completion_token_limit: Optional[int] = Field(
-        alias="completionTokenLimit", default=None
-    )
-    enable_thinking: Optional[bool] = Field(alias="enableThinking", default=None)
-    thinking_token_limit: Optional[int] = Field(
-        alias="thinkingTokenLimit", default=None
-    )
-    effort: Optional[AnthropicEffortLevels] = None
-
-
-class MedicalProcedureUpdateInput(BaseModel):
+class ProductUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
     uri: Optional[Any] = None
@@ -267,78 +233,83 @@ class MedicalProcedureUpdateInput(BaseModel):
     description: Optional[str] = None
     location: Optional["PointInput"] = None
     boundary: Optional[str] = None
+    address: Optional["AddressInput"] = None
+    production_date: Optional[Any] = Field(alias="productionDate", default=None)
+    release_date: Optional[Any] = Field(alias="releaseDate", default=None)
+    sku: Optional[str] = None
+    upc: Optional[str] = None
+    manufacturer: Optional[str] = None
+    brand: Optional[str] = None
+    model: Optional[str] = None
+    gtin: Optional[str] = None
+    mpn: Optional[str] = None
 
 
-class MicrosoftTeamsFeedPropertiesUpdateInput(BaseModel):
-    type: Optional[FeedListingTypes] = None
-    authentication_type: Optional[MicrosoftTeamsAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
+class FeedInput(BaseModel):
+    name: str
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    type: FeedTypes
+    sync_mode: Optional[FeedSyncMode] = Field(alias="syncMode", default=None)
+    site: Optional["SiteFeedPropertiesInput"] = None
+    skill: Optional["SkillFeedPropertiesInput"] = None
+    calendar: Optional["CalendarFeedPropertiesInput"] = None
+    email: Optional["EmailFeedPropertiesInput"] = None
+    crm: Optional["CRMFeedPropertiesInput"] = None
+    hris: Optional["HRISFeedPropertiesInput"] = None
+    issue: Optional["IssueFeedPropertiesInput"] = None
+    pull_request: Optional["PullRequestFeedPropertiesInput"] = Field(
+        alias="pullRequest", default=None
     )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    team_id: str = Field(alias="teamId")
-    channel_id: str = Field(alias="channelId")
-    include_attachments: Optional[bool] = Field(
-        alias="includeAttachments", default=None
+    commit: Optional["CommitFeedPropertiesInput"] = None
+    rss: Optional["RSSFeedPropertiesInput"] = None
+    web: Optional["WebFeedPropertiesInput"] = None
+    search: Optional["SearchFeedPropertiesInput"] = None
+    reddit: Optional["RedditFeedPropertiesInput"] = None
+    linked_in: Optional["LinkedInFeedPropertiesInput"] = Field(
+        alias="linkedIn", default=None
     )
+    youtube: Optional["YouTubeFeedPropertiesInput"] = None
+    notion: Optional["NotionFeedPropertiesInput"] = None
+    evernote: Optional["EvernoteFeedPropertiesInput"] = None
+    confluence: Optional["ConfluenceFeedPropertiesInput"] = None
+    twitter: Optional["TwitterFeedPropertiesInput"] = None
+    slack: Optional["SlackFeedPropertiesInput"] = None
+    microsoft_teams: Optional["MicrosoftTeamsFeedPropertiesInput"] = Field(
+        alias="microsoftTeams", default=None
+    )
+    discord: Optional["DiscordFeedPropertiesInput"] = None
+    attio: Optional["AttioFeedPropertiesInput"] = None
+    salesforce: Optional["SalesforceFeedPropertiesInput"] = None
+    hub_spot_conversations: Optional["HubSpotConversationsFeedPropertiesInput"] = Field(
+        alias="hubSpotConversations", default=None
+    )
+    intercom: Optional["IntercomFeedPropertiesInput"] = None
+    zendesk: Optional["ZendeskFeedPropertiesInput"] = None
+    intercom_conversations: Optional["IntercomConversationsFeedPropertiesInput"] = (
+        Field(alias="intercomConversations", default=None)
+    )
+    productlane: Optional["ProductlaneFeedPropertiesInput"] = None
+    research: Optional["ResearchFeedPropertiesInput"] = None
+    entity: Optional["EntityFeedPropertiesInput"] = None
+    meeting: Optional["MeetingFeedPropertiesInput"] = None
+    initiative: Optional["InitiativeFeedPropertiesInput"] = None
+    schedule_policy: Optional["FeedSchedulePolicyInput"] = Field(
+        alias="schedulePolicy", default=None
+    )
+    workflow: Optional["EntityReferenceInput"] = None
+
+
+class FirefliesFeedPropertiesInput(BaseModel):
+    api_key: str = Field(alias="apiKey")
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class RevisionStrategyUpdateInput(BaseModel):
-    type: Optional[RevisionStrategyTypes] = None
-    custom_revision: Optional[str] = Field(alias="customRevision", default=None)
-    count: Optional[int] = None
-
-
-class Int64RangeInput(BaseModel):
-    from_: Optional[Any] = Field(alias="from", default=None)
-    to: Optional[Any] = None
-
-
-class ZendeskTicketsFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[ZendeskIssueAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    subdomain: Optional[str] = None
-    access_token: Optional[str] = Field(alias="accessToken", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class AsanaFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[AsanaAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    personal_access_token: Optional[str] = Field(
-        alias="personalAccessToken", default=None
-    )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    workspace_id: Optional[str] = Field(alias="workspaceId", default=None)
-    project_id: Optional[str] = Field(alias="projectId", default=None)
-
-
-class AttioCRMFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[AttioAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    api_key: Optional[str] = Field(alias="apiKey", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
     type: Optional[FeedListingTypes] = None
 
 
-class PlaceInput(BaseModel):
-    name: str
+class PlaceUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
     uri: Optional[Any] = None
     identifier: Optional[str] = None
     description: Optional[str] = None
@@ -350,51 +321,269 @@ class PlaceInput(BaseModel):
     price_range: Optional[str] = Field(alias="priceRange", default=None)
 
 
-class PersonaInput(BaseModel):
-    name: str
-    type: Optional[PersonaTypes] = None
-    identifier: Optional[str] = None
-    platform: Optional[str] = None
-    display_name: Optional[str] = Field(alias="displayName", default=None)
-    timezone: Optional[str] = None
-    role: Optional[str] = None
-    instructions: Optional[str] = None
+class SalesforceFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[SalesforceFeedAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    is_sandbox: Optional[bool] = Field(alias="isSandbox", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
-class SkillInput(BaseModel):
-    name: str
-    identifier: Optional[str] = None
-    text: str
-    skill_owner: Optional[EntityOwners] = Field(alias="skillOwner", default=None)
-    description: Optional[str] = None
-    collections: Optional[list["EntityReferenceInput"]] = None
-    arguments: Optional[list["SkillArgumentInput"]] = None
+class EmailFeedPropertiesInput(BaseModel):
+    type: FeedServiceTypes
+    include_attachments: Optional[bool] = Field(
+        alias="includeAttachments", default=None
+    )
+    google: Optional["GoogleEmailFeedPropertiesInput"] = None
+    microsoft: Optional["MicrosoftEmailFeedPropertiesInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
-class CalendarAttendeeInput(BaseModel):
+class ProjectFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
     name: Optional[str] = None
-    email: Optional[str] = None
-    display_name: Optional[str] = Field(alias="displayName", default=None)
-    is_optional: Optional[bool] = Field(alias="isOptional", default=None)
-    is_organizer: Optional[bool] = Field(alias="isOrganizer", default=None)
-    is_required: Optional[bool] = Field(alias="isRequired", default=None)
-    is_resource: Optional[bool] = Field(alias="isResource", default=None)
-    response_status: Optional[CalendarAttendeeResponseStatus] = Field(
-        alias="responseStatus", default=None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
     )
 
 
-class EntityReferenceInput(BaseModel):
+class PullRequestFeedPropertiesInput(BaseModel):
+    type: FeedServiceTypes
+    github: Optional["GitHubPullRequestsFeedPropertiesInput"] = None
+    gitlab: Optional["GitLabPullRequestsFeedPropertiesInput"] = None
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class DiffbotEnrichmentPropertiesInput(BaseModel):
+    key: Optional[str] = None
+
+
+class InitiativeFeedPropertiesInput(BaseModel):
+    type: FeedServiceTypes
+    jira: Optional["JiraEpicsFeedPropertiesInput"] = None
+    github: Optional["GitHubMilestonesFeedPropertiesInput"] = None
+    gitlab: Optional["GitLabMilestonesFeedPropertiesInput"] = None
+    linear: Optional["LinearInitiativesFeedPropertiesInput"] = None
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class OneDriveFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[OneDriveAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    files: Optional[list[Optional[str]]] = None
+    folder_id: Optional[str] = Field(alias="folderId", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class CrustdataCompanyDiscoveryFilterInput(BaseModel):
+    names: Optional[list[str]] = None
+    domains: Optional[list[str]] = None
+    industries: Optional[list[str]] = None
+    categories: Optional[list[str]] = None
+    countries: Optional[list[str]] = None
+    locations: Optional[list[str]] = None
+    company_types: Optional[list[str]] = Field(alias="companyTypes", default=None)
+    min_employee_count: Optional[int] = Field(alias="minEmployeeCount", default=None)
+    max_employee_count: Optional[int] = Field(alias="maxEmployeeCount", default=None)
+    min_growth_6_m_percent: Optional[Any] = Field(
+        alias="minGrowth6mPercent", default=None
+    )
+    min_growth_12_m_percent: Optional[Any] = Field(
+        alias="minGrowth12mPercent", default=None
+    )
+    funding_round_types: Optional[list[str]] = Field(
+        alias="fundingRoundTypes", default=None
+    )
+    min_funding_date: Optional[Any] = Field(alias="minFundingDate", default=None)
+    min_total_funding_usd: Optional[Any] = Field(
+        alias="minTotalFundingUsd", default=None
+    )
+    min_revenue_lower_bound_usd: Optional[Any] = Field(
+        alias="minRevenueLowerBoundUsd", default=None
+    )
+    max_revenue_upper_bound_usd: Optional[Any] = Field(
+        alias="maxRevenueUpperBoundUsd", default=None
+    )
+    min_year_founded: Optional[int] = Field(alias="minYearFounded", default=None)
+    max_year_founded: Optional[int] = Field(alias="maxYearFounded", default=None)
+
+
+class SharePointDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
+    site_id: str = Field(alias="siteId")
+    title: Optional[str] = None
+
+
+class MedicalConditionUpdateInput(BaseModel):
     id: str
+    name: Optional[str] = None
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
 
 
-class TelegramChannelPropertiesInput(BaseModel):
-    bot_token: str = Field(alias="botToken")
-    secret_token: Optional[str] = Field(alias="secretToken", default=None)
-    bot_username: Optional[str] = Field(alias="botUsername", default=None)
+class AzureFileFeedPropertiesUpdateInput(BaseModel):
+    storage_access_key: Optional[str] = Field(alias="storageAccessKey", default=None)
+    account_name: Optional[str] = Field(alias="accountName", default=None)
+    share_name: Optional[str] = Field(alias="shareName", default=None)
+    prefix: Optional[str] = None
 
 
-class InvestmentFilter(BaseModel):
+class DistributionTargetInput(BaseModel):
+    connector: "DistributionConnectorInput"
+    authentication: Optional["EntityReferenceInput"] = None
+
+
+class MicrosoftTeamsChannelsInput(BaseModel):
+    authentication_type: Optional[MicrosoftTeamsAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class MedicalConditionFacetInput(BaseModel):
+    time_interval: Optional[TimeIntervalTypes] = Field(
+        alias="timeInterval", default=None
+    )
+    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
+    facet: Optional[MedicalConditionFacetTypes] = None
+
+
+class GustoOptionsInput(BaseModel):
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
+    refresh_token: str = Field(alias="refreshToken")
+    company_id: str = Field(alias="companyId")
+
+
+class AlertInput(BaseModel):
+    name: str
+    type: AlertTypes
+    summary_prompt: Optional[str] = Field(alias="summaryPrompt", default=None)
+    publish_prompt: str = Field(alias="publishPrompt")
+    view: Optional["EntityReferenceInput"] = None
+    filter: Optional["ContentCriteriaInput"] = None
+    publishing: "ContentPublishingConnectorInput"
+    integration: "IntegrationConnectorInput"
+    summary_specification: Optional["EntityReferenceInput"] = Field(
+        alias="summarySpecification", default=None
+    )
+    publish_specification: Optional["EntityReferenceInput"] = Field(
+        alias="publishSpecification", default=None
+    )
+    schedule_policy: Optional["AlertSchedulePolicyInput"] = Field(
+        alias="schedulePolicy", default=None
+    )
+
+
+class EmotionFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
+    feeds: Optional[list["EntityReferenceFilter"]] = None
+
+
+class DocumentMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    title: Optional[str] = None
+    subject: Optional[str] = None
+    author: Optional[str] = None
+    software: Optional[str] = None
+    publisher: Optional[str] = None
+    description: Optional[str] = None
+    summary: Optional[str] = None
+    comments: Optional[str] = None
+    identifier: Optional[str] = None
+    keywords: Optional[list[Optional[str]]] = None
+    links: Optional[list[Optional[Any]]] = None
+    page_count: Optional[int] = Field(alias="pageCount", default=None)
+    worksheet_count: Optional[int] = Field(alias="worksheetCount", default=None)
+    slide_count: Optional[int] = Field(alias="slideCount", default=None)
+    word_count: Optional[int] = Field(alias="wordCount", default=None)
+    line_count: Optional[int] = Field(alias="lineCount", default=None)
+    paragraph_count: Optional[int] = Field(alias="paragraphCount", default=None)
+    character_count: Optional[int] = Field(alias="characterCount", default=None)
+    total_editing_time: Optional[str] = Field(alias="totalEditingTime", default=None)
+    is_encrypted: Optional[bool] = Field(alias="isEncrypted", default=None)
+    has_digital_signature: Optional[bool] = Field(
+        alias="hasDigitalSignature", default=None
+    )
+
+
+class ZoomPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[ZoomAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    type: Optional[FeedListingTypes] = None
+
+
+class PersonFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
     direction: Optional[OrderDirectionTypes] = None
@@ -426,41 +615,27 @@ class InvestmentFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    similar_investments: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="similarInvestments", default=None
+    given_name: Optional[str] = Field(alias="givenName", default=None)
+    family_name: Optional[str] = Field(alias="familyName", default=None)
+    phone_number: Optional[str] = Field(alias="phoneNumber", default=None)
+    email: Optional[str] = None
+    uri: Optional[Any] = None
+    similar_persons: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="similarPersons", default=None
     )
-    investments: Optional[list["EntityReferenceFilter"]] = None
+    persons: Optional[list["EntityReferenceFilter"]] = None
 
 
-class SlackChannelsInput(BaseModel):
-    authentication_type: Optional[SlackAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    token: Optional[str] = None
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class GitLabCommitsFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[GitLabCommitAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    project_path: Optional[str] = Field(alias="projectPath", default=None)
-    branch: Optional[str] = None
+class GitHubIssuesFeedPropertiesUpdateInput(BaseModel):
+    repository_owner: Optional[str] = Field(alias="repositoryOwner", default=None)
+    repository_name: Optional[str] = Field(alias="repositoryName", default=None)
+    uri: Optional[Any] = None
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     personal_access_token: Optional[str] = Field(
         alias="personalAccessToken", default=None
     )
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class TextContentInput(BaseModel):
-    name: str
-    text: str
 
 
 class GroqModelPropertiesUpdateInput(BaseModel):
@@ -476,13 +651,184 @@ class GroqModelPropertiesUpdateInput(BaseModel):
     )
 
 
-class AlertSchedulePolicyInput(BaseModel):
-    recurrence_type: Optional[TimedPolicyRecurrenceTypes] = Field(
-        alias="recurrenceType", default=None
+class MicrosoftTeamsFeedPropertiesUpdateInput(BaseModel):
+    type: Optional[FeedListingTypes] = None
+    authentication_type: Optional[MicrosoftTeamsAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
     )
-    repeat_interval: Optional[Any] = Field(alias="repeatInterval", default=None)
-    cron: Optional[str] = None
-    time_zone_id: Optional[str] = Field(alias="timeZoneId", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    team_id: str = Field(alias="teamId")
+    channel_id: str = Field(alias="channelId")
+    include_attachments: Optional[bool] = Field(
+        alias="includeAttachments", default=None
+    )
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class ContentPublishingConnectorInput(BaseModel):
+    type: ContentPublishingServiceTypes
+    format: ContentPublishingFormats
+    eleven_labs: Optional["ElevenLabsPublishingPropertiesInput"] = Field(
+        alias="elevenLabs", default=None
+    )
+    open_ai_image: Optional["OpenAIImagePublishingPropertiesInput"] = Field(
+        alias="openAIImage", default=None
+    )
+    google_image: Optional["GoogleImagePublishingPropertiesInput"] = Field(
+        alias="googleImage", default=None
+    )
+    quiver_image: Optional["QuiverImagePublishingPropertiesInput"] = Field(
+        alias="quiverImage", default=None
+    )
+    open_ai_video: Optional["OpenAIVideoPublishingPropertiesInput"] = Field(
+        alias="openAIVideo", default=None
+    )
+    google_video: Optional["GoogleVideoPublishingPropertiesInput"] = Field(
+        alias="googleVideo", default=None
+    )
+    parallel: Optional["ParallelPublishingPropertiesInput"] = None
+
+
+class AttioDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
+    parent_object: str = Field(alias="parentObject")
+    parent_record_id: str = Field(alias="parentRecordId")
+    title: Optional[str] = None
+
+
+class MicrosoftTeamsDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
+    team_id: str = Field(alias="teamId")
+    channel_id: str = Field(alias="channelId")
+    thread_id: Optional[str] = Field(alias="threadId", default=None)
+
+
+class ModelTextExtractionPropertiesInput(BaseModel):
+    specification: Optional["EntityReferenceInput"] = None
+    token_threshold: Optional[int] = Field(alias="tokenThreshold", default=None)
+    time_budget: Optional[Any] = Field(alias="timeBudget", default=None)
+    entity_budget: Optional[int] = Field(alias="entityBudget", default=None)
+    page_budget: Optional[int] = Field(alias="pageBudget", default=None)
+    token_budget: Optional[int] = Field(alias="tokenBudget", default=None)
+    extraction_type: Optional[ExtractionTypes] = Field(
+        alias="extractionType", default=None
+    )
+
+
+class GitHubMilestonesFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[GitHubAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    uri: Optional[str] = None
+    repository_owner: Optional[str] = Field(alias="repositoryOwner", default=None)
+    repository_name: Optional[str] = Field(alias="repositoryName", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+
+
+class AtlassianJiraFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[JiraAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    uri: Optional[Any] = None
+    project: Optional[str] = None
+    email: Optional[str] = None
+    token: Optional[str] = None
+    offset: Optional[Any] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    cloud_id: Optional[str] = Field(alias="cloudId", default=None)
+
+
+class GraphInput(BaseModel):
+    types: Optional[list[ObservableTypes]] = None
+
+
+class AgentInput(BaseModel):
+    name: str
+    type: AgentTypes
+    mode: Optional[AgentModes] = None
+    description: Optional[str] = None
+    specification: Optional["EntityReferenceInput"] = None
+    persona: Optional["EntityReferenceInput"] = None
+    trigger: Optional["AgentTriggerFilterInput"] = None
+    filter: Optional["ContentCriteriaInput"] = None
+    augmented_filter: Optional["ContentCriteriaInput"] = Field(
+        alias="augmentedFilter", default=None
+    )
+    schedule_policy: Optional["AgentSchedulePolicyInput"] = Field(
+        alias="schedulePolicy", default=None
+    )
+    heartbeat: Optional["AgentHeartbeatPropertiesInput"] = None
+    timeout: Optional[Any] = None
+    prompt: Optional[str] = None
+    scratchpad: Optional[str] = None
+    focus: Optional[str] = None
+    research_depth: Optional[AgentResearchDepths] = Field(
+        alias="researchDepth", default=None
+    )
+    channels: Optional[list["AgentChannelInput"]] = None
+    rules: Optional[list["PromptClassificationRuleInput"]] = None
+    commands: Optional[list["AgentCommandInput"]] = None
+    targets: Optional[list["DistributionTargetInput"]] = None
+    callback_uri: Optional[Any] = Field(alias="callbackUri", default=None)
+
+
+class HubSpotMeetingPropertiesInput(BaseModel):
+    authentication_type: Optional[HubSpotFeedAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    access_token: Optional[str] = Field(alias="accessToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    include_transcripts: Optional[bool] = Field(
+        alias="includeTranscripts", default=None
+    )
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    type: Optional[FeedListingTypes] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class MedicalDeviceFacetInput(BaseModel):
+    time_interval: Optional[TimeIntervalTypes] = Field(
+        alias="timeInterval", default=None
+    )
+    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
+    facet: Optional[MedicalDeviceFacetTypes] = None
+
+
+class PagePreparationPropertiesInput(BaseModel):
+    enable_screenshot: Optional[bool] = Field(alias="enableScreenshot", default=None)
 
 
 class SkillFilter(BaseModel):
@@ -510,11 +856,152 @@ class SkillFilter(BaseModel):
         alias="skillOwners", default=None
     )
     collections: Optional[list["EntityReferenceFilter"]] = None
+    feeds: Optional[list["EntityReferenceFilter"]] = None
+    has_feeds: Optional[bool] = Field(alias="hasFeeds", default=None)
     has_collections: Optional[bool] = Field(alias="hasCollections", default=None)
 
 
-class AttioMeetingPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[AttioMeetingAuthenticationTypes] = Field(
+class MedicalDrugClassInput(BaseModel):
+    name: str
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+
+
+class SkillUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    identifier: Optional[str] = None
+    text: Optional[str] = None
+    description: Optional[str] = None
+    arguments: Optional[list["SkillArgumentInput"]] = None
+
+
+class PersonaUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    type: Optional[PersonaTypes] = None
+    identifier: Optional[str] = None
+    platform: Optional[str] = None
+    display_name: Optional[str] = Field(alias="displayName", default=None)
+    timezone: Optional[str] = None
+    role: Optional[str] = None
+    instructions: Optional[str] = None
+
+
+class AgentCommandInput(BaseModel):
+    keyword: str
+    name: str
+    description: Optional[str] = None
+    type: AgentCommandActionTypes
+    template: str
+    enabled: Optional[bool] = None
+
+
+class EmailFeedPropertiesUpdateInput(BaseModel):
+    include_attachments: Optional[bool] = Field(
+        alias="includeAttachments", default=None
+    )
+    google: Optional["GoogleEmailFeedPropertiesUpdateInput"] = None
+    microsoft: Optional["MicrosoftEmailFeedPropertiesUpdateInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class MistralModelPropertiesInput(BaseModel):
+    model: MistralModels
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    endpoint: Optional[Any] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+
+
+class RedditFeedPropertiesUpdateInput(BaseModel):
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class YouTubeFeedPropertiesUpdateInput(BaseModel):
+    type: Optional[YouTubeTypes] = None
+    video_name: Optional[str] = Field(alias="videoName", default=None)
+    video_identifiers: Optional[list[str]] = Field(
+        alias="videoIdentifiers", default=None
+    )
+    channel_identifier: Optional[str] = Field(alias="channelIdentifier", default=None)
+    playlist_identifier: Optional[str] = Field(alias="playlistIdentifier", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class BedrockModelPropertiesUpdateInput(BaseModel):
+    model: Optional[BedrockModels] = None
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    access_key: Optional[str] = Field(alias="accessKey", default=None)
+    secret_access_key: Optional[str] = Field(alias="secretAccessKey", default=None)
+    endpoint: Optional[Any] = None
+    region: Optional[str] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+
+
+class SharePointLibrariesInput(BaseModel):
+    authentication_type: SharePointAuthenticationTypes = Field(
+        alias="authenticationType"
+    )
+    tenant_id: Optional[str] = Field(alias="tenantId", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class GoogleDriveFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[GoogleDriveAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    drive_id: Optional[str] = Field(alias="driveId", default=None)
+    files: Optional[list[Optional[str]]] = None
+    folder_id: Optional[str] = Field(alias="folderId", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    service_account_json: Optional[str] = Field(
+        alias="serviceAccountJson", default=None
+    )
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class MedicalIndicationUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+
+
+class ReplicaContentPropertiesInput(BaseModel):
+    filter: Optional["ContentCriteriaInput"] = None
+
+
+class ObservableInput(BaseModel):
+    name: str
+    type: ObservableTypes
+    metadata: Optional[str] = None
+
+
+class AttioCRMFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[AttioAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
     api_key: Optional[str] = Field(alias="apiKey", default=None)
@@ -522,12 +1009,83 @@ class AttioMeetingPropertiesUpdateInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     type: Optional[FeedListingTypes] = None
 
 
-class SharePointDistributionPropertiesInput(BaseModel):
+class FHIREnrichmentPropertiesInput(BaseModel):
+    endpoint: Optional[Any] = None
+
+
+class GoogleCalendarFeedPropertiesInput(BaseModel):
+    type: Optional[CalendarListingTypes] = None
+    calendar_id: Optional[str] = Field(alias="calendarId", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    authentication_type: Optional[GoogleCalendarAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class SoftwareFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
+    feeds: Optional[list["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
+    address: Optional["AddressFilter"] = None
+    location: Optional["PointFilter"] = None
+    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
+    boundaries: Optional[list[str]] = None
+    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
+    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
+    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
+    similar_softwares: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="similarSoftwares", default=None
+    )
+    softwares: Optional[list["EntityReferenceFilter"]] = None
+
+
+class GoogleDriveFoldersInput(BaseModel):
+    authentication_type: Optional[GoogleDriveAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class AzureTextExtractionPropertiesInput(BaseModel):
+    enable_pii: Optional[bool] = Field(alias="enablePII", default=None)
+    confidence_threshold: Optional[float] = Field(
+        alias="confidenceThreshold", default=None
+    )
+
+
+class ConfluenceDistributionPropertiesInput(BaseModel):
     target_operation: Optional[DistributionTargetOperationTypes] = Field(
         alias="targetOperation", default=None
     )
@@ -536,27 +1094,68 @@ class SharePointDistributionPropertiesInput(BaseModel):
     )
     target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
     target_uri: Optional[str] = Field(alias="targetUri", default=None)
-    site_id: str = Field(alias="siteId")
+    space_id: str = Field(alias="spaceId")
+    parent_page_id: Optional[str] = Field(alias="parentPageId", default=None)
     title: Optional[str] = None
 
 
-class PersonUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
+class QuiverImagePublishingPropertiesInput(BaseModel):
+    model: Optional[QuiverImageModels] = None
+    count: Optional[int] = None
+    seed: Optional["EntityReferenceInput"] = None
+    instructions: Optional[str] = None
+
+
+class GitLabMilestonesFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[GitLabAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    uri: Optional[str] = None
+    project_path: Optional[str] = Field(alias="projectPath", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+
+
+class TelegramChannelPropertiesInput(BaseModel):
+    bot_token: str = Field(alias="botToken")
+    secret_token: Optional[str] = Field(alias="secretToken", default=None)
+    bot_username: Optional[str] = Field(alias="botUsername", default=None)
+
+
+class NotionFeedPropertiesInput(BaseModel):
+    is_recursive: Optional[bool] = Field(alias="isRecursive", default=None)
+    authentication_type: Optional[NotionAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    token: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    type: NotionTypes
+    identifiers: list[str]
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class RepoInput(BaseModel):
+    name: str
     uri: Optional[Any] = None
     identifier: Optional[str] = None
     description: Optional[str] = None
     location: Optional["PointInput"] = None
     boundary: Optional[str] = None
-    address: Optional["AddressInput"] = None
-    given_name: Optional[str] = Field(alias="givenName", default=None)
-    family_name: Optional[str] = Field(alias="familyName", default=None)
-    phone_number: Optional[str] = Field(alias="phoneNumber", default=None)
-    email: Optional[str] = None
-    birth_date: Optional[Any] = Field(alias="birthDate", default=None)
-    title: Optional[str] = None
-    occupation: Optional[str] = None
-    education: Optional[str] = None
+
+
+class GraphStrategyInput(BaseModel):
+    type: Optional[GraphStrategyTypes] = None
+    generate_graph: Optional[bool] = Field(alias="generateGraph", default=None)
+    observable_limit: Optional[int] = Field(alias="observableLimit", default=None)
 
 
 class SpecificationInput(BaseModel):
@@ -615,69 +1214,6 @@ class SpecificationInput(BaseModel):
     )
 
 
-class AgentCommandInput(BaseModel):
-    keyword: str
-    name: str
-    description: Optional[str] = None
-    type: AgentCommandActionTypes
-    template: str
-    enabled: Optional[bool] = None
-
-
-class CerebrasModelPropertiesInput(BaseModel):
-    model: CerebrasModels
-    model_name: Optional[str] = Field(alias="modelName", default=None)
-    key: Optional[str] = None
-    endpoint: Optional[Any] = None
-    temperature: Optional[float] = None
-    probability: Optional[float] = None
-    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
-    completion_token_limit: Optional[int] = Field(
-        alias="completionTokenLimit", default=None
-    )
-
-
-class ProductlaneThreadsFeedPropertiesUpdateInput(BaseModel):
-    api_key: Optional[str] = Field(alias="apiKey", default=None)
-    workspace_id: Optional[str] = Field(alias="workspaceId", default=None)
-
-
-class IntegrationConnectorInput(BaseModel):
-    type: IntegrationServiceTypes
-    uri: Optional[str] = None
-    slack: Optional["SlackIntegrationPropertiesInput"] = None
-    email: Optional["EmailIntegrationPropertiesInput"] = None
-    twitter: Optional["TwitterIntegrationPropertiesInput"] = None
-    mcp: Optional["MCPIntegrationPropertiesInput"] = None
-
-
-class SalesforceFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[SalesforceFeedAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    is_sandbox: Optional[bool] = Field(alias="isSandbox", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class ModelImageExtractionPropertiesInput(BaseModel):
-    specification: Optional["EntityReferenceInput"] = None
-
-
-class StoragePolicyInput(BaseModel):
-    type: Optional[StoragePolicyTypes] = None
-    allow_duplicates: Optional[bool] = Field(alias="allowDuplicates", default=None)
-    embedding_types: Optional[list[EmbeddingTypes]] = Field(
-        alias="embeddingTypes", default=None
-    )
-    enable_snapshots: Optional[bool] = Field(alias="enableSnapshots", default=None)
-    snapshot_count: Optional[int] = Field(alias="snapshotCount", default=None)
-
-
 class MicrosoftEmailFeedPropertiesUpdateInput(BaseModel):
     type: Optional[EmailListingTypes] = None
     filter: Optional[str] = None
@@ -698,422 +1234,44 @@ class MicrosoftEmailFeedPropertiesUpdateInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
 
 
-class AzureFileFeedPropertiesInput(BaseModel):
-    storage_access_key: str = Field(alias="storageAccessKey")
-    account_name: str = Field(alias="accountName")
-    share_name: str = Field(alias="shareName")
+class WorkflowActionInput(BaseModel):
+    connector: Optional["IntegrationConnectorInput"] = None
+    observable_types: Optional[list[ObservableTypes]] = Field(
+        alias="observableTypes", default=None
+    )
+
+
+class SkillArgumentInput(BaseModel):
+    name: str
+    description: Optional[str] = None
+    required: Optional[bool] = None
+
+
+class GoogleFeedPropertiesUpdateInput(BaseModel):
+    credentials: Optional[str] = None
+    container_name: Optional[str] = Field(alias="containerName", default=None)
     prefix: Optional[str] = None
 
 
-class SalesforceCRMFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[SalesforceAuthenticationTypes] = Field(
+class DropboxFoldersInput(BaseModel):
+    authentication_type: Optional[DropboxAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
-    instance_url: Optional[str] = Field(alias="instanceUrl", default=None)
-    is_sandbox: Optional[bool] = Field(alias="isSandbox", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
-
-
-class ElevenLabsScribeAudioPreparationPropertiesInput(BaseModel):
-    model: Optional[ElevenLabsScribeModels] = None
-    key: Optional[str] = None
-    enable_speaker_diarization: Optional[bool] = Field(
-        alias="enableSpeakerDiarization", default=None
-    )
-    detect_language: Optional[bool] = Field(alias="detectLanguage", default=None)
-    language: Optional[str] = None
-    tag_audio_events: Optional[bool] = Field(alias="tagAudioEvents", default=None)
-
-
-class DiscordDistributionPropertiesInput(BaseModel):
-    target_operation: Optional[DistributionTargetOperationTypes] = Field(
-        alias="targetOperation", default=None
-    )
-    target_kind: Optional[DistributionTargetKindTypes] = Field(
-        alias="targetKind", default=None
-    )
-    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
-    target_uri: Optional[str] = Field(alias="targetUri", default=None)
-    channel_id: str = Field(alias="channelId")
-    thread_id: Optional[str] = Field(alias="threadId", default=None)
-
-
-class SearchFeedPropertiesUpdateInput(BaseModel):
-    type: Optional[SearchServiceTypes] = None
-    text: Optional[str] = None
-    exa: Optional["ExaSearchPropertiesInput"] = None
-    crustdata: Optional["CrustdataSearchFeedPropertiesUpdateInput"] = None
-    linkedin: Optional["LinkedInSearchPropertiesInput"] = None
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class TwitterFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[TwitterAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    token: Optional[str] = None
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    type: Optional[TwitterListingTypes] = None
-    user_name: Optional[str] = Field(alias="userName", default=None)
-    query: Optional[str] = None
-    include_attachments: Optional[bool] = Field(
-        alias="includeAttachments", default=None
-    )
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class MedicalIndicationFilter(BaseModel):
-    search: Optional[str] = None
-    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
-    direction: Optional[OrderDirectionTypes] = None
-    offset: Optional[int] = None
-    limit: Optional[int] = None
-    relevance_threshold: Optional[float] = Field(
-        alias="relevanceThreshold", default=None
-    )
-    id: Optional[str] = None
-    name: Optional[str] = None
-    states: Optional[list[EntityState]] = None
-    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
-    creation_date_range: Optional["DateRangeFilter"] = Field(
-        alias="creationDateRange", default=None
-    )
-    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
-    modified_date_range: Optional["DateRangeFilter"] = Field(
-        alias="modifiedDateRange", default=None
-    )
-    disable_inheritance: Optional[bool] = Field(
-        alias="disableInheritance", default=None
-    )
-    feeds: Optional[list["EntityReferenceFilter"]] = None
-    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
-    address: Optional["AddressFilter"] = None
-    location: Optional["PointFilter"] = None
-    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[list[str]] = None
-    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
-    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
-    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    similar_indications: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="similarIndications", default=None
-    )
-    medical_indications: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="medicalIndications", default=None
-    )
-
-
-class ProductlaneFeedPropertiesInput(BaseModel):
-    type: FeedServiceTypes
-    api_key: str = Field(alias="apiKey")
-    workspace_id: str = Field(alias="workspaceId")
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class GoogleModelPropertiesInput(BaseModel):
-    model: GoogleModels
-    model_name: Optional[str] = Field(alias="modelName", default=None)
-    key: Optional[str] = None
-    temperature: Optional[float] = None
-    probability: Optional[float] = None
-    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
-    completion_token_limit: Optional[int] = Field(
-        alias="completionTokenLimit", default=None
-    )
-    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
-    enable_thinking: Optional[bool] = Field(alias="enableThinking", default=None)
-    thinking_token_limit: Optional[int] = Field(
-        alias="thinkingTokenLimit", default=None
-    )
-    thinking_level: Optional[GoogleThinkingLevels] = Field(
-        alias="thinkingLevel", default=None
-    )
-
-
-class EventInput(BaseModel):
-    name: str
-    uri: Optional[Any] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
-    address: Optional["AddressInput"] = None
-    start_date: Optional[Any] = Field(alias="startDate", default=None)
-    end_date: Optional[Any] = Field(alias="endDate", default=None)
-    availability_start_date: Optional[Any] = Field(
-        alias="availabilityStartDate", default=None
-    )
-    availability_end_date: Optional[Any] = Field(
-        alias="availabilityEndDate", default=None
-    )
-    price: Optional[Any] = None
-    min_price: Optional[Any] = Field(alias="minPrice", default=None)
-    max_price: Optional[Any] = Field(alias="maxPrice", default=None)
-    price_currency: Optional[str] = Field(alias="priceCurrency", default=None)
-    is_accessible_for_free: Optional[bool] = Field(
-        alias="isAccessibleForFree", default=None
-    )
-    typical_age_range: Optional[str] = Field(alias="typicalAgeRange", default=None)
-    organizer: Optional[str] = None
-    performer: Optional[str] = None
-    sponsor: Optional[str] = None
-    event_status: Optional[str] = Field(alias="eventStatus", default=None)
-
-
-class InitiativeFeedPropertiesInput(BaseModel):
-    type: FeedServiceTypes
-    jira: Optional["JiraEpicsFeedPropertiesInput"] = None
-    github: Optional["GitHubMilestonesFeedPropertiesInput"] = None
-    gitlab: Optional["GitLabMilestonesFeedPropertiesInput"] = None
-    linear: Optional["LinearInitiativesFeedPropertiesInput"] = None
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class XAIModelPropertiesInput(BaseModel):
-    model: XAIModels
-    model_name: Optional[str] = Field(alias="modelName", default=None)
-    key: Optional[str] = None
-    endpoint: Optional[Any] = None
-    temperature: Optional[float] = None
-    probability: Optional[float] = None
-    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
-    completion_token_limit: Optional[int] = Field(
-        alias="completionTokenLimit", default=None
-    )
-
-
-class EmailFeedPropertiesInput(BaseModel):
-    type: FeedServiceTypes
-    include_attachments: Optional[bool] = Field(
-        alias="includeAttachments", default=None
-    )
-    google: Optional["GoogleEmailFeedPropertiesInput"] = None
-    microsoft: Optional["MicrosoftEmailFeedPropertiesInput"] = None
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class LanguageMetadataInput(BaseModel):
-    languages: Optional[list[Optional[str]]] = None
-
-
-class OpenAIModelPropertiesUpdateInput(BaseModel):
-    model: Optional[OpenAIModels] = None
-    model_name: Optional[str] = Field(alias="modelName", default=None)
-    key: Optional[str] = None
-    endpoint: Optional[Any] = None
-    temperature: Optional[float] = None
-    probability: Optional[float] = None
-    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
-    completion_token_limit: Optional[int] = Field(
-        alias="completionTokenLimit", default=None
-    )
-    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
-    detail_level: Optional[OpenAIVisionDetailLevels] = Field(
-        alias="detailLevel", default=None
-    )
-    reasoning_effort: Optional[OpenAIReasoningEffortLevels] = Field(
-        alias="reasoningEffort", default=None
-    )
-
-
-class FactAssertionInput(BaseModel):
-    text: str
-    mentions: Optional[list[Optional["MentionReferenceInput"]]] = None
-
-
-class GustoOptionsInput(BaseModel):
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-    refresh_token: str = Field(alias="refreshToken")
-    company_id: str = Field(alias="companyId")
-
-
-class LabelFilter(BaseModel):
-    search: Optional[str] = None
-    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
-    direction: Optional[OrderDirectionTypes] = None
-    offset: Optional[int] = None
-    limit: Optional[int] = None
-    relevance_threshold: Optional[float] = Field(
-        alias="relevanceThreshold", default=None
-    )
-    id: Optional[str] = None
-    name: Optional[str] = None
-    states: Optional[list[EntityState]] = None
-    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
-    creation_date_range: Optional["DateRangeFilter"] = Field(
-        alias="creationDateRange", default=None
-    )
-    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
-    modified_date_range: Optional["DateRangeFilter"] = Field(
-        alias="modifiedDateRange", default=None
-    )
-    disable_inheritance: Optional[bool] = Field(
-        alias="disableInheritance", default=None
-    )
-    feeds: Optional[list["EntityReferenceFilter"]] = None
-
-
-class IntercomConversationsFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[IntercomConversationsAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    access_token: Optional[str] = Field(alias="accessToken", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    state: Optional[str] = None
-    include_notes: Optional[bool] = Field(alias="includeNotes", default=None)
-    include_attachments: Optional[bool] = Field(
-        alias="includeAttachments", default=None
-    )
-    type: Optional[FeedListingTypes] = None
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class MedicalTherapyInput(BaseModel):
-    name: str
-    uri: Optional[Any] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
-
-
-class ExaSearchPropertiesInput(BaseModel):
-    search_type: Optional[ExaSearchTypes] = Field(alias="searchType", default=None)
-
-
-class LinearFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[LinearAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    key: Optional[str] = None
-    project: str
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    app_key: Optional[str] = Field(alias="appKey", default=None)
+    app_secret: Optional[str] = Field(alias="appSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
 
 
-class ProductFacetInput(BaseModel):
+class PersonFacetInput(BaseModel):
     time_interval: Optional[TimeIntervalTypes] = Field(
         alias="timeInterval", default=None
     )
     time_offset: Optional[int] = Field(alias="timeOffset", default=None)
-    facet: Optional[ProductFacetTypes] = None
+    facet: Optional[PersonFacetTypes] = None
 
 
-class CollectionInput(BaseModel):
-    name: str
-    type: Optional[CollectionTypes] = None
-    contents: Optional[list["EntityReferenceInput"]] = None
-    conversations: Optional[list["EntityReferenceInput"]] = None
-    expected_count: Optional[int] = Field(alias="expectedCount", default=None)
-
-
-class EmbeddingsStrategyInput(BaseModel):
-    text_specification: Optional["EntityReferenceInput"] = Field(
-        alias="textSpecification", default=None
-    )
-    image_specification: Optional["EntityReferenceInput"] = Field(
-        alias="imageSpecification", default=None
-    )
-    multimodal_specification: Optional["EntityReferenceInput"] = Field(
-        alias="multimodalSpecification", default=None
-    )
-
-
-class InvestmentFundInput(BaseModel):
-    name: str
-    uri: Optional[Any] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
-    amount_currency: Optional[str] = Field(alias="amountCurrency", default=None)
-    amount: Optional[Any] = None
-    fund_type: Optional[str] = Field(alias="fundType", default=None)
-    vintage: Optional[int] = None
-    target_size: Optional[Any] = Field(alias="targetSize", default=None)
-    target_size_currency: Optional[str] = Field(
-        alias="targetSizeCurrency", default=None
-    )
-
-
-class GoogleChatChannelPropertiesInput(BaseModel):
-    credentials: str
-    project_id: Optional[str] = Field(alias="projectId", default=None)
-
-
-class PreparationWorkflowJobInput(BaseModel):
-    connector: Optional["FilePreparationConnectorInput"] = None
-
-
-class ObservationUpdateInput(BaseModel):
-    id: str
-    type: Optional[ObservableTypes] = None
-    observable: Optional["NamedEntityReferenceInput"] = None
-    related: Optional["NamedEntityReferenceInput"] = None
-    related_type: Optional[ObservableTypes] = Field(alias="relatedType", default=None)
-    relation: Optional[str] = None
-    occurrences: Optional[list["ObservationOccurrenceInput"]] = None
-
-
-class MedicalIndicationInput(BaseModel):
-    name: str
-    uri: Optional[Any] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
-
-
-class GitHubMilestonesFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[GitHubAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    uri: Optional[str] = None
-    repository_owner: Optional[str] = Field(alias="repositoryOwner", default=None)
-    repository_name: Optional[str] = Field(alias="repositoryName", default=None)
-    personal_access_token: Optional[str] = Field(
-        alias="personalAccessToken", default=None
-    )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
-
-
-class JiraDistributionPropertiesInput(BaseModel):
-    target_operation: Optional[DistributionTargetOperationTypes] = Field(
-        alias="targetOperation", default=None
-    )
-    target_kind: Optional[DistributionTargetKindTypes] = Field(
-        alias="targetKind", default=None
-    )
-    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
-    target_uri: Optional[str] = Field(alias="targetUri", default=None)
-    project_key: Optional[str] = Field(alias="projectKey", default=None)
-    issue_type: Optional[str] = Field(alias="issueType", default=None)
-    summary: Optional[str] = None
-    priority: Optional[str] = None
-    assignee_id: Optional[str] = Field(alias="assigneeId", default=None)
-    labels: Optional[list[str]] = None
-    status: Optional[str] = None
-
-
-class FactFilter(BaseModel):
+class DeskFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
     direction: Optional[OrderDirectionTypes] = None
@@ -1133,534 +1291,42 @@ class FactFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
-    content: Optional["EntityReferenceFilter"] = None
-    conversation: Optional["EntityReferenceFilter"] = None
-    valid_at: Optional[Any] = Field(alias="validAt", default=None)
-    mentions: Optional[list[Optional["MentionReferenceFilter"]]] = None
-    feeds: Optional[list[Optional["EntityReferenceFilter"]]] = None
-    categories: Optional[list[Optional[FactCategory]]] = None
-    min_confidence: Optional[float] = Field(alias="minConfidence", default=None)
-    similar_facts: Optional[list[Optional["EntityReferenceFilter"]]] = Field(
-        alias="similarFacts", default=None
-    )
-    facts: Optional[list[Optional["EntityReferenceFilter"]]] = None
-    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
-    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
-    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    disable_inheritance: Optional[bool] = Field(
-        alias="disableInheritance", default=None
-    )
+    bureau: Optional["EntityReferenceFilter"] = None
+    agents: Optional[list["EntityReferenceFilter"]] = None
 
 
-class LinkReferenceInput(BaseModel):
-    uri: Optional[Any] = None
-    link_type: Optional[LinkTypes] = Field(alias="linkType", default=None)
-    excerpts: Optional[str] = None
-
-
-class PromptStrategyUpdateInput(BaseModel):
-    type: Optional[PromptStrategyTypes] = None
-
-
-class GoogleEmailFeedPropertiesUpdateInput(BaseModel):
-    type: Optional[EmailListingTypes] = None
-    filter: Optional[str] = None
-    inbox_only: Optional[bool] = Field(alias="inboxOnly", default=None)
-    include_deleted_items: Optional[bool] = Field(
-        alias="includeDeletedItems", default=None
-    )
-    exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems", default=None)
-    include_spam: Optional[bool] = Field(alias="includeSpam", default=None)
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    authentication_type: Optional[GoogleEmailAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class PersonInput(BaseModel):
-    name: str
-    uri: Optional[Any] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
-    address: Optional["AddressInput"] = None
-    given_name: Optional[str] = Field(alias="givenName", default=None)
-    family_name: Optional[str] = Field(alias="familyName", default=None)
-    phone_number: Optional[str] = Field(alias="phoneNumber", default=None)
-    email: Optional[str] = None
-    birth_date: Optional[Any] = Field(alias="birthDate", default=None)
-    title: Optional[str] = None
-    occupation: Optional[str] = None
-    education: Optional[str] = None
-
-
-class ConversationStrategyUpdateInput(BaseModel):
-    type: Optional[ConversationStrategyTypes] = None
-    message_limit: Optional[int] = Field(alias="messageLimit", default=None)
-    embed_citations: Optional[bool] = Field(alias="embedCitations", default=None)
-    flatten_citations: Optional[bool] = Field(alias="flattenCitations", default=None)
-    enable_facets: Optional[bool] = Field(alias="enableFacets", default=None)
-    enable_summarization: Optional[bool] = Field(
-        alias="enableSummarization", default=None
-    )
-    enable_entity_extraction: Optional[bool] = Field(
-        alias="enableEntityExtraction", default=None
-    )
-    enable_fact_extraction: Optional[bool] = Field(
-        alias="enableFactExtraction", default=None
-    )
-    entity_extraction_limit: Optional[int] = Field(
-        alias="entityExtractionLimit", default=None
-    )
-    fact_extraction_limit: Optional[int] = Field(
-        alias="factExtractionLimit", default=None
-    )
-    messages_weight: Optional[float] = Field(alias="messagesWeight", default=None)
-    contents_weight: Optional[float] = Field(alias="contentsWeight", default=None)
-    tool_result_token_limit: Optional[int] = Field(
-        alias="toolResultTokenLimit", default=None
-    )
-    tool_round_limit: Optional[int] = Field(alias="toolRoundLimit", default=None)
-    tool_budget_threshold: Optional[float] = Field(
-        alias="toolBudgetThreshold", default=None
-    )
-
-
-class ExtractionWorkflowStageInput(BaseModel):
-    jobs: Optional[list[Optional["ExtractionWorkflowJobInput"]]] = None
-
-
-class MedicalTestInput(BaseModel):
-    name: str
-    uri: Optional[Any] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
-
-
-class ReductoDocumentPreparationPropertiesInput(BaseModel):
-    ocr_mode: Optional[ReductoOcrModes] = Field(alias="ocrMode", default=None)
-    ocr_system: Optional[ReductoOcrSystems] = Field(alias="ocrSystem", default=None)
-    extraction_mode: Optional[ReductoExtractionModes] = Field(
-        alias="extractionMode", default=None
-    )
-    enable_enrichment: Optional[bool] = Field(alias="enableEnrichment", default=None)
-    enrichment_mode: Optional[ReductoEnrichmentModes] = Field(
-        alias="enrichmentMode", default=None
-    )
-    key: Optional[str] = None
-
-
-class MedicalTherapyUpdateInput(BaseModel):
+class WorkflowUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
-    uri: Optional[Any] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
+    ingestion: Optional["IngestionWorkflowStageInput"] = None
+    indexing: Optional["IndexingWorkflowStageInput"] = None
+    preparation: Optional["PreparationWorkflowStageInput"] = None
+    extraction: Optional["ExtractionWorkflowStageInput"] = None
+    enrichment: Optional["EnrichmentWorkflowStageInput"] = None
+    classification: Optional["ClassificationWorkflowStageInput"] = None
+    storage: Optional["StorageWorkflowStageInput"] = None
+    actions: Optional[list[Optional["WorkflowActionInput"]]] = None
 
 
-class SlackFeedPropertiesUpdateInput(BaseModel):
-    type: Optional[FeedListingTypes] = None
-    authentication_type: Optional[SlackAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    token: Optional[str] = None
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    channel: Optional[str] = None
-    include_attachments: Optional[bool] = Field(
-        alias="includeAttachments", default=None
-    )
-    signing_secret: Optional[str] = Field(alias="signingSecret", default=None)
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class ModelContentClassificationPropertiesInput(BaseModel):
-    specification: Optional["EntityReferenceInput"] = None
-    rules: Optional[list[Optional["PromptClassificationRuleInput"]]] = None
-
-
-class MCPIntegrationPropertiesInput(BaseModel):
-    type: MCPServerTypes
-    token: Optional[str] = None
-
-
-class ConversationCriteriaInput(BaseModel):
-    types: Optional[list[ConversationTypes]] = None
-    conversations: Optional[list["EntityReferenceInput"]] = None
-    exclude_conversations: Optional[list["EntityReferenceInput"]] = Field(
-        alias="excludeConversations", default=None
-    )
-    agents: Optional[list["EntityReferenceInput"]] = None
-    collections: Optional[list["EntityReferenceInput"]] = None
-    observations: Optional[list["ObservationCriteriaInput"]] = None
-    has_collections: Optional[bool] = Field(alias="hasCollections", default=None)
-    has_observations: Optional[bool] = Field(alias="hasObservations", default=None)
-    collection_mode: Optional[FilterMode] = Field(alias="collectionMode", default=None)
-    observation_mode: Optional[FilterMode] = Field(
-        alias="observationMode", default=None
+class ViewInput(BaseModel):
+    name: str
+    type: Optional[ViewTypes] = None
+    filter: Optional["ContentCriteriaInput"] = None
+    augmented_filter: Optional["ContentCriteriaInput"] = Field(
+        alias="augmentedFilter", default=None
     )
 
 
-class OrganizationFacetInput(BaseModel):
-    time_interval: Optional[TimeIntervalTypes] = Field(
-        alias="timeInterval", default=None
-    )
-    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
-    facet: Optional[OrganizationFacetTypes] = None
-
-
-class OrganizationFilter(BaseModel):
-    search: Optional[str] = None
-    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
-    direction: Optional[OrderDirectionTypes] = None
-    offset: Optional[int] = None
-    limit: Optional[int] = None
-    relevance_threshold: Optional[float] = Field(
-        alias="relevanceThreshold", default=None
-    )
-    id: Optional[str] = None
-    name: Optional[str] = None
-    states: Optional[list[EntityState]] = None
-    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
-    creation_date_range: Optional["DateRangeFilter"] = Field(
-        alias="creationDateRange", default=None
-    )
-    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
-    modified_date_range: Optional["DateRangeFilter"] = Field(
-        alias="modifiedDateRange", default=None
-    )
-    disable_inheritance: Optional[bool] = Field(
-        alias="disableInheritance", default=None
-    )
-    feeds: Optional[list["EntityReferenceFilter"]] = None
-    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
-    address: Optional["AddressFilter"] = None
-    location: Optional["PointFilter"] = None
-    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[list[str]] = None
-    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
-    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
-    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    uri: Optional[Any] = None
-    similar_organizations: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="similarOrganizations", default=None
-    )
-    organizations: Optional[list["EntityReferenceFilter"]] = None
-
-
-class GoogleDocsDistributionPropertiesInput(BaseModel):
-    target_operation: Optional[DistributionTargetOperationTypes] = Field(
-        alias="targetOperation", default=None
-    )
-    target_kind: Optional[DistributionTargetKindTypes] = Field(
-        alias="targetKind", default=None
-    )
-    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
-    target_uri: Optional[str] = Field(alias="targetUri", default=None)
-    folder_id: Optional[str] = Field(alias="folderId", default=None)
-    title: Optional[str] = None
-
-
-class GoogleContactsCRMFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[GoogleContactsAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
-
-
-class PullRequestFeedPropertiesUpdateInput(BaseModel):
-    github: Optional["GitHubPullRequestsFeedPropertiesUpdateInput"] = None
-    gitlab: Optional["GitLabPullRequestsFeedPropertiesUpdateInput"] = None
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class MedicalIndicationFacetInput(BaseModel):
-    time_interval: Optional[TimeIntervalTypes] = Field(
-        alias="timeInterval", default=None
-    )
-    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
-    facet: Optional[MedicalIndicationFacetTypes] = None
-
-
-class CategoryFacetInput(BaseModel):
-    time_interval: Optional[TimeIntervalTypes] = Field(
-        alias="timeInterval", default=None
-    )
-    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
-    facet: Optional[CategoryFacetTypes] = None
-
-
-class ZendeskTicketsFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[ZendeskIssueAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    subdomain: str
-    access_token: Optional[str] = Field(alias="accessToken", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class MedicalTestFilter(BaseModel):
-    search: Optional[str] = None
-    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
-    direction: Optional[OrderDirectionTypes] = None
-    offset: Optional[int] = None
-    limit: Optional[int] = None
-    relevance_threshold: Optional[float] = Field(
-        alias="relevanceThreshold", default=None
-    )
-    id: Optional[str] = None
-    name: Optional[str] = None
-    states: Optional[list[EntityState]] = None
-    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
-    creation_date_range: Optional["DateRangeFilter"] = Field(
-        alias="creationDateRange", default=None
-    )
-    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
-    modified_date_range: Optional["DateRangeFilter"] = Field(
-        alias="modifiedDateRange", default=None
-    )
-    disable_inheritance: Optional[bool] = Field(
-        alias="disableInheritance", default=None
-    )
-    feeds: Optional[list["EntityReferenceFilter"]] = None
-    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
-    address: Optional["AddressFilter"] = None
-    location: Optional["PointFilter"] = None
-    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[list[str]] = None
-    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
-    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
-    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    similar_tests: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="similarTests", default=None
-    )
-    medical_tests: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="medicalTests", default=None
+class LinkedInSearchPropertiesInput(BaseModel):
+    date_range: Optional[LinkedInSearchDateTypes] = Field(
+        alias="dateRange", default=None
     )
 
 
-class ParallelFeedPropertiesUpdateInput(BaseModel):
-    processor: Optional[ParallelProcessors] = None
-
-
-class AzureAIModelPropertiesInput(BaseModel):
-    key: str
-    endpoint: Any
-    temperature: Optional[float] = None
-    probability: Optional[float] = None
-    token_limit: int = Field(alias="tokenLimit")
-    completion_token_limit: Optional[int] = Field(
-        alias="completionTokenLimit", default=None
+class LinkedInFeedPropertiesUpdateInput(BaseModel):
+    listing_type: Optional[LinkedInPostListingTypes] = Field(
+        alias="listingType", default=None
     )
-    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
-
-
-class GmailDistributionPropertiesInput(BaseModel):
-    target_operation: Optional[DistributionTargetOperationTypes] = Field(
-        alias="targetOperation", default=None
-    )
-    target_kind: Optional[DistributionTargetKindTypes] = Field(
-        alias="targetKind", default=None
-    )
-    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
-    target_uri: Optional[str] = Field(alias="targetUri", default=None)
-    to: list[str]
-    subject: str
-    cc: Optional[list[str]] = None
-    bcc: Optional[list[str]] = None
-    is_draft: Optional[bool] = Field(alias="isDraft", default=None)
-    in_reply_to_message_id: Optional[str] = Field(
-        alias="inReplyToMessageId", default=None
-    )
-    forward_from_message_id: Optional[str] = Field(
-        alias="forwardFromMessageId", default=None
-    )
-
-
-class MicrosoftTeamsDistributionPropertiesInput(BaseModel):
-    target_operation: Optional[DistributionTargetOperationTypes] = Field(
-        alias="targetOperation", default=None
-    )
-    target_kind: Optional[DistributionTargetKindTypes] = Field(
-        alias="targetKind", default=None
-    )
-    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
-    target_uri: Optional[str] = Field(alias="targetUri", default=None)
-    team_id: str = Field(alias="teamId")
-    channel_id: str = Field(alias="channelId")
-    thread_id: Optional[str] = Field(alias="threadId", default=None)
-
-
-class ReplicaUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    type: Optional[EntityTypes] = None
-    content: Optional["ReplicaContentPropertiesInput"] = None
-    conversation: Optional["ReplicaConversationPropertiesInput"] = None
-    git: Optional["ReplicaGitPropertiesInput"] = None
-    connector: Optional["EntityReferenceInput"] = None
-    marker_slug: Optional[str] = Field(alias="markerSlug", default=None)
-    artifact_types: Optional[list[Optional[ReplicaArtifactTypes]]] = Field(
-        alias="artifactTypes", default=None
-    )
-    synchronize_deletes: Optional[bool] = Field(
-        alias="synchronizeDeletes", default=None
-    )
-    commit_message: Optional[str] = Field(alias="commitMessage", default=None)
-    schedule_policy: Optional["ReplicaSchedulePolicyInput"] = Field(
-        alias="schedulePolicy", default=None
-    )
-
-
-class ReplicaGitPropertiesInput(BaseModel):
-    branch_type: Optional[ReplicaBranchTypes] = Field(alias="branchType", default=None)
-    branch: Optional[str] = None
-    repository_owner: Optional[str] = Field(alias="repositoryOwner", default=None)
-    repository_name: Optional[str] = Field(alias="repositoryName", default=None)
-    project_path: Optional[str] = Field(alias="projectPath", default=None)
-    target_path: Optional[str] = Field(alias="targetPath", default=None)
-    create_if_missing: Optional[bool] = Field(alias="createIfMissing", default=None)
-    project_name: Optional[str] = Field(alias="projectName", default=None)
-
-
-class OneDriveFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[OneDriveAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    files: Optional[list[Optional[str]]] = None
-    folder_id: Optional[str] = Field(alias="folderId", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class EmotionFacetInput(BaseModel):
-    time_interval: Optional[TimeIntervalTypes] = Field(
-        alias="timeInterval", default=None
-    )
-    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
-    facet: Optional[EmotionFacetTypes] = None
-
-
-class EventUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    uri: Optional[Any] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
-    address: Optional["AddressInput"] = None
-    start_date: Optional[Any] = Field(alias="startDate", default=None)
-    end_date: Optional[Any] = Field(alias="endDate", default=None)
-    availability_start_date: Optional[Any] = Field(
-        alias="availabilityStartDate", default=None
-    )
-    availability_end_date: Optional[Any] = Field(
-        alias="availabilityEndDate", default=None
-    )
-    price: Optional[Any] = None
-    min_price: Optional[Any] = Field(alias="minPrice", default=None)
-    max_price: Optional[Any] = Field(alias="maxPrice", default=None)
-    price_currency: Optional[str] = Field(alias="priceCurrency", default=None)
-    is_accessible_for_free: Optional[bool] = Field(
-        alias="isAccessibleForFree", default=None
-    )
-    typical_age_range: Optional[str] = Field(alias="typicalAgeRange", default=None)
-    organizer: Optional[str] = None
-    performer: Optional[str] = None
-    sponsor: Optional[str] = None
-    event_status: Optional[str] = Field(alias="eventStatus", default=None)
-
-
-class BedrockModelPropertiesUpdateInput(BaseModel):
-    model: Optional[BedrockModels] = None
-    model_name: Optional[str] = Field(alias="modelName", default=None)
-    access_key: Optional[str] = Field(alias="accessKey", default=None)
-    secret_access_key: Optional[str] = Field(alias="secretAccessKey", default=None)
-    endpoint: Optional[Any] = None
-    region: Optional[str] = None
-    temperature: Optional[float] = None
-    probability: Optional[float] = None
-    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
-    completion_token_limit: Optional[int] = Field(
-        alias="completionTokenLimit", default=None
-    )
-
-
-class BedrockModelPropertiesInput(BaseModel):
-    model: BedrockModels
-    model_name: Optional[str] = Field(alias="modelName", default=None)
-    access_key: Optional[str] = Field(alias="accessKey", default=None)
-    secret_access_key: Optional[str] = Field(alias="secretAccessKey", default=None)
-    endpoint: Optional[Any] = None
-    region: Optional[str] = None
-    temperature: Optional[float] = None
-    probability: Optional[float] = None
-    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
-    completion_token_limit: Optional[int] = Field(
-        alias="completionTokenLimit", default=None
-    )
-
-
-class DateRangeInput(BaseModel):
-    from_: Optional[Any] = Field(alias="from", default=None)
-    to: Optional[Any] = None
-
-
-class UserFilter(BaseModel):
-    search: Optional[str] = None
-    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
-    direction: Optional[OrderDirectionTypes] = None
-    offset: Optional[int] = None
-    limit: Optional[int] = None
-    relevance_threshold: Optional[float] = Field(
-        alias="relevanceThreshold", default=None
-    )
-    id: Optional[str] = None
-    name: Optional[str] = None
-    states: Optional[list[EntityState]] = None
-    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
-    creation_date_range: Optional["DateRangeFilter"] = Field(
-        alias="creationDateRange", default=None
-    )
-    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
-    modified_date_range: Optional["DateRangeFilter"] = Field(
-        alias="modifiedDateRange", default=None
-    )
-    identifier: Optional[str] = None
-
-
-class FactStrategyInput(BaseModel):
-    fact_limit: Optional[int] = Field(alias="factLimit", default=None)
-
-
-class LinkedInFeedPropertiesInput(BaseModel):
-    listing_type: LinkedInPostListingTypes = Field(alias="listingType")
     company_domain: Optional[str] = Field(alias="companyDomain", default=None)
     company_linked_in_url: Optional[str] = Field(
         alias="companyLinkedInUrl", default=None
@@ -1679,68 +1345,164 @@ class LinkedInFeedPropertiesInput(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
-class MicrosoftTeamsFeedPropertiesInput(BaseModel):
-    type: Optional[FeedListingTypes] = None
-    authentication_type: Optional[MicrosoftTeamsAuthenticationTypes] = Field(
+class GraphStrategyUpdateInput(BaseModel):
+    type: Optional[GraphStrategyTypes] = None
+    generate_graph: Optional[bool] = Field(alias="generateGraph", default=None)
+    observable_limit: Optional[int] = Field(alias="observableLimit", default=None)
+
+
+class XAIModelPropertiesInput(BaseModel):
+    model: XAIModels
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    endpoint: Optional[Any] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+
+
+class CategoryUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    description: Optional[str] = None
+
+
+class MistralModelPropertiesUpdateInput(BaseModel):
+    model: Optional[MistralModels] = None
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    endpoint: Optional[Any] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+
+
+class AssemblyAIAudioPreparationPropertiesInput(BaseModel):
+    model: Optional[AssemblyAIModels] = None
+    key: Optional[str] = None
+    enable_redaction: Optional[bool] = Field(alias="enableRedaction", default=None)
+    enable_speaker_diarization: Optional[bool] = Field(
+        alias="enableSpeakerDiarization", default=None
+    )
+    detect_language: Optional[bool] = Field(alias="detectLanguage", default=None)
+    language: Optional[str] = None
+
+
+class AuthenticationConnectorInput(BaseModel):
+    type: AuthenticationServiceTypes
+    token: Optional[str] = None
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    microsoft: Optional["MicrosoftAuthenticationPropertiesInput"] = None
+    google: Optional["GoogleAuthenticationPropertiesInput"] = None
+    arcade: Optional["ArcadeAuthenticationPropertiesInput"] = None
+    oauth: Optional["OAuthAuthenticationPropertiesInput"] = None
+
+
+class CerebrasModelPropertiesUpdateInput(BaseModel):
+    model: Optional[CerebrasModels] = None
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    endpoint: Optional[Any] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+
+
+class GitLabIssuesFeedPropertiesUpdateInput(BaseModel):
+    project_path: Optional[str] = Field(alias="projectPath", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class AsanaProjectsInput(BaseModel):
+    personal_access_token: str = Field(alias="personalAccessToken")
+    workspace_id: str = Field(alias="workspaceId")
+
+
+class MedicalTherapyFacetInput(BaseModel):
+    time_interval: Optional[TimeIntervalTypes] = Field(
+        alias="timeInterval", default=None
+    )
+    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
+    facet: Optional[MedicalTherapyFacetTypes] = None
+
+
+class ViewUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    type: Optional[ViewTypes] = None
+    filter: Optional["ContentCriteriaInput"] = None
+    augmented_filter: Optional["ContentCriteriaInput"] = Field(
+        alias="augmentedFilter", default=None
+    )
+
+
+class EmotionInput(BaseModel):
+    name: str
+    description: Optional[str] = None
+
+
+class ContentPublishingConnectorUpdateInput(BaseModel):
+    type: ContentPublishingServiceTypes
+    format: ContentPublishingFormats
+    eleven_labs: Optional["ElevenLabsPublishingPropertiesInput"] = Field(
+        alias="elevenLabs", default=None
+    )
+    open_ai_image: Optional["OpenAIImagePublishingPropertiesInput"] = Field(
+        alias="openAIImage", default=None
+    )
+    google_image: Optional["GoogleImagePublishingPropertiesInput"] = Field(
+        alias="googleImage", default=None
+    )
+    quiver_image: Optional["QuiverImagePublishingPropertiesInput"] = Field(
+        alias="quiverImage", default=None
+    )
+    open_ai_video: Optional["OpenAIVideoPublishingPropertiesInput"] = Field(
+        alias="openAIVideo", default=None
+    )
+    google_video: Optional["GoogleVideoPublishingPropertiesInput"] = Field(
+        alias="googleVideo", default=None
+    )
+    parallel: Optional["ParallelPublishingPropertiesInput"] = None
+
+
+class LinearFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[LinearAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
+    key: Optional[str] = None
+    project: str
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    team_id: str = Field(alias="teamId")
-    channel_id: str = Field(alias="channelId")
-    include_attachments: Optional[bool] = Field(
-        alias="includeAttachments", default=None
+
+
+class MedicalContraindicationFacetInput(BaseModel):
+    time_interval: Optional[TimeIntervalTypes] = Field(
+        alias="timeInterval", default=None
     )
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
+    facet: Optional[MedicalContraindicationFacetTypes] = None
 
 
-class AzureTextExtractionPropertiesInput(BaseModel):
-    enable_pii: Optional[bool] = Field(alias="enablePII", default=None)
-    confidence_threshold: Optional[float] = Field(
-        alias="confidenceThreshold", default=None
-    )
-
-
-class TeamsChannelPropertiesInput(BaseModel):
-    bot_id: str = Field(alias="botId")
-    bot_password: str = Field(alias="botPassword")
-    tenant_id: Optional[str] = Field(alias="tenantId", default=None)
-
-
-class AzureImageExtractionPropertiesInput(BaseModel):
-    confidence_threshold: Optional[float] = Field(
-        alias="confidenceThreshold", default=None
-    )
-
-
-class MetadataFilter(BaseModel):
-    search: Optional[str] = None
-    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
-    direction: Optional[OrderDirectionTypes] = None
-    offset: Optional[int] = None
-    limit: Optional[int] = None
-    relevance_threshold: Optional[float] = Field(
-        alias="relevanceThreshold", default=None
-    )
-    id: Optional[str] = None
-    name: Optional[str] = None
-    states: Optional[list[EntityState]] = None
-    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
-    creation_date_range: Optional["DateRangeFilter"] = Field(
-        alias="creationDateRange", default=None
-    )
-    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
-    modified_date_range: Optional["DateRangeFilter"] = Field(
-        alias="modifiedDateRange", default=None
-    )
-    metadata_types: Optional[list[MetadataTypes]] = Field(
-        alias="metadataTypes", default=None
-    )
-    content: Optional["EntityReferenceFilter"] = None
+class UserQuotaInput(BaseModel):
+    credits: Optional[int] = None
 
 
 class ZendeskFeedPropertiesUpdateInput(BaseModel):
@@ -1756,289 +1518,12 @@ class ZendeskFeedPropertiesUpdateInput(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
-class MedicalStudyFilter(BaseModel):
-    search: Optional[str] = None
-    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
-    direction: Optional[OrderDirectionTypes] = None
-    offset: Optional[int] = None
-    limit: Optional[int] = None
-    relevance_threshold: Optional[float] = Field(
-        alias="relevanceThreshold", default=None
-    )
-    id: Optional[str] = None
-    name: Optional[str] = None
-    states: Optional[list[EntityState]] = None
-    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
-    creation_date_range: Optional["DateRangeFilter"] = Field(
-        alias="creationDateRange", default=None
-    )
-    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
-    modified_date_range: Optional["DateRangeFilter"] = Field(
-        alias="modifiedDateRange", default=None
-    )
-    disable_inheritance: Optional[bool] = Field(
-        alias="disableInheritance", default=None
-    )
-    feeds: Optional[list["EntityReferenceFilter"]] = None
-    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
-    address: Optional["AddressFilter"] = None
-    location: Optional["PointFilter"] = None
-    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[list[str]] = None
-    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
-    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
-    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    similar_studies: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="similarStudies", default=None
-    )
-    medical_studies: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="medicalStudies", default=None
-    )
-
-
-class MicrosoftCalendarFeedPropertiesInput(BaseModel):
-    type: Optional[CalendarListingTypes] = None
-    calendar_id: Optional[str] = Field(alias="calendarId", default=None)
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    authentication_type: Optional[MicrosoftCalendarAuthenticationTypes] = Field(
+class GitLabFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[GitLabAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class ProductlaneFeedPropertiesUpdateInput(BaseModel):
-    type: Optional[FeedServiceTypes] = None
-    api_key: Optional[str] = Field(alias="apiKey", default=None)
-    workspace_id: Optional[str] = Field(alias="workspaceId", default=None)
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class MistralModelPropertiesInput(BaseModel):
-    model: MistralModels
-    model_name: Optional[str] = Field(alias="modelName", default=None)
-    key: Optional[str] = None
-    endpoint: Optional[Any] = None
-    temperature: Optional[float] = None
-    probability: Optional[float] = None
-    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
-    completion_token_limit: Optional[int] = Field(
-        alias="completionTokenLimit", default=None
-    )
-    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
-
-
-class VoyageModelPropertiesUpdateInput(BaseModel):
-    model: Optional[VoyageModels] = None
-    model_name: Optional[str] = Field(alias="modelName", default=None)
-    key: Optional[str] = None
-    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
-
-
-class EvernoteFeedPropertiesInput(BaseModel):
-    type: Optional[FeedListingTypes] = None
-    connector: "EntityReferenceInput"
-    query: Optional[str] = None
-    tag_guids: Optional[list[str]] = Field(alias="tagGuids", default=None)
-    include_resources: Optional[bool] = Field(alias="includeResources", default=None)
-    include_inactive: Optional[bool] = Field(alias="includeInactive", default=None)
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class MedicalDrugClassUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    uri: Optional[Any] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
-
-
-class EntityClustersInput(BaseModel):
-    threshold: Optional[float] = None
-
-
-class GustoHRISFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[GustoAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    company_id: Optional[str] = Field(alias="companyId", default=None)
-
-
-class IntercomFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[IntercomAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    access_token: Optional[str] = Field(alias="accessToken", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class ConfluenceFeedPropertiesInput(BaseModel):
-    is_recursive: Optional[bool] = Field(alias="isRecursive", default=None)
-    authentication_type: Optional[ConfluenceAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    uri: Optional[str] = None
-    email: Optional[str] = None
-    token: Optional[str] = None
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    cloud_id: Optional[str] = Field(alias="cloudId", default=None)
-    type: ConfluenceTypes
-    space_keys: Optional[list[str]] = Field(alias="spaceKeys", default=None)
-    identifiers: Optional[list[str]] = None
-    include_attachments: Optional[bool] = Field(
-        alias="includeAttachments", default=None
-    )
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class MicrosoftTeamsTeamsInput(BaseModel):
-    authentication_type: Optional[MicrosoftTeamsAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class IntercomTicketsFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[IntercomIssueAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    access_token: Optional[str] = Field(alias="accessToken", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class GoogleCalendarDistributionPropertiesInput(BaseModel):
-    target_operation: Optional[DistributionTargetOperationTypes] = Field(
-        alias="targetOperation", default=None
-    )
-    target_kind: Optional[DistributionTargetKindTypes] = Field(
-        alias="targetKind", default=None
-    )
-    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
-    target_uri: Optional[str] = Field(alias="targetUri", default=None)
-    calendar_id: Optional[str] = Field(alias="calendarId", default=None)
-    summary: Optional[str] = None
-    start_date_time: Optional[Any] = Field(alias="startDateTime", default=None)
-    end_date_time: Optional[Any] = Field(alias="endDateTime", default=None)
-    time_zone: Optional[str] = Field(alias="timeZone", default=None)
-    location: Optional[str] = None
-    attendees: Optional[list[str]] = None
-
-
-class ReplicaContentPropertiesInput(BaseModel):
-    filter: Optional["ContentCriteriaInput"] = None
-
-
-class QuiverImagePublishingPropertiesInput(BaseModel):
-    model: Optional[QuiverImageModels] = None
-    count: Optional[int] = None
-    seed: Optional["EntityReferenceInput"] = None
-    instructions: Optional[str] = None
-
-
-class GraphStrategyUpdateInput(BaseModel):
-    type: Optional[GraphStrategyTypes] = None
-    generate_graph: Optional[bool] = Field(alias="generateGraph", default=None)
-    observable_limit: Optional[int] = Field(alias="observableLimit", default=None)
-
-
-class AddressInput(BaseModel):
-    street_address: Optional[str] = Field(alias="streetAddress", default=None)
-    city: Optional[str] = None
-    region: Optional[str] = None
-    country: Optional[str] = None
-    postal_code: Optional[str] = Field(alias="postalCode", default=None)
-
-
-class SlackIntegrationPropertiesInput(BaseModel):
-    channel: str
-    token: str
-
-
-class ViewInput(BaseModel):
-    name: str
-    type: Optional[ViewTypes] = None
-    filter: Optional["ContentCriteriaInput"] = None
-    augmented_filter: Optional["ContentCriteriaInput"] = Field(
-        alias="augmentedFilter", default=None
-    )
-
-
-class GoogleCalendarsInput(BaseModel):
-    authentication_type: Optional[GoogleCalendarAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class TrelloFeedPropertiesUpdateInput(BaseModel):
-    key: Optional[str] = None
-    token: Optional[str] = None
-    type: Optional[TrelloTypes] = None
-    identifiers: Optional[list[str]] = None
-
-
-class UserInput(BaseModel):
-    name: str
-    type: Optional[UserTypes] = None
-    identifier: str
-    description: Optional[str] = None
-
-
-class AttioCRMFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[AttioAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    api_key: Optional[str] = Field(alias="apiKey", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
-
-
-class OneDriveFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[OneDriveAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    files: Optional[list[Optional[str]]] = None
-    folder_id: Optional[str] = Field(alias="folderId", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class GitHubIssuesFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[GitHubAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    repository_owner: str = Field(alias="repositoryOwner")
-    repository_name: str = Field(alias="repositoryName")
-    uri: Optional[Any] = None
+    project_path: Optional[str] = Field(alias="projectPath", default=None)
+    branch: Optional[str] = None
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
@@ -2048,98 +1533,7 @@ class GitHubIssuesFeedPropertiesInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
 
 
-class FeedUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    type: Optional[FeedTypes] = None
-    sync_mode: Optional[FeedSyncMode] = Field(alias="syncMode", default=None)
-    site: Optional["SiteFeedPropertiesUpdateInput"] = None
-    calendar: Optional["CalendarFeedPropertiesUpdateInput"] = None
-    email: Optional["EmailFeedPropertiesUpdateInput"] = None
-    crm: Optional["CRMFeedPropertiesUpdateInput"] = None
-    hris: Optional["HRISFeedPropertiesUpdateInput"] = None
-    issue: Optional["IssueFeedPropertiesUpdateInput"] = None
-    pull_request: Optional["PullRequestFeedPropertiesUpdateInput"] = Field(
-        alias="pullRequest", default=None
-    )
-    commit: Optional["CommitFeedPropertiesUpdateInput"] = None
-    rss: Optional["RSSFeedPropertiesUpdateInput"] = None
-    web: Optional["WebFeedPropertiesUpdateInput"] = None
-    search: Optional["SearchFeedPropertiesUpdateInput"] = None
-    reddit: Optional["RedditFeedPropertiesUpdateInput"] = None
-    linked_in: Optional["LinkedInFeedPropertiesUpdateInput"] = Field(
-        alias="linkedIn", default=None
-    )
-    youtube: Optional["YouTubeFeedPropertiesUpdateInput"] = None
-    notion: Optional["NotionFeedPropertiesUpdateInput"] = None
-    evernote: Optional["EvernoteFeedPropertiesUpdateInput"] = None
-    confluence: Optional["ConfluenceFeedPropertiesUpdateInput"] = None
-    twitter: Optional["TwitterFeedPropertiesUpdateInput"] = None
-    slack: Optional["SlackFeedPropertiesUpdateInput"] = None
-    microsoft_teams: Optional["MicrosoftTeamsFeedPropertiesUpdateInput"] = Field(
-        alias="microsoftTeams", default=None
-    )
-    discord: Optional["DiscordFeedPropertiesUpdateInput"] = None
-    attio: Optional["AttioFeedPropertiesUpdateInput"] = None
-    salesforce: Optional["SalesforceFeedPropertiesUpdateInput"] = None
-    hub_spot_conversations: Optional[
-        "HubSpotConversationsFeedPropertiesUpdateInput"
-    ] = Field(alias="hubSpotConversations", default=None)
-    intercom: Optional["IntercomFeedPropertiesUpdateInput"] = None
-    zendesk: Optional["ZendeskFeedPropertiesUpdateInput"] = None
-    intercom_conversations: Optional[
-        "IntercomConversationsFeedPropertiesUpdateInput"
-    ] = Field(alias="intercomConversations", default=None)
-    productlane: Optional["ProductlaneFeedPropertiesUpdateInput"] = None
-    research: Optional["ResearchFeedPropertiesUpdateInput"] = None
-    entity: Optional["EntityFeedPropertiesUpdateInput"] = None
-    meeting: Optional["MeetingFeedPropertiesUpdateInput"] = None
-    initiative: Optional["InitiativeFeedPropertiesUpdateInput"] = None
-    schedule_policy: Optional["FeedSchedulePolicyInput"] = Field(
-        alias="schedulePolicy", default=None
-    )
-    workflow: Optional["EntityReferenceInput"] = None
-
-
-class DiscordChannelPropertiesInput(BaseModel):
-    bot_token: str = Field(alias="botToken")
-    application_id: Optional[str] = Field(alias="applicationId", default=None)
-    public_key: Optional[str] = Field(alias="publicKey", default=None)
-
-
-class IssueMetadataInput(BaseModel):
-    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
-    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
-    location: Optional["PointInput"] = None
-    title: Optional[str] = None
-    project: Optional[str] = None
-    team: Optional[str] = None
-    status: Optional[str] = None
-    priority: Optional[str] = None
-    type: Optional[str] = None
-    identifier: Optional[str] = None
-    labels: Optional[list[Optional[str]]] = None
-    links: Optional[list[Optional[Any]]] = None
-
-
-class GoogleFeedPropertiesInput(BaseModel):
-    credentials: str
-    container_name: str = Field(alias="containerName")
-    prefix: Optional[str] = None
-
-
-class IntegrationConnectorUpdateInput(BaseModel):
-    service_type: IntegrationServiceTypes = Field(alias="serviceType")
-    uri: Optional[str] = None
-    slack: Optional["SlackIntegrationPropertiesInput"] = None
-    email: Optional["EmailIntegrationPropertiesInput"] = None
-    twitter: Optional["TwitterIntegrationPropertiesInput"] = None
-    mcp: Optional["MCPIntegrationPropertiesInput"] = None
-
-
-class MedicalDrugUpdateInput(BaseModel):
+class MedicalTherapyUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
     uri: Optional[Any] = None
@@ -2149,31 +1543,45 @@ class MedicalDrugUpdateInput(BaseModel):
     boundary: Optional[str] = None
 
 
-class SlackDistributionPropertiesInput(BaseModel):
-    target_operation: Optional[DistributionTargetOperationTypes] = Field(
-        alias="targetOperation", default=None
+class DeepseekModelPropertiesInput(BaseModel):
+    model: DeepseekModels
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
     )
-    target_kind: Optional[DistributionTargetKindTypes] = Field(
-        alias="targetKind", default=None
-    )
-    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
-    target_uri: Optional[str] = Field(alias="targetUri", default=None)
-    channel_id: str = Field(alias="channelId")
-    thread_ts: Optional[str] = Field(alias="threadTs", default=None)
 
 
-class SalesforceDistributionPropertiesInput(BaseModel):
-    target_operation: Optional[DistributionTargetOperationTypes] = Field(
-        alias="targetOperation", default=None
+class CalendarReminderInput(BaseModel):
+    minutes_before: Optional[int] = Field(alias="minutesBefore", default=None)
+    method: Optional[CalendarReminderMethod] = None
+
+
+class ObservationUpdateInput(BaseModel):
+    id: str
+    type: Optional[ObservableTypes] = None
+    observable: Optional["NamedEntityReferenceInput"] = None
+    related: Optional["NamedEntityReferenceInput"] = None
+    related_type: Optional[ObservableTypes] = Field(alias="relatedType", default=None)
+    relation: Optional[str] = None
+    occurrences: Optional[list["ObservationOccurrenceInput"]] = None
+
+
+class GoogleCalendarFeedPropertiesUpdateInput(BaseModel):
+    type: Optional[CalendarListingTypes] = None
+    calendar_id: Optional[str] = Field(alias="calendarId", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    authentication_type: Optional[GoogleCalendarAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
     )
-    target_kind: Optional[DistributionTargetKindTypes] = Field(
-        alias="targetKind", default=None
-    )
-    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
-    target_uri: Optional[str] = Field(alias="targetUri", default=None)
-    object_type: str = Field(alias="objectType")
-    object_id: str = Field(alias="objectId")
-    title: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class DistributionConnectorInput(BaseModel):
@@ -2225,121 +1633,7 @@ class DistributionConnectorInput(BaseModel):
     )
 
 
-class MicrosoftCalendarFeedPropertiesUpdateInput(BaseModel):
-    type: Optional[CalendarListingTypes] = None
-    calendar_id: Optional[str] = Field(alias="calendarId", default=None)
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    authentication_type: Optional[MicrosoftCalendarAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class ClassificationWorkflowStageInput(BaseModel):
-    jobs: Optional[list[Optional["ClassificationWorkflowJobInput"]]] = None
-
-
-class VideoMetadataInput(BaseModel):
-    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
-    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
-    location: Optional["PointInput"] = None
-    width: Optional[int] = None
-    height: Optional[int] = None
-    duration: Optional[str] = None
-    software: Optional[str] = None
-    make: Optional[str] = None
-    model: Optional[str] = None
-
-
-class UserQuotaInput(BaseModel):
-    credits: Optional[int] = None
-
-
-class RerankingStrategyInput(BaseModel):
-    service_type: RerankingModelServiceTypes = Field(alias="serviceType")
-    threshold: Optional[float] = None
-
-
-class OneDriveFoldersInput(BaseModel):
-    authentication_type: Optional[OneDriveAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class GitHubFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[GitHubAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    repository_owner: str = Field(alias="repositoryOwner")
-    repository_name: str = Field(alias="repositoryName")
-    uri: Optional[Any] = None
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    personal_access_token: Optional[str] = Field(
-        alias="personalAccessToken", default=None
-    )
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class HumeExtractionPropertiesInput(BaseModel):
-    confidence_threshold: Optional[float] = Field(
-        alias="confidenceThreshold", default=None
-    )
-
-
-class CrustdataSearchFeedPropertiesInput(BaseModel):
-    signal_type: CrustdataWatcherSignalTypes = Field(alias="signalType")
-    company_domain: Optional[str] = Field(alias="companyDomain", default=None)
-    company_linked_in_url: Optional[str] = Field(
-        alias="companyLinkedInUrl", default=None
-    )
-    company_id: Optional[str] = Field(alias="companyId", default=None)
-    person_linked_in_urls: Optional[list[str]] = Field(
-        alias="personLinkedInUrls", default=None
-    )
-    job_title: Optional[str] = Field(alias="jobTitle", default=None)
-    job_region: Optional[str] = Field(alias="jobRegion", default=None)
-    job_description: Optional[str] = Field(alias="jobDescription", default=None)
-    fields_to_track: Optional[list[str]] = Field(alias="fieldsToTrack", default=None)
-    headcount_growth_min: Optional[Any] = Field(
-        alias="headcountGrowthMin", default=None
-    )
-    headcount_growth_max: Optional[Any] = Field(
-        alias="headcountGrowthMax", default=None
-    )
-    headcount_growth_timeframe: Optional[str] = Field(
-        alias="headcountGrowthTimeframe", default=None
-    )
-    baseline_headcount: Optional[int] = Field(alias="baselineHeadcount", default=None)
-    headcount_growth_from_baseline: Optional[int] = Field(
-        alias="headcountGrowthFromBaseline", default=None
-    )
-    annual_revenue_min: Optional[Any] = Field(alias="annualRevenueMin", default=None)
-    annual_revenue_max: Optional[Any] = Field(alias="annualRevenueMax", default=None)
-    post_categories: Optional[list[str]] = Field(alias="postCategories", default=None)
-    keyword: Optional[str] = None
-    industry: Optional[str] = None
-    funding_round_types: Optional[list[str]] = Field(
-        alias="fundingRoundTypes", default=None
-    )
-    company_department: Optional[str] = Field(alias="companyDepartment", default=None)
-    company_headcount_ranges: Optional[list[str]] = Field(
-        alias="companyHeadcountRanges", default=None
-    )
-    frequency: Optional[int] = None
-    expiration_date: Optional[Any] = Field(alias="expirationDate", default=None)
-
-
-class InvestmentFundUpdateInput(BaseModel):
+class InvestmentUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
     uri: Optional[Any] = None
@@ -2349,95 +1643,293 @@ class InvestmentFundUpdateInput(BaseModel):
     boundary: Optional[str] = None
     amount_currency: Optional[str] = Field(alias="amountCurrency", default=None)
     amount: Optional[Any] = None
-    fund_type: Optional[str] = Field(alias="fundType", default=None)
-    vintage: Optional[int] = None
-    target_size: Optional[Any] = Field(alias="targetSize", default=None)
-    target_size_currency: Optional[str] = Field(
-        alias="targetSizeCurrency", default=None
+    status: Optional[str] = None
+    stage: Optional[str] = None
+    investment_date: Optional[Any] = Field(alias="investmentDate", default=None)
+    round_size: Optional[Any] = Field(alias="roundSize", default=None)
+    round_size_currency: Optional[str] = Field(alias="roundSizeCurrency", default=None)
+    post_valuation: Optional[Any] = Field(alias="postValuation", default=None)
+    post_valuation_currency: Optional[str] = Field(
+        alias="postValuationCurrency", default=None
     )
-
-
-class AzureFileFeedPropertiesUpdateInput(BaseModel):
-    storage_access_key: Optional[str] = Field(alias="storageAccessKey", default=None)
-    account_name: Optional[str] = Field(alias="accountName", default=None)
-    share_name: Optional[str] = Field(alias="shareName", default=None)
-    prefix: Optional[str] = None
-
-
-class RedditFeedPropertiesUpdateInput(BaseModel):
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class GoogleEmailFeedPropertiesInput(BaseModel):
-    type: Optional[EmailListingTypes] = None
-    filter: Optional[str] = None
-    inbox_only: Optional[bool] = Field(alias="inboxOnly", default=None)
-    include_deleted_items: Optional[bool] = Field(
-        alias="includeDeletedItems", default=None
+    shares_owned: Optional[Any] = Field(alias="sharesOwned", default=None)
+    vehicle: Optional[str] = None
+    entry_price_per_share: Optional[Any] = Field(
+        alias="entryPricePerShare", default=None
     )
-    exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems", default=None)
-    include_spam: Optional[bool] = Field(alias="includeSpam", default=None)
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    authentication_type: Optional[GoogleEmailAuthenticationTypes] = Field(
+    current_price_per_share: Optional[Any] = Field(
+        alias="currentPricePerShare", default=None
+    )
+    discount_percent: Optional[Any] = Field(alias="discountPercent", default=None)
+    pro_rata_rights: Optional[bool] = Field(alias="proRataRights", default=None)
+    investor: Optional["EntityReferenceInput"] = None
+    organization: Optional["EntityReferenceInput"] = None
+
+
+class IntercomFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[IntercomAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class DocumentMetadataInput(BaseModel):
-    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
-    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
-    location: Optional["PointInput"] = None
-    title: Optional[str] = None
-    subject: Optional[str] = None
-    author: Optional[str] = None
-    software: Optional[str] = None
-    publisher: Optional[str] = None
-    description: Optional[str] = None
-    summary: Optional[str] = None
-    comments: Optional[str] = None
-    identifier: Optional[str] = None
-    keywords: Optional[list[Optional[str]]] = None
-    links: Optional[list[Optional[Any]]] = None
-    page_count: Optional[int] = Field(alias="pageCount", default=None)
-    worksheet_count: Optional[int] = Field(alias="worksheetCount", default=None)
-    slide_count: Optional[int] = Field(alias="slideCount", default=None)
-    word_count: Optional[int] = Field(alias="wordCount", default=None)
-    line_count: Optional[int] = Field(alias="lineCount", default=None)
-    paragraph_count: Optional[int] = Field(alias="paragraphCount", default=None)
-    character_count: Optional[int] = Field(alias="characterCount", default=None)
-    total_editing_time: Optional[str] = Field(alias="totalEditingTime", default=None)
-    is_encrypted: Optional[bool] = Field(alias="isEncrypted", default=None)
-    has_digital_signature: Optional[bool] = Field(
-        alias="hasDigitalSignature", default=None
-    )
-
-
-class HubSpotMeetingPropertiesInput(BaseModel):
-    authentication_type: Optional[HubSpotFeedAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     access_token: Optional[str] = Field(alias="accessToken", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    include_transcripts: Optional[bool] = Field(
-        alias="includeTranscripts", default=None
-    )
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    type: Optional[FeedListingTypes] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
-class CalendarReminderInput(BaseModel):
-    minutes_before: Optional[int] = Field(alias="minutesBefore", default=None)
-    method: Optional[CalendarReminderMethod] = None
+class MetadataInput(BaseModel):
+    name: str
+    mime_type: Optional[str] = Field(alias="mimeType", default=None)
+    value: Optional[str] = None
+    content: Optional["EntityReferenceInput"] = None
+
+
+class SlackChannelsInput(BaseModel):
+    authentication_type: Optional[SlackAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    token: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class ProductlaneFeedPropertiesUpdateInput(BaseModel):
+    type: Optional[FeedServiceTypes] = None
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    workspace_id: Optional[str] = Field(alias="workspaceId", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class TwelveLabsModelPropertiesInput(BaseModel):
+    model: TwelveLabsModels
+    key: Optional[str] = None
+    embedding_options: Optional[list[TwelveLabsEmbeddingOptions]] = Field(
+        alias="embeddingOptions", default=None
+    )
+    embedding_scopes: Optional[list[TwelveLabsEmbeddingScopes]] = Field(
+        alias="embeddingScopes", default=None
+    )
+    segmentation_method: Optional[TwelveLabsSegmentationMethods] = Field(
+        alias="segmentationMethod", default=None
+    )
+    segmentation_duration: Optional[int] = Field(
+        alias="segmentationDuration", default=None
+    )
+
+
+class PullRequestFeedPropertiesUpdateInput(BaseModel):
+    github: Optional["GitHubPullRequestsFeedPropertiesUpdateInput"] = None
+    gitlab: Optional["GitLabPullRequestsFeedPropertiesUpdateInput"] = None
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class InvestmentFundFacetInput(BaseModel):
+    time_interval: Optional[TimeIntervalTypes] = Field(
+        alias="timeInterval", default=None
+    )
+    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
+    facet: Optional[InvestmentFundFacetTypes] = None
+
+
+class SiteFeedPropertiesInput(BaseModel):
+    type: FeedServiceTypes
+    is_recursive: Optional[bool] = Field(alias="isRecursive", default=None)
+    allowed_paths: Optional[list[str]] = Field(alias="allowedPaths", default=None)
+    excluded_paths: Optional[list[str]] = Field(alias="excludedPaths", default=None)
+    s_3: Optional["AmazonFeedPropertiesInput"] = Field(alias="s3", default=None)
+    azure_blob: Optional["AzureBlobFeedPropertiesInput"] = Field(
+        alias="azureBlob", default=None
+    )
+    azure_file: Optional["AzureFileFeedPropertiesInput"] = Field(
+        alias="azureFile", default=None
+    )
+    google: Optional["GoogleFeedPropertiesInput"] = None
+    share_point: Optional["SharePointFeedPropertiesInput"] = Field(
+        alias="sharePoint", default=None
+    )
+    one_drive: Optional["OneDriveFeedPropertiesInput"] = Field(
+        alias="oneDrive", default=None
+    )
+    google_drive: Optional["GoogleDriveFeedPropertiesInput"] = Field(
+        alias="googleDrive", default=None
+    )
+    github: Optional["GitHubFeedPropertiesInput"] = None
+    gitlab: Optional["GitLabFeedPropertiesInput"] = None
+    dropbox: Optional["DropboxFeedPropertiesInput"] = None
+    box: Optional["BoxFeedPropertiesInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class BoundingBoxInput(BaseModel):
+    left: Optional[float] = None
+    top: Optional[float] = None
+    width: Optional[float] = None
+    height: Optional[float] = None
+
+
+class GitLabDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
+    project_path: str = Field(alias="projectPath")
+    title: Optional[str] = None
+    labels: Optional[list[str]] = None
+    assignees: Optional[list[str]] = None
+    milestone: Optional[int] = None
+
+
+class GitHubDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
+    repository_owner: str = Field(alias="repositoryOwner")
+    repository_name: str = Field(alias="repositoryName")
+    title: Optional[str] = None
+    labels: Optional[list[str]] = None
+    assignees: Optional[list[str]] = None
+    milestone: Optional[int] = None
+
+
+class GoogleCalendarDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
+    calendar_id: Optional[str] = Field(alias="calendarId", default=None)
+    summary: Optional[str] = None
+    start_date_time: Optional[Any] = Field(alias="startDateTime", default=None)
+    end_date_time: Optional[Any] = Field(alias="endDateTime", default=None)
+    time_zone: Optional[str] = Field(alias="timeZone", default=None)
+    location: Optional[str] = None
+    attendees: Optional[list[str]] = None
+
+
+class ElevenLabsPublishingPropertiesInput(BaseModel):
+    model: Optional[ElevenLabsModels] = None
+    voice: Optional[str] = None
+
+
+class PersonUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+    address: Optional["AddressInput"] = None
+    given_name: Optional[str] = Field(alias="givenName", default=None)
+    family_name: Optional[str] = Field(alias="familyName", default=None)
+    phone_number: Optional[str] = Field(alias="phoneNumber", default=None)
+    email: Optional[str] = None
+    birth_date: Optional[Any] = Field(alias="birthDate", default=None)
+    title: Optional[str] = None
+    occupation: Optional[str] = None
+    education: Optional[str] = None
+
+
+class ReplicaInput(BaseModel):
+    name: str
+    type: EntityTypes
+    content: Optional["ReplicaContentPropertiesInput"] = None
+    conversation: Optional["ReplicaConversationPropertiesInput"] = None
+    git: Optional["ReplicaGitPropertiesInput"] = None
+    connector: "EntityReferenceInput"
+    marker_slug: Optional[str] = Field(alias="markerSlug", default=None)
+    artifact_types: list[ReplicaArtifactTypes] = Field(alias="artifactTypes")
+    synchronize_deletes: Optional[bool] = Field(
+        alias="synchronizeDeletes", default=None
+    )
+    commit_message: Optional[str] = Field(alias="commitMessage", default=None)
+    schedule_policy: Optional["ReplicaSchedulePolicyInput"] = Field(
+        alias="schedulePolicy", default=None
+    )
+
+
+class AmazonFeedPropertiesUpdateInput(BaseModel):
+    access_key: Optional[str] = Field(alias="accessKey", default=None)
+    secret_access_key: Optional[str] = Field(alias="secretAccessKey", default=None)
+    bucket_name: Optional[str] = Field(alias="bucketName", default=None)
+    prefix: Optional[str] = None
+    region: Optional[str] = None
+    custom_endpoint: Optional[str] = Field(alias="customEndpoint", default=None)
+
+
+class GitLabCommitsFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[GitLabCommitAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    project_path: str = Field(alias="projectPath")
+    branch: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class GoogleAuthenticationPropertiesInput(BaseModel):
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
+
+
+class ModelFilter(BaseModel):
+    types: Optional[list[ModelTypes]] = None
+    service_types: Optional[list[ModelServiceTypes]] = Field(
+        alias="serviceTypes", default=None
+    )
+
+
+class EventUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+    address: Optional["AddressInput"] = None
+    start_date: Optional[Any] = Field(alias="startDate", default=None)
+    end_date: Optional[Any] = Field(alias="endDate", default=None)
+    availability_start_date: Optional[Any] = Field(
+        alias="availabilityStartDate", default=None
+    )
+    availability_end_date: Optional[Any] = Field(
+        alias="availabilityEndDate", default=None
+    )
+    price: Optional[Any] = None
+    min_price: Optional[Any] = Field(alias="minPrice", default=None)
+    max_price: Optional[Any] = Field(alias="maxPrice", default=None)
+    price_currency: Optional[str] = Field(alias="priceCurrency", default=None)
+    is_accessible_for_free: Optional[bool] = Field(
+        alias="isAccessibleForFree", default=None
+    )
+    typical_age_range: Optional[str] = Field(alias="typicalAgeRange", default=None)
+    organizer: Optional[str] = None
+    performer: Optional[str] = None
+    sponsor: Optional[str] = None
+    event_status: Optional[str] = Field(alias="eventStatus", default=None)
 
 
 class IngestionContentFilterInput(BaseModel):
@@ -2449,19 +1941,7 @@ class IngestionContentFilterInput(BaseModel):
     excluded_paths: Optional[list[str]] = Field(alias="excludedPaths", default=None)
 
 
-class BoxFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[BoxAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    folder_id: Optional[str] = Field(alias="folderId", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    redirect_uri: Optional[str] = Field(alias="redirectUri", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class WorkflowFilter(BaseModel):
+class CollectionFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
     direction: Optional[OrderDirectionTypes] = None
@@ -2481,81 +1961,51 @@ class WorkflowFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
-
-
-class AmazonFeedPropertiesUpdateInput(BaseModel):
-    access_key: Optional[str] = Field(alias="accessKey", default=None)
-    secret_access_key: Optional[str] = Field(alias="secretAccessKey", default=None)
-    bucket_name: Optional[str] = Field(alias="bucketName", default=None)
-    prefix: Optional[str] = None
-    region: Optional[str] = None
-    custom_endpoint: Optional[str] = Field(alias="customEndpoint", default=None)
-
-
-class ModelFilter(BaseModel):
-    types: Optional[list[ModelTypes]] = None
-    service_types: Optional[list[ModelServiceTypes]] = Field(
-        alias="serviceTypes", default=None
+    types: Optional[list[CollectionTypes]] = None
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
     )
 
 
-class IssueFeedPropertiesUpdateInput(BaseModel):
-    include_attachments: Optional[bool] = Field(
-        alias="includeAttachments", default=None
+class MentionReferenceInput(BaseModel):
+    type: Optional[ObservableTypes] = None
+    observable: Optional["NamedEntityReferenceInput"] = None
+    start: Optional[int] = None
+    end: Optional[int] = None
+
+
+class MeetingFeedPropertiesInput(BaseModel):
+    type: FeedServiceTypes
+    content_type: Optional[MeetingContentTypes] = Field(
+        alias="contentType", default=None
     )
-    jira: Optional["AtlassianJiraFeedPropertiesUpdateInput"] = None
-    linear: Optional["LinearFeedPropertiesUpdateInput"] = None
-    github: Optional["GitHubIssuesFeedPropertiesUpdateInput"] = None
-    gitlab: Optional["GitLabIssuesFeedPropertiesUpdateInput"] = None
-    intercom: Optional["IntercomTicketsFeedPropertiesUpdateInput"] = None
-    zendesk: Optional["ZendeskTicketsFeedPropertiesUpdateInput"] = None
-    trello: Optional["TrelloFeedPropertiesUpdateInput"] = None
-    attio: Optional["AttioTasksFeedPropertiesUpdateInput"] = None
-    salesforce: Optional["SalesforceTasksFeedPropertiesUpdateInput"] = None
-    hub_spot: Optional["HubSpotTasksFeedPropertiesUpdateInput"] = Field(
+    fireflies: Optional["FirefliesFeedPropertiesInput"] = None
+    attio: Optional["AttioMeetingPropertiesInput"] = None
+    fathom: Optional["FathomPropertiesInput"] = None
+    zoom: Optional["ZoomPropertiesInput"] = None
+    hub_spot: Optional["HubSpotMeetingPropertiesInput"] = Field(
         alias="hubSpot", default=None
     )
-    asana: Optional["AsanaFeedPropertiesUpdateInput"] = None
-    monday: Optional["MondayFeedPropertiesUpdateInput"] = None
-    productlane: Optional["ProductlaneThreadsFeedPropertiesUpdateInput"] = None
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    krisp: Optional["KrispPropertiesInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
-class ContentIndexingConnectorInput(BaseModel):
-    type: Optional[ContentIndexingServiceTypes] = None
-    content_type: Optional[ContentTypes] = Field(alias="contentType", default=None)
-    file_type: Optional[FileTypes] = Field(alias="fileType", default=None)
+class ContentFacetInput(BaseModel):
+    time_interval: Optional[TimeIntervalTypes] = Field(
+        alias="timeInterval", default=None
+    )
+    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
+    facet: Optional[ContentFacetTypes] = None
 
 
-class Int64RangeFilter(BaseModel):
-    from_: Optional[Any] = Field(alias="from", default=None)
-    to: Optional[Any] = None
-
-
-class ContentPublishingConnectorInput(BaseModel):
-    type: ContentPublishingServiceTypes
-    format: ContentPublishingFormats
-    eleven_labs: Optional["ElevenLabsPublishingPropertiesInput"] = Field(
-        alias="elevenLabs", default=None
+class GustoHRISFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[GustoAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
     )
-    open_ai_image: Optional["OpenAIImagePublishingPropertiesInput"] = Field(
-        alias="openAIImage", default=None
-    )
-    google_image: Optional["GoogleImagePublishingPropertiesInput"] = Field(
-        alias="googleImage", default=None
-    )
-    quiver_image: Optional["QuiverImagePublishingPropertiesInput"] = Field(
-        alias="quiverImage", default=None
-    )
-    open_ai_video: Optional["OpenAIVideoPublishingPropertiesInput"] = Field(
-        alias="openAIVideo", default=None
-    )
-    google_video: Optional["GoogleVideoPublishingPropertiesInput"] = Field(
-        alias="googleVideo", default=None
-    )
-    parallel: Optional["ParallelPublishingPropertiesInput"] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    company_id: Optional[str] = Field(alias="companyId", default=None)
 
 
 class AttioMeetingPropertiesInput(BaseModel):
@@ -2572,91 +2022,164 @@ class AttioMeetingPropertiesInput(BaseModel):
     type: Optional[FeedListingTypes] = None
 
 
-class FactStrategyUpdateInput(BaseModel):
-    fact_limit: Optional[int] = Field(alias="factLimit", default=None)
+class AgentChannelInput(BaseModel):
+    type: AgentChannelTypes
+    identifier: str
+    instructions: Optional[str] = None
+    label: Optional[str] = None
 
 
-class SharePointFoldersInput(BaseModel):
-    authentication_type: SharePointAuthenticationTypes = Field(
-        alias="authenticationType"
+class AsanaFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[AsanaAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
     )
-    tenant_id: Optional[str] = Field(alias="tenantId", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    workspace_id: Optional[str] = Field(alias="workspaceId", default=None)
+    project_id: Optional[str] = Field(alias="projectId", default=None)
+
+
+class BambooHRHRISFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[BambooHRAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    company_domain: Optional[str] = Field(alias="companyDomain", default=None)
+
+
+class AmazonFeedPropertiesInput(BaseModel):
+    access_key: str = Field(alias="accessKey")
+    secret_access_key: str = Field(alias="secretAccessKey")
+    bucket_name: str = Field(alias="bucketName")
+    prefix: Optional[str] = None
+    region: Optional[str] = None
+    custom_endpoint: Optional[str] = Field(alias="customEndpoint", default=None)
+
+
+class PointCloudMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    software: Optional[str] = None
+    description: Optional[str] = None
+    identifier: Optional[str] = None
+    point_count: Optional[Any] = Field(alias="pointCount", default=None)
+
+
+class NotionDatabasesInput(BaseModel):
+    authentication_type: Optional[NotionAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    token: Optional[str] = None
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class StorageGateInput(BaseModel):
+    type: StorageGateTypes
+    specification: Optional["EntityReferenceInput"] = None
+    rules: Optional[list["StorageGateRuleInput"]] = None
+    uri: Optional[Any] = None
+    on_reject: Optional[StorageGateRejectionActions] = Field(
+        alias="onReject", default=None
+    )
+
+
+class CrustdataEntityFeedPropertiesInput(BaseModel):
+    person_filters: Optional["CrustdataPersonDiscoveryFilterInput"] = Field(
+        alias="personFilters", default=None
+    )
+    company_filters: Optional["CrustdataCompanyDiscoveryFilterInput"] = Field(
+        alias="companyFilters", default=None
+    )
+
+
+class EntityReferenceFilter(BaseModel):
+    id: str
+
+
+class LinearProjectsInput(BaseModel):
+    authentication_type: Optional[LinearAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    key: Optional[str] = None
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
 
 
-class LabelUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
+class AzureOpenAIModelPropertiesInput(BaseModel):
+    model: AzureOpenAIModels
+    deployment_name: Optional[str] = Field(alias="deploymentName", default=None)
+    key: Optional[str] = None
+    endpoint: Optional[Any] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+
+
+class ToolDefinitionInput(BaseModel):
+    name: str
     description: Optional[str] = None
+    schema_: str = Field(alias="schema")
 
 
-class FirefliesFeedPropertiesInput(BaseModel):
-    api_key: str = Field(alias="apiKey")
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    type: Optional[FeedListingTypes] = None
-
-
-class GraphInput(BaseModel):
-    types: Optional[list[ObservableTypes]] = None
-
-
-class RSSFeedPropertiesUpdateInput(BaseModel):
+class ConfluenceFeedPropertiesUpdateInput(BaseModel):
+    is_recursive: Optional[bool] = Field(alias="isRecursive", default=None)
+    authentication_type: Optional[ConfluenceAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    uri: Optional[str] = None
+    email: Optional[str] = None
+    token: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    cloud_id: Optional[str] = Field(alias="cloudId", default=None)
+    type: Optional[ConfluenceTypes] = None
+    space_keys: Optional[list[str]] = Field(alias="spaceKeys", default=None)
+    identifiers: Optional[list[str]] = None
+    include_attachments: Optional[bool] = Field(
+        alias="includeAttachments", default=None
+    )
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
-class ModelTextExtractionPropertiesInput(BaseModel):
-    specification: Optional["EntityReferenceInput"] = None
-    token_threshold: Optional[int] = Field(alias="tokenThreshold", default=None)
-    time_budget: Optional[Any] = Field(alias="timeBudget", default=None)
-    entity_budget: Optional[int] = Field(alias="entityBudget", default=None)
-    page_budget: Optional[int] = Field(alias="pageBudget", default=None)
-    token_budget: Optional[int] = Field(alias="tokenBudget", default=None)
-    extraction_type: Optional[ExtractionTypes] = Field(
-        alias="extractionType", default=None
+class BoxFoldersInput(BaseModel):
+    authentication_type: Optional[BoxAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
     )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    redirect_uri: Optional[str] = Field(alias="redirectUri", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
-class EmotionUpdateInput(BaseModel):
+class ContentFilterLevel(BaseModel):
+    feeds: Optional[list["EntityReferenceFilter"]] = None
+    workflows: Optional[list["EntityReferenceFilter"]] = None
+    collections: Optional[list["EntityReferenceFilter"]] = None
+    users: Optional[list["EntityReferenceFilter"]] = None
+    observations: Optional[list["ObservationReferenceFilter"]] = None
+
+
+class H3IndexFilter(BaseModel):
+    resolution: Optional[H3ResolutionTypes] = None
+    key: Optional[str] = None
+
+
+class EntityReferenceInput(BaseModel):
     id: str
-    name: Optional[str] = None
-    description: Optional[str] = None
-
-
-class MedicalConditionFacetInput(BaseModel):
-    time_interval: Optional[TimeIntervalTypes] = Field(
-        alias="timeInterval", default=None
-    )
-    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
-    facet: Optional[MedicalConditionFacetTypes] = None
-
-
-class YouTubeFeedPropertiesInput(BaseModel):
-    type: YouTubeTypes
-    video_name: Optional[str] = Field(alias="videoName", default=None)
-    video_identifiers: Optional[list[str]] = Field(
-        alias="videoIdentifiers", default=None
-    )
-    channel_identifier: Optional[str] = Field(alias="channelIdentifier", default=None)
-    playlist_identifier: Optional[str] = Field(alias="playlistIdentifier", default=None)
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class ClassificationWorkflowJobInput(BaseModel):
-    connector: Optional["ContentClassificationConnectorInput"] = None
-
-
-class DiscordGuildsInput(BaseModel):
-    token: str
-
-
-class RetrievalStrategyInput(BaseModel):
-    type: RetrievalStrategyTypes
-    content_limit: Optional[int] = Field(alias="contentLimit", default=None)
-    disable_fallback: Optional[bool] = Field(alias="disableFallback", default=None)
 
 
 class RepoFilter(BaseModel):
@@ -2697,11 +2220,183 @@ class RepoFilter(BaseModel):
     repos: Optional[list["EntityReferenceFilter"]] = None
 
 
-class MistralModelPropertiesUpdateInput(BaseModel):
-    model: Optional[MistralModels] = None
+class CrustdataPersonDiscoveryFilterInput(BaseModel):
+    titles: Optional[list[str]] = None
+    seniority_levels: Optional[list[str]] = Field(alias="seniorityLevels", default=None)
+    function_categories: Optional[list[str]] = Field(
+        alias="functionCategories", default=None
+    )
+    company_names: Optional[list[str]] = Field(alias="companyNames", default=None)
+    company_domains: Optional[list[str]] = Field(alias="companyDomains", default=None)
+    company_linked_in_urls: Optional[list[str]] = Field(
+        alias="companyLinkedInUrls", default=None
+    )
+    industries: Optional[list[str]] = None
+    regions: Optional[list[str]] = None
+    countries: Optional[list[str]] = None
+    skills: Optional[list[str]] = None
+    schools: Optional[list[str]] = None
+    min_years_experience: Optional[int] = Field(
+        alias="minYearsExperience", default=None
+    )
+    max_years_experience: Optional[int] = Field(
+        alias="maxYearsExperience", default=None
+    )
+    min_connections: Optional[int] = Field(alias="minConnections", default=None)
+    recently_changed_jobs: Optional[bool] = Field(
+        alias="recentlyChangedJobs", default=None
+    )
+
+
+class DiscordGuildsInput(BaseModel):
+    token: str
+
+
+class KrispPropertiesUpdateInput(BaseModel):
+    auth_token: Optional[str] = Field(alias="authToken", default=None)
+    type: Optional[FeedListingTypes] = None
+
+
+class AzureFileFeedPropertiesInput(BaseModel):
+    storage_access_key: str = Field(alias="storageAccessKey")
+    account_name: str = Field(alias="accountName")
+    share_name: str = Field(alias="shareName")
+    prefix: Optional[str] = None
+
+
+class ReplicaSchedulePolicyInput(BaseModel):
+    recurrence_type: Optional[TimedPolicyRecurrenceTypes] = Field(
+        alias="recurrenceType", default=None
+    )
+    repeat_interval: Optional[Any] = Field(alias="repeatInterval", default=None)
+
+
+class TwelveLabsModelPropertiesUpdateInput(BaseModel):
+    model: Optional[TwelveLabsModels] = None
+    key: Optional[str] = None
+    embedding_options: Optional[list[TwelveLabsEmbeddingOptions]] = Field(
+        alias="embeddingOptions", default=None
+    )
+    embedding_scopes: Optional[list[TwelveLabsEmbeddingScopes]] = Field(
+        alias="embeddingScopes", default=None
+    )
+    segmentation_method: Optional[TwelveLabsSegmentationMethods] = Field(
+        alias="segmentationMethod", default=None
+    )
+    segmentation_duration: Optional[int] = Field(
+        alias="segmentationDuration", default=None
+    )
+
+
+class GoogleVideoPublishingPropertiesInput(BaseModel):
+    model: Optional[GoogleVideoModels] = None
+    seconds: Optional[int] = None
+    aspect_ratio: Optional[VideoAspectRatioTypes] = Field(
+        alias="aspectRatio", default=None
+    )
+    seed: Optional["EntityReferenceInput"] = None
+
+
+class CalendarFeedPropertiesInput(BaseModel):
+    type: FeedServiceTypes
+    include_attachments: Optional[bool] = Field(
+        alias="includeAttachments", default=None
+    )
+    enable_meeting_recording: Optional[bool] = Field(
+        alias="enableMeetingRecording", default=None
+    )
+    meeting_bot_name: Optional[str] = Field(alias="meetingBotName", default=None)
+    google: Optional["GoogleCalendarFeedPropertiesInput"] = None
+    microsoft: Optional["MicrosoftCalendarFeedPropertiesInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class FactUpdateInput(BaseModel):
+    id: str
+    text: Optional[str] = None
+    valid_at: Optional[Any] = Field(alias="validAt", default=None)
+    invalid_at: Optional[Any] = Field(alias="invalidAt", default=None)
+
+
+class BambooHROptionsInput(BaseModel):
+    company_domain: str = Field(alias="companyDomain")
+    api_key: str = Field(alias="apiKey")
+
+
+class GoogleImagePublishingPropertiesInput(BaseModel):
+    model: Optional[GoogleImageModels] = None
+    count: Optional[int] = None
+    seed: Optional["EntityReferenceInput"] = None
+    resolution: Optional[GoogleImageResolutionTypes] = None
+    aspect_ratio: Optional[GoogleImageAspectRatioTypes] = Field(
+        alias="aspectRatio", default=None
+    )
+
+
+class TrelloFeedPropertiesInput(BaseModel):
+    key: str
+    token: str
+    type: TrelloTypes
+    identifiers: list[str]
+
+
+class IndexingWorkflowStageInput(BaseModel):
+    jobs: Optional[list[Optional["IndexingWorkflowJobInput"]]] = None
+
+
+class ContentCriteriaInput(BaseModel):
+    in_last: Optional[Any] = Field(alias="inLast", default=None)
+    in_next: Optional[Any] = Field(alias="inNext", default=None)
+    date_range: Optional["DateRangeInput"] = Field(alias="dateRange", default=None)
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeInput"] = Field(
+        alias="creationDateRange", default=None
+    )
+    types: Optional[list[ContentTypes]] = None
+    file_types: Optional[list[FileTypes]] = Field(alias="fileTypes", default=None)
+    formats: Optional[list[Optional[str]]] = None
+    file_extensions: Optional[list[str]] = Field(alias="fileExtensions", default=None)
+    file_size_range: Optional["Int64RangeInput"] = Field(
+        alias="fileSizeRange", default=None
+    )
+    similar_contents: Optional[list["EntityReferenceInput"]] = Field(
+        alias="similarContents", default=None
+    )
+    contents: Optional[list["EntityReferenceInput"]] = None
+    feeds: Optional[list["EntityReferenceInput"]] = None
+    workflows: Optional[list["EntityReferenceInput"]] = None
+    collections: Optional[list["EntityReferenceInput"]] = None
+    observations: Optional[list["ObservationCriteriaInput"]] = None
+    or_: Optional[list["ContentCriteriaLevelInput"]] = Field(alias="or", default=None)
+    and_: Optional[list["ContentCriteriaLevelInput"]] = Field(alias="and", default=None)
+    has_observations: Optional[bool] = Field(alias="hasObservations", default=None)
+    has_feeds: Optional[bool] = Field(alias="hasFeeds", default=None)
+    has_collections: Optional[bool] = Field(alias="hasCollections", default=None)
+    has_workflows: Optional[bool] = Field(alias="hasWorkflows", default=None)
+    collection_mode: Optional[FilterMode] = Field(alias="collectionMode", default=None)
+    observation_mode: Optional[FilterMode] = Field(
+        alias="observationMode", default=None
+    )
+
+
+class AsanaFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[AsanaAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    workspace_id: Optional[str] = Field(alias="workspaceId", default=None)
+    project_id: Optional[str] = Field(alias="projectId", default=None)
+
+
+class CohereModelPropertiesInput(BaseModel):
+    model: CohereModels
     model_name: Optional[str] = Field(alias="modelName", default=None)
     key: Optional[str] = None
-    endpoint: Optional[Any] = None
     temperature: Optional[float] = None
     probability: Optional[float] = None
     token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
@@ -2711,16 +2406,105 @@ class MistralModelPropertiesUpdateInput(BaseModel):
     chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
 
 
-class AsanaProjectsInput(BaseModel):
-    personal_access_token: str = Field(alias="personalAccessToken")
-    workspace_id: str = Field(alias="workspaceId")
+class PreparationWorkflowJobInput(BaseModel):
+    connector: Optional["FilePreparationConnectorInput"] = None
 
 
-class GitLabIssuesFeedPropertiesInput(BaseModel):
+class FactFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    content: Optional["EntityReferenceFilter"] = None
+    conversation: Optional["EntityReferenceFilter"] = None
+    valid_at: Optional[Any] = Field(alias="validAt", default=None)
+    mentions: Optional[list[Optional["MentionReferenceFilter"]]] = None
+    feeds: Optional[list[Optional["EntityReferenceFilter"]]] = None
+    categories: Optional[list[Optional[FactCategory]]] = None
+    min_confidence: Optional[float] = Field(alias="minConfidence", default=None)
+    similar_facts: Optional[list[Optional["EntityReferenceFilter"]]] = Field(
+        alias="similarFacts", default=None
+    )
+    facts: Optional[list[Optional["EntityReferenceFilter"]]] = None
+    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
+    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
+    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
+
+
+class MicrosoftTeamsTeamsInput(BaseModel):
+    authentication_type: Optional[MicrosoftTeamsAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class GoogleContactsCRMFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[GoogleContactsAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
+
+
+class SkillFeedPropertiesUpdateInput(BaseModel):
+    is_recursive: Optional[bool] = Field(alias="isRecursive", default=None)
+    allowed_paths: Optional[list[str]] = Field(alias="allowedPaths", default=None)
+    excluded_paths: Optional[list[str]] = Field(alias="excludedPaths", default=None)
+    github: Optional["GitHubFeedPropertiesUpdateInput"] = None
+    gitlab: Optional["GitLabFeedPropertiesUpdateInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class BoxFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[BoxAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    folder_id: Optional[str] = Field(alias="folderId", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    redirect_uri: Optional[str] = Field(alias="redirectUri", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class MedicalDrugFacetInput(BaseModel):
+    time_interval: Optional[TimeIntervalTypes] = Field(
+        alias="timeInterval", default=None
+    )
+    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
+    facet: Optional[MedicalDrugFacetTypes] = None
+
+
+class GitLabFeedPropertiesInput(BaseModel):
     authentication_type: Optional[GitLabAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
     project_path: str = Field(alias="projectPath")
+    branch: Optional[str] = None
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
@@ -2730,46 +2514,204 @@ class GitLabIssuesFeedPropertiesInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
 
 
-class RepoInput(BaseModel):
-    name: str
-    uri: Optional[Any] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
-
-
-class ConversationGraphInput(BaseModel):
-    types: Optional[list[ObservableTypes]] = None
-
-
-class GustoCompaniesInput(BaseModel):
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-    refresh_token: str = Field(alias="refreshToken")
-
-
-class IntercomFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[IntercomAuthenticationTypes] = Field(
+class GitHubMilestonesFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[GitHubAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
-    access_token: Optional[str] = Field(alias="accessToken", default=None)
+    uri: Optional[str] = None
+    repository_owner: Optional[str] = Field(alias="repositoryOwner", default=None)
+    repository_name: Optional[str] = Field(alias="repositoryName", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
+    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+
+
+class JinaModelPropertiesUpdateInput(BaseModel):
+    model: Optional[JinaModels] = None
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+
+
+class GitHubFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[GitHubAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    repository_owner: str = Field(alias="repositoryOwner")
+    repository_name: str = Field(alias="repositoryName")
+    uri: Optional[Any] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class JinaModelPropertiesInput(BaseModel):
+    model: JinaModels
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+
+
+class ProductlaneCRMFeedPropertiesInput(BaseModel):
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    type: Optional[FeedListingTypes] = None
+
+
+class EntityRelationshipsFilter(BaseModel):
+    id: str
+    limit: Optional[int] = None
+    relationship_types: Optional[list[str]] = Field(
+        alias="relationshipTypes", default=None
+    )
+    include_metadata: Optional[bool] = Field(alias="includeMetadata", default=None)
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
+
+
+class FactInput(BaseModel):
+    content: Optional["EntityReferenceInput"] = None
+    conversation: Optional["EntityReferenceInput"] = None
+    persona: Optional["EntityReferenceInput"] = None
+    text: str
+    valid_at: Optional[Any] = Field(alias="validAt", default=None)
+    invalid_at: Optional[Any] = Field(alias="invalidAt", default=None)
+    feeds: Optional[list[Optional["EntityReferenceInput"]]] = None
+    assertions: Optional[list[Optional["FactAssertionInput"]]] = None
+    category: Optional[FactCategory] = None
+    confidence: Optional[float] = None
+
+
+class TextContentInput(BaseModel):
+    name: str
+    text: str
+
+
+class LinearDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
+    team_id: Optional[str] = Field(alias="teamId", default=None)
+    title: Optional[str] = None
+    priority: Optional[int] = None
+    state_id: Optional[str] = Field(alias="stateId", default=None)
+    assignee_id: Optional[str] = Field(alias="assigneeId", default=None)
+    label_ids: Optional[list[str]] = Field(alias="labelIds", default=None)
+    project_id: Optional[str] = Field(alias="projectId", default=None)
+
+
+class NamedEntityReferenceInput(BaseModel):
+    id: Optional[str] = None
+    name: Optional[str] = None
+
+
+class JiraProjectsInput(BaseModel):
+    authentication_type: Optional[JiraAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    uri: Optional[str] = None
+    email_address: Optional[str] = Field(alias="emailAddress", default=None)
+    token: Optional[str] = None
+    connector: Optional["EntityReferenceInput"] = None
+    cloud_id: Optional[str] = Field(alias="cloudId", default=None)
+
+
+class FactGraphInput(BaseModel):
+    types: Optional[list[ObservableTypes]] = None
+
+
+class PersonReferenceInput(BaseModel):
+    name: Optional[str] = None
+    given_name: Optional[str] = Field(alias="givenName", default=None)
+    family_name: Optional[str] = Field(alias="familyName", default=None)
+    email: Optional[str] = None
+
+
+class TeamsChannelPropertiesInput(BaseModel):
+    bot_id: str = Field(alias="botId")
+    bot_password: str = Field(alias="botPassword")
+    tenant_id: Optional[str] = Field(alias="tenantId", default=None)
+
+
+class ViewFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    types: Optional[list[Optional[ViewTypes]]] = None
+
+
+class OAuthAuthenticationPropertiesInput(BaseModel):
+    provider: OAuthProviders
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    access_token: Optional[str] = Field(alias="accessToken", default=None)
+    redirect_uri: Optional[str] = Field(alias="redirectUri", default=None)
+    metadata: Optional[str] = None
+
+
+class WebFeedPropertiesInput(BaseModel):
+    uri: Any
+    allowed_paths: Optional[list[str]] = Field(alias="allowedPaths", default=None)
+    excluded_paths: Optional[list[str]] = Field(alias="excludedPaths", default=None)
+    include_files: Optional[bool] = Field(alias="includeFiles", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
-class ConnectorUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    authentication: Optional["AuthenticationConnectorInput"] = None
-    integration: Optional["IntegrationConnectorInput"] = None
-    channel: Optional["ChannelConnectorUpdateInput"] = None
+class CategoryInput(BaseModel):
+    name: str
+    description: Optional[str] = None
 
 
-class MedicalConditionFilter(BaseModel):
+class HubSpotTasksFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[HubSpotIssueAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    access_token: Optional[str] = Field(alias="accessToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class ResearchFeedPropertiesInput(BaseModel):
+    type: Optional[FeedServiceTypes] = None
+    query: str
+    parallel: Optional["ParallelFeedPropertiesInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class MedicalDeviceFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
     direction: Optional[OrderDirectionTypes] = None
@@ -2801,93 +2743,44 @@ class MedicalConditionFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    similar_conditions: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="similarConditions", default=None
+    similar_devices: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="similarDevices", default=None
     )
-    medical_conditions: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="medicalConditions", default=None
+    medical_devices: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="medicalDevices", default=None
     )
 
 
-class EvernoteTagsInput(BaseModel):
-    connector: "EntityReferenceInput"
+class PromptClassificationRuleInput(BaseModel):
+    if_: Optional[str] = Field(alias="if", default=None)
+    then: Optional[str] = None
 
 
-class MetadataUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    mime_type: Optional[str] = Field(alias="mimeType", default=None)
-    value: Optional[str] = None
-    content: Optional["EntityReferenceInput"] = None
-
-
-class AgentSchedulePolicyInput(BaseModel):
-    recurrence_type: Optional[TimedPolicyRecurrenceTypes] = Field(
-        alias="recurrenceType", default=None
-    )
-    repeat_interval: Optional[Any] = Field(alias="repeatInterval", default=None)
-    cron: Optional[str] = None
-    time_zone_id: Optional[str] = Field(alias="timeZoneId", default=None)
-
-
-class AttioFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[AttioFeedAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    api_key: Optional[str] = Field(alias="apiKey", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class MondayFeedPropertiesInput(BaseModel):
-    api_token: str = Field(alias="apiToken")
-    board_id: str = Field(alias="boardId")
-
-
-class PostMetadataInput(BaseModel):
-    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
-    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
-    location: Optional["PointInput"] = None
-    identifier: Optional[str] = None
-    title: Optional[str] = None
-    author: Optional["PersonReferenceInput"] = None
-    upvotes: Optional[int] = None
-    downvotes: Optional[int] = None
-    comment_count: Optional[int] = Field(alias="commentCount", default=None)
-    links: Optional[list[Optional["LinkReferenceInput"]]] = None
-
-
-class ParallelEnrichmentPropertiesInput(BaseModel):
-    processor: Optional[ParallelProcessors] = None
-    is_synchronous: Optional[bool] = Field(alias="isSynchronous", default=None)
-
-
-class LinearFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[LinearAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    key: Optional[str] = None
-    project: Optional[str] = None
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class MedicalContraindicationInput(BaseModel):
+class PersonInput(BaseModel):
     name: str
     uri: Optional[Any] = None
     identifier: Optional[str] = None
     description: Optional[str] = None
     location: Optional["PointInput"] = None
     boundary: Optional[str] = None
+    address: Optional["AddressInput"] = None
+    given_name: Optional[str] = Field(alias="givenName", default=None)
+    family_name: Optional[str] = Field(alias="familyName", default=None)
+    phone_number: Optional[str] = Field(alias="phoneNumber", default=None)
+    email: Optional[str] = None
+    birth_date: Optional[Any] = Field(alias="birthDate", default=None)
+    title: Optional[str] = None
+    occupation: Optional[str] = None
+    education: Optional[str] = None
 
 
-class SpecificationFilter(BaseModel):
+class MicrosoftAuthenticationPropertiesInput(BaseModel):
+    tenant_id: str = Field(alias="tenantId")
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
+
+
+class InvestmentFundFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
     direction: Optional[OrderDirectionTypes] = None
@@ -2907,216 +2800,49 @@ class SpecificationFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
-    types: Optional[list[SpecificationTypes]] = None
-    service_types: Optional[list[ModelServiceTypes]] = Field(
-        alias="serviceTypes", default=None
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
+    feeds: Optional[list["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
+    address: Optional["AddressFilter"] = None
+    location: Optional["PointFilter"] = None
+    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
+    boundaries: Optional[list[str]] = None
+    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
+    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
+    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
+    similar_investment_funds: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="similarInvestmentFunds", default=None
+    )
+    investment_funds: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="investmentFunds", default=None
     )
 
 
-class ToolDefinitionInput(BaseModel):
+class ContentInput(BaseModel):
     name: str
+    type: Optional[ContentTypes] = None
+    uri: Optional[Any] = None
     description: Optional[str] = None
-    schema_: str = Field(alias="schema")
+    text: Optional[str] = None
+    identifier: Optional[str] = None
+    file_creation_date: Optional[Any] = Field(alias="fileCreationDate", default=None)
+    file_modified_date: Optional[Any] = Field(alias="fileModifiedDate", default=None)
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    workflow: Optional["EntityReferenceInput"] = None
+    agent: Optional["EntityReferenceInput"] = None
 
 
-class AlertUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    summary_prompt: Optional[str] = Field(alias="summaryPrompt", default=None)
-    publish_prompt: Optional[str] = Field(alias="publishPrompt", default=None)
-    view: Optional["EntityReferenceInput"] = None
-    filter: Optional["ContentCriteriaInput"] = None
-    publishing: Optional["ContentPublishingConnectorUpdateInput"] = None
-    integration: Optional["IntegrationConnectorUpdateInput"] = None
-    summary_specification: Optional["EntityReferenceInput"] = Field(
-        alias="summarySpecification", default=None
-    )
-    publish_specification: Optional["EntityReferenceInput"] = Field(
-        alias="publishSpecification", default=None
-    )
-    schedule_policy: Optional["AlertSchedulePolicyInput"] = Field(
-        alias="schedulePolicy", default=None
-    )
+class ReactionReferenceInput(BaseModel):
+    emoji: str
+    count: int
+    is_unicode: Optional[bool] = Field(alias="isUnicode", default=None)
 
 
-class AsanaFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[AsanaAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    personal_access_token: Optional[str] = Field(
-        alias="personalAccessToken", default=None
-    )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    workspace_id: Optional[str] = Field(alias="workspaceId", default=None)
-    project_id: Optional[str] = Field(alias="projectId", default=None)
-
-
-class ConfluenceFeedPropertiesUpdateInput(BaseModel):
-    is_recursive: Optional[bool] = Field(alias="isRecursive", default=None)
-    authentication_type: Optional[ConfluenceAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    uri: Optional[str] = None
-    email: Optional[str] = None
-    token: Optional[str] = None
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    cloud_id: Optional[str] = Field(alias="cloudId", default=None)
-    type: Optional[ConfluenceTypes] = None
-    space_keys: Optional[list[str]] = Field(alias="spaceKeys", default=None)
-    identifiers: Optional[list[str]] = None
-    include_attachments: Optional[bool] = Field(
-        alias="includeAttachments", default=None
-    )
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class NotionPagesInput(BaseModel):
-    authentication_type: Optional[NotionAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    token: Optional[str] = None
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class EntityExtractionConnectorInput(BaseModel):
-    type: EntityExtractionServiceTypes
-    content_types: Optional[list[ContentTypes]] = Field(
-        alias="contentTypes", default=None
-    )
-    file_types: Optional[list[FileTypes]] = Field(alias="fileTypes", default=None)
-    extracted_types: Optional[list[ObservableTypes]] = Field(
-        alias="extractedTypes", default=None
-    )
-    extracted_count: Optional[int] = Field(alias="extractedCount", default=None)
-    azure_text: Optional["AzureTextExtractionPropertiesInput"] = Field(
-        alias="azureText", default=None
-    )
-    azure_image: Optional["AzureImageExtractionPropertiesInput"] = Field(
-        alias="azureImage", default=None
-    )
-    model_text: Optional["ModelTextExtractionPropertiesInput"] = Field(
-        alias="modelText", default=None
-    )
-    model_image: Optional["ModelImageExtractionPropertiesInput"] = Field(
-        alias="modelImage", default=None
-    )
-    hume: Optional["HumeExtractionPropertiesInput"] = None
-
-
-class ChannelConnectorInput(BaseModel):
-    type: ChannelServiceTypes
-    slack: Optional["SlackChannelPropertiesInput"] = None
-    teams: Optional["TeamsChannelPropertiesInput"] = None
-    discord: Optional["DiscordChannelPropertiesInput"] = None
-    telegram: Optional["TelegramChannelPropertiesInput"] = None
-    whats_app: Optional["WhatsAppChannelPropertiesInput"] = Field(
-        alias="whatsApp", default=None
-    )
-    google_chat: Optional["GoogleChatChannelPropertiesInput"] = Field(
-        alias="googleChat", default=None
-    )
-
-
-class PullRequestFeedPropertiesInput(BaseModel):
-    type: FeedServiceTypes
-    github: Optional["GitHubPullRequestsFeedPropertiesInput"] = None
-    gitlab: Optional["GitLabPullRequestsFeedPropertiesInput"] = None
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class RetrievalStrategyUpdateInput(BaseModel):
-    type: Optional[RetrievalStrategyTypes] = None
-    content_limit: Optional[int] = Field(alias="contentLimit", default=None)
-
-
-class CalendarFeedPropertiesUpdateInput(BaseModel):
-    include_attachments: Optional[bool] = Field(
-        alias="includeAttachments", default=None
-    )
-    enable_meeting_recording: Optional[bool] = Field(
-        alias="enableMeetingRecording", default=None
-    )
-    meeting_bot_name: Optional[str] = Field(alias="meetingBotName", default=None)
-    google: Optional["GoogleCalendarFeedPropertiesUpdateInput"] = None
-    microsoft: Optional["MicrosoftCalendarFeedPropertiesUpdateInput"] = None
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class AgentInput(BaseModel):
+class MedicalContraindicationInput(BaseModel):
     name: str
-    type: AgentTypes
-    mode: Optional[AgentModes] = None
-    description: Optional[str] = None
-    specification: Optional["EntityReferenceInput"] = None
-    persona: Optional["EntityReferenceInput"] = None
-    trigger: Optional["AgentTriggerFilterInput"] = None
-    filter: Optional["ContentCriteriaInput"] = None
-    augmented_filter: Optional["ContentCriteriaInput"] = Field(
-        alias="augmentedFilter", default=None
-    )
-    schedule_policy: Optional["AgentSchedulePolicyInput"] = Field(
-        alias="schedulePolicy", default=None
-    )
-    heartbeat: Optional["AgentHeartbeatPropertiesInput"] = None
-    timeout: Optional[Any] = None
-    prompt: Optional[str] = None
-    scratchpad: Optional[str] = None
-    focus: Optional[str] = None
-    research_depth: Optional[AgentResearchDepths] = Field(
-        alias="researchDepth", default=None
-    )
-    channels: Optional[list["AgentChannelInput"]] = None
-    rules: Optional[list["PromptClassificationRuleInput"]] = None
-    commands: Optional[list["AgentCommandInput"]] = None
-    targets: Optional[list["DistributionTargetInput"]] = None
-    callback_uri: Optional[Any] = Field(alias="callbackUri", default=None)
-
-
-class CrustdataPersonDiscoveryFilterInput(BaseModel):
-    titles: Optional[list[str]] = None
-    seniority_levels: Optional[list[str]] = Field(alias="seniorityLevels", default=None)
-    function_categories: Optional[list[str]] = Field(
-        alias="functionCategories", default=None
-    )
-    company_names: Optional[list[str]] = Field(alias="companyNames", default=None)
-    company_domains: Optional[list[str]] = Field(alias="companyDomains", default=None)
-    company_linked_in_urls: Optional[list[str]] = Field(
-        alias="companyLinkedInUrls", default=None
-    )
-    industries: Optional[list[str]] = None
-    regions: Optional[list[str]] = None
-    countries: Optional[list[str]] = None
-    skills: Optional[list[str]] = None
-    schools: Optional[list[str]] = None
-    min_years_experience: Optional[int] = Field(
-        alias="minYearsExperience", default=None
-    )
-    max_years_experience: Optional[int] = Field(
-        alias="maxYearsExperience", default=None
-    )
-    min_connections: Optional[int] = Field(alias="minConnections", default=None)
-    recently_changed_jobs: Optional[bool] = Field(
-        alias="recentlyChangedJobs", default=None
-    )
-
-
-class WorkflowActionInput(BaseModel):
-    connector: Optional["IntegrationConnectorInput"] = None
-    observable_types: Optional[list[ObservableTypes]] = Field(
-        alias="observableTypes", default=None
-    )
-
-
-class MedicalConditionUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
     uri: Optional[Any] = None
     identifier: Optional[str] = None
     description: Optional[str] = None
@@ -3124,12 +2850,165 @@ class MedicalConditionUpdateInput(BaseModel):
     boundary: Optional[str] = None
 
 
-class PackageMetadataInput(BaseModel):
+class RSSFeedPropertiesUpdateInput(BaseModel):
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class GitLabIssuesFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[GitLabAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    project_path: str = Field(alias="projectPath")
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class ImageMetadataInput(BaseModel):
     creation_date: Optional[Any] = Field(alias="creationDate", default=None)
     modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
     location: Optional["PointInput"] = None
-    file_count: Optional[int] = Field(alias="fileCount", default=None)
-    folder_count: Optional[int] = Field(alias="folderCount", default=None)
+    width: Optional[int] = None
+    height: Optional[int] = None
+    bits_per_component: Optional[int] = Field(alias="bitsPerComponent", default=None)
+    components: Optional[int] = None
+    projection_type: Optional[ImageProjectionTypes] = Field(
+        alias="projectionType", default=None
+    )
+    orientation: Optional[OrientationTypes] = None
+    resolution_x: Optional[int] = Field(alias="resolutionX", default=None)
+    resolution_y: Optional[int] = Field(alias="resolutionY", default=None)
+    description: Optional[str] = None
+    software: Optional[str] = None
+    identifier: Optional[str] = None
+    make: Optional[str] = None
+    model: Optional[str] = None
+    lens: Optional[str] = None
+    lens_specification: Optional[str] = Field(alias="lensSpecification", default=None)
+    focal_length: Optional[float] = Field(alias="focalLength", default=None)
+    exposure_time: Optional[str] = Field(alias="exposureTime", default=None)
+    f_number: Optional[str] = Field(alias="fNumber", default=None)
+    iso: Optional[str] = None
+    color_space: Optional[str] = Field(alias="colorSpace", default=None)
+    heading: Optional[float] = None
+    pitch: Optional[float] = None
+
+
+class DateRangeFilter(BaseModel):
+    from_: Optional[Any] = Field(alias="from", default=None)
+    to: Optional[Any] = None
+
+
+class MetadataUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    mime_type: Optional[str] = Field(alias="mimeType", default=None)
+    value: Optional[str] = None
+    content: Optional["EntityReferenceInput"] = None
+
+
+class OrganizationUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+    address: Optional["AddressInput"] = None
+    founding_date: Optional[Any] = Field(alias="foundingDate", default=None)
+    email: Optional[str] = None
+    telephone: Optional[str] = None
+    legal_name: Optional[str] = Field(alias="legalName", default=None)
+    industries: Optional[list[Optional[str]]] = None
+    revenue_currency: Optional[str] = Field(alias="revenueCurrency", default=None)
+    revenue: Optional[Any] = None
+    investment_currency: Optional[str] = Field(alias="investmentCurrency", default=None)
+    investment: Optional[Any] = None
+
+
+class PlaceInput(BaseModel):
+    name: str
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+    address: Optional["AddressInput"] = None
+    telephone: Optional[str] = None
+    opening_hours: Optional[str] = Field(alias="openingHours", default=None)
+    price_range: Optional[str] = Field(alias="priceRange", default=None)
+
+
+class TwitterFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[TwitterAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    token: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    type: Optional[TwitterListingTypes] = None
+    user_name: Optional[str] = Field(alias="userName", default=None)
+    query: Optional[str] = None
+    include_attachments: Optional[bool] = Field(
+        alias="includeAttachments", default=None
+    )
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class IssueMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    title: Optional[str] = None
+    project: Optional[str] = None
+    team: Optional[str] = None
+    status: Optional[str] = None
+    priority: Optional[str] = None
+    type: Optional[str] = None
+    identifier: Optional[str] = None
+    labels: Optional[list[Optional[str]]] = None
+    links: Optional[list[Optional[Any]]] = None
+
+
+class EvernoteFeedPropertiesInput(BaseModel):
+    type: Optional[FeedListingTypes] = None
+    connector: "EntityReferenceInput"
+    query: Optional[str] = None
+    tag_guids: Optional[list[str]] = Field(alias="tagGuids", default=None)
+    include_resources: Optional[bool] = Field(alias="includeResources", default=None)
+    include_inactive: Optional[bool] = Field(alias="includeInactive", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class AzureImageExtractionPropertiesInput(BaseModel):
+    confidence_threshold: Optional[float] = Field(
+        alias="confidenceThreshold", default=None
+    )
+
+
+class TwitterFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[TwitterAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    token: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    type: Optional[TwitterListingTypes] = None
+    user_name: Optional[str] = Field(alias="userName", default=None)
+    query: Optional[str] = None
+    include_attachments: Optional[bool] = Field(
+        alias="includeAttachments", default=None
+    )
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class MedicalProcedureFilter(BaseModel):
@@ -3172,25 +3051,254 @@ class MedicalProcedureFilter(BaseModel):
     )
 
 
-class SalesforceTasksFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[SalesforceIssueAuthenticationTypes] = Field(
+class ChannelConnectorInput(BaseModel):
+    type: ChannelServiceTypes
+    slack: Optional["SlackChannelPropertiesInput"] = None
+    teams: Optional["TeamsChannelPropertiesInput"] = None
+    discord: Optional["DiscordChannelPropertiesInput"] = None
+    telegram: Optional["TelegramChannelPropertiesInput"] = None
+    whats_app: Optional["WhatsAppChannelPropertiesInput"] = Field(
+        alias="whatsApp", default=None
+    )
+    google_chat: Optional["GoogleChatChannelPropertiesInput"] = Field(
+        alias="googleChat", default=None
+    )
+
+
+class SlackFeedPropertiesInput(BaseModel):
+    type: Optional[FeedListingTypes] = None
+    authentication_type: Optional[SlackAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
-    is_sandbox: Optional[bool] = Field(alias="isSandbox", default=None)
+    token: Optional[str] = None
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
+    channel: str
+    include_attachments: Optional[bool] = Field(
+        alias="includeAttachments", default=None
+    )
+    signing_secret: Optional[str] = Field(alias="signingSecret", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
-class GoogleDriveDrivesInput(BaseModel):
-    authentication_type: Optional[GoogleDriveAuthenticationTypes] = Field(
+class ConversationGraphInput(BaseModel):
+    types: Optional[list[ObservableTypes]] = None
+
+
+class ClassificationWorkflowJobInput(BaseModel):
+    connector: Optional["ContentClassificationConnectorInput"] = None
+
+
+class JiraDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
+    project_key: Optional[str] = Field(alias="projectKey", default=None)
+    issue_type: Optional[str] = Field(alias="issueType", default=None)
+    summary: Optional[str] = None
+    priority: Optional[str] = None
+    assignee_id: Optional[str] = Field(alias="assigneeId", default=None)
+    labels: Optional[list[str]] = None
+    status: Optional[str] = None
+
+
+class CalendarFeedPropertiesUpdateInput(BaseModel):
+    include_attachments: Optional[bool] = Field(
+        alias="includeAttachments", default=None
+    )
+    enable_meeting_recording: Optional[bool] = Field(
+        alias="enableMeetingRecording", default=None
+    )
+    meeting_bot_name: Optional[str] = Field(alias="meetingBotName", default=None)
+    google: Optional["GoogleCalendarFeedPropertiesUpdateInput"] = None
+    microsoft: Optional["MicrosoftCalendarFeedPropertiesUpdateInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class IndexingWorkflowJobInput(BaseModel):
+    connector: Optional["ContentIndexingConnectorInput"] = None
+
+
+class Int64RangeInput(BaseModel):
+    from_: Optional[Any] = Field(alias="from", default=None)
+    to: Optional[Any] = None
+
+
+class YouTubeFeedPropertiesInput(BaseModel):
+    type: YouTubeTypes
+    video_name: Optional[str] = Field(alias="videoName", default=None)
+    video_identifiers: Optional[list[str]] = Field(
+        alias="videoIdentifiers", default=None
+    )
+    channel_identifier: Optional[str] = Field(alias="channelIdentifier", default=None)
+    playlist_identifier: Optional[str] = Field(alias="playlistIdentifier", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class ObservationInput(BaseModel):
+    content: "EntityReferenceInput"
+    type: ObservableTypes
+    observable: "NamedEntityReferenceInput"
+    related: Optional["NamedEntityReferenceInput"] = None
+    related_type: Optional[ObservableTypes] = Field(alias="relatedType", default=None)
+    relation: Optional[str] = None
+    occurrences: list["ObservationOccurrenceInput"]
+
+
+class ConversationInput(BaseModel):
+    name: str
+    type: Optional[ConversationTypes] = None
+    messages: Optional[list["ConversationMessageInput"]] = None
+    tools: Optional[list["ToolDefinitionInput"]] = None
+    agent: Optional["EntityReferenceInput"] = None
+    persona: Optional["EntityReferenceInput"] = None
+    specification: Optional["EntityReferenceInput"] = None
+    fallbacks: Optional[list[Optional["EntityReferenceInput"]]] = None
+    filter: Optional["ContentCriteriaInput"] = None
+    augmented_filter: Optional["ContentCriteriaInput"] = Field(
+        alias="augmentedFilter", default=None
+    )
+    scratchpad: Optional[str] = None
+    parent: Optional["EntityReferenceInput"] = None
+
+
+class PromptStrategyUpdateInput(BaseModel):
+    type: Optional[PromptStrategyTypes] = None
+
+
+class ParallelEntityFeedPropertiesUpdateInput(BaseModel):
+    generator: Optional[ParallelGenerators] = None
+    processor: Optional[ParallelProcessors] = None
+
+
+class RegexClassificationRuleInput(BaseModel):
+    type: Optional[RegexSourceTypes] = None
+    path: Optional[str] = None
+    matches: Optional[str] = None
+    then: Optional[str] = None
+
+
+class EmbeddingsStrategyInput(BaseModel):
+    text_specification: Optional["EntityReferenceInput"] = Field(
+        alias="textSpecification", default=None
+    )
+    image_specification: Optional["EntityReferenceInput"] = Field(
+        alias="imageSpecification", default=None
+    )
+    multimodal_specification: Optional["EntityReferenceInput"] = Field(
+        alias="multimodalSpecification", default=None
+    )
+
+
+class WorkflowFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+
+
+class AtlassianSitesInput(BaseModel):
+    authentication_type: Optional[ConfluenceAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
+    token: Optional[str] = None
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class GoogleModelPropertiesInput(BaseModel):
+    model: GoogleModels
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+    enable_thinking: Optional[bool] = Field(alias="enableThinking", default=None)
+    thinking_token_limit: Optional[int] = Field(
+        alias="thinkingTokenLimit", default=None
+    )
+    thinking_level: Optional[GoogleThinkingLevels] = Field(
+        alias="thinkingLevel", default=None
+    )
+
+
+class LabelFacetInput(BaseModel):
+    time_interval: Optional[TimeIntervalTypes] = Field(
+        alias="timeInterval", default=None
+    )
+    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
+    facet: Optional[LabelFacetTypes] = None
+
+
+class GitLabCommitsFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[GitLabCommitAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    project_path: Optional[str] = Field(alias="projectPath", default=None)
+    branch: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class SearchFeedPropertiesUpdateInput(BaseModel):
+    type: Optional[SearchServiceTypes] = None
+    text: Optional[str] = None
+    exa: Optional["ExaSearchPropertiesInput"] = None
+    crustdata: Optional["CrustdataSearchFeedPropertiesUpdateInput"] = None
+    linkedin: Optional["LinkedInSearchPropertiesInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class RetrievalStrategyInput(BaseModel):
+    type: RetrievalStrategyTypes
+    content_limit: Optional[int] = Field(alias="contentLimit", default=None)
+    disable_fallback: Optional[bool] = Field(alias="disableFallback", default=None)
+
+
+class SharePointFeedPropertiesInput(BaseModel):
+    authentication_type: SharePointAuthenticationTypes = Field(
+        alias="authenticationType"
+    )
+    tenant_id: Optional[str] = Field(alias="tenantId", default=None)
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
+    account_name: str = Field(alias="accountName")
+    library_id: str = Field(alias="libraryId")
+    folder_id: Optional[str] = Field(alias="folderId", default=None)
 
 
 class HubSpotConversationsFeedPropertiesInput(BaseModel):
@@ -3213,31 +3321,164 @@ class HubSpotConversationsFeedPropertiesInput(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
-class FathomPropertiesInput(BaseModel):
-    api_key: str = Field(alias="apiKey")
+class EventInput(BaseModel):
+    name: str
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+    address: Optional["AddressInput"] = None
+    start_date: Optional[Any] = Field(alias="startDate", default=None)
+    end_date: Optional[Any] = Field(alias="endDate", default=None)
+    availability_start_date: Optional[Any] = Field(
+        alias="availabilityStartDate", default=None
+    )
+    availability_end_date: Optional[Any] = Field(
+        alias="availabilityEndDate", default=None
+    )
+    price: Optional[Any] = None
+    min_price: Optional[Any] = Field(alias="minPrice", default=None)
+    max_price: Optional[Any] = Field(alias="maxPrice", default=None)
+    price_currency: Optional[str] = Field(alias="priceCurrency", default=None)
+    is_accessible_for_free: Optional[bool] = Field(
+        alias="isAccessibleForFree", default=None
+    )
+    typical_age_range: Optional[str] = Field(alias="typicalAgeRange", default=None)
+    organizer: Optional[str] = None
+    performer: Optional[str] = None
+    sponsor: Optional[str] = None
+    event_status: Optional[str] = Field(alias="eventStatus", default=None)
+
+
+class GroqModelPropertiesInput(BaseModel):
+    model: GroqModels
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    endpoint: Optional[Any] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+
+
+class AzureAIModelPropertiesUpdateInput(BaseModel):
+    key: Optional[str] = None
+    endpoint: Optional[Any] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+
+
+class PackageMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    file_count: Optional[int] = Field(alias="fileCount", default=None)
+    folder_count: Optional[int] = Field(alias="folderCount", default=None)
+
+
+class GeometryMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    triangle_count: Optional[Any] = Field(alias="triangleCount", default=None)
+    vertex_count: Optional[Any] = Field(alias="vertexCount", default=None)
+
+
+class AttioMeetingPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[AttioMeetingAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     type: Optional[FeedListingTypes] = None
 
 
-class MedicalGuidelineFacetInput(BaseModel):
-    time_interval: Optional[TimeIntervalTypes] = Field(
-        alias="timeInterval", default=None
+class SummarizationStrategyInput(BaseModel):
+    type: SummarizationTypes
+    specification: Optional["EntityReferenceInput"] = None
+    tokens: Optional[int] = None
+    items: Optional[int] = None
+    prompt: Optional[str] = None
+
+
+class AzureOpenAIModelPropertiesUpdateInput(BaseModel):
+    model: Optional[AzureOpenAIModels] = None
+    deployment_name: Optional[str] = Field(alias="deploymentName", default=None)
+    key: Optional[str] = None
+    endpoint: Optional[Any] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
     )
-    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
-    facet: Optional[MedicalGuidelineFacetTypes] = None
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
 
 
-class EventFacetInput(BaseModel):
-    time_interval: Optional[TimeIntervalTypes] = Field(
-        alias="timeInterval", default=None
+class MedicalConditionFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
     )
-    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
-    facet: Optional[EventFacetTypes] = None
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
+    feeds: Optional[list["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
+    address: Optional["AddressFilter"] = None
+    location: Optional["PointFilter"] = None
+    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
+    boundaries: Optional[list[str]] = None
+    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
+    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
+    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
+    similar_conditions: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="similarConditions", default=None
+    )
+    medical_conditions: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="medicalConditions", default=None
+    )
 
 
-class GitLabFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[GitLabAuthenticationTypes] = Field(
+class ProjectQuotaInput(BaseModel):
+    storage: Optional[Any] = None
+    contents: Optional[int] = None
+    feeds: Optional[int] = None
+    posts: Optional[int] = None
+    conversations: Optional[int] = None
+    user_credits: Optional[int] = Field(alias="userCredits", default=None)
+
+
+class GitLabPullRequestsFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[GitLabMergeRequestAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
     project_path: str = Field(alias="projectPath")
@@ -3251,113 +3492,113 @@ class GitLabFeedPropertiesInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
 
 
-class AtlassianJiraFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[JiraAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
+class SoftwareUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
     uri: Optional[Any] = None
-    project: Optional[str] = None
-    email: Optional[str] = None
-    token: Optional[str] = None
-    offset: Optional[Any] = None
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    cloud_id: Optional[str] = Field(alias="cloudId", default=None)
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+    developer: Optional[str] = None
+    release_date: Optional[Any] = Field(alias="releaseDate", default=None)
 
 
-class MedicalProcedureFacetInput(BaseModel):
-    time_interval: Optional[TimeIntervalTypes] = Field(
-        alias="timeInterval", default=None
+class OpenAIModelPropertiesUpdateInput(BaseModel):
+    model: Optional[OpenAIModels] = None
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    endpoint: Optional[Any] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
     )
-    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
-    facet: Optional[MedicalProcedureFacetTypes] = None
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+    detail_level: Optional[OpenAIVisionDetailLevels] = Field(
+        alias="detailLevel", default=None
+    )
+    reasoning_effort: Optional[OpenAIReasoningEffortLevels] = Field(
+        alias="reasoningEffort", default=None
+    )
 
 
-class ObservationCriteriaInput(BaseModel):
-    type: Optional[ObservableTypes] = None
-    observable: Optional["EntityReferenceInput"] = None
+class MCPIntegrationPropertiesInput(BaseModel):
+    type: MCPServerTypes
+    token: Optional[str] = None
+
+
+class BedrockModelPropertiesInput(BaseModel):
+    model: BedrockModels
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    access_key: Optional[str] = Field(alias="accessKey", default=None)
+    secret_access_key: Optional[str] = Field(alias="secretAccessKey", default=None)
+    endpoint: Optional[Any] = None
+    region: Optional[str] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+
+
+class GoogleDriveDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
+    folder_id: Optional[str] = Field(alias="folderId", default=None)
+    file_name: Optional[str] = Field(alias="fileName", default=None)
+
+
+class AzureAIModelPropertiesInput(BaseModel):
+    key: str
+    endpoint: Any
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: int = Field(alias="tokenLimit")
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+
+
+class ObservationReferenceFilter(BaseModel):
+    type: ObservableTypes
+    observable: "EntityReferenceFilter"
     states: Optional[list[EntityState]] = None
 
 
-class InvestmentUpdateInput(BaseModel):
-    id: str
+class CategoryFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
     name: Optional[str] = None
-    uri: Optional[Any] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
-    amount_currency: Optional[str] = Field(alias="amountCurrency", default=None)
-    amount: Optional[Any] = None
-    status: Optional[str] = None
-    stage: Optional[str] = None
-    investment_date: Optional[Any] = Field(alias="investmentDate", default=None)
-    round_size: Optional[Any] = Field(alias="roundSize", default=None)
-    round_size_currency: Optional[str] = Field(alias="roundSizeCurrency", default=None)
-    post_valuation: Optional[Any] = Field(alias="postValuation", default=None)
-    post_valuation_currency: Optional[str] = Field(
-        alias="postValuationCurrency", default=None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
     )
-    shares_owned: Optional[Any] = Field(alias="sharesOwned", default=None)
-    vehicle: Optional[str] = None
-    entry_price_per_share: Optional[Any] = Field(
-        alias="entryPricePerShare", default=None
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
     )
-    current_price_per_share: Optional[Any] = Field(
-        alias="currentPricePerShare", default=None
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
     )
-    discount_percent: Optional[Any] = Field(alias="discountPercent", default=None)
-    pro_rata_rights: Optional[bool] = Field(alias="proRataRights", default=None)
-    investor: Optional["EntityReferenceInput"] = None
-    organization: Optional["EntityReferenceInput"] = None
-
-
-class MedicalIndicationUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    uri: Optional[Any] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
-
-
-class ObservationOccurrenceInput(BaseModel):
-    type: OccurrenceTypes
-    confidence: Optional[float] = None
-    bounding_box: Optional["BoundingBoxInput"] = Field(
-        alias="boundingBox", default=None
-    )
-    page_index: Optional[int] = Field(alias="pageIndex", default=None)
-    start_time: Optional[Any] = Field(alias="startTime", default=None)
-    end_time: Optional[Any] = Field(alias="endTime", default=None)
-
-
-class ReplicaInput(BaseModel):
-    name: str
-    type: EntityTypes
-    content: Optional["ReplicaContentPropertiesInput"] = None
-    conversation: Optional["ReplicaConversationPropertiesInput"] = None
-    git: Optional["ReplicaGitPropertiesInput"] = None
-    connector: "EntityReferenceInput"
-    marker_slug: Optional[str] = Field(alias="markerSlug", default=None)
-    artifact_types: list[ReplicaArtifactTypes] = Field(alias="artifactTypes")
-    synchronize_deletes: Optional[bool] = Field(
-        alias="synchronizeDeletes", default=None
-    )
-    commit_message: Optional[str] = Field(alias="commitMessage", default=None)
-    schedule_policy: Optional["ReplicaSchedulePolicyInput"] = Field(
-        alias="schedulePolicy", default=None
-    )
-
-
-class JinaModelPropertiesInput(BaseModel):
-    model: JinaModels
-    model_name: Optional[str] = Field(alias="modelName", default=None)
-    key: Optional[str] = None
-    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+    feeds: Optional[list["EntityReferenceFilter"]] = None
 
 
 class ContentFilter(BaseModel):
@@ -3438,110 +3679,212 @@ class ContentFilter(BaseModel):
     )
 
 
-class LabelFacetInput(BaseModel):
-    time_interval: Optional[TimeIntervalTypes] = Field(
-        alias="timeInterval", default=None
+class ObservationOccurrenceInput(BaseModel):
+    type: OccurrenceTypes
+    confidence: Optional[float] = None
+    bounding_box: Optional["BoundingBoxInput"] = Field(
+        alias="boundingBox", default=None
     )
-    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
-    facet: Optional[LabelFacetTypes] = None
+    page_index: Optional[int] = Field(alias="pageIndex", default=None)
+    start_time: Optional[Any] = Field(alias="startTime", default=None)
+    end_time: Optional[Any] = Field(alias="endTime", default=None)
 
 
-class MedicalConditionInput(BaseModel):
+class SlackFeedPropertiesUpdateInput(BaseModel):
+    type: Optional[FeedListingTypes] = None
+    authentication_type: Optional[SlackAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    token: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    channel: Optional[str] = None
+    include_attachments: Optional[bool] = Field(
+        alias="includeAttachments", default=None
+    )
+    signing_secret: Optional[str] = Field(alias="signingSecret", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class VoyageModelPropertiesInput(BaseModel):
+    model: VoyageModels
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+
+
+class ReplicaConversationPropertiesInput(BaseModel):
+    filter: Optional["ConversationCriteriaInput"] = None
+
+
+class ProjectInput(BaseModel):
+    name: str
+    environment_type: EnvironmentTypes = Field(alias="environmentType")
+    platform: ResourceConnectorTypes
+    region: str
+    jwt_secret: str = Field(alias="jwtSecret")
+    quota: Optional["ProjectQuotaInput"] = None
+    callback_uri: Optional[Any] = Field(alias="callbackUri", default=None)
+
+
+class SalesforceDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
+    object_type: str = Field(alias="objectType")
+    object_id: str = Field(alias="objectId")
+    title: Optional[str] = None
+
+
+class AgentTriggerFilterInput(BaseModel):
+    types: Optional[list[ContentTypes]] = None
+    file_types: Optional[list[FileTypes]] = Field(alias="fileTypes", default=None)
+    feeds: Optional[list["EntityReferenceInput"]] = None
+
+
+class ContentUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    description: Optional[str] = None
+    identifier: Optional[str] = None
+    file_creation_date: Optional[Any] = Field(alias="fileCreationDate", default=None)
+    file_modified_date: Optional[Any] = Field(alias="fileModifiedDate", default=None)
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    agent: Optional["EntityReferenceInput"] = None
+    summary: Optional[str] = None
+    custom_summary: Optional[str] = Field(alias="customSummary", default=None)
+    keywords: Optional[list[str]] = None
+    bullets: Optional[list[str]] = None
+    headlines: Optional[list[str]] = None
+    posts: Optional[list[str]] = None
+    chapters: Optional[list[str]] = None
+    questions: Optional[list[str]] = None
+    quotes: Optional[list[str]] = None
+    video: Optional["VideoMetadataInput"] = None
+    audio: Optional["AudioMetadataInput"] = None
+    image: Optional["ImageMetadataInput"] = None
+    document: Optional["DocumentMetadataInput"] = None
+    email: Optional["EmailMetadataInput"] = None
+    event: Optional["EventMetadataInput"] = None
+    issue: Optional["IssueMetadataInput"] = None
+    initiative: Optional["InitiativeMetadataInput"] = None
+    message: Optional["MessageMetadataInput"] = None
+    post: Optional["PostMetadataInput"] = None
+    drawing: Optional["DrawingMetadataInput"] = None
+    shape: Optional["ShapeMetadataInput"] = None
+    geometry: Optional["GeometryMetadataInput"] = None
+    point_cloud: Optional["PointCloudMetadataInput"] = Field(
+        alias="pointCloud", default=None
+    )
+    package: Optional["PackageMetadataInput"] = None
+    language: Optional["LanguageMetadataInput"] = None
+
+
+class SalesforceCRMFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[SalesforceAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    instance_url: Optional[str] = Field(alias="instanceUrl", default=None)
+    is_sandbox: Optional[bool] = Field(alias="isSandbox", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
+
+
+class ProductlaneThreadsFeedPropertiesInput(BaseModel):
+    api_key: str = Field(alias="apiKey")
+    workspace_id: Optional[str] = Field(alias="workspaceId", default=None)
+
+
+class EnrichmentWorkflowStageInput(BaseModel):
+    link: Optional["LinkStrategyInput"] = None
+    jobs: Optional[list[Optional["EnrichmentWorkflowJobInput"]]] = None
+    entity_resolution: Optional["EntityResolutionStrategyInput"] = Field(
+        alias="entityResolution", default=None
+    )
+
+
+class InvestmentInput(BaseModel):
     name: str
     uri: Optional[Any] = None
     identifier: Optional[str] = None
     description: Optional[str] = None
     location: Optional["PointInput"] = None
     boundary: Optional[str] = None
+    amount_currency: Optional[str] = Field(alias="amountCurrency", default=None)
+    amount: Optional[Any] = None
+    status: Optional[str] = None
+    stage: Optional[str] = None
+    investment_date: Optional[Any] = Field(alias="investmentDate", default=None)
+    round_size: Optional[Any] = Field(alias="roundSize", default=None)
+    round_size_currency: Optional[str] = Field(alias="roundSizeCurrency", default=None)
+    post_valuation: Optional[Any] = Field(alias="postValuation", default=None)
+    post_valuation_currency: Optional[str] = Field(
+        alias="postValuationCurrency", default=None
+    )
+    shares_owned: Optional[Any] = Field(alias="sharesOwned", default=None)
+    vehicle: Optional[str] = None
+    entry_price_per_share: Optional[Any] = Field(
+        alias="entryPricePerShare", default=None
+    )
+    current_price_per_share: Optional[Any] = Field(
+        alias="currentPricePerShare", default=None
+    )
+    discount_percent: Optional[Any] = Field(alias="discountPercent", default=None)
+    pro_rata_rights: Optional[bool] = Field(alias="proRataRights", default=None)
+    investor: Optional["EntityReferenceInput"] = None
+    organization: Optional["EntityReferenceInput"] = None
 
 
-class ProjectQuotaInput(BaseModel):
-    storage: Optional[Any] = None
-    contents: Optional[int] = None
-    feeds: Optional[int] = None
-    posts: Optional[int] = None
-    conversations: Optional[int] = None
-    user_credits: Optional[int] = Field(alias="userCredits", default=None)
+class H3Filter(BaseModel):
+    indexes: Optional[list["H3IndexFilter"]] = None
 
 
-class NotionDatabasesInput(BaseModel):
-    authentication_type: Optional[NotionAuthenticationTypes] = Field(
+class MicrosoftCalendarFeedPropertiesUpdateInput(BaseModel):
+    type: Optional[CalendarListingTypes] = None
+    calendar_id: Optional[str] = Field(alias="calendarId", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    authentication_type: Optional[MicrosoftCalendarAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
-    token: Optional[str] = None
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class EmailFeedPropertiesUpdateInput(BaseModel):
-    include_attachments: Optional[bool] = Field(
-        alias="includeAttachments", default=None
-    )
-    google: Optional["GoogleEmailFeedPropertiesUpdateInput"] = None
-    microsoft: Optional["MicrosoftEmailFeedPropertiesUpdateInput"] = None
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class GoogleFeedPropertiesUpdateInput(BaseModel):
-    credentials: Optional[str] = None
-    container_name: Optional[str] = Field(alias="containerName", default=None)
-    prefix: Optional[str] = None
-
-
-class ObservableInput(BaseModel):
-    name: str
-    type: ObservableTypes
-    metadata: Optional[str] = None
-
-
-class AddressFilter(BaseModel):
-    street_address: Optional[str] = Field(alias="streetAddress", default=None)
-    city: Optional[str] = None
-    region: Optional[str] = None
-    country: Optional[str] = None
-    postal_code: Optional[str] = Field(alias="postalCode", default=None)
-
-
-class InvestmentFundFacetInput(BaseModel):
-    time_interval: Optional[TimeIntervalTypes] = Field(
-        alias="timeInterval", default=None
-    )
-    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
-    facet: Optional[InvestmentFundFacetTypes] = None
-
-
-class DropboxFoldersInput(BaseModel):
-    authentication_type: Optional[DropboxAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    app_key: Optional[str] = Field(alias="appKey", default=None)
-    app_secret: Optional[str] = Field(alias="appSecret", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
 
 
-class AzureOpenAIModelPropertiesUpdateInput(BaseModel):
-    model: Optional[AzureOpenAIModels] = None
-    deployment_name: Optional[str] = Field(alias="deploymentName", default=None)
-    key: Optional[str] = None
-    endpoint: Optional[Any] = None
-    temperature: Optional[float] = None
-    probability: Optional[float] = None
-    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
-    completion_token_limit: Optional[int] = Field(
-        alias="completionTokenLimit", default=None
-    )
-    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+class DeskUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    description: Optional[str] = None
+    objectives: Optional[str] = None
+    instructions: Optional[str] = None
+    bureau: Optional["EntityReferenceInput"] = None
+    agents: Optional[list["EntityReferenceInput"]] = None
 
 
-class AlertInput(BaseModel):
-    name: str
-    type: AlertTypes
+class AlertUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
     summary_prompt: Optional[str] = Field(alias="summaryPrompt", default=None)
-    publish_prompt: str = Field(alias="publishPrompt")
+    publish_prompt: Optional[str] = Field(alias="publishPrompt", default=None)
     view: Optional["EntityReferenceInput"] = None
     filter: Optional["ContentCriteriaInput"] = None
-    publishing: "ContentPublishingConnectorInput"
-    integration: "IntegrationConnectorInput"
+    publishing: Optional["ContentPublishingConnectorUpdateInput"] = None
+    integration: Optional["IntegrationConnectorUpdateInput"] = None
     summary_specification: Optional["EntityReferenceInput"] = Field(
         alias="summarySpecification", default=None
     )
@@ -3553,26 +3896,38 @@ class AlertInput(BaseModel):
     )
 
 
-class GoogleDriveFoldersInput(BaseModel):
-    authentication_type: Optional[GoogleDriveAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
+class OpenAIModelPropertiesInput(BaseModel):
+    model: OpenAIModels
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    endpoint: Optional[Any] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
     )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+    detail_level: Optional[OpenAIVisionDetailLevels] = Field(
+        alias="detailLevel", default=None
+    )
+    reasoning_effort: Optional[OpenAIReasoningEffortLevels] = Field(
+        alias="reasoningEffort", default=None
+    )
 
 
-class DeskInput(BaseModel):
-    name: str
-    description: Optional[str] = None
-    objectives: Optional[str] = None
-    instructions: Optional[str] = None
-    bureau: Optional["EntityReferenceInput"] = None
-    agents: Optional[list["EntityReferenceInput"]] = None
+class ReplicaGitPropertiesInput(BaseModel):
+    branch_type: Optional[ReplicaBranchTypes] = Field(alias="branchType", default=None)
+    branch: Optional[str] = None
+    repository_owner: Optional[str] = Field(alias="repositoryOwner", default=None)
+    repository_name: Optional[str] = Field(alias="repositoryName", default=None)
+    project_path: Optional[str] = Field(alias="projectPath", default=None)
+    target_path: Optional[str] = Field(alias="targetPath", default=None)
+    create_if_missing: Optional[bool] = Field(alias="createIfMissing", default=None)
+    project_name: Optional[str] = Field(alias="projectName", default=None)
 
 
-class MedicalContraindicationFilter(BaseModel):
+class OrganizationFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
     direction: Optional[OrderDirectionTypes] = None
@@ -3604,53 +3959,18 @@ class MedicalContraindicationFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    similar_contraindications: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="similarContraindications", default=None
+    uri: Optional[Any] = None
+    similar_organizations: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="similarOrganizations", default=None
     )
-    medical_contraindications: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="medicalContraindications", default=None
-    )
+    organizations: Optional[list["EntityReferenceFilter"]] = None
 
 
-class ShapeMetadataInput(BaseModel):
-    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
-    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
-    location: Optional["PointInput"] = None
-    feature_count: Optional[int] = Field(alias="featureCount", default=None)
-    attribute_count: Optional[int] = Field(alias="attributeCount", default=None)
+class FactStrategyUpdateInput(BaseModel):
+    fact_limit: Optional[int] = Field(alias="factLimit", default=None)
 
 
-class UserUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    type: Optional[UserTypes] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    quota: Optional["UserQuotaInput"] = None
-
-
-class ViewUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    type: Optional[ViewTypes] = None
-    filter: Optional["ContentCriteriaInput"] = None
-    augmented_filter: Optional["ContentCriteriaInput"] = Field(
-        alias="augmentedFilter", default=None
-    )
-
-
-class LinearInitiativesFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[LinearAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    key: Optional[str] = None
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class OneDriveDistributionPropertiesInput(BaseModel):
+class MicrosoftCalendarDistributionPropertiesInput(BaseModel):
     target_operation: Optional[DistributionTargetOperationTypes] = Field(
         alias="targetOperation", default=None
     )
@@ -3659,35 +3979,632 @@ class OneDriveDistributionPropertiesInput(BaseModel):
     )
     target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
     target_uri: Optional[str] = Field(alias="targetUri", default=None)
-    folder_id: Optional[str] = Field(alias="folderId", default=None)
-    file_name: Optional[str] = Field(alias="fileName", default=None)
+    calendar_id: Optional[str] = Field(alias="calendarId", default=None)
+    subject: Optional[str] = None
+    start_date_time: Optional[Any] = Field(alias="startDateTime", default=None)
+    end_date_time: Optional[Any] = Field(alias="endDateTime", default=None)
+    time_zone: Optional[str] = Field(alias="timeZone", default=None)
+    location: Optional[str] = None
+    attendees: Optional[list[str]] = None
+    is_online_meeting: Optional[bool] = Field(alias="isOnlineMeeting", default=None)
 
 
-class DropboxFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[DropboxAuthenticationTypes] = Field(
+class AudioMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    keywords: Optional[list[Optional[str]]] = None
+    author: Optional[str] = None
+    series: Optional[str] = None
+    episode: Optional[str] = None
+    episode_type: Optional[str] = Field(alias="episodeType", default=None)
+    season: Optional[str] = None
+    publisher: Optional[str] = None
+    copyright: Optional[str] = None
+    genre: Optional[str] = None
+    title: Optional[str] = None
+    bitrate: Optional[int] = None
+    channels: Optional[int] = None
+    sample_rate: Optional[int] = Field(alias="sampleRate", default=None)
+    bits_per_sample: Optional[int] = Field(alias="bitsPerSample", default=None)
+    duration: Optional[str] = None
+
+
+class CRMFeedPropertiesInput(BaseModel):
+    type: FeedServiceTypes
+    attio: Optional["AttioCRMFeedPropertiesInput"] = None
+    google_contacts: Optional["GoogleContactsCRMFeedPropertiesInput"] = Field(
+        alias="googleContacts", default=None
+    )
+    microsoft_contacts: Optional["MicrosoftContactsCRMFeedPropertiesInput"] = Field(
+        alias="microsoftContacts", default=None
+    )
+    salesforce: Optional["SalesforceCRMFeedPropertiesInput"] = None
+    hub_spot: Optional["HubSpotCRMFeedPropertiesInput"] = Field(
+        alias="hubSpot", default=None
+    )
+    productlane: Optional["ProductlaneCRMFeedPropertiesInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class ConversationStrategyInput(BaseModel):
+    type: Optional[ConversationStrategyTypes] = None
+    message_limit: Optional[int] = Field(alias="messageLimit", default=None)
+    embed_citations: Optional[bool] = Field(alias="embedCitations", default=None)
+    flatten_citations: Optional[bool] = Field(alias="flattenCitations", default=None)
+    enable_facets: Optional[bool] = Field(alias="enableFacets", default=None)
+    enable_summarization: Optional[bool] = Field(
+        alias="enableSummarization", default=None
+    )
+    enable_entity_extraction: Optional[bool] = Field(
+        alias="enableEntityExtraction", default=None
+    )
+    enable_fact_extraction: Optional[bool] = Field(
+        alias="enableFactExtraction", default=None
+    )
+    entity_extraction_limit: Optional[int] = Field(
+        alias="entityExtractionLimit", default=None
+    )
+    fact_extraction_limit: Optional[int] = Field(
+        alias="factExtractionLimit", default=None
+    )
+    messages_weight: Optional[float] = Field(alias="messagesWeight", default=None)
+    contents_weight: Optional[float] = Field(alias="contentsWeight", default=None)
+    tool_result_token_limit: Optional[int] = Field(
+        alias="toolResultTokenLimit", default=None
+    )
+    tool_round_limit: Optional[int] = Field(alias="toolRoundLimit", default=None)
+    tool_budget_threshold: Optional[float] = Field(
+        alias="toolBudgetThreshold", default=None
+    )
+
+
+class ReplicateModelPropertiesInput(BaseModel):
+    model: ReplicateModels
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+
+
+class XAIModelPropertiesUpdateInput(BaseModel):
+    model: Optional[XAIModels] = None
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    endpoint: Optional[Any] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+
+
+class SearchFeedPropertiesInput(BaseModel):
+    type: Optional[SearchServiceTypes] = None
+    text: Optional[str] = None
+    exa: Optional["ExaSearchPropertiesInput"] = None
+    crustdata: Optional["CrustdataSearchFeedPropertiesInput"] = None
+    linkedin: Optional["LinkedInSearchPropertiesInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class AttioFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[AttioFeedAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
-    path: Optional[str] = None
-    app_key: Optional[str] = Field(alias="appKey", default=None)
-    app_secret: Optional[str] = Field(alias="appSecret", default=None)
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class JiraEpicsFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[JiraAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    uri: Optional[str] = None
+    project: Optional[str] = None
+    email: Optional[str] = None
+    token: Optional[str] = None
+    offset: Optional[Any] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    cloud_id: Optional[str] = Field(alias="cloudId", default=None)
+
+
+class ChannelConnectorUpdateInput(BaseModel):
+    slack: Optional["SlackChannelPropertiesInput"] = None
+    teams: Optional["TeamsChannelPropertiesInput"] = None
+    discord: Optional["DiscordChannelPropertiesInput"] = None
+    telegram: Optional["TelegramChannelPropertiesInput"] = None
+    whats_app: Optional["WhatsAppChannelPropertiesInput"] = Field(
+        alias="whatsApp", default=None
+    )
+    google_chat: Optional["GoogleChatChannelPropertiesInput"] = Field(
+        alias="googleChat", default=None
+    )
+
+
+class OneDriveFoldersInput(BaseModel):
+    authentication_type: Optional[OneDriveAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
 
 
-class PersonReferenceInput(BaseModel):
+class RerankingStrategyUpdateInput(BaseModel):
+    service_type: Optional[RerankingModelServiceTypes] = Field(
+        alias="serviceType", default=None
+    )
+    threshold: Optional[float] = None
+
+
+class CalendarAttendeeInput(BaseModel):
     name: Optional[str] = None
-    given_name: Optional[str] = Field(alias="givenName", default=None)
-    family_name: Optional[str] = Field(alias="familyName", default=None)
     email: Optional[str] = None
+    display_name: Optional[str] = Field(alias="displayName", default=None)
+    is_optional: Optional[bool] = Field(alias="isOptional", default=None)
+    is_organizer: Optional[bool] = Field(alias="isOrganizer", default=None)
+    is_required: Optional[bool] = Field(alias="isRequired", default=None)
+    is_resource: Optional[bool] = Field(alias="isResource", default=None)
+    response_status: Optional[CalendarAttendeeResponseStatus] = Field(
+        alias="responseStatus", default=None
+    )
 
 
-class ParallelFeedPropertiesInput(BaseModel):
+class DiscordChannelPropertiesInput(BaseModel):
+    bot_token: str = Field(alias="botToken")
+    application_id: Optional[str] = Field(alias="applicationId", default=None)
+    public_key: Optional[str] = Field(alias="publicKey", default=None)
+
+
+class DeepseekModelPropertiesUpdateInput(BaseModel):
+    model: Optional[DeepseekModels] = None
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+
+
+class SkillInput(BaseModel):
+    name: str
+    identifier: Optional[str] = None
+    text: str
+    skill_owner: Optional[EntityOwners] = Field(alias="skillOwner", default=None)
+    description: Optional[str] = None
+    collections: Optional[list["EntityReferenceInput"]] = None
+    feed: Optional["EntityReferenceInput"] = None
+    arguments: Optional[list["SkillArgumentInput"]] = None
+
+
+class InvestmentFundInput(BaseModel):
+    name: str
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+    amount_currency: Optional[str] = Field(alias="amountCurrency", default=None)
+    amount: Optional[Any] = None
+    fund_type: Optional[str] = Field(alias="fundType", default=None)
+    vintage: Optional[int] = None
+    target_size: Optional[Any] = Field(alias="targetSize", default=None)
+    target_size_currency: Optional[str] = Field(
+        alias="targetSizeCurrency", default=None
+    )
+
+
+class AttioTasksFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[AttioIssueAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class AddressFilter(BaseModel):
+    street_address: Optional[str] = Field(alias="streetAddress", default=None)
+    city: Optional[str] = None
+    region: Optional[str] = None
+    country: Optional[str] = None
+    postal_code: Optional[str] = Field(alias="postalCode", default=None)
+
+
+class OpenAIVideoPublishingPropertiesInput(BaseModel):
+    model: Optional[OpenAIVideoModels] = None
+    seconds: Optional[int] = None
+    size: Optional[VideoSizeTypes] = None
+    seed: Optional["EntityReferenceInput"] = None
+
+
+class BoxFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[BoxAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    folder_id: Optional[str] = Field(alias="folderId", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    redirect_uri: Optional[str] = Field(alias="redirectUri", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class MicrosoftContactsCRMFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[MicrosoftContactsAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    tenant_id: Optional[str] = Field(alias="tenantId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
+
+
+class WebFeedPropertiesUpdateInput(BaseModel):
+    uri: Optional[Any] = None
+    allowed_paths: Optional[list[str]] = Field(alias="allowedPaths", default=None)
+    excluded_paths: Optional[list[str]] = Field(alias="excludedPaths", default=None)
+    include_files: Optional[bool] = Field(alias="includeFiles", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class ConversationUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    messages: Optional[list["ConversationMessageInput"]] = None
+    tools: Optional[list["ToolDefinitionInput"]] = None
+    agent: Optional["EntityReferenceInput"] = None
+    persona: Optional["EntityReferenceInput"] = None
+    specification: Optional["EntityReferenceInput"] = None
+    fallbacks: Optional[list[Optional["EntityReferenceInput"]]] = None
+    filter: Optional["ContentCriteriaInput"] = None
+    augmented_filter: Optional["ContentCriteriaInput"] = Field(
+        alias="augmentedFilter", default=None
+    )
+    scratchpad: Optional[str] = None
+    parent: Optional["EntityReferenceInput"] = None
+
+
+class MeetingFeedPropertiesUpdateInput(BaseModel):
+    content_type: Optional[MeetingContentTypes] = Field(
+        alias="contentType", default=None
+    )
+    fireflies: Optional["FirefliesFeedPropertiesUpdateInput"] = None
+    attio: Optional["AttioMeetingPropertiesUpdateInput"] = None
+    fathom: Optional["FathomPropertiesUpdateInput"] = None
+    zoom: Optional["ZoomPropertiesUpdateInput"] = None
+    hub_spot: Optional["HubSpotMeetingPropertiesUpdateInput"] = Field(
+        alias="hubSpot", default=None
+    )
+    krisp: Optional["KrispPropertiesUpdateInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class EntityResolutionStrategyInput(BaseModel):
+    strategy: Optional[EntityResolutionStrategyTypes] = None
+    threshold: Optional[float] = None
+    specification: Optional["EntityReferenceInput"] = None
+
+
+class DiscordFeedPropertiesInput(BaseModel):
+    type: Optional[FeedListingTypes] = None
+    token: str
+    channel: str
+    include_attachments: Optional[bool] = Field(
+        alias="includeAttachments", default=None
+    )
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class AttioCRMFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[AttioAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
+
+
+class SalesforceCRMFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[SalesforceAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    instance_url: Optional[str] = Field(alias="instanceUrl", default=None)
+    is_sandbox: Optional[bool] = Field(alias="isSandbox", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
+
+
+class FathomPropertiesInput(BaseModel):
+    api_key: str = Field(alias="apiKey")
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    type: Optional[FeedListingTypes] = None
+
+
+class MicrosoftEmailFeedPropertiesInput(BaseModel):
+    type: Optional[EmailListingTypes] = None
+    filter: Optional[str] = None
+    inbox_only: Optional[bool] = Field(alias="inboxOnly", default=None)
+    include_deleted_items: Optional[bool] = Field(
+        alias="includeDeletedItems", default=None
+    )
+    exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems", default=None)
+    include_spam: Optional[bool] = Field(alias="includeSpam", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    authentication_type: Optional[MicrosoftEmailAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class GoogleEmailFeedPropertiesInput(BaseModel):
+    type: Optional[EmailListingTypes] = None
+    filter: Optional[str] = None
+    inbox_only: Optional[bool] = Field(alias="inboxOnly", default=None)
+    include_deleted_items: Optional[bool] = Field(
+        alias="includeDeletedItems", default=None
+    )
+    exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems", default=None)
+    include_spam: Optional[bool] = Field(alias="includeSpam", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    authentication_type: Optional[GoogleEmailAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class EventMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    subject: Optional[str] = None
+    event_id: Optional[str] = Field(alias="eventId", default=None)
+    calendar_id: Optional[str] = Field(alias="calendarId", default=None)
+    start_date_time: Optional[Any] = Field(alias="startDateTime", default=None)
+    end_date_time: Optional[Any] = Field(alias="endDateTime", default=None)
+    is_all_day: Optional[bool] = Field(alias="isAllDay", default=None)
+    timezone: Optional[str] = None
+    status: Optional[CalendarEventStatus] = None
+    visibility: Optional[CalendarEventVisibility] = None
+    meeting_link: Optional[str] = Field(alias="meetingLink", default=None)
+    organizer: Optional["CalendarAttendeeInput"] = None
+    attendees: Optional[list[Optional["CalendarAttendeeInput"]]] = None
+    categories: Optional[list[Optional[str]]] = None
+    reminders: Optional[list[Optional["CalendarReminderInput"]]] = None
+    recurrence: Optional["CalendarRecurrenceInput"] = None
+    recurring_event_id: Optional[str] = Field(alias="recurringEventId", default=None)
+    is_recurring: Optional[bool] = Field(alias="isRecurring", default=None)
+    links: Optional[list[Optional["LinkReferenceInput"]]] = None
+
+
+class IngestionWorkflowStageInput(BaseModel):
+    if_: Optional["IngestionContentFilterInput"] = Field(alias="if", default=None)
+    collections: Optional[list[Optional["EntityReferenceInput"]]] = None
+    observations: Optional[list[Optional["ObservationReferenceInput"]]] = None
+    enable_email_collections: Optional[bool] = Field(
+        alias="enableEmailCollections", default=None
+    )
+    enable_folder_collections: Optional[bool] = Field(
+        alias="enableFolderCollections", default=None
+    )
+    enable_message_collections: Optional[bool] = Field(
+        alias="enableMessageCollections", default=None
+    )
+
+
+class ArcadeAuthenticationPropertiesInput(BaseModel):
+    authorization_id: str = Field(alias="authorizationId")
+    provider: ArcadeProviders
+    metadata: Optional[str] = None
+
+
+class TrelloFeedPropertiesUpdateInput(BaseModel):
+    key: Optional[str] = None
+    token: Optional[str] = None
+    type: Optional[TrelloTypes] = None
+    identifiers: Optional[list[str]] = None
+
+
+class ProductFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
+    feeds: Optional[list["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
+    address: Optional["AddressFilter"] = None
+    location: Optional["PointFilter"] = None
+    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
+    boundaries: Optional[list[str]] = None
+    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
+    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
+    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
+    production_date_range: Optional["DateRangeFilter"] = Field(
+        alias="productionDateRange", default=None
+    )
+    release_date_range: Optional["DateRangeFilter"] = Field(
+        alias="releaseDateRange", default=None
+    )
+    sku: Optional[str] = None
+    upc: Optional[str] = None
+    manufacturer: Optional[str] = None
+    brand: Optional[str] = None
+    model: Optional[str] = None
+    similar_products: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="similarProducts", default=None
+    )
+    products: Optional[list["EntityReferenceFilter"]] = None
+
+
+class ConnectorFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    types: Optional[list[ConnectorTypes]] = None
+
+
+class SlackChannelPropertiesInput(BaseModel):
+    bot_token: str = Field(alias="botToken")
+    signing_secret: Optional[str] = Field(alias="signingSecret", default=None)
+    app_id: Optional[str] = Field(alias="appId", default=None)
+
+
+class MedicalProcedureFacetInput(BaseModel):
+    time_interval: Optional[TimeIntervalTypes] = Field(
+        alias="timeInterval", default=None
+    )
+    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
+    facet: Optional[MedicalProcedureFacetTypes] = None
+
+
+class ParallelFeedPropertiesUpdateInput(BaseModel):
     processor: Optional[ParallelProcessors] = None
 
 
-class ElevenLabsPublishingPropertiesInput(BaseModel):
-    model: Optional[ElevenLabsModels] = None
-    voice: Optional[str] = None
+class DateRangeInput(BaseModel):
+    from_: Optional[Any] = Field(alias="from", default=None)
+    to: Optional[Any] = None
+
+
+class SharePointFoldersInput(BaseModel):
+    authentication_type: SharePointAuthenticationTypes = Field(
+        alias="authenticationType"
+    )
+    tenant_id: Optional[str] = Field(alias="tenantId", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class SharePointFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[SharePointAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    tenant_id: Optional[str] = Field(alias="tenantId", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    account_name: Optional[str] = Field(alias="accountName", default=None)
+    library_id: Optional[str] = Field(alias="libraryId", default=None)
+    folder_id: Optional[str] = Field(alias="folderId", default=None)
+
+
+class LabelInput(BaseModel):
+    name: str
+    description: Optional[str] = None
+
+
+class GitHubCommitsFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[GitHubCommitAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    repository_owner: str = Field(alias="repositoryOwner")
+    repository_name: str = Field(alias="repositoryName")
+    branch: Optional[str] = None
+    uri: Optional[Any] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class RevisionStrategyUpdateInput(BaseModel):
+    type: Optional[RevisionStrategyTypes] = None
+    custom_revision: Optional[str] = Field(alias="customRevision", default=None)
+    count: Optional[int] = None
+
+
+class InitiativeMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    title: Optional[str] = None
+    project: Optional[str] = None
+    team: Optional[str] = None
+    status: Optional[str] = None
+    priority: Optional[str] = None
+    type: Optional[str] = None
+    identifier: Optional[str] = None
+    due_date: Optional[Any] = Field(alias="dueDate", default=None)
+    labels: Optional[list[Optional[str]]] = None
+    links: Optional[list[Optional[Any]]] = None
+
+
+class ModelDocumentPreparationPropertiesInput(BaseModel):
+    specification: Optional["EntityReferenceInput"] = None
 
 
 class ZendeskFeedPropertiesInput(BaseModel):
@@ -3703,23 +4620,475 @@ class ZendeskFeedPropertiesInput(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
-class LinearInitiativesFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[LinearAuthenticationTypes] = Field(
+class UserUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    type: Optional[UserTypes] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    quota: Optional["UserQuotaInput"] = None
+
+
+class MedicalTestInput(BaseModel):
+    name: str
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+
+
+class RepoUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+
+
+class ProjectUpdateInput(BaseModel):
+    workflow: Optional["EntityReferenceInput"] = None
+    specification: Optional["EntityReferenceInput"] = None
+    embeddings: Optional["EmbeddingsStrategyInput"] = None
+    callback_uri: Optional[Any] = Field(alias="callbackUri", default=None)
+
+
+class GustoCompaniesInput(BaseModel):
+    client_id: str = Field(alias="clientId")
+    client_secret: str = Field(alias="clientSecret")
+    refresh_token: str = Field(alias="refreshToken")
+
+
+class OneDriveDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
+    folder_id: Optional[str] = Field(alias="folderId", default=None)
+    file_name: Optional[str] = Field(alias="fileName", default=None)
+
+
+class AgentHeartbeatPropertiesInput(BaseModel):
+    enabled: bool
+    frequency_minutes: int = Field(alias="frequencyMinutes")
+    off_hours_frequency_minutes: Optional[int] = Field(
+        alias="offHoursFrequencyMinutes", default=None
+    )
+    active_hours_start: str = Field(alias="activeHoursStart")
+    active_hours_end: str = Field(alias="activeHoursEnd")
+    active_days: list[int] = Field(alias="activeDays")
+    timezone: str
+    probe_thresholds: Optional["AgentHeartbeatProbeThresholdsInput"] = Field(
+        alias="probeThresholds", default=None
+    )
+
+
+class GitHubPullRequestsFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[GitHubPullRequestAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
-    key: Optional[str] = None
+    repository_owner: str = Field(alias="repositoryOwner")
+    repository_name: str = Field(alias="repositoryName")
+    uri: Optional[Any] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class IntegrationConnectorUpdateInput(BaseModel):
+    service_type: IntegrationServiceTypes = Field(alias="serviceType")
+    uri: Optional[str] = None
+    slack: Optional["SlackIntegrationPropertiesInput"] = None
+    email: Optional["EmailIntegrationPropertiesInput"] = None
+    twitter: Optional["TwitterIntegrationPropertiesInput"] = None
+    mcp: Optional["MCPIntegrationPropertiesInput"] = None
+
+
+class MedicalGuidelineInput(BaseModel):
+    name: str
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+
+
+class MedicalProcedureInput(BaseModel):
+    name: str
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+
+
+class BambooHRHRISFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[BambooHRAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    company_domain: Optional[str] = Field(alias="companyDomain", default=None)
+
+
+class UserFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    identifier: Optional[str] = None
+
+
+class MedicalDeviceUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+
+
+class RSSFeedPropertiesInput(BaseModel):
+    uri: Any
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class HubSpotCRMFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[HubSpotAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    access_token: Optional[str] = Field(alias="accessToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
+
+
+class ParallelPublishingPropertiesInput(BaseModel):
+    processor: Optional[ParallelProcessors] = None
+
+
+class UserInput(BaseModel):
+    name: str
+    type: Optional[UserTypes] = None
+    identifier: str
+    description: Optional[str] = None
+
+
+class WorkflowInput(BaseModel):
+    name: str
+    ingestion: Optional["IngestionWorkflowStageInput"] = None
+    indexing: Optional["IndexingWorkflowStageInput"] = None
+    preparation: Optional["PreparationWorkflowStageInput"] = None
+    extraction: Optional["ExtractionWorkflowStageInput"] = None
+    enrichment: Optional["EnrichmentWorkflowStageInput"] = None
+    classification: Optional["ClassificationWorkflowStageInput"] = None
+    storage: Optional["StorageWorkflowStageInput"] = None
+    actions: Optional[list[Optional["WorkflowActionInput"]]] = None
+
+
+class ReplicaFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    types: Optional[list[EntityTypes]] = None
+
+
+class AgentFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    types: Optional[list[AgentTypes]] = None
+    conversations: Optional[list["EntityReferenceFilter"]] = None
+
+
+class GraphFilter(BaseModel):
+    types: Optional[list[ObservableTypes]] = None
+    feeds: Optional[list["EntityReferenceFilter"]] = None
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    location: Optional["PointFilter"] = None
+    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
+    boundaries: Optional[list[Optional[str]]] = None
+    search: Optional[str] = None
+    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
+
+
+class FeedPreviewInput(BaseModel):
+    name: Optional[str] = None
+    type: FeedTypes
+    site: Optional["SiteFeedPropertiesInput"] = None
+    skill: Optional["SkillFeedPropertiesInput"] = None
+    calendar: Optional["CalendarFeedPropertiesInput"] = None
+    email: Optional["EmailFeedPropertiesInput"] = None
+    crm: Optional["CRMFeedPropertiesInput"] = None
+    hris: Optional["HRISFeedPropertiesInput"] = None
+    issue: Optional["IssueFeedPropertiesInput"] = None
+    pull_request: Optional["PullRequestFeedPropertiesInput"] = Field(
+        alias="pullRequest", default=None
+    )
+    commit: Optional["CommitFeedPropertiesInput"] = None
+    rss: Optional["RSSFeedPropertiesInput"] = None
+    web: Optional["WebFeedPropertiesInput"] = None
+    search: Optional["SearchFeedPropertiesInput"] = None
+    reddit: Optional["RedditFeedPropertiesInput"] = None
+    linked_in: Optional["LinkedInFeedPropertiesInput"] = Field(
+        alias="linkedIn", default=None
+    )
+    youtube: Optional["YouTubeFeedPropertiesInput"] = None
+    notion: Optional["NotionFeedPropertiesInput"] = None
+    evernote: Optional["EvernoteFeedPropertiesInput"] = None
+    confluence: Optional["ConfluenceFeedPropertiesInput"] = None
+    twitter: Optional["TwitterFeedPropertiesInput"] = None
+    slack: Optional["SlackFeedPropertiesInput"] = None
+    microsoft_teams: Optional["MicrosoftTeamsFeedPropertiesInput"] = Field(
+        alias="microsoftTeams", default=None
+    )
+    discord: Optional["DiscordFeedPropertiesInput"] = None
+    attio: Optional["AttioFeedPropertiesInput"] = None
+    salesforce: Optional["SalesforceFeedPropertiesInput"] = None
+    hub_spot_conversations: Optional["HubSpotConversationsFeedPropertiesInput"] = Field(
+        alias="hubSpotConversations", default=None
+    )
+    intercom: Optional["IntercomFeedPropertiesInput"] = None
+    zendesk: Optional["ZendeskFeedPropertiesInput"] = None
+    intercom_conversations: Optional["IntercomConversationsFeedPropertiesInput"] = (
+        Field(alias="intercomConversations", default=None)
+    )
+    productlane: Optional["ProductlaneFeedPropertiesInput"] = None
+    research: Optional["ResearchFeedPropertiesInput"] = None
+    entity: Optional["EntityFeedPropertiesInput"] = None
+    meeting: Optional["MeetingFeedPropertiesInput"] = None
+    initiative: Optional["InitiativeFeedPropertiesInput"] = None
+    workflow: Optional["EntityReferenceInput"] = None
+
+
+class InvestmentFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
+    feeds: Optional[list["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
+    address: Optional["AddressFilter"] = None
+    location: Optional["PointFilter"] = None
+    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
+    boundaries: Optional[list[str]] = None
+    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
+    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
+    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
+    similar_investments: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="similarInvestments", default=None
+    )
+    investments: Optional[list["EntityReferenceFilter"]] = None
+
+
+class GoogleDocsDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
+    folder_id: Optional[str] = Field(alias="folderId", default=None)
+    title: Optional[str] = None
+
+
+class GoogleChatChannelPropertiesInput(BaseModel):
+    credentials: str
+    project_id: Optional[str] = Field(alias="projectId", default=None)
+
+
+class GitHubCommitsFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[GitHubCommitAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    repository_owner: Optional[str] = Field(alias="repositoryOwner", default=None)
+    repository_name: Optional[str] = Field(alias="repositoryName", default=None)
+    branch: Optional[str] = None
+    uri: Optional[Any] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class ParallelEntityFeedPropertiesInput(BaseModel):
+    generator: Optional[ParallelGenerators] = None
+    processor: Optional[ParallelProcessors] = None
+
+
+class JiraEpicsFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[JiraAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    uri: Optional[str] = None
+    project: Optional[str] = None
+    email: Optional[str] = None
+    token: Optional[str] = None
+    offset: Optional[Any] = None
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
+    cloud_id: Optional[str] = Field(alias="cloudId", default=None)
 
 
-class MedicalTherapyFacetInput(BaseModel):
+class RetrievalStrategyUpdateInput(BaseModel):
+    type: Optional[RetrievalStrategyTypes] = None
+    content_limit: Optional[int] = Field(alias="contentLimit", default=None)
+
+
+class LanguageMetadataInput(BaseModel):
+    languages: Optional[list[Optional[str]]] = None
+
+
+class PersonaFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    identifier: Optional[str] = None
+    types: Optional[list[PersonaTypes]] = None
+
+
+class MicrosoftContactsCRMFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[MicrosoftContactsAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    tenant_id: Optional[str] = Field(alias="tenantId", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
+
+
+class TwitterIntegrationPropertiesInput(BaseModel):
+    consumer_key: str = Field(alias="consumerKey")
+    consumer_secret: str = Field(alias="consumerSecret")
+    access_token_key: str = Field(alias="accessTokenKey")
+    access_token_secret: str = Field(alias="accessTokenSecret")
+
+
+class SoftwareFacetInput(BaseModel):
     time_interval: Optional[TimeIntervalTypes] = Field(
         alias="timeInterval", default=None
     )
     time_offset: Optional[int] = Field(alias="timeOffset", default=None)
-    facet: Optional[MedicalTherapyFacetTypes] = None
+    facet: Optional[SoftwareFacetTypes] = None
+
+
+class AgentSchedulePolicyInput(BaseModel):
+    recurrence_type: Optional[TimedPolicyRecurrenceTypes] = Field(
+        alias="recurrenceType", default=None
+    )
+    repeat_interval: Optional[Any] = Field(alias="repeatInterval", default=None)
+    cron: Optional[str] = None
+    time_zone_id: Optional[str] = Field(alias="timeZoneId", default=None)
 
 
 class GitLabMilestonesFeedPropertiesUpdateInput(BaseModel):
@@ -3736,6 +5105,42 @@ class GitLabMilestonesFeedPropertiesUpdateInput(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
     authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
+
+
+class DiscordChannelsInput(BaseModel):
+    token: str
+    guild_id: str = Field(alias="guildId")
+
+
+class CommitFeedPropertiesUpdateInput(BaseModel):
+    github: Optional["GitHubCommitsFeedPropertiesUpdateInput"] = None
+    gitlab: Optional["GitLabCommitsFeedPropertiesUpdateInput"] = None
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class InvestmentFundUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+    amount_currency: Optional[str] = Field(alias="amountCurrency", default=None)
+    amount: Optional[Any] = None
+    fund_type: Optional[str] = Field(alias="fundType", default=None)
+    vintage: Optional[int] = None
+    target_size: Optional[Any] = Field(alias="targetSize", default=None)
+    target_size_currency: Optional[str] = Field(
+        alias="targetSizeCurrency", default=None
+    )
+
+
+class StorageWorkflowStageInput(BaseModel):
+    policy: Optional["StoragePolicyInput"] = None
+    gate: Optional["StorageGateInput"] = None
 
 
 class MedicalDrugFilter(BaseModel):
@@ -3778,82 +5183,27 @@ class MedicalDrugFilter(BaseModel):
     )
 
 
-class ConversationToolResponseInput(BaseModel):
-    id: str
-    content: str
+class ExtractionWorkflowJobInput(BaseModel):
+    connector: Optional["EntityExtractionConnectorInput"] = None
 
 
-class ReplicaFilter(BaseModel):
-    search: Optional[str] = None
-    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
-    direction: Optional[OrderDirectionTypes] = None
-    offset: Optional[int] = None
-    limit: Optional[int] = None
-    relevance_threshold: Optional[float] = Field(
-        alias="relevanceThreshold", default=None
-    )
-    id: Optional[str] = None
-    name: Optional[str] = None
+class ObservationCriteriaInput(BaseModel):
+    type: Optional[ObservableTypes] = None
+    observable: Optional["EntityReferenceInput"] = None
     states: Optional[list[EntityState]] = None
-    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
-    creation_date_range: Optional["DateRangeFilter"] = Field(
-        alias="creationDateRange", default=None
-    )
-    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
-    modified_date_range: Optional["DateRangeFilter"] = Field(
-        alias="modifiedDateRange", default=None
-    )
-    types: Optional[list[EntityTypes]] = None
 
 
-class InvestmentInput(BaseModel):
-    name: str
+class MedicalDrugUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
     uri: Optional[Any] = None
     identifier: Optional[str] = None
     description: Optional[str] = None
     location: Optional["PointInput"] = None
     boundary: Optional[str] = None
-    amount_currency: Optional[str] = Field(alias="amountCurrency", default=None)
-    amount: Optional[Any] = None
-    status: Optional[str] = None
-    stage: Optional[str] = None
-    investment_date: Optional[Any] = Field(alias="investmentDate", default=None)
-    round_size: Optional[Any] = Field(alias="roundSize", default=None)
-    round_size_currency: Optional[str] = Field(alias="roundSizeCurrency", default=None)
-    post_valuation: Optional[Any] = Field(alias="postValuation", default=None)
-    post_valuation_currency: Optional[str] = Field(
-        alias="postValuationCurrency", default=None
-    )
-    shares_owned: Optional[Any] = Field(alias="sharesOwned", default=None)
-    vehicle: Optional[str] = None
-    entry_price_per_share: Optional[Any] = Field(
-        alias="entryPricePerShare", default=None
-    )
-    current_price_per_share: Optional[Any] = Field(
-        alias="currentPricePerShare", default=None
-    )
-    discount_percent: Optional[Any] = Field(alias="discountPercent", default=None)
-    pro_rata_rights: Optional[bool] = Field(alias="proRataRights", default=None)
-    investor: Optional["EntityReferenceInput"] = None
-    organization: Optional["EntityReferenceInput"] = None
 
 
-class ContentInput(BaseModel):
-    name: str
-    type: Optional[ContentTypes] = None
-    uri: Optional[Any] = None
-    description: Optional[str] = None
-    text: Optional[str] = None
-    identifier: Optional[str] = None
-    file_creation_date: Optional[Any] = Field(alias="fileCreationDate", default=None)
-    file_modified_date: Optional[Any] = Field(alias="fileModifiedDate", default=None)
-    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
-    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
-    workflow: Optional["EntityReferenceInput"] = None
-    agent: Optional["EntityReferenceInput"] = None
-
-
-class LinearProjectsInput(BaseModel):
+class LinearInitiativesFeedPropertiesUpdateInput(BaseModel):
     authentication_type: Optional[LinearAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
@@ -3864,111 +5214,171 @@ class LinearProjectsInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
 
 
-class TwelveLabsModelPropertiesUpdateInput(BaseModel):
-    model: Optional[TwelveLabsModels] = None
-    key: Optional[str] = None
-    embedding_options: Optional[list[TwelveLabsEmbeddingOptions]] = Field(
-        alias="embeddingOptions", default=None
+class EmotionFacetInput(BaseModel):
+    time_interval: Optional[TimeIntervalTypes] = Field(
+        alias="timeInterval", default=None
     )
-    embedding_scopes: Optional[list[TwelveLabsEmbeddingScopes]] = Field(
-        alias="embeddingScopes", default=None
+    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
+    facet: Optional[EmotionFacetTypes] = None
+
+
+class ConversationStrategyUpdateInput(BaseModel):
+    type: Optional[ConversationStrategyTypes] = None
+    message_limit: Optional[int] = Field(alias="messageLimit", default=None)
+    embed_citations: Optional[bool] = Field(alias="embedCitations", default=None)
+    flatten_citations: Optional[bool] = Field(alias="flattenCitations", default=None)
+    enable_facets: Optional[bool] = Field(alias="enableFacets", default=None)
+    enable_summarization: Optional[bool] = Field(
+        alias="enableSummarization", default=None
     )
-    segmentation_method: Optional[TwelveLabsSegmentationMethods] = Field(
-        alias="segmentationMethod", default=None
+    enable_entity_extraction: Optional[bool] = Field(
+        alias="enableEntityExtraction", default=None
     )
-    segmentation_duration: Optional[int] = Field(
-        alias="segmentationDuration", default=None
+    enable_fact_extraction: Optional[bool] = Field(
+        alias="enableFactExtraction", default=None
+    )
+    entity_extraction_limit: Optional[int] = Field(
+        alias="entityExtractionLimit", default=None
+    )
+    fact_extraction_limit: Optional[int] = Field(
+        alias="factExtractionLimit", default=None
+    )
+    messages_weight: Optional[float] = Field(alias="messagesWeight", default=None)
+    contents_weight: Optional[float] = Field(alias="contentsWeight", default=None)
+    tool_result_token_limit: Optional[int] = Field(
+        alias="toolResultTokenLimit", default=None
+    )
+    tool_round_limit: Optional[int] = Field(alias="toolRoundLimit", default=None)
+    tool_budget_threshold: Optional[float] = Field(
+        alias="toolBudgetThreshold", default=None
     )
 
 
-class ContentCriteriaLevelInput(BaseModel):
-    feeds: Optional[list["EntityReferenceInput"]] = None
-    workflows: Optional[list["EntityReferenceInput"]] = None
-    collections: Optional[list["EntityReferenceInput"]] = None
-    observations: Optional[list["ObservationCriteriaInput"]] = None
+class MedicalConditionInput(BaseModel):
+    name: str
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
 
 
-class H3IndexFilter(BaseModel):
-    resolution: Optional[H3ResolutionTypes] = None
-    key: Optional[str] = None
+class ContentClassificationConnectorInput(BaseModel):
+    type: Optional[ContentClassificationServiceTypes] = None
+    content_type: Optional[ContentTypes] = Field(alias="contentType", default=None)
+    file_type: Optional[FileTypes] = Field(alias="fileType", default=None)
+    model: Optional["ModelContentClassificationPropertiesInput"] = None
+    regex: Optional["RegexContentClassificationPropertiesInput"] = None
 
 
-class FactGraphInput(BaseModel):
-    types: Optional[list[ObservableTypes]] = None
-
-
-class DeskFilter(BaseModel):
-    search: Optional[str] = None
-    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
-    direction: Optional[OrderDirectionTypes] = None
-    offset: Optional[int] = None
-    limit: Optional[int] = None
-    relevance_threshold: Optional[float] = Field(
-        alias="relevanceThreshold", default=None
-    )
-    id: Optional[str] = None
-    name: Optional[str] = None
-    states: Optional[list[EntityState]] = None
-    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
-    creation_date_range: Optional["DateRangeFilter"] = Field(
-        alias="creationDateRange", default=None
-    )
-    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
-    modified_date_range: Optional["DateRangeFilter"] = Field(
-        alias="modifiedDateRange", default=None
-    )
-    bureau: Optional["EntityReferenceFilter"] = None
-    agents: Optional[list["EntityReferenceFilter"]] = None
-
-
-class FirefliesFeedPropertiesUpdateInput(BaseModel):
+class FathomPropertiesUpdateInput(BaseModel):
     api_key: Optional[str] = Field(alias="apiKey", default=None)
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     type: Optional[FeedListingTypes] = None
 
 
-class MeetingFeedPropertiesUpdateInput(BaseModel):
-    content_type: Optional[MeetingContentTypes] = Field(
-        alias="contentType", default=None
+class ConversationToolResponseInput(BaseModel):
+    id: str
+    content: str
+
+
+class MessageMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    identifier: Optional[str] = None
+    conversation_identifier: Optional[str] = Field(
+        alias="conversationIdentifier", default=None
     )
-    fireflies: Optional["FirefliesFeedPropertiesUpdateInput"] = None
-    attio: Optional["AttioMeetingPropertiesUpdateInput"] = None
-    fathom: Optional["FathomPropertiesUpdateInput"] = None
-    zoom: Optional["ZoomPropertiesUpdateInput"] = None
-    hub_spot: Optional["HubSpotMeetingPropertiesUpdateInput"] = Field(
-        alias="hubSpot", default=None
-    )
-    krisp: Optional["KrispPropertiesUpdateInput"] = None
+    channel_identifier: Optional[str] = Field(alias="channelIdentifier", default=None)
+    channel_name: Optional[str] = Field(alias="channelName", default=None)
+    attachment_count: Optional[int] = Field(alias="attachmentCount", default=None)
+    links: Optional[list[Optional["LinkReferenceInput"]]] = None
+    author: Optional["PersonReferenceInput"] = None
+    mentions: Optional[list[Optional["PersonReferenceInput"]]] = None
+    reactions: Optional[list[Optional["ReactionReferenceInput"]]] = None
+
+
+class EntityFeedPropertiesInput(BaseModel):
+    type: FeedServiceTypes
+    query: Optional[str] = None
+    parallel: Optional["ParallelEntityFeedPropertiesInput"] = None
+    crustdata: Optional["CrustdataEntityFeedPropertiesInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
-class EntityResolutionStrategyInput(BaseModel):
-    strategy: Optional[EntityResolutionStrategyTypes] = None
-    threshold: Optional[float] = None
-    specification: Optional["EntityReferenceInput"] = None
+class GitHubPullRequestsFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[GitHubPullRequestAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    repository_owner: Optional[str] = Field(alias="repositoryOwner", default=None)
+    repository_name: Optional[str] = Field(alias="repositoryName", default=None)
+    uri: Optional[Any] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    connector: Optional["EntityReferenceInput"] = None
 
 
-class DiscordFeedPropertiesInput(BaseModel):
+class DiscordFeedPropertiesUpdateInput(BaseModel):
     type: Optional[FeedListingTypes] = None
-    token: str
-    channel: str
+    token: Optional[str] = None
+    channel: Optional[str] = None
     include_attachments: Optional[bool] = Field(
         alias="includeAttachments", default=None
     )
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
-class SoftwareUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    uri: Optional[Any] = None
+class DropboxFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[DropboxAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    path: Optional[str] = None
+    app_key: Optional[str] = Field(alias="appKey", default=None)
+    app_secret: Optional[str] = Field(alias="appSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class MicrosoftTeamsFeedPropertiesInput(BaseModel):
+    type: Optional[FeedListingTypes] = None
+    authentication_type: Optional[MicrosoftTeamsAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    team_id: str = Field(alias="teamId")
+    channel_id: str = Field(alias="channelId")
+    include_attachments: Optional[bool] = Field(
+        alias="includeAttachments", default=None
+    )
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class GoogleFeedPropertiesInput(BaseModel):
+    credentials: str
+    container_name: str = Field(alias="containerName")
+    prefix: Optional[str] = None
+
+
+class PersonaInput(BaseModel):
+    name: str
+    type: Optional[PersonaTypes] = None
     identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
-    developer: Optional[str] = None
-    release_date: Optional[Any] = Field(alias="releaseDate", default=None)
+    platform: Optional[str] = None
+    display_name: Optional[str] = Field(alias="displayName", default=None)
+    timezone: Optional[str] = None
+    role: Optional[str] = None
+    instructions: Optional[str] = None
 
 
 class NotionDistributionPropertiesInput(BaseModel):
@@ -3985,55 +5395,21 @@ class NotionDistributionPropertiesInput(BaseModel):
     title: Optional[str] = None
 
 
-class AssemblyAIAudioPreparationPropertiesInput(BaseModel):
-    model: Optional[AssemblyAIModels] = None
-    key: Optional[str] = None
-    enable_redaction: Optional[bool] = Field(alias="enableRedaction", default=None)
-    enable_speaker_diarization: Optional[bool] = Field(
-        alias="enableSpeakerDiarization", default=None
-    )
-    detect_language: Optional[bool] = Field(alias="detectLanguage", default=None)
-    language: Optional[str] = None
-
-
-class GoogleDriveDistributionPropertiesInput(BaseModel):
-    target_operation: Optional[DistributionTargetOperationTypes] = Field(
-        alias="targetOperation", default=None
-    )
-    target_kind: Optional[DistributionTargetKindTypes] = Field(
-        alias="targetKind", default=None
-    )
-    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
-    target_uri: Optional[str] = Field(alias="targetUri", default=None)
-    folder_id: Optional[str] = Field(alias="folderId", default=None)
-    file_name: Optional[str] = Field(alias="fileName", default=None)
-
-
-class FeedSchedulePolicyInput(BaseModel):
-    recurrence_type: TimedPolicyRecurrenceTypes = Field(alias="recurrenceType")
-    repeat_interval: Optional[Any] = Field(alias="repeatInterval", default=None)
-
-
-class FHIREnrichmentPropertiesInput(BaseModel):
-    endpoint: Optional[Any] = None
-
-
-class GitLabFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[GitLabAuthenticationTypes] = Field(
+class GustoHRISFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[GustoAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
-    project_path: Optional[str] = Field(alias="projectPath", default=None)
-    branch: Optional[str] = None
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    personal_access_token: Optional[str] = Field(
-        alias="personalAccessToken", default=None
-    )
-    connector: Optional["EntityReferenceInput"] = None
+    company_id: Optional[str] = Field(alias="companyId", default=None)
 
 
-class MicrosoftCalendarsInput(BaseModel):
+class MicrosoftCalendarFeedPropertiesInput(BaseModel):
+    type: Optional[CalendarListingTypes] = None
+    calendar_id: Optional[str] = Field(alias="calendarId", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
     authentication_type: Optional[MicrosoftCalendarAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
@@ -4043,17 +5419,166 @@ class MicrosoftCalendarsInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
 
 
-class InitiativeFeedPropertiesUpdateInput(BaseModel):
-    jira: Optional["JiraEpicsFeedPropertiesUpdateInput"] = None
-    github: Optional["GitHubMilestonesFeedPropertiesUpdateInput"] = None
-    gitlab: Optional["GitLabMilestonesFeedPropertiesUpdateInput"] = None
-    linear: Optional["LinearInitiativesFeedPropertiesUpdateInput"] = None
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+class HubSpotTasksFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[HubSpotIssueAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    access_token: Optional[str] = Field(alias="accessToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class SalesforceTasksFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[SalesforceIssueAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    is_sandbox: Optional[bool] = Field(alias="isSandbox", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class ConnectorUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    type: Optional[ConnectorTypes] = None
+    authentication: Optional["AuthenticationConnectorInput"] = None
+    integration: Optional["IntegrationConnectorInput"] = None
+    channel: Optional["ChannelConnectorUpdateInput"] = None
+
+
+class ReductoDocumentPreparationPropertiesInput(BaseModel):
+    ocr_mode: Optional[ReductoOcrModes] = Field(alias="ocrMode", default=None)
+    ocr_system: Optional[ReductoOcrSystems] = Field(alias="ocrSystem", default=None)
+    extraction_mode: Optional[ReductoExtractionModes] = Field(
+        alias="extractionMode", default=None
+    )
+    enable_enrichment: Optional[bool] = Field(alias="enableEnrichment", default=None)
+    enrichment_mode: Optional[ReductoEnrichmentModes] = Field(
+        alias="enrichmentMode", default=None
+    )
+    key: Optional[str] = None
+
+
+class HubSpotConversationsFeedPropertiesUpdateInput(BaseModel):
+    type: Optional[FeedListingTypes] = None
+    authentication_type: Optional[HubSpotFeedAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    access_token: Optional[str] = Field(alias="accessToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    inbox_id: Optional[str] = Field(alias="inboxId", default=None)
+    include_closed_threads: Optional[bool] = Field(
+        alias="includeClosedThreads", default=None
+    )
+    include_attachments: Optional[bool] = Field(
+        alias="includeAttachments", default=None
+    )
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
-class MedicalDrugClassFilter(BaseModel):
+class ProductlaneFeedPropertiesInput(BaseModel):
+    type: FeedServiceTypes
+    api_key: str = Field(alias="apiKey")
+    workspace_id: str = Field(alias="workspaceId")
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class EntityClustersInput(BaseModel):
+    threshold: Optional[float] = None
+
+
+class BureauFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    desks: Optional[list["EntityReferenceFilter"]] = None
+
+
+class EvernoteFeedPropertiesUpdateInput(BaseModel):
+    type: Optional[FeedListingTypes] = None
+    connector: Optional["EntityReferenceInput"] = None
+    query: Optional[str] = None
+    tag_guids: Optional[list[str]] = Field(alias="tagGuids", default=None)
+    include_resources: Optional[bool] = Field(alias="includeResources", default=None)
+    include_inactive: Optional[bool] = Field(alias="includeInactive", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class ConversationCriteriaInput(BaseModel):
+    types: Optional[list[ConversationTypes]] = None
+    conversations: Optional[list["EntityReferenceInput"]] = None
+    exclude_conversations: Optional[list["EntityReferenceInput"]] = Field(
+        alias="excludeConversations", default=None
+    )
+    agents: Optional[list["EntityReferenceInput"]] = None
+    collections: Optional[list["EntityReferenceInput"]] = None
+    observations: Optional[list["ObservationCriteriaInput"]] = None
+    has_collections: Optional[bool] = Field(alias="hasCollections", default=None)
+    has_observations: Optional[bool] = Field(alias="hasObservations", default=None)
+    collection_mode: Optional[FilterMode] = Field(alias="collectionMode", default=None)
+    observation_mode: Optional[FilterMode] = Field(
+        alias="observationMode", default=None
+    )
+
+
+class IntercomTicketsFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[IntercomIssueAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    access_token: Optional[str] = Field(alias="accessToken", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class MicrosoftOutlookDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
+    to: list[str]
+    subject: str
+    cc: Optional[list[str]] = None
+    bcc: Optional[list[str]] = None
+    importance: Optional[str] = None
+    is_draft: Optional[bool] = Field(alias="isDraft", default=None)
+    in_reply_to_message_id: Optional[str] = Field(
+        alias="inReplyToMessageId", default=None
+    )
+    forward_from_message_id: Optional[str] = Field(
+        alias="forwardFromMessageId", default=None
+    )
+
+
+class MedicalGuidelineFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
     direction: Optional[OrderDirectionTypes] = None
@@ -4085,42 +5610,16 @@ class MedicalDrugClassFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    similar_classes: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="similarClasses", default=None
+    similar_guidelines: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="similarGuidelines", default=None
     )
-    medical_drug_classes: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="medicalDrugClasses", default=None
+    medical_guidelines: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="medicalGuidelines", default=None
     )
 
 
-class MetadataInput(BaseModel):
+class MedicalIndicationInput(BaseModel):
     name: str
-    mime_type: Optional[str] = Field(alias="mimeType", default=None)
-    value: Optional[str] = None
-    content: Optional["EntityReferenceInput"] = None
-
-
-class CategoryInput(BaseModel):
-    name: str
-    description: Optional[str] = None
-
-
-class CohereModelPropertiesUpdateInput(BaseModel):
-    model: Optional[CohereModels] = None
-    model_name: Optional[str] = Field(alias="modelName", default=None)
-    key: Optional[str] = None
-    temperature: Optional[float] = None
-    probability: Optional[float] = None
-    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
-    completion_token_limit: Optional[int] = Field(
-        alias="completionTokenLimit", default=None
-    )
-    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
-
-
-class MedicalGuidelineUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
     uri: Optional[Any] = None
     identifier: Optional[str] = None
     description: Optional[str] = None
@@ -4128,22 +5627,8 @@ class MedicalGuidelineUpdateInput(BaseModel):
     boundary: Optional[str] = None
 
 
-class AgentTriggerFilterInput(BaseModel):
-    types: Optional[list[ContentTypes]] = None
-    file_types: Optional[list[FileTypes]] = Field(alias="fileTypes", default=None)
-    feeds: Optional[list["EntityReferenceInput"]] = None
-
-
-class AtlassianSitesInput(BaseModel):
-    authentication_type: Optional[ConfluenceAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    token: Optional[str] = None
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class GroqModelPropertiesInput(BaseModel):
-    model: GroqModels
+class CerebrasModelPropertiesInput(BaseModel):
+    model: CerebrasModels
     model_name: Optional[str] = Field(alias="modelName", default=None)
     key: Optional[str] = None
     endpoint: Optional[Any] = None
@@ -4153,6 +5638,99 @@ class GroqModelPropertiesInput(BaseModel):
     completion_token_limit: Optional[int] = Field(
         alias="completionTokenLimit", default=None
     )
+
+
+class OrganizationInput(BaseModel):
+    name: str
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+    address: Optional["AddressInput"] = None
+    founding_date: Optional[Any] = Field(alias="foundingDate", default=None)
+    email: Optional[str] = None
+    telephone: Optional[str] = None
+    legal_name: Optional[str] = Field(alias="legalName", default=None)
+    industries: Optional[list[Optional[str]]] = None
+    revenue_currency: Optional[str] = Field(alias="revenueCurrency", default=None)
+    revenue: Optional[Any] = None
+    investment_currency: Optional[str] = Field(alias="investmentCurrency", default=None)
+    investment: Optional[Any] = None
+
+
+class AgentUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    mode: Optional[AgentModes] = None
+    description: Optional[str] = None
+    specification: Optional["EntityReferenceInput"] = None
+    persona: Optional["EntityReferenceInput"] = None
+    trigger: Optional["AgentTriggerFilterInput"] = None
+    filter: Optional["ContentCriteriaInput"] = None
+    augmented_filter: Optional["ContentCriteriaInput"] = Field(
+        alias="augmentedFilter", default=None
+    )
+    schedule_policy: Optional["AgentSchedulePolicyInput"] = Field(
+        alias="schedulePolicy", default=None
+    )
+    heartbeat: Optional["AgentHeartbeatPropertiesInput"] = None
+    timeout: Optional[Any] = None
+    prompt: Optional[str] = None
+    scratchpad: Optional[str] = None
+    focus: Optional[str] = None
+    research_depth: Optional[AgentResearchDepths] = Field(
+        alias="researchDepth", default=None
+    )
+    channels: Optional[list["AgentChannelInput"]] = None
+    rules: Optional[list["PromptClassificationRuleInput"]] = None
+    commands: Optional[list["AgentCommandInput"]] = None
+    targets: Optional[list["DistributionTargetInput"]] = None
+    callback_uri: Optional[Any] = Field(alias="callbackUri", default=None)
+
+
+class HumeExtractionPropertiesInput(BaseModel):
+    confidence_threshold: Optional[float] = Field(
+        alias="confidenceThreshold", default=None
+    )
+
+
+class ExtractionWorkflowStageInput(BaseModel):
+    jobs: Optional[list[Optional["ExtractionWorkflowJobInput"]]] = None
+
+
+class WhatsAppChannelPropertiesInput(BaseModel):
+    access_token: str = Field(alias="accessToken")
+    app_secret: Optional[str] = Field(alias="appSecret", default=None)
+    phone_number_id: str = Field(alias="phoneNumberId")
+    verify_token: Optional[str] = Field(alias="verifyToken", default=None)
+
+
+class ProductInput(BaseModel):
+    name: str
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+    address: Optional["AddressInput"] = None
+    production_date: Optional[Any] = Field(alias="productionDate", default=None)
+    release_date: Optional[Any] = Field(alias="releaseDate", default=None)
+    sku: Optional[str] = None
+    upc: Optional[str] = None
+    manufacturer: Optional[str] = None
+    brand: Optional[str] = None
+    model: Optional[str] = None
+    gtin: Optional[str] = None
+    mpn: Optional[str] = None
+
+
+class BureauInput(BaseModel):
+    name: str
+    description: Optional[str] = None
+    mission: Optional[str] = None
+    directives: Optional[str] = None
+    desks: Optional[list["EntityReferenceInput"]] = None
 
 
 class ConfluenceSpacesInput(BaseModel):
@@ -4166,24 +5744,15 @@ class ConfluenceSpacesInput(BaseModel):
     cloud_id: Optional[str] = Field(alias="cloudId", default=None)
 
 
-class EntityFeedPropertiesInput(BaseModel):
-    type: FeedServiceTypes
-    query: Optional[str] = None
-    parallel: Optional["ParallelEntityFeedPropertiesInput"] = None
-    crustdata: Optional["CrustdataEntityFeedPropertiesInput"] = None
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+class AzureBlobFeedPropertiesInput(BaseModel):
+    storage_access_key: str = Field(alias="storageAccessKey")
+    account_name: str = Field(alias="accountName")
+    container_name: str = Field(alias="containerName")
+    prefix: Optional[str] = None
+    list_type: Optional[BlobListingTypes] = Field(alias="listType", default=None)
 
 
-class CommitFeedPropertiesInput(BaseModel):
-    type: FeedServiceTypes
-    github: Optional["GitHubCommitsFeedPropertiesInput"] = None
-    gitlab: Optional["GitLabCommitsFeedPropertiesInput"] = None
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class SoftwareFilter(BaseModel):
+class MedicalTherapyFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
     direction: Optional[OrderDirectionTypes] = None
@@ -4215,99 +5784,39 @@ class SoftwareFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    similar_softwares: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="similarSoftwares", default=None
+    similar_therapies: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="similarTherapies", default=None
     )
-    softwares: Optional[list["EntityReferenceFilter"]] = None
-
-
-class CerebrasModelPropertiesUpdateInput(BaseModel):
-    model: Optional[CerebrasModels] = None
-    model_name: Optional[str] = Field(alias="modelName", default=None)
-    key: Optional[str] = None
-    endpoint: Optional[Any] = None
-    temperature: Optional[float] = None
-    probability: Optional[float] = None
-    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
-    completion_token_limit: Optional[int] = Field(
-        alias="completionTokenLimit", default=None
+    medical_therapies: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="medicalTherapies", default=None
     )
 
 
-class AgentFilter(BaseModel):
-    search: Optional[str] = None
-    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
-    direction: Optional[OrderDirectionTypes] = None
-    offset: Optional[int] = None
-    limit: Optional[int] = None
-    relevance_threshold: Optional[float] = Field(
-        alias="relevanceThreshold", default=None
+class IssueFeedPropertiesUpdateInput(BaseModel):
+    include_attachments: Optional[bool] = Field(
+        alias="includeAttachments", default=None
     )
-    id: Optional[str] = None
-    name: Optional[str] = None
-    states: Optional[list[EntityState]] = None
-    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
-    creation_date_range: Optional["DateRangeFilter"] = Field(
-        alias="creationDateRange", default=None
+    jira: Optional["AtlassianJiraFeedPropertiesUpdateInput"] = None
+    linear: Optional["LinearFeedPropertiesUpdateInput"] = None
+    github: Optional["GitHubIssuesFeedPropertiesUpdateInput"] = None
+    gitlab: Optional["GitLabIssuesFeedPropertiesUpdateInput"] = None
+    intercom: Optional["IntercomTicketsFeedPropertiesUpdateInput"] = None
+    zendesk: Optional["ZendeskTicketsFeedPropertiesUpdateInput"] = None
+    trello: Optional["TrelloFeedPropertiesUpdateInput"] = None
+    attio: Optional["AttioTasksFeedPropertiesUpdateInput"] = None
+    salesforce: Optional["SalesforceTasksFeedPropertiesUpdateInput"] = None
+    hub_spot: Optional["HubSpotTasksFeedPropertiesUpdateInput"] = Field(
+        alias="hubSpot", default=None
     )
-    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
-    modified_date_range: Optional["DateRangeFilter"] = Field(
-        alias="modifiedDateRange", default=None
-    )
-    types: Optional[list[AgentTypes]] = None
-    conversations: Optional[list["EntityReferenceFilter"]] = None
+    asana: Optional["AsanaFeedPropertiesUpdateInput"] = None
+    monday: Optional["MondayFeedPropertiesUpdateInput"] = None
+    productlane: Optional["ProductlaneThreadsFeedPropertiesUpdateInput"] = None
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
-class EmailMetadataInput(BaseModel):
-    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
-    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
-    location: Optional["PointInput"] = None
-    subject: Optional[str] = None
-    identifier: Optional[str] = None
-    thread_identifier: Optional[str] = Field(alias="threadIdentifier", default=None)
-    sensitivity: Optional[MailSensitivity] = None
-    priority: Optional[MailPriority] = None
-    importance: Optional[MailImportance] = None
-    labels: Optional[list[Optional[str]]] = None
-    links: Optional[list[Optional[Any]]] = None
-    attachment_count: Optional[int] = Field(alias="attachmentCount", default=None)
-    unsubscribe_url: Optional[str] = Field(alias="unsubscribeUrl", default=None)
-    publication_name: Optional[str] = Field(alias="publicationName", default=None)
-    publication_url: Optional[str] = Field(alias="publicationUrl", default=None)
-
-
-class SharePointLibrariesInput(BaseModel):
-    authentication_type: SharePointAuthenticationTypes = Field(
-        alias="authenticationType"
-    )
-    tenant_id: Optional[str] = Field(alias="tenantId", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class SharePointFeedPropertiesInput(BaseModel):
-    authentication_type: SharePointAuthenticationTypes = Field(
-        alias="authenticationType"
-    )
-    tenant_id: Optional[str] = Field(alias="tenantId", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    account_name: str = Field(alias="accountName")
-    library_id: str = Field(alias="libraryId")
-    folder_id: Optional[str] = Field(alias="folderId", default=None)
-
-
-class EmailIntegrationPropertiesInput(BaseModel):
-    subject: str
-    from_: str = Field(alias="from")
-    to: list[str]
-
-
-class AttioTasksDistributionPropertiesInput(BaseModel):
+class GmailDistributionPropertiesInput(BaseModel):
     target_operation: Optional[DistributionTargetOperationTypes] = Field(
         alias="targetOperation", default=None
     )
@@ -4316,11 +5825,23 @@ class AttioTasksDistributionPropertiesInput(BaseModel):
     )
     target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
     target_uri: Optional[str] = Field(alias="targetUri", default=None)
-    title: Optional[str] = None
-    assignees: Optional[list[str]] = None
-    linked_record_id: Optional[str] = Field(alias="linkedRecordId", default=None)
-    linked_object_type: Optional[str] = Field(alias="linkedObjectType", default=None)
-    deadline: Optional[Any] = None
+    to: list[str]
+    subject: str
+    cc: Optional[list[str]] = None
+    bcc: Optional[list[str]] = None
+    is_draft: Optional[bool] = Field(alias="isDraft", default=None)
+    in_reply_to_message_id: Optional[str] = Field(
+        alias="inReplyToMessageId", default=None
+    )
+    forward_from_message_id: Optional[str] = Field(
+        alias="forwardFromMessageId", default=None
+    )
+
+
+class ContentIndexingConnectorInput(BaseModel):
+    type: Optional[ContentIndexingServiceTypes] = None
+    content_type: Optional[ContentTypes] = Field(alias="contentType", default=None)
+    file_type: Optional[FileTypes] = Field(alias="fileType", default=None)
 
 
 class OpenAIImagePublishingPropertiesInput(BaseModel):
@@ -4338,18 +5859,75 @@ class OpenAIImagePublishingPropertiesInput(BaseModel):
     moderation: Optional[OpenAIImageModerationTypes] = None
 
 
-class ModelDocumentPreparationPropertiesInput(BaseModel):
-    specification: Optional["EntityReferenceInput"] = None
+class PostMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    identifier: Optional[str] = None
+    title: Optional[str] = None
+    author: Optional["PersonReferenceInput"] = None
+    upvotes: Optional[int] = None
+    downvotes: Optional[int] = None
+    comment_count: Optional[int] = Field(alias="commentCount", default=None)
+    links: Optional[list[Optional["LinkReferenceInput"]]] = None
 
 
-class EvernoteFeedPropertiesUpdateInput(BaseModel):
+class MondayBoardsInput(BaseModel):
+    api_token: str = Field(alias="apiToken")
+
+
+class ProductlaneCRMFeedPropertiesUpdateInput(BaseModel):
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
     type: Optional[FeedListingTypes] = None
-    connector: Optional["EntityReferenceInput"] = None
-    query: Optional[str] = None
-    tag_guids: Optional[list[str]] = Field(alias="tagGuids", default=None)
-    include_resources: Optional[bool] = Field(alias="includeResources", default=None)
-    include_inactive: Optional[bool] = Field(alias="includeInactive", default=None)
+
+
+class SkillFeedPropertiesInput(BaseModel):
+    type: FeedServiceTypes
+    is_recursive: Optional[bool] = Field(alias="isRecursive", default=None)
+    allowed_paths: Optional[list[str]] = Field(alias="allowedPaths", default=None)
+    excluded_paths: Optional[list[str]] = Field(alias="excludedPaths", default=None)
+    github: Optional["GitHubFeedPropertiesInput"] = None
+    gitlab: Optional["GitLabFeedPropertiesInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class ContentGraphInput(BaseModel):
+    types: Optional[list[ObservableTypes]] = None
+
+
+class GitHubIssuesFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[GitHubAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    repository_owner: str = Field(alias="repositoryOwner")
+    repository_name: str = Field(alias="repositoryName")
+    uri: Optional[Any] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
+    )
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class SalesforceTasksFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[SalesforceIssueAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    is_sandbox: Optional[bool] = Field(alias="isSandbox", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class MedicalDrugClassFacetInput(BaseModel):
+    time_interval: Optional[TimeIntervalTypes] = Field(
+        alias="timeInterval", default=None
+    )
+    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
+    facet: Optional[MedicalDrugClassFacetTypes] = None
 
 
 class FilePreparationConnectorInput(BaseModel):
@@ -4375,15 +5953,18 @@ class FilePreparationConnectorInput(BaseModel):
     reducto: Optional["ReductoDocumentPreparationPropertiesInput"] = None
 
 
-class GitLabProjectsInput(BaseModel):
-    authentication_type: GitLabAuthenticationTypes = Field(alias="authenticationType")
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    personal_access_token: Optional[str] = Field(
-        alias="personalAccessToken", default=None
-    )
-    connector: Optional["EntityReferenceInput"] = None
+class BureauUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    description: Optional[str] = None
+    mission: Optional[str] = None
+    directives: Optional[str] = None
+    desks: Optional[list["EntityReferenceInput"]] = None
+
+
+class ParallelEnrichmentPropertiesInput(BaseModel):
+    processor: Optional[ParallelProcessors] = None
+    is_synchronous: Optional[bool] = Field(alias="isSynchronous", default=None)
 
 
 class CrustdataSearchFeedPropertiesUpdateInput(BaseModel):
@@ -4431,51 +6012,22 @@ class CrustdataSearchFeedPropertiesUpdateInput(BaseModel):
     expiration_date: Optional[Any] = Field(alias="expirationDate", default=None)
 
 
-class ParallelEntityFeedPropertiesUpdateInput(BaseModel):
-    generator: Optional[ParallelGenerators] = None
-    processor: Optional[ParallelProcessors] = None
-
-
-class HubSpotTasksFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[HubSpotIssueAuthenticationTypes] = Field(
+class DropboxFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[DropboxAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    path: Optional[str] = None
+    app_key: Optional[str] = Field(alias="appKey", default=None)
+    app_secret: Optional[str] = Field(alias="appSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    access_token: Optional[str] = Field(alias="accessToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
 
 
-class AgentHeartbeatProbeThresholdsInput(BaseModel):
-    new_content_min: Optional[float] = Field(alias="newContentMin", default=None)
-    volume_spike_multiplier: Optional[float] = Field(
-        alias="volumeSpikeMultiplier", default=None
-    )
-
-
-class AnthropicModelPropertiesUpdateInput(BaseModel):
-    model: Optional[AnthropicModels] = None
-    model_name: Optional[str] = Field(alias="modelName", default=None)
-    key: Optional[str] = None
-    temperature: Optional[float] = None
-    probability: Optional[float] = None
-    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
-    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
-    completion_token_limit: Optional[int] = Field(
-        alias="completionTokenLimit", default=None
-    )
-    enable_thinking: Optional[bool] = Field(alias="enableThinking", default=None)
-    thinking_token_limit: Optional[int] = Field(
-        alias="thinkingTokenLimit", default=None
-    )
-    effort: Optional[AnthropicEffortLevels] = None
-
-
-class IntercomTicketsFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[IntercomIssueAuthenticationTypes] = Field(
+class ZendeskTicketsFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[ZendeskIssueAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
+    subdomain: str
     access_token: Optional[str] = Field(alias="accessToken", default=None)
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
@@ -4483,150 +6035,82 @@ class IntercomTicketsFeedPropertiesInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
 
 
-class EntityEnrichmentConnectorInput(BaseModel):
-    type: EntityEnrichmentServiceTypes
-    enriched_types: Optional[list[ObservableTypes]] = Field(
-        alias="enrichedTypes", default=None
+class MedicalContraindicationFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
     )
-    parallel: Optional["ParallelEnrichmentPropertiesInput"] = None
-    fhir: Optional["FHIREnrichmentPropertiesInput"] = None
-    diffbot: Optional["DiffbotEnrichmentPropertiesInput"] = None
-    crustdata: Optional["CrustdataEnrichmentPropertiesInput"] = None
-    waterfall: Optional["WaterfallEnrichmentPropertiesInput"] = None
-
-
-class AttioFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[AttioFeedAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    api_key: Optional[str] = Field(alias="apiKey", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class MicrosoftAuthenticationPropertiesInput(BaseModel):
-    tenant_id: str = Field(alias="tenantId")
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-
-
-class AzureOpenAIModelPropertiesInput(BaseModel):
-    model: AzureOpenAIModels
-    deployment_name: Optional[str] = Field(alias="deploymentName", default=None)
-    key: Optional[str] = None
-    endpoint: Optional[Any] = None
-    temperature: Optional[float] = None
-    probability: Optional[float] = None
-    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
-    completion_token_limit: Optional[int] = Field(
-        alias="completionTokenLimit", default=None
-    )
-    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
-
-
-class ContentFacetInput(BaseModel):
-    time_interval: Optional[TimeIntervalTypes] = Field(
-        alias="timeInterval", default=None
-    )
-    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
-    facet: Optional[ContentFacetTypes] = None
-
-
-class ObservationReferenceInput(BaseModel):
-    type: ObservableTypes
-    observable: "NamedEntityReferenceInput"
-
-
-class TwitterFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[TwitterAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    token: Optional[str] = None
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    type: Optional[TwitterListingTypes] = None
-    user_name: Optional[str] = Field(alias="userName", default=None)
-    query: Optional[str] = None
-    include_attachments: Optional[bool] = Field(
-        alias="includeAttachments", default=None
-    )
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class TwelveLabsModelPropertiesInput(BaseModel):
-    model: TwelveLabsModels
-    key: Optional[str] = None
-    embedding_options: Optional[list[TwelveLabsEmbeddingOptions]] = Field(
-        alias="embeddingOptions", default=None
-    )
-    embedding_scopes: Optional[list[TwelveLabsEmbeddingScopes]] = Field(
-        alias="embeddingScopes", default=None
-    )
-    segmentation_method: Optional[TwelveLabsSegmentationMethods] = Field(
-        alias="segmentationMethod", default=None
-    )
-    segmentation_duration: Optional[int] = Field(
-        alias="segmentationDuration", default=None
-    )
-
-
-class MedicalDeviceFacetInput(BaseModel):
-    time_interval: Optional[TimeIntervalTypes] = Field(
-        alias="timeInterval", default=None
-    )
-    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
-    facet: Optional[MedicalDeviceFacetTypes] = None
-
-
-class KrispPropertiesUpdateInput(BaseModel):
-    auth_token: Optional[str] = Field(alias="authToken", default=None)
-    type: Optional[FeedListingTypes] = None
-
-
-class WorkflowInput(BaseModel):
-    name: str
-    ingestion: Optional["IngestionWorkflowStageInput"] = None
-    indexing: Optional["IndexingWorkflowStageInput"] = None
-    preparation: Optional["PreparationWorkflowStageInput"] = None
-    extraction: Optional["ExtractionWorkflowStageInput"] = None
-    enrichment: Optional["EnrichmentWorkflowStageInput"] = None
-    classification: Optional["ClassificationWorkflowStageInput"] = None
-    storage: Optional["StorageWorkflowStageInput"] = None
-    actions: Optional[list[Optional["WorkflowActionInput"]]] = None
-
-
-class AmazonFeedPropertiesInput(BaseModel):
-    access_key: str = Field(alias="accessKey")
-    secret_access_key: str = Field(alias="secretAccessKey")
-    bucket_name: str = Field(alias="bucketName")
-    prefix: Optional[str] = None
-    region: Optional[str] = None
-    custom_endpoint: Optional[str] = Field(alias="customEndpoint", default=None)
-
-
-class GraphStrategyInput(BaseModel):
-    type: Optional[GraphStrategyTypes] = None
-    generate_graph: Optional[bool] = Field(alias="generateGraph", default=None)
-    observable_limit: Optional[int] = Field(alias="observableLimit", default=None)
-
-
-class RepoUpdateInput(BaseModel):
-    id: str
+    id: Optional[str] = None
     name: Optional[str] = None
-    uri: Optional[Any] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
+    feeds: Optional[list["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
+    address: Optional["AddressFilter"] = None
+    location: Optional["PointFilter"] = None
+    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
+    boundaries: Optional[list[str]] = None
+    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
+    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
+    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
+    similar_contraindications: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="similarContraindications", default=None
+    )
+    medical_contraindications: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="medicalContraindications", default=None
+    )
 
 
-class MicrosoftWordDistributionPropertiesInput(BaseModel):
+class MondayFeedPropertiesInput(BaseModel):
+    api_token: str = Field(alias="apiToken")
+    board_id: str = Field(alias="boardId")
+
+
+class LinkStrategyInput(BaseModel):
+    enable_crawling: Optional[bool] = Field(alias="enableCrawling", default=None)
+    allowed_paths: Optional[list[str]] = Field(alias="allowedPaths", default=None)
+    excluded_paths: Optional[list[str]] = Field(alias="excludedPaths", default=None)
+    allowed_domains: Optional[list[str]] = Field(alias="allowedDomains", default=None)
+    excluded_domains: Optional[list[str]] = Field(alias="excludedDomains", default=None)
+    allow_content_domain: Optional[bool] = Field(
+        alias="allowContentDomain", default=None
+    )
+    allowed_links: Optional[list[LinkTypes]] = Field(alias="allowedLinks", default=None)
+    excluded_links: Optional[list[LinkTypes]] = Field(
+        alias="excludedLinks", default=None
+    )
+    allowed_files: Optional[list[FileTypes]] = Field(alias="allowedFiles", default=None)
+    excluded_files: Optional[list[FileTypes]] = Field(
+        alias="excludedFiles", default=None
+    )
+    allowed_content_types: Optional[list[ContentTypes]] = Field(
+        alias="allowedContentTypes", default=None
+    )
+    excluded_content_types: Optional[list[ContentTypes]] = Field(
+        alias="excludedContentTypes", default=None
+    )
+    maximum_links: Optional[int] = Field(alias="maximumLinks", default=None)
+
+
+class FactStrategyInput(BaseModel):
+    fact_limit: Optional[int] = Field(alias="factLimit", default=None)
+
+
+class AttioTasksDistributionPropertiesInput(BaseModel):
     target_operation: Optional[DistributionTargetOperationTypes] = Field(
         alias="targetOperation", default=None
     )
@@ -4635,174 +6119,90 @@ class MicrosoftWordDistributionPropertiesInput(BaseModel):
     )
     target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
     target_uri: Optional[str] = Field(alias="targetUri", default=None)
-    folder_id: Optional[str] = Field(alias="folderId", default=None)
-    file_name: Optional[str] = Field(alias="fileName", default=None)
-
-
-class DeskUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    description: Optional[str] = None
-    objectives: Optional[str] = None
-    instructions: Optional[str] = None
-    bureau: Optional["EntityReferenceInput"] = None
-    agents: Optional[list["EntityReferenceInput"]] = None
-
-
-class NotionFeedPropertiesInput(BaseModel):
-    is_recursive: Optional[bool] = Field(alias="isRecursive", default=None)
-    authentication_type: Optional[NotionAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    token: Optional[str] = None
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    type: NotionTypes
-    identifiers: list[str]
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class AsanaWorkspacesInput(BaseModel):
-    personal_access_token: str = Field(alias="personalAccessToken")
-
-
-class ReplicateModelPropertiesUpdateInput(BaseModel):
-    model: Optional[ReplicateModels] = None
-    model_name: Optional[str] = Field(alias="modelName", default=None)
-    key: Optional[str] = None
-    temperature: Optional[float] = None
-    probability: Optional[float] = None
-    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
-    completion_token_limit: Optional[int] = Field(
-        alias="completionTokenLimit", default=None
-    )
-
-
-class GitHubDistributionPropertiesInput(BaseModel):
-    target_operation: Optional[DistributionTargetOperationTypes] = Field(
-        alias="targetOperation", default=None
-    )
-    target_kind: Optional[DistributionTargetKindTypes] = Field(
-        alias="targetKind", default=None
-    )
-    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
-    target_uri: Optional[str] = Field(alias="targetUri", default=None)
-    repository_owner: str = Field(alias="repositoryOwner")
-    repository_name: str = Field(alias="repositoryName")
     title: Optional[str] = None
-    labels: Optional[list[str]] = None
     assignees: Optional[list[str]] = None
-    milestone: Optional[int] = None
+    linked_record_id: Optional[str] = Field(alias="linkedRecordId", default=None)
+    linked_object_type: Optional[str] = Field(alias="linkedObjectType", default=None)
+    deadline: Optional[Any] = None
 
 
-class CrustdataEntityFeedPropertiesInput(BaseModel):
-    person_filters: Optional["CrustdataPersonDiscoveryFilterInput"] = Field(
-        alias="personFilters", default=None
-    )
-    company_filters: Optional["CrustdataCompanyDiscoveryFilterInput"] = Field(
-        alias="companyFilters", default=None
-    )
+class ContentCriteriaLevelInput(BaseModel):
+    feeds: Optional[list["EntityReferenceInput"]] = None
+    workflows: Optional[list["EntityReferenceInput"]] = None
+    collections: Optional[list["EntityReferenceInput"]] = None
+    observations: Optional[list["ObservationCriteriaInput"]] = None
 
 
-class TwitterIntegrationPropertiesInput(BaseModel):
-    consumer_key: str = Field(alias="consumerKey")
-    consumer_secret: str = Field(alias="consumerSecret")
-    access_token_key: str = Field(alias="accessTokenKey")
-    access_token_secret: str = Field(alias="accessTokenSecret")
-
-
-class PlaceUpdateInput(BaseModel):
+class FeedUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
-    uri: Optional[Any] = None
     identifier: Optional[str] = None
     description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
-    address: Optional["AddressInput"] = None
-    telephone: Optional[str] = None
-    opening_hours: Optional[str] = Field(alias="openingHours", default=None)
-    price_range: Optional[str] = Field(alias="priceRange", default=None)
-
-
-class GitHubRepositoriesInput(BaseModel):
-    authentication_type: GitHubAuthenticationTypes = Field(alias="authenticationType")
-    uri: Optional[str] = None
-    personal_access_token: Optional[str] = Field(
-        alias="personalAccessToken", default=None
+    type: Optional[FeedTypes] = None
+    sync_mode: Optional[FeedSyncMode] = Field(alias="syncMode", default=None)
+    site: Optional["SiteFeedPropertiesUpdateInput"] = None
+    skill: Optional["SkillFeedPropertiesUpdateInput"] = None
+    calendar: Optional["CalendarFeedPropertiesUpdateInput"] = None
+    email: Optional["EmailFeedPropertiesUpdateInput"] = None
+    crm: Optional["CRMFeedPropertiesUpdateInput"] = None
+    hris: Optional["HRISFeedPropertiesUpdateInput"] = None
+    issue: Optional["IssueFeedPropertiesUpdateInput"] = None
+    pull_request: Optional["PullRequestFeedPropertiesUpdateInput"] = Field(
+        alias="pullRequest", default=None
     )
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class ZoomPropertiesInput(BaseModel):
-    authentication_type: Optional[ZoomAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
+    commit: Optional["CommitFeedPropertiesUpdateInput"] = None
+    rss: Optional["RSSFeedPropertiesUpdateInput"] = None
+    web: Optional["WebFeedPropertiesUpdateInput"] = None
+    search: Optional["SearchFeedPropertiesUpdateInput"] = None
+    reddit: Optional["RedditFeedPropertiesUpdateInput"] = None
+    linked_in: Optional["LinkedInFeedPropertiesUpdateInput"] = Field(
+        alias="linkedIn", default=None
     )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    type: Optional[FeedListingTypes] = None
-
-
-class PointFilter(BaseModel):
-    latitude: float
-    longitude: float
-    distance: Optional[float] = None
-
-
-class DeepgramAudioPreparationPropertiesInput(BaseModel):
-    model: Optional[DeepgramModels] = None
-    key: Optional[str] = None
-    enable_redaction: Optional[bool] = Field(alias="enableRedaction", default=None)
-    enable_speaker_diarization: Optional[bool] = Field(
-        alias="enableSpeakerDiarization", default=None
+    youtube: Optional["YouTubeFeedPropertiesUpdateInput"] = None
+    notion: Optional["NotionFeedPropertiesUpdateInput"] = None
+    evernote: Optional["EvernoteFeedPropertiesUpdateInput"] = None
+    confluence: Optional["ConfluenceFeedPropertiesUpdateInput"] = None
+    twitter: Optional["TwitterFeedPropertiesUpdateInput"] = None
+    slack: Optional["SlackFeedPropertiesUpdateInput"] = None
+    microsoft_teams: Optional["MicrosoftTeamsFeedPropertiesUpdateInput"] = Field(
+        alias="microsoftTeams", default=None
     )
-    detect_language: Optional[bool] = Field(alias="detectLanguage", default=None)
-    language: Optional[str] = None
+    discord: Optional["DiscordFeedPropertiesUpdateInput"] = None
+    attio: Optional["AttioFeedPropertiesUpdateInput"] = None
+    salesforce: Optional["SalesforceFeedPropertiesUpdateInput"] = None
+    hub_spot_conversations: Optional[
+        "HubSpotConversationsFeedPropertiesUpdateInput"
+    ] = Field(alias="hubSpotConversations", default=None)
+    intercom: Optional["IntercomFeedPropertiesUpdateInput"] = None
+    zendesk: Optional["ZendeskFeedPropertiesUpdateInput"] = None
+    intercom_conversations: Optional[
+        "IntercomConversationsFeedPropertiesUpdateInput"
+    ] = Field(alias="intercomConversations", default=None)
+    productlane: Optional["ProductlaneFeedPropertiesUpdateInput"] = None
+    research: Optional["ResearchFeedPropertiesUpdateInput"] = None
+    entity: Optional["EntityFeedPropertiesUpdateInput"] = None
+    meeting: Optional["MeetingFeedPropertiesUpdateInput"] = None
+    initiative: Optional["InitiativeFeedPropertiesUpdateInput"] = None
+    schedule_policy: Optional["FeedSchedulePolicyInput"] = Field(
+        alias="schedulePolicy", default=None
+    )
+    workflow: Optional["EntityReferenceInput"] = None
 
 
-class SkillArgumentInput(BaseModel):
+class CrustdataEnrichmentPropertiesInput(BaseModel):
+    is_realtime: Optional[bool] = Field(alias="isRealtime", default=None)
+
+
+class MedicalStudyFacetInput(BaseModel):
+    time_interval: Optional[TimeIntervalTypes] = Field(
+        alias="timeInterval", default=None
+    )
+    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
+    facet: Optional[MedicalStudyFacetTypes] = None
+
+
+class MedicalTherapyInput(BaseModel):
     name: str
-    description: Optional[str] = None
-    required: Optional[bool] = None
-
-
-class GustoHRISFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[GustoAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    company_id: Optional[str] = Field(alias="companyId", default=None)
-
-
-class ConversationInput(BaseModel):
-    name: str
-    type: Optional[ConversationTypes] = None
-    messages: Optional[list["ConversationMessageInput"]] = None
-    tools: Optional[list["ToolDefinitionInput"]] = None
-    agent: Optional["EntityReferenceInput"] = None
-    persona: Optional["EntityReferenceInput"] = None
-    specification: Optional["EntityReferenceInput"] = None
-    fallbacks: Optional[list[Optional["EntityReferenceInput"]]] = None
-    filter: Optional["ContentCriteriaInput"] = None
-    augmented_filter: Optional["ContentCriteriaInput"] = Field(
-        alias="augmentedFilter", default=None
-    )
-    scratchpad: Optional[str] = None
-    parent: Optional["EntityReferenceInput"] = None
-
-
-class MedicalTestUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
     uri: Optional[Any] = None
     identifier: Optional[str] = None
     description: Optional[str] = None
@@ -4810,432 +6210,19 @@ class MedicalTestUpdateInput(BaseModel):
     boundary: Optional[str] = None
 
 
-class ZoomPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[ZoomAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    type: Optional[FeedListingTypes] = None
-
-
-class ProductUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    uri: Optional[Any] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
-    address: Optional["AddressInput"] = None
-    production_date: Optional[Any] = Field(alias="productionDate", default=None)
-    release_date: Optional[Any] = Field(alias="releaseDate", default=None)
-    sku: Optional[str] = None
-    upc: Optional[str] = None
-    manufacturer: Optional[str] = None
-    brand: Optional[str] = None
-    model: Optional[str] = None
-    gtin: Optional[str] = None
-    mpn: Optional[str] = None
-
-
-class EmotionInput(BaseModel):
-    name: str
-    description: Optional[str] = None
-
-
-class MentionReferenceInput(BaseModel):
-    type: Optional[ObservableTypes] = None
-    observable: Optional["NamedEntityReferenceInput"] = None
-    start: Optional[int] = None
-    end: Optional[int] = None
-
-
-class RerankingStrategyUpdateInput(BaseModel):
-    service_type: Optional[RerankingModelServiceTypes] = Field(
-        alias="serviceType", default=None
-    )
+class RerankingStrategyInput(BaseModel):
+    service_type: RerankingModelServiceTypes = Field(alias="serviceType")
     threshold: Optional[float] = None
 
 
-class IngestionWorkflowStageInput(BaseModel):
-    if_: Optional["IngestionContentFilterInput"] = Field(alias="if", default=None)
-    collections: Optional[list[Optional["EntityReferenceInput"]]] = None
-    observations: Optional[list[Optional["ObservationReferenceInput"]]] = None
-    enable_email_collections: Optional[bool] = Field(
-        alias="enableEmailCollections", default=None
-    )
-    enable_folder_collections: Optional[bool] = Field(
-        alias="enableFolderCollections", default=None
-    )
-    enable_message_collections: Optional[bool] = Field(
-        alias="enableMessageCollections", default=None
-    )
-
-
-class ChannelConnectorUpdateInput(BaseModel):
-    slack: Optional["SlackChannelPropertiesInput"] = None
-    teams: Optional["TeamsChannelPropertiesInput"] = None
-    discord: Optional["DiscordChannelPropertiesInput"] = None
-    telegram: Optional["TelegramChannelPropertiesInput"] = None
-    whats_app: Optional["WhatsAppChannelPropertiesInput"] = Field(
-        alias="whatsApp", default=None
-    )
-    google_chat: Optional["GoogleChatChannelPropertiesInput"] = Field(
-        alias="googleChat", default=None
-    )
-
-
-class AtlassianJiraFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[JiraAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    uri: Optional[Any] = None
-    project: Optional[str] = None
-    email: Optional[str] = None
-    token: Optional[str] = None
-    offset: Optional[Any] = None
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    cloud_id: Optional[str] = Field(alias="cloudId", default=None)
-
-
-class DiscordChannelsInput(BaseModel):
-    token: str
-    guild_id: str = Field(alias="guildId")
-
-
-class BoxFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[BoxAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    folder_id: Optional[str] = Field(alias="folderId", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    redirect_uri: Optional[str] = Field(alias="redirectUri", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class ContentFilterLevel(BaseModel):
-    feeds: Optional[list["EntityReferenceFilter"]] = None
-    workflows: Optional[list["EntityReferenceFilter"]] = None
-    collections: Optional[list["EntityReferenceFilter"]] = None
-    users: Optional[list["EntityReferenceFilter"]] = None
-    observations: Optional[list["ObservationReferenceFilter"]] = None
-
-
-class MistralDocumentPreparationPropertiesInput(BaseModel):
-    key: Optional[str] = None
-
-
-class H3Filter(BaseModel):
-    indexes: Optional[list["H3IndexFilter"]] = None
-
-
-class EmailPreparationPropertiesInput(BaseModel):
-    include_attachments: Optional[bool] = Field(
-        alias="includeAttachments", default=None
-    )
-
-
-class MedicalDeviceUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    uri: Optional[Any] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
-
-
-class MondayBoardsInput(BaseModel):
-    api_token: str = Field(alias="apiToken")
-
-
-class DistributionTargetInput(BaseModel):
-    connector: "DistributionConnectorInput"
-    authentication: Optional["EntityReferenceInput"] = None
-
-
-class AttioDistributionPropertiesInput(BaseModel):
-    target_operation: Optional[DistributionTargetOperationTypes] = Field(
-        alias="targetOperation", default=None
-    )
-    target_kind: Optional[DistributionTargetKindTypes] = Field(
-        alias="targetKind", default=None
-    )
-    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
-    target_uri: Optional[str] = Field(alias="targetUri", default=None)
-    parent_object: str = Field(alias="parentObject")
-    parent_record_id: str = Field(alias="parentRecordId")
-    title: Optional[str] = None
-
-
-class LinkedInFeedPropertiesUpdateInput(BaseModel):
-    listing_type: Optional[LinkedInPostListingTypes] = Field(
-        alias="listingType", default=None
-    )
-    company_domain: Optional[str] = Field(alias="companyDomain", default=None)
-    company_linked_in_url: Optional[str] = Field(
-        alias="companyLinkedInUrl", default=None
-    )
-    company_name: Optional[str] = Field(alias="companyName", default=None)
-    person_linked_in_url: Optional[str] = Field(alias="personLinkedInUrl", default=None)
-    post_types: Optional[str] = Field(alias="postTypes", default=None)
-    keyword: Optional[str] = None
-    date_posted: Optional[str] = Field(alias="datePosted", default=None)
-    exact_keyword_match: Optional[bool] = Field(alias="exactKeywordMatch", default=None)
-    content_types: Optional[list[Optional[LinkedInPostContentTypes]]] = Field(
-        alias="contentTypes", default=None
-    )
-    include_comments: Optional[bool] = Field(alias="includeComments", default=None)
-    max_comments: Optional[int] = Field(alias="maxComments", default=None)
+class InitiativeFeedPropertiesUpdateInput(BaseModel):
+    jira: Optional["JiraEpicsFeedPropertiesUpdateInput"] = None
+    github: Optional["GitHubMilestonesFeedPropertiesUpdateInput"] = None
+    gitlab: Optional["GitLabMilestonesFeedPropertiesUpdateInput"] = None
+    linear: Optional["LinearInitiativesFeedPropertiesUpdateInput"] = None
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class GitLabMilestonesFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[GitLabAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    uri: Optional[str] = None
-    project_path: Optional[str] = Field(alias="projectPath", default=None)
-    personal_access_token: Optional[str] = Field(
-        alias="personalAccessToken", default=None
-    )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
-
-
-class AttioTasksFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[AttioIssueAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    api_key: Optional[str] = Field(alias="apiKey", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class PointInput(BaseModel):
-    latitude: float
-    longitude: float
-    distance: Optional[float] = None
-
-
-class MicrosoftContactsCRMFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[MicrosoftContactsAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    tenant_id: Optional[str] = Field(alias="tenantId", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
-
-
-class SharePointFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[SharePointAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    tenant_id: Optional[str] = Field(alias="tenantId", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    account_name: Optional[str] = Field(alias="accountName", default=None)
-    library_id: Optional[str] = Field(alias="libraryId", default=None)
-    folder_id: Optional[str] = Field(alias="folderId", default=None)
-
-
-class AudioMetadataInput(BaseModel):
-    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
-    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
-    location: Optional["PointInput"] = None
-    keywords: Optional[list[Optional[str]]] = None
-    author: Optional[str] = None
-    series: Optional[str] = None
-    episode: Optional[str] = None
-    episode_type: Optional[str] = Field(alias="episodeType", default=None)
-    season: Optional[str] = None
-    publisher: Optional[str] = None
-    copyright: Optional[str] = None
-    genre: Optional[str] = None
-    title: Optional[str] = None
-    bitrate: Optional[int] = None
-    channels: Optional[int] = None
-    sample_rate: Optional[int] = Field(alias="sampleRate", default=None)
-    bits_per_sample: Optional[int] = Field(alias="bitsPerSample", default=None)
-    duration: Optional[str] = None
-
-
-class MedicalDrugInput(BaseModel):
-    name: str
-    uri: Optional[Any] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
-
-
-class IndexingWorkflowJobInput(BaseModel):
-    connector: Optional["ContentIndexingConnectorInput"] = None
-
-
-class IndexingWorkflowStageInput(BaseModel):
-    jobs: Optional[list[Optional["IndexingWorkflowJobInput"]]] = None
-
-
-class DeepseekModelPropertiesUpdateInput(BaseModel):
-    model: Optional[DeepseekModels] = None
-    model_name: Optional[str] = Field(alias="modelName", default=None)
-    key: Optional[str] = None
-    temperature: Optional[float] = None
-    probability: Optional[float] = None
-    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
-    completion_token_limit: Optional[int] = Field(
-        alias="completionTokenLimit", default=None
-    )
-
-
-class FactUpdateInput(BaseModel):
-    id: str
-    text: Optional[str] = None
-    valid_at: Optional[Any] = Field(alias="validAt", default=None)
-    invalid_at: Optional[Any] = Field(alias="invalidAt", default=None)
-
-
-class AzureAIModelPropertiesUpdateInput(BaseModel):
-    key: Optional[str] = None
-    endpoint: Optional[Any] = None
-    temperature: Optional[float] = None
-    probability: Optional[float] = None
-    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
-    completion_token_limit: Optional[int] = Field(
-        alias="completionTokenLimit", default=None
-    )
-    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
-
-
-class SpecificationUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    type: Optional[SpecificationTypes] = None
-    service_type: ModelServiceTypes = Field(alias="serviceType")
-    search_type: Optional[ConversationSearchTypes] = Field(
-        alias="searchType", default=None
-    )
-    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    system_prompt: Optional[str] = Field(alias="systemPrompt", default=None)
-    custom_guidance: Optional[str] = Field(alias="customGuidance", default=None)
-    custom_instructions: Optional[str] = Field(alias="customInstructions", default=None)
-    strategy: Optional["ConversationStrategyUpdateInput"] = None
-    prompt_strategy: Optional["PromptStrategyUpdateInput"] = Field(
-        alias="promptStrategy", default=None
-    )
-    retrieval_strategy: Optional["RetrievalStrategyUpdateInput"] = Field(
-        alias="retrievalStrategy", default=None
-    )
-    reranking_strategy: Optional["RerankingStrategyUpdateInput"] = Field(
-        alias="rerankingStrategy", default=None
-    )
-    graph_strategy: Optional["GraphStrategyUpdateInput"] = Field(
-        alias="graphStrategy", default=None
-    )
-    fact_strategy: Optional["FactStrategyUpdateInput"] = Field(
-        alias="factStrategy", default=None
-    )
-    revision_strategy: Optional["RevisionStrategyUpdateInput"] = Field(
-        alias="revisionStrategy", default=None
-    )
-    azure_ai: Optional["AzureAIModelPropertiesUpdateInput"] = Field(
-        alias="azureAI", default=None
-    )
-    open_ai: Optional["OpenAIModelPropertiesUpdateInput"] = Field(
-        alias="openAI", default=None
-    )
-    azure_open_ai: Optional["AzureOpenAIModelPropertiesUpdateInput"] = Field(
-        alias="azureOpenAI", default=None
-    )
-    cohere: Optional["CohereModelPropertiesUpdateInput"] = None
-    anthropic: Optional["AnthropicModelPropertiesUpdateInput"] = None
-    google: Optional["GoogleModelPropertiesUpdateInput"] = None
-    replicate: Optional["ReplicateModelPropertiesUpdateInput"] = None
-    mistral: Optional["MistralModelPropertiesUpdateInput"] = None
-    bedrock: Optional["BedrockModelPropertiesUpdateInput"] = None
-    xai: Optional["XAIModelPropertiesUpdateInput"] = None
-    groq: Optional["GroqModelPropertiesUpdateInput"] = None
-    cerebras: Optional["CerebrasModelPropertiesUpdateInput"] = None
-    deepseek: Optional["DeepseekModelPropertiesUpdateInput"] = None
-    jina: Optional["JinaModelPropertiesUpdateInput"] = None
-    voyage: Optional["VoyageModelPropertiesUpdateInput"] = None
-    twelve_labs: Optional["TwelveLabsModelPropertiesUpdateInput"] = Field(
-        alias="twelveLabs", default=None
-    )
-
-
-class EnrichmentWorkflowStageInput(BaseModel):
-    link: Optional["LinkStrategyInput"] = None
-    jobs: Optional[list[Optional["EnrichmentWorkflowJobInput"]]] = None
-    entity_resolution: Optional["EntityResolutionStrategyInput"] = Field(
-        alias="entityResolution", default=None
-    )
-
-
-class FeedFilter(BaseModel):
-    search: Optional[str] = None
-    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
-    direction: Optional[OrderDirectionTypes] = None
-    offset: Optional[int] = None
-    limit: Optional[int] = None
-    relevance_threshold: Optional[float] = Field(
-        alias="relevanceThreshold", default=None
-    )
-    id: Optional[str] = None
-    name: Optional[str] = None
-    states: Optional[list[EntityState]] = None
-    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
-    creation_date_range: Optional["DateRangeFilter"] = Field(
-        alias="creationDateRange", default=None
-    )
-    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
-    modified_date_range: Optional["DateRangeFilter"] = Field(
-        alias="modifiedDateRange", default=None
-    )
-    identifier: Optional[str] = None
-    types: Optional[list[FeedTypes]] = None
-
-
-class ViewFilter(BaseModel):
-    search: Optional[str] = None
-    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
-    direction: Optional[OrderDirectionTypes] = None
-    offset: Optional[int] = None
-    limit: Optional[int] = None
-    relevance_threshold: Optional[float] = Field(
-        alias="relevanceThreshold", default=None
-    )
-    id: Optional[str] = None
-    name: Optional[str] = None
-    states: Optional[list[EntityState]] = None
-    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
-    creation_date_range: Optional["DateRangeFilter"] = Field(
-        alias="creationDateRange", default=None
-    )
-    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
-    modified_date_range: Optional["DateRangeFilter"] = Field(
-        alias="modifiedDateRange", default=None
-    )
-    types: Optional[list[Optional[ViewTypes]]] = None
 
 
 class EventFilter(BaseModel):
@@ -5296,654 +6283,6 @@ class EventFilter(BaseModel):
     events: Optional[list["EntityReferenceFilter"]] = None
 
 
-class YouTubeFeedPropertiesUpdateInput(BaseModel):
-    type: Optional[YouTubeTypes] = None
-    video_name: Optional[str] = Field(alias="videoName", default=None)
-    video_identifiers: Optional[list[str]] = Field(
-        alias="videoIdentifiers", default=None
-    )
-    channel_identifier: Optional[str] = Field(alias="channelIdentifier", default=None)
-    playlist_identifier: Optional[str] = Field(alias="playlistIdentifier", default=None)
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class MedicalTestFacetInput(BaseModel):
-    time_interval: Optional[TimeIntervalTypes] = Field(
-        alias="timeInterval", default=None
-    )
-    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
-    facet: Optional[MedicalTestFacetTypes] = None
-
-
-class JiraEpicsFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[JiraAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    uri: Optional[str] = None
-    project: Optional[str] = None
-    email: Optional[str] = None
-    token: Optional[str] = None
-    offset: Optional[Any] = None
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    cloud_id: Optional[str] = Field(alias="cloudId", default=None)
-
-
-class OAuthAuthenticationPropertiesInput(BaseModel):
-    provider: OAuthProviders
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    access_token: Optional[str] = Field(alias="accessToken", default=None)
-    redirect_uri: Optional[str] = Field(alias="redirectUri", default=None)
-    metadata: Optional[str] = None
-
-
-class DeepseekModelPropertiesInput(BaseModel):
-    model: DeepseekModels
-    model_name: Optional[str] = Field(alias="modelName", default=None)
-    key: Optional[str] = None
-    temperature: Optional[float] = None
-    probability: Optional[float] = None
-    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
-    completion_token_limit: Optional[int] = Field(
-        alias="completionTokenLimit", default=None
-    )
-
-
-class SlackFeedPropertiesInput(BaseModel):
-    type: Optional[FeedListingTypes] = None
-    authentication_type: Optional[SlackAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    token: Optional[str] = None
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    channel: str
-    include_attachments: Optional[bool] = Field(
-        alias="includeAttachments", default=None
-    )
-    signing_secret: Optional[str] = Field(alias="signingSecret", default=None)
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class PersonaFilter(BaseModel):
-    search: Optional[str] = None
-    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
-    direction: Optional[OrderDirectionTypes] = None
-    offset: Optional[int] = None
-    limit: Optional[int] = None
-    relevance_threshold: Optional[float] = Field(
-        alias="relevanceThreshold", default=None
-    )
-    id: Optional[str] = None
-    name: Optional[str] = None
-    states: Optional[list[EntityState]] = None
-    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
-    creation_date_range: Optional["DateRangeFilter"] = Field(
-        alias="creationDateRange", default=None
-    )
-    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
-    modified_date_range: Optional["DateRangeFilter"] = Field(
-        alias="modifiedDateRange", default=None
-    )
-    identifier: Optional[str] = None
-    types: Optional[list[PersonaTypes]] = None
-
-
-class RegexContentClassificationPropertiesInput(BaseModel):
-    rules: Optional[list[Optional["RegexClassificationRuleInput"]]] = None
-
-
-class EntityRelationshipsFilter(BaseModel):
-    id: str
-    limit: Optional[int] = None
-    relationship_types: Optional[list[str]] = Field(
-        alias="relationshipTypes", default=None
-    )
-    include_metadata: Optional[bool] = Field(alias="includeMetadata", default=None)
-    disable_inheritance: Optional[bool] = Field(
-        alias="disableInheritance", default=None
-    )
-
-
-class SoftwareFacetInput(BaseModel):
-    time_interval: Optional[TimeIntervalTypes] = Field(
-        alias="timeInterval", default=None
-    )
-    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
-    facet: Optional[SoftwareFacetTypes] = None
-
-
-class ReactionReferenceInput(BaseModel):
-    emoji: str
-    count: int
-    is_unicode: Optional[bool] = Field(alias="isUnicode", default=None)
-
-
-class ProductlaneCRMFeedPropertiesUpdateInput(BaseModel):
-    api_key: Optional[str] = Field(alias="apiKey", default=None)
-    type: Optional[FeedListingTypes] = None
-
-
-class ObservationInput(BaseModel):
-    content: "EntityReferenceInput"
-    type: ObservableTypes
-    observable: "NamedEntityReferenceInput"
-    related: Optional["NamedEntityReferenceInput"] = None
-    related_type: Optional[ObservableTypes] = Field(alias="relatedType", default=None)
-    relation: Optional[str] = None
-    occurrences: list["ObservationOccurrenceInput"]
-
-
-class DocumentPreparationPropertiesInput(BaseModel):
-    include_images: Optional[bool] = Field(alias="includeImages", default=None)
-
-
-class MedicalDeviceFilter(BaseModel):
-    search: Optional[str] = None
-    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
-    direction: Optional[OrderDirectionTypes] = None
-    offset: Optional[int] = None
-    limit: Optional[int] = None
-    relevance_threshold: Optional[float] = Field(
-        alias="relevanceThreshold", default=None
-    )
-    id: Optional[str] = None
-    name: Optional[str] = None
-    states: Optional[list[EntityState]] = None
-    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
-    creation_date_range: Optional["DateRangeFilter"] = Field(
-        alias="creationDateRange", default=None
-    )
-    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
-    modified_date_range: Optional["DateRangeFilter"] = Field(
-        alias="modifiedDateRange", default=None
-    )
-    disable_inheritance: Optional[bool] = Field(
-        alias="disableInheritance", default=None
-    )
-    feeds: Optional[list["EntityReferenceFilter"]] = None
-    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
-    address: Optional["AddressFilter"] = None
-    location: Optional["PointFilter"] = None
-    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[list[str]] = None
-    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
-    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
-    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    similar_devices: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="similarDevices", default=None
-    )
-    medical_devices: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="medicalDevices", default=None
-    )
-
-
-class EntityFeedPropertiesUpdateInput(BaseModel):
-    query: Optional[str] = None
-    parallel: Optional["ParallelEntityFeedPropertiesUpdateInput"] = None
-    crustdata: Optional["CrustdataEntityFeedPropertiesUpdateInput"] = None
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class AgentHeartbeatPropertiesInput(BaseModel):
-    enabled: bool
-    frequency_minutes: int = Field(alias="frequencyMinutes")
-    off_hours_frequency_minutes: Optional[int] = Field(
-        alias="offHoursFrequencyMinutes", default=None
-    )
-    active_hours_start: str = Field(alias="activeHoursStart")
-    active_hours_end: str = Field(alias="activeHoursEnd")
-    active_days: list[int] = Field(alias="activeDays")
-    timezone: str
-    probe_thresholds: Optional["AgentHeartbeatProbeThresholdsInput"] = Field(
-        alias="probeThresholds", default=None
-    )
-
-
-class CalendarFeedPropertiesInput(BaseModel):
-    type: FeedServiceTypes
-    include_attachments: Optional[bool] = Field(
-        alias="includeAttachments", default=None
-    )
-    enable_meeting_recording: Optional[bool] = Field(
-        alias="enableMeetingRecording", default=None
-    )
-    meeting_bot_name: Optional[str] = Field(alias="meetingBotName", default=None)
-    google: Optional["GoogleCalendarFeedPropertiesInput"] = None
-    microsoft: Optional["MicrosoftCalendarFeedPropertiesInput"] = None
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class MicrosoftEmailFeedPropertiesInput(BaseModel):
-    type: Optional[EmailListingTypes] = None
-    filter: Optional[str] = None
-    inbox_only: Optional[bool] = Field(alias="inboxOnly", default=None)
-    include_deleted_items: Optional[bool] = Field(
-        alias="includeDeletedItems", default=None
-    )
-    exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems", default=None)
-    include_spam: Optional[bool] = Field(alias="includeSpam", default=None)
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    authentication_type: Optional[MicrosoftEmailAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class ProjectUpdateInput(BaseModel):
-    workflow: Optional["EntityReferenceInput"] = None
-    specification: Optional["EntityReferenceInput"] = None
-    embeddings: Optional["EmbeddingsStrategyInput"] = None
-    callback_uri: Optional[Any] = Field(alias="callbackUri", default=None)
-
-
-class ProjectFilter(BaseModel):
-    search: Optional[str] = None
-    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
-    direction: Optional[OrderDirectionTypes] = None
-    offset: Optional[int] = None
-    limit: Optional[int] = None
-    relevance_threshold: Optional[float] = Field(
-        alias="relevanceThreshold", default=None
-    )
-    id: Optional[str] = None
-    name: Optional[str] = None
-    states: Optional[list[EntityState]] = None
-    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
-    creation_date_range: Optional["DateRangeFilter"] = Field(
-        alias="creationDateRange", default=None
-    )
-    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
-    modified_date_range: Optional["DateRangeFilter"] = Field(
-        alias="modifiedDateRange", default=None
-    )
-
-
-class SummarizationStrategyInput(BaseModel):
-    type: SummarizationTypes
-    specification: Optional["EntityReferenceInput"] = None
-    tokens: Optional[int] = None
-    items: Optional[int] = None
-    prompt: Optional[str] = None
-
-
-class ProductFilter(BaseModel):
-    search: Optional[str] = None
-    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
-    direction: Optional[OrderDirectionTypes] = None
-    offset: Optional[int] = None
-    limit: Optional[int] = None
-    relevance_threshold: Optional[float] = Field(
-        alias="relevanceThreshold", default=None
-    )
-    id: Optional[str] = None
-    name: Optional[str] = None
-    states: Optional[list[EntityState]] = None
-    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
-    creation_date_range: Optional["DateRangeFilter"] = Field(
-        alias="creationDateRange", default=None
-    )
-    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
-    modified_date_range: Optional["DateRangeFilter"] = Field(
-        alias="modifiedDateRange", default=None
-    )
-    disable_inheritance: Optional[bool] = Field(
-        alias="disableInheritance", default=None
-    )
-    feeds: Optional[list["EntityReferenceFilter"]] = None
-    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
-    address: Optional["AddressFilter"] = None
-    location: Optional["PointFilter"] = None
-    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[list[str]] = None
-    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
-    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
-    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    production_date_range: Optional["DateRangeFilter"] = Field(
-        alias="productionDateRange", default=None
-    )
-    release_date_range: Optional["DateRangeFilter"] = Field(
-        alias="releaseDateRange", default=None
-    )
-    sku: Optional[str] = None
-    upc: Optional[str] = None
-    manufacturer: Optional[str] = None
-    brand: Optional[str] = None
-    model: Optional[str] = None
-    similar_products: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="similarProducts", default=None
-    )
-    products: Optional[list["EntityReferenceFilter"]] = None
-
-
-class SkillUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    identifier: Optional[str] = None
-    text: Optional[str] = None
-    description: Optional[str] = None
-    arguments: Optional[list["SkillArgumentInput"]] = None
-
-
-class ProjectInput(BaseModel):
-    name: str
-    environment_type: EnvironmentTypes = Field(alias="environmentType")
-    platform: ResourceConnectorTypes
-    region: str
-    jwt_secret: str = Field(alias="jwtSecret")
-    quota: Optional["ProjectQuotaInput"] = None
-    callback_uri: Optional[Any] = Field(alias="callbackUri", default=None)
-
-
-class ContentClassificationConnectorInput(BaseModel):
-    type: Optional[ContentClassificationServiceTypes] = None
-    content_type: Optional[ContentTypes] = Field(alias="contentType", default=None)
-    file_type: Optional[FileTypes] = Field(alias="fileType", default=None)
-    model: Optional["ModelContentClassificationPropertiesInput"] = None
-    regex: Optional["RegexContentClassificationPropertiesInput"] = None
-
-
-class ContentPublishingConnectorUpdateInput(BaseModel):
-    type: ContentPublishingServiceTypes
-    format: ContentPublishingFormats
-    eleven_labs: Optional["ElevenLabsPublishingPropertiesInput"] = Field(
-        alias="elevenLabs", default=None
-    )
-    open_ai_image: Optional["OpenAIImagePublishingPropertiesInput"] = Field(
-        alias="openAIImage", default=None
-    )
-    google_image: Optional["GoogleImagePublishingPropertiesInput"] = Field(
-        alias="googleImage", default=None
-    )
-    quiver_image: Optional["QuiverImagePublishingPropertiesInput"] = Field(
-        alias="quiverImage", default=None
-    )
-    open_ai_video: Optional["OpenAIVideoPublishingPropertiesInput"] = Field(
-        alias="openAIVideo", default=None
-    )
-    google_video: Optional["GoogleVideoPublishingPropertiesInput"] = Field(
-        alias="googleVideo", default=None
-    )
-    parallel: Optional["ParallelPublishingPropertiesInput"] = None
-
-
-class CRMFeedPropertiesInput(BaseModel):
-    type: FeedServiceTypes
-    attio: Optional["AttioCRMFeedPropertiesInput"] = None
-    google_contacts: Optional["GoogleContactsCRMFeedPropertiesInput"] = Field(
-        alias="googleContacts", default=None
-    )
-    microsoft_contacts: Optional["MicrosoftContactsCRMFeedPropertiesInput"] = Field(
-        alias="microsoftContacts", default=None
-    )
-    salesforce: Optional["SalesforceCRMFeedPropertiesInput"] = None
-    hub_spot: Optional["HubSpotCRMFeedPropertiesInput"] = Field(
-        alias="hubSpot", default=None
-    )
-    productlane: Optional["ProductlaneCRMFeedPropertiesInput"] = None
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class VoyageModelPropertiesInput(BaseModel):
-    model: VoyageModels
-    model_name: Optional[str] = Field(alias="modelName", default=None)
-    key: Optional[str] = None
-    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
-
-
-class ParallelEntityFeedPropertiesInput(BaseModel):
-    generator: Optional[ParallelGenerators] = None
-    processor: Optional[ParallelProcessors] = None
-
-
-class OrganizationUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    uri: Optional[Any] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
-    address: Optional["AddressInput"] = None
-    founding_date: Optional[Any] = Field(alias="foundingDate", default=None)
-    email: Optional[str] = None
-    telephone: Optional[str] = None
-    legal_name: Optional[str] = Field(alias="legalName", default=None)
-    industries: Optional[list[Optional[str]]] = None
-    revenue_currency: Optional[str] = Field(alias="revenueCurrency", default=None)
-    revenue: Optional[Any] = None
-    investment_currency: Optional[str] = Field(alias="investmentCurrency", default=None)
-    investment: Optional[Any] = None
-
-
-class GoogleCalendarFeedPropertiesUpdateInput(BaseModel):
-    type: Optional[CalendarListingTypes] = None
-    calendar_id: Optional[str] = Field(alias="calendarId", default=None)
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    authentication_type: Optional[GoogleCalendarAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class SalesforceCRMFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[SalesforceAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    instance_url: Optional[str] = Field(alias="instanceUrl", default=None)
-    is_sandbox: Optional[bool] = Field(alias="isSandbox", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
-
-
-class PointCloudMetadataInput(BaseModel):
-    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
-    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
-    location: Optional["PointInput"] = None
-    software: Optional[str] = None
-    description: Optional[str] = None
-    identifier: Optional[str] = None
-    point_count: Optional[Any] = Field(alias="pointCount", default=None)
-
-
-class BoundingBoxInput(BaseModel):
-    left: Optional[float] = None
-    top: Optional[float] = None
-    width: Optional[float] = None
-    height: Optional[float] = None
-
-
-class ReplicateModelPropertiesInput(BaseModel):
-    model: ReplicateModels
-    model_name: Optional[str] = Field(alias="modelName", default=None)
-    key: Optional[str] = None
-    temperature: Optional[float] = None
-    probability: Optional[float] = None
-    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
-    completion_token_limit: Optional[int] = Field(
-        alias="completionTokenLimit", default=None
-    )
-
-
-class ObservationReferenceFilter(BaseModel):
-    type: ObservableTypes
-    observable: "EntityReferenceFilter"
-    states: Optional[list[EntityState]] = None
-
-
-class GitLabCommitsFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[GitLabCommitAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    project_path: str = Field(alias="projectPath")
-    branch: Optional[str] = None
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    personal_access_token: Optional[str] = Field(
-        alias="personalAccessToken", default=None
-    )
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class PromptStrategyInput(BaseModel):
-    type: Optional[PromptStrategyTypes] = None
-
-
-class ConversationMessageInput(BaseModel):
-    role: ConversationRoleTypes
-    author: Optional[str] = None
-    message: Optional[str] = None
-    tool_calls: Optional[list["ConversationToolCallInput"]] = Field(
-        alias="toolCalls", default=None
-    )
-    tool_call_id: Optional[str] = Field(alias="toolCallId", default=None)
-    tool_call_response: Optional[str] = Field(alias="toolCallResponse", default=None)
-    tokens: Optional[int] = None
-    throughput: Optional[float] = None
-    ttft: Optional[Any] = None
-    completion_time: Optional[Any] = Field(alias="completionTime", default=None)
-    timestamp: Optional[Any] = None
-    data: Optional[str] = None
-    mime_type: Optional[str] = Field(alias="mimeType", default=None)
-    artifacts: Optional[list[Optional["EntityReferenceInput"]]] = None
-    thinking_content: Optional[str] = Field(alias="thinkingContent", default=None)
-    thinking_signature: Optional[str] = Field(alias="thinkingSignature", default=None)
-
-
-class GitHubCommitsFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[GitHubCommitAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    repository_owner: str = Field(alias="repositoryOwner")
-    repository_name: str = Field(alias="repositoryName")
-    branch: Optional[str] = None
-    uri: Optional[Any] = None
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    personal_access_token: Optional[str] = Field(
-        alias="personalAccessToken", default=None
-    )
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class StorageGateRuleInput(BaseModel):
-    if_: str = Field(alias="if")
-
-
-class HubSpotCRMFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[HubSpotAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    access_token: Optional[str] = Field(alias="accessToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
-
-
-class NotionFeedPropertiesUpdateInput(BaseModel):
-    is_recursive: Optional[bool] = Field(alias="isRecursive", default=None)
-    authentication_type: Optional[NotionAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    token: Optional[str] = None
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    type: Optional[NotionTypes] = None
-    identifiers: Optional[list[str]] = None
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class ResearchFeedPropertiesInput(BaseModel):
-    type: Optional[FeedServiceTypes] = None
-    query: str
-    parallel: Optional["ParallelFeedPropertiesInput"] = None
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class AuthenticationConnectorInput(BaseModel):
-    type: AuthenticationServiceTypes
-    token: Optional[str] = None
-    api_key: Optional[str] = Field(alias="apiKey", default=None)
-    microsoft: Optional["MicrosoftAuthenticationPropertiesInput"] = None
-    google: Optional["GoogleAuthenticationPropertiesInput"] = None
-    arcade: Optional["ArcadeAuthenticationPropertiesInput"] = None
-    oauth: Optional["OAuthAuthenticationPropertiesInput"] = None
-
-
-class LinkedInSearchPropertiesInput(BaseModel):
-    date_range: Optional[LinkedInSearchDateTypes] = Field(
-        alias="dateRange", default=None
-    )
-
-
-class ConversationToolCallInput(BaseModel):
-    id: str
-    name: str
-    arguments: Optional[str] = None
-    started_at: Optional[Any] = Field(alias="startedAt", default=None)
-    completed_at: Optional[Any] = Field(alias="completedAt", default=None)
-    duration_ms: Optional[int] = Field(alias="durationMs", default=None)
-    status: Optional[ToolExecutionStatus] = None
-    failed_at: Optional[Any] = Field(alias="failedAt", default=None)
-    first_status_at: Optional[Any] = Field(alias="firstStatusAt", default=None)
-
-
-class BureauFilter(BaseModel):
-    search: Optional[str] = None
-    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
-    direction: Optional[OrderDirectionTypes] = None
-    offset: Optional[int] = None
-    limit: Optional[int] = None
-    relevance_threshold: Optional[float] = Field(
-        alias="relevanceThreshold", default=None
-    )
-    id: Optional[str] = None
-    name: Optional[str] = None
-    states: Optional[list[EntityState]] = None
-    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
-    creation_date_range: Optional["DateRangeFilter"] = Field(
-        alias="creationDateRange", default=None
-    )
-    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
-    modified_date_range: Optional["DateRangeFilter"] = Field(
-        alias="modifiedDateRange", default=None
-    )
-    desks: Optional[list["EntityReferenceFilter"]] = None
-
-
-class ExtractionWorkflowJobInput(BaseModel):
-    connector: Optional["EntityExtractionConnectorInput"] = None
-
-
-class ReplicaConversationPropertiesInput(BaseModel):
-    filter: Optional["ConversationCriteriaInput"] = None
-
-
 class PreparationWorkflowStageInput(BaseModel):
     enable_unblocked_capture: Optional[bool] = Field(
         alias="enableUnblockedCapture", default=None
@@ -5955,330 +6294,57 @@ class PreparationWorkflowStageInput(BaseModel):
     jobs: Optional[list[Optional["PreparationWorkflowJobInput"]]] = None
 
 
-class HRISFeedPropertiesUpdateInput(BaseModel):
-    bamboo_hr: Optional["BambooHRHRISFeedPropertiesUpdateInput"] = Field(
-        alias="bambooHR", default=None
-    )
-    gusto: Optional["GustoHRISFeedPropertiesUpdateInput"] = None
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+class EvernoteAuthorizedNotebookInput(BaseModel):
+    connector: "EntityReferenceInput"
 
 
-class PromptClassificationRuleInput(BaseModel):
-    if_: Optional[str] = Field(alias="if", default=None)
-    then: Optional[str] = None
-
-
-class WaterfallEnrichmentPropertiesInput(BaseModel):
-    depth: Optional[WaterfallDepths] = None
-
-
-class FeedPreviewInput(BaseModel):
-    name: Optional[str] = None
-    type: FeedTypes
-    site: Optional["SiteFeedPropertiesInput"] = None
-    calendar: Optional["CalendarFeedPropertiesInput"] = None
-    email: Optional["EmailFeedPropertiesInput"] = None
-    crm: Optional["CRMFeedPropertiesInput"] = None
-    hris: Optional["HRISFeedPropertiesInput"] = None
-    issue: Optional["IssueFeedPropertiesInput"] = None
-    pull_request: Optional["PullRequestFeedPropertiesInput"] = Field(
-        alias="pullRequest", default=None
-    )
-    commit: Optional["CommitFeedPropertiesInput"] = None
-    rss: Optional["RSSFeedPropertiesInput"] = None
-    web: Optional["WebFeedPropertiesInput"] = None
-    search: Optional["SearchFeedPropertiesInput"] = None
-    reddit: Optional["RedditFeedPropertiesInput"] = None
-    linked_in: Optional["LinkedInFeedPropertiesInput"] = Field(
-        alias="linkedIn", default=None
-    )
-    youtube: Optional["YouTubeFeedPropertiesInput"] = None
-    notion: Optional["NotionFeedPropertiesInput"] = None
-    evernote: Optional["EvernoteFeedPropertiesInput"] = None
-    confluence: Optional["ConfluenceFeedPropertiesInput"] = None
-    twitter: Optional["TwitterFeedPropertiesInput"] = None
-    slack: Optional["SlackFeedPropertiesInput"] = None
-    microsoft_teams: Optional["MicrosoftTeamsFeedPropertiesInput"] = Field(
-        alias="microsoftTeams", default=None
-    )
-    discord: Optional["DiscordFeedPropertiesInput"] = None
-    attio: Optional["AttioFeedPropertiesInput"] = None
-    salesforce: Optional["SalesforceFeedPropertiesInput"] = None
-    hub_spot_conversations: Optional["HubSpotConversationsFeedPropertiesInput"] = Field(
-        alias="hubSpotConversations", default=None
-    )
-    intercom: Optional["IntercomFeedPropertiesInput"] = None
-    zendesk: Optional["ZendeskFeedPropertiesInput"] = None
-    intercom_conversations: Optional["IntercomConversationsFeedPropertiesInput"] = (
-        Field(alias="intercomConversations", default=None)
-    )
-    productlane: Optional["ProductlaneFeedPropertiesInput"] = None
-    research: Optional["ResearchFeedPropertiesInput"] = None
-    entity: Optional["EntityFeedPropertiesInput"] = None
-    meeting: Optional["MeetingFeedPropertiesInput"] = None
-    initiative: Optional["InitiativeFeedPropertiesInput"] = None
-    workflow: Optional["EntityReferenceInput"] = None
-
-
-class LinearDistributionPropertiesInput(BaseModel):
-    target_operation: Optional[DistributionTargetOperationTypes] = Field(
-        alias="targetOperation", default=None
-    )
-    target_kind: Optional[DistributionTargetKindTypes] = Field(
-        alias="targetKind", default=None
-    )
-    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
-    target_uri: Optional[str] = Field(alias="targetUri", default=None)
-    team_id: Optional[str] = Field(alias="teamId", default=None)
-    title: Optional[str] = None
-    priority: Optional[int] = None
-    state_id: Optional[str] = Field(alias="stateId", default=None)
-    assignee_id: Optional[str] = Field(alias="assigneeId", default=None)
-    label_ids: Optional[list[str]] = Field(alias="labelIds", default=None)
-    project_id: Optional[str] = Field(alias="projectId", default=None)
-
-
-class RegexClassificationRuleInput(BaseModel):
-    type: Optional[RegexSourceTypes] = None
-    path: Optional[str] = None
-    matches: Optional[str] = None
-    then: Optional[str] = None
-
-
-class StorageGateInput(BaseModel):
-    type: StorageGateTypes
-    specification: Optional["EntityReferenceInput"] = None
-    rules: Optional[list["StorageGateRuleInput"]] = None
-    uri: Optional[Any] = None
-    on_reject: Optional[StorageGateRejectionActions] = Field(
-        alias="onReject", default=None
-    )
-
-
-class GoogleImagePublishingPropertiesInput(BaseModel):
-    model: Optional[GoogleImageModels] = None
-    count: Optional[int] = None
-    seed: Optional["EntityReferenceInput"] = None
-    resolution: Optional[GoogleImageResolutionTypes] = None
-    aspect_ratio: Optional[GoogleImageAspectRatioTypes] = Field(
-        alias="aspectRatio", default=None
-    )
-
-
-class MedicalStudyUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    uri: Optional[Any] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
-    address: Optional["AddressInput"] = None
-
-
-class GoogleDriveFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[GoogleDriveAuthenticationTypes] = Field(
+class GitHubFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[GitHubAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
-    drive_id: Optional[str] = Field(alias="driveId", default=None)
-    files: Optional[list[Optional[str]]] = None
-    folder_id: Optional[str] = Field(alias="folderId", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    repository_owner: Optional[str] = Field(alias="repositoryOwner", default=None)
+    repository_name: Optional[str] = Field(alias="repositoryName", default=None)
+    uri: Optional[Any] = None
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    service_account_json: Optional[str] = Field(
-        alias="serviceAccountJson", default=None
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
     )
     connector: Optional["EntityReferenceInput"] = None
 
 
-class NamedEntityReferenceInput(BaseModel):
-    id: Optional[str] = None
-    name: Optional[str] = None
-
-
-class CohereModelPropertiesInput(BaseModel):
-    model: CohereModels
-    model_name: Optional[str] = Field(alias="modelName", default=None)
-    key: Optional[str] = None
-    temperature: Optional[float] = None
-    probability: Optional[float] = None
-    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
-    completion_token_limit: Optional[int] = Field(
-        alias="completionTokenLimit", default=None
+class GitHubRepositoriesInput(BaseModel):
+    authentication_type: GitHubAuthenticationTypes = Field(alias="authenticationType")
+    uri: Optional[str] = None
+    personal_access_token: Optional[str] = Field(
+        alias="personalAccessToken", default=None
     )
-    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
-class KrispPropertiesInput(BaseModel):
-    auth_token: Optional[str] = Field(alias="authToken", default=None)
-    type: Optional[FeedListingTypes] = None
-
-
-class CollectionUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    type: Optional[CollectionTypes] = None
-    contents: Optional[list["EntityReferenceInput"]] = None
-    conversations: Optional[list["EntityReferenceInput"]] = None
-    expected_count: Optional[int] = Field(alias="expectedCount", default=None)
-
-
-class HubSpotConversationsFeedPropertiesUpdateInput(BaseModel):
-    type: Optional[FeedListingTypes] = None
-    authentication_type: Optional[HubSpotFeedAuthenticationTypes] = Field(
+class IntercomTicketsFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[IntercomIssueAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     access_token: Optional[str] = Field(alias="accessToken", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    inbox_id: Optional[str] = Field(alias="inboxId", default=None)
-    include_closed_threads: Optional[bool] = Field(
-        alias="includeClosedThreads", default=None
-    )
-    include_attachments: Optional[bool] = Field(
-        alias="includeAttachments", default=None
-    )
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
-class HubSpotDistributionPropertiesInput(BaseModel):
-    target_operation: Optional[DistributionTargetOperationTypes] = Field(
-        alias="targetOperation", default=None
-    )
-    target_kind: Optional[DistributionTargetKindTypes] = Field(
-        alias="targetKind", default=None
-    )
-    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
-    target_uri: Optional[str] = Field(alias="targetUri", default=None)
-    object_type: str = Field(alias="objectType")
-    object_id: str = Field(alias="objectId")
-
-
-class FathomPropertiesUpdateInput(BaseModel):
-    api_key: Optional[str] = Field(alias="apiKey", default=None)
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    type: Optional[FeedListingTypes] = None
-
-
-class GoogleModelPropertiesUpdateInput(BaseModel):
-    model: Optional[GoogleModels] = None
-    model_name: Optional[str] = Field(alias="modelName", default=None)
-    key: Optional[str] = None
-    temperature: Optional[float] = None
-    probability: Optional[float] = None
-    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
-    completion_token_limit: Optional[int] = Field(
-        alias="completionTokenLimit", default=None
-    )
-    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
-    enable_thinking: Optional[bool] = Field(alias="enableThinking", default=None)
-    thinking_token_limit: Optional[int] = Field(
-        alias="thinkingTokenLimit", default=None
-    )
-    thinking_level: Optional[GoogleThinkingLevels] = Field(
-        alias="thinkingLevel", default=None
-    )
-
-
-class GoogleVideoPublishingPropertiesInput(BaseModel):
-    model: Optional[GoogleVideoModels] = None
-    seconds: Optional[int] = None
-    aspect_ratio: Optional[VideoAspectRatioTypes] = Field(
-        alias="aspectRatio", default=None
-    )
-    seed: Optional["EntityReferenceInput"] = None
-
-
-class ReplicaSchedulePolicyInput(BaseModel):
+class AlertSchedulePolicyInput(BaseModel):
     recurrence_type: Optional[TimedPolicyRecurrenceTypes] = Field(
         alias="recurrenceType", default=None
     )
     repeat_interval: Optional[Any] = Field(alias="repeatInterval", default=None)
+    cron: Optional[str] = None
+    time_zone_id: Optional[str] = Field(alias="timeZoneId", default=None)
 
 
-class SearchFeedPropertiesInput(BaseModel):
-    type: Optional[SearchServiceTypes] = None
-    text: Optional[str] = None
-    exa: Optional["ExaSearchPropertiesInput"] = None
-    crustdata: Optional["CrustdataSearchFeedPropertiesInput"] = None
-    linkedin: Optional["LinkedInSearchPropertiesInput"] = None
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class MedicalDrugClassInput(BaseModel):
-    name: str
-    uri: Optional[Any] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
-
-
-class HRISFeedPropertiesInput(BaseModel):
-    type: FeedServiceTypes
-    bamboo_hr: Optional["BambooHRHRISFeedPropertiesInput"] = Field(
-        alias="bambooHR", default=None
-    )
-    gusto: Optional["GustoHRISFeedPropertiesInput"] = None
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class GitLabPullRequestsFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[GitLabMergeRequestAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    project_path: str = Field(alias="projectPath")
-    branch: Optional[str] = None
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    personal_access_token: Optional[str] = Field(
-        alias="personalAccessToken", default=None
-    )
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class WebFeedPropertiesUpdateInput(BaseModel):
-    uri: Optional[Any] = None
-    allowed_paths: Optional[list[str]] = Field(alias="allowedPaths", default=None)
-    excluded_paths: Optional[list[str]] = Field(alias="excludedPaths", default=None)
-    include_files: Optional[bool] = Field(alias="includeFiles", default=None)
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class RSSFeedPropertiesInput(BaseModel):
-    uri: Any
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class HubSpotMeetingPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[HubSpotFeedAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    access_token: Optional[str] = Field(alias="accessToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    include_transcripts: Optional[bool] = Field(
-        alias="includeTranscripts", default=None
-    )
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    type: Optional[FeedListingTypes] = None
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class RedditFeedPropertiesInput(BaseModel):
-    subreddit_name: str = Field(alias="subredditName")
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class MedicalTherapyFilter(BaseModel):
+class MedicalIndicationFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
     direction: Optional[OrderDirectionTypes] = None
@@ -6310,76 +6376,40 @@ class MedicalTherapyFilter(BaseModel):
     search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
     query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
     number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    similar_therapies: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="similarTherapies", default=None
+    similar_indications: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="similarIndications", default=None
     )
-    medical_therapies: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="medicalTherapies", default=None
-    )
-
-
-class GraphFilter(BaseModel):
-    types: Optional[list[ObservableTypes]] = None
-    feeds: Optional[list["EntityReferenceFilter"]] = None
-    creation_date_range: Optional["DateRangeFilter"] = Field(
-        alias="creationDateRange", default=None
-    )
-    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
-    location: Optional["PointFilter"] = None
-    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[list[Optional[str]]] = None
-    search: Optional[str] = None
-    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
-    offset: Optional[int] = None
-    limit: Optional[int] = None
-    disable_inheritance: Optional[bool] = Field(
-        alias="disableInheritance", default=None
+    medical_indications: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="medicalIndications", default=None
     )
 
 
-class BoxFoldersInput(BaseModel):
-    authentication_type: Optional[BoxAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
+class EntityExtractionConnectorInput(BaseModel):
+    type: EntityExtractionServiceTypes
+    content_types: Optional[list[ContentTypes]] = Field(
+        alias="contentTypes", default=None
     )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    redirect_uri: Optional[str] = Field(alias="redirectUri", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class ConversationUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    messages: Optional[list["ConversationMessageInput"]] = None
-    tools: Optional[list["ToolDefinitionInput"]] = None
-    agent: Optional["EntityReferenceInput"] = None
-    persona: Optional["EntityReferenceInput"] = None
-    specification: Optional["EntityReferenceInput"] = None
-    fallbacks: Optional[list[Optional["EntityReferenceInput"]]] = None
-    filter: Optional["ContentCriteriaInput"] = None
-    augmented_filter: Optional["ContentCriteriaInput"] = Field(
-        alias="augmentedFilter", default=None
+    file_types: Optional[list[FileTypes]] = Field(alias="fileTypes", default=None)
+    extracted_types: Optional[list[ObservableTypes]] = Field(
+        alias="extractedTypes", default=None
     )
-    scratchpad: Optional[str] = None
-    parent: Optional["EntityReferenceInput"] = None
+    extracted_count: Optional[int] = Field(alias="extractedCount", default=None)
+    azure_text: Optional["AzureTextExtractionPropertiesInput"] = Field(
+        alias="azureText", default=None
+    )
+    azure_image: Optional["AzureImageExtractionPropertiesInput"] = Field(
+        alias="azureImage", default=None
+    )
+    model_text: Optional["ModelTextExtractionPropertiesInput"] = Field(
+        alias="modelText", default=None
+    )
+    model_image: Optional["ModelImageExtractionPropertiesInput"] = Field(
+        alias="modelImage", default=None
+    )
+    hume: Optional["HumeExtractionPropertiesInput"] = None
 
 
-class ProductlaneCRMFeedPropertiesInput(BaseModel):
-    api_key: Optional[str] = Field(alias="apiKey", default=None)
-    type: Optional[FeedListingTypes] = None
-
-
-class MedicalDeviceInput(BaseModel):
-    name: str
-    uri: Optional[Any] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
-
-
-class PlaceFilter(BaseModel):
+class LabelFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
     direction: Optional[OrderDirectionTypes] = None
@@ -6403,318 +6433,6 @@ class PlaceFilter(BaseModel):
         alias="disableInheritance", default=None
     )
     feeds: Optional[list["EntityReferenceFilter"]] = None
-    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
-    address: Optional["AddressFilter"] = None
-    location: Optional["PointFilter"] = None
-    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[list[str]] = None
-    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
-    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
-    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    similar_places: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="similarPlaces", default=None
-    )
-    places: Optional[list["EntityReferenceFilter"]] = None
-
-
-class SiteFeedPropertiesUpdateInput(BaseModel):
-    is_recursive: Optional[bool] = Field(alias="isRecursive", default=None)
-    allowed_paths: Optional[list[str]] = Field(alias="allowedPaths", default=None)
-    excluded_paths: Optional[list[str]] = Field(alias="excludedPaths", default=None)
-    s_3: Optional["AmazonFeedPropertiesUpdateInput"] = Field(alias="s3", default=None)
-    azure_blob: Optional["AzureBlobFeedPropertiesUpdateInput"] = Field(
-        alias="azureBlob", default=None
-    )
-    azure_file: Optional["AzureFileFeedPropertiesUpdateInput"] = Field(
-        alias="azureFile", default=None
-    )
-    google: Optional["GoogleFeedPropertiesUpdateInput"] = None
-    share_point: Optional["SharePointFeedPropertiesUpdateInput"] = Field(
-        alias="sharePoint", default=None
-    )
-    one_drive: Optional["OneDriveFeedPropertiesUpdateInput"] = Field(
-        alias="oneDrive", default=None
-    )
-    google_drive: Optional["GoogleDriveFeedPropertiesUpdateInput"] = Field(
-        alias="googleDrive", default=None
-    )
-    github: Optional["GitHubFeedPropertiesUpdateInput"] = None
-    gitlab: Optional["GitLabFeedPropertiesUpdateInput"] = None
-    dropbox: Optional["DropboxFeedPropertiesUpdateInput"] = None
-    box: Optional["BoxFeedPropertiesUpdateInput"] = None
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class ContentUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    description: Optional[str] = None
-    identifier: Optional[str] = None
-    file_creation_date: Optional[Any] = Field(alias="fileCreationDate", default=None)
-    file_modified_date: Optional[Any] = Field(alias="fileModifiedDate", default=None)
-    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
-    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
-    agent: Optional["EntityReferenceInput"] = None
-    summary: Optional[str] = None
-    custom_summary: Optional[str] = Field(alias="customSummary", default=None)
-    keywords: Optional[list[str]] = None
-    bullets: Optional[list[str]] = None
-    headlines: Optional[list[str]] = None
-    posts: Optional[list[str]] = None
-    chapters: Optional[list[str]] = None
-    questions: Optional[list[str]] = None
-    quotes: Optional[list[str]] = None
-    video: Optional["VideoMetadataInput"] = None
-    audio: Optional["AudioMetadataInput"] = None
-    image: Optional["ImageMetadataInput"] = None
-    document: Optional["DocumentMetadataInput"] = None
-    email: Optional["EmailMetadataInput"] = None
-    event: Optional["EventMetadataInput"] = None
-    issue: Optional["IssueMetadataInput"] = None
-    initiative: Optional["InitiativeMetadataInput"] = None
-    message: Optional["MessageMetadataInput"] = None
-    post: Optional["PostMetadataInput"] = None
-    drawing: Optional["DrawingMetadataInput"] = None
-    shape: Optional["ShapeMetadataInput"] = None
-    geometry: Optional["GeometryMetadataInput"] = None
-    point_cloud: Optional["PointCloudMetadataInput"] = Field(
-        alias="pointCloud", default=None
-    )
-    package: Optional["PackageMetadataInput"] = None
-    language: Optional["LanguageMetadataInput"] = None
-
-
-class MedicalContraindicationFacetInput(BaseModel):
-    time_interval: Optional[TimeIntervalTypes] = Field(
-        alias="timeInterval", default=None
-    )
-    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
-    facet: Optional[MedicalContraindicationFacetTypes] = None
-
-
-class EmotionFilter(BaseModel):
-    search: Optional[str] = None
-    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
-    direction: Optional[OrderDirectionTypes] = None
-    offset: Optional[int] = None
-    limit: Optional[int] = None
-    relevance_threshold: Optional[float] = Field(
-        alias="relevanceThreshold", default=None
-    )
-    id: Optional[str] = None
-    name: Optional[str] = None
-    states: Optional[list[EntityState]] = None
-    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
-    creation_date_range: Optional["DateRangeFilter"] = Field(
-        alias="creationDateRange", default=None
-    )
-    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
-    modified_date_range: Optional["DateRangeFilter"] = Field(
-        alias="modifiedDateRange", default=None
-    )
-    disable_inheritance: Optional[bool] = Field(
-        alias="disableInheritance", default=None
-    )
-    feeds: Optional[list["EntityReferenceFilter"]] = None
-
-
-class SoftwareInput(BaseModel):
-    name: str
-    uri: Optional[Any] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
-    developer: Optional[str] = None
-    release_date: Optional[Any] = Field(alias="releaseDate", default=None)
-
-
-class AzureDocumentPreparationPropertiesInput(BaseModel):
-    model: Optional[AzureDocumentIntelligenceModels] = None
-    endpoint: Optional[Any] = None
-    key: Optional[str] = None
-    version: Optional[AzureDocumentIntelligenceVersions] = None
-
-
-class GitLabPullRequestsFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[GitLabMergeRequestAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    project_path: Optional[str] = Field(alias="projectPath", default=None)
-    branch: Optional[str] = None
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    personal_access_token: Optional[str] = Field(
-        alias="personalAccessToken", default=None
-    )
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class MicrosoftCalendarDistributionPropertiesInput(BaseModel):
-    target_operation: Optional[DistributionTargetOperationTypes] = Field(
-        alias="targetOperation", default=None
-    )
-    target_kind: Optional[DistributionTargetKindTypes] = Field(
-        alias="targetKind", default=None
-    )
-    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
-    target_uri: Optional[str] = Field(alias="targetUri", default=None)
-    calendar_id: Optional[str] = Field(alias="calendarId", default=None)
-    subject: Optional[str] = None
-    start_date_time: Optional[Any] = Field(alias="startDateTime", default=None)
-    end_date_time: Optional[Any] = Field(alias="endDateTime", default=None)
-    time_zone: Optional[str] = Field(alias="timeZone", default=None)
-    location: Optional[str] = None
-    attendees: Optional[list[str]] = None
-    is_online_meeting: Optional[bool] = Field(alias="isOnlineMeeting", default=None)
-
-
-class GoogleAuthenticationPropertiesInput(BaseModel):
-    client_id: str = Field(alias="clientId")
-    client_secret: str = Field(alias="clientSecret")
-
-
-class GoogleCalendarFeedPropertiesInput(BaseModel):
-    type: Optional[CalendarListingTypes] = None
-    calendar_id: Optional[str] = Field(alias="calendarId", default=None)
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    authentication_type: Optional[GoogleCalendarAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class CategoryFilter(BaseModel):
-    search: Optional[str] = None
-    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
-    direction: Optional[OrderDirectionTypes] = None
-    offset: Optional[int] = None
-    limit: Optional[int] = None
-    relevance_threshold: Optional[float] = Field(
-        alias="relevanceThreshold", default=None
-    )
-    id: Optional[str] = None
-    name: Optional[str] = None
-    states: Optional[list[EntityState]] = None
-    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
-    creation_date_range: Optional["DateRangeFilter"] = Field(
-        alias="creationDateRange", default=None
-    )
-    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
-    modified_date_range: Optional["DateRangeFilter"] = Field(
-        alias="modifiedDateRange", default=None
-    )
-    disable_inheritance: Optional[bool] = Field(
-        alias="disableInheritance", default=None
-    )
-    feeds: Optional[list["EntityReferenceFilter"]] = None
-
-
-class BambooHRHRISFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[BambooHRAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    api_key: Optional[str] = Field(alias="apiKey", default=None)
-    company_domain: Optional[str] = Field(alias="companyDomain", default=None)
-
-
-class AzureBlobFeedPropertiesInput(BaseModel):
-    storage_access_key: str = Field(alias="storageAccessKey")
-    account_name: str = Field(alias="accountName")
-    container_name: str = Field(alias="containerName")
-    prefix: Optional[str] = None
-    list_type: Optional[BlobListingTypes] = Field(alias="listType", default=None)
-
-
-class GeometryMetadataInput(BaseModel):
-    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
-    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
-    location: Optional["PointInput"] = None
-    triangle_count: Optional[Any] = Field(alias="triangleCount", default=None)
-    vertex_count: Optional[Any] = Field(alias="vertexCount", default=None)
-
-
-class MeetingFeedPropertiesInput(BaseModel):
-    type: FeedServiceTypes
-    content_type: Optional[MeetingContentTypes] = Field(
-        alias="contentType", default=None
-    )
-    fireflies: Optional["FirefliesFeedPropertiesInput"] = None
-    attio: Optional["AttioMeetingPropertiesInput"] = None
-    fathom: Optional["FathomPropertiesInput"] = None
-    zoom: Optional["ZoomPropertiesInput"] = None
-    hub_spot: Optional["HubSpotMeetingPropertiesInput"] = Field(
-        alias="hubSpot", default=None
-    )
-    krisp: Optional["KrispPropertiesInput"] = None
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class ProductInput(BaseModel):
-    name: str
-    uri: Optional[Any] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
-    address: Optional["AddressInput"] = None
-    production_date: Optional[Any] = Field(alias="productionDate", default=None)
-    release_date: Optional[Any] = Field(alias="releaseDate", default=None)
-    sku: Optional[str] = None
-    upc: Optional[str] = None
-    manufacturer: Optional[str] = None
-    brand: Optional[str] = None
-    model: Optional[str] = None
-    gtin: Optional[str] = None
-    mpn: Optional[str] = None
-
-
-class ConversationStrategyInput(BaseModel):
-    type: Optional[ConversationStrategyTypes] = None
-    message_limit: Optional[int] = Field(alias="messageLimit", default=None)
-    embed_citations: Optional[bool] = Field(alias="embedCitations", default=None)
-    flatten_citations: Optional[bool] = Field(alias="flattenCitations", default=None)
-    enable_facets: Optional[bool] = Field(alias="enableFacets", default=None)
-    enable_summarization: Optional[bool] = Field(
-        alias="enableSummarization", default=None
-    )
-    enable_entity_extraction: Optional[bool] = Field(
-        alias="enableEntityExtraction", default=None
-    )
-    enable_fact_extraction: Optional[bool] = Field(
-        alias="enableFactExtraction", default=None
-    )
-    entity_extraction_limit: Optional[int] = Field(
-        alias="entityExtractionLimit", default=None
-    )
-    fact_extraction_limit: Optional[int] = Field(
-        alias="factExtractionLimit", default=None
-    )
-    messages_weight: Optional[float] = Field(alias="messagesWeight", default=None)
-    contents_weight: Optional[float] = Field(alias="contentsWeight", default=None)
-    tool_result_token_limit: Optional[int] = Field(
-        alias="toolResultTokenLimit", default=None
-    )
-    tool_round_limit: Optional[int] = Field(alias="toolRoundLimit", default=None)
-    tool_budget_threshold: Optional[float] = Field(
-        alias="toolBudgetThreshold", default=None
-    )
-
-
-class GitLabIssuesFeedPropertiesUpdateInput(BaseModel):
-    project_path: Optional[str] = Field(alias="projectPath", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    personal_access_token: Optional[str] = Field(
-        alias="personalAccessToken", default=None
-    )
-    connector: Optional["EntityReferenceInput"] = None
 
 
 class ConversationFilter(BaseModel):
@@ -6759,46 +6477,6 @@ class ConversationFilter(BaseModel):
     )
 
 
-class InvestmentFundFilter(BaseModel):
-    search: Optional[str] = None
-    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
-    direction: Optional[OrderDirectionTypes] = None
-    offset: Optional[int] = None
-    limit: Optional[int] = None
-    relevance_threshold: Optional[float] = Field(
-        alias="relevanceThreshold", default=None
-    )
-    id: Optional[str] = None
-    name: Optional[str] = None
-    states: Optional[list[EntityState]] = None
-    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
-    creation_date_range: Optional["DateRangeFilter"] = Field(
-        alias="creationDateRange", default=None
-    )
-    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
-    modified_date_range: Optional["DateRangeFilter"] = Field(
-        alias="modifiedDateRange", default=None
-    )
-    disable_inheritance: Optional[bool] = Field(
-        alias="disableInheritance", default=None
-    )
-    feeds: Optional[list["EntityReferenceFilter"]] = None
-    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
-    address: Optional["AddressFilter"] = None
-    location: Optional["PointFilter"] = None
-    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[list[str]] = None
-    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
-    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
-    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    similar_investment_funds: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="similarInvestmentFunds", default=None
-    )
-    investment_funds: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="investmentFunds", default=None
-    )
-
-
 class GoogleContactsCRMFeedPropertiesUpdateInput(BaseModel):
     authentication_type: Optional[GoogleContactsAuthenticationTypes] = Field(
         alias="authenticationType", default=None
@@ -6810,137 +6488,179 @@ class GoogleContactsCRMFeedPropertiesUpdateInput(BaseModel):
     type: Optional[FeedListingTypes] = None
 
 
-class MentionReferenceFilter(BaseModel):
-    type: Optional[ObservableTypes] = None
-    observable: Optional["EntityReferenceFilter"] = None
-
-
-class HubSpotCRMFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[HubSpotAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
+class AnthropicModelPropertiesInput(BaseModel):
+    model: AnthropicModels
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
     )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    access_token: Optional[str] = Field(alias="accessToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
+    enable_thinking: Optional[bool] = Field(alias="enableThinking", default=None)
+    thinking_token_limit: Optional[int] = Field(
+        alias="thinkingTokenLimit", default=None
+    )
+    effort: Optional[AnthropicEffortLevels] = None
 
 
-class EvernoteAuthorizedNotebookInput(BaseModel):
-    connector: "EntityReferenceInput"
+class RegexContentClassificationPropertiesInput(BaseModel):
+    rules: Optional[list[Optional["RegexClassificationRuleInput"]]] = None
 
 
-class DateRangeFilter(BaseModel):
-    from_: Optional[Any] = Field(alias="from", default=None)
-    to: Optional[Any] = None
+class DiscordDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
+    channel_id: str = Field(alias="channelId")
+    thread_id: Optional[str] = Field(alias="threadId", default=None)
 
 
-class MedicalStudyInput(BaseModel):
-    name: str
-    uri: Optional[Any] = None
+class IntegrationConnectorInput(BaseModel):
+    type: IntegrationServiceTypes
+    uri: Optional[str] = None
+    slack: Optional["SlackIntegrationPropertiesInput"] = None
+    email: Optional["EmailIntegrationPropertiesInput"] = None
+    twitter: Optional["TwitterIntegrationPropertiesInput"] = None
+    mcp: Optional["MCPIntegrationPropertiesInput"] = None
+
+
+class PlaceFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
+    feeds: Optional[list["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
+    address: Optional["AddressFilter"] = None
+    location: Optional["PointFilter"] = None
+    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
+    boundaries: Optional[list[str]] = None
+    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
+    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
+    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
+    similar_places: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="similarPlaces", default=None
+    )
+    places: Optional[list["EntityReferenceFilter"]] = None
+
+
+class EmailIntegrationPropertiesInput(BaseModel):
+    subject: str
+    from_: str = Field(alias="from")
+    to: list[str]
+
+
+class EntityEnrichmentConnectorInput(BaseModel):
+    type: EntityEnrichmentServiceTypes
+    enriched_types: Optional[list[ObservableTypes]] = Field(
+        alias="enrichedTypes", default=None
+    )
+    parallel: Optional["ParallelEnrichmentPropertiesInput"] = None
+    fhir: Optional["FHIREnrichmentPropertiesInput"] = None
+    diffbot: Optional["DiffbotEnrichmentPropertiesInput"] = None
+    crustdata: Optional["CrustdataEnrichmentPropertiesInput"] = None
+    waterfall: Optional["WaterfallEnrichmentPropertiesInput"] = None
+
+
+class FeedFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
     identifier: Optional[str] = None
+    types: Optional[list[FeedTypes]] = None
+
+
+class EmailPreparationPropertiesInput(BaseModel):
+    include_attachments: Optional[bool] = Field(
+        alias="includeAttachments", default=None
+    )
+
+
+class AddressInput(BaseModel):
+    street_address: Optional[str] = Field(alias="streetAddress", default=None)
+    city: Optional[str] = None
+    region: Optional[str] = None
+    country: Optional[str] = None
+    postal_code: Optional[str] = Field(alias="postalCode", default=None)
+
+
+class EmotionUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
     description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
-    address: Optional["AddressInput"] = None
 
 
-class InvestmentFacetInput(BaseModel):
-    time_interval: Optional[TimeIntervalTypes] = Field(
-        alias="timeInterval", default=None
+class LinkedInFeedPropertiesInput(BaseModel):
+    listing_type: LinkedInPostListingTypes = Field(alias="listingType")
+    company_domain: Optional[str] = Field(alias="companyDomain", default=None)
+    company_linked_in_url: Optional[str] = Field(
+        alias="companyLinkedInUrl", default=None
     )
-    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
-    facet: Optional[InvestmentFacetTypes] = None
-
-
-class SiteFeedPropertiesInput(BaseModel):
-    type: FeedServiceTypes
-    is_recursive: Optional[bool] = Field(alias="isRecursive", default=None)
-    allowed_paths: Optional[list[str]] = Field(alias="allowedPaths", default=None)
-    excluded_paths: Optional[list[str]] = Field(alias="excludedPaths", default=None)
-    s_3: Optional["AmazonFeedPropertiesInput"] = Field(alias="s3", default=None)
-    azure_blob: Optional["AzureBlobFeedPropertiesInput"] = Field(
-        alias="azureBlob", default=None
+    company_name: Optional[str] = Field(alias="companyName", default=None)
+    person_linked_in_url: Optional[str] = Field(alias="personLinkedInUrl", default=None)
+    post_types: Optional[str] = Field(alias="postTypes", default=None)
+    keyword: Optional[str] = None
+    date_posted: Optional[str] = Field(alias="datePosted", default=None)
+    exact_keyword_match: Optional[bool] = Field(alias="exactKeywordMatch", default=None)
+    content_types: Optional[list[Optional[LinkedInPostContentTypes]]] = Field(
+        alias="contentTypes", default=None
     )
-    azure_file: Optional["AzureFileFeedPropertiesInput"] = Field(
-        alias="azureFile", default=None
-    )
-    google: Optional["GoogleFeedPropertiesInput"] = None
-    share_point: Optional["SharePointFeedPropertiesInput"] = Field(
-        alias="sharePoint", default=None
-    )
-    one_drive: Optional["OneDriveFeedPropertiesInput"] = Field(
-        alias="oneDrive", default=None
-    )
-    google_drive: Optional["GoogleDriveFeedPropertiesInput"] = Field(
-        alias="googleDrive", default=None
-    )
-    github: Optional["GitHubFeedPropertiesInput"] = None
-    gitlab: Optional["GitLabFeedPropertiesInput"] = None
-    dropbox: Optional["DropboxFeedPropertiesInput"] = None
-    box: Optional["BoxFeedPropertiesInput"] = None
+    include_comments: Optional[bool] = Field(alias="includeComments", default=None)
+    max_comments: Optional[int] = Field(alias="maxComments", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
-class PersonaUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    type: Optional[PersonaTypes] = None
-    identifier: Optional[str] = None
-    platform: Optional[str] = None
-    display_name: Optional[str] = Field(alias="displayName", default=None)
-    timezone: Optional[str] = None
-    role: Optional[str] = None
-    instructions: Optional[str] = None
+class ClassificationWorkflowStageInput(BaseModel):
+    jobs: Optional[list[Optional["ClassificationWorkflowJobInput"]]] = None
 
 
-class TrelloFeedPropertiesInput(BaseModel):
-    key: str
-    token: str
-    type: TrelloTypes
-    identifiers: list[str]
-
-
-class GitHubPullRequestsFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[GitHubPullRequestAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    repository_owner: Optional[str] = Field(alias="repositoryOwner", default=None)
-    repository_name: Optional[str] = Field(alias="repositoryName", default=None)
-    uri: Optional[Any] = None
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    personal_access_token: Optional[str] = Field(
-        alias="personalAccessToken", default=None
-    )
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class MedicalProcedureInput(BaseModel):
-    name: str
-    uri: Optional[Any] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
-
-
-class CrustdataEnrichmentPropertiesInput(BaseModel):
-    is_realtime: Optional[bool] = Field(alias="isRealtime", default=None)
-
-
-class MondayFeedPropertiesUpdateInput(BaseModel):
-    api_token: Optional[str] = Field(alias="apiToken", default=None)
-    board_id: Optional[str] = Field(alias="boardId", default=None)
-
-
-class JiraEpicsFeedPropertiesInput(BaseModel):
+class AtlassianJiraFeedPropertiesInput(BaseModel):
     authentication_type: Optional[JiraAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
-    uri: Optional[str] = None
+    uri: Optional[Any] = None
     project: Optional[str] = None
     email: Optional[str] = None
     token: Optional[str] = None
@@ -6952,472 +6672,195 @@ class JiraEpicsFeedPropertiesInput(BaseModel):
     cloud_id: Optional[str] = Field(alias="cloudId", default=None)
 
 
-class CrustdataCompanyDiscoveryFilterInput(BaseModel):
-    names: Optional[list[str]] = None
-    domains: Optional[list[str]] = None
-    industries: Optional[list[str]] = None
-    categories: Optional[list[str]] = None
-    countries: Optional[list[str]] = None
-    locations: Optional[list[str]] = None
-    company_types: Optional[list[str]] = Field(alias="companyTypes", default=None)
-    min_employee_count: Optional[int] = Field(alias="minEmployeeCount", default=None)
-    max_employee_count: Optional[int] = Field(alias="maxEmployeeCount", default=None)
-    min_growth_6_m_percent: Optional[Any] = Field(
-        alias="minGrowth6mPercent", default=None
-    )
-    min_growth_12_m_percent: Optional[Any] = Field(
-        alias="minGrowth12mPercent", default=None
-    )
-    funding_round_types: Optional[list[str]] = Field(
-        alias="fundingRoundTypes", default=None
-    )
-    min_funding_date: Optional[Any] = Field(alias="minFundingDate", default=None)
-    min_total_funding_usd: Optional[Any] = Field(
-        alias="minTotalFundingUsd", default=None
-    )
-    min_revenue_lower_bound_usd: Optional[Any] = Field(
-        alias="minRevenueLowerBoundUsd", default=None
-    )
-    max_revenue_upper_bound_usd: Optional[Any] = Field(
-        alias="maxRevenueUpperBoundUsd", default=None
-    )
-    min_year_founded: Optional[int] = Field(alias="minYearFounded", default=None)
-    max_year_founded: Optional[int] = Field(alias="maxYearFounded", default=None)
+class SoftwareInput(BaseModel):
+    name: str
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+    developer: Optional[str] = None
+    release_date: Optional[Any] = Field(alias="releaseDate", default=None)
 
 
-class ArcadeAuthenticationPropertiesInput(BaseModel):
-    authorization_id: str = Field(alias="authorizationId")
-    provider: ArcadeProviders
-    metadata: Optional[str] = None
-
-
-class GoogleDriveFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[GoogleDriveAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    drive_id: Optional[str] = Field(alias="driveId", default=None)
-    files: Optional[list[Optional[str]]] = None
-    folder_id: Optional[str] = Field(alias="folderId", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    service_account_json: Optional[str] = Field(
-        alias="serviceAccountJson", default=None
-    )
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class WhatsAppChannelPropertiesInput(BaseModel):
-    access_token: str = Field(alias="accessToken")
-    app_secret: Optional[str] = Field(alias="appSecret", default=None)
-    phone_number_id: str = Field(alias="phoneNumberId")
-    verify_token: Optional[str] = Field(alias="verifyToken", default=None)
-
-
-class MedicalDrugClassFacetInput(BaseModel):
+class ProductFacetInput(BaseModel):
     time_interval: Optional[TimeIntervalTypes] = Field(
         alias="timeInterval", default=None
     )
     time_offset: Optional[int] = Field(alias="timeOffset", default=None)
-    facet: Optional[MedicalDrugClassFacetTypes] = None
+    facet: Optional[ProductFacetTypes] = None
 
 
-class SlackChannelPropertiesInput(BaseModel):
-    bot_token: str = Field(alias="botToken")
-    signing_secret: Optional[str] = Field(alias="signingSecret", default=None)
-    app_id: Optional[str] = Field(alias="appId", default=None)
+class ObservationReferenceInput(BaseModel):
+    type: ObservableTypes
+    observable: "NamedEntityReferenceInput"
 
 
-class WorkflowUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    ingestion: Optional["IngestionWorkflowStageInput"] = None
-    indexing: Optional["IndexingWorkflowStageInput"] = None
-    preparation: Optional["PreparationWorkflowStageInput"] = None
-    extraction: Optional["ExtractionWorkflowStageInput"] = None
-    enrichment: Optional["EnrichmentWorkflowStageInput"] = None
-    classification: Optional["ClassificationWorkflowStageInput"] = None
-    storage: Optional["StorageWorkflowStageInput"] = None
-    actions: Optional[list[Optional["WorkflowActionInput"]]] = None
-
-
-class JiraProjectsInput(BaseModel):
-    authentication_type: Optional[JiraAuthenticationTypes] = Field(
+class ConfluenceFeedPropertiesInput(BaseModel):
+    is_recursive: Optional[bool] = Field(alias="isRecursive", default=None)
+    authentication_type: Optional[ConfluenceAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
     uri: Optional[str] = None
-    email_address: Optional[str] = Field(alias="emailAddress", default=None)
+    email: Optional[str] = None
     token: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
     cloud_id: Optional[str] = Field(alias="cloudId", default=None)
-
-
-class GitHubMilestonesFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[GitHubAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    uri: Optional[str] = None
-    repository_owner: Optional[str] = Field(alias="repositoryOwner", default=None)
-    repository_name: Optional[str] = Field(alias="repositoryName", default=None)
-    personal_access_token: Optional[str] = Field(
-        alias="personalAccessToken", default=None
-    )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
-
-
-class ContentCriteriaInput(BaseModel):
-    in_last: Optional[Any] = Field(alias="inLast", default=None)
-    in_next: Optional[Any] = Field(alias="inNext", default=None)
-    date_range: Optional["DateRangeInput"] = Field(alias="dateRange", default=None)
-    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
-    creation_date_range: Optional["DateRangeInput"] = Field(
-        alias="creationDateRange", default=None
-    )
-    types: Optional[list[ContentTypes]] = None
-    file_types: Optional[list[FileTypes]] = Field(alias="fileTypes", default=None)
-    formats: Optional[list[Optional[str]]] = None
-    file_extensions: Optional[list[str]] = Field(alias="fileExtensions", default=None)
-    file_size_range: Optional["Int64RangeInput"] = Field(
-        alias="fileSizeRange", default=None
-    )
-    similar_contents: Optional[list["EntityReferenceInput"]] = Field(
-        alias="similarContents", default=None
-    )
-    contents: Optional[list["EntityReferenceInput"]] = None
-    feeds: Optional[list["EntityReferenceInput"]] = None
-    workflows: Optional[list["EntityReferenceInput"]] = None
-    collections: Optional[list["EntityReferenceInput"]] = None
-    observations: Optional[list["ObservationCriteriaInput"]] = None
-    or_: Optional[list["ContentCriteriaLevelInput"]] = Field(alias="or", default=None)
-    and_: Optional[list["ContentCriteriaLevelInput"]] = Field(alias="and", default=None)
-    has_observations: Optional[bool] = Field(alias="hasObservations", default=None)
-    has_feeds: Optional[bool] = Field(alias="hasFeeds", default=None)
-    has_collections: Optional[bool] = Field(alias="hasCollections", default=None)
-    has_workflows: Optional[bool] = Field(alias="hasWorkflows", default=None)
-    collection_mode: Optional[FilterMode] = Field(alias="collectionMode", default=None)
-    observation_mode: Optional[FilterMode] = Field(
-        alias="observationMode", default=None
-    )
-
-
-class MedicalGuidelineFilter(BaseModel):
-    search: Optional[str] = None
-    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
-    direction: Optional[OrderDirectionTypes] = None
-    offset: Optional[int] = None
-    limit: Optional[int] = None
-    relevance_threshold: Optional[float] = Field(
-        alias="relevanceThreshold", default=None
-    )
-    id: Optional[str] = None
-    name: Optional[str] = None
-    states: Optional[list[EntityState]] = None
-    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
-    creation_date_range: Optional["DateRangeFilter"] = Field(
-        alias="creationDateRange", default=None
-    )
-    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
-    modified_date_range: Optional["DateRangeFilter"] = Field(
-        alias="modifiedDateRange", default=None
-    )
-    disable_inheritance: Optional[bool] = Field(
-        alias="disableInheritance", default=None
-    )
-    feeds: Optional[list["EntityReferenceFilter"]] = None
-    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
-    address: Optional["AddressFilter"] = None
-    location: Optional["PointFilter"] = None
-    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[list[str]] = None
-    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
-    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
-    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    similar_guidelines: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="similarGuidelines", default=None
-    )
-    medical_guidelines: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="medicalGuidelines", default=None
-    )
-
-
-class CrustdataEntityFeedPropertiesUpdateInput(BaseModel):
-    person_filters: Optional["CrustdataPersonDiscoveryFilterInput"] = Field(
-        alias="personFilters", default=None
-    )
-    company_filters: Optional["CrustdataCompanyDiscoveryFilterInput"] = Field(
-        alias="companyFilters", default=None
-    )
-
-
-class AzureBlobFeedPropertiesUpdateInput(BaseModel):
-    storage_access_key: Optional[str] = Field(alias="storageAccessKey", default=None)
-    account_name: Optional[str] = Field(alias="accountName", default=None)
-    container_name: Optional[str] = Field(alias="containerName", default=None)
-    prefix: Optional[str] = None
-    list_type: Optional[BlobListingTypes] = Field(alias="listType", default=None)
-
-
-class ImageMetadataInput(BaseModel):
-    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
-    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
-    location: Optional["PointInput"] = None
-    width: Optional[int] = None
-    height: Optional[int] = None
-    bits_per_component: Optional[int] = Field(alias="bitsPerComponent", default=None)
-    components: Optional[int] = None
-    projection_type: Optional[ImageProjectionTypes] = Field(
-        alias="projectionType", default=None
-    )
-    orientation: Optional[OrientationTypes] = None
-    resolution_x: Optional[int] = Field(alias="resolutionX", default=None)
-    resolution_y: Optional[int] = Field(alias="resolutionY", default=None)
-    description: Optional[str] = None
-    software: Optional[str] = None
-    identifier: Optional[str] = None
-    make: Optional[str] = None
-    model: Optional[str] = None
-    lens: Optional[str] = None
-    lens_specification: Optional[str] = Field(alias="lensSpecification", default=None)
-    focal_length: Optional[float] = Field(alias="focalLength", default=None)
-    exposure_time: Optional[str] = Field(alias="exposureTime", default=None)
-    f_number: Optional[str] = Field(alias="fNumber", default=None)
-    iso: Optional[str] = None
-    color_space: Optional[str] = Field(alias="colorSpace", default=None)
-    heading: Optional[float] = None
-    pitch: Optional[float] = None
-
-
-class EventMetadataInput(BaseModel):
-    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
-    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
-    location: Optional["PointInput"] = None
-    subject: Optional[str] = None
-    event_id: Optional[str] = Field(alias="eventId", default=None)
-    calendar_id: Optional[str] = Field(alias="calendarId", default=None)
-    start_date_time: Optional[Any] = Field(alias="startDateTime", default=None)
-    end_date_time: Optional[Any] = Field(alias="endDateTime", default=None)
-    is_all_day: Optional[bool] = Field(alias="isAllDay", default=None)
-    timezone: Optional[str] = None
-    status: Optional[CalendarEventStatus] = None
-    visibility: Optional[CalendarEventVisibility] = None
-    meeting_link: Optional[str] = Field(alias="meetingLink", default=None)
-    organizer: Optional["CalendarAttendeeInput"] = None
-    attendees: Optional[list[Optional["CalendarAttendeeInput"]]] = None
-    categories: Optional[list[Optional[str]]] = None
-    reminders: Optional[list[Optional["CalendarReminderInput"]]] = None
-    recurrence: Optional["CalendarRecurrenceInput"] = None
-    recurring_event_id: Optional[str] = Field(alias="recurringEventId", default=None)
-    is_recurring: Optional[bool] = Field(alias="isRecurring", default=None)
-    links: Optional[list[Optional["LinkReferenceInput"]]] = None
-
-
-class GitHubCommitsFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[GitHubCommitAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    repository_owner: Optional[str] = Field(alias="repositoryOwner", default=None)
-    repository_name: Optional[str] = Field(alias="repositoryName", default=None)
-    branch: Optional[str] = None
-    uri: Optional[Any] = None
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    personal_access_token: Optional[str] = Field(
-        alias="personalAccessToken", default=None
-    )
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class FeedInput(BaseModel):
-    name: str
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    type: FeedTypes
-    sync_mode: Optional[FeedSyncMode] = Field(alias="syncMode", default=None)
-    site: Optional["SiteFeedPropertiesInput"] = None
-    calendar: Optional["CalendarFeedPropertiesInput"] = None
-    email: Optional["EmailFeedPropertiesInput"] = None
-    crm: Optional["CRMFeedPropertiesInput"] = None
-    hris: Optional["HRISFeedPropertiesInput"] = None
-    issue: Optional["IssueFeedPropertiesInput"] = None
-    pull_request: Optional["PullRequestFeedPropertiesInput"] = Field(
-        alias="pullRequest", default=None
-    )
-    commit: Optional["CommitFeedPropertiesInput"] = None
-    rss: Optional["RSSFeedPropertiesInput"] = None
-    web: Optional["WebFeedPropertiesInput"] = None
-    search: Optional["SearchFeedPropertiesInput"] = None
-    reddit: Optional["RedditFeedPropertiesInput"] = None
-    linked_in: Optional["LinkedInFeedPropertiesInput"] = Field(
-        alias="linkedIn", default=None
-    )
-    youtube: Optional["YouTubeFeedPropertiesInput"] = None
-    notion: Optional["NotionFeedPropertiesInput"] = None
-    evernote: Optional["EvernoteFeedPropertiesInput"] = None
-    confluence: Optional["ConfluenceFeedPropertiesInput"] = None
-    twitter: Optional["TwitterFeedPropertiesInput"] = None
-    slack: Optional["SlackFeedPropertiesInput"] = None
-    microsoft_teams: Optional["MicrosoftTeamsFeedPropertiesInput"] = Field(
-        alias="microsoftTeams", default=None
-    )
-    discord: Optional["DiscordFeedPropertiesInput"] = None
-    attio: Optional["AttioFeedPropertiesInput"] = None
-    salesforce: Optional["SalesforceFeedPropertiesInput"] = None
-    hub_spot_conversations: Optional["HubSpotConversationsFeedPropertiesInput"] = Field(
-        alias="hubSpotConversations", default=None
-    )
-    intercom: Optional["IntercomFeedPropertiesInput"] = None
-    zendesk: Optional["ZendeskFeedPropertiesInput"] = None
-    intercom_conversations: Optional["IntercomConversationsFeedPropertiesInput"] = (
-        Field(alias="intercomConversations", default=None)
-    )
-    productlane: Optional["ProductlaneFeedPropertiesInput"] = None
-    research: Optional["ResearchFeedPropertiesInput"] = None
-    entity: Optional["EntityFeedPropertiesInput"] = None
-    meeting: Optional["MeetingFeedPropertiesInput"] = None
-    initiative: Optional["InitiativeFeedPropertiesInput"] = None
-    schedule_policy: Optional["FeedSchedulePolicyInput"] = Field(
-        alias="schedulePolicy", default=None
-    )
-    workflow: Optional["EntityReferenceInput"] = None
-
-
-class PersonFilter(BaseModel):
-    search: Optional[str] = None
-    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
-    direction: Optional[OrderDirectionTypes] = None
-    offset: Optional[int] = None
-    limit: Optional[int] = None
-    relevance_threshold: Optional[float] = Field(
-        alias="relevanceThreshold", default=None
-    )
-    id: Optional[str] = None
-    name: Optional[str] = None
-    states: Optional[list[EntityState]] = None
-    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
-    creation_date_range: Optional["DateRangeFilter"] = Field(
-        alias="creationDateRange", default=None
-    )
-    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
-    modified_date_range: Optional["DateRangeFilter"] = Field(
-        alias="modifiedDateRange", default=None
-    )
-    disable_inheritance: Optional[bool] = Field(
-        alias="disableInheritance", default=None
-    )
-    feeds: Optional[list["EntityReferenceFilter"]] = None
-    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
-    address: Optional["AddressFilter"] = None
-    location: Optional["PointFilter"] = None
-    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
-    boundaries: Optional[list[str]] = None
-    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
-    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
-    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
-    given_name: Optional[str] = Field(alias="givenName", default=None)
-    family_name: Optional[str] = Field(alias="familyName", default=None)
-    phone_number: Optional[str] = Field(alias="phoneNumber", default=None)
-    email: Optional[str] = None
-    uri: Optional[Any] = None
-    similar_persons: Optional[list["EntityReferenceFilter"]] = Field(
-        alias="similarPersons", default=None
-    )
-    persons: Optional[list["EntityReferenceFilter"]] = None
-
-
-class OpenAIVideoPublishingPropertiesInput(BaseModel):
-    model: Optional[OpenAIVideoModels] = None
-    seconds: Optional[int] = None
-    size: Optional[VideoSizeTypes] = None
-    seed: Optional["EntityReferenceInput"] = None
-
-
-class BambooHRHRISFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[BambooHRAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    api_key: Optional[str] = Field(alias="apiKey", default=None)
-    company_domain: Optional[str] = Field(alias="companyDomain", default=None)
-
-
-class StorageWorkflowStageInput(BaseModel):
-    policy: Optional["StoragePolicyInput"] = None
-    gate: Optional["StorageGateInput"] = None
-
-
-class CategoryUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    description: Optional[str] = None
-
-
-class MessageMetadataInput(BaseModel):
-    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
-    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
-    location: Optional["PointInput"] = None
-    identifier: Optional[str] = None
-    conversation_identifier: Optional[str] = Field(
-        alias="conversationIdentifier", default=None
-    )
-    channel_identifier: Optional[str] = Field(alias="channelIdentifier", default=None)
-    channel_name: Optional[str] = Field(alias="channelName", default=None)
-    attachment_count: Optional[int] = Field(alias="attachmentCount", default=None)
-    links: Optional[list[Optional["LinkReferenceInput"]]] = None
-    author: Optional["PersonReferenceInput"] = None
-    mentions: Optional[list[Optional["PersonReferenceInput"]]] = None
-    reactions: Optional[list[Optional["ReactionReferenceInput"]]] = None
-
-
-class DropboxFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[DropboxAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    path: Optional[str] = None
-    app_key: Optional[str] = Field(alias="appKey", default=None)
-    app_secret: Optional[str] = Field(alias="appSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class DiscordFeedPropertiesUpdateInput(BaseModel):
-    type: Optional[FeedListingTypes] = None
-    token: Optional[str] = None
-    channel: Optional[str] = None
+    type: ConfluenceTypes
+    space_keys: Optional[list[str]] = Field(alias="spaceKeys", default=None)
+    identifiers: Optional[list[str]] = None
     include_attachments: Optional[bool] = Field(
         alias="includeAttachments", default=None
     )
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
-class ConfluenceDistributionPropertiesInput(BaseModel):
-    target_operation: Optional[DistributionTargetOperationTypes] = Field(
-        alias="targetOperation", default=None
+class HRISFeedPropertiesInput(BaseModel):
+    type: FeedServiceTypes
+    bamboo_hr: Optional["BambooHRHRISFeedPropertiesInput"] = Field(
+        alias="bambooHR", default=None
     )
-    target_kind: Optional[DistributionTargetKindTypes] = Field(
-        alias="targetKind", default=None
-    )
-    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
-    target_uri: Optional[str] = Field(alias="targetUri", default=None)
-    space_id: str = Field(alias="spaceId")
-    parent_page_id: Optional[str] = Field(alias="parentPageId", default=None)
-    title: Optional[str] = None
+    gusto: Optional["GustoHRISFeedPropertiesInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
-class MicrosoftTeamsChannelsInput(BaseModel):
-    authentication_type: Optional[MicrosoftTeamsAuthenticationTypes] = Field(
+class RevisionStrategyInput(BaseModel):
+    type: Optional[RevisionStrategyTypes] = None
+    custom_revision: Optional[str] = Field(alias="customRevision", default=None)
+    count: Optional[int] = None
+
+
+class FactAssertionInput(BaseModel):
+    text: str
+    mentions: Optional[list[Optional["MentionReferenceInput"]]] = None
+
+
+class NotionFeedPropertiesUpdateInput(BaseModel):
+    is_recursive: Optional[bool] = Field(alias="isRecursive", default=None)
+    authentication_type: Optional[NotionAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
+    token: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    type: Optional[NotionTypes] = None
+    identifiers: Optional[list[str]] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class MedicalContraindicationUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+
+
+class CollectionUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    type: Optional[CollectionTypes] = None
+    contents: Optional[list["EntityReferenceInput"]] = None
+    conversations: Optional[list["EntityReferenceInput"]] = None
+    expected_count: Optional[int] = Field(alias="expectedCount", default=None)
+
+
+class LinkReferenceInput(BaseModel):
+    uri: Optional[Any] = None
+    link_type: Optional[LinkTypes] = Field(alias="linkType", default=None)
+    excerpts: Optional[str] = None
+
+
+class WaterfallEnrichmentPropertiesInput(BaseModel):
+    depth: Optional[WaterfallDepths] = None
+
+
+class MentionReferenceFilter(BaseModel):
+    type: Optional[ObservableTypes] = None
+    observable: Optional["EntityReferenceFilter"] = None
+
+
+class AttioFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[AttioFeedAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class StorageGateRuleInput(BaseModel):
+    if_: str = Field(alias="if")
+
+
+class VoyageModelPropertiesUpdateInput(BaseModel):
+    model: Optional[VoyageModels] = None
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+
+
+class MedicalGuidelineUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+
+
+class LinearInitiativesFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[LinearAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    key: Optional[str] = None
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
 
 
-class CollectionFilter(BaseModel):
+class PlaceFacetInput(BaseModel):
+    time_interval: Optional[TimeIntervalTypes] = Field(
+        alias="timeInterval", default=None
+    )
+    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
+    facet: Optional[PlaceFacetTypes] = None
+
+
+class EventFacetInput(BaseModel):
+    time_interval: Optional[TimeIntervalTypes] = Field(
+        alias="timeInterval", default=None
+    )
+    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
+    facet: Optional[EventFacetTypes] = None
+
+
+class IntercomFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[IntercomAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    access_token: Optional[str] = Field(alias="accessToken", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class MedicalStudyFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
     direction: Optional[OrderDirectionTypes] = None
@@ -7437,34 +6880,91 @@ class CollectionFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
-    types: Optional[list[CollectionTypes]] = None
     disable_inheritance: Optional[bool] = Field(
         alias="disableInheritance", default=None
     )
+    feeds: Optional[list["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
+    address: Optional["AddressFilter"] = None
+    location: Optional["PointFilter"] = None
+    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
+    boundaries: Optional[list[str]] = None
+    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
+    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
+    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
+    similar_studies: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="similarStudies", default=None
+    )
+    medical_studies: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="medicalStudies", default=None
+    )
 
 
-class MedicalDrugFacetInput(BaseModel):
-    time_interval: Optional[TimeIntervalTypes] = Field(
-        alias="timeInterval", default=None
+class IntercomConversationsFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[IntercomConversationsAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
     )
-    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
-    facet: Optional[MedicalDrugFacetTypes] = None
-
-
-class CRMFeedPropertiesUpdateInput(BaseModel):
-    attio: Optional["AttioCRMFeedPropertiesUpdateInput"] = None
-    google_contacts: Optional["GoogleContactsCRMFeedPropertiesUpdateInput"] = Field(
-        alias="googleContacts", default=None
+    access_token: Optional[str] = Field(alias="accessToken", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    state: Optional[str] = None
+    include_notes: Optional[bool] = Field(alias="includeNotes", default=None)
+    include_attachments: Optional[bool] = Field(
+        alias="includeAttachments", default=None
     )
-    microsoft_contacts: Optional["MicrosoftContactsCRMFeedPropertiesUpdateInput"] = (
-        Field(alias="microsoftContacts", default=None)
-    )
-    salesforce: Optional["SalesforceCRMFeedPropertiesUpdateInput"] = None
-    hub_spot: Optional["HubSpotCRMFeedPropertiesUpdateInput"] = Field(
-        alias="hubSpot", default=None
-    )
-    productlane: Optional["ProductlaneCRMFeedPropertiesUpdateInput"] = None
+    type: Optional[FeedListingTypes] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class KrispPropertiesInput(BaseModel):
+    auth_token: Optional[str] = Field(alias="authToken", default=None)
+    type: Optional[FeedListingTypes] = None
+
+
+class EnrichmentWorkflowJobInput(BaseModel):
+    connector: Optional["EntityEnrichmentConnectorInput"] = None
+
+
+class EntityFeedPropertiesUpdateInput(BaseModel):
+    query: Optional[str] = None
+    parallel: Optional["ParallelEntityFeedPropertiesUpdateInput"] = None
+    crustdata: Optional["CrustdataEntityFeedPropertiesUpdateInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class MedicalDrugClassUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+
+
+class PromptStrategyInput(BaseModel):
+    type: Optional[PromptStrategyTypes] = None
+
+
+class ConversationToolCallInput(BaseModel):
+    id: str
+    name: str
+    arguments: Optional[str] = None
+    started_at: Optional[Any] = Field(alias="startedAt", default=None)
+    completed_at: Optional[Any] = Field(alias="completedAt", default=None)
+    duration_ms: Optional[int] = Field(alias="durationMs", default=None)
+    status: Optional[ToolExecutionStatus] = None
+    failed_at: Optional[Any] = Field(alias="failedAt", default=None)
+    first_status_at: Optional[Any] = Field(alias="firstStatusAt", default=None)
+
+
+class AgentHeartbeatProbeThresholdsInput(BaseModel):
+    new_content_min: Optional[float] = Field(alias="newContentMin", default=None)
+    volume_spike_multiplier: Optional[float] = Field(
+        alias="volumeSpikeMultiplier", default=None
+    )
 
 
 class IntercomConversationsFeedPropertiesInput(BaseModel):
@@ -7485,16 +6985,15 @@ class IntercomConversationsFeedPropertiesInput(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
-class MedicalGuidelineInput(BaseModel):
-    name: str
-    uri: Optional[Any] = None
-    identifier: Optional[str] = None
-    description: Optional[str] = None
-    location: Optional["PointInput"] = None
-    boundary: Optional[str] = None
+class MedicalGuidelineFacetInput(BaseModel):
+    time_interval: Optional[TimeIntervalTypes] = Field(
+        alias="timeInterval", default=None
+    )
+    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
+    facet: Optional[MedicalGuidelineFacetTypes] = None
 
 
-class ConnectorFilter(BaseModel):
+class MedicalTestFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
     direction: Optional[OrderDirectionTypes] = None
@@ -7514,55 +7013,273 @@ class ConnectorFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
-    types: Optional[list[ConnectorTypes]] = None
-
-
-class LinkStrategyInput(BaseModel):
-    enable_crawling: Optional[bool] = Field(alias="enableCrawling", default=None)
-    allowed_paths: Optional[list[str]] = Field(alias="allowedPaths", default=None)
-    excluded_paths: Optional[list[str]] = Field(alias="excludedPaths", default=None)
-    allowed_domains: Optional[list[str]] = Field(alias="allowedDomains", default=None)
-    excluded_domains: Optional[list[str]] = Field(alias="excludedDomains", default=None)
-    allow_content_domain: Optional[bool] = Field(
-        alias="allowContentDomain", default=None
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
     )
-    allowed_links: Optional[list[LinkTypes]] = Field(alias="allowedLinks", default=None)
-    excluded_links: Optional[list[LinkTypes]] = Field(
-        alias="excludedLinks", default=None
+    feeds: Optional[list["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
+    address: Optional["AddressFilter"] = None
+    location: Optional["PointFilter"] = None
+    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
+    boundaries: Optional[list[str]] = None
+    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
+    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
+    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
+    similar_tests: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="similarTests", default=None
     )
-    allowed_files: Optional[list[FileTypes]] = Field(alias="allowedFiles", default=None)
-    excluded_files: Optional[list[FileTypes]] = Field(
-        alias="excludedFiles", default=None
+    medical_tests: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="medicalTests", default=None
     )
-    allowed_content_types: Optional[list[ContentTypes]] = Field(
-        alias="allowedContentTypes", default=None
-    )
-    excluded_content_types: Optional[list[ContentTypes]] = Field(
-        alias="excludedContentTypes", default=None
-    )
-    maximum_links: Optional[int] = Field(alias="maximumLinks", default=None)
 
 
-class ConnectorInput(BaseModel):
-    name: str
-    type: ConnectorTypes
-    authentication: Optional["AuthenticationConnectorInput"] = None
-    integration: Optional["IntegrationConnectorInput"] = None
-    channel: Optional["ChannelConnectorInput"] = None
+class HubSpotDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
+    object_type: str = Field(alias="objectType")
+    object_id: str = Field(alias="objectId")
 
 
-class AttioTasksFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[AttioIssueAuthenticationTypes] = Field(
+class RedditFeedPropertiesInput(BaseModel):
+    subreddit_name: str = Field(alias="subredditName")
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class ReplicaUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    type: Optional[EntityTypes] = None
+    content: Optional["ReplicaContentPropertiesInput"] = None
+    conversation: Optional["ReplicaConversationPropertiesInput"] = None
+    git: Optional["ReplicaGitPropertiesInput"] = None
+    connector: Optional["EntityReferenceInput"] = None
+    marker_slug: Optional[str] = Field(alias="markerSlug", default=None)
+    artifact_types: Optional[list[Optional[ReplicaArtifactTypes]]] = Field(
+        alias="artifactTypes", default=None
+    )
+    synchronize_deletes: Optional[bool] = Field(
+        alias="synchronizeDeletes", default=None
+    )
+    commit_message: Optional[str] = Field(alias="commitMessage", default=None)
+    schedule_policy: Optional["ReplicaSchedulePolicyInput"] = Field(
+        alias="schedulePolicy", default=None
+    )
+
+
+class ModelContentClassificationPropertiesInput(BaseModel):
+    specification: Optional["EntityReferenceInput"] = None
+    rules: Optional[list[Optional["PromptClassificationRuleInput"]]] = None
+
+
+class GoogleEmailFeedPropertiesUpdateInput(BaseModel):
+    type: Optional[EmailListingTypes] = None
+    filter: Optional[str] = None
+    inbox_only: Optional[bool] = Field(alias="inboxOnly", default=None)
+    include_deleted_items: Optional[bool] = Field(
+        alias="includeDeletedItems", default=None
+    )
+    exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems", default=None)
+    include_spam: Optional[bool] = Field(alias="includeSpam", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    authentication_type: Optional[GoogleEmailAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
-    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class MedicalIndicationFacetInput(BaseModel):
+    time_interval: Optional[TimeIntervalTypes] = Field(
+        alias="timeInterval", default=None
+    )
+    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
+    facet: Optional[MedicalIndicationFacetTypes] = None
+
+
+class ConversationMessageInput(BaseModel):
+    role: ConversationRoleTypes
+    author: Optional[str] = None
+    message: Optional[str] = None
+    tool_calls: Optional[list["ConversationToolCallInput"]] = Field(
+        alias="toolCalls", default=None
+    )
+    tool_call_id: Optional[str] = Field(alias="toolCallId", default=None)
+    tool_call_response: Optional[str] = Field(alias="toolCallResponse", default=None)
+    tokens: Optional[int] = None
+    throughput: Optional[float] = None
+    ttft: Optional[Any] = None
+    completion_time: Optional[Any] = Field(alias="completionTime", default=None)
+    timestamp: Optional[Any] = None
+    data: Optional[str] = None
+    mime_type: Optional[str] = Field(alias="mimeType", default=None)
+    artifacts: Optional[list[Optional["EntityReferenceInput"]]] = None
+    thinking_content: Optional[str] = Field(alias="thinkingContent", default=None)
+    thinking_signature: Optional[str] = Field(alias="thinkingSignature", default=None)
+
+
+class ZendeskTicketsFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[ZendeskIssueAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    subdomain: Optional[str] = None
+    access_token: Optional[str] = Field(alias="accessToken", default=None)
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
 
 
-class OrganizationInput(BaseModel):
+class MetadataFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    metadata_types: Optional[list[MetadataTypes]] = Field(
+        alias="metadataTypes", default=None
+    )
+    content: Optional["EntityReferenceFilter"] = None
+
+
+class StoragePolicyInput(BaseModel):
+    type: Optional[StoragePolicyTypes] = None
+    allow_duplicates: Optional[bool] = Field(alias="allowDuplicates", default=None)
+    embedding_types: Optional[list[EmbeddingTypes]] = Field(
+        alias="embeddingTypes", default=None
+    )
+    enable_snapshots: Optional[bool] = Field(alias="enableSnapshots", default=None)
+    snapshot_count: Optional[int] = Field(alias="snapshotCount", default=None)
+
+
+class InvestmentFacetInput(BaseModel):
+    time_interval: Optional[TimeIntervalTypes] = Field(
+        alias="timeInterval", default=None
+    )
+    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
+    facet: Optional[InvestmentFacetTypes] = None
+
+
+class AlertFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    types: Optional[list[AlertTypes]] = None
+
+
+class DeskInput(BaseModel):
+    name: str
+    description: Optional[str] = None
+    objectives: Optional[str] = None
+    instructions: Optional[str] = None
+    bureau: Optional["EntityReferenceInput"] = None
+    agents: Optional[list["EntityReferenceInput"]] = None
+
+
+class ShapeMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    feature_count: Optional[int] = Field(alias="featureCount", default=None)
+    attribute_count: Optional[int] = Field(alias="attributeCount", default=None)
+
+
+class LabelUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    description: Optional[str] = None
+
+
+class EvernoteTagsInput(BaseModel):
+    connector: "EntityReferenceInput"
+
+
+class CommitFeedPropertiesInput(BaseModel):
+    type: FeedServiceTypes
+    github: Optional["GitHubCommitsFeedPropertiesInput"] = None
+    gitlab: Optional["GitLabCommitsFeedPropertiesInput"] = None
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class MicrosoftCalendarsInput(BaseModel):
+    authentication_type: Optional[MicrosoftCalendarAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class SiteFeedPropertiesUpdateInput(BaseModel):
+    is_recursive: Optional[bool] = Field(alias="isRecursive", default=None)
+    allowed_paths: Optional[list[str]] = Field(alias="allowedPaths", default=None)
+    excluded_paths: Optional[list[str]] = Field(alias="excludedPaths", default=None)
+    s_3: Optional["AmazonFeedPropertiesUpdateInput"] = Field(alias="s3", default=None)
+    azure_blob: Optional["AzureBlobFeedPropertiesUpdateInput"] = Field(
+        alias="azureBlob", default=None
+    )
+    azure_file: Optional["AzureFileFeedPropertiesUpdateInput"] = Field(
+        alias="azureFile", default=None
+    )
+    google: Optional["GoogleFeedPropertiesUpdateInput"] = None
+    share_point: Optional["SharePointFeedPropertiesUpdateInput"] = Field(
+        alias="sharePoint", default=None
+    )
+    one_drive: Optional["OneDriveFeedPropertiesUpdateInput"] = Field(
+        alias="oneDrive", default=None
+    )
+    google_drive: Optional["GoogleDriveFeedPropertiesUpdateInput"] = Field(
+        alias="googleDrive", default=None
+    )
+    github: Optional["GitHubFeedPropertiesUpdateInput"] = None
+    gitlab: Optional["GitLabFeedPropertiesUpdateInput"] = None
+    dropbox: Optional["DropboxFeedPropertiesUpdateInput"] = None
+    box: Optional["BoxFeedPropertiesUpdateInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class MedicalStudyInput(BaseModel):
     name: str
     uri: Optional[Any] = None
     identifier: Optional[str] = None
@@ -7570,49 +7287,51 @@ class OrganizationInput(BaseModel):
     location: Optional["PointInput"] = None
     boundary: Optional[str] = None
     address: Optional["AddressInput"] = None
-    founding_date: Optional[Any] = Field(alias="foundingDate", default=None)
-    email: Optional[str] = None
-    telephone: Optional[str] = None
-    legal_name: Optional[str] = Field(alias="legalName", default=None)
-    industries: Optional[list[Optional[str]]] = None
-    revenue_currency: Optional[str] = Field(alias="revenueCurrency", default=None)
-    revenue: Optional[Any] = None
-    investment_currency: Optional[str] = Field(alias="investmentCurrency", default=None)
-    investment: Optional[Any] = None
 
 
-class PersonFacetInput(BaseModel):
-    time_interval: Optional[TimeIntervalTypes] = Field(
-        alias="timeInterval", default=None
+class ParallelFeedPropertiesInput(BaseModel):
+    processor: Optional[ParallelProcessors] = None
+
+
+class CohereModelPropertiesUpdateInput(BaseModel):
+    model: Optional[CohereModels] = None
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
     )
-    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
-    facet: Optional[PersonFacetTypes] = None
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
 
 
-class HubSpotTasksFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[HubSpotIssueAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
+class ReplicateModelPropertiesUpdateInput(BaseModel):
+    model: Optional[ReplicateModels] = None
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
     )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    access_token: Optional[str] = Field(alias="accessToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
 
 
-class AgentChannelInput(BaseModel):
-    type: AgentChannelTypes
-    identifier: str
-    instructions: Optional[str] = None
-    label: Optional[str] = None
+class ModelImageExtractionPropertiesInput(BaseModel):
+    specification: Optional["EntityReferenceInput"] = None
 
 
-class MedicalStudyFacetInput(BaseModel):
-    time_interval: Optional[TimeIntervalTypes] = Field(
-        alias="timeInterval", default=None
-    )
-    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
-    facet: Optional[MedicalStudyFacetTypes] = None
+class ResearchFeedPropertiesUpdateInput(BaseModel):
+    type: Optional[FeedServiceTypes] = None
+    query: Optional[str] = None
+    parallel: Optional["ParallelFeedPropertiesUpdateInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class ProductlaneThreadsFeedPropertiesUpdateInput(BaseModel):
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    workspace_id: Optional[str] = Field(alias="workspaceId", default=None)
 
 
 class CalendarRecurrenceInput(BaseModel):
@@ -7627,176 +7346,15 @@ class CalendarRecurrenceInput(BaseModel):
     month_of_year: Optional[int] = Field(alias="monthOfYear", default=None)
 
 
-class BureauUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    description: Optional[str] = None
-    mission: Optional[str] = None
-    directives: Optional[str] = None
-    desks: Optional[list["EntityReferenceInput"]] = None
-
-
-class XAIModelPropertiesUpdateInput(BaseModel):
-    model: Optional[XAIModels] = None
-    model_name: Optional[str] = Field(alias="modelName", default=None)
+class DeepgramAudioPreparationPropertiesInput(BaseModel):
+    model: Optional[DeepgramModels] = None
     key: Optional[str] = None
-    endpoint: Optional[Any] = None
-    temperature: Optional[float] = None
-    probability: Optional[float] = None
-    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
-    completion_token_limit: Optional[int] = Field(
-        alias="completionTokenLimit", default=None
+    enable_redaction: Optional[bool] = Field(alias="enableRedaction", default=None)
+    enable_speaker_diarization: Optional[bool] = Field(
+        alias="enableSpeakerDiarization", default=None
     )
-
-
-class GitHubIssuesFeedPropertiesUpdateInput(BaseModel):
-    repository_owner: Optional[str] = Field(alias="repositoryOwner", default=None)
-    repository_name: Optional[str] = Field(alias="repositoryName", default=None)
-    uri: Optional[Any] = None
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    personal_access_token: Optional[str] = Field(
-        alias="personalAccessToken", default=None
-    )
-
-
-class DrawingMetadataInput(BaseModel):
-    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
-    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
-    location: Optional["PointInput"] = None
-    x: Optional[float] = None
-    y: Optional[float] = None
-    width: Optional[float] = None
-    height: Optional[float] = None
-    depth: Optional[float] = None
-    unit_type: Optional[UnitTypes] = Field(alias="unitType", default=None)
-
-
-class InitiativeMetadataInput(BaseModel):
-    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
-    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
-    location: Optional["PointInput"] = None
-    title: Optional[str] = None
-    project: Optional[str] = None
-    team: Optional[str] = None
-    status: Optional[str] = None
-    priority: Optional[str] = None
-    type: Optional[str] = None
-    identifier: Optional[str] = None
-    due_date: Optional[Any] = Field(alias="dueDate", default=None)
-    labels: Optional[list[Optional[str]]] = None
-    links: Optional[list[Optional[Any]]] = None
-
-
-class SalesforceTasksFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[SalesforceIssueAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    is_sandbox: Optional[bool] = Field(alias="isSandbox", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
-class LabelInput(BaseModel):
-    name: str
-    description: Optional[str] = None
-
-
-class ResearchFeedPropertiesUpdateInput(BaseModel):
-    type: Optional[FeedServiceTypes] = None
-    query: Optional[str] = None
-    parallel: Optional["ParallelFeedPropertiesUpdateInput"] = None
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class GitLabDistributionPropertiesInput(BaseModel):
-    target_operation: Optional[DistributionTargetOperationTypes] = Field(
-        alias="targetOperation", default=None
-    )
-    target_kind: Optional[DistributionTargetKindTypes] = Field(
-        alias="targetKind", default=None
-    )
-    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
-    target_uri: Optional[str] = Field(alias="targetUri", default=None)
-    project_path: str = Field(alias="projectPath")
-    title: Optional[str] = None
-    labels: Optional[list[str]] = None
-    assignees: Optional[list[str]] = None
-    milestone: Optional[int] = None
-
-
-class SalesforceFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[SalesforceFeedAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    is_sandbox: Optional[bool] = Field(alias="isSandbox", default=None)
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class PlaceFacetInput(BaseModel):
-    time_interval: Optional[TimeIntervalTypes] = Field(
-        alias="timeInterval", default=None
-    )
-    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
-    facet: Optional[PlaceFacetTypes] = None
-
-
-class OpenAIModelPropertiesInput(BaseModel):
-    model: OpenAIModels
-    model_name: Optional[str] = Field(alias="modelName", default=None)
-    key: Optional[str] = None
-    endpoint: Optional[Any] = None
-    temperature: Optional[float] = None
-    probability: Optional[float] = None
-    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
-    completion_token_limit: Optional[int] = Field(
-        alias="completionTokenLimit", default=None
-    )
-    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
-    detail_level: Optional[OpenAIVisionDetailLevels] = Field(
-        alias="detailLevel", default=None
-    )
-    reasoning_effort: Optional[OpenAIReasoningEffortLevels] = Field(
-        alias="reasoningEffort", default=None
-    )
-
-
-class AgentUpdateInput(BaseModel):
-    id: str
-    name: Optional[str] = None
-    mode: Optional[AgentModes] = None
-    description: Optional[str] = None
-    specification: Optional["EntityReferenceInput"] = None
-    persona: Optional["EntityReferenceInput"] = None
-    trigger: Optional["AgentTriggerFilterInput"] = None
-    filter: Optional["ContentCriteriaInput"] = None
-    augmented_filter: Optional["ContentCriteriaInput"] = Field(
-        alias="augmentedFilter", default=None
-    )
-    schedule_policy: Optional["AgentSchedulePolicyInput"] = Field(
-        alias="schedulePolicy", default=None
-    )
-    heartbeat: Optional["AgentHeartbeatPropertiesInput"] = None
-    timeout: Optional[Any] = None
-    prompt: Optional[str] = None
-    scratchpad: Optional[str] = None
-    focus: Optional[str] = None
-    research_depth: Optional[AgentResearchDepths] = Field(
-        alias="researchDepth", default=None
-    )
-    channels: Optional[list["AgentChannelInput"]] = None
-    rules: Optional[list["PromptClassificationRuleInput"]] = None
-    commands: Optional[list["AgentCommandInput"]] = None
-    targets: Optional[list["DistributionTargetInput"]] = None
-    callback_uri: Optional[Any] = Field(alias="callbackUri", default=None)
+    detect_language: Optional[bool] = Field(alias="detectLanguage", default=None)
+    language: Optional[str] = None
 
 
 class IssueFeedPropertiesInput(BaseModel):
@@ -7824,74 +7382,12 @@ class IssueFeedPropertiesInput(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
-class PagePreparationPropertiesInput(BaseModel):
-    enable_screenshot: Optional[bool] = Field(alias="enableScreenshot", default=None)
-
-
-class FactInput(BaseModel):
-    content: Optional["EntityReferenceInput"] = None
-    conversation: Optional["EntityReferenceInput"] = None
-    persona: Optional["EntityReferenceInput"] = None
-    text: str
-    valid_at: Optional[Any] = Field(alias="validAt", default=None)
-    invalid_at: Optional[Any] = Field(alias="invalidAt", default=None)
-    feeds: Optional[list[Optional["EntityReferenceInput"]]] = None
-    assertions: Optional[list[Optional["FactAssertionInput"]]] = None
-    category: Optional[FactCategory] = None
-    confidence: Optional[float] = None
-
-
-class BambooHROptionsInput(BaseModel):
-    company_domain: str = Field(alias="companyDomain")
-    api_key: str = Field(alias="apiKey")
-
-
-class MicrosoftOutlookDistributionPropertiesInput(BaseModel):
-    target_operation: Optional[DistributionTargetOperationTypes] = Field(
-        alias="targetOperation", default=None
-    )
-    target_kind: Optional[DistributionTargetKindTypes] = Field(
-        alias="targetKind", default=None
-    )
-    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
-    target_uri: Optional[str] = Field(alias="targetUri", default=None)
-    to: list[str]
-    subject: str
-    cc: Optional[list[str]] = None
-    bcc: Optional[list[str]] = None
-    importance: Optional[str] = None
-    is_draft: Optional[bool] = Field(alias="isDraft", default=None)
-    in_reply_to_message_id: Optional[str] = Field(
-        alias="inReplyToMessageId", default=None
-    )
-    forward_from_message_id: Optional[str] = Field(
-        alias="forwardFromMessageId", default=None
-    )
-
-
-class BureauInput(BaseModel):
-    name: str
-    description: Optional[str] = None
-    mission: Optional[str] = None
-    directives: Optional[str] = None
-    desks: Optional[list["EntityReferenceInput"]] = None
-
-
-class EntityReferenceFilter(BaseModel):
-    id: str
-
-
-class EnrichmentWorkflowJobInput(BaseModel):
-    connector: Optional["EntityEnrichmentConnectorInput"] = None
-
-
-class GitHubPullRequestsFeedPropertiesInput(BaseModel):
-    authentication_type: Optional[GitHubPullRequestAuthenticationTypes] = Field(
+class GitLabPullRequestsFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[GitLabMergeRequestAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
-    repository_owner: str = Field(alias="repositoryOwner")
-    repository_name: str = Field(alias="repositoryName")
-    uri: Optional[Any] = None
+    project_path: Optional[str] = Field(alias="projectPath", default=None)
+    branch: Optional[str] = None
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
@@ -7901,7 +7397,181 @@ class GitHubPullRequestsFeedPropertiesInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
 
 
-class MedicalContraindicationUpdateInput(BaseModel):
+class MondayFeedPropertiesUpdateInput(BaseModel):
+    api_token: Optional[str] = Field(alias="apiToken", default=None)
+    board_id: Optional[str] = Field(alias="boardId", default=None)
+
+
+class GoogleDriveFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[GoogleDriveAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    drive_id: Optional[str] = Field(alias="driveId", default=None)
+    files: Optional[list[Optional[str]]] = None
+    folder_id: Optional[str] = Field(alias="folderId", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    service_account_json: Optional[str] = Field(
+        alias="serviceAccountJson", default=None
+    )
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class AzureBlobFeedPropertiesUpdateInput(BaseModel):
+    storage_access_key: Optional[str] = Field(alias="storageAccessKey", default=None)
+    account_name: Optional[str] = Field(alias="accountName", default=None)
+    container_name: Optional[str] = Field(alias="containerName", default=None)
+    prefix: Optional[str] = None
+    list_type: Optional[BlobListingTypes] = Field(alias="listType", default=None)
+
+
+class ConnectorInput(BaseModel):
+    name: str
+    type: ConnectorTypes
+    authentication: Optional["AuthenticationConnectorInput"] = None
+    integration: Optional["IntegrationConnectorInput"] = None
+    channel: Optional["ChannelConnectorInput"] = None
+
+
+class PointInput(BaseModel):
+    latitude: float
+    longitude: float
+    distance: Optional[float] = None
+
+
+class MedicalDrugInput(BaseModel):
+    name: str
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+
+
+class GoogleModelPropertiesUpdateInput(BaseModel):
+    model: Optional[GoogleModels] = None
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+    enable_thinking: Optional[bool] = Field(alias="enableThinking", default=None)
+    thinking_token_limit: Optional[int] = Field(
+        alias="thinkingTokenLimit", default=None
+    )
+    thinking_level: Optional[GoogleThinkingLevels] = Field(
+        alias="thinkingLevel", default=None
+    )
+
+
+class OrganizationFacetInput(BaseModel):
+    time_interval: Optional[TimeIntervalTypes] = Field(
+        alias="timeInterval", default=None
+    )
+    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
+    facet: Optional[OrganizationFacetTypes] = None
+
+
+class GoogleCalendarsInput(BaseModel):
+    authentication_type: Optional[GoogleCalendarAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class CRMFeedPropertiesUpdateInput(BaseModel):
+    attio: Optional["AttioCRMFeedPropertiesUpdateInput"] = None
+    google_contacts: Optional["GoogleContactsCRMFeedPropertiesUpdateInput"] = Field(
+        alias="googleContacts", default=None
+    )
+    microsoft_contacts: Optional["MicrosoftContactsCRMFeedPropertiesUpdateInput"] = (
+        Field(alias="microsoftContacts", default=None)
+    )
+    salesforce: Optional["SalesforceCRMFeedPropertiesUpdateInput"] = None
+    hub_spot: Optional["HubSpotCRMFeedPropertiesUpdateInput"] = Field(
+        alias="hubSpot", default=None
+    )
+    productlane: Optional["ProductlaneCRMFeedPropertiesUpdateInput"] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class OneDriveFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[OneDriveAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    files: Optional[list[Optional[str]]] = None
+    folder_id: Optional[str] = Field(alias="folderId", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class SlackIntegrationPropertiesInput(BaseModel):
+    channel: str
+    token: str
+
+
+class FirefliesFeedPropertiesUpdateInput(BaseModel):
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    type: Optional[FeedListingTypes] = None
+
+
+class MicrosoftWordDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
+    folder_id: Optional[str] = Field(alias="folderId", default=None)
+    file_name: Optional[str] = Field(alias="fileName", default=None)
+
+
+class Int64RangeFilter(BaseModel):
+    from_: Optional[Any] = Field(alias="from", default=None)
+    to: Optional[Any] = None
+
+
+class AzureDocumentPreparationPropertiesInput(BaseModel):
+    model: Optional[AzureDocumentIntelligenceModels] = None
+    endpoint: Optional[Any] = None
+    key: Optional[str] = None
+    version: Optional[AzureDocumentIntelligenceVersions] = None
+
+
+class NotionPagesInput(BaseModel):
+    authentication_type: Optional[NotionAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    token: Optional[str] = None
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class MedicalStudyUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+    address: Optional["AddressInput"] = None
+
+
+class MedicalTestUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
     uri: Optional[Any] = None
@@ -7911,32 +7581,7 @@ class MedicalContraindicationUpdateInput(BaseModel):
     boundary: Optional[str] = None
 
 
-class RevisionStrategyInput(BaseModel):
-    type: Optional[RevisionStrategyTypes] = None
-    custom_revision: Optional[str] = Field(alias="customRevision", default=None)
-    count: Optional[int] = None
-
-
-class ParallelPublishingPropertiesInput(BaseModel):
-    processor: Optional[ParallelProcessors] = None
-
-
-class CommitFeedPropertiesUpdateInput(BaseModel):
-    github: Optional["GitHubCommitsFeedPropertiesUpdateInput"] = None
-    gitlab: Optional["GitLabCommitsFeedPropertiesUpdateInput"] = None
-    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    read_limit: Optional[int] = Field(alias="readLimit", default=None)
-
-
-class JinaModelPropertiesUpdateInput(BaseModel):
-    model: Optional[JinaModels] = None
-    model_name: Optional[str] = Field(alias="modelName", default=None)
-    key: Optional[str] = None
-    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
-
-
-class TwitterDistributionPropertiesInput(BaseModel):
+class SlackDistributionPropertiesInput(BaseModel):
     target_operation: Optional[DistributionTargetOperationTypes] = Field(
         alias="targetOperation", default=None
     )
@@ -7945,29 +7590,20 @@ class TwitterDistributionPropertiesInput(BaseModel):
     )
     target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
     target_uri: Optional[str] = Field(alias="targetUri", default=None)
-    reply_to_tweet_id: Optional[str] = Field(alias="replyToTweetId", default=None)
+    channel_id: str = Field(alias="channelId")
+    thread_ts: Optional[str] = Field(alias="threadTs", default=None)
 
 
-class ProductlaneThreadsFeedPropertiesInput(BaseModel):
-    api_key: str = Field(alias="apiKey")
-    workspace_id: Optional[str] = Field(alias="workspaceId", default=None)
-
-
-class RepoFacetInput(BaseModel):
+class CategoryFacetInput(BaseModel):
     time_interval: Optional[TimeIntervalTypes] = Field(
         alias="timeInterval", default=None
     )
     time_offset: Optional[int] = Field(alias="timeOffset", default=None)
-    facet: Optional[RepoFacetTypes] = None
+    facet: Optional[CategoryFacetTypes] = None
 
 
-class GitHubFeedPropertiesUpdateInput(BaseModel):
-    authentication_type: Optional[GitHubAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    repository_owner: Optional[str] = Field(alias="repositoryOwner", default=None)
-    repository_name: Optional[str] = Field(alias="repositoryName", default=None)
-    uri: Optional[Any] = None
+class GitLabProjectsInput(BaseModel):
+    authentication_type: GitLabAuthenticationTypes = Field(alias="authenticationType")
     client_id: Optional[str] = Field(alias="clientId", default=None)
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
@@ -7977,7 +7613,183 @@ class GitHubFeedPropertiesUpdateInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
 
 
-class AlertFilter(BaseModel):
+class DocumentPreparationPropertiesInput(BaseModel):
+    include_images: Optional[bool] = Field(alias="includeImages", default=None)
+
+
+class SalesforceFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[SalesforceFeedAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    is_sandbox: Optional[bool] = Field(alias="isSandbox", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class SpecificationUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    type: Optional[SpecificationTypes] = None
+    service_type: ModelServiceTypes = Field(alias="serviceType")
+    search_type: Optional[ConversationSearchTypes] = Field(
+        alias="searchType", default=None
+    )
+    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
+    system_prompt: Optional[str] = Field(alias="systemPrompt", default=None)
+    custom_guidance: Optional[str] = Field(alias="customGuidance", default=None)
+    custom_instructions: Optional[str] = Field(alias="customInstructions", default=None)
+    strategy: Optional["ConversationStrategyUpdateInput"] = None
+    prompt_strategy: Optional["PromptStrategyUpdateInput"] = Field(
+        alias="promptStrategy", default=None
+    )
+    retrieval_strategy: Optional["RetrievalStrategyUpdateInput"] = Field(
+        alias="retrievalStrategy", default=None
+    )
+    reranking_strategy: Optional["RerankingStrategyUpdateInput"] = Field(
+        alias="rerankingStrategy", default=None
+    )
+    graph_strategy: Optional["GraphStrategyUpdateInput"] = Field(
+        alias="graphStrategy", default=None
+    )
+    fact_strategy: Optional["FactStrategyUpdateInput"] = Field(
+        alias="factStrategy", default=None
+    )
+    revision_strategy: Optional["RevisionStrategyUpdateInput"] = Field(
+        alias="revisionStrategy", default=None
+    )
+    azure_ai: Optional["AzureAIModelPropertiesUpdateInput"] = Field(
+        alias="azureAI", default=None
+    )
+    open_ai: Optional["OpenAIModelPropertiesUpdateInput"] = Field(
+        alias="openAI", default=None
+    )
+    azure_open_ai: Optional["AzureOpenAIModelPropertiesUpdateInput"] = Field(
+        alias="azureOpenAI", default=None
+    )
+    cohere: Optional["CohereModelPropertiesUpdateInput"] = None
+    anthropic: Optional["AnthropicModelPropertiesUpdateInput"] = None
+    google: Optional["GoogleModelPropertiesUpdateInput"] = None
+    replicate: Optional["ReplicateModelPropertiesUpdateInput"] = None
+    mistral: Optional["MistralModelPropertiesUpdateInput"] = None
+    bedrock: Optional["BedrockModelPropertiesUpdateInput"] = None
+    xai: Optional["XAIModelPropertiesUpdateInput"] = None
+    groq: Optional["GroqModelPropertiesUpdateInput"] = None
+    cerebras: Optional["CerebrasModelPropertiesUpdateInput"] = None
+    deepseek: Optional["DeepseekModelPropertiesUpdateInput"] = None
+    jina: Optional["JinaModelPropertiesUpdateInput"] = None
+    voyage: Optional["VoyageModelPropertiesUpdateInput"] = None
+    twelve_labs: Optional["TwelveLabsModelPropertiesUpdateInput"] = Field(
+        alias="twelveLabs", default=None
+    )
+
+
+class HubSpotMeetingPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[HubSpotFeedAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    access_token: Optional[str] = Field(alias="accessToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    include_transcripts: Optional[bool] = Field(
+        alias="includeTranscripts", default=None
+    )
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    type: Optional[FeedListingTypes] = None
+    read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class CollectionInput(BaseModel):
+    name: str
+    type: Optional[CollectionTypes] = None
+    contents: Optional[list["EntityReferenceInput"]] = None
+    conversations: Optional[list["EntityReferenceInput"]] = None
+    expected_count: Optional[int] = Field(alias="expectedCount", default=None)
+
+
+class ExaSearchPropertiesInput(BaseModel):
+    search_type: Optional[ExaSearchTypes] = Field(alias="searchType", default=None)
+
+
+class PointFilter(BaseModel):
+    latitude: float
+    longitude: float
+    distance: Optional[float] = None
+
+
+class ElevenLabsScribeAudioPreparationPropertiesInput(BaseModel):
+    model: Optional[ElevenLabsScribeModels] = None
+    key: Optional[str] = None
+    enable_speaker_diarization: Optional[bool] = Field(
+        alias="enableSpeakerDiarization", default=None
+    )
+    detect_language: Optional[bool] = Field(alias="detectLanguage", default=None)
+    language: Optional[str] = None
+    tag_audio_events: Optional[bool] = Field(alias="tagAudioEvents", default=None)
+
+
+class AnthropicModelPropertiesUpdateInput(BaseModel):
+    model: Optional[AnthropicModels] = None
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+    enable_thinking: Optional[bool] = Field(alias="enableThinking", default=None)
+    thinking_token_limit: Optional[int] = Field(
+        alias="thinkingTokenLimit", default=None
+    )
+    effort: Optional[AnthropicEffortLevels] = None
+
+
+class AttioTasksFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[AttioIssueAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    api_key: Optional[str] = Field(alias="apiKey", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class MedicalDeviceInput(BaseModel):
+    name: str
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+
+
+class AsanaWorkspacesInput(BaseModel):
+    personal_access_token: str = Field(alias="personalAccessToken")
+
+
+class MedicalTestFacetInput(BaseModel):
+    time_interval: Optional[TimeIntervalTypes] = Field(
+        alias="timeInterval", default=None
+    )
+    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
+    facet: Optional[MedicalTestFacetTypes] = None
+
+
+class FeedSchedulePolicyInput(BaseModel):
+    recurrence_type: TimedPolicyRecurrenceTypes = Field(alias="recurrenceType")
+    repeat_interval: Optional[Any] = Field(alias="repeatInterval", default=None)
+
+
+class MedicalDrugClassFilter(BaseModel):
     search: Optional[str] = None
     order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
     direction: Optional[OrderDirectionTypes] = None
@@ -7997,355 +7809,571 @@ class AlertFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
-    types: Optional[list[AlertTypes]] = None
+    disable_inheritance: Optional[bool] = Field(
+        alias="disableInheritance", default=None
+    )
+    feeds: Optional[list["EntityReferenceFilter"]] = None
+    feed_mode: Optional[FilterMode] = Field(alias="feedMode", default=None)
+    address: Optional["AddressFilter"] = None
+    location: Optional["PointFilter"] = None
+    h_3: Optional["H3Filter"] = Field(alias="h3", default=None)
+    boundaries: Optional[list[str]] = None
+    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
+    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
+    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
+    similar_classes: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="similarClasses", default=None
+    )
+    medical_drug_classes: Optional[list["EntityReferenceFilter"]] = Field(
+        alias="medicalDrugClasses", default=None
+    )
 
 
-class ContentGraphInput(BaseModel):
-    types: Optional[list[ObservableTypes]] = None
+class SpecificationFilter(BaseModel):
+    search: Optional[str] = None
+    order_by: Optional[OrderByTypes] = Field(alias="orderBy", default=None)
+    direction: Optional[OrderDirectionTypes] = None
+    offset: Optional[int] = None
+    limit: Optional[int] = None
+    relevance_threshold: Optional[float] = Field(
+        alias="relevanceThreshold", default=None
+    )
+    id: Optional[str] = None
+    name: Optional[str] = None
+    states: Optional[list[EntityState]] = None
+    created_in_last: Optional[Any] = Field(alias="createdInLast", default=None)
+    creation_date_range: Optional["DateRangeFilter"] = Field(
+        alias="creationDateRange", default=None
+    )
+    modified_in_last: Optional[Any] = Field(alias="modifiedInLast", default=None)
+    modified_date_range: Optional["DateRangeFilter"] = Field(
+        alias="modifiedDateRange", default=None
+    )
+    types: Optional[list[SpecificationTypes]] = None
+    service_types: Optional[list[ModelServiceTypes]] = Field(
+        alias="serviceTypes", default=None
+    )
 
 
-class WebFeedPropertiesInput(BaseModel):
-    uri: Any
-    allowed_paths: Optional[list[str]] = Field(alias="allowedPaths", default=None)
-    excluded_paths: Optional[list[str]] = Field(alias="excludedPaths", default=None)
-    include_files: Optional[bool] = Field(alias="includeFiles", default=None)
+class MistralDocumentPreparationPropertiesInput(BaseModel):
+    key: Optional[str] = None
+
+
+class RepoFacetInput(BaseModel):
+    time_interval: Optional[TimeIntervalTypes] = Field(
+        alias="timeInterval", default=None
+    )
+    time_offset: Optional[int] = Field(alias="timeOffset", default=None)
+    facet: Optional[RepoFacetTypes] = None
+
+
+class TwitterDistributionPropertiesInput(BaseModel):
+    target_operation: Optional[DistributionTargetOperationTypes] = Field(
+        alias="targetOperation", default=None
+    )
+    target_kind: Optional[DistributionTargetKindTypes] = Field(
+        alias="targetKind", default=None
+    )
+    target_identifier: Optional[str] = Field(alias="targetIdentifier", default=None)
+    target_uri: Optional[str] = Field(alias="targetUri", default=None)
+    reply_to_tweet_id: Optional[str] = Field(alias="replyToTweetId", default=None)
+
+
+class GoogleDriveDrivesInput(BaseModel):
+    authentication_type: Optional[GoogleDriveAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class ZoomPropertiesInput(BaseModel):
+    authentication_type: Optional[ZoomAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    after_date: Optional[Any] = Field(alias="afterDate", default=None)
+    before_date: Optional[Any] = Field(alias="beforeDate", default=None)
+    type: Optional[FeedListingTypes] = None
+
+
+class HubSpotCRMFeedPropertiesInput(BaseModel):
+    authentication_type: Optional[HubSpotAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    access_token: Optional[str] = Field(alias="accessToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+    type: Optional[FeedListingTypes] = None
+
+
+class VideoMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    width: Optional[int] = None
+    height: Optional[int] = None
+    duration: Optional[str] = None
+    software: Optional[str] = None
+    make: Optional[str] = None
+    model: Optional[str] = None
+
+
+class EmailMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    subject: Optional[str] = None
+    identifier: Optional[str] = None
+    thread_identifier: Optional[str] = Field(alias="threadIdentifier", default=None)
+    sensitivity: Optional[MailSensitivity] = None
+    priority: Optional[MailPriority] = None
+    importance: Optional[MailImportance] = None
+    labels: Optional[list[Optional[str]]] = None
+    links: Optional[list[Optional[Any]]] = None
+    attachment_count: Optional[int] = Field(alias="attachmentCount", default=None)
+    unsubscribe_url: Optional[str] = Field(alias="unsubscribeUrl", default=None)
+    publication_name: Optional[str] = Field(alias="publicationName", default=None)
+    publication_url: Optional[str] = Field(alias="publicationUrl", default=None)
+
+
+class MedicalProcedureUpdateInput(BaseModel):
+    id: str
+    name: Optional[str] = None
+    uri: Optional[Any] = None
+    identifier: Optional[str] = None
+    description: Optional[str] = None
+    location: Optional["PointInput"] = None
+    boundary: Optional[str] = None
+
+
+class DrawingMetadataInput(BaseModel):
+    creation_date: Optional[Any] = Field(alias="creationDate", default=None)
+    modified_date: Optional[Any] = Field(alias="modifiedDate", default=None)
+    location: Optional["PointInput"] = None
+    x: Optional[float] = None
+    y: Optional[float] = None
+    width: Optional[float] = None
+    height: Optional[float] = None
+    depth: Optional[float] = None
+    unit_type: Optional[UnitTypes] = Field(alias="unitType", default=None)
+
+
+class HRISFeedPropertiesUpdateInput(BaseModel):
+    bamboo_hr: Optional["BambooHRHRISFeedPropertiesUpdateInput"] = Field(
+        alias="bambooHR", default=None
+    )
+    gusto: Optional["GustoHRISFeedPropertiesUpdateInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
-MicrosoftContactsCRMFeedPropertiesUpdateInput.model_rebuild()
-MedicalProcedureUpdateInput.model_rebuild()
-MicrosoftTeamsFeedPropertiesUpdateInput.model_rebuild()
-ZendeskTicketsFeedPropertiesUpdateInput.model_rebuild()
-AttioCRMFeedPropertiesUpdateInput.model_rebuild()
-PlaceInput.model_rebuild()
-SkillInput.model_rebuild()
-InvestmentFilter.model_rebuild()
-SlackChannelsInput.model_rebuild()
-GitLabCommitsFeedPropertiesUpdateInput.model_rebuild()
-SkillFilter.model_rebuild()
-AttioMeetingPropertiesUpdateInput.model_rebuild()
-PersonUpdateInput.model_rebuild()
-SpecificationInput.model_rebuild()
-IntegrationConnectorInput.model_rebuild()
+class LinearFeedPropertiesUpdateInput(BaseModel):
+    authentication_type: Optional[LinearAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    key: Optional[str] = None
+    project: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
+class CrustdataSearchFeedPropertiesInput(BaseModel):
+    signal_type: CrustdataWatcherSignalTypes = Field(alias="signalType")
+    company_domain: Optional[str] = Field(alias="companyDomain", default=None)
+    company_linked_in_url: Optional[str] = Field(
+        alias="companyLinkedInUrl", default=None
+    )
+    company_id: Optional[str] = Field(alias="companyId", default=None)
+    person_linked_in_urls: Optional[list[str]] = Field(
+        alias="personLinkedInUrls", default=None
+    )
+    job_title: Optional[str] = Field(alias="jobTitle", default=None)
+    job_region: Optional[str] = Field(alias="jobRegion", default=None)
+    job_description: Optional[str] = Field(alias="jobDescription", default=None)
+    fields_to_track: Optional[list[str]] = Field(alias="fieldsToTrack", default=None)
+    headcount_growth_min: Optional[Any] = Field(
+        alias="headcountGrowthMin", default=None
+    )
+    headcount_growth_max: Optional[Any] = Field(
+        alias="headcountGrowthMax", default=None
+    )
+    headcount_growth_timeframe: Optional[str] = Field(
+        alias="headcountGrowthTimeframe", default=None
+    )
+    baseline_headcount: Optional[int] = Field(alias="baselineHeadcount", default=None)
+    headcount_growth_from_baseline: Optional[int] = Field(
+        alias="headcountGrowthFromBaseline", default=None
+    )
+    annual_revenue_min: Optional[Any] = Field(alias="annualRevenueMin", default=None)
+    annual_revenue_max: Optional[Any] = Field(alias="annualRevenueMax", default=None)
+    post_categories: Optional[list[str]] = Field(alias="postCategories", default=None)
+    keyword: Optional[str] = None
+    industry: Optional[str] = None
+    funding_round_types: Optional[list[str]] = Field(
+        alias="fundingRoundTypes", default=None
+    )
+    company_department: Optional[str] = Field(alias="companyDepartment", default=None)
+    company_headcount_ranges: Optional[list[str]] = Field(
+        alias="companyHeadcountRanges", default=None
+    )
+    frequency: Optional[int] = None
+    expiration_date: Optional[Any] = Field(alias="expirationDate", default=None)
+
+
+class CrustdataEntityFeedPropertiesUpdateInput(BaseModel):
+    person_filters: Optional["CrustdataPersonDiscoveryFilterInput"] = Field(
+        alias="personFilters", default=None
+    )
+    company_filters: Optional["CrustdataCompanyDiscoveryFilterInput"] = Field(
+        alias="companyFilters", default=None
+    )
+
+
+ProductUpdateInput.model_rebuild()
+FeedInput.model_rebuild()
+PlaceUpdateInput.model_rebuild()
 SalesforceFeedPropertiesInput.model_rebuild()
-ModelImageExtractionPropertiesInput.model_rebuild()
-MicrosoftEmailFeedPropertiesUpdateInput.model_rebuild()
-SalesforceCRMFeedPropertiesInput.model_rebuild()
-SearchFeedPropertiesUpdateInput.model_rebuild()
-TwitterFeedPropertiesUpdateInput.model_rebuild()
-MedicalIndicationFilter.model_rebuild()
-EventInput.model_rebuild()
-InitiativeFeedPropertiesInput.model_rebuild()
 EmailFeedPropertiesInput.model_rebuild()
-FactAssertionInput.model_rebuild()
-LabelFilter.model_rebuild()
-IntercomConversationsFeedPropertiesUpdateInput.model_rebuild()
-MedicalTherapyInput.model_rebuild()
-LinearFeedPropertiesInput.model_rebuild()
-CollectionInput.model_rebuild()
-EmbeddingsStrategyInput.model_rebuild()
-InvestmentFundInput.model_rebuild()
-PreparationWorkflowJobInput.model_rebuild()
-ObservationUpdateInput.model_rebuild()
-MedicalIndicationInput.model_rebuild()
-GitHubMilestonesFeedPropertiesUpdateInput.model_rebuild()
-FactFilter.model_rebuild()
-GoogleEmailFeedPropertiesUpdateInput.model_rebuild()
-PersonInput.model_rebuild()
-ExtractionWorkflowStageInput.model_rebuild()
-MedicalTestInput.model_rebuild()
-MedicalTherapyUpdateInput.model_rebuild()
-SlackFeedPropertiesUpdateInput.model_rebuild()
-ModelContentClassificationPropertiesInput.model_rebuild()
-ConversationCriteriaInput.model_rebuild()
-OrganizationFilter.model_rebuild()
-GoogleContactsCRMFeedPropertiesInput.model_rebuild()
-PullRequestFeedPropertiesUpdateInput.model_rebuild()
-ZendeskTicketsFeedPropertiesInput.model_rebuild()
-MedicalTestFilter.model_rebuild()
-ReplicaUpdateInput.model_rebuild()
-OneDriveFeedPropertiesUpdateInput.model_rebuild()
-EventUpdateInput.model_rebuild()
-UserFilter.model_rebuild()
-MicrosoftTeamsFeedPropertiesInput.model_rebuild()
-MetadataFilter.model_rebuild()
-ZendeskFeedPropertiesUpdateInput.model_rebuild()
-MedicalStudyFilter.model_rebuild()
-MicrosoftCalendarFeedPropertiesInput.model_rebuild()
-EvernoteFeedPropertiesInput.model_rebuild()
-MedicalDrugClassUpdateInput.model_rebuild()
-IntercomFeedPropertiesUpdateInput.model_rebuild()
-ConfluenceFeedPropertiesInput.model_rebuild()
-MicrosoftTeamsTeamsInput.model_rebuild()
-IntercomTicketsFeedPropertiesUpdateInput.model_rebuild()
-ReplicaContentPropertiesInput.model_rebuild()
-QuiverImagePublishingPropertiesInput.model_rebuild()
-ViewInput.model_rebuild()
-GoogleCalendarsInput.model_rebuild()
-AttioCRMFeedPropertiesInput.model_rebuild()
-OneDriveFeedPropertiesInput.model_rebuild()
-GitHubIssuesFeedPropertiesInput.model_rebuild()
-FeedUpdateInput.model_rebuild()
-IssueMetadataInput.model_rebuild()
-IntegrationConnectorUpdateInput.model_rebuild()
-MedicalDrugUpdateInput.model_rebuild()
-DistributionConnectorInput.model_rebuild()
-MicrosoftCalendarFeedPropertiesUpdateInput.model_rebuild()
-ClassificationWorkflowStageInput.model_rebuild()
-VideoMetadataInput.model_rebuild()
-OneDriveFoldersInput.model_rebuild()
-GitHubFeedPropertiesInput.model_rebuild()
-InvestmentFundUpdateInput.model_rebuild()
-GoogleEmailFeedPropertiesInput.model_rebuild()
-DocumentMetadataInput.model_rebuild()
-HubSpotMeetingPropertiesInput.model_rebuild()
-BoxFeedPropertiesUpdateInput.model_rebuild()
-WorkflowFilter.model_rebuild()
-IssueFeedPropertiesUpdateInput.model_rebuild()
-ContentPublishingConnectorInput.model_rebuild()
-AttioMeetingPropertiesInput.model_rebuild()
-SharePointFoldersInput.model_rebuild()
-ModelTextExtractionPropertiesInput.model_rebuild()
-ClassificationWorkflowJobInput.model_rebuild()
-RepoFilter.model_rebuild()
-GitLabIssuesFeedPropertiesInput.model_rebuild()
-RepoInput.model_rebuild()
-IntercomFeedPropertiesInput.model_rebuild()
-ConnectorUpdateInput.model_rebuild()
-MedicalConditionFilter.model_rebuild()
-EvernoteTagsInput.model_rebuild()
-MetadataUpdateInput.model_rebuild()
-AttioFeedPropertiesInput.model_rebuild()
-PostMetadataInput.model_rebuild()
-LinearFeedPropertiesUpdateInput.model_rebuild()
-MedicalContraindicationInput.model_rebuild()
-SpecificationFilter.model_rebuild()
-AlertUpdateInput.model_rebuild()
-ConfluenceFeedPropertiesUpdateInput.model_rebuild()
-NotionPagesInput.model_rebuild()
-EntityExtractionConnectorInput.model_rebuild()
-ChannelConnectorInput.model_rebuild()
+ProjectFilter.model_rebuild()
 PullRequestFeedPropertiesInput.model_rebuild()
-CalendarFeedPropertiesUpdateInput.model_rebuild()
-AgentInput.model_rebuild()
-WorkflowActionInput.model_rebuild()
+InitiativeFeedPropertiesInput.model_rebuild()
+OneDriveFeedPropertiesInput.model_rebuild()
 MedicalConditionUpdateInput.model_rebuild()
-PackageMetadataInput.model_rebuild()
-MedicalProcedureFilter.model_rebuild()
-SalesforceTasksFeedPropertiesInput.model_rebuild()
-GoogleDriveDrivesInput.model_rebuild()
-HubSpotConversationsFeedPropertiesInput.model_rebuild()
-GitLabFeedPropertiesInput.model_rebuild()
-AtlassianJiraFeedPropertiesUpdateInput.model_rebuild()
-ObservationCriteriaInput.model_rebuild()
-InvestmentUpdateInput.model_rebuild()
-MedicalIndicationUpdateInput.model_rebuild()
-ObservationOccurrenceInput.model_rebuild()
-ReplicaInput.model_rebuild()
-ContentFilter.model_rebuild()
-MedicalConditionInput.model_rebuild()
-NotionDatabasesInput.model_rebuild()
-EmailFeedPropertiesUpdateInput.model_rebuild()
-DropboxFoldersInput.model_rebuild()
+DistributionTargetInput.model_rebuild()
+MicrosoftTeamsChannelsInput.model_rebuild()
 AlertInput.model_rebuild()
+EmotionFilter.model_rebuild()
+DocumentMetadataInput.model_rebuild()
+ZoomPropertiesUpdateInput.model_rebuild()
+PersonFilter.model_rebuild()
+MicrosoftTeamsFeedPropertiesUpdateInput.model_rebuild()
+ContentPublishingConnectorInput.model_rebuild()
+ModelTextExtractionPropertiesInput.model_rebuild()
+GitHubMilestonesFeedPropertiesInput.model_rebuild()
+AtlassianJiraFeedPropertiesUpdateInput.model_rebuild()
+AgentInput.model_rebuild()
+HubSpotMeetingPropertiesInput.model_rebuild()
+SkillFilter.model_rebuild()
+MedicalDrugClassInput.model_rebuild()
+SkillUpdateInput.model_rebuild()
+EmailFeedPropertiesUpdateInput.model_rebuild()
+SharePointLibrariesInput.model_rebuild()
+GoogleDriveFeedPropertiesInput.model_rebuild()
+MedicalIndicationUpdateInput.model_rebuild()
+ReplicaContentPropertiesInput.model_rebuild()
+AttioCRMFeedPropertiesInput.model_rebuild()
+GoogleCalendarFeedPropertiesInput.model_rebuild()
+SoftwareFilter.model_rebuild()
 GoogleDriveFoldersInput.model_rebuild()
-DeskInput.model_rebuild()
-MedicalContraindicationFilter.model_rebuild()
-ShapeMetadataInput.model_rebuild()
-UserUpdateInput.model_rebuild()
-ViewUpdateInput.model_rebuild()
-LinearInitiativesFeedPropertiesUpdateInput.model_rebuild()
-DropboxFeedPropertiesInput.model_rebuild()
-ZendeskFeedPropertiesInput.model_rebuild()
-LinearInitiativesFeedPropertiesInput.model_rebuild()
-GitLabMilestonesFeedPropertiesUpdateInput.model_rebuild()
-MedicalDrugFilter.model_rebuild()
-ReplicaFilter.model_rebuild()
-InvestmentInput.model_rebuild()
-ContentInput.model_rebuild()
-LinearProjectsInput.model_rebuild()
-ContentCriteriaLevelInput.model_rebuild()
+QuiverImagePublishingPropertiesInput.model_rebuild()
+GitLabMilestonesFeedPropertiesInput.model_rebuild()
+NotionFeedPropertiesInput.model_rebuild()
+RepoInput.model_rebuild()
+SpecificationInput.model_rebuild()
+MicrosoftEmailFeedPropertiesUpdateInput.model_rebuild()
+WorkflowActionInput.model_rebuild()
+DropboxFoldersInput.model_rebuild()
 DeskFilter.model_rebuild()
+WorkflowUpdateInput.model_rebuild()
+ViewInput.model_rebuild()
+AuthenticationConnectorInput.model_rebuild()
+GitLabIssuesFeedPropertiesUpdateInput.model_rebuild()
+ViewUpdateInput.model_rebuild()
+ContentPublishingConnectorUpdateInput.model_rebuild()
+LinearFeedPropertiesInput.model_rebuild()
+ZendeskFeedPropertiesUpdateInput.model_rebuild()
+GitLabFeedPropertiesUpdateInput.model_rebuild()
+MedicalTherapyUpdateInput.model_rebuild()
+ObservationUpdateInput.model_rebuild()
+GoogleCalendarFeedPropertiesUpdateInput.model_rebuild()
+DistributionConnectorInput.model_rebuild()
+InvestmentUpdateInput.model_rebuild()
+IntercomFeedPropertiesInput.model_rebuild()
+MetadataInput.model_rebuild()
+SlackChannelsInput.model_rebuild()
+PullRequestFeedPropertiesUpdateInput.model_rebuild()
+SiteFeedPropertiesInput.model_rebuild()
+PersonUpdateInput.model_rebuild()
+ReplicaInput.model_rebuild()
+GitLabCommitsFeedPropertiesInput.model_rebuild()
+EventUpdateInput.model_rebuild()
+CollectionFilter.model_rebuild()
+MentionReferenceInput.model_rebuild()
+MeetingFeedPropertiesInput.model_rebuild()
+AttioMeetingPropertiesInput.model_rebuild()
+PointCloudMetadataInput.model_rebuild()
+NotionDatabasesInput.model_rebuild()
+StorageGateInput.model_rebuild()
+CrustdataEntityFeedPropertiesInput.model_rebuild()
+LinearProjectsInput.model_rebuild()
+ConfluenceFeedPropertiesUpdateInput.model_rebuild()
+BoxFoldersInput.model_rebuild()
+ContentFilterLevel.model_rebuild()
+RepoFilter.model_rebuild()
+GoogleVideoPublishingPropertiesInput.model_rebuild()
+CalendarFeedPropertiesInput.model_rebuild()
+GoogleImagePublishingPropertiesInput.model_rebuild()
+IndexingWorkflowStageInput.model_rebuild()
+ContentCriteriaInput.model_rebuild()
+PreparationWorkflowJobInput.model_rebuild()
+FactFilter.model_rebuild()
+MicrosoftTeamsTeamsInput.model_rebuild()
+GoogleContactsCRMFeedPropertiesInput.model_rebuild()
+SkillFeedPropertiesUpdateInput.model_rebuild()
+BoxFeedPropertiesUpdateInput.model_rebuild()
+GitLabFeedPropertiesInput.model_rebuild()
+GitHubMilestonesFeedPropertiesUpdateInput.model_rebuild()
+GitHubFeedPropertiesInput.model_rebuild()
+FactInput.model_rebuild()
+JiraProjectsInput.model_rebuild()
+ViewFilter.model_rebuild()
+HubSpotTasksFeedPropertiesUpdateInput.model_rebuild()
+ResearchFeedPropertiesInput.model_rebuild()
+MedicalDeviceFilter.model_rebuild()
+PersonInput.model_rebuild()
+InvestmentFundFilter.model_rebuild()
+ContentInput.model_rebuild()
+MedicalContraindicationInput.model_rebuild()
+GitLabIssuesFeedPropertiesInput.model_rebuild()
+ImageMetadataInput.model_rebuild()
+MetadataUpdateInput.model_rebuild()
+OrganizationUpdateInput.model_rebuild()
+PlaceInput.model_rebuild()
+TwitterFeedPropertiesUpdateInput.model_rebuild()
+IssueMetadataInput.model_rebuild()
+EvernoteFeedPropertiesInput.model_rebuild()
+TwitterFeedPropertiesInput.model_rebuild()
+MedicalProcedureFilter.model_rebuild()
+ChannelConnectorInput.model_rebuild()
+SlackFeedPropertiesInput.model_rebuild()
+ClassificationWorkflowJobInput.model_rebuild()
+CalendarFeedPropertiesUpdateInput.model_rebuild()
+IndexingWorkflowJobInput.model_rebuild()
+ObservationInput.model_rebuild()
+ConversationInput.model_rebuild()
+EmbeddingsStrategyInput.model_rebuild()
+WorkflowFilter.model_rebuild()
+AtlassianSitesInput.model_rebuild()
+GitLabCommitsFeedPropertiesUpdateInput.model_rebuild()
+SearchFeedPropertiesUpdateInput.model_rebuild()
+SharePointFeedPropertiesInput.model_rebuild()
+HubSpotConversationsFeedPropertiesInput.model_rebuild()
+EventInput.model_rebuild()
+PackageMetadataInput.model_rebuild()
+GeometryMetadataInput.model_rebuild()
+AttioMeetingPropertiesUpdateInput.model_rebuild()
+SummarizationStrategyInput.model_rebuild()
+MedicalConditionFilter.model_rebuild()
+GitLabPullRequestsFeedPropertiesInput.model_rebuild()
+SoftwareUpdateInput.model_rebuild()
+ObservationReferenceFilter.model_rebuild()
+CategoryFilter.model_rebuild()
+ContentFilter.model_rebuild()
+ObservationOccurrenceInput.model_rebuild()
+SlackFeedPropertiesUpdateInput.model_rebuild()
+ReplicaConversationPropertiesInput.model_rebuild()
+ProjectInput.model_rebuild()
+AgentTriggerFilterInput.model_rebuild()
+ContentUpdateInput.model_rebuild()
+SalesforceCRMFeedPropertiesUpdateInput.model_rebuild()
+EnrichmentWorkflowStageInput.model_rebuild()
+InvestmentInput.model_rebuild()
+H3Filter.model_rebuild()
+MicrosoftCalendarFeedPropertiesUpdateInput.model_rebuild()
+DeskUpdateInput.model_rebuild()
+AlertUpdateInput.model_rebuild()
+OrganizationFilter.model_rebuild()
+AudioMetadataInput.model_rebuild()
+CRMFeedPropertiesInput.model_rebuild()
+SearchFeedPropertiesInput.model_rebuild()
+AttioFeedPropertiesInput.model_rebuild()
+JiraEpicsFeedPropertiesUpdateInput.model_rebuild()
+ChannelConnectorUpdateInput.model_rebuild()
+OneDriveFoldersInput.model_rebuild()
+SkillInput.model_rebuild()
+InvestmentFundInput.model_rebuild()
+AttioTasksFeedPropertiesInput.model_rebuild()
+OpenAIVideoPublishingPropertiesInput.model_rebuild()
+BoxFeedPropertiesInput.model_rebuild()
+MicrosoftContactsCRMFeedPropertiesUpdateInput.model_rebuild()
+ConversationUpdateInput.model_rebuild()
 MeetingFeedPropertiesUpdateInput.model_rebuild()
 EntityResolutionStrategyInput.model_rebuild()
-SoftwareUpdateInput.model_rebuild()
-GitLabFeedPropertiesUpdateInput.model_rebuild()
-MicrosoftCalendarsInput.model_rebuild()
-InitiativeFeedPropertiesUpdateInput.model_rebuild()
-MedicalDrugClassFilter.model_rebuild()
-MetadataInput.model_rebuild()
-MedicalGuidelineUpdateInput.model_rebuild()
-AgentTriggerFilterInput.model_rebuild()
-AtlassianSitesInput.model_rebuild()
-ConfluenceSpacesInput.model_rebuild()
-EntityFeedPropertiesInput.model_rebuild()
-CommitFeedPropertiesInput.model_rebuild()
-SoftwareFilter.model_rebuild()
-AgentFilter.model_rebuild()
-EmailMetadataInput.model_rebuild()
-SharePointLibrariesInput.model_rebuild()
-SharePointFeedPropertiesInput.model_rebuild()
-OpenAIImagePublishingPropertiesInput.model_rebuild()
-ModelDocumentPreparationPropertiesInput.model_rebuild()
-EvernoteFeedPropertiesUpdateInput.model_rebuild()
-FilePreparationConnectorInput.model_rebuild()
-GitLabProjectsInput.model_rebuild()
-HubSpotTasksFeedPropertiesUpdateInput.model_rebuild()
-IntercomTicketsFeedPropertiesInput.model_rebuild()
-EntityEnrichmentConnectorInput.model_rebuild()
-AttioFeedPropertiesUpdateInput.model_rebuild()
-ObservationReferenceInput.model_rebuild()
-TwitterFeedPropertiesInput.model_rebuild()
-WorkflowInput.model_rebuild()
-RepoUpdateInput.model_rebuild()
-DeskUpdateInput.model_rebuild()
-NotionFeedPropertiesInput.model_rebuild()
-CrustdataEntityFeedPropertiesInput.model_rebuild()
-PlaceUpdateInput.model_rebuild()
-GitHubRepositoriesInput.model_rebuild()
-ZoomPropertiesInput.model_rebuild()
-ConversationInput.model_rebuild()
-MedicalTestUpdateInput.model_rebuild()
-ZoomPropertiesUpdateInput.model_rebuild()
-ProductUpdateInput.model_rebuild()
-MentionReferenceInput.model_rebuild()
-IngestionWorkflowStageInput.model_rebuild()
-ChannelConnectorUpdateInput.model_rebuild()
-AtlassianJiraFeedPropertiesInput.model_rebuild()
-BoxFeedPropertiesInput.model_rebuild()
-ContentFilterLevel.model_rebuild()
-H3Filter.model_rebuild()
-MedicalDeviceUpdateInput.model_rebuild()
-DistributionTargetInput.model_rebuild()
-GitLabMilestonesFeedPropertiesInput.model_rebuild()
-AttioTasksFeedPropertiesInput.model_rebuild()
-MicrosoftContactsCRMFeedPropertiesInput.model_rebuild()
-SharePointFeedPropertiesUpdateInput.model_rebuild()
-AudioMetadataInput.model_rebuild()
-MedicalDrugInput.model_rebuild()
-IndexingWorkflowJobInput.model_rebuild()
-IndexingWorkflowStageInput.model_rebuild()
-SpecificationUpdateInput.model_rebuild()
-EnrichmentWorkflowStageInput.model_rebuild()
-FeedFilter.model_rebuild()
-ViewFilter.model_rebuild()
-EventFilter.model_rebuild()
-JiraEpicsFeedPropertiesUpdateInput.model_rebuild()
-SlackFeedPropertiesInput.model_rebuild()
-PersonaFilter.model_rebuild()
-RegexContentClassificationPropertiesInput.model_rebuild()
-ObservationInput.model_rebuild()
-MedicalDeviceFilter.model_rebuild()
-EntityFeedPropertiesUpdateInput.model_rebuild()
-AgentHeartbeatPropertiesInput.model_rebuild()
-CalendarFeedPropertiesInput.model_rebuild()
+AttioCRMFeedPropertiesUpdateInput.model_rebuild()
+SalesforceCRMFeedPropertiesInput.model_rebuild()
 MicrosoftEmailFeedPropertiesInput.model_rebuild()
-ProjectUpdateInput.model_rebuild()
-ProjectFilter.model_rebuild()
-SummarizationStrategyInput.model_rebuild()
-ProductFilter.model_rebuild()
-SkillUpdateInput.model_rebuild()
-ProjectInput.model_rebuild()
-ContentClassificationConnectorInput.model_rebuild()
-ContentPublishingConnectorUpdateInput.model_rebuild()
-CRMFeedPropertiesInput.model_rebuild()
-OrganizationUpdateInput.model_rebuild()
-GoogleCalendarFeedPropertiesUpdateInput.model_rebuild()
-SalesforceCRMFeedPropertiesUpdateInput.model_rebuild()
-PointCloudMetadataInput.model_rebuild()
-ObservationReferenceFilter.model_rebuild()
-GitLabCommitsFeedPropertiesInput.model_rebuild()
-ConversationMessageInput.model_rebuild()
-GitHubCommitsFeedPropertiesInput.model_rebuild()
-HubSpotCRMFeedPropertiesUpdateInput.model_rebuild()
-NotionFeedPropertiesUpdateInput.model_rebuild()
-ResearchFeedPropertiesInput.model_rebuild()
-AuthenticationConnectorInput.model_rebuild()
-BureauFilter.model_rebuild()
-ExtractionWorkflowJobInput.model_rebuild()
-ReplicaConversationPropertiesInput.model_rebuild()
-PreparationWorkflowStageInput.model_rebuild()
-HRISFeedPropertiesUpdateInput.model_rebuild()
-FeedPreviewInput.model_rebuild()
-StorageGateInput.model_rebuild()
-GoogleImagePublishingPropertiesInput.model_rebuild()
-MedicalStudyUpdateInput.model_rebuild()
-GoogleDriveFeedPropertiesInput.model_rebuild()
-CollectionUpdateInput.model_rebuild()
-HubSpotConversationsFeedPropertiesUpdateInput.model_rebuild()
-GoogleVideoPublishingPropertiesInput.model_rebuild()
-SearchFeedPropertiesInput.model_rebuild()
-MedicalDrugClassInput.model_rebuild()
-HRISFeedPropertiesInput.model_rebuild()
-GitLabPullRequestsFeedPropertiesInput.model_rebuild()
-HubSpotMeetingPropertiesUpdateInput.model_rebuild()
-MedicalTherapyFilter.model_rebuild()
-GraphFilter.model_rebuild()
-BoxFoldersInput.model_rebuild()
-ConversationUpdateInput.model_rebuild()
-MedicalDeviceInput.model_rebuild()
-PlaceFilter.model_rebuild()
-SiteFeedPropertiesUpdateInput.model_rebuild()
-ContentUpdateInput.model_rebuild()
-EmotionFilter.model_rebuild()
-SoftwareInput.model_rebuild()
-GitLabPullRequestsFeedPropertiesUpdateInput.model_rebuild()
-GoogleCalendarFeedPropertiesInput.model_rebuild()
-CategoryFilter.model_rebuild()
-GeometryMetadataInput.model_rebuild()
-MeetingFeedPropertiesInput.model_rebuild()
-ProductInput.model_rebuild()
-GitLabIssuesFeedPropertiesUpdateInput.model_rebuild()
-ConversationFilter.model_rebuild()
-InvestmentFundFilter.model_rebuild()
-GoogleContactsCRMFeedPropertiesUpdateInput.model_rebuild()
-MentionReferenceFilter.model_rebuild()
-HubSpotCRMFeedPropertiesInput.model_rebuild()
-EvernoteAuthorizedNotebookInput.model_rebuild()
-MedicalStudyInput.model_rebuild()
-SiteFeedPropertiesInput.model_rebuild()
-GitHubPullRequestsFeedPropertiesUpdateInput.model_rebuild()
-MedicalProcedureInput.model_rebuild()
-JiraEpicsFeedPropertiesInput.model_rebuild()
-GoogleDriveFeedPropertiesUpdateInput.model_rebuild()
-WorkflowUpdateInput.model_rebuild()
-JiraProjectsInput.model_rebuild()
-GitHubMilestonesFeedPropertiesInput.model_rebuild()
-ContentCriteriaInput.model_rebuild()
-MedicalGuidelineFilter.model_rebuild()
-CrustdataEntityFeedPropertiesUpdateInput.model_rebuild()
-ImageMetadataInput.model_rebuild()
+GoogleEmailFeedPropertiesInput.model_rebuild()
 EventMetadataInput.model_rebuild()
-GitHubCommitsFeedPropertiesUpdateInput.model_rebuild()
-FeedInput.model_rebuild()
-PersonFilter.model_rebuild()
-OpenAIVideoPublishingPropertiesInput.model_rebuild()
-StorageWorkflowStageInput.model_rebuild()
-MessageMetadataInput.model_rebuild()
-DropboxFeedPropertiesUpdateInput.model_rebuild()
-MicrosoftTeamsChannelsInput.model_rebuild()
-CollectionFilter.model_rebuild()
-CRMFeedPropertiesUpdateInput.model_rebuild()
-IntercomConversationsFeedPropertiesInput.model_rebuild()
-MedicalGuidelineInput.model_rebuild()
+IngestionWorkflowStageInput.model_rebuild()
+ProductFilter.model_rebuild()
 ConnectorFilter.model_rebuild()
-ConnectorInput.model_rebuild()
-AttioTasksFeedPropertiesUpdateInput.model_rebuild()
-OrganizationInput.model_rebuild()
-HubSpotTasksFeedPropertiesInput.model_rebuild()
-BureauUpdateInput.model_rebuild()
-DrawingMetadataInput.model_rebuild()
+SharePointFoldersInput.model_rebuild()
+SharePointFeedPropertiesUpdateInput.model_rebuild()
+GitHubCommitsFeedPropertiesInput.model_rebuild()
 InitiativeMetadataInput.model_rebuild()
-SalesforceTasksFeedPropertiesUpdateInput.model_rebuild()
-ResearchFeedPropertiesUpdateInput.model_rebuild()
-SalesforceFeedPropertiesUpdateInput.model_rebuild()
-AgentUpdateInput.model_rebuild()
-IssueFeedPropertiesInput.model_rebuild()
-FactInput.model_rebuild()
-BureauInput.model_rebuild()
-EnrichmentWorkflowJobInput.model_rebuild()
+ModelDocumentPreparationPropertiesInput.model_rebuild()
+ZendeskFeedPropertiesInput.model_rebuild()
+UserUpdateInput.model_rebuild()
+MedicalTestInput.model_rebuild()
+RepoUpdateInput.model_rebuild()
+ProjectUpdateInput.model_rebuild()
+AgentHeartbeatPropertiesInput.model_rebuild()
 GitHubPullRequestsFeedPropertiesInput.model_rebuild()
-MedicalContraindicationUpdateInput.model_rebuild()
+IntegrationConnectorUpdateInput.model_rebuild()
+MedicalGuidelineInput.model_rebuild()
+MedicalProcedureInput.model_rebuild()
+UserFilter.model_rebuild()
+MedicalDeviceUpdateInput.model_rebuild()
+HubSpotCRMFeedPropertiesUpdateInput.model_rebuild()
+WorkflowInput.model_rebuild()
+ReplicaFilter.model_rebuild()
+AgentFilter.model_rebuild()
+GraphFilter.model_rebuild()
+FeedPreviewInput.model_rebuild()
+InvestmentFilter.model_rebuild()
+GitHubCommitsFeedPropertiesUpdateInput.model_rebuild()
+JiraEpicsFeedPropertiesInput.model_rebuild()
+PersonaFilter.model_rebuild()
+MicrosoftContactsCRMFeedPropertiesInput.model_rebuild()
+GitLabMilestonesFeedPropertiesUpdateInput.model_rebuild()
 CommitFeedPropertiesUpdateInput.model_rebuild()
+InvestmentFundUpdateInput.model_rebuild()
+StorageWorkflowStageInput.model_rebuild()
+MedicalDrugFilter.model_rebuild()
+ExtractionWorkflowJobInput.model_rebuild()
+ObservationCriteriaInput.model_rebuild()
+MedicalDrugUpdateInput.model_rebuild()
+LinearInitiativesFeedPropertiesUpdateInput.model_rebuild()
+MedicalConditionInput.model_rebuild()
+ContentClassificationConnectorInput.model_rebuild()
+MessageMetadataInput.model_rebuild()
+EntityFeedPropertiesInput.model_rebuild()
+GitHubPullRequestsFeedPropertiesUpdateInput.model_rebuild()
+DropboxFeedPropertiesUpdateInput.model_rebuild()
+MicrosoftTeamsFeedPropertiesInput.model_rebuild()
+MicrosoftCalendarFeedPropertiesInput.model_rebuild()
+HubSpotTasksFeedPropertiesInput.model_rebuild()
+SalesforceTasksFeedPropertiesUpdateInput.model_rebuild()
+ConnectorUpdateInput.model_rebuild()
+HubSpotConversationsFeedPropertiesUpdateInput.model_rebuild()
+BureauFilter.model_rebuild()
+EvernoteFeedPropertiesUpdateInput.model_rebuild()
+ConversationCriteriaInput.model_rebuild()
+IntercomTicketsFeedPropertiesUpdateInput.model_rebuild()
+MedicalGuidelineFilter.model_rebuild()
+MedicalIndicationInput.model_rebuild()
+OrganizationInput.model_rebuild()
+AgentUpdateInput.model_rebuild()
+ExtractionWorkflowStageInput.model_rebuild()
+ProductInput.model_rebuild()
+BureauInput.model_rebuild()
+ConfluenceSpacesInput.model_rebuild()
+MedicalTherapyFilter.model_rebuild()
+IssueFeedPropertiesUpdateInput.model_rebuild()
+OpenAIImagePublishingPropertiesInput.model_rebuild()
+PostMetadataInput.model_rebuild()
+SkillFeedPropertiesInput.model_rebuild()
+GitHubIssuesFeedPropertiesInput.model_rebuild()
+SalesforceTasksFeedPropertiesInput.model_rebuild()
+FilePreparationConnectorInput.model_rebuild()
+BureauUpdateInput.model_rebuild()
+DropboxFeedPropertiesInput.model_rebuild()
+ZendeskTicketsFeedPropertiesInput.model_rebuild()
+MedicalContraindicationFilter.model_rebuild()
+ContentCriteriaLevelInput.model_rebuild()
+FeedUpdateInput.model_rebuild()
+MedicalTherapyInput.model_rebuild()
+InitiativeFeedPropertiesUpdateInput.model_rebuild()
+EventFilter.model_rebuild()
+PreparationWorkflowStageInput.model_rebuild()
+EvernoteAuthorizedNotebookInput.model_rebuild()
 GitHubFeedPropertiesUpdateInput.model_rebuild()
+GitHubRepositoriesInput.model_rebuild()
+IntercomTicketsFeedPropertiesInput.model_rebuild()
+MedicalIndicationFilter.model_rebuild()
+EntityExtractionConnectorInput.model_rebuild()
+LabelFilter.model_rebuild()
+ConversationFilter.model_rebuild()
+GoogleContactsCRMFeedPropertiesUpdateInput.model_rebuild()
+RegexContentClassificationPropertiesInput.model_rebuild()
+IntegrationConnectorInput.model_rebuild()
+PlaceFilter.model_rebuild()
+EntityEnrichmentConnectorInput.model_rebuild()
+FeedFilter.model_rebuild()
+ClassificationWorkflowStageInput.model_rebuild()
+AtlassianJiraFeedPropertiesInput.model_rebuild()
+SoftwareInput.model_rebuild()
+ObservationReferenceInput.model_rebuild()
+ConfluenceFeedPropertiesInput.model_rebuild()
+HRISFeedPropertiesInput.model_rebuild()
+FactAssertionInput.model_rebuild()
+NotionFeedPropertiesUpdateInput.model_rebuild()
+MedicalContraindicationUpdateInput.model_rebuild()
+CollectionUpdateInput.model_rebuild()
+MentionReferenceFilter.model_rebuild()
+AttioFeedPropertiesUpdateInput.model_rebuild()
+MedicalGuidelineUpdateInput.model_rebuild()
+LinearInitiativesFeedPropertiesInput.model_rebuild()
+IntercomFeedPropertiesUpdateInput.model_rebuild()
+MedicalStudyFilter.model_rebuild()
+IntercomConversationsFeedPropertiesUpdateInput.model_rebuild()
+EnrichmentWorkflowJobInput.model_rebuild()
+EntityFeedPropertiesUpdateInput.model_rebuild()
+MedicalDrugClassUpdateInput.model_rebuild()
+IntercomConversationsFeedPropertiesInput.model_rebuild()
+MedicalTestFilter.model_rebuild()
+ReplicaUpdateInput.model_rebuild()
+ModelContentClassificationPropertiesInput.model_rebuild()
+GoogleEmailFeedPropertiesUpdateInput.model_rebuild()
+ConversationMessageInput.model_rebuild()
+ZendeskTicketsFeedPropertiesUpdateInput.model_rebuild()
+MetadataFilter.model_rebuild()
 AlertFilter.model_rebuild()
+DeskInput.model_rebuild()
+ShapeMetadataInput.model_rebuild()
+EvernoteTagsInput.model_rebuild()
+CommitFeedPropertiesInput.model_rebuild()
+MicrosoftCalendarsInput.model_rebuild()
+SiteFeedPropertiesUpdateInput.model_rebuild()
+MedicalStudyInput.model_rebuild()
+ModelImageExtractionPropertiesInput.model_rebuild()
+ResearchFeedPropertiesUpdateInput.model_rebuild()
+IssueFeedPropertiesInput.model_rebuild()
+GitLabPullRequestsFeedPropertiesUpdateInput.model_rebuild()
+GoogleDriveFeedPropertiesUpdateInput.model_rebuild()
+ConnectorInput.model_rebuild()
+MedicalDrugInput.model_rebuild()
+GoogleCalendarsInput.model_rebuild()
+CRMFeedPropertiesUpdateInput.model_rebuild()
+OneDriveFeedPropertiesUpdateInput.model_rebuild()
+NotionPagesInput.model_rebuild()
+MedicalStudyUpdateInput.model_rebuild()
+MedicalTestUpdateInput.model_rebuild()
+GitLabProjectsInput.model_rebuild()
+SalesforceFeedPropertiesUpdateInput.model_rebuild()
+SpecificationUpdateInput.model_rebuild()
+HubSpotMeetingPropertiesUpdateInput.model_rebuild()
+CollectionInput.model_rebuild()
+AttioTasksFeedPropertiesUpdateInput.model_rebuild()
+MedicalDeviceInput.model_rebuild()
+MedicalDrugClassFilter.model_rebuild()
+SpecificationFilter.model_rebuild()
+GoogleDriveDrivesInput.model_rebuild()
+ZoomPropertiesInput.model_rebuild()
+HubSpotCRMFeedPropertiesInput.model_rebuild()
+VideoMetadataInput.model_rebuild()
+EmailMetadataInput.model_rebuild()
+MedicalProcedureUpdateInput.model_rebuild()
+DrawingMetadataInput.model_rebuild()
+HRISFeedPropertiesUpdateInput.model_rebuild()
+LinearFeedPropertiesUpdateInput.model_rebuild()
+CrustdataEntityFeedPropertiesUpdateInput.model_rebuild()

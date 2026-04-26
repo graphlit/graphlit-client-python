@@ -30,12 +30,18 @@ class QuerySkillsSkillsResults(BaseModel):
     correlation_id: Optional[str] = Field(alias="correlationId")
     text: str
     skill_owner: Optional[EntityOwners] = Field(alias="skillOwner")
+    feed: Optional["QuerySkillsSkillsResultsFeed"]
     arguments: Optional[list["QuerySkillsSkillsResultsArguments"]]
     collections: Optional[list[Optional["QuerySkillsSkillsResultsCollections"]]]
 
 
 class QuerySkillsSkillsResultsOwner(BaseModel):
     id: str
+
+
+class QuerySkillsSkillsResultsFeed(BaseModel):
+    id: str
+    name: str
 
 
 class QuerySkillsSkillsResultsArguments(BaseModel):
