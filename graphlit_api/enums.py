@@ -118,6 +118,11 @@ class MedicalConditionFacetTypes(str, Enum):
     CREATION_DATE = "CREATION_DATE"
 
 
+class FactCitationSourceTypes(str, Enum):
+    CONTENT = "CONTENT"
+    CONVERSATION = "CONVERSATION"
+
+
 class FactCategory(str, Enum):
     RELATIONSHIP = "RELATIONSHIP"
     EVENT = "EVENT"
@@ -191,6 +196,12 @@ class VideoSizeTypes(str, Enum):
     HD_LANDSCAPE = "HD_LANDSCAPE"
     FULL_HD_PORTRAIT = "FULL_HD_PORTRAIT"
     FULL_HD_LANDSCAPE = "FULL_HD_LANDSCAPE"
+
+
+class FactEvidenceTypes(str, Enum):
+    CONTENT = "CONTENT"
+    CONVERSATION = "CONVERSATION"
+    FACT = "FACT"
 
 
 class InvestmentFundFacetTypes(str, Enum):

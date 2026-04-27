@@ -835,20 +835,30 @@ query GetAgent($id: ID!, $correlationId: String) {
     targets {
       connector {
         type
+        operation
+        kind
         notion {
+          pageId
+          pageUri
           parentPageId
           databaseId
           title
         }
         googleDrive {
+          fileId
+          fileUri
           folderId
           fileName
         }
         oneDrive {
+          fileId
+          fileUri
           folderId
           fileName
         }
         confluence {
+          pageId
+          pageUri
           spaceId
           parentPageId
           title
@@ -891,6 +901,8 @@ query GetAgent($id: ID!, $correlationId: String) {
           title
         }
         googleCalendar {
+          eventId
+          eventUri
           calendarId
           summary
           startDateTime
@@ -900,6 +912,8 @@ query GetAgent($id: ID!, $correlationId: String) {
           attendees
         }
         microsoftCalendar {
+          eventId
+          eventUri
           calendarId
           subject
           startDateTime
@@ -910,6 +924,8 @@ query GetAgent($id: ID!, $correlationId: String) {
           isOnlineMeeting
         }
         linear {
+          issueId
+          issueUri
           teamId
           title
           priority
@@ -919,6 +935,8 @@ query GetAgent($id: ID!, $correlationId: String) {
           projectId
         }
         jira {
+          issueKey
+          issueUri
           projectKey
           issueType
           summary
@@ -928,10 +946,14 @@ query GetAgent($id: ID!, $correlationId: String) {
           status
         }
         googleDocs {
+          documentId
+          documentUri
           folderId
           title
         }
         microsoftWord {
+          fileId
+          fileUri
           folderId
           fileName
         }
@@ -1248,20 +1270,30 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
       targets {
         connector {
           type
+          operation
+          kind
           notion {
+            pageId
+            pageUri
             parentPageId
             databaseId
             title
           }
           googleDrive {
+            fileId
+            fileUri
             folderId
             fileName
           }
           oneDrive {
+            fileId
+            fileUri
             folderId
             fileName
           }
           confluence {
+            pageId
+            pageUri
             spaceId
             parentPageId
             title
@@ -1304,6 +1336,8 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
             title
           }
           googleCalendar {
+            eventId
+            eventUri
             calendarId
             summary
             startDateTime
@@ -1313,6 +1347,8 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
             attendees
           }
           microsoftCalendar {
+            eventId
+            eventUri
             calendarId
             subject
             startDateTime
@@ -1323,6 +1359,8 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
             isOnlineMeeting
           }
           linear {
+            issueId
+            issueUri
             teamId
             title
             priority
@@ -1332,6 +1370,8 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
             projectId
           }
           jira {
+            issueKey
+            issueUri
             projectKey
             issueType
             summary
@@ -1341,10 +1381,14 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
             status
           }
           googleDocs {
+            documentId
+            documentUri
             folderId
             title
           }
           microsoftWord {
+            fileId
+            fileUri
             folderId
             fileName
           }

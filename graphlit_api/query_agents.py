@@ -14,6 +14,8 @@ from .enums import (
     AgentTypes,
     ContentTypes,
     DistributionServiceTypes,
+    DistributionTargetKindTypes,
+    DistributionTargetOperationTypes,
     EntityState,
     FileTypes,
     FilterMode,
@@ -456,6 +458,8 @@ class QueryAgentsAgentsResultsTargets(BaseModel):
 
 class QueryAgentsAgentsResultsTargetsConnector(BaseModel):
     type: DistributionServiceTypes
+    operation: Optional[DistributionTargetOperationTypes]
+    kind: Optional[DistributionTargetKindTypes]
     notion: Optional["QueryAgentsAgentsResultsTargetsConnectorNotion"]
     google_drive: Optional["QueryAgentsAgentsResultsTargetsConnectorGoogleDrive"] = (
         Field(alias="googleDrive")
@@ -504,22 +508,30 @@ class QueryAgentsAgentsResultsTargetsConnector(BaseModel):
 
 
 class QueryAgentsAgentsResultsTargetsConnectorNotion(BaseModel):
+    page_id: Optional[str] = Field(alias="pageId")
+    page_uri: Optional[str] = Field(alias="pageUri")
     parent_page_id: Optional[str] = Field(alias="parentPageId")
     database_id: Optional[str] = Field(alias="databaseId")
     title: Optional[str]
 
 
 class QueryAgentsAgentsResultsTargetsConnectorGoogleDrive(BaseModel):
+    file_id: Optional[str] = Field(alias="fileId")
+    file_uri: Optional[str] = Field(alias="fileUri")
     folder_id: Optional[str] = Field(alias="folderId")
     file_name: Optional[str] = Field(alias="fileName")
 
 
 class QueryAgentsAgentsResultsTargetsConnectorOneDrive(BaseModel):
+    file_id: Optional[str] = Field(alias="fileId")
+    file_uri: Optional[str] = Field(alias="fileUri")
     folder_id: Optional[str] = Field(alias="folderId")
     file_name: Optional[str] = Field(alias="fileName")
 
 
 class QueryAgentsAgentsResultsTargetsConnectorConfluence(BaseModel):
+    page_id: Optional[str] = Field(alias="pageId")
+    page_uri: Optional[str] = Field(alias="pageUri")
     space_id: str = Field(alias="spaceId")
     parent_page_id: Optional[str] = Field(alias="parentPageId")
     title: Optional[str]
@@ -569,6 +581,8 @@ class QueryAgentsAgentsResultsTargetsConnectorAttio(BaseModel):
 
 
 class QueryAgentsAgentsResultsTargetsConnectorGoogleCalendar(BaseModel):
+    event_id: Optional[str] = Field(alias="eventId")
+    event_uri: Optional[str] = Field(alias="eventUri")
     calendar_id: Optional[str] = Field(alias="calendarId")
     summary: Optional[str]
     start_date_time: Optional[Any] = Field(alias="startDateTime")
@@ -579,6 +593,8 @@ class QueryAgentsAgentsResultsTargetsConnectorGoogleCalendar(BaseModel):
 
 
 class QueryAgentsAgentsResultsTargetsConnectorMicrosoftCalendar(BaseModel):
+    event_id: Optional[str] = Field(alias="eventId")
+    event_uri: Optional[str] = Field(alias="eventUri")
     calendar_id: Optional[str] = Field(alias="calendarId")
     subject: Optional[str]
     start_date_time: Optional[Any] = Field(alias="startDateTime")
@@ -590,6 +606,8 @@ class QueryAgentsAgentsResultsTargetsConnectorMicrosoftCalendar(BaseModel):
 
 
 class QueryAgentsAgentsResultsTargetsConnectorLinear(BaseModel):
+    issue_id: Optional[str] = Field(alias="issueId")
+    issue_uri: Optional[str] = Field(alias="issueUri")
     team_id: Optional[str] = Field(alias="teamId")
     title: Optional[str]
     priority: Optional[int]
@@ -600,6 +618,8 @@ class QueryAgentsAgentsResultsTargetsConnectorLinear(BaseModel):
 
 
 class QueryAgentsAgentsResultsTargetsConnectorJira(BaseModel):
+    issue_key: Optional[str] = Field(alias="issueKey")
+    issue_uri: Optional[str] = Field(alias="issueUri")
     project_key: Optional[str] = Field(alias="projectKey")
     issue_type: Optional[str] = Field(alias="issueType")
     summary: Optional[str]
@@ -610,11 +630,15 @@ class QueryAgentsAgentsResultsTargetsConnectorJira(BaseModel):
 
 
 class QueryAgentsAgentsResultsTargetsConnectorGoogleDocs(BaseModel):
+    document_id: Optional[str] = Field(alias="documentId")
+    document_uri: Optional[str] = Field(alias="documentUri")
     folder_id: Optional[str] = Field(alias="folderId")
     title: Optional[str]
 
 
 class QueryAgentsAgentsResultsTargetsConnectorMicrosoftWord(BaseModel):
+    file_id: Optional[str] = Field(alias="fileId")
+    file_uri: Optional[str] = Field(alias="fileUri")
     folder_id: Optional[str] = Field(alias="folderId")
     file_name: Optional[str] = Field(alias="fileName")
 

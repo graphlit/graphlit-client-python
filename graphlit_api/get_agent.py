@@ -14,6 +14,8 @@ from .enums import (
     AgentTypes,
     ContentTypes,
     DistributionServiceTypes,
+    DistributionTargetKindTypes,
+    DistributionTargetOperationTypes,
     EntityState,
     FileTypes,
     FilterMode,
@@ -448,6 +450,8 @@ class GetAgentAgentTargets(BaseModel):
 
 class GetAgentAgentTargetsConnector(BaseModel):
     type: DistributionServiceTypes
+    operation: Optional[DistributionTargetOperationTypes]
+    kind: Optional[DistributionTargetKindTypes]
     notion: Optional["GetAgentAgentTargetsConnectorNotion"]
     google_drive: Optional["GetAgentAgentTargetsConnectorGoogleDrive"] = Field(
         alias="googleDrive"
@@ -494,22 +498,30 @@ class GetAgentAgentTargetsConnector(BaseModel):
 
 
 class GetAgentAgentTargetsConnectorNotion(BaseModel):
+    page_id: Optional[str] = Field(alias="pageId")
+    page_uri: Optional[str] = Field(alias="pageUri")
     parent_page_id: Optional[str] = Field(alias="parentPageId")
     database_id: Optional[str] = Field(alias="databaseId")
     title: Optional[str]
 
 
 class GetAgentAgentTargetsConnectorGoogleDrive(BaseModel):
+    file_id: Optional[str] = Field(alias="fileId")
+    file_uri: Optional[str] = Field(alias="fileUri")
     folder_id: Optional[str] = Field(alias="folderId")
     file_name: Optional[str] = Field(alias="fileName")
 
 
 class GetAgentAgentTargetsConnectorOneDrive(BaseModel):
+    file_id: Optional[str] = Field(alias="fileId")
+    file_uri: Optional[str] = Field(alias="fileUri")
     folder_id: Optional[str] = Field(alias="folderId")
     file_name: Optional[str] = Field(alias="fileName")
 
 
 class GetAgentAgentTargetsConnectorConfluence(BaseModel):
+    page_id: Optional[str] = Field(alias="pageId")
+    page_uri: Optional[str] = Field(alias="pageUri")
     space_id: str = Field(alias="spaceId")
     parent_page_id: Optional[str] = Field(alias="parentPageId")
     title: Optional[str]
@@ -559,6 +571,8 @@ class GetAgentAgentTargetsConnectorAttio(BaseModel):
 
 
 class GetAgentAgentTargetsConnectorGoogleCalendar(BaseModel):
+    event_id: Optional[str] = Field(alias="eventId")
+    event_uri: Optional[str] = Field(alias="eventUri")
     calendar_id: Optional[str] = Field(alias="calendarId")
     summary: Optional[str]
     start_date_time: Optional[Any] = Field(alias="startDateTime")
@@ -569,6 +583,8 @@ class GetAgentAgentTargetsConnectorGoogleCalendar(BaseModel):
 
 
 class GetAgentAgentTargetsConnectorMicrosoftCalendar(BaseModel):
+    event_id: Optional[str] = Field(alias="eventId")
+    event_uri: Optional[str] = Field(alias="eventUri")
     calendar_id: Optional[str] = Field(alias="calendarId")
     subject: Optional[str]
     start_date_time: Optional[Any] = Field(alias="startDateTime")
@@ -580,6 +596,8 @@ class GetAgentAgentTargetsConnectorMicrosoftCalendar(BaseModel):
 
 
 class GetAgentAgentTargetsConnectorLinear(BaseModel):
+    issue_id: Optional[str] = Field(alias="issueId")
+    issue_uri: Optional[str] = Field(alias="issueUri")
     team_id: Optional[str] = Field(alias="teamId")
     title: Optional[str]
     priority: Optional[int]
@@ -590,6 +608,8 @@ class GetAgentAgentTargetsConnectorLinear(BaseModel):
 
 
 class GetAgentAgentTargetsConnectorJira(BaseModel):
+    issue_key: Optional[str] = Field(alias="issueKey")
+    issue_uri: Optional[str] = Field(alias="issueUri")
     project_key: Optional[str] = Field(alias="projectKey")
     issue_type: Optional[str] = Field(alias="issueType")
     summary: Optional[str]
@@ -600,11 +620,15 @@ class GetAgentAgentTargetsConnectorJira(BaseModel):
 
 
 class GetAgentAgentTargetsConnectorGoogleDocs(BaseModel):
+    document_id: Optional[str] = Field(alias="documentId")
+    document_uri: Optional[str] = Field(alias="documentUri")
     folder_id: Optional[str] = Field(alias="folderId")
     title: Optional[str]
 
 
 class GetAgentAgentTargetsConnectorMicrosoftWord(BaseModel):
+    file_id: Optional[str] = Field(alias="fileId")
+    file_uri: Optional[str] = Field(alias="fileUri")
     folder_id: Optional[str] = Field(alias="folderId")
     file_name: Optional[str] = Field(alias="fileName")
 
