@@ -3743,8 +3743,36 @@ query GetContent($id: ID!, $correlationId: String) {
       validAt
       invalidAt
       state
+      kind
       category
       confidence
+      evidence {
+        type
+        entity {
+          id
+        }
+        text
+        confidence
+        citations {
+          sourceType
+          source {
+            id
+          }
+          uri
+          title
+          index
+          text
+          metadata
+          relevance
+          confidence
+          startOffset
+          endOffset
+          startTime
+          endTime
+          pageNumber
+          frameNumber
+        }
+      }
     }
     workflow {
       id
@@ -4650,8 +4678,36 @@ query LookupContents($ids: [ID!]!, $correlationId: String) {
         validAt
         invalidAt
         state
+        kind
         category
         confidence
+        evidence {
+          type
+          entity {
+            id
+          }
+          text
+          confidence
+          citations {
+            sourceType
+            source {
+              id
+            }
+            uri
+            title
+            index
+            text
+            metadata
+            relevance
+            confidence
+            startOffset
+            endOffset
+            startTime
+            endTime
+            pageNumber
+            frameNumber
+          }
+        }
       }
       workflow {
         id
@@ -4872,12 +4928,6 @@ mutation PublishSkills($filter: ContentFilter, $correlationId: String) {
       name
       state
       identifier
-      skillOwner
-      arguments {
-        name
-        description
-        required
-      }
       text
     }
   }
@@ -8064,8 +8114,36 @@ query GetConversation($id: ID!, $correlationId: String) {
       validAt
       invalidAt
       state
+      kind
       category
       confidence
+      evidence {
+        type
+        entity {
+          id
+        }
+        text
+        confidence
+        citations {
+          sourceType
+          source {
+            id
+          }
+          uri
+          title
+          index
+          text
+          metadata
+          relevance
+          confidence
+          startOffset
+          endOffset
+          startTime
+          endTime
+          pageNumber
+          frameNumber
+        }
+      }
     }
     summary
     parent {
@@ -9330,8 +9408,36 @@ mutation RetrieveFacts($prompt: String!, $filter: FactFilter, $correlationId: St
           name
         }
         sourceType
+        kind
         category
         confidence
+        evidence {
+          type
+          entity {
+            id
+          }
+          text
+          confidence
+          citations {
+            sourceType
+            source {
+              id
+            }
+            uri
+            title
+            index
+            text
+            metadata
+            relevance
+            confidence
+            startOffset
+            endOffset
+            startTime
+            endTime
+            pageNumber
+            frameNumber
+          }
+        }
       }
       relevance
       content {
@@ -10737,8 +10843,36 @@ query GetFact($id: ID!, $correlationId: String) {
       name
     }
     sourceType
+    kind
     category
     confidence
+    evidence {
+      type
+      entity {
+        id
+      }
+      text
+      confidence
+      citations {
+        sourceType
+        source {
+          id
+        }
+        uri
+        title
+        index
+        text
+        metadata
+        relevance
+        confidence
+        startOffset
+        endOffset
+        startTime
+        endTime
+        pageNumber
+        frameNumber
+      }
+    }
   }
 }
 """
@@ -10795,8 +10929,36 @@ query QueryFacts($filter: FactFilter, $correlationId: String) {
         name
       }
       sourceType
+      kind
       category
       confidence
+      evidence {
+        type
+        entity {
+          id
+        }
+        text
+        confidence
+        citations {
+          sourceType
+          source {
+            id
+          }
+          uri
+          title
+          index
+          text
+          metadata
+          relevance
+          confidence
+          startOffset
+          endOffset
+          startTime
+          endTime
+          pageNumber
+          frameNumber
+        }
+      }
     }
   }
 }
@@ -10854,8 +11016,36 @@ query QueryFactsClusters($filter: FactFilter, $clusters: EntityClustersInput, $c
         name
       }
       sourceType
+      kind
       category
       confidence
+      evidence {
+        type
+        entity {
+          id
+        }
+        text
+        confidence
+        citations {
+          sourceType
+          source {
+            id
+          }
+          uri
+          title
+          index
+          text
+          metadata
+          relevance
+          confidence
+          startOffset
+          endOffset
+          startTime
+          endTime
+          pageNumber
+          frameNumber
+        }
+      }
     }
     clusters {
       entities {
@@ -20140,12 +20330,6 @@ mutation CreateSkill($skill: SkillInput!, $correlationId: String) {
     name
     state
     identifier
-    skillOwner
-    arguments {
-      name
-      description
-      required
-    }
   }
 }
 """
@@ -20215,7 +20399,7 @@ query GetSkill($id: ID!, $correlationId: String) {
     }
     description
     identifier
-    correlationId
+    uri
     text
     skillOwner
     feed {
@@ -20250,7 +20434,7 @@ query QuerySkills($filter: SkillFilter, $correlationId: String) {
       state
       description
       identifier
-      correlationId
+      uri
       text
       skillOwner
       feed {
@@ -20278,12 +20462,6 @@ mutation UpdateSkill($skill: SkillUpdateInput!) {
     name
     state
     identifier
-    skillOwner
-    arguments {
-      name
-      description
-      required
-    }
   }
 }
 """
@@ -20295,12 +20473,6 @@ mutation UpsertSkill($skill: SkillInput!) {
     name
     state
     identifier
-    skillOwner
-    arguments {
-      name
-      description
-      required
-    }
   }
 }
 """

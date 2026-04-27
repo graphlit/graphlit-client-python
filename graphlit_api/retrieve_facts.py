@@ -6,7 +6,14 @@ from typing import Any, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import EntityState, FactCategory, ObservableTypes, SourceTypes
+from .enums import (
+    EntityState,
+    FactCategory,
+    FactCitationSourceTypes,
+    FactEvidenceTypes,
+    ObservableTypes,
+    SourceTypes,
+)
 
 
 class RetrieveFacts(BaseModel):
@@ -43,8 +50,10 @@ class RetrieveFactsRetrieveFactsResultsFact(BaseModel):
     conversation: Optional["RetrieveFactsRetrieveFactsResultsFactConversation"]
     persona: Optional["RetrieveFactsRetrieveFactsResultsFactPersona"]
     source_type: Optional[SourceTypes] = Field(alias="sourceType")
+    kind: Optional[str]
     category: Optional[FactCategory]
     confidence: Optional[float]
+    evidence: Optional[list[Optional["RetrieveFactsRetrieveFactsResultsFactEvidence"]]]
 
 
 class RetrieveFactsRetrieveFactsResultsFactOwner(BaseModel):
@@ -104,6 +113,42 @@ class RetrieveFactsRetrieveFactsResultsFactPersona(BaseModel):
     name: str
 
 
+class RetrieveFactsRetrieveFactsResultsFactEvidence(BaseModel):
+    type: Optional[FactEvidenceTypes]
+    entity: Optional["RetrieveFactsRetrieveFactsResultsFactEvidenceEntity"]
+    text: Optional[str]
+    confidence: Optional[float]
+    citations: Optional[
+        list[Optional["RetrieveFactsRetrieveFactsResultsFactEvidenceCitations"]]
+    ]
+
+
+class RetrieveFactsRetrieveFactsResultsFactEvidenceEntity(BaseModel):
+    id: str
+
+
+class RetrieveFactsRetrieveFactsResultsFactEvidenceCitations(BaseModel):
+    source_type: Optional[FactCitationSourceTypes] = Field(alias="sourceType")
+    source: Optional["RetrieveFactsRetrieveFactsResultsFactEvidenceCitationsSource"]
+    uri: Optional[str]
+    title: Optional[str]
+    index: Optional[int]
+    text: Optional[str]
+    metadata: Optional[str]
+    relevance: Optional[float]
+    confidence: Optional[float]
+    start_offset: Optional[int] = Field(alias="startOffset")
+    end_offset: Optional[int] = Field(alias="endOffset")
+    start_time: Optional[Any] = Field(alias="startTime")
+    end_time: Optional[Any] = Field(alias="endTime")
+    page_number: Optional[int] = Field(alias="pageNumber")
+    frame_number: Optional[int] = Field(alias="frameNumber")
+
+
+class RetrieveFactsRetrieveFactsResultsFactEvidenceCitationsSource(BaseModel):
+    id: str
+
+
 class RetrieveFactsRetrieveFactsResultsContent(BaseModel):
     id: str
 
@@ -115,3 +160,5 @@ RetrieveFactsRetrieveFactsResultsFact.model_rebuild()
 RetrieveFactsRetrieveFactsResultsFactMentions.model_rebuild()
 RetrieveFactsRetrieveFactsResultsFactAssertions.model_rebuild()
 RetrieveFactsRetrieveFactsResultsFactAssertionsMentions.model_rebuild()
+RetrieveFactsRetrieveFactsResultsFactEvidence.model_rebuild()
+RetrieveFactsRetrieveFactsResultsFactEvidenceCitations.model_rebuild()

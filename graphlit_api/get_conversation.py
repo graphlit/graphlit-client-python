@@ -12,6 +12,8 @@ from .enums import (
     ConversationTypes,
     EntityState,
     FactCategory,
+    FactCitationSourceTypes,
+    FactEvidenceTypes,
     FileTypes,
     FilterMode,
     ImageProjectionTypes,
@@ -800,8 +802,46 @@ class GetConversationConversationFacts(BaseModel):
     valid_at: Optional[Any] = Field(alias="validAt")
     invalid_at: Optional[Any] = Field(alias="invalidAt")
     state: EntityState
+    kind: Optional[str]
     category: Optional[FactCategory]
     confidence: Optional[float]
+    evidence: Optional[list[Optional["GetConversationConversationFactsEvidence"]]]
+
+
+class GetConversationConversationFactsEvidence(BaseModel):
+    type: Optional[FactEvidenceTypes]
+    entity: Optional["GetConversationConversationFactsEvidenceEntity"]
+    text: Optional[str]
+    confidence: Optional[float]
+    citations: Optional[
+        list[Optional["GetConversationConversationFactsEvidenceCitations"]]
+    ]
+
+
+class GetConversationConversationFactsEvidenceEntity(BaseModel):
+    id: str
+
+
+class GetConversationConversationFactsEvidenceCitations(BaseModel):
+    source_type: Optional[FactCitationSourceTypes] = Field(alias="sourceType")
+    source: Optional["GetConversationConversationFactsEvidenceCitationsSource"]
+    uri: Optional[str]
+    title: Optional[str]
+    index: Optional[int]
+    text: Optional[str]
+    metadata: Optional[str]
+    relevance: Optional[float]
+    confidence: Optional[float]
+    start_offset: Optional[int] = Field(alias="startOffset")
+    end_offset: Optional[int] = Field(alias="endOffset")
+    start_time: Optional[Any] = Field(alias="startTime")
+    end_time: Optional[Any] = Field(alias="endTime")
+    page_number: Optional[int] = Field(alias="pageNumber")
+    frame_number: Optional[int] = Field(alias="frameNumber")
+
+
+class GetConversationConversationFactsEvidenceCitationsSource(BaseModel):
+    id: str
 
 
 class GetConversationConversationParent(BaseModel):
@@ -837,3 +877,6 @@ GetConversationConversationAugmentedFilterAnd.model_rebuild()
 GetConversationConversationAugmentedFilterAndObservations.model_rebuild()
 GetConversationConversationObservations.model_rebuild()
 GetConversationConversationObservationsOccurrences.model_rebuild()
+GetConversationConversationFacts.model_rebuild()
+GetConversationConversationFactsEvidence.model_rebuild()
+GetConversationConversationFactsEvidenceCitations.model_rebuild()

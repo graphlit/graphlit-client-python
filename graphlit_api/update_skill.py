@@ -6,7 +6,7 @@ from typing import Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import EntityOwners, EntityState
+from .enums import EntityState
 
 
 class UpdateSkill(BaseModel):
@@ -18,15 +18,6 @@ class UpdateSkillUpdateSkill(BaseModel):
     name: str
     state: EntityState
     identifier: Optional[str]
-    skill_owner: Optional[EntityOwners] = Field(alias="skillOwner")
-    arguments: Optional[list["UpdateSkillUpdateSkillArguments"]]
-
-
-class UpdateSkillUpdateSkillArguments(BaseModel):
-    name: str
-    description: Optional[str]
-    required: Optional[bool]
 
 
 UpdateSkill.model_rebuild()
-UpdateSkillUpdateSkill.model_rebuild()

@@ -4,11 +4,5 @@ mutation CreateSkill($skill: SkillInput!, $correlationId: String) {
     name
     state
     identifier
-    skillOwner
-    arguments {
-      name
-      description
-      required
-    }
   }
 }

@@ -6,7 +6,14 @@ from typing import Any, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import EntityState, FactCategory, ObservableTypes, SourceTypes
+from .enums import (
+    EntityState,
+    FactCategory,
+    FactCitationSourceTypes,
+    FactEvidenceTypes,
+    ObservableTypes,
+    SourceTypes,
+)
 
 
 class QueryFacts(BaseModel):
@@ -33,8 +40,10 @@ class QueryFactsFactsResults(BaseModel):
     conversation: Optional["QueryFactsFactsResultsConversation"]
     persona: Optional["QueryFactsFactsResultsPersona"]
     source_type: Optional[SourceTypes] = Field(alias="sourceType")
+    kind: Optional[str]
     category: Optional[FactCategory]
     confidence: Optional[float]
+    evidence: Optional[list[Optional["QueryFactsFactsResultsEvidence"]]]
 
 
 class QueryFactsFactsResultsOwner(BaseModel):
@@ -90,9 +99,45 @@ class QueryFactsFactsResultsPersona(BaseModel):
     name: str
 
 
+class QueryFactsFactsResultsEvidence(BaseModel):
+    type: Optional[FactEvidenceTypes]
+    entity: Optional["QueryFactsFactsResultsEvidenceEntity"]
+    text: Optional[str]
+    confidence: Optional[float]
+    citations: Optional[list[Optional["QueryFactsFactsResultsEvidenceCitations"]]]
+
+
+class QueryFactsFactsResultsEvidenceEntity(BaseModel):
+    id: str
+
+
+class QueryFactsFactsResultsEvidenceCitations(BaseModel):
+    source_type: Optional[FactCitationSourceTypes] = Field(alias="sourceType")
+    source: Optional["QueryFactsFactsResultsEvidenceCitationsSource"]
+    uri: Optional[str]
+    title: Optional[str]
+    index: Optional[int]
+    text: Optional[str]
+    metadata: Optional[str]
+    relevance: Optional[float]
+    confidence: Optional[float]
+    start_offset: Optional[int] = Field(alias="startOffset")
+    end_offset: Optional[int] = Field(alias="endOffset")
+    start_time: Optional[Any] = Field(alias="startTime")
+    end_time: Optional[Any] = Field(alias="endTime")
+    page_number: Optional[int] = Field(alias="pageNumber")
+    frame_number: Optional[int] = Field(alias="frameNumber")
+
+
+class QueryFactsFactsResultsEvidenceCitationsSource(BaseModel):
+    id: str
+
+
 QueryFacts.model_rebuild()
 QueryFactsFacts.model_rebuild()
 QueryFactsFactsResults.model_rebuild()
 QueryFactsFactsResultsMentions.model_rebuild()
 QueryFactsFactsResultsAssertions.model_rebuild()
 QueryFactsFactsResultsAssertionsMentions.model_rebuild()
+QueryFactsFactsResultsEvidence.model_rebuild()
+QueryFactsFactsResultsEvidenceCitations.model_rebuild()

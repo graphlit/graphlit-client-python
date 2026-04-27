@@ -49,8 +49,36 @@ query QueryFactsClusters($filter: FactFilter, $clusters: EntityClustersInput, $c
         name
       }
       sourceType
+      kind
       category
       confidence
+      evidence {
+        type
+        entity {
+          id
+        }
+        text
+        confidence
+        citations {
+          sourceType
+          source {
+            id
+          }
+          uri
+          title
+          index
+          text
+          metadata
+          relevance
+          confidence
+          startOffset
+          endOffset
+          startTime
+          endTime
+          pageNumber
+          frameNumber
+        }
+      }
     }
     clusters {
       entities {

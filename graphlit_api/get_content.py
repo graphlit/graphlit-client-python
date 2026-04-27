@@ -16,6 +16,8 @@ from .enums import (
     EmbeddingTypes,
     EntityState,
     FactCategory,
+    FactCitationSourceTypes,
+    FactEvidenceTypes,
     FileTypes,
     ImageProjectionTypes,
     LinkTypes,
@@ -593,8 +595,44 @@ class GetContentContentFacts(BaseModel):
     valid_at: Optional[Any] = Field(alias="validAt")
     invalid_at: Optional[Any] = Field(alias="invalidAt")
     state: EntityState
+    kind: Optional[str]
     category: Optional[FactCategory]
     confidence: Optional[float]
+    evidence: Optional[list[Optional["GetContentContentFactsEvidence"]]]
+
+
+class GetContentContentFactsEvidence(BaseModel):
+    type: Optional[FactEvidenceTypes]
+    entity: Optional["GetContentContentFactsEvidenceEntity"]
+    text: Optional[str]
+    confidence: Optional[float]
+    citations: Optional[list[Optional["GetContentContentFactsEvidenceCitations"]]]
+
+
+class GetContentContentFactsEvidenceEntity(BaseModel):
+    id: str
+
+
+class GetContentContentFactsEvidenceCitations(BaseModel):
+    source_type: Optional[FactCitationSourceTypes] = Field(alias="sourceType")
+    source: Optional["GetContentContentFactsEvidenceCitationsSource"]
+    uri: Optional[str]
+    title: Optional[str]
+    index: Optional[int]
+    text: Optional[str]
+    metadata: Optional[str]
+    relevance: Optional[float]
+    confidence: Optional[float]
+    start_offset: Optional[int] = Field(alias="startOffset")
+    end_offset: Optional[int] = Field(alias="endOffset")
+    start_time: Optional[Any] = Field(alias="startTime")
+    end_time: Optional[Any] = Field(alias="endTime")
+    page_number: Optional[int] = Field(alias="pageNumber")
+    frame_number: Optional[int] = Field(alias="frameNumber")
+
+
+class GetContentContentFactsEvidenceCitationsSource(BaseModel):
+    id: str
 
 
 class GetContentContentWorkflow(BaseModel):
@@ -661,4 +699,7 @@ GetContentContentPost.model_rebuild()
 GetContentContentMeeting.model_rebuild()
 GetContentContentObservations.model_rebuild()
 GetContentContentObservationsOccurrences.model_rebuild()
+GetContentContentFacts.model_rebuild()
+GetContentContentFactsEvidence.model_rebuild()
+GetContentContentFactsEvidenceCitations.model_rebuild()
 GetContentContentPages.model_rebuild()

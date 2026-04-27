@@ -27,7 +27,7 @@ class QuerySkillsSkillsResults(BaseModel):
     state: EntityState
     description: Optional[str]
     identifier: Optional[str]
-    correlation_id: Optional[str] = Field(alias="correlationId")
+    uri: Optional[Any]
     text: str
     skill_owner: Optional[EntityOwners] = Field(alias="skillOwner")
     feed: Optional["QuerySkillsSkillsResultsFeed"]

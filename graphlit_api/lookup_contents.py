@@ -16,6 +16,8 @@ from .enums import (
     EmbeddingTypes,
     EntityState,
     FactCategory,
+    FactCitationSourceTypes,
+    FactEvidenceTypes,
     FileTypes,
     ImageProjectionTypes,
     LinkTypes,
@@ -617,8 +619,48 @@ class LookupContentsLookupContentsResultsFacts(BaseModel):
     valid_at: Optional[Any] = Field(alias="validAt")
     invalid_at: Optional[Any] = Field(alias="invalidAt")
     state: EntityState
+    kind: Optional[str]
     category: Optional[FactCategory]
     confidence: Optional[float]
+    evidence: Optional[
+        list[Optional["LookupContentsLookupContentsResultsFactsEvidence"]]
+    ]
+
+
+class LookupContentsLookupContentsResultsFactsEvidence(BaseModel):
+    type: Optional[FactEvidenceTypes]
+    entity: Optional["LookupContentsLookupContentsResultsFactsEvidenceEntity"]
+    text: Optional[str]
+    confidence: Optional[float]
+    citations: Optional[
+        list[Optional["LookupContentsLookupContentsResultsFactsEvidenceCitations"]]
+    ]
+
+
+class LookupContentsLookupContentsResultsFactsEvidenceEntity(BaseModel):
+    id: str
+
+
+class LookupContentsLookupContentsResultsFactsEvidenceCitations(BaseModel):
+    source_type: Optional[FactCitationSourceTypes] = Field(alias="sourceType")
+    source: Optional["LookupContentsLookupContentsResultsFactsEvidenceCitationsSource"]
+    uri: Optional[str]
+    title: Optional[str]
+    index: Optional[int]
+    text: Optional[str]
+    metadata: Optional[str]
+    relevance: Optional[float]
+    confidence: Optional[float]
+    start_offset: Optional[int] = Field(alias="startOffset")
+    end_offset: Optional[int] = Field(alias="endOffset")
+    start_time: Optional[Any] = Field(alias="startTime")
+    end_time: Optional[Any] = Field(alias="endTime")
+    page_number: Optional[int] = Field(alias="pageNumber")
+    frame_number: Optional[int] = Field(alias="frameNumber")
+
+
+class LookupContentsLookupContentsResultsFactsEvidenceCitationsSource(BaseModel):
+    id: str
 
 
 class LookupContentsLookupContentsResultsWorkflow(BaseModel):
@@ -686,4 +728,7 @@ LookupContentsLookupContentsResultsPost.model_rebuild()
 LookupContentsLookupContentsResultsMeeting.model_rebuild()
 LookupContentsLookupContentsResultsObservations.model_rebuild()
 LookupContentsLookupContentsResultsObservationsOccurrences.model_rebuild()
+LookupContentsLookupContentsResultsFacts.model_rebuild()
+LookupContentsLookupContentsResultsFactsEvidence.model_rebuild()
+LookupContentsLookupContentsResultsFactsEvidenceCitations.model_rebuild()
 LookupContentsLookupContentsResultsPages.model_rebuild()

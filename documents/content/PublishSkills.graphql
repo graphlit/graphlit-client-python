@@ -5,12 +5,6 @@ mutation PublishSkills($filter: ContentFilter, $correlationId: String) {
       name
       state
       identifier
-      skillOwner
-      arguments {
-        name
-        description
-        required
-      }
       text
     }
   }

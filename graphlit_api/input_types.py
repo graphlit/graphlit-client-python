@@ -851,6 +851,7 @@ class MedicalDrugClassInput(BaseModel):
 class SkillUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
+    uri: Optional[Any] = None
     identifier: Optional[str] = None
     text: Optional[str] = None
     description: Optional[str] = None
@@ -4127,6 +4128,7 @@ class DeepseekModelPropertiesUpdateInput(BaseModel):
 
 class SkillInput(BaseModel):
     name: str
+    uri: Optional[Any] = None
     identifier: Optional[str] = None
     text: str
     skill_owner: Optional[EntityOwners] = Field(alias="skillOwner", default=None)

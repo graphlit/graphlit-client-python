@@ -6,7 +6,14 @@ from typing import Any, Optional
 from pydantic import Field
 
 from .base_model import BaseModel
-from .enums import EntityState, FactCategory, ObservableTypes, SourceTypes
+from .enums import (
+    EntityState,
+    FactCategory,
+    FactCitationSourceTypes,
+    FactEvidenceTypes,
+    ObservableTypes,
+    SourceTypes,
+)
 
 
 class QueryFactsClusters(BaseModel):
@@ -34,8 +41,10 @@ class QueryFactsClustersFactsResults(BaseModel):
     conversation: Optional["QueryFactsClustersFactsResultsConversation"]
     persona: Optional["QueryFactsClustersFactsResultsPersona"]
     source_type: Optional[SourceTypes] = Field(alias="sourceType")
+    kind: Optional[str]
     category: Optional[FactCategory]
     confidence: Optional[float]
+    evidence: Optional[list[Optional["QueryFactsClustersFactsResultsEvidence"]]]
 
 
 class QueryFactsClustersFactsResultsOwner(BaseModel):
@@ -93,6 +102,42 @@ class QueryFactsClustersFactsResultsPersona(BaseModel):
     name: str
 
 
+class QueryFactsClustersFactsResultsEvidence(BaseModel):
+    type: Optional[FactEvidenceTypes]
+    entity: Optional["QueryFactsClustersFactsResultsEvidenceEntity"]
+    text: Optional[str]
+    confidence: Optional[float]
+    citations: Optional[
+        list[Optional["QueryFactsClustersFactsResultsEvidenceCitations"]]
+    ]
+
+
+class QueryFactsClustersFactsResultsEvidenceEntity(BaseModel):
+    id: str
+
+
+class QueryFactsClustersFactsResultsEvidenceCitations(BaseModel):
+    source_type: Optional[FactCitationSourceTypes] = Field(alias="sourceType")
+    source: Optional["QueryFactsClustersFactsResultsEvidenceCitationsSource"]
+    uri: Optional[str]
+    title: Optional[str]
+    index: Optional[int]
+    text: Optional[str]
+    metadata: Optional[str]
+    relevance: Optional[float]
+    confidence: Optional[float]
+    start_offset: Optional[int] = Field(alias="startOffset")
+    end_offset: Optional[int] = Field(alias="endOffset")
+    start_time: Optional[Any] = Field(alias="startTime")
+    end_time: Optional[Any] = Field(alias="endTime")
+    page_number: Optional[int] = Field(alias="pageNumber")
+    frame_number: Optional[int] = Field(alias="frameNumber")
+
+
+class QueryFactsClustersFactsResultsEvidenceCitationsSource(BaseModel):
+    id: str
+
+
 class QueryFactsClustersFactsClusters(BaseModel):
     entities: list["QueryFactsClustersFactsClustersEntities"]
     similarity: Optional[float]
@@ -109,4 +154,6 @@ QueryFactsClustersFactsResults.model_rebuild()
 QueryFactsClustersFactsResultsMentions.model_rebuild()
 QueryFactsClustersFactsResultsAssertions.model_rebuild()
 QueryFactsClustersFactsResultsAssertionsMentions.model_rebuild()
+QueryFactsClustersFactsResultsEvidence.model_rebuild()
+QueryFactsClustersFactsResultsEvidenceCitations.model_rebuild()
 QueryFactsClustersFactsClusters.model_rebuild()
