@@ -654,8 +654,9 @@ class QueryAgentsAgentsResultsTargetsConnectorDiscord(BaseModel):
 
 
 class QueryAgentsAgentsResultsTargetsConnectorMicrosoftTeams(BaseModel):
-    team_id: str = Field(alias="teamId")
-    channel_id: str = Field(alias="channelId")
+    chat_id: Optional[str] = Field(alias="chatId")
+    team_id: Optional[str] = Field(alias="teamId")
+    channel_id: Optional[str] = Field(alias="channelId")
     thread_id: Optional[str] = Field(alias="threadId")
 
 

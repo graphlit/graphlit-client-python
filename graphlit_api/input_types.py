@@ -695,8 +695,9 @@ class AttioDistributionPropertiesInput(BaseModel):
 
 
 class MicrosoftTeamsDistributionPropertiesInput(BaseModel):
-    team_id: str = Field(alias="teamId")
-    channel_id: str = Field(alias="channelId")
+    chat_id: Optional[str] = Field(alias="chatId", default=None)
+    team_id: Optional[str] = Field(alias="teamId", default=None)
+    channel_id: Optional[str] = Field(alias="channelId", default=None)
     thread_id: Optional[str] = Field(alias="threadId", default=None)
 
 
@@ -2125,6 +2126,16 @@ class ConfluenceFeedPropertiesUpdateInput(BaseModel):
         alias="includeAttachments", default=None
     )
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
+
+
+class MicrosoftTeamsChatsInput(BaseModel):
+    authentication_type: Optional[MicrosoftTeamsAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
 
 
 class BoxFoldersInput(BaseModel):
@@ -8024,6 +8035,7 @@ StorageGateInput.model_rebuild()
 CrustdataEntityFeedPropertiesInput.model_rebuild()
 LinearProjectsInput.model_rebuild()
 ConfluenceFeedPropertiesUpdateInput.model_rebuild()
+MicrosoftTeamsChatsInput.model_rebuild()
 BoxFoldersInput.model_rebuild()
 ContentFilterLevel.model_rebuild()
 RepoFilter.model_rebuild()

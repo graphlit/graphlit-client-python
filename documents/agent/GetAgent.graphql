@@ -389,6 +389,7 @@ query GetAgent($id: ID!, $correlationId: String) {
           threadId
         }
         microsoftTeams {
+          chatId
           teamId
           channelId
           threadId
