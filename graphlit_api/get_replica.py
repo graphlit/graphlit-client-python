@@ -10,6 +10,7 @@ from .enums import (
     ConnectorTypes,
     ContentTypes,
     ConversationTypes,
+    EntityOwners,
     EntityState,
     EntityTypes,
     FileTypes,
@@ -36,6 +37,7 @@ class GetReplicaReplica(BaseModel):
     type: Optional[EntityTypes]
     content: Optional["GetReplicaReplicaContent"]
     conversation: Optional["GetReplicaReplicaConversation"]
+    skill: Optional["GetReplicaReplicaSkill"]
     git: Optional["GetReplicaReplicaGit"]
     connector: "GetReplicaReplicaConnector"
     marker_slug: Optional[str] = Field(alias="markerSlug")
@@ -270,6 +272,38 @@ class GetReplicaReplicaConversationFilterObservationsObservable(BaseModel):
     id: str
 
 
+class GetReplicaReplicaSkill(BaseModel):
+    filter: Optional["GetReplicaReplicaSkillFilter"]
+
+
+class GetReplicaReplicaSkillFilter(BaseModel):
+    skill_owners: Optional[list[EntityOwners]] = Field(alias="skillOwners")
+    skills: Optional[list["GetReplicaReplicaSkillFilterSkills"]]
+    exclude_skills: Optional[list["GetReplicaReplicaSkillFilterExcludeSkills"]] = Field(
+        alias="excludeSkills"
+    )
+    feeds: Optional[list["GetReplicaReplicaSkillFilterFeeds"]]
+    has_feeds: Optional[bool] = Field(alias="hasFeeds")
+    collections: Optional[list["GetReplicaReplicaSkillFilterCollections"]]
+    has_collections: Optional[bool] = Field(alias="hasCollections")
+
+
+class GetReplicaReplicaSkillFilterSkills(BaseModel):
+    id: str
+
+
+class GetReplicaReplicaSkillFilterExcludeSkills(BaseModel):
+    id: str
+
+
+class GetReplicaReplicaSkillFilterFeeds(BaseModel):
+    id: str
+
+
+class GetReplicaReplicaSkillFilterCollections(BaseModel):
+    id: str
+
+
 class GetReplicaReplicaGit(BaseModel):
     branch_type: Optional[ReplicaBranchTypes] = Field(alias="branchType")
     branch: Optional[str]
@@ -306,3 +340,5 @@ GetReplicaReplicaContentFilterAndObservations.model_rebuild()
 GetReplicaReplicaConversation.model_rebuild()
 GetReplicaReplicaConversationFilter.model_rebuild()
 GetReplicaReplicaConversationFilterObservations.model_rebuild()
+GetReplicaReplicaSkill.model_rebuild()
+GetReplicaReplicaSkillFilter.model_rebuild()

@@ -1116,6 +1116,20 @@ class NotionFeedPropertiesInput(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
+class SkillCriteriaInput(BaseModel):
+    skill_owners: Optional[list[EntityOwners]] = Field(
+        alias="skillOwners", default=None
+    )
+    skills: Optional[list["EntityReferenceInput"]] = None
+    exclude_skills: Optional[list["EntityReferenceInput"]] = Field(
+        alias="excludeSkills", default=None
+    )
+    feeds: Optional[list["EntityReferenceInput"]] = None
+    has_feeds: Optional[bool] = Field(alias="hasFeeds", default=None)
+    collections: Optional[list["EntityReferenceInput"]] = None
+    has_collections: Optional[bool] = Field(alias="hasCollections", default=None)
+
+
 class RepoInput(BaseModel):
     name: str
     uri: Optional[Any] = None
@@ -1810,6 +1824,7 @@ class ReplicaInput(BaseModel):
     type: EntityTypes
     content: Optional["ReplicaContentPropertiesInput"] = None
     conversation: Optional["ReplicaConversationPropertiesInput"] = None
+    skill: Optional["ReplicaSkillPropertiesInput"] = None
     git: Optional["ReplicaGitPropertiesInput"] = None
     connector: "EntityReferenceInput"
     marker_slug: Optional[str] = Field(alias="markerSlug", default=None)
@@ -6874,6 +6889,10 @@ class ConversationToolCallInput(BaseModel):
     first_status_at: Optional[Any] = Field(alias="firstStatusAt", default=None)
 
 
+class ReplicaSkillPropertiesInput(BaseModel):
+    filter: Optional["SkillCriteriaInput"] = None
+
+
 class AgentHeartbeatProbeThresholdsInput(BaseModel):
     new_content_min: Optional[float] = Field(alias="newContentMin", default=None)
     volume_spike_multiplier: Optional[float] = Field(
@@ -6963,6 +6982,7 @@ class ReplicaUpdateInput(BaseModel):
     type: Optional[EntityTypes] = None
     content: Optional["ReplicaContentPropertiesInput"] = None
     conversation: Optional["ReplicaConversationPropertiesInput"] = None
+    skill: Optional["ReplicaSkillPropertiesInput"] = None
     git: Optional["ReplicaGitPropertiesInput"] = None
     connector: Optional["EntityReferenceInput"] = None
     marker_slug: Optional[str] = Field(alias="markerSlug", default=None)
@@ -7760,6 +7780,8 @@ class RepoFacetInput(BaseModel):
 
 
 class TwitterDistributionPropertiesInput(BaseModel):
+    post_id: Optional[str] = Field(alias="postId", default=None)
+    post_uri: Optional[str] = Field(alias="postUri", default=None)
     reply_to_tweet_id: Optional[str] = Field(alias="replyToTweetId", default=None)
 
 
@@ -7961,6 +7983,7 @@ GoogleDriveFoldersInput.model_rebuild()
 QuiverImagePublishingPropertiesInput.model_rebuild()
 GitLabMilestonesFeedPropertiesInput.model_rebuild()
 NotionFeedPropertiesInput.model_rebuild()
+SkillCriteriaInput.model_rebuild()
 RepoInput.model_rebuild()
 SpecificationInput.model_rebuild()
 MicrosoftEmailFeedPropertiesUpdateInput.model_rebuild()
@@ -8217,6 +8240,7 @@ IntercomConversationsFeedPropertiesUpdateInput.model_rebuild()
 EnrichmentWorkflowJobInput.model_rebuild()
 EntityFeedPropertiesUpdateInput.model_rebuild()
 MedicalDrugClassUpdateInput.model_rebuild()
+ReplicaSkillPropertiesInput.model_rebuild()
 IntercomConversationsFeedPropertiesInput.model_rebuild()
 MedicalTestFilter.model_rebuild()
 ReplicaUpdateInput.model_rebuild()

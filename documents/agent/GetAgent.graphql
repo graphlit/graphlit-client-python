@@ -394,6 +394,8 @@ query GetAgent($id: ID!, $correlationId: String) {
           threadId
         }
         twitter {
+          postId
+          postUri
           replyToTweetId
         }
         github {

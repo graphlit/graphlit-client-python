@@ -10,6 +10,7 @@ from .enums import (
     ConnectorTypes,
     ContentTypes,
     ConversationTypes,
+    EntityOwners,
     EntityState,
     EntityTypes,
     FileTypes,
@@ -40,6 +41,7 @@ class QueryReplicasReplicasResults(BaseModel):
     type: Optional[EntityTypes]
     content: Optional["QueryReplicasReplicasResultsContent"]
     conversation: Optional["QueryReplicasReplicasResultsConversation"]
+    skill: Optional["QueryReplicasReplicasResultsSkill"]
     git: Optional["QueryReplicasReplicasResultsGit"]
     connector: "QueryReplicasReplicasResultsConnector"
     marker_slug: Optional[str] = Field(alias="markerSlug")
@@ -290,6 +292,38 @@ class QueryReplicasReplicasResultsConversationFilterObservationsObservable(BaseM
     id: str
 
 
+class QueryReplicasReplicasResultsSkill(BaseModel):
+    filter: Optional["QueryReplicasReplicasResultsSkillFilter"]
+
+
+class QueryReplicasReplicasResultsSkillFilter(BaseModel):
+    skill_owners: Optional[list[EntityOwners]] = Field(alias="skillOwners")
+    skills: Optional[list["QueryReplicasReplicasResultsSkillFilterSkills"]]
+    exclude_skills: Optional[
+        list["QueryReplicasReplicasResultsSkillFilterExcludeSkills"]
+    ] = Field(alias="excludeSkills")
+    feeds: Optional[list["QueryReplicasReplicasResultsSkillFilterFeeds"]]
+    has_feeds: Optional[bool] = Field(alias="hasFeeds")
+    collections: Optional[list["QueryReplicasReplicasResultsSkillFilterCollections"]]
+    has_collections: Optional[bool] = Field(alias="hasCollections")
+
+
+class QueryReplicasReplicasResultsSkillFilterSkills(BaseModel):
+    id: str
+
+
+class QueryReplicasReplicasResultsSkillFilterExcludeSkills(BaseModel):
+    id: str
+
+
+class QueryReplicasReplicasResultsSkillFilterFeeds(BaseModel):
+    id: str
+
+
+class QueryReplicasReplicasResultsSkillFilterCollections(BaseModel):
+    id: str
+
+
 class QueryReplicasReplicasResultsGit(BaseModel):
     branch_type: Optional[ReplicaBranchTypes] = Field(alias="branchType")
     branch: Optional[str]
@@ -327,3 +361,5 @@ QueryReplicasReplicasResultsContentFilterAndObservations.model_rebuild()
 QueryReplicasReplicasResultsConversation.model_rebuild()
 QueryReplicasReplicasResultsConversationFilter.model_rebuild()
 QueryReplicasReplicasResultsConversationFilterObservations.model_rebuild()
+QueryReplicasReplicasResultsSkill.model_rebuild()
+QueryReplicasReplicasResultsSkillFilter.model_rebuild()

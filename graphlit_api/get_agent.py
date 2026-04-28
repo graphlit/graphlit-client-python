@@ -650,6 +650,8 @@ class GetAgentAgentTargetsConnectorMicrosoftTeams(BaseModel):
 
 
 class GetAgentAgentTargetsConnectorTwitter(BaseModel):
+    post_id: Optional[str] = Field(alias="postId")
+    post_uri: Optional[str] = Field(alias="postUri")
     reply_to_tweet_id: Optional[str] = Field(alias="replyToTweetId")
 
 

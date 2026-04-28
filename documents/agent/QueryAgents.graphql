@@ -393,6 +393,8 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
             threadId
           }
           twitter {
+            postId
+            postUri
             replyToTweetId
           }
           github {

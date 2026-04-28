@@ -10,6 +10,7 @@ from .enums import (
     ConnectorTypes,
     ContentTypes,
     ConversationTypes,
+    EntityOwners,
     EntityState,
     EntityTypes,
     FileTypes,
@@ -34,6 +35,7 @@ class UpsertReplicaUpsertReplica(BaseModel):
     type: Optional[EntityTypes]
     content: Optional["UpsertReplicaUpsertReplicaContent"]
     conversation: Optional["UpsertReplicaUpsertReplicaConversation"]
+    skill: Optional["UpsertReplicaUpsertReplicaSkill"]
     git: Optional["UpsertReplicaUpsertReplicaGit"]
     connector: "UpsertReplicaUpsertReplicaConnector"
     marker_slug: Optional[str] = Field(alias="markerSlug")
@@ -272,6 +274,38 @@ class UpsertReplicaUpsertReplicaConversationFilterObservationsObservable(BaseMod
     id: str
 
 
+class UpsertReplicaUpsertReplicaSkill(BaseModel):
+    filter: Optional["UpsertReplicaUpsertReplicaSkillFilter"]
+
+
+class UpsertReplicaUpsertReplicaSkillFilter(BaseModel):
+    skill_owners: Optional[list[EntityOwners]] = Field(alias="skillOwners")
+    skills: Optional[list["UpsertReplicaUpsertReplicaSkillFilterSkills"]]
+    exclude_skills: Optional[
+        list["UpsertReplicaUpsertReplicaSkillFilterExcludeSkills"]
+    ] = Field(alias="excludeSkills")
+    feeds: Optional[list["UpsertReplicaUpsertReplicaSkillFilterFeeds"]]
+    has_feeds: Optional[bool] = Field(alias="hasFeeds")
+    collections: Optional[list["UpsertReplicaUpsertReplicaSkillFilterCollections"]]
+    has_collections: Optional[bool] = Field(alias="hasCollections")
+
+
+class UpsertReplicaUpsertReplicaSkillFilterSkills(BaseModel):
+    id: str
+
+
+class UpsertReplicaUpsertReplicaSkillFilterExcludeSkills(BaseModel):
+    id: str
+
+
+class UpsertReplicaUpsertReplicaSkillFilterFeeds(BaseModel):
+    id: str
+
+
+class UpsertReplicaUpsertReplicaSkillFilterCollections(BaseModel):
+    id: str
+
+
 class UpsertReplicaUpsertReplicaGit(BaseModel):
     branch_type: Optional[ReplicaBranchTypes] = Field(alias="branchType")
     branch: Optional[str]
@@ -308,3 +342,5 @@ UpsertReplicaUpsertReplicaContentFilterAndObservations.model_rebuild()
 UpsertReplicaUpsertReplicaConversation.model_rebuild()
 UpsertReplicaUpsertReplicaConversationFilter.model_rebuild()
 UpsertReplicaUpsertReplicaConversationFilterObservations.model_rebuild()
+UpsertReplicaUpsertReplicaSkill.model_rebuild()
+UpsertReplicaUpsertReplicaSkillFilter.model_rebuild()

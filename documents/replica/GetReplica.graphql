@@ -136,6 +136,25 @@ query GetReplica($id: ID!, $correlationId: String) {
         observationMode
       }
     }
+    skill {
+      filter {
+        skillOwners
+        skills {
+          id
+        }
+        excludeSkills {
+          id
+        }
+        feeds {
+          id
+        }
+        hasFeeds
+        collections {
+          id
+        }
+        hasCollections
+      }
+    }
     git {
       branchType
       branch

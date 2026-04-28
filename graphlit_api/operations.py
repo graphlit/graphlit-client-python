@@ -971,6 +971,8 @@ query GetAgent($id: ID!, $correlationId: String) {
           threadId
         }
         twitter {
+          postId
+          postUri
           replyToTweetId
         }
         github {
@@ -1406,6 +1408,8 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
             threadId
           }
           twitter {
+            postId
+            postUri
             replyToTweetId
           }
           github {
@@ -19248,6 +19252,25 @@ mutation CreateReplica($replica: ReplicaInput!) {
         observationMode
       }
     }
+    skill {
+      filter {
+        skillOwners
+        skills {
+          id
+        }
+        excludeSkills {
+          id
+        }
+        feeds {
+          id
+        }
+        hasFeeds
+        collections {
+          id
+        }
+        hasCollections
+      }
+    }
     git {
       branchType
       branch
@@ -19474,6 +19497,25 @@ query GetReplica($id: ID!, $correlationId: String) {
         observationMode
       }
     }
+    skill {
+      filter {
+        skillOwners
+        skills {
+          id
+        }
+        excludeSkills {
+          id
+        }
+        feeds {
+          id
+        }
+        hasFeeds
+        collections {
+          id
+        }
+        hasCollections
+      }
+    }
     git {
       branchType
       branch
@@ -19648,6 +19690,25 @@ query QueryReplicas($filter: ReplicaFilter, $correlationId: String) {
           hasObservations
           collectionMode
           observationMode
+        }
+      }
+      skill {
+        filter {
+          skillOwners
+          skills {
+            id
+          }
+          excludeSkills {
+            id
+          }
+          feeds {
+            id
+          }
+          hasFeeds
+          collections {
+            id
+          }
+          hasCollections
         }
       }
       git {
@@ -19837,6 +19898,25 @@ mutation UpdateReplica($replica: ReplicaUpdateInput!) {
         observationMode
       }
     }
+    skill {
+      filter {
+        skillOwners
+        skills {
+          id
+        }
+        excludeSkills {
+          id
+        }
+        feeds {
+          id
+        }
+        hasFeeds
+        collections {
+          id
+        }
+        hasCollections
+      }
+    }
     git {
       branchType
       branch
@@ -20004,6 +20084,25 @@ mutation UpsertReplica($replica: ReplicaInput!) {
         hasObservations
         collectionMode
         observationMode
+      }
+    }
+    skill {
+      filter {
+        skillOwners
+        skills {
+          id
+        }
+        excludeSkills {
+          id
+        }
+        feeds {
+          id
+        }
+        hasFeeds
+        collections {
+          id
+        }
+        hasCollections
       }
     }
     git {
