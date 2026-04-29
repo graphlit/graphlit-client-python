@@ -2128,16 +2128,6 @@ class ConfluenceFeedPropertiesUpdateInput(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
-class MicrosoftTeamsChatsInput(BaseModel):
-    authentication_type: Optional[MicrosoftTeamsAuthenticationTypes] = Field(
-        alias="authenticationType", default=None
-    )
-    client_id: Optional[str] = Field(alias="clientId", default=None)
-    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
-    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
-    connector: Optional["EntityReferenceInput"] = None
-
-
 class BoxFoldersInput(BaseModel):
     authentication_type: Optional[BoxAuthenticationTypes] = Field(
         alias="authenticationType", default=None
@@ -8035,7 +8025,6 @@ StorageGateInput.model_rebuild()
 CrustdataEntityFeedPropertiesInput.model_rebuild()
 LinearProjectsInput.model_rebuild()
 ConfluenceFeedPropertiesUpdateInput.model_rebuild()
-MicrosoftTeamsChatsInput.model_rebuild()
 BoxFoldersInput.model_rebuild()
 ContentFilterLevel.model_rebuild()
 RepoFilter.model_rebuild()
