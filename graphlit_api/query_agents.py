@@ -487,6 +487,8 @@ class QueryAgentsAgentsResultsTargetsConnector(BaseModel):
     ] = Field(alias="microsoftCalendar")
     linear: Optional["QueryAgentsAgentsResultsTargetsConnectorLinear"]
     jira: Optional["QueryAgentsAgentsResultsTargetsConnectorJira"]
+    zendesk: Optional["QueryAgentsAgentsResultsTargetsConnectorZendesk"]
+    intercom: Optional["QueryAgentsAgentsResultsTargetsConnectorIntercom"]
     google_docs: Optional["QueryAgentsAgentsResultsTargetsConnectorGoogleDocs"] = Field(
         alias="googleDocs"
     )
@@ -631,6 +633,41 @@ class QueryAgentsAgentsResultsTargetsConnectorJira(BaseModel):
     assignee_id: Optional[str] = Field(alias="assigneeId")
     labels: Optional[list[str]]
     status: Optional[str]
+
+
+class QueryAgentsAgentsResultsTargetsConnectorZendesk(BaseModel):
+    ticket_id: Optional[str] = Field(alias="ticketId")
+    ticket_uri: Optional[str] = Field(alias="ticketUri")
+    subdomain: Optional[str]
+    subject: Optional[str]
+    priority: Optional[str]
+    status: Optional[str]
+    type: Optional[str]
+    assignee_id: Optional[str] = Field(alias="assigneeId")
+    group_id: Optional[str] = Field(alias="groupId")
+    tags: Optional[list[str]]
+    visibility: Optional[str]
+
+
+class QueryAgentsAgentsResultsTargetsConnectorIntercom(BaseModel):
+    ticket_id: Optional[str] = Field(alias="ticketId")
+    ticket_uri: Optional[str] = Field(alias="ticketUri")
+    ticket_type_id: Optional[str] = Field(alias="ticketTypeId")
+    contact_id: Optional[str] = Field(alias="contactId")
+    contact_external_id: Optional[str] = Field(alias="contactExternalId")
+    contact_email: Optional[str] = Field(alias="contactEmail")
+    conversation_to_link_id: Optional[str] = Field(alias="conversationToLinkId")
+    company_id: Optional[str] = Field(alias="companyId")
+    admin_id: Optional[str] = Field(alias="adminId")
+    title: Optional[str]
+    state_id: Optional[str] = Field(alias="stateId")
+    state: Optional[str]
+    assignee_id: Optional[str] = Field(alias="assigneeId")
+    team_id: Optional[str] = Field(alias="teamId")
+    tag_ids: Optional[list[str]] = Field(alias="tagIds")
+    visibility: Optional[str]
+    is_shared: Optional[bool] = Field(alias="isShared")
+    skip_notifications: Optional[bool] = Field(alias="skipNotifications")
 
 
 class QueryAgentsAgentsResultsTargetsConnectorGoogleDocs(BaseModel):

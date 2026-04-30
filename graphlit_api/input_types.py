@@ -1608,6 +1608,8 @@ class DistributionConnectorInput(BaseModel):
     )
     linear: Optional["LinearDistributionPropertiesInput"] = None
     jira: Optional["JiraDistributionPropertiesInput"] = None
+    zendesk: Optional["ZendeskDistributionPropertiesInput"] = None
+    intercom: Optional["IntercomDistributionPropertiesInput"] = None
     google_docs: Optional["GoogleDocsDistributionPropertiesInput"] = Field(
         alias="googleDocs", default=None
     )
@@ -2003,6 +2005,20 @@ class AttioMeetingPropertiesInput(BaseModel):
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     type: Optional[FeedListingTypes] = None
+
+
+class ZendeskDistributionPropertiesInput(BaseModel):
+    ticket_id: Optional[str] = Field(alias="ticketId", default=None)
+    ticket_uri: Optional[str] = Field(alias="ticketUri", default=None)
+    subdomain: Optional[str] = None
+    subject: Optional[str] = None
+    priority: Optional[str] = None
+    status: Optional[str] = None
+    type: Optional[str] = None
+    assignee_id: Optional[str] = Field(alias="assigneeId", default=None)
+    group_id: Optional[str] = Field(alias="groupId", default=None)
+    tags: Optional[list[str]] = None
+    visibility: Optional[str] = None
 
 
 class AgentChannelInput(BaseModel):
@@ -3697,6 +3713,29 @@ class VoyageModelPropertiesInput(BaseModel):
     model_name: Optional[str] = Field(alias="modelName", default=None)
     key: Optional[str] = None
     chunk_token_limit: Optional[int] = Field(alias="chunkTokenLimit", default=None)
+
+
+class IntercomDistributionPropertiesInput(BaseModel):
+    ticket_id: Optional[str] = Field(alias="ticketId", default=None)
+    ticket_uri: Optional[str] = Field(alias="ticketUri", default=None)
+    ticket_type_id: Optional[str] = Field(alias="ticketTypeId", default=None)
+    contact_id: Optional[str] = Field(alias="contactId", default=None)
+    contact_external_id: Optional[str] = Field(alias="contactExternalId", default=None)
+    contact_email: Optional[str] = Field(alias="contactEmail", default=None)
+    conversation_to_link_id: Optional[str] = Field(
+        alias="conversationToLinkId", default=None
+    )
+    company_id: Optional[str] = Field(alias="companyId", default=None)
+    admin_id: Optional[str] = Field(alias="adminId", default=None)
+    title: Optional[str] = None
+    state_id: Optional[str] = Field(alias="stateId", default=None)
+    state: Optional[str] = None
+    assignee_id: Optional[str] = Field(alias="assigneeId", default=None)
+    team_id: Optional[str] = Field(alias="teamId", default=None)
+    tag_ids: Optional[list[str]] = Field(alias="tagIds", default=None)
+    visibility: Optional[str] = None
+    is_shared: Optional[bool] = Field(alias="isShared", default=None)
+    skip_notifications: Optional[bool] = Field(alias="skipNotifications", default=None)
 
 
 class ReplicaConversationPropertiesInput(BaseModel):
