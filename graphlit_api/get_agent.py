@@ -19,6 +19,7 @@ from .enums import (
     EntityState,
     FileTypes,
     FilterMode,
+    LinkedInPostTypes,
     ObservableTypes,
     TimedPolicyRecurrenceTypes,
 )
@@ -492,6 +493,9 @@ class GetAgentAgentTargetsConnector(BaseModel):
     twitter: Optional["GetAgentAgentTargetsConnectorTwitter"]
     github: Optional["GetAgentAgentTargetsConnectorGithub"]
     gitlab: Optional["GetAgentAgentTargetsConnectorGitlab"]
+    linked_in: Optional["GetAgentAgentTargetsConnectorLinkedIn"] = Field(
+        alias="linkedIn"
+    )
     attio_tasks: Optional["GetAgentAgentTargetsConnectorAttioTasks"] = Field(
         alias="attioTasks"
     )
@@ -671,6 +675,11 @@ class GetAgentAgentTargetsConnectorGitlab(BaseModel):
     labels: Optional[list[str]]
     assignees: Optional[list[str]]
     milestone: Optional[int]
+
+
+class GetAgentAgentTargetsConnectorLinkedIn(BaseModel):
+    post_type: Optional[LinkedInPostTypes] = Field(alias="postType")
+    visibility: Optional[str]
 
 
 class GetAgentAgentTargetsConnectorAttioTasks(BaseModel):

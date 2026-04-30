@@ -413,6 +413,10 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
             assignees
             milestone
           }
+          linkedIn {
+            postType
+            visibility
+          }
           attioTasks {
             title
             assignees

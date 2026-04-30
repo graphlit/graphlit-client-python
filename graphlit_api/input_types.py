@@ -122,6 +122,7 @@ from .enums import (
     LinearAuthenticationTypes,
     LinkedInPostContentTypes,
     LinkedInPostListingTypes,
+    LinkedInPostTypes,
     LinkedInSearchDateTypes,
     LinkTypes,
     MailImportance,
@@ -889,6 +890,11 @@ class EmailFeedPropertiesUpdateInput(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
+class LinkedInDistributionPropertiesInput(BaseModel):
+    post_type: Optional[LinkedInPostTypes] = Field(alias="postType", default=None)
+    visibility: Optional[str] = None
+
+
 class MistralModelPropertiesInput(BaseModel):
     model: MistralModels
     model_name: Optional[str] = Field(alias="modelName", default=None)
@@ -1618,6 +1624,9 @@ class DistributionConnectorInput(BaseModel):
     twitter: Optional["TwitterDistributionPropertiesInput"] = None
     github: Optional["GitHubDistributionPropertiesInput"] = None
     gitlab: Optional["GitLabDistributionPropertiesInput"] = None
+    linked_in: Optional["LinkedInDistributionPropertiesInput"] = Field(
+        alias="linkedIn", default=None
+    )
     attio_tasks: Optional["AttioTasksDistributionPropertiesInput"] = Field(
         alias="attioTasks", default=None
     )

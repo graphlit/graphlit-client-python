@@ -251,6 +251,7 @@ class DistributionServiceTypes(str, Enum):
     TWITTER = "TWITTER"
     GIT_HUB = "GIT_HUB"
     GIT_LAB = "GIT_LAB"
+    LINKED_IN = "LINKED_IN"
     ATTIO_TASKS = "ATTIO_TASKS"
 
 
@@ -303,6 +304,12 @@ class CalendarReminderMethod(str, Enum):
 class SearchQueryTypes(str, Enum):
     SIMPLE = "SIMPLE"
     FULL = "FULL"
+
+
+class LinkedInPostTypes(str, Enum):
+    TEXT = "TEXT"
+    IMAGE = "IMAGE"
+    DOCUMENT = "DOCUMENT"
 
 
 class GoogleDriveAuthenticationTypes(str, Enum):
@@ -994,6 +1001,7 @@ class OAuthProviders(str, Enum):
     SALESFORCE = "SALESFORCE"
     LINEAR = "LINEAR"
     TWITTER = "TWITTER"
+    LINKED_IN = "LINKED_IN"
     ZOOM = "ZOOM"
 
 

@@ -414,6 +414,10 @@ query GetAgent($id: ID!, $correlationId: String) {
           assignees
           milestone
         }
+        linkedIn {
+          postType
+          visibility
+        }
         attioTasks {
           title
           assignees

@@ -991,6 +991,10 @@ query GetAgent($id: ID!, $correlationId: String) {
           assignees
           milestone
         }
+        linkedIn {
+          postType
+          visibility
+        }
         attioTasks {
           title
           assignees
@@ -1428,6 +1432,10 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
             labels
             assignees
             milestone
+          }
+          linkedIn {
+            postType
+            visibility
           }
           attioTasks {
             title
