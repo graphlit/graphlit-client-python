@@ -617,6 +617,7 @@ class GetAgentAgentTargetsConnectorJira(BaseModel):
     issue_key: Optional[str] = Field(alias="issueKey")
     issue_uri: Optional[str] = Field(alias="issueUri")
     project_key: Optional[str] = Field(alias="projectKey")
+    cloud_id: Optional[str] = Field(alias="cloudId")
     issue_type: Optional[str] = Field(alias="issueType")
     summary: Optional[str]
     priority: Optional[str]

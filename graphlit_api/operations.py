@@ -350,15 +350,23 @@ __all__ = [
     "QUERY_GUSTO_COMPANIES_GQL",
     "QUERY_GUSTO_DEPARTMENTS_GQL",
     "QUERY_GUSTO_LOCATIONS_GQL",
+    "QUERY_INTERCOM_ADMINS_GQL",
+    "QUERY_INTERCOM_CONTACTS_GQL",
+    "QUERY_INTERCOM_TAGS_GQL",
+    "QUERY_INTERCOM_TEAMS_GQL",
+    "QUERY_INTERCOM_TICKET_STATES_GQL",
+    "QUERY_INTERCOM_TICKET_TYPES_GQL",
     "QUERY_INVESTMENTS_CLUSTERS_GQL",
     "QUERY_INVESTMENTS_EXPANDED_GQL",
     "QUERY_INVESTMENTS_GQL",
     "QUERY_INVESTMENT_FUNDS_CLUSTERS_GQL",
     "QUERY_INVESTMENT_FUNDS_EXPANDED_GQL",
     "QUERY_INVESTMENT_FUNDS_GQL",
+    "QUERY_JIRA_ISSUE_TYPES_GQL",
     "QUERY_JIRA_PROJECTS_GQL",
     "QUERY_LABELS_GQL",
     "QUERY_LINEAR_PROJECTS_GQL",
+    "QUERY_LINEAR_TEAMS_GQL",
     "QUERY_MEDICAL_CONDITIONS_CLUSTERS_GQL",
     "QUERY_MEDICAL_CONDITIONS_GQL",
     "QUERY_MEDICAL_CONTRAINDICATIONS_CLUSTERS_GQL",
@@ -417,6 +425,8 @@ __all__ = [
     "QUERY_USERS_GQL",
     "QUERY_VIEWS_GQL",
     "QUERY_WORKFLOWS_GQL",
+    "QUERY_ZENDESK_GROUPS_GQL",
+    "QUERY_ZENDESK_USERS_GQL",
     "READ_GQL",
     "REJECT_CONTENT_GQL",
     "REMOVE_AGENTS_FROM_DESK_GQL",
@@ -938,6 +948,7 @@ query GetAgent($id: ID!, $correlationId: String) {
           issueKey
           issueUri
           projectKey
+          cloudId
           issueType
           summary
           priority
@@ -1413,6 +1424,7 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
             issueKey
             issueUri
             projectKey
+            cloudId
             issueType
             summary
             priority
@@ -13462,6 +13474,93 @@ query QueryGustoLocations($properties: GustoOptionsInput!) {
 }
 """
 
+QUERY_INTERCOM_ADMINS_GQL = """
+query QueryIntercomAdmins($properties: IntercomTicketsFeedPropertiesInput!, $query: String) {
+  intercomAdmins(properties: $properties, query: $query) {
+    results {
+      id
+      name
+      email
+    }
+  }
+}
+"""
+
+QUERY_INTERCOM_CONTACTS_GQL = """
+query QueryIntercomContacts($properties: IntercomTicketsFeedPropertiesInput!, $query: String) {
+  intercomContacts(properties: $properties, query: $query) {
+    results {
+      id
+      externalId
+      name
+      email
+    }
+  }
+}
+"""
+
+QUERY_INTERCOM_TAGS_GQL = """
+query QueryIntercomTags($properties: IntercomTicketsFeedPropertiesInput!, $query: String) {
+  intercomTags(properties: $properties, query: $query) {
+    results {
+      id
+      name
+    }
+  }
+}
+"""
+
+QUERY_INTERCOM_TEAMS_GQL = """
+query QueryIntercomTeams($properties: IntercomTicketsFeedPropertiesInput!, $query: String) {
+  intercomTeams(properties: $properties, query: $query) {
+    results {
+      id
+      name
+    }
+  }
+}
+"""
+
+QUERY_INTERCOM_TICKET_STATES_GQL = """
+query QueryIntercomTicketStates($properties: IntercomTicketsFeedPropertiesInput!, $ticketTypeId: String, $query: String) {
+  intercomTicketStates(
+    properties: $properties
+    ticketTypeId: $ticketTypeId
+    query: $query
+  ) {
+    results {
+      id
+      name
+      type
+    }
+  }
+}
+"""
+
+QUERY_INTERCOM_TICKET_TYPES_GQL = """
+query QueryIntercomTicketTypes($properties: IntercomTicketsFeedPropertiesInput!, $query: String) {
+  intercomTicketTypes(properties: $properties, query: $query) {
+    results {
+      id
+      name
+      description
+    }
+  }
+}
+"""
+
+QUERY_JIRA_ISSUE_TYPES_GQL = """
+query QueryJiraIssueTypes($properties: JiraIssueTypesInput!) {
+  jiraIssueTypes(properties: $properties) {
+    results {
+      id
+      name
+      description
+    }
+  }
+}
+"""
+
 QUERY_JIRA_PROJECTS_GQL = """
 query QueryJiraProjects($properties: JiraProjectsInput!) {
   jiraProjects(properties: $properties) {
@@ -13477,7 +13576,25 @@ query QueryJiraProjects($properties: JiraProjectsInput!) {
 QUERY_LINEAR_PROJECTS_GQL = """
 query QueryLinearProjects($properties: LinearProjectsInput!) {
   linearProjects(properties: $properties) {
-    results
+    results {
+      id
+      name
+      teamId
+      teamKey
+      teamName
+    }
+  }
+}
+"""
+
+QUERY_LINEAR_TEAMS_GQL = """
+query QueryLinearTeams($properties: LinearTeamsInput!) {
+  linearTeams(properties: $properties) {
+    results {
+      id
+      key
+      name
+    }
   }
 }
 """
@@ -13604,6 +13721,30 @@ query QuerySlackUsers($properties: SlackChannelsInput!) {
       displayName
       realName
       email
+    }
+  }
+}
+"""
+
+QUERY_ZENDESK_GROUPS_GQL = """
+query QueryZendeskGroups($properties: ZendeskDiscoveryInput!, $query: String) {
+  zendeskGroups(properties: $properties, query: $query) {
+    results {
+      id
+      name
+    }
+  }
+}
+"""
+
+QUERY_ZENDESK_USERS_GQL = """
+query QueryZendeskUsers($properties: ZendeskDiscoveryInput!, $query: String) {
+  zendeskUsers(properties: $properties, query: $query) {
+    results {
+      id
+      name
+      email
+      role
     }
   }
 }

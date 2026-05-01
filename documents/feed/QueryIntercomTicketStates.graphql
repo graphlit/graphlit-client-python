@@ -1,0 +1,9 @@
+query QueryIntercomTicketStates($properties: IntercomTicketsFeedPropertiesInput!, $ticketTypeId: String, $query: String) {
+  intercomTicketStates(properties: $properties, ticketTypeId: $ticketTypeId, query: $query) {
+    results {
+      id
+      name
+      type
+    }
+  }
+}

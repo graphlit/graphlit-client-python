@@ -1,0 +1,9 @@
+query QueryLinearTeams($properties: LinearTeamsInput!) {
+  linearTeams(properties: $properties) {
+    results {
+      id
+      key
+      name
+    }
+  }
+}

@@ -1,0 +1,9 @@
+query QueryJiraIssueTypes($properties: JiraIssueTypesInput!) {
+  jiraIssueTypes(properties: $properties) {
+    results {
+      id
+      name
+      description
+    }
+  }
+}

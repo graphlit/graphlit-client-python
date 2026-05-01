@@ -372,17 +372,20 @@ from .input_types import (
     GustoCompaniesInput,
     GustoOptionsInput,
     IntegrationConnectorInput,
+    IntercomTicketsFeedPropertiesInput,
     InvestmentFilter,
     InvestmentFundFilter,
     InvestmentFundInput,
     InvestmentFundUpdateInput,
     InvestmentInput,
     InvestmentUpdateInput,
+    JiraIssueTypesInput,
     JiraProjectsInput,
     LabelFilter,
     LabelInput,
     LabelUpdateInput,
     LinearProjectsInput,
+    LinearTeamsInput,
     MedicalConditionFilter,
     MedicalConditionInput,
     MedicalConditionUpdateInput,
@@ -476,6 +479,7 @@ from .input_types import (
     WorkflowFilter,
     WorkflowInput,
     WorkflowUpdateInput,
+    ZendeskDiscoveryInput,
 )
 from .is_content_done import IsContentDone
 from .is_feed_done import IsFeedDone
@@ -836,15 +840,23 @@ from .operations import (
     QUERY_GUSTO_COMPANIES_GQL,
     QUERY_GUSTO_DEPARTMENTS_GQL,
     QUERY_GUSTO_LOCATIONS_GQL,
+    QUERY_INTERCOM_ADMINS_GQL,
+    QUERY_INTERCOM_CONTACTS_GQL,
+    QUERY_INTERCOM_TAGS_GQL,
+    QUERY_INTERCOM_TEAMS_GQL,
+    QUERY_INTERCOM_TICKET_STATES_GQL,
+    QUERY_INTERCOM_TICKET_TYPES_GQL,
     QUERY_INVESTMENT_FUNDS_CLUSTERS_GQL,
     QUERY_INVESTMENT_FUNDS_EXPANDED_GQL,
     QUERY_INVESTMENT_FUNDS_GQL,
     QUERY_INVESTMENTS_CLUSTERS_GQL,
     QUERY_INVESTMENTS_EXPANDED_GQL,
     QUERY_INVESTMENTS_GQL,
+    QUERY_JIRA_ISSUE_TYPES_GQL,
     QUERY_JIRA_PROJECTS_GQL,
     QUERY_LABELS_GQL,
     QUERY_LINEAR_PROJECTS_GQL,
+    QUERY_LINEAR_TEAMS_GQL,
     QUERY_MEDICAL_CONDITIONS_CLUSTERS_GQL,
     QUERY_MEDICAL_CONDITIONS_GQL,
     QUERY_MEDICAL_CONTRAINDICATIONS_CLUSTERS_GQL,
@@ -903,6 +915,8 @@ from .operations import (
     QUERY_USERS_GQL,
     QUERY_VIEWS_GQL,
     QUERY_WORKFLOWS_GQL,
+    QUERY_ZENDESK_GROUPS_GQL,
+    QUERY_ZENDESK_USERS_GQL,
     READ_GQL,
     REJECT_CONTENT_GQL,
     REMOVE_AGENTS_FROM_DESK_GQL,
@@ -1041,15 +1055,23 @@ from .query_graph import QueryGraph
 from .query_gusto_companies import QueryGustoCompanies
 from .query_gusto_departments import QueryGustoDepartments
 from .query_gusto_locations import QueryGustoLocations
+from .query_intercom_admins import QueryIntercomAdmins
+from .query_intercom_contacts import QueryIntercomContacts
+from .query_intercom_tags import QueryIntercomTags
+from .query_intercom_teams import QueryIntercomTeams
+from .query_intercom_ticket_states import QueryIntercomTicketStates
+from .query_intercom_ticket_types import QueryIntercomTicketTypes
 from .query_investment_funds import QueryInvestmentFunds
 from .query_investment_funds_clusters import QueryInvestmentFundsClusters
 from .query_investment_funds_expanded import QueryInvestmentFundsExpanded
 from .query_investments import QueryInvestments
 from .query_investments_clusters import QueryInvestmentsClusters
 from .query_investments_expanded import QueryInvestmentsExpanded
+from .query_jira_issue_types import QueryJiraIssueTypes
 from .query_jira_projects import QueryJiraProjects
 from .query_labels import QueryLabels
 from .query_linear_projects import QueryLinearProjects
+from .query_linear_teams import QueryLinearTeams
 from .query_medical_conditions import QueryMedicalConditions
 from .query_medical_conditions_clusters import QueryMedicalConditionsClusters
 from .query_medical_contraindications import QueryMedicalContraindications
@@ -1110,6 +1132,8 @@ from .query_usage import QueryUsage
 from .query_users import QueryUsers
 from .query_views import QueryViews
 from .query_workflows import QueryWorkflows
+from .query_zendesk_groups import QueryZendeskGroups
+from .query_zendesk_users import QueryZendeskUsers
 from .read import Read
 from .reject_content import RejectContent
 from .remove_agents_from_desk import RemoveAgentsFromDesk
@@ -4899,6 +4923,120 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryGustoLocations.model_validate(data)
 
+    async def query_intercom_admins(
+        self,
+        properties: IntercomTicketsFeedPropertiesInput,
+        query: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryIntercomAdmins:
+        variables: dict[str, object] = {"properties": properties, "query": query}
+        response = await self.execute(
+            query=QUERY_INTERCOM_ADMINS_GQL,
+            operation_name="QueryIntercomAdmins",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryIntercomAdmins.model_validate(data)
+
+    async def query_intercom_contacts(
+        self,
+        properties: IntercomTicketsFeedPropertiesInput,
+        query: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryIntercomContacts:
+        variables: dict[str, object] = {"properties": properties, "query": query}
+        response = await self.execute(
+            query=QUERY_INTERCOM_CONTACTS_GQL,
+            operation_name="QueryIntercomContacts",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryIntercomContacts.model_validate(data)
+
+    async def query_intercom_tags(
+        self,
+        properties: IntercomTicketsFeedPropertiesInput,
+        query: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryIntercomTags:
+        variables: dict[str, object] = {"properties": properties, "query": query}
+        response = await self.execute(
+            query=QUERY_INTERCOM_TAGS_GQL,
+            operation_name="QueryIntercomTags",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryIntercomTags.model_validate(data)
+
+    async def query_intercom_teams(
+        self,
+        properties: IntercomTicketsFeedPropertiesInput,
+        query: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryIntercomTeams:
+        variables: dict[str, object] = {"properties": properties, "query": query}
+        response = await self.execute(
+            query=QUERY_INTERCOM_TEAMS_GQL,
+            operation_name="QueryIntercomTeams",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryIntercomTeams.model_validate(data)
+
+    async def query_intercom_ticket_states(
+        self,
+        properties: IntercomTicketsFeedPropertiesInput,
+        ticket_type_id: Union[Optional[str], UnsetType] = UNSET,
+        query: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryIntercomTicketStates:
+        variables: dict[str, object] = {
+            "properties": properties,
+            "ticketTypeId": ticket_type_id,
+            "query": query,
+        }
+        response = await self.execute(
+            query=QUERY_INTERCOM_TICKET_STATES_GQL,
+            operation_name="QueryIntercomTicketStates",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryIntercomTicketStates.model_validate(data)
+
+    async def query_intercom_ticket_types(
+        self,
+        properties: IntercomTicketsFeedPropertiesInput,
+        query: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryIntercomTicketTypes:
+        variables: dict[str, object] = {"properties": properties, "query": query}
+        response = await self.execute(
+            query=QUERY_INTERCOM_TICKET_TYPES_GQL,
+            operation_name="QueryIntercomTicketTypes",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryIntercomTicketTypes.model_validate(data)
+
+    async def query_jira_issue_types(
+        self, properties: JiraIssueTypesInput, **kwargs: Any
+    ) -> QueryJiraIssueTypes:
+        variables: dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_JIRA_ISSUE_TYPES_GQL,
+            operation_name="QueryJiraIssueTypes",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryJiraIssueTypes.model_validate(data)
+
     async def query_jira_projects(
         self, properties: JiraProjectsInput, **kwargs: Any
     ) -> QueryJiraProjects:
@@ -4924,6 +5062,19 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryLinearProjects.model_validate(data)
+
+    async def query_linear_teams(
+        self, properties: LinearTeamsInput, **kwargs: Any
+    ) -> QueryLinearTeams:
+        variables: dict[str, object] = {"properties": properties}
+        response = await self.execute(
+            query=QUERY_LINEAR_TEAMS_GQL,
+            operation_name="QueryLinearTeams",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryLinearTeams.model_validate(data)
 
     async def query_microsoft_calendars(
         self, properties: MicrosoftCalendarsInput, **kwargs: Any
@@ -5081,6 +5232,38 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QuerySlackUsers.model_validate(data)
+
+    async def query_zendesk_groups(
+        self,
+        properties: ZendeskDiscoveryInput,
+        query: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryZendeskGroups:
+        variables: dict[str, object] = {"properties": properties, "query": query}
+        response = await self.execute(
+            query=QUERY_ZENDESK_GROUPS_GQL,
+            operation_name="QueryZendeskGroups",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryZendeskGroups.model_validate(data)
+
+    async def query_zendesk_users(
+        self,
+        properties: ZendeskDiscoveryInput,
+        query: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> QueryZendeskUsers:
+        variables: dict[str, object] = {"properties": properties, "query": query}
+        response = await self.execute(
+            query=QUERY_ZENDESK_USERS_GQL,
+            operation_name="QueryZendeskUsers",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return QueryZendeskUsers.model_validate(data)
 
     async def trigger_feed(self, id: str, **kwargs: Any) -> TriggerFeed:
         variables: dict[str, object] = {"id": id}

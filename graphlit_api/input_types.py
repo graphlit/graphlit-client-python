@@ -3107,6 +3107,7 @@ class JiraDistributionPropertiesInput(BaseModel):
     issue_key: Optional[str] = Field(alias="issueKey", default=None)
     issue_uri: Optional[str] = Field(alias="issueUri", default=None)
     project_key: Optional[str] = Field(alias="projectKey", default=None)
+    cloud_id: Optional[str] = Field(alias="cloudId", default=None)
     issue_type: Optional[str] = Field(alias="issueType", default=None)
     summary: Optional[str] = None
     priority: Optional[str] = None
@@ -4980,6 +4981,18 @@ class GoogleChatChannelPropertiesInput(BaseModel):
     project_id: Optional[str] = Field(alias="projectId", default=None)
 
 
+class ZendeskDiscoveryInput(BaseModel):
+    authentication_type: Optional[ZendeskIssueAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    subdomain: Optional[str] = None
+    access_token: Optional[str] = Field(alias="accessToken", default=None)
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
 class GitHubCommitsFeedPropertiesUpdateInput(BaseModel):
     authentication_type: Optional[GitHubCommitAuthenticationTypes] = Field(
         alias="authenticationType", default=None
@@ -5552,6 +5565,18 @@ class ConversationCriteriaInput(BaseModel):
     observation_mode: Optional[FilterMode] = Field(
         alias="observationMode", default=None
     )
+
+
+class JiraIssueTypesInput(BaseModel):
+    authentication_type: Optional[JiraAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    uri: Optional[str] = None
+    project: str
+    email_address: Optional[str] = Field(alias="emailAddress", default=None)
+    token: Optional[str] = None
+    connector: Optional["EntityReferenceInput"] = None
+    cloud_id: Optional[str] = Field(alias="cloudId", default=None)
 
 
 class IntercomTicketsFeedPropertiesUpdateInput(BaseModel):
@@ -6926,6 +6951,17 @@ class PromptStrategyInput(BaseModel):
     type: Optional[PromptStrategyTypes] = None
 
 
+class LinearTeamsInput(BaseModel):
+    authentication_type: Optional[LinearAuthenticationTypes] = Field(
+        alias="authenticationType", default=None
+    )
+    key: Optional[str] = None
+    client_id: Optional[str] = Field(alias="clientId", default=None)
+    client_secret: Optional[str] = Field(alias="clientSecret", default=None)
+    refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
+    connector: Optional["EntityReferenceInput"] = None
+
+
 class ConversationToolCallInput(BaseModel):
     id: str
     name: str
@@ -8199,6 +8235,7 @@ AgentFilter.model_rebuild()
 GraphFilter.model_rebuild()
 FeedPreviewInput.model_rebuild()
 InvestmentFilter.model_rebuild()
+ZendeskDiscoveryInput.model_rebuild()
 GitHubCommitsFeedPropertiesUpdateInput.model_rebuild()
 JiraEpicsFeedPropertiesInput.model_rebuild()
 PersonaFilter.model_rebuild()
@@ -8228,6 +8265,7 @@ HubSpotConversationsFeedPropertiesUpdateInput.model_rebuild()
 BureauFilter.model_rebuild()
 EvernoteFeedPropertiesUpdateInput.model_rebuild()
 ConversationCriteriaInput.model_rebuild()
+JiraIssueTypesInput.model_rebuild()
 IntercomTicketsFeedPropertiesUpdateInput.model_rebuild()
 MedicalGuidelineFilter.model_rebuild()
 MedicalIndicationInput.model_rebuild()
@@ -8289,6 +8327,7 @@ IntercomConversationsFeedPropertiesUpdateInput.model_rebuild()
 EnrichmentWorkflowJobInput.model_rebuild()
 EntityFeedPropertiesUpdateInput.model_rebuild()
 MedicalDrugClassUpdateInput.model_rebuild()
+LinearTeamsInput.model_rebuild()
 ReplicaSkillPropertiesInput.model_rebuild()
 IntercomConversationsFeedPropertiesInput.model_rebuild()
 MedicalTestFilter.model_rebuild()

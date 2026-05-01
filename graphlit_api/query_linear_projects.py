@@ -15,7 +15,16 @@ class QueryLinearProjects(BaseModel):
 
 
 class QueryLinearProjectsLinearProjects(BaseModel):
-    results: Optional[list[str]]
+    results: Optional[list[Optional["QueryLinearProjectsLinearProjectsResults"]]]
+
+
+class QueryLinearProjectsLinearProjectsResults(BaseModel):
+    id: Optional[str]
+    name: Optional[str]
+    team_id: Optional[str] = Field(alias="teamId")
+    team_key: Optional[str] = Field(alias="teamKey")
+    team_name: Optional[str] = Field(alias="teamName")
 
 
 QueryLinearProjects.model_rebuild()
+QueryLinearProjectsLinearProjects.model_rebuild()

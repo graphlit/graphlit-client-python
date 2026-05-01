@@ -1,0 +1,8 @@
+query QueryZendeskGroups($properties: ZendeskDiscoveryInput!, $query: String) {
+  zendeskGroups(properties: $properties, query: $query) {
+    results {
+      id
+      name
+    }
+  }
+}
