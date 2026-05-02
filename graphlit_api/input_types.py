@@ -2015,7 +2015,7 @@ class ZendeskDistributionPropertiesInput(BaseModel):
     priority: Optional[str] = None
     status: Optional[str] = None
     type: Optional[str] = None
-    assignee_id: Optional[str] = Field(alias="assigneeId", default=None)
+    assignee: Optional[str] = None
     group_id: Optional[str] = Field(alias="groupId", default=None)
     tags: Optional[list[str]] = None
     visibility: Optional[str] = None
@@ -2610,9 +2610,9 @@ class LinearDistributionPropertiesInput(BaseModel):
     team_id: Optional[str] = Field(alias="teamId", default=None)
     title: Optional[str] = None
     priority: Optional[int] = None
-    state_id: Optional[str] = Field(alias="stateId", default=None)
-    assignee_id: Optional[str] = Field(alias="assigneeId", default=None)
-    label_ids: Optional[list[str]] = Field(alias="labelIds", default=None)
+    state: Optional[str] = None
+    assignee: Optional[str] = None
+    labels: Optional[list[str]] = None
     project_id: Optional[str] = Field(alias="projectId", default=None)
 
 
@@ -3111,7 +3111,7 @@ class JiraDistributionPropertiesInput(BaseModel):
     issue_type: Optional[str] = Field(alias="issueType", default=None)
     summary: Optional[str] = None
     priority: Optional[str] = None
-    assignee_id: Optional[str] = Field(alias="assigneeId", default=None)
+    assignee: Optional[str] = None
     labels: Optional[list[str]] = None
     status: Optional[str] = None
 
@@ -3719,21 +3719,17 @@ class VoyageModelPropertiesInput(BaseModel):
 class IntercomDistributionPropertiesInput(BaseModel):
     ticket_id: Optional[str] = Field(alias="ticketId", default=None)
     ticket_uri: Optional[str] = Field(alias="ticketUri", default=None)
-    ticket_type_id: Optional[str] = Field(alias="ticketTypeId", default=None)
-    contact_id: Optional[str] = Field(alias="contactId", default=None)
-    contact_external_id: Optional[str] = Field(alias="contactExternalId", default=None)
-    contact_email: Optional[str] = Field(alias="contactEmail", default=None)
+    ticket_type: Optional[str] = Field(alias="ticketType", default=None)
+    requester_email: Optional[str] = Field(alias="requesterEmail", default=None)
     conversation_to_link_id: Optional[str] = Field(
         alias="conversationToLinkId", default=None
     )
     company_id: Optional[str] = Field(alias="companyId", default=None)
-    admin_id: Optional[str] = Field(alias="adminId", default=None)
     title: Optional[str] = None
-    state_id: Optional[str] = Field(alias="stateId", default=None)
     state: Optional[str] = None
-    assignee_id: Optional[str] = Field(alias="assigneeId", default=None)
+    assignee: Optional[str] = None
     team_id: Optional[str] = Field(alias="teamId", default=None)
-    tag_ids: Optional[list[str]] = Field(alias="tagIds", default=None)
+    tags: Optional[list[str]] = None
     visibility: Optional[str] = None
     is_shared: Optional[bool] = Field(alias="isShared", default=None)
     skip_notifications: Optional[bool] = Field(alias="skipNotifications", default=None)

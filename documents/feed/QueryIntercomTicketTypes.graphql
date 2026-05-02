@@ -1,9 +1,0 @@
-query QueryIntercomTicketTypes($properties: IntercomTicketsFeedPropertiesInput!, $query: String) {
-  intercomTicketTypes(properties: $properties, query: $query) {
-    results {
-      id
-      name
-      description
-    }
-  }
-}

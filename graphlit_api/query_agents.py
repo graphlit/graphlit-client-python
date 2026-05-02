@@ -617,9 +617,9 @@ class QueryAgentsAgentsResultsTargetsConnectorLinear(BaseModel):
     team_id: Optional[str] = Field(alias="teamId")
     title: Optional[str]
     priority: Optional[int]
-    state_id: Optional[str] = Field(alias="stateId")
-    assignee_id: Optional[str] = Field(alias="assigneeId")
-    label_ids: Optional[list[str]] = Field(alias="labelIds")
+    state: Optional[str]
+    assignee: Optional[str]
+    labels: Optional[list[str]]
     project_id: Optional[str] = Field(alias="projectId")
 
 
@@ -631,7 +631,7 @@ class QueryAgentsAgentsResultsTargetsConnectorJira(BaseModel):
     issue_type: Optional[str] = Field(alias="issueType")
     summary: Optional[str]
     priority: Optional[str]
-    assignee_id: Optional[str] = Field(alias="assigneeId")
+    assignee: Optional[str]
     labels: Optional[list[str]]
     status: Optional[str]
 
@@ -644,7 +644,7 @@ class QueryAgentsAgentsResultsTargetsConnectorZendesk(BaseModel):
     priority: Optional[str]
     status: Optional[str]
     type: Optional[str]
-    assignee_id: Optional[str] = Field(alias="assigneeId")
+    assignee: Optional[str]
     group_id: Optional[str] = Field(alias="groupId")
     tags: Optional[list[str]]
     visibility: Optional[str]
@@ -653,19 +653,15 @@ class QueryAgentsAgentsResultsTargetsConnectorZendesk(BaseModel):
 class QueryAgentsAgentsResultsTargetsConnectorIntercom(BaseModel):
     ticket_id: Optional[str] = Field(alias="ticketId")
     ticket_uri: Optional[str] = Field(alias="ticketUri")
-    ticket_type_id: Optional[str] = Field(alias="ticketTypeId")
-    contact_id: Optional[str] = Field(alias="contactId")
-    contact_external_id: Optional[str] = Field(alias="contactExternalId")
-    contact_email: Optional[str] = Field(alias="contactEmail")
+    ticket_type: Optional[str] = Field(alias="ticketType")
+    requester_email: Optional[str] = Field(alias="requesterEmail")
     conversation_to_link_id: Optional[str] = Field(alias="conversationToLinkId")
     company_id: Optional[str] = Field(alias="companyId")
-    admin_id: Optional[str] = Field(alias="adminId")
     title: Optional[str]
-    state_id: Optional[str] = Field(alias="stateId")
     state: Optional[str]
-    assignee_id: Optional[str] = Field(alias="assigneeId")
+    assignee: Optional[str]
     team_id: Optional[str] = Field(alias="teamId")
-    tag_ids: Optional[list[str]] = Field(alias="tagIds")
+    tags: Optional[list[str]]
     visibility: Optional[str]
     is_shared: Optional[bool] = Field(alias="isShared")
     skip_notifications: Optional[bool] = Field(alias="skipNotifications")

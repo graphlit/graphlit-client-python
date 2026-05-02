@@ -1,8 +1,0 @@
-query QueryIntercomTags($properties: IntercomTicketsFeedPropertiesInput!, $query: String) {
-  intercomTags(properties: $properties, query: $query) {
-    results {
-      id
-      name
-    }
-  }
-}

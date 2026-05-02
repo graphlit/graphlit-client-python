@@ -351,9 +351,9 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
             teamId
             title
             priority
-            stateId
-            assigneeId
-            labelIds
+            state
+            assignee
+            labels
             projectId
           }
           jira {
@@ -364,7 +364,7 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
             issueType
             summary
             priority
-            assigneeId
+            assignee
             labels
             status
           }
@@ -376,7 +376,7 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
             priority
             status
             type
-            assigneeId
+            assignee
             groupId
             tags
             visibility
@@ -384,19 +384,15 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
           intercom {
             ticketId
             ticketUri
-            ticketTypeId
-            contactId
-            contactExternalId
-            contactEmail
+            ticketType
+            requesterEmail
             conversationToLinkId
             companyId
-            adminId
             title
-            stateId
             state
-            assigneeId
+            assignee
             teamId
-            tagIds
+            tags
             visibility
             isShared
             skipNotifications

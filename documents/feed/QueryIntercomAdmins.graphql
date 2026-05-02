@@ -1,9 +1,0 @@
-query QueryIntercomAdmins($properties: IntercomTicketsFeedPropertiesInput!, $query: String) {
-  intercomAdmins(properties: $properties, query: $query) {
-    results {
-      id
-      name
-      email
-    }
-  }
-}

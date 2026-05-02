@@ -352,9 +352,9 @@ query GetAgent($id: ID!, $correlationId: String) {
           teamId
           title
           priority
-          stateId
-          assigneeId
-          labelIds
+          state
+          assignee
+          labels
           projectId
         }
         jira {
@@ -365,7 +365,7 @@ query GetAgent($id: ID!, $correlationId: String) {
           issueType
           summary
           priority
-          assigneeId
+          assignee
           labels
           status
         }
@@ -377,7 +377,7 @@ query GetAgent($id: ID!, $correlationId: String) {
           priority
           status
           type
-          assigneeId
+          assignee
           groupId
           tags
           visibility
@@ -385,19 +385,15 @@ query GetAgent($id: ID!, $correlationId: String) {
         intercom {
           ticketId
           ticketUri
-          ticketTypeId
-          contactId
-          contactExternalId
-          contactEmail
+          ticketType
+          requesterEmail
           conversationToLinkId
           companyId
-          adminId
           title
-          stateId
           state
-          assigneeId
+          assignee
           teamId
-          tagIds
+          tags
           visibility
           isShared
           skipNotifications

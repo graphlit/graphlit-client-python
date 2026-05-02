@@ -840,12 +840,7 @@ from .operations import (
     QUERY_GUSTO_COMPANIES_GQL,
     QUERY_GUSTO_DEPARTMENTS_GQL,
     QUERY_GUSTO_LOCATIONS_GQL,
-    QUERY_INTERCOM_ADMINS_GQL,
-    QUERY_INTERCOM_CONTACTS_GQL,
-    QUERY_INTERCOM_TAGS_GQL,
     QUERY_INTERCOM_TEAMS_GQL,
-    QUERY_INTERCOM_TICKET_STATES_GQL,
-    QUERY_INTERCOM_TICKET_TYPES_GQL,
     QUERY_INVESTMENT_FUNDS_CLUSTERS_GQL,
     QUERY_INVESTMENT_FUNDS_EXPANDED_GQL,
     QUERY_INVESTMENT_FUNDS_GQL,
@@ -1055,12 +1050,7 @@ from .query_graph import QueryGraph
 from .query_gusto_companies import QueryGustoCompanies
 from .query_gusto_departments import QueryGustoDepartments
 from .query_gusto_locations import QueryGustoLocations
-from .query_intercom_admins import QueryIntercomAdmins
-from .query_intercom_contacts import QueryIntercomContacts
-from .query_intercom_tags import QueryIntercomTags
 from .query_intercom_teams import QueryIntercomTeams
-from .query_intercom_ticket_states import QueryIntercomTicketStates
-from .query_intercom_ticket_types import QueryIntercomTicketTypes
 from .query_investment_funds import QueryInvestmentFunds
 from .query_investment_funds_clusters import QueryInvestmentFundsClusters
 from .query_investment_funds_expanded import QueryInvestmentFundsExpanded
@@ -4923,54 +4913,6 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return QueryGustoLocations.model_validate(data)
 
-    async def query_intercom_admins(
-        self,
-        properties: IntercomTicketsFeedPropertiesInput,
-        query: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
-    ) -> QueryIntercomAdmins:
-        variables: dict[str, object] = {"properties": properties, "query": query}
-        response = await self.execute(
-            query=QUERY_INTERCOM_ADMINS_GQL,
-            operation_name="QueryIntercomAdmins",
-            variables=variables,
-            **kwargs
-        )
-        data = self.get_data(response)
-        return QueryIntercomAdmins.model_validate(data)
-
-    async def query_intercom_contacts(
-        self,
-        properties: IntercomTicketsFeedPropertiesInput,
-        query: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
-    ) -> QueryIntercomContacts:
-        variables: dict[str, object] = {"properties": properties, "query": query}
-        response = await self.execute(
-            query=QUERY_INTERCOM_CONTACTS_GQL,
-            operation_name="QueryIntercomContacts",
-            variables=variables,
-            **kwargs
-        )
-        data = self.get_data(response)
-        return QueryIntercomContacts.model_validate(data)
-
-    async def query_intercom_tags(
-        self,
-        properties: IntercomTicketsFeedPropertiesInput,
-        query: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
-    ) -> QueryIntercomTags:
-        variables: dict[str, object] = {"properties": properties, "query": query}
-        response = await self.execute(
-            query=QUERY_INTERCOM_TAGS_GQL,
-            operation_name="QueryIntercomTags",
-            variables=variables,
-            **kwargs
-        )
-        data = self.get_data(response)
-        return QueryIntercomTags.model_validate(data)
-
     async def query_intercom_teams(
         self,
         properties: IntercomTicketsFeedPropertiesInput,
@@ -4986,43 +4928,6 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return QueryIntercomTeams.model_validate(data)
-
-    async def query_intercom_ticket_states(
-        self,
-        properties: IntercomTicketsFeedPropertiesInput,
-        ticket_type_id: Union[Optional[str], UnsetType] = UNSET,
-        query: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
-    ) -> QueryIntercomTicketStates:
-        variables: dict[str, object] = {
-            "properties": properties,
-            "ticketTypeId": ticket_type_id,
-            "query": query,
-        }
-        response = await self.execute(
-            query=QUERY_INTERCOM_TICKET_STATES_GQL,
-            operation_name="QueryIntercomTicketStates",
-            variables=variables,
-            **kwargs
-        )
-        data = self.get_data(response)
-        return QueryIntercomTicketStates.model_validate(data)
-
-    async def query_intercom_ticket_types(
-        self,
-        properties: IntercomTicketsFeedPropertiesInput,
-        query: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
-    ) -> QueryIntercomTicketTypes:
-        variables: dict[str, object] = {"properties": properties, "query": query}
-        response = await self.execute(
-            query=QUERY_INTERCOM_TICKET_TYPES_GQL,
-            operation_name="QueryIntercomTicketTypes",
-            variables=variables,
-            **kwargs
-        )
-        data = self.get_data(response)
-        return QueryIntercomTicketTypes.model_validate(data)
 
     async def query_jira_issue_types(
         self, properties: JiraIssueTypesInput, **kwargs: Any

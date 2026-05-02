@@ -350,12 +350,7 @@ __all__ = [
     "QUERY_GUSTO_COMPANIES_GQL",
     "QUERY_GUSTO_DEPARTMENTS_GQL",
     "QUERY_GUSTO_LOCATIONS_GQL",
-    "QUERY_INTERCOM_ADMINS_GQL",
-    "QUERY_INTERCOM_CONTACTS_GQL",
-    "QUERY_INTERCOM_TAGS_GQL",
     "QUERY_INTERCOM_TEAMS_GQL",
-    "QUERY_INTERCOM_TICKET_STATES_GQL",
-    "QUERY_INTERCOM_TICKET_TYPES_GQL",
     "QUERY_INVESTMENTS_CLUSTERS_GQL",
     "QUERY_INVESTMENTS_EXPANDED_GQL",
     "QUERY_INVESTMENTS_GQL",
@@ -939,9 +934,9 @@ query GetAgent($id: ID!, $correlationId: String) {
           teamId
           title
           priority
-          stateId
-          assigneeId
-          labelIds
+          state
+          assignee
+          labels
           projectId
         }
         jira {
@@ -952,7 +947,7 @@ query GetAgent($id: ID!, $correlationId: String) {
           issueType
           summary
           priority
-          assigneeId
+          assignee
           labels
           status
         }
@@ -964,7 +959,7 @@ query GetAgent($id: ID!, $correlationId: String) {
           priority
           status
           type
-          assigneeId
+          assignee
           groupId
           tags
           visibility
@@ -972,19 +967,15 @@ query GetAgent($id: ID!, $correlationId: String) {
         intercom {
           ticketId
           ticketUri
-          ticketTypeId
-          contactId
-          contactExternalId
-          contactEmail
+          ticketType
+          requesterEmail
           conversationToLinkId
           companyId
-          adminId
           title
-          stateId
           state
-          assigneeId
+          assignee
           teamId
-          tagIds
+          tags
           visibility
           isShared
           skipNotifications
@@ -1415,9 +1406,9 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
             teamId
             title
             priority
-            stateId
-            assigneeId
-            labelIds
+            state
+            assignee
+            labels
             projectId
           }
           jira {
@@ -1428,7 +1419,7 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
             issueType
             summary
             priority
-            assigneeId
+            assignee
             labels
             status
           }
@@ -1440,7 +1431,7 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
             priority
             status
             type
-            assigneeId
+            assignee
             groupId
             tags
             visibility
@@ -1448,19 +1439,15 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
           intercom {
             ticketId
             ticketUri
-            ticketTypeId
-            contactId
-            contactExternalId
-            contactEmail
+            ticketType
+            requesterEmail
             conversationToLinkId
             companyId
-            adminId
             title
-            stateId
             state
-            assigneeId
+            assignee
             teamId
-            tagIds
+            tags
             visibility
             isShared
             skipNotifications
@@ -13474,76 +13461,12 @@ query QueryGustoLocations($properties: GustoOptionsInput!) {
 }
 """
 
-QUERY_INTERCOM_ADMINS_GQL = """
-query QueryIntercomAdmins($properties: IntercomTicketsFeedPropertiesInput!, $query: String) {
-  intercomAdmins(properties: $properties, query: $query) {
-    results {
-      id
-      name
-      email
-    }
-  }
-}
-"""
-
-QUERY_INTERCOM_CONTACTS_GQL = """
-query QueryIntercomContacts($properties: IntercomTicketsFeedPropertiesInput!, $query: String) {
-  intercomContacts(properties: $properties, query: $query) {
-    results {
-      id
-      externalId
-      name
-      email
-    }
-  }
-}
-"""
-
-QUERY_INTERCOM_TAGS_GQL = """
-query QueryIntercomTags($properties: IntercomTicketsFeedPropertiesInput!, $query: String) {
-  intercomTags(properties: $properties, query: $query) {
-    results {
-      id
-      name
-    }
-  }
-}
-"""
-
 QUERY_INTERCOM_TEAMS_GQL = """
 query QueryIntercomTeams($properties: IntercomTicketsFeedPropertiesInput!, $query: String) {
   intercomTeams(properties: $properties, query: $query) {
     results {
       id
       name
-    }
-  }
-}
-"""
-
-QUERY_INTERCOM_TICKET_STATES_GQL = """
-query QueryIntercomTicketStates($properties: IntercomTicketsFeedPropertiesInput!, $ticketTypeId: String, $query: String) {
-  intercomTicketStates(
-    properties: $properties
-    ticketTypeId: $ticketTypeId
-    query: $query
-  ) {
-    results {
-      id
-      name
-      type
-    }
-  }
-}
-"""
-
-QUERY_INTERCOM_TICKET_TYPES_GQL = """
-query QueryIntercomTicketTypes($properties: IntercomTicketsFeedPropertiesInput!, $query: String) {
-  intercomTicketTypes(properties: $properties, query: $query) {
-    results {
-      id
-      name
-      description
     }
   }
 }
