@@ -158,19 +158,21 @@ query GetWorkflow($id: ID!, $correlationId: String) {
       jobs {
         connector {
           type
-          contentType
-          fileType
+          contentTypes
+          fileTypes
           model {
             specification {
               id
             }
             rules {
+              state
               then
               if
             }
           }
           regex {
             rules {
+              state
               then
               type
               path

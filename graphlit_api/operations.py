@@ -826,6 +826,7 @@ query GetAgent($id: ID!, $correlationId: String) {
       label
     }
     rules {
+      state
       then
       if
     }
@@ -1298,6 +1299,7 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
         label
       }
       rules {
+        state
         then
         if
       }
@@ -23366,19 +23368,21 @@ mutation CreateWorkflow($workflow: WorkflowInput!) {
       jobs {
         connector {
           type
-          contentType
-          fileType
+          contentTypes
+          fileTypes
           model {
             specification {
               id
             }
             rules {
+              state
               then
               if
             }
           }
           regex {
             rules {
+              state
               then
               type
               path
@@ -23676,19 +23680,21 @@ query GetWorkflow($id: ID!, $correlationId: String) {
       jobs {
         connector {
           type
-          contentType
-          fileType
+          contentTypes
+          fileTypes
           model {
             specification {
               id
             }
             rules {
+              state
               then
               if
             }
           }
           regex {
             rules {
+              state
               then
               type
               path
@@ -23954,19 +23960,21 @@ query QueryWorkflows($filter: WorkflowFilter, $correlationId: String) {
         jobs {
           connector {
             type
-            contentType
-            fileType
+            contentTypes
+            fileTypes
             model {
               specification {
                 id
               }
               rules {
+                state
                 then
                 if
               }
             }
             regex {
               rules {
+                state
                 then
                 type
                 path
@@ -24226,19 +24234,21 @@ mutation UpdateWorkflow($workflow: WorkflowUpdateInput!) {
       jobs {
         connector {
           type
-          contentType
-          fileType
+          contentTypes
+          fileTypes
           model {
             specification {
               id
             }
             rules {
+              state
               then
               if
             }
           }
           regex {
             rules {
+              state
               then
               type
               path
@@ -24497,19 +24507,21 @@ mutation UpsertWorkflow($workflow: WorkflowInput!) {
       jobs {
         connector {
           type
-          contentType
-          fileType
+          contentTypes
+          fileTypes
           model {
             specification {
               id
             }
             rules {
+              state
               then
               if
             }
           }
           regex {
             rules {
+              state
               then
               type
               path

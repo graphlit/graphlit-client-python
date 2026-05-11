@@ -244,6 +244,7 @@ query GetAgent($id: ID!, $correlationId: String) {
       label
     }
     rules {
+      state
       then
       if
     }

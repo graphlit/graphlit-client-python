@@ -494,6 +494,8 @@ class OpenAIModels(str, Enum):
     GPT54_MINI_400K_20260317 = "GPT54_MINI_400K_20260317"
     GPT54_1024K = "GPT54_1024K"
     GPT54_1024K_20260305 = "GPT54_1024K_20260305"
+    GPT55_1024K = "GPT55_1024K"
+    GPT55_1024K_20260423 = "GPT55_1024K_20260423"
     O1_MINI_128K = "O1_MINI_128K"
     O1_MINI_128K_20240912 = "O1_MINI_128K_20240912"
     O1_PREVIEW_128K = "O1_PREVIEW_128K"
@@ -1152,6 +1154,11 @@ class GustoAuthenticationTypes(str, Enum):
     CONNECTOR = "CONNECTOR"
 
 
+class ClassificationRuleState(str, Enum):
+    ENABLED = "ENABLED"
+    DISABLED = "DISABLED"
+
+
 class GitLabMergeRequestAuthenticationTypes(str, Enum):
     PERSONAL_ACCESS_TOKEN = "PERSONAL_ACCESS_TOKEN"
     O_AUTH = "O_AUTH"
@@ -1283,6 +1290,7 @@ class EmailListingTypes(str, Enum):
 
 class JiraAuthenticationTypes(str, Enum):
     TOKEN = "TOKEN"
+    O_AUTH = "O_AUTH"
     CONNECTOR = "CONNECTOR"
 
 

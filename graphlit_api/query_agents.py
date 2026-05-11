@@ -12,6 +12,7 @@ from .enums import (
     AgentModes,
     AgentResearchDepths,
     AgentTypes,
+    ClassificationRuleState,
     ContentTypes,
     DistributionServiceTypes,
     DistributionTargetKindTypes,
@@ -439,6 +440,7 @@ class QueryAgentsAgentsResultsChannels(BaseModel):
 
 
 class QueryAgentsAgentsResultsRules(BaseModel):
+    state: Optional[ClassificationRuleState]
     then: Optional[str]
     if_: Optional[str] = Field(alias="if")
 

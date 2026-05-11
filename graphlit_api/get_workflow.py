@@ -10,6 +10,7 @@ from .enums import (
     AssemblyAIModels,
     AzureDocumentIntelligenceModels,
     AzureDocumentIntelligenceVersions,
+    ClassificationRuleState,
     ContentClassificationServiceTypes,
     ContentIndexingServiceTypes,
     ContentTypes,
@@ -312,8 +313,8 @@ class GetWorkflowWorkflowClassificationJobs(BaseModel):
 
 class GetWorkflowWorkflowClassificationJobsConnector(BaseModel):
     type: ContentClassificationServiceTypes
-    content_type: Optional[ContentTypes] = Field(alias="contentType")
-    file_type: Optional[FileTypes] = Field(alias="fileType")
+    content_types: Optional[list[ContentTypes]] = Field(alias="contentTypes")
+    file_types: Optional[list[FileTypes]] = Field(alias="fileTypes")
     model: Optional["GetWorkflowWorkflowClassificationJobsConnectorModel"]
     regex: Optional["GetWorkflowWorkflowClassificationJobsConnectorRegex"]
 
@@ -332,6 +333,7 @@ class GetWorkflowWorkflowClassificationJobsConnectorModelSpecification(BaseModel
 
 
 class GetWorkflowWorkflowClassificationJobsConnectorModelRules(BaseModel):
+    state: Optional[ClassificationRuleState]
     then: Optional[str]
     if_: Optional[str] = Field(alias="if")
 
@@ -343,6 +345,7 @@ class GetWorkflowWorkflowClassificationJobsConnectorRegex(BaseModel):
 
 
 class GetWorkflowWorkflowClassificationJobsConnectorRegexRules(BaseModel):
+    state: Optional[ClassificationRuleState]
     then: Optional[str]
     type: Optional[RegexSourceTypes]
     path: Optional[str]

@@ -39,6 +39,7 @@ from .enums import (
     CategoryFacetTypes,
     CerebrasModels,
     ChannelServiceTypes,
+    ClassificationRuleState,
     CohereModels,
     CollectionTypes,
     ConfluenceAuthenticationTypes,
@@ -728,7 +729,6 @@ class GitHubMilestonesFeedPropertiesInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class AtlassianJiraFeedPropertiesUpdateInput(BaseModel):
@@ -1099,7 +1099,6 @@ class GitLabMilestonesFeedPropertiesInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class TelegramChannelPropertiesInput(BaseModel):
@@ -1395,7 +1394,6 @@ class AuthenticationConnectorInput(BaseModel):
     api_key: Optional[str] = Field(alias="apiKey", default=None)
     microsoft: Optional["MicrosoftAuthenticationPropertiesInput"] = None
     google: Optional["GoogleAuthenticationPropertiesInput"] = None
-    arcade: Optional["ArcadeAuthenticationPropertiesInput"] = None
     oauth: Optional["OAuthAuthenticationPropertiesInput"] = None
 
 
@@ -2533,7 +2531,6 @@ class GitHubMilestonesFeedPropertiesUpdateInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class JinaModelPropertiesUpdateInput(BaseModel):
@@ -2754,6 +2751,7 @@ class MedicalDeviceFilter(BaseModel):
 
 
 class PromptClassificationRuleInput(BaseModel):
+    state: Optional[ClassificationRuleState] = None
     if_: Optional[str] = Field(alias="if", default=None)
     then: Optional[str] = None
 
@@ -3186,6 +3184,7 @@ class ParallelEntityFeedPropertiesUpdateInput(BaseModel):
 
 
 class RegexClassificationRuleInput(BaseModel):
+    state: Optional[ClassificationRuleState] = None
     type: Optional[RegexSourceTypes] = None
     path: Optional[str] = None
     matches: Optional[str] = None
@@ -5109,7 +5108,6 @@ class GitLabMilestonesFeedPropertiesUpdateInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    authorization_id: Optional[str] = Field(alias="authorizationId", default=None)
 
 
 class DiscordChannelsInput(BaseModel):
@@ -5270,8 +5268,10 @@ class MedicalConditionInput(BaseModel):
 
 class ContentClassificationConnectorInput(BaseModel):
     type: Optional[ContentClassificationServiceTypes] = None
-    content_type: Optional[ContentTypes] = Field(alias="contentType", default=None)
-    file_type: Optional[FileTypes] = Field(alias="fileType", default=None)
+    content_types: Optional[list[ContentTypes]] = Field(
+        alias="contentTypes", default=None
+    )
+    file_types: Optional[list[FileTypes]] = Field(alias="fileTypes", default=None)
     model: Optional["ModelContentClassificationPropertiesInput"] = None
     regex: Optional["RegexContentClassificationPropertiesInput"] = None
 
@@ -6800,6 +6800,7 @@ class AttioFeedPropertiesUpdateInput(BaseModel):
 
 
 class StorageGateRuleInput(BaseModel):
+    state: Optional[ClassificationRuleState] = None
     if_: str = Field(alias="if")
 
 
