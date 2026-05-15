@@ -831,14 +831,14 @@ class SkillFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
+    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
+    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
     identifier: Optional[str] = None
-    skill_owners: Optional[list[EntityOwners]] = Field(
-        alias="skillOwners", default=None
-    )
     collections: Optional[list["EntityReferenceFilter"]] = None
+    has_collections: Optional[bool] = Field(alias="hasCollections", default=None)
     feeds: Optional[list["EntityReferenceFilter"]] = None
     has_feeds: Optional[bool] = Field(alias="hasFeeds", default=None)
-    has_collections: Optional[bool] = Field(alias="hasCollections", default=None)
 
 
 class MedicalDrugClassInput(BaseModel):
@@ -5055,6 +5055,9 @@ class PersonaFilter(BaseModel):
     modified_date_range: Optional["DateRangeFilter"] = Field(
         alias="modifiedDateRange", default=None
     )
+    search_type: Optional[SearchTypes] = Field(alias="searchType", default=None)
+    query_type: Optional[SearchQueryTypes] = Field(alias="queryType", default=None)
+    number_similar: Optional[int] = Field(alias="numberSimilar", default=None)
     identifier: Optional[str] = None
     types: Optional[list[PersonaTypes]] = None
 
