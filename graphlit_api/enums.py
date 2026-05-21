@@ -1580,6 +1580,7 @@ class SearchServiceTypes(str, Enum):
     PODSCAN = "PODSCAN"
     CRUSTDATA = "CRUSTDATA"
     LINKED_IN = "LINKED_IN"
+    JOBS = "JOBS"
     TWITTER = "TWITTER"
 
 
