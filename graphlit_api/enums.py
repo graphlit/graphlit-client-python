@@ -762,6 +762,13 @@ class ViewTypes(str, Enum):
     CONTENT = "CONTENT"
 
 
+class AgentEffortLevels(str, Enum):
+    QUICK = "QUICK"
+    STANDARD = "STANDARD"
+    DEEP = "DEEP"
+    EXHAUSTIVE = "EXHAUSTIVE"
+
+
 class GitHubAuthenticationTypes(str, Enum):
     PERSONAL_ACCESS_TOKEN = "PERSONAL_ACCESS_TOKEN"
     O_AUTH = "O_AUTH"
@@ -780,7 +787,7 @@ class PersonaTypes(str, Enum):
 class AgentModes(str, Enum):
     INTERACTIVE = "INTERACTIVE"
     SCHEDULED = "SCHEDULED"
-    CONTENT_EVENT = "CONTENT_EVENT"
+    TRIGGERED = "TRIGGERED"
     WEBHOOK = "WEBHOOK"
     HEARTBEAT = "HEARTBEAT"
 

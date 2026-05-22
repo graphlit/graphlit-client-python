@@ -755,6 +755,7 @@ from .enrich_products import EnrichProducts, EnrichProductsEnrichProducts
 from .enums import (
     AgentChannelTypes,
     AgentCommandActionTypes,
+    AgentEffortLevels,
     AgentModes,
     AgentResearchDepths,
     AgentTypes,
@@ -5897,6 +5898,7 @@ __all__ = [
     "AgentChannelTypes",
     "AgentCommandActionTypes",
     "AgentCommandInput",
+    "AgentEffortLevels",
     "AgentFilter",
     "AgentHeartbeatProbeThresholdsInput",
     "AgentHeartbeatPropertiesInput",

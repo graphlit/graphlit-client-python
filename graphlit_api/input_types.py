@@ -9,8 +9,8 @@ from .base_model import BaseModel
 from .enums import (
     AgentChannelTypes,
     AgentCommandActionTypes,
+    AgentEffortLevels,
     AgentModes,
-    AgentResearchDepths,
     AgentTypes,
     AlertTypes,
     AnthropicEffortLevels,
@@ -771,9 +771,7 @@ class AgentInput(BaseModel):
     prompt: Optional[str] = None
     scratchpad: Optional[str] = None
     focus: Optional[str] = None
-    research_depth: Optional[AgentResearchDepths] = Field(
-        alias="researchDepth", default=None
-    )
+    effort: Optional[AgentEffortLevels] = None
     channels: Optional[list["AgentChannelInput"]] = None
     rules: Optional[list["PromptClassificationRuleInput"]] = None
     commands: Optional[list["AgentCommandInput"]] = None
@@ -5705,9 +5703,7 @@ class AgentUpdateInput(BaseModel):
     prompt: Optional[str] = None
     scratchpad: Optional[str] = None
     focus: Optional[str] = None
-    research_depth: Optional[AgentResearchDepths] = Field(
-        alias="researchDepth", default=None
-    )
+    effort: Optional[AgentEffortLevels] = None
     channels: Optional[list["AgentChannelInput"]] = None
     rules: Optional[list["PromptClassificationRuleInput"]] = None
     commands: Optional[list["AgentCommandInput"]] = None

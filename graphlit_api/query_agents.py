@@ -9,6 +9,7 @@ from .base_model import BaseModel
 from .enums import (
     AgentChannelTypes,
     AgentCommandActionTypes,
+    AgentEffortLevels,
     AgentModes,
     AgentResearchDepths,
     AgentTypes,
@@ -65,6 +66,7 @@ class QueryAgentsAgentsResults(BaseModel):
     prompt: Optional[str]
     scratchpad: Optional[str]
     focus: Optional[str]
+    effort: Optional[AgentEffortLevels]
     research_depth: Optional[AgentResearchDepths] = Field(alias="researchDepth")
     callback_uri: Optional[Any] = Field(alias="callbackUri")
 
