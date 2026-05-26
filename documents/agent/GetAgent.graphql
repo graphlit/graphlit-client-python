@@ -466,7 +466,6 @@ query GetAgent($id: ID!, $correlationId: String) {
     scratchpad
     focus
     effort
-    researchDepth
     callbackUri
   }
 }

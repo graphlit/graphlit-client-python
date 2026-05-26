@@ -1048,7 +1048,6 @@ query GetAgent($id: ID!, $correlationId: String) {
     scratchpad
     focus
     effort
-    researchDepth
     callbackUri
   }
 }
@@ -1522,7 +1521,6 @@ query QueryAgents($filter: AgentFilter, $correlationId: String) {
       scratchpad
       focus
       effort
-      researchDepth
       callbackUri
     }
   }

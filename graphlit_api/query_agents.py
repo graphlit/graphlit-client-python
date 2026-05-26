@@ -11,7 +11,6 @@ from .enums import (
     AgentCommandActionTypes,
     AgentEffortLevels,
     AgentModes,
-    AgentResearchDepths,
     AgentTypes,
     ClassificationRuleState,
     ContentTypes,
@@ -67,7 +66,6 @@ class QueryAgentsAgentsResults(BaseModel):
     scratchpad: Optional[str]
     focus: Optional[str]
     effort: Optional[AgentEffortLevels]
-    research_depth: Optional[AgentResearchDepths] = Field(alias="researchDepth")
     callback_uri: Optional[Any] = Field(alias="callbackUri")
 
 
