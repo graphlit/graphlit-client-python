@@ -7266,7 +7266,7 @@ mutation DeleteConversations($ids: [ID!]!, $isSynchronous: Boolean) {
 """
 
 FORMAT_CONVERSATION_GQL = """
-mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $persona: EntityReferenceInput, $tools: [ToolDefinitionInput!], $systemPrompt: String, $includeDetails: Boolean, $correlationId: String, $instructions: String, $scratchpad: String, $skills: [EntityReferenceInput!]) {
+mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityReferenceInput, $persona: EntityReferenceInput, $tools: [ToolDefinitionInput!], $systemPrompt: String, $includeDetails: Boolean, $timestamp: DateTime, $correlationId: String, $instructions: String, $scratchpad: String, $skills: [EntityReferenceInput!]) {
   formatConversation(
     prompt: $prompt
     id: $id
@@ -7275,6 +7275,7 @@ mutation FormatConversation($prompt: String!, $id: ID, $specification: EntityRef
     tools: $tools
     systemPrompt: $systemPrompt
     includeDetails: $includeDetails
+    timestamp: $timestamp
     correlationId: $correlationId
     instructions: $instructions
     scratchpad: $scratchpad
