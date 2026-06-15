@@ -481,6 +481,7 @@ from .input_types import (
     WorkflowUpdateInput,
     ZendeskDiscoveryInput,
 )
+from .inspect_page import InspectPage
 from .is_content_done import IsContentDone
 from .is_feed_done import IsFeedDone
 from .lookup_companies import LookupCompanies
@@ -779,6 +780,7 @@ from .operations import (
     INGEST_TEXT_BATCH_GQL,
     INGEST_TEXT_GQL,
     INGEST_URI_GQL,
+    INSPECT_PAGE_GQL,
     IS_CONTENT_DONE_GQL,
     IS_FEED_DONE_GQL,
     LOOKUP_COMPANIES_GQL,
@@ -2746,6 +2748,22 @@ class Client(AsyncBaseClient):
         )
         data = self.get_data(response)
         return IngestUri.model_validate(data)
+
+    async def inspect_page(
+        self,
+        uri: Any,
+        correlation_id: Union[Optional[str], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> InspectPage:
+        variables: dict[str, object] = {"uri": uri, "correlationId": correlation_id}
+        response = await self.execute(
+            query=INSPECT_PAGE_GQL,
+            operation_name="InspectPage",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return InspectPage.model_validate(data)
 
     async def is_content_done(self, id: str, **kwargs: Any) -> IsContentDone:
         variables: dict[str, object] = {"id": id}

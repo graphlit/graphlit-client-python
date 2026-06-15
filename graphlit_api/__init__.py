@@ -2813,6 +2813,7 @@ from .input_types import (
     ZoomPropertiesInput,
     ZoomPropertiesUpdateInput,
 )
+from .inspect_page import InspectPage, InspectPageInspectPage
 from .is_content_done import IsContentDone, IsContentDoneIsContentDone
 from .is_feed_done import IsFeedDone, IsFeedDoneIsFeedDone
 from .lookup_companies import (
@@ -3193,6 +3194,7 @@ from .operations import (
     INGEST_TEXT_BATCH_GQL,
     INGEST_TEXT_GQL,
     INGEST_URI_GQL,
+    INSPECT_PAGE_GQL,
     IS_CONTENT_DONE_GQL,
     IS_FEED_DONE_GQL,
     LOOKUP_COMPANIES_GQL,
@@ -8316,6 +8318,7 @@ __all__ = [
     "INGEST_TEXT_BATCH_GQL",
     "INGEST_TEXT_GQL",
     "INGEST_URI_GQL",
+    "INSPECT_PAGE_GQL",
     "IS_CONTENT_DONE_GQL",
     "IS_FEED_DONE_GQL",
     "ImageMetadataInput",
@@ -8383,6 +8386,8 @@ __all__ = [
     "InitiativeFeedPropertiesInput",
     "InitiativeFeedPropertiesUpdateInput",
     "InitiativeMetadataInput",
+    "InspectPage",
+    "InspectPageInspectPage",
     "Int64RangeFilter",
     "Int64RangeInput",
     "IntegrationConnectorInput",

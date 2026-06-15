@@ -1,0 +1,5 @@
+mutation InspectPage($uri: URL!, $correlationId: String) {
+  inspectPage(uri: $uri, correlationId: $correlationId) {
+    result
+  }
+}

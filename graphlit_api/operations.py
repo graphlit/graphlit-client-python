@@ -289,6 +289,7 @@ __all__ = [
     "INGEST_TEXT_BATCH_GQL",
     "INGEST_TEXT_GQL",
     "INGEST_URI_GQL",
+    "INSPECT_PAGE_GQL",
     "IS_CONTENT_DONE_GQL",
     "IS_FEED_DONE_GQL",
     "LOOKUP_COMPANIES_GQL",
@@ -4306,6 +4307,14 @@ mutation IngestUri($name: String, $uri: URL!, $id: ID, $mimeType: String, $ident
       }
       state
     }
+  }
+}
+"""
+
+INSPECT_PAGE_GQL = """
+mutation InspectPage($uri: URL!, $correlationId: String) {
+  inspectPage(uri: $uri, correlationId: $correlationId) {
+    result
   }
 }
 """
