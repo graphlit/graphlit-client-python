@@ -435,6 +435,7 @@ __all__ = [
     "RESEARCH_CONTENTS_GQL",
     "RESOLVE_ENTITIES_GQL",
     "RESOLVE_ENTITY_GQL",
+    "RESTART_ALL_CONTENTS_GQL",
     "RESTART_CONTENT_GQL",
     "RETRIEVE_ENTITIES_GQL",
     "RETRIEVE_FACTS_GQL",
@@ -6135,9 +6136,18 @@ mutation ResearchContents($connector: ContentPublishingConnectorInput!, $filter:
 }
 """
 
+RESTART_ALL_CONTENTS_GQL = """
+mutation RestartAllContents($filter: ContentFilter!, $workflow: EntityReferenceInput) {
+  restartAllContents(filter: $filter, workflow: $workflow) {
+    id
+    state
+  }
+}
+"""
+
 RESTART_CONTENT_GQL = """
-mutation RestartContent($id: ID!) {
-  restartContent(id: $id) {
+mutation RestartContent($id: ID!, $workflow: EntityReferenceInput) {
+  restartContent(id: $id, workflow: $workflow) {
     id
     state
   }

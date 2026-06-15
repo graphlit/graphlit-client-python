@@ -3340,6 +3340,7 @@ from .operations import (
     RESEARCH_CONTENTS_GQL,
     RESOLVE_ENTITIES_GQL,
     RESOLVE_ENTITY_GQL,
+    RESTART_ALL_CONTENTS_GQL,
     RESTART_CONTENT_GQL,
     RETRIEVE_ENTITIES_GQL,
     RETRIEVE_FACTS_GQL,
@@ -5286,6 +5287,10 @@ from .resolve_entity import (
     ResolveEntityResolveEntity,
     ResolveEntityResolveEntityReference,
     ResolveEntityResolveEntityReferenceObservable,
+)
+from .restart_all_contents import (
+    RestartAllContents,
+    RestartAllContentsRestartAllContents,
 )
 from .restart_content import RestartContent, RestartContentRestartContent
 from .retrieve_entities import (
@@ -10480,6 +10485,7 @@ __all__ = [
     "RESEARCH_CONTENTS_GQL",
     "RESOLVE_ENTITIES_GQL",
     "RESOLVE_ENTITY_GQL",
+    "RESTART_ALL_CONTENTS_GQL",
     "RESTART_CONTENT_GQL",
     "RETRIEVE_ENTITIES_GQL",
     "RETRIEVE_FACTS_GQL",
@@ -10566,6 +10572,8 @@ __all__ = [
     "ResolveEntityResolveEntityReference",
     "ResolveEntityResolveEntityReferenceObservable",
     "ResourceConnectorTypes",
+    "RestartAllContents",
+    "RestartAllContentsRestartAllContents",
     "RestartContent",
     "RestartContentRestartContent",
     "RetrievalStrategyInput",

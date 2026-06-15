@@ -1,0 +1,6 @@
+mutation RestartAllContents($filter: ContentFilter!, $workflow: EntityReferenceInput) {
+  restartAllContents(filter: $filter, workflow: $workflow) {
+    id
+    state
+  }
+}

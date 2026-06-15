@@ -926,6 +926,7 @@ from .operations import (
     RESEARCH_CONTENTS_GQL,
     RESOLVE_ENTITIES_GQL,
     RESOLVE_ENTITY_GQL,
+    RESTART_ALL_CONTENTS_GQL,
     RESTART_CONTENT_GQL,
     RETRIEVE_ENTITIES_GQL,
     RETRIEVE_FACTS_GQL,
@@ -1138,6 +1139,7 @@ from .replica_exists import ReplicaExists
 from .research_contents import ResearchContents
 from .resolve_entities import ResolveEntities
 from .resolve_entity import ResolveEntity
+from .restart_all_contents import RestartAllContents
 from .restart_content import RestartContent
 from .retrieve_entities import RetrieveEntities
 from .retrieve_facts import RetrieveFacts
@@ -3087,8 +3089,29 @@ class Client(AsyncBaseClient):
         data = self.get_data(response)
         return ResearchContents.model_validate(data)
 
-    async def restart_content(self, id: str, **kwargs: Any) -> RestartContent:
-        variables: dict[str, object] = {"id": id}
+    async def restart_all_contents(
+        self,
+        filter: ContentFilter,
+        workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> RestartAllContents:
+        variables: dict[str, object] = {"filter": filter, "workflow": workflow}
+        response = await self.execute(
+            query=RESTART_ALL_CONTENTS_GQL,
+            operation_name="RestartAllContents",
+            variables=variables,
+            **kwargs
+        )
+        data = self.get_data(response)
+        return RestartAllContents.model_validate(data)
+
+    async def restart_content(
+        self,
+        id: str,
+        workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
+        **kwargs: Any
+    ) -> RestartContent:
+        variables: dict[str, object] = {"id": id, "workflow": workflow}
         response = await self.execute(
             query=RESTART_CONTENT_GQL,
             operation_name="RestartContent",
