@@ -17,7 +17,7 @@ class UpdateAlertUpdateAlert(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: AlertTypes
+    type_: AlertTypes = Field(alias="type")
 
 
 UpdateAlert.model_rebuild()

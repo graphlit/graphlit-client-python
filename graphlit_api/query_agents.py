@@ -43,13 +43,13 @@ class QueryAgentsAgentsResults(BaseModel):
     owner: "QueryAgentsAgentsResultsOwner"
     state: EntityState
     correlation_id: Optional[str] = Field(alias="correlationId")
-    type: AgentTypes
+    type_: AgentTypes = Field(alias="type")
     mode: AgentModes
     description: Optional[str]
     specification: Optional["QueryAgentsAgentsResultsSpecification"]
     persona: Optional["QueryAgentsAgentsResultsPersona"]
     trigger: Optional["QueryAgentsAgentsResultsTrigger"]
-    filter: Optional["QueryAgentsAgentsResultsFilter"]
+    filter_: Optional["QueryAgentsAgentsResultsFilter"] = Field(alias="filter")
     augmented_filter: Optional["QueryAgentsAgentsResultsAugmentedFilter"] = Field(
         alias="augmentedFilter"
     )
@@ -169,7 +169,7 @@ class QueryAgentsAgentsResultsFilterUsers(BaseModel):
 
 
 class QueryAgentsAgentsResultsFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "QueryAgentsAgentsResultsFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -203,7 +203,7 @@ class QueryAgentsAgentsResultsFilterOrUsers(BaseModel):
 
 
 class QueryAgentsAgentsResultsFilterOrObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "QueryAgentsAgentsResultsFilterOrObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -237,7 +237,7 @@ class QueryAgentsAgentsResultsFilterAndUsers(BaseModel):
 
 
 class QueryAgentsAgentsResultsFilterAndObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "QueryAgentsAgentsResultsFilterAndObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -324,7 +324,7 @@ class QueryAgentsAgentsResultsAugmentedFilterUsers(BaseModel):
 
 
 class QueryAgentsAgentsResultsAugmentedFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "QueryAgentsAgentsResultsAugmentedFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -360,7 +360,7 @@ class QueryAgentsAgentsResultsAugmentedFilterOrUsers(BaseModel):
 
 
 class QueryAgentsAgentsResultsAugmentedFilterOrObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "QueryAgentsAgentsResultsAugmentedFilterOrObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -396,7 +396,7 @@ class QueryAgentsAgentsResultsAugmentedFilterAndUsers(BaseModel):
 
 
 class QueryAgentsAgentsResultsAugmentedFilterAndObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "QueryAgentsAgentsResultsAugmentedFilterAndObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -433,7 +433,7 @@ class QueryAgentsAgentsResultsHeartbeatProbeThresholds(BaseModel):
 
 
 class QueryAgentsAgentsResultsChannels(BaseModel):
-    type: AgentChannelTypes
+    type_: AgentChannelTypes = Field(alias="type")
     identifier: str
     instructions: Optional[str]
     label: Optional[str]
@@ -449,7 +449,7 @@ class QueryAgentsAgentsResultsCommands(BaseModel):
     keyword: str
     name: str
     description: Optional[str]
-    type: AgentCommandActionTypes
+    type_: AgentCommandActionTypes = Field(alias="type")
     template: str
     enabled: bool
 
@@ -460,7 +460,7 @@ class QueryAgentsAgentsResultsTargets(BaseModel):
 
 
 class QueryAgentsAgentsResultsTargetsConnector(BaseModel):
-    type: DistributionServiceTypes
+    type_: DistributionServiceTypes = Field(alias="type")
     operation: Optional[DistributionTargetOperationTypes]
     kind: Optional[DistributionTargetKindTypes]
     notion: Optional["QueryAgentsAgentsResultsTargetsConnectorNotion"]
@@ -645,7 +645,7 @@ class QueryAgentsAgentsResultsTargetsConnectorZendesk(BaseModel):
     subject: Optional[str]
     priority: Optional[str]
     status: Optional[str]
-    type: Optional[str]
+    type_: Optional[str] = Field(alias="type")
     assignee: Optional[str]
     group_id: Optional[str] = Field(alias="groupId")
     tags: Optional[list[str]]

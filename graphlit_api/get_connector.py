@@ -30,7 +30,7 @@ class GetConnectorConnector(BaseModel):
     owner: "GetConnectorConnectorOwner"
     state: EntityState
     user: Optional["GetConnectorConnectorUser"]
-    type: Optional[ConnectorTypes]
+    type_: Optional[ConnectorTypes] = Field(alias="type")
     authentication: Optional["GetConnectorConnectorAuthentication"]
     integration: Optional["GetConnectorConnectorIntegration"]
     channel: Optional["GetConnectorConnectorChannel"]
@@ -45,7 +45,7 @@ class GetConnectorConnectorUser(BaseModel):
 
 
 class GetConnectorConnectorAuthentication(BaseModel):
-    type: AuthenticationServiceTypes
+    type_: AuthenticationServiceTypes = Field(alias="type")
     token: Optional[str]
     api_key: Optional[str] = Field(alias="apiKey")
     microsoft: Optional["GetConnectorConnectorAuthenticationMicrosoft"]
@@ -82,7 +82,7 @@ class GetConnectorConnectorAuthenticationArcade(BaseModel):
 
 
 class GetConnectorConnectorIntegration(BaseModel):
-    type: IntegrationServiceTypes
+    type_: IntegrationServiceTypes = Field(alias="type")
     uri: Optional[str]
     slack: Optional["GetConnectorConnectorIntegrationSlack"]
     email: Optional["GetConnectorConnectorIntegrationEmail"]
@@ -110,11 +110,11 @@ class GetConnectorConnectorIntegrationTwitter(BaseModel):
 
 class GetConnectorConnectorIntegrationMcp(BaseModel):
     token: Optional[str]
-    type: MCPServerTypes
+    type_: MCPServerTypes = Field(alias="type")
 
 
 class GetConnectorConnectorChannel(BaseModel):
-    type: ChannelServiceTypes
+    type_: ChannelServiceTypes = Field(alias="type")
     slack: Optional["GetConnectorConnectorChannelSlack"]
     teams: Optional["GetConnectorConnectorChannelTeams"]
     discord: Optional["GetConnectorConnectorChannelDiscord"]

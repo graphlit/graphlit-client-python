@@ -25,7 +25,7 @@ class QueryFactsGraphFactsGraph(BaseModel):
 class QueryFactsGraphFactsGraphNodes(BaseModel):
     id: str
     name: str
-    type: EntityTypes
+    type_: EntityTypes = Field(alias="type")
     metadata: Optional[str]
 
 

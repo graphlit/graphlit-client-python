@@ -36,7 +36,7 @@ class QueryUsersUsersResults(BaseModel):
     relevance: Optional[float]
     owner: "QueryUsersUsersResultsOwner"
     state: EntityState
-    type: Optional[UserTypes]
+    type_: Optional[UserTypes] = Field(alias="type")
     identifier: str
     description: Optional[str]
     connectors: Optional[list[Optional["QueryUsersUsersResultsConnectors"]]]
@@ -55,14 +55,14 @@ class QueryUsersUsersResultsConnectors(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[ConnectorTypes]
+    type_: Optional[ConnectorTypes] = Field(alias="type")
     authentication: Optional["QueryUsersUsersResultsConnectorsAuthentication"]
     integration: Optional["QueryUsersUsersResultsConnectorsIntegration"]
     channel: Optional["QueryUsersUsersResultsConnectorsChannel"]
 
 
 class QueryUsersUsersResultsConnectorsAuthentication(BaseModel):
-    type: AuthenticationServiceTypes
+    type_: AuthenticationServiceTypes = Field(alias="type")
     token: Optional[str]
     api_key: Optional[str] = Field(alias="apiKey")
     microsoft: Optional["QueryUsersUsersResultsConnectorsAuthenticationMicrosoft"]
@@ -99,7 +99,7 @@ class QueryUsersUsersResultsConnectorsAuthenticationArcade(BaseModel):
 
 
 class QueryUsersUsersResultsConnectorsIntegration(BaseModel):
-    type: IntegrationServiceTypes
+    type_: IntegrationServiceTypes = Field(alias="type")
     uri: Optional[str]
     slack: Optional["QueryUsersUsersResultsConnectorsIntegrationSlack"]
     email: Optional["QueryUsersUsersResultsConnectorsIntegrationEmail"]
@@ -127,11 +127,11 @@ class QueryUsersUsersResultsConnectorsIntegrationTwitter(BaseModel):
 
 class QueryUsersUsersResultsConnectorsIntegrationMcp(BaseModel):
     token: Optional[str]
-    type: MCPServerTypes
+    type_: MCPServerTypes = Field(alias="type")
 
 
 class QueryUsersUsersResultsConnectorsChannel(BaseModel):
-    type: ChannelServiceTypes
+    type_: ChannelServiceTypes = Field(alias="type")
     slack: Optional["QueryUsersUsersResultsConnectorsChannelSlack"]
     teams: Optional["QueryUsersUsersResultsConnectorsChannelTeams"]
     discord: Optional["QueryUsersUsersResultsConnectorsChannelDiscord"]
@@ -184,7 +184,7 @@ class QueryUsersUsersResultsPersonas(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[PersonaTypes]
+    type_: Optional[PersonaTypes] = Field(alias="type")
     identifier: Optional[str]
     platform: Optional[str]
     display_name: Optional[str] = Field(alias="displayName")

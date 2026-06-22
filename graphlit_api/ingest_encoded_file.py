@@ -25,7 +25,7 @@ class IngestEncodedFileIngestEncodedFile(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[ContentTypes]
+    type_: Optional[ContentTypes] = Field(alias="type")
     file_type: Optional[FileTypes] = Field(alias="fileType")
     mime_type: Optional[str] = Field(alias="mimeType")
     uri: Optional[Any]
@@ -45,7 +45,7 @@ class IngestEncodedFileIngestEncodedFileCollections(BaseModel):
 
 class IngestEncodedFileIngestEncodedFileObservations(BaseModel):
     id: str
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "IngestEncodedFileIngestEncodedFileObservationsObservable"
     related: Optional["IngestEncodedFileIngestEncodedFileObservationsRelated"]
     related_type: Optional[ObservableTypes] = Field(alias="relatedType")
@@ -67,7 +67,7 @@ class IngestEncodedFileIngestEncodedFileObservationsRelated(BaseModel):
 
 
 class IngestEncodedFileIngestEncodedFileObservationsOccurrences(BaseModel):
-    type: Optional[OccurrenceTypes]
+    type_: Optional[OccurrenceTypes] = Field(alias="type")
     confidence: Optional[float]
     start_time: Optional[Any] = Field(alias="startTime")
     end_time: Optional[Any] = Field(alias="endTime")

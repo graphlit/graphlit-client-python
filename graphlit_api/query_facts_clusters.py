@@ -52,7 +52,7 @@ class QueryFactsClustersFactsResultsOwner(BaseModel):
 
 
 class QueryFactsClustersFactsResultsMentions(BaseModel):
-    type: Optional[ObservableTypes]
+    type_: Optional[ObservableTypes] = Field(alias="type")
     observable: Optional["QueryFactsClustersFactsResultsMentionsObservable"]
     start: Optional[int]
     end: Optional[int]
@@ -71,7 +71,7 @@ class QueryFactsClustersFactsResultsAssertions(BaseModel):
 
 
 class QueryFactsClustersFactsResultsAssertionsMentions(BaseModel):
-    type: Optional[ObservableTypes]
+    type_: Optional[ObservableTypes] = Field(alias="type")
     observable: Optional["QueryFactsClustersFactsResultsAssertionsMentionsObservable"]
     start: Optional[int]
     end: Optional[int]
@@ -103,7 +103,7 @@ class QueryFactsClustersFactsResultsPersona(BaseModel):
 
 
 class QueryFactsClustersFactsResultsEvidence(BaseModel):
-    type: Optional[FactEvidenceTypes]
+    type_: Optional[FactEvidenceTypes] = Field(alias="type")
     entity: Optional["QueryFactsClustersFactsResultsEvidenceEntity"]
     text: Optional[str]
     confidence: Optional[float]

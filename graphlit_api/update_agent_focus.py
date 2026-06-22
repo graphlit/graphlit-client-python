@@ -19,7 +19,7 @@ class UpdateAgentFocusUpdateAgentFocus(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: AgentTypes
+    type_: AgentTypes = Field(alias="type")
     mode: AgentModes
 
 

@@ -1057,6 +1057,12 @@ class OpenAIReasoningEffortLevels(str, Enum):
     HIGH = "HIGH"
 
 
+class ModelServiceTierTypes(str, Enum):
+    STANDARD = "STANDARD"
+    PRIORITY = "PRIORITY"
+    FLEX = "FLEX"
+
+
 class AzureOpenAIModels(str, Enum):
     GPT35_TURBO_16K = "GPT35_TURBO_16K"
     GPT4 = "GPT4"

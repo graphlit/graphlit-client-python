@@ -19160,6 +19160,8 @@ query LookupUsage($correlationId: String!, $startDate: DateTime, $duration: Time
     fileType
     modelService
     modelName
+    requestedServiceTier
+    actualServiceTier
     processorName
     promptTokens
     completionTokens
@@ -19246,6 +19248,8 @@ query QueryUsage($startDate: DateTime!, $duration: TimeSpan!, $names: [String!],
     fileType
     modelService
     modelName
+    requestedServiceTier
+    actualServiceTier
     processorName
     promptTokens
     completionTokens
@@ -21119,6 +21123,7 @@ query GetSpecification($id: ID!, $correlationId: String) {
       chunkTokenLimit
       detailLevel
       reasoningEffort
+      serviceTier
     }
     azureOpenAI {
       tokenLimit
@@ -21152,6 +21157,7 @@ query GetSpecification($id: ID!, $correlationId: String) {
       enableThinking
       thinkingTokenLimit
       effort
+      serviceTier
     }
     google {
       tokenLimit
@@ -21165,6 +21171,7 @@ query GetSpecification($id: ID!, $correlationId: String) {
       enableThinking
       thinkingTokenLimit
       thinkingLevel
+      serviceTier
     }
     replicate {
       tokenLimit
@@ -21538,6 +21545,7 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         chunkTokenLimit
         detailLevel
         reasoningEffort
+        serviceTier
       }
       azureOpenAI {
         tokenLimit
@@ -21571,6 +21579,7 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         enableThinking
         thinkingTokenLimit
         effort
+        serviceTier
       }
       google {
         tokenLimit
@@ -21584,6 +21593,7 @@ query QuerySpecifications($filter: SpecificationFilter, $correlationId: String) 
         enableThinking
         thinkingTokenLimit
         thinkingLevel
+        serviceTier
       }
       replicate {
         tokenLimit

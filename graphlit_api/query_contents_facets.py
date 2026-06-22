@@ -20,9 +20,9 @@ class QueryContentsFacetsContents(BaseModel):
 class QueryContentsFacetsContentsFacets(BaseModel):
     facet: Optional[ContentFacetTypes]
     count: Optional[Any]
-    type: Optional[FacetValueTypes]
+    type_: Optional[FacetValueTypes] = Field(alias="type")
     value: Optional[str]
-    range: Optional["QueryContentsFacetsContentsFacetsRange"]
+    range_: Optional["QueryContentsFacetsContentsFacetsRange"] = Field(alias="range")
     observable: Optional["QueryContentsFacetsContentsFacetsObservable"]
 
 
@@ -32,7 +32,7 @@ class QueryContentsFacetsContentsFacetsRange(BaseModel):
 
 
 class QueryContentsFacetsContentsFacetsObservable(BaseModel):
-    type: Optional[ObservableTypes]
+    type_: Optional[ObservableTypes] = Field(alias="type")
     observable: Optional["QueryContentsFacetsContentsFacetsObservableObservable"]
 
 

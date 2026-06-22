@@ -21,7 +21,7 @@ class GetCollectionCollection(BaseModel):
     owner: "GetCollectionCollectionOwner"
     state: EntityState
     user: Optional["GetCollectionCollectionUser"]
-    type: Optional[CollectionTypes]
+    type_: Optional[CollectionTypes] = Field(alias="type")
     contents: Optional[list[Optional["GetCollectionCollectionContents"]]]
     conversations: Optional[list[Optional["GetCollectionCollectionConversations"]]]
 

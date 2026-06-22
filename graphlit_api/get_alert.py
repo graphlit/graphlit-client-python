@@ -48,11 +48,11 @@ class GetAlertAlert(BaseModel):
     state: EntityState
     user: Optional["GetAlertAlertUser"]
     correlation_id: Optional[str] = Field(alias="correlationId")
-    type: AlertTypes
+    type_: AlertTypes = Field(alias="type")
     summary_prompt: Optional[str] = Field(alias="summaryPrompt")
     publish_prompt: str = Field(alias="publishPrompt")
     view: Optional["GetAlertAlertView"]
-    filter: Optional["GetAlertAlertFilter"]
+    filter_: Optional["GetAlertAlertFilter"] = Field(alias="filter")
     integration: "GetAlertAlertIntegration"
     publishing: "GetAlertAlertPublishing"
     summary_specification: Optional["GetAlertAlertSummarySpecification"] = Field(
@@ -153,7 +153,7 @@ class GetAlertAlertFilterUsers(BaseModel):
 
 
 class GetAlertAlertFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetAlertAlertFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -187,7 +187,7 @@ class GetAlertAlertFilterOrUsers(BaseModel):
 
 
 class GetAlertAlertFilterOrObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetAlertAlertFilterOrObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -221,7 +221,7 @@ class GetAlertAlertFilterAndUsers(BaseModel):
 
 
 class GetAlertAlertFilterAndObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetAlertAlertFilterAndObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -231,7 +231,7 @@ class GetAlertAlertFilterAndObservationsObservable(BaseModel):
 
 
 class GetAlertAlertIntegration(BaseModel):
-    type: IntegrationServiceTypes
+    type_: IntegrationServiceTypes = Field(alias="type")
     uri: Optional[str]
     slack: Optional["GetAlertAlertIntegrationSlack"]
     email: Optional["GetAlertAlertIntegrationEmail"]
@@ -259,11 +259,11 @@ class GetAlertAlertIntegrationTwitter(BaseModel):
 
 class GetAlertAlertIntegrationMcp(BaseModel):
     token: Optional[str]
-    type: MCPServerTypes
+    type_: MCPServerTypes = Field(alias="type")
 
 
 class GetAlertAlertPublishing(BaseModel):
-    type: ContentPublishingServiceTypes
+    type_: ContentPublishingServiceTypes = Field(alias="type")
     eleven_labs: Optional["GetAlertAlertPublishingElevenLabs"] = Field(
         alias="elevenLabs"
     )

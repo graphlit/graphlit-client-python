@@ -22,7 +22,7 @@ class ResolveEntityResolveEntity(BaseModel):
 
 
 class ResolveEntityResolveEntityReference(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "ResolveEntityResolveEntityReferenceObservable"
 
 

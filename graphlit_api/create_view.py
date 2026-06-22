@@ -24,8 +24,8 @@ class CreateViewCreateView(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[ViewTypes]
-    filter: Optional["CreateViewCreateViewFilter"]
+    type_: Optional[ViewTypes] = Field(alias="type")
+    filter_: Optional["CreateViewCreateViewFilter"] = Field(alias="filter")
     augmented_filter: Optional["CreateViewCreateViewAugmentedFilter"] = Field(
         alias="augmentedFilter"
     )
@@ -107,7 +107,7 @@ class CreateViewCreateViewFilterUsers(BaseModel):
 
 
 class CreateViewCreateViewFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "CreateViewCreateViewFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -141,7 +141,7 @@ class CreateViewCreateViewFilterOrUsers(BaseModel):
 
 
 class CreateViewCreateViewFilterOrObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "CreateViewCreateViewFilterOrObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -175,7 +175,7 @@ class CreateViewCreateViewFilterAndUsers(BaseModel):
 
 
 class CreateViewCreateViewFilterAndObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "CreateViewCreateViewFilterAndObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -260,7 +260,7 @@ class CreateViewCreateViewAugmentedFilterUsers(BaseModel):
 
 
 class CreateViewCreateViewAugmentedFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "CreateViewCreateViewAugmentedFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -294,7 +294,7 @@ class CreateViewCreateViewAugmentedFilterOrUsers(BaseModel):
 
 
 class CreateViewCreateViewAugmentedFilterOrObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "CreateViewCreateViewAugmentedFilterOrObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -328,7 +328,7 @@ class CreateViewCreateViewAugmentedFilterAndUsers(BaseModel):
 
 
 class CreateViewCreateViewAugmentedFilterAndObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "CreateViewCreateViewAugmentedFilterAndObservationsObservable"
     states: Optional[list[EntityState]]
 

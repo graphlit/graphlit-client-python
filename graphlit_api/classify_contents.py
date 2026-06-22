@@ -18,7 +18,7 @@ class ClassifyContents(BaseModel):
 class ClassifyContentsClassifyContents(BaseModel):
     content: "ClassifyContentsClassifyContentsContent"
     labels: list[str]
-    type: ContentClassificationServiceTypes
+    type_: ContentClassificationServiceTypes = Field(alias="type")
     classification_time: Optional[Any] = Field(alias="classificationTime")
     error: Optional[str]
 

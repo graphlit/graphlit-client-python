@@ -24,7 +24,7 @@ class QueryGustoLocationsGustoLocationsResults(BaseModel):
     street_2: Optional[str] = Field(alias="street2")
     city: Optional[str]
     state: Optional[str]
-    zip: Optional[str]
+    zip_: Optional[str] = Field(alias="zip")
     country: Optional[str]
 
 

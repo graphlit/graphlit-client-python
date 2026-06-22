@@ -23,7 +23,7 @@ class IngestUriIngestUri(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[ContentTypes]
+    type_: Optional[ContentTypes] = Field(alias="type")
     file_type: Optional[FileTypes] = Field(alias="fileType")
     mime_type: Optional[str] = Field(alias="mimeType")
     uri: Optional[Any]
@@ -39,7 +39,7 @@ class IngestUriIngestUriCollections(BaseModel):
 
 class IngestUriIngestUriObservations(BaseModel):
     id: str
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "IngestUriIngestUriObservationsObservable"
     related: Optional["IngestUriIngestUriObservationsRelated"]
     related_type: Optional[ObservableTypes] = Field(alias="relatedType")
@@ -59,7 +59,7 @@ class IngestUriIngestUriObservationsRelated(BaseModel):
 
 
 class IngestUriIngestUriObservationsOccurrences(BaseModel):
-    type: Optional[OccurrenceTypes]
+    type_: Optional[OccurrenceTypes] = Field(alias="type")
     confidence: Optional[float]
     start_time: Optional[Any] = Field(alias="startTime")
     end_time: Optional[Any] = Field(alias="endTime")

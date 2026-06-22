@@ -28,8 +28,8 @@ class GetViewView(BaseModel):
     owner: "GetViewViewOwner"
     state: EntityState
     user: Optional["GetViewViewUser"]
-    type: Optional[ViewTypes]
-    filter: Optional["GetViewViewFilter"]
+    type_: Optional[ViewTypes] = Field(alias="type")
+    filter_: Optional["GetViewViewFilter"] = Field(alias="filter")
     augmented_filter: Optional["GetViewViewAugmentedFilter"] = Field(
         alias="augmentedFilter"
     )
@@ -117,7 +117,7 @@ class GetViewViewFilterUsers(BaseModel):
 
 
 class GetViewViewFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetViewViewFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -151,7 +151,7 @@ class GetViewViewFilterOrUsers(BaseModel):
 
 
 class GetViewViewFilterOrObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetViewViewFilterOrObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -185,7 +185,7 @@ class GetViewViewFilterAndUsers(BaseModel):
 
 
 class GetViewViewFilterAndObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetViewViewFilterAndObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -270,7 +270,7 @@ class GetViewViewAugmentedFilterUsers(BaseModel):
 
 
 class GetViewViewAugmentedFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetViewViewAugmentedFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -304,7 +304,7 @@ class GetViewViewAugmentedFilterOrUsers(BaseModel):
 
 
 class GetViewViewAugmentedFilterOrObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetViewViewAugmentedFilterOrObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -338,7 +338,7 @@ class GetViewViewAugmentedFilterAndUsers(BaseModel):
 
 
 class GetViewViewAugmentedFilterAndObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetViewViewAugmentedFilterAndObservationsObservable"
     states: Optional[list[EntityState]]
 

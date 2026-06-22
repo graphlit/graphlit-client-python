@@ -148,6 +148,7 @@ from .enums import (
     MicrosoftEmailAuthenticationTypes,
     MicrosoftTeamsAuthenticationTypes,
     MistralModels,
+    ModelServiceTierTypes,
     ModelServiceTypes,
     ModelTypes,
     NotionAuthenticationTypes,
@@ -1256,7 +1257,7 @@ class MedicalTestFilter(BaseModel):
 
 
 class ObservationReferenceFilter(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "EntityReferenceFilter"
     states: Optional[list[EntityState]] = None
 
@@ -1704,13 +1705,13 @@ class WorkflowFilter(BaseModel):
 
 class AgentInput(BaseModel):
     name: str
-    type: AgentTypes
+    type_: AgentTypes = Field(alias="type")
     mode: Optional[AgentModes] = None
     description: Optional[str] = None
     specification: Optional["EntityReferenceInput"] = None
     persona: Optional["EntityReferenceInput"] = None
     trigger: Optional["AgentTriggerFilterInput"] = None
-    filter: Optional["ContentCriteriaInput"] = None
+    filter_: Optional["ContentCriteriaInput"] = Field(alias="filter", default=None)
     augmented_filter: Optional["ContentCriteriaInput"] = Field(
         alias="augmentedFilter", default=None
     )
@@ -1732,11 +1733,11 @@ class AgentInput(BaseModel):
 
 class AlertInput(BaseModel):
     name: str
-    type: AlertTypes
+    type_: AlertTypes = Field(alias="type")
     summary_prompt: Optional[str] = Field(alias="summaryPrompt", default=None)
     publish_prompt: str = Field(alias="publishPrompt")
     view: Optional["EntityReferenceInput"] = None
-    filter: Optional["ContentCriteriaInput"] = None
+    filter_: Optional["ContentCriteriaInput"] = Field(alias="filter", default=None)
     publishing: "ContentPublishingConnectorInput"
     integration: "IntegrationConnectorInput"
     summary_specification: Optional["EntityReferenceInput"] = Field(
@@ -1765,7 +1766,7 @@ class CategoryInput(BaseModel):
 
 class CollectionInput(BaseModel):
     name: str
-    type: Optional[CollectionTypes] = None
+    type_: Optional[CollectionTypes] = Field(alias="type", default=None)
     contents: Optional[list["EntityReferenceInput"]] = None
     conversations: Optional[list["EntityReferenceInput"]] = None
     expected_count: Optional[int] = Field(alias="expectedCount", default=None)
@@ -1773,7 +1774,7 @@ class CollectionInput(BaseModel):
 
 class ConnectorInput(BaseModel):
     name: str
-    type: ConnectorTypes
+    type_: ConnectorTypes = Field(alias="type")
     authentication: Optional["AuthenticationConnectorInput"] = None
     integration: Optional["IntegrationConnectorInput"] = None
     channel: Optional["ChannelConnectorInput"] = None
@@ -1781,7 +1782,7 @@ class ConnectorInput(BaseModel):
 
 class ContentInput(BaseModel):
     name: str
-    type: Optional[ContentTypes] = None
+    type_: Optional[ContentTypes] = Field(alias="type", default=None)
     uri: Optional[Any] = None
     description: Optional[str] = None
     text: Optional[str] = None
@@ -1813,14 +1814,14 @@ class ConversationCriteriaInput(BaseModel):
 
 class ConversationInput(BaseModel):
     name: str
-    type: Optional[ConversationTypes] = None
+    type_: Optional[ConversationTypes] = Field(alias="type", default=None)
     messages: Optional[list["ConversationMessageInput"]] = None
     tools: Optional[list["ToolDefinitionInput"]] = None
     agent: Optional["EntityReferenceInput"] = None
     persona: Optional["EntityReferenceInput"] = None
     specification: Optional["EntityReferenceInput"] = None
     fallbacks: Optional[list[Optional["EntityReferenceInput"]]] = None
-    filter: Optional["ContentCriteriaInput"] = None
+    filter_: Optional["ContentCriteriaInput"] = Field(alias="filter", default=None)
     augmented_filter: Optional["ContentCriteriaInput"] = Field(
         alias="augmentedFilter", default=None
     )
@@ -1892,7 +1893,7 @@ class FeedInput(BaseModel):
     name: str
     identifier: Optional[str] = None
     description: Optional[str] = None
-    type: FeedTypes
+    type_: FeedTypes = Field(alias="type")
     sync_mode: Optional[FeedSyncMode] = Field(alias="syncMode", default=None)
     site: Optional["SiteFeedPropertiesInput"] = None
     skill: Optional["SkillFeedPropertiesInput"] = None
@@ -2110,7 +2111,7 @@ class MedicalTestInput(BaseModel):
 
 class ObservationInput(BaseModel):
     content: "EntityReferenceInput"
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "NamedEntityReferenceInput"
     related: Optional["NamedEntityReferenceInput"] = None
     related_type: Optional[ObservableTypes] = Field(alias="relatedType", default=None)
@@ -2157,7 +2158,7 @@ class PersonInput(BaseModel):
 
 class PersonaInput(BaseModel):
     name: str
-    type: Optional[PersonaTypes] = None
+    type_: Optional[PersonaTypes] = Field(alias="type", default=None)
     identifier: Optional[str] = None
     platform: Optional[str] = None
     display_name: Optional[str] = Field(alias="displayName", default=None)
@@ -2210,7 +2211,7 @@ class ProjectInput(BaseModel):
 
 class ReplicaInput(BaseModel):
     name: str
-    type: EntityTypes
+    type_: EntityTypes = Field(alias="type")
     content: Optional["ReplicaContentPropertiesInput"] = None
     conversation: Optional["ReplicaConversationPropertiesInput"] = None
     skill: Optional["ReplicaSkillPropertiesInput"] = None
@@ -2275,7 +2276,7 @@ class SoftwareInput(BaseModel):
 
 class SpecificationInput(BaseModel):
     name: str
-    type: Optional[SpecificationTypes] = None
+    type_: Optional[SpecificationTypes] = Field(alias="type", default=None)
     service_type: ModelServiceTypes = Field(alias="serviceType")
     search_type: Optional[ConversationSearchTypes] = Field(
         alias="searchType", default=None
@@ -2331,8 +2332,8 @@ class SpecificationInput(BaseModel):
 
 class ViewInput(BaseModel):
     name: str
-    type: Optional[ViewTypes] = None
-    filter: Optional["ContentCriteriaInput"] = None
+    type_: Optional[ViewTypes] = Field(alias="type", default=None)
+    filter_: Optional["ContentCriteriaInput"] = Field(alias="filter", default=None)
     augmented_filter: Optional["ContentCriteriaInput"] = Field(
         alias="augmentedFilter", default=None
     )
@@ -2358,7 +2359,7 @@ class AgentUpdateInput(BaseModel):
     specification: Optional["EntityReferenceInput"] = None
     persona: Optional["EntityReferenceInput"] = None
     trigger: Optional["AgentTriggerFilterInput"] = None
-    filter: Optional["ContentCriteriaInput"] = None
+    filter_: Optional["ContentCriteriaInput"] = Field(alias="filter", default=None)
     augmented_filter: Optional["ContentCriteriaInput"] = Field(
         alias="augmentedFilter", default=None
     )
@@ -2384,7 +2385,7 @@ class AlertUpdateInput(BaseModel):
     summary_prompt: Optional[str] = Field(alias="summaryPrompt", default=None)
     publish_prompt: Optional[str] = Field(alias="publishPrompt", default=None)
     view: Optional["EntityReferenceInput"] = None
-    filter: Optional["ContentCriteriaInput"] = None
+    filter_: Optional["ContentCriteriaInput"] = Field(alias="filter", default=None)
     publishing: Optional["ContentPublishingConnectorUpdateInput"] = None
     integration: Optional["IntegrationConnectorUpdateInput"] = None
     summary_specification: Optional["EntityReferenceInput"] = Field(
@@ -2416,7 +2417,7 @@ class CategoryUpdateInput(BaseModel):
 class CollectionUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
-    type: Optional[CollectionTypes] = None
+    type_: Optional[CollectionTypes] = Field(alias="type", default=None)
     contents: Optional[list["EntityReferenceInput"]] = None
     conversations: Optional[list["EntityReferenceInput"]] = None
     expected_count: Optional[int] = Field(alias="expectedCount", default=None)
@@ -2425,7 +2426,7 @@ class CollectionUpdateInput(BaseModel):
 class ConnectorUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
-    type: Optional[ConnectorTypes] = None
+    type_: Optional[ConnectorTypes] = Field(alias="type", default=None)
     authentication: Optional["AuthenticationConnectorInput"] = None
     integration: Optional["IntegrationConnectorInput"] = None
     channel: Optional["ChannelConnectorUpdateInput"] = None
@@ -2440,7 +2441,7 @@ class ConversationUpdateInput(BaseModel):
     persona: Optional["EntityReferenceInput"] = None
     specification: Optional["EntityReferenceInput"] = None
     fallbacks: Optional[list[Optional["EntityReferenceInput"]]] = None
-    filter: Optional["ContentCriteriaInput"] = None
+    filter_: Optional["ContentCriteriaInput"] = Field(alias="filter", default=None)
     augmented_filter: Optional["ContentCriteriaInput"] = Field(
         alias="augmentedFilter", default=None
     )
@@ -2512,7 +2513,7 @@ class FeedUpdateInput(BaseModel):
     name: Optional[str] = None
     identifier: Optional[str] = None
     description: Optional[str] = None
-    type: Optional[FeedTypes] = None
+    type_: Optional[FeedTypes] = Field(alias="type", default=None)
     sync_mode: Optional[FeedSyncMode] = Field(alias="syncMode", default=None)
     site: Optional["SiteFeedPropertiesUpdateInput"] = None
     skill: Optional["SkillFeedPropertiesUpdateInput"] = None
@@ -2741,7 +2742,7 @@ class MedicalTestUpdateInput(BaseModel):
 
 class ObservationUpdateInput(BaseModel):
     id: str
-    type: Optional[ObservableTypes] = None
+    type_: Optional[ObservableTypes] = Field(alias="type", default=None)
     observable: Optional["NamedEntityReferenceInput"] = None
     related: Optional["NamedEntityReferenceInput"] = None
     related_type: Optional[ObservableTypes] = Field(alias="relatedType", default=None)
@@ -2791,7 +2792,7 @@ class PersonUpdateInput(BaseModel):
 class PersonaUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
-    type: Optional[PersonaTypes] = None
+    type_: Optional[PersonaTypes] = Field(alias="type", default=None)
     identifier: Optional[str] = None
     platform: Optional[str] = None
     display_name: Optional[str] = Field(alias="displayName", default=None)
@@ -2844,7 +2845,7 @@ class ProjectUpdateInput(BaseModel):
 class ReplicaUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
-    type: Optional[EntityTypes] = None
+    type_: Optional[EntityTypes] = Field(alias="type", default=None)
     content: Optional["ReplicaContentPropertiesInput"] = None
     conversation: Optional["ReplicaConversationPropertiesInput"] = None
     skill: Optional["ReplicaSkillPropertiesInput"] = None
@@ -2898,7 +2899,7 @@ class SoftwareUpdateInput(BaseModel):
 class SpecificationUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
-    type: Optional[SpecificationTypes] = None
+    type_: Optional[SpecificationTypes] = Field(alias="type", default=None)
     service_type: ModelServiceTypes = Field(alias="serviceType")
     search_type: Optional[ConversationSearchTypes] = Field(
         alias="searchType", default=None
@@ -2955,7 +2956,7 @@ class SpecificationUpdateInput(BaseModel):
 class UserUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
-    type: Optional[UserTypes] = None
+    type_: Optional[UserTypes] = Field(alias="type", default=None)
     identifier: Optional[str] = None
     description: Optional[str] = None
     quota: Optional["UserQuotaInput"] = None
@@ -2964,8 +2965,8 @@ class UserUpdateInput(BaseModel):
 class ViewUpdateInput(BaseModel):
     id: str
     name: Optional[str] = None
-    type: Optional[ViewTypes] = None
-    filter: Optional["ContentCriteriaInput"] = None
+    type_: Optional[ViewTypes] = Field(alias="type", default=None)
+    filter_: Optional["ContentCriteriaInput"] = Field(alias="filter", default=None)
     augmented_filter: Optional["ContentCriteriaInput"] = Field(
         alias="augmentedFilter", default=None
     )
@@ -3025,12 +3026,12 @@ class AddressFilter(BaseModel):
 
 
 class MentionReferenceFilter(BaseModel):
-    type: Optional[ObservableTypes] = None
+    type_: Optional[ObservableTypes] = Field(alias="type", default=None)
     observable: Optional["EntityReferenceFilter"] = None
 
 
 class FactEvidenceFilter(BaseModel):
-    type: Optional[FactEvidenceTypes] = None
+    type_: Optional[FactEvidenceTypes] = Field(alias="type", default=None)
     entity: Optional["EntityReferenceFilter"] = None
 
 
@@ -3104,7 +3105,7 @@ class AgentHeartbeatPropertiesInput(BaseModel):
 
 
 class AgentChannelInput(BaseModel):
-    type: AgentChannelTypes
+    type_: AgentChannelTypes = Field(alias="type")
     identifier: str
     instructions: Optional[str] = None
     label: Optional[str] = None
@@ -3120,7 +3121,7 @@ class AgentCommandInput(BaseModel):
     keyword: str
     name: str
     description: Optional[str] = None
-    type: AgentCommandActionTypes
+    type_: AgentCommandActionTypes = Field(alias="type")
     template: str
     enabled: Optional[bool] = None
 
@@ -3131,7 +3132,7 @@ class DistributionTargetInput(BaseModel):
 
 
 class ContentPublishingConnectorInput(BaseModel):
-    type: ContentPublishingServiceTypes
+    type_: ContentPublishingServiceTypes = Field(alias="type")
     format: ContentPublishingFormats
     eleven_labs: Optional["ElevenLabsPublishingPropertiesInput"] = Field(
         alias="elevenLabs", default=None
@@ -3155,7 +3156,7 @@ class ContentPublishingConnectorInput(BaseModel):
 
 
 class IntegrationConnectorInput(BaseModel):
-    type: IntegrationServiceTypes
+    type_: IntegrationServiceTypes = Field(alias="type")
     uri: Optional[str] = None
     slack: Optional["SlackIntegrationPropertiesInput"] = None
     email: Optional["EmailIntegrationPropertiesInput"] = None
@@ -3173,7 +3174,7 @@ class AlertSchedulePolicyInput(BaseModel):
 
 
 class AuthenticationConnectorInput(BaseModel):
-    type: AuthenticationServiceTypes
+    type_: AuthenticationServiceTypes = Field(alias="type")
     token: Optional[str] = None
     api_key: Optional[str] = Field(alias="apiKey", default=None)
     microsoft: Optional["MicrosoftAuthenticationPropertiesInput"] = None
@@ -3182,7 +3183,7 @@ class AuthenticationConnectorInput(BaseModel):
 
 
 class ChannelConnectorInput(BaseModel):
-    type: ChannelServiceTypes
+    type_: ChannelServiceTypes = Field(alias="type")
     slack: Optional["SlackChannelPropertiesInput"] = None
     teams: Optional["TeamsChannelPropertiesInput"] = None
     discord: Optional["DiscordChannelPropertiesInput"] = None
@@ -3196,7 +3197,7 @@ class ChannelConnectorInput(BaseModel):
 
 
 class ObservationCriteriaInput(BaseModel):
-    type: Optional[ObservableTypes] = None
+    type_: Optional[ObservableTypes] = Field(alias="type", default=None)
     observable: Optional["EntityReferenceInput"] = None
     states: Optional[list[EntityState]] = None
 
@@ -3243,7 +3244,7 @@ class AddressInput(BaseModel):
 
 
 class MentionReferenceInput(BaseModel):
-    type: Optional[ObservableTypes] = None
+    type_: Optional[ObservableTypes] = Field(alias="type", default=None)
     observable: Optional["NamedEntityReferenceInput"] = None
     start: Optional[int] = None
     end: Optional[int] = None
@@ -3255,7 +3256,7 @@ class FactAssertionInput(BaseModel):
 
 
 class FactEvidenceInput(BaseModel):
-    type: FactEvidenceTypes
+    type_: FactEvidenceTypes = Field(alias="type")
     entity: "EntityReferenceInput"
     text: Optional[str] = None
     citations: Optional[list[Optional["FactCitationInput"]]] = None
@@ -3263,7 +3264,7 @@ class FactEvidenceInput(BaseModel):
 
 
 class SiteFeedPropertiesInput(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     is_recursive: Optional[bool] = Field(alias="isRecursive", default=None)
     allowed_paths: Optional[list[str]] = Field(alias="allowedPaths", default=None)
     excluded_paths: Optional[list[str]] = Field(alias="excludedPaths", default=None)
@@ -3292,7 +3293,7 @@ class SiteFeedPropertiesInput(BaseModel):
 
 
 class SkillFeedPropertiesInput(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     is_recursive: Optional[bool] = Field(alias="isRecursive", default=None)
     allowed_paths: Optional[list[str]] = Field(alias="allowedPaths", default=None)
     excluded_paths: Optional[list[str]] = Field(alias="excludedPaths", default=None)
@@ -3302,7 +3303,7 @@ class SkillFeedPropertiesInput(BaseModel):
 
 
 class CalendarFeedPropertiesInput(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     include_attachments: Optional[bool] = Field(
         alias="includeAttachments", default=None
     )
@@ -3316,7 +3317,7 @@ class CalendarFeedPropertiesInput(BaseModel):
 
 
 class EmailFeedPropertiesInput(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     include_attachments: Optional[bool] = Field(
         alias="includeAttachments", default=None
     )
@@ -3326,7 +3327,7 @@ class EmailFeedPropertiesInput(BaseModel):
 
 
 class CRMFeedPropertiesInput(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     attio: Optional["AttioCRMFeedPropertiesInput"] = None
     google_contacts: Optional["GoogleContactsCRMFeedPropertiesInput"] = Field(
         alias="googleContacts", default=None
@@ -3343,7 +3344,7 @@ class CRMFeedPropertiesInput(BaseModel):
 
 
 class HRISFeedPropertiesInput(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     bamboo_hr: Optional["BambooHRHRISFeedPropertiesInput"] = Field(
         alias="bambooHR", default=None
     )
@@ -3352,7 +3353,7 @@ class HRISFeedPropertiesInput(BaseModel):
 
 
 class IssueFeedPropertiesInput(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     include_attachments: Optional[bool] = Field(
         alias="includeAttachments", default=None
     )
@@ -3377,7 +3378,7 @@ class IssueFeedPropertiesInput(BaseModel):
 
 
 class PullRequestFeedPropertiesInput(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     github: Optional["GitHubPullRequestsFeedPropertiesInput"] = None
     gitlab: Optional["GitLabPullRequestsFeedPropertiesInput"] = None
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
@@ -3386,7 +3387,7 @@ class PullRequestFeedPropertiesInput(BaseModel):
 
 
 class CommitFeedPropertiesInput(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     github: Optional["GitHubCommitsFeedPropertiesInput"] = None
     gitlab: Optional["GitLabCommitsFeedPropertiesInput"] = None
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
@@ -3408,7 +3409,7 @@ class WebFeedPropertiesInput(BaseModel):
 
 
 class SearchFeedPropertiesInput(BaseModel):
-    type: Optional[SearchServiceTypes] = None
+    type_: Optional[SearchServiceTypes] = Field(alias="type", default=None)
     text: Optional[str] = None
     exa: Optional["ExaSearchPropertiesInput"] = None
     crustdata: Optional["CrustdataSearchFeedPropertiesInput"] = None
@@ -3442,7 +3443,7 @@ class LinkedInFeedPropertiesInput(BaseModel):
 
 
 class YouTubeFeedPropertiesInput(BaseModel):
-    type: YouTubeTypes
+    type_: YouTubeTypes = Field(alias="type")
     video_name: Optional[str] = Field(alias="videoName", default=None)
     video_identifiers: Optional[list[str]] = Field(
         alias="videoIdentifiers", default=None
@@ -3462,13 +3463,13 @@ class NotionFeedPropertiesInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    type: NotionTypes
+    type_: NotionTypes = Field(alias="type")
     identifiers: list[str]
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class EvernoteFeedPropertiesInput(BaseModel):
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
     connector: "EntityReferenceInput"
     query: Optional[str] = None
     tag_guids: Optional[list[str]] = Field(alias="tagGuids", default=None)
@@ -3490,7 +3491,7 @@ class ConfluenceFeedPropertiesInput(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
     cloud_id: Optional[str] = Field(alias="cloudId", default=None)
-    type: ConfluenceTypes
+    type_: ConfluenceTypes = Field(alias="type")
     space_keys: Optional[list[str]] = Field(alias="spaceKeys", default=None)
     identifiers: Optional[list[str]] = None
     include_attachments: Optional[bool] = Field(
@@ -3508,7 +3509,7 @@ class TwitterFeedPropertiesInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    type: Optional[TwitterListingTypes] = None
+    type_: Optional[TwitterListingTypes] = Field(alias="type", default=None)
     user_name: Optional[str] = Field(alias="userName", default=None)
     query: Optional[str] = None
     include_attachments: Optional[bool] = Field(
@@ -3518,7 +3519,7 @@ class TwitterFeedPropertiesInput(BaseModel):
 
 
 class SlackFeedPropertiesInput(BaseModel):
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
     authentication_type: Optional[SlackAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
@@ -3538,7 +3539,7 @@ class SlackFeedPropertiesInput(BaseModel):
 
 
 class MicrosoftTeamsFeedPropertiesInput(BaseModel):
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
     authentication_type: Optional[MicrosoftTeamsAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
@@ -3557,7 +3558,7 @@ class MicrosoftTeamsFeedPropertiesInput(BaseModel):
 
 
 class DiscordFeedPropertiesInput(BaseModel):
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
     token: str
     channel: str
     include_attachments: Optional[bool] = Field(
@@ -3575,7 +3576,7 @@ class AttioFeedPropertiesInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -3588,12 +3589,12 @@ class SalesforceFeedPropertiesInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class HubSpotConversationsFeedPropertiesInput(BaseModel):
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
     authentication_type: Optional[HubSpotFeedAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
@@ -3651,26 +3652,26 @@ class IntercomConversationsFeedPropertiesInput(BaseModel):
     include_attachments: Optional[bool] = Field(
         alias="includeAttachments", default=None
     )
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class ProductlaneFeedPropertiesInput(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     api_key: str = Field(alias="apiKey")
     workspace_id: str = Field(alias="workspaceId")
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class ResearchFeedPropertiesInput(BaseModel):
-    type: Optional[FeedServiceTypes] = None
+    type_: Optional[FeedServiceTypes] = Field(alias="type", default=None)
     query: str
     parallel: Optional["ParallelFeedPropertiesInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class EntityFeedPropertiesInput(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     query: Optional[str] = None
     parallel: Optional["ParallelEntityFeedPropertiesInput"] = None
     crustdata: Optional["CrustdataEntityFeedPropertiesInput"] = None
@@ -3678,7 +3679,7 @@ class EntityFeedPropertiesInput(BaseModel):
 
 
 class MeetingFeedPropertiesInput(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     content_type: Optional[MeetingContentTypes] = Field(
         alias="contentType", default=None
     )
@@ -3694,7 +3695,7 @@ class MeetingFeedPropertiesInput(BaseModel):
 
 
 class InitiativeFeedPropertiesInput(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     jira: Optional["JiraEpicsFeedPropertiesInput"] = None
     github: Optional["GitHubMilestonesFeedPropertiesInput"] = None
     gitlab: Optional["GitLabMilestonesFeedPropertiesInput"] = None
@@ -3715,7 +3716,7 @@ class NamedEntityReferenceInput(BaseModel):
 
 
 class ObservationOccurrenceInput(BaseModel):
-    type: OccurrenceTypes
+    type_: OccurrenceTypes = Field(alias="type")
     confidence: Optional[float] = None
     bounding_box: Optional["BoundingBoxInput"] = Field(
         alias="boundingBox", default=None
@@ -3735,15 +3736,15 @@ class ProjectQuotaInput(BaseModel):
 
 
 class ReplicaContentPropertiesInput(BaseModel):
-    filter: Optional["ContentCriteriaInput"] = None
+    filter_: Optional["ContentCriteriaInput"] = Field(alias="filter", default=None)
 
 
 class ReplicaConversationPropertiesInput(BaseModel):
-    filter: Optional["ConversationCriteriaInput"] = None
+    filter_: Optional["ConversationCriteriaInput"] = Field(alias="filter", default=None)
 
 
 class ReplicaSkillPropertiesInput(BaseModel):
-    filter: Optional["SkillCriteriaInput"] = None
+    filter_: Optional["SkillCriteriaInput"] = Field(alias="filter", default=None)
 
 
 class ReplicaGitPropertiesInput(BaseModel):
@@ -3771,7 +3772,7 @@ class SkillArgumentInput(BaseModel):
 
 
 class ConversationStrategyInput(BaseModel):
-    type: Optional[ConversationStrategyTypes] = None
+    type_: Optional[ConversationStrategyTypes] = Field(alias="type", default=None)
     message_limit: Optional[int] = Field(alias="messageLimit", default=None)
     embed_citations: Optional[bool] = Field(alias="embedCitations", default=None)
     flatten_citations: Optional[bool] = Field(alias="flattenCitations", default=None)
@@ -3803,11 +3804,11 @@ class ConversationStrategyInput(BaseModel):
 
 
 class PromptStrategyInput(BaseModel):
-    type: Optional[PromptStrategyTypes] = None
+    type_: Optional[PromptStrategyTypes] = Field(alias="type", default=None)
 
 
 class RetrievalStrategyInput(BaseModel):
-    type: RetrievalStrategyTypes
+    type_: RetrievalStrategyTypes = Field(alias="type")
     content_limit: Optional[int] = Field(alias="contentLimit", default=None)
     disable_fallback: Optional[bool] = Field(alias="disableFallback", default=None)
 
@@ -3818,7 +3819,7 @@ class RerankingStrategyInput(BaseModel):
 
 
 class GraphStrategyInput(BaseModel):
-    type: Optional[GraphStrategyTypes] = None
+    type_: Optional[GraphStrategyTypes] = Field(alias="type", default=None)
     generate_graph: Optional[bool] = Field(alias="generateGraph", default=None)
     observable_limit: Optional[int] = Field(alias="observableLimit", default=None)
 
@@ -3828,7 +3829,7 @@ class FactStrategyInput(BaseModel):
 
 
 class RevisionStrategyInput(BaseModel):
-    type: Optional[RevisionStrategyTypes] = None
+    type_: Optional[RevisionStrategyTypes] = Field(alias="type", default=None)
     custom_revision: Optional[str] = Field(alias="customRevision", default=None)
     count: Optional[int] = None
 
@@ -3862,6 +3863,9 @@ class OpenAIModelPropertiesInput(BaseModel):
     )
     reasoning_effort: Optional[OpenAIReasoningEffortLevels] = Field(
         alias="reasoningEffort", default=None
+    )
+    service_tier: Optional[ModelServiceTierTypes] = Field(
+        alias="serviceTier", default=None
     )
 
 
@@ -3908,6 +3912,9 @@ class AnthropicModelPropertiesInput(BaseModel):
         alias="thinkingTokenLimit", default=None
     )
     effort: Optional[AnthropicEffortLevels] = None
+    service_tier: Optional[ModelServiceTierTypes] = Field(
+        alias="serviceTier", default=None
+    )
 
 
 class GoogleModelPropertiesInput(BaseModel):
@@ -3927,6 +3934,9 @@ class GoogleModelPropertiesInput(BaseModel):
     )
     thinking_level: Optional[GoogleThinkingLevels] = Field(
         alias="thinkingLevel", default=None
+    )
+    service_tier: Optional[ModelServiceTierTypes] = Field(
+        alias="serviceTier", default=None
     )
 
 
@@ -4112,7 +4122,7 @@ class WorkflowActionInput(BaseModel):
 
 
 class ContentPublishingConnectorUpdateInput(BaseModel):
-    type: ContentPublishingServiceTypes
+    type_: ContentPublishingServiceTypes = Field(alias="type")
     format: ContentPublishingFormats
     eleven_labs: Optional["ElevenLabsPublishingPropertiesInput"] = Field(
         alias="elevenLabs", default=None
@@ -4293,7 +4303,7 @@ class WebFeedPropertiesUpdateInput(BaseModel):
 
 
 class SearchFeedPropertiesUpdateInput(BaseModel):
-    type: Optional[SearchServiceTypes] = None
+    type_: Optional[SearchServiceTypes] = Field(alias="type", default=None)
     text: Optional[str] = None
     exa: Optional["ExaSearchPropertiesInput"] = None
     crustdata: Optional["CrustdataSearchFeedPropertiesUpdateInput"] = None
@@ -4328,7 +4338,7 @@ class LinkedInFeedPropertiesUpdateInput(BaseModel):
 
 
 class YouTubeFeedPropertiesUpdateInput(BaseModel):
-    type: Optional[YouTubeTypes] = None
+    type_: Optional[YouTubeTypes] = Field(alias="type", default=None)
     video_name: Optional[str] = Field(alias="videoName", default=None)
     video_identifiers: Optional[list[str]] = Field(
         alias="videoIdentifiers", default=None
@@ -4348,13 +4358,13 @@ class NotionFeedPropertiesUpdateInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    type: Optional[NotionTypes] = None
+    type_: Optional[NotionTypes] = Field(alias="type", default=None)
     identifiers: Optional[list[str]] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class EvernoteFeedPropertiesUpdateInput(BaseModel):
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
     connector: Optional["EntityReferenceInput"] = None
     query: Optional[str] = None
     tag_guids: Optional[list[str]] = Field(alias="tagGuids", default=None)
@@ -4376,7 +4386,7 @@ class ConfluenceFeedPropertiesUpdateInput(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
     cloud_id: Optional[str] = Field(alias="cloudId", default=None)
-    type: Optional[ConfluenceTypes] = None
+    type_: Optional[ConfluenceTypes] = Field(alias="type", default=None)
     space_keys: Optional[list[str]] = Field(alias="spaceKeys", default=None)
     identifiers: Optional[list[str]] = None
     include_attachments: Optional[bool] = Field(
@@ -4394,7 +4404,7 @@ class TwitterFeedPropertiesUpdateInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    type: Optional[TwitterListingTypes] = None
+    type_: Optional[TwitterListingTypes] = Field(alias="type", default=None)
     user_name: Optional[str] = Field(alias="userName", default=None)
     query: Optional[str] = None
     include_attachments: Optional[bool] = Field(
@@ -4404,7 +4414,7 @@ class TwitterFeedPropertiesUpdateInput(BaseModel):
 
 
 class SlackFeedPropertiesUpdateInput(BaseModel):
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
     authentication_type: Optional[SlackAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
@@ -4424,7 +4434,7 @@ class SlackFeedPropertiesUpdateInput(BaseModel):
 
 
 class MicrosoftTeamsFeedPropertiesUpdateInput(BaseModel):
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
     authentication_type: Optional[MicrosoftTeamsAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
@@ -4443,7 +4453,7 @@ class MicrosoftTeamsFeedPropertiesUpdateInput(BaseModel):
 
 
 class DiscordFeedPropertiesUpdateInput(BaseModel):
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
     token: Optional[str] = None
     channel: Optional[str] = None
     include_attachments: Optional[bool] = Field(
@@ -4461,7 +4471,7 @@ class AttioFeedPropertiesUpdateInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
@@ -4474,12 +4484,12 @@ class SalesforceFeedPropertiesUpdateInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class HubSpotConversationsFeedPropertiesUpdateInput(BaseModel):
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
     authentication_type: Optional[HubSpotFeedAuthenticationTypes] = Field(
         alias="authenticationType", default=None
     )
@@ -4537,19 +4547,19 @@ class IntercomConversationsFeedPropertiesUpdateInput(BaseModel):
     include_attachments: Optional[bool] = Field(
         alias="includeAttachments", default=None
     )
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class ProductlaneFeedPropertiesUpdateInput(BaseModel):
-    type: Optional[FeedServiceTypes] = None
+    type_: Optional[FeedServiceTypes] = Field(alias="type", default=None)
     api_key: Optional[str] = Field(alias="apiKey", default=None)
     workspace_id: Optional[str] = Field(alias="workspaceId", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class ResearchFeedPropertiesUpdateInput(BaseModel):
-    type: Optional[FeedServiceTypes] = None
+    type_: Optional[FeedServiceTypes] = Field(alias="type", default=None)
     query: Optional[str] = None
     parallel: Optional["ParallelFeedPropertiesUpdateInput"] = None
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
@@ -4600,7 +4610,7 @@ class EmbeddingsStrategyInput(BaseModel):
 
 
 class ConversationStrategyUpdateInput(BaseModel):
-    type: Optional[ConversationStrategyTypes] = None
+    type_: Optional[ConversationStrategyTypes] = Field(alias="type", default=None)
     message_limit: Optional[int] = Field(alias="messageLimit", default=None)
     embed_citations: Optional[bool] = Field(alias="embedCitations", default=None)
     flatten_citations: Optional[bool] = Field(alias="flattenCitations", default=None)
@@ -4632,11 +4642,11 @@ class ConversationStrategyUpdateInput(BaseModel):
 
 
 class PromptStrategyUpdateInput(BaseModel):
-    type: Optional[PromptStrategyTypes] = None
+    type_: Optional[PromptStrategyTypes] = Field(alias="type", default=None)
 
 
 class RetrievalStrategyUpdateInput(BaseModel):
-    type: Optional[RetrievalStrategyTypes] = None
+    type_: Optional[RetrievalStrategyTypes] = Field(alias="type", default=None)
     content_limit: Optional[int] = Field(alias="contentLimit", default=None)
 
 
@@ -4648,7 +4658,7 @@ class RerankingStrategyUpdateInput(BaseModel):
 
 
 class GraphStrategyUpdateInput(BaseModel):
-    type: Optional[GraphStrategyTypes] = None
+    type_: Optional[GraphStrategyTypes] = Field(alias="type", default=None)
     generate_graph: Optional[bool] = Field(alias="generateGraph", default=None)
     observable_limit: Optional[int] = Field(alias="observableLimit", default=None)
 
@@ -4658,7 +4668,7 @@ class FactStrategyUpdateInput(BaseModel):
 
 
 class RevisionStrategyUpdateInput(BaseModel):
-    type: Optional[RevisionStrategyTypes] = None
+    type_: Optional[RevisionStrategyTypes] = Field(alias="type", default=None)
     custom_revision: Optional[str] = Field(alias="customRevision", default=None)
     count: Optional[int] = None
 
@@ -4692,6 +4702,9 @@ class OpenAIModelPropertiesUpdateInput(BaseModel):
     )
     reasoning_effort: Optional[OpenAIReasoningEffortLevels] = Field(
         alias="reasoningEffort", default=None
+    )
+    service_tier: Optional[ModelServiceTierTypes] = Field(
+        alias="serviceTier", default=None
     )
 
 
@@ -4738,6 +4751,9 @@ class AnthropicModelPropertiesUpdateInput(BaseModel):
         alias="thinkingTokenLimit", default=None
     )
     effort: Optional[AnthropicEffortLevels] = None
+    service_tier: Optional[ModelServiceTierTypes] = Field(
+        alias="serviceTier", default=None
+    )
 
 
 class GoogleModelPropertiesUpdateInput(BaseModel):
@@ -4757,6 +4773,9 @@ class GoogleModelPropertiesUpdateInput(BaseModel):
     )
     thinking_level: Optional[GoogleThinkingLevels] = Field(
         alias="thinkingLevel", default=None
+    )
+    service_tier: Optional[ModelServiceTierTypes] = Field(
+        alias="serviceTier", default=None
     )
 
 
@@ -4917,7 +4936,7 @@ class AgentHeartbeatProbeThresholdsInput(BaseModel):
 
 
 class DistributionConnectorInput(BaseModel):
-    type: DistributionServiceTypes
+    type_: DistributionServiceTypes = Field(alias="type")
     operation: Optional[DistributionTargetOperationTypes] = None
     kind: Optional[DistributionTargetKindTypes] = None
     notion: Optional["NotionDistributionPropertiesInput"] = None
@@ -5048,7 +5067,7 @@ class TwitterIntegrationPropertiesInput(BaseModel):
 
 
 class MCPIntegrationPropertiesInput(BaseModel):
-    type: MCPServerTypes
+    type_: MCPServerTypes = Field(alias="type")
     token: Optional[str] = None
 
 
@@ -5274,7 +5293,7 @@ class BoxFeedPropertiesInput(BaseModel):
 
 
 class GoogleCalendarFeedPropertiesInput(BaseModel):
-    type: Optional[CalendarListingTypes] = None
+    type_: Optional[CalendarListingTypes] = Field(alias="type", default=None)
     calendar_id: Optional[str] = Field(alias="calendarId", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
@@ -5288,7 +5307,7 @@ class GoogleCalendarFeedPropertiesInput(BaseModel):
 
 
 class MicrosoftCalendarFeedPropertiesInput(BaseModel):
-    type: Optional[CalendarListingTypes] = None
+    type_: Optional[CalendarListingTypes] = Field(alias="type", default=None)
     calendar_id: Optional[str] = Field(alias="calendarId", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
@@ -5302,8 +5321,8 @@ class MicrosoftCalendarFeedPropertiesInput(BaseModel):
 
 
 class GoogleEmailFeedPropertiesInput(BaseModel):
-    type: Optional[EmailListingTypes] = None
-    filter: Optional[str] = None
+    type_: Optional[EmailListingTypes] = Field(alias="type", default=None)
+    filter_: Optional[str] = Field(alias="filter", default=None)
     inbox_only: Optional[bool] = Field(alias="inboxOnly", default=None)
     include_deleted_items: Optional[bool] = Field(
         alias="includeDeletedItems", default=None
@@ -5322,8 +5341,8 @@ class GoogleEmailFeedPropertiesInput(BaseModel):
 
 
 class MicrosoftEmailFeedPropertiesInput(BaseModel):
-    type: Optional[EmailListingTypes] = None
-    filter: Optional[str] = None
+    type_: Optional[EmailListingTypes] = Field(alias="type", default=None)
+    filter_: Optional[str] = Field(alias="filter", default=None)
     inbox_only: Optional[bool] = Field(alias="inboxOnly", default=None)
     include_deleted_items: Optional[bool] = Field(
         alias="includeDeletedItems", default=None
@@ -5350,7 +5369,7 @@ class AttioCRMFeedPropertiesInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
 
 
 class GoogleContactsCRMFeedPropertiesInput(BaseModel):
@@ -5361,7 +5380,7 @@ class GoogleContactsCRMFeedPropertiesInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
 
 
 class MicrosoftContactsCRMFeedPropertiesInput(BaseModel):
@@ -5373,7 +5392,7 @@ class MicrosoftContactsCRMFeedPropertiesInput(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     tenant_id: Optional[str] = Field(alias="tenantId", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
 
 
 class SalesforceCRMFeedPropertiesInput(BaseModel):
@@ -5386,7 +5405,7 @@ class SalesforceCRMFeedPropertiesInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
 
 
 class HubSpotCRMFeedPropertiesInput(BaseModel):
@@ -5398,12 +5417,12 @@ class HubSpotCRMFeedPropertiesInput(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     access_token: Optional[str] = Field(alias="accessToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
 
 
 class ProductlaneCRMFeedPropertiesInput(BaseModel):
     api_key: Optional[str] = Field(alias="apiKey", default=None)
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
 
 
 class BambooHRHRISFeedPropertiesInput(BaseModel):
@@ -5508,7 +5527,7 @@ class ZendeskTicketsFeedPropertiesInput(BaseModel):
 class TrelloFeedPropertiesInput(BaseModel):
     key: str
     token: str
-    type: TrelloTypes
+    type_: TrelloTypes = Field(alias="type")
     identifiers: list[str]
 
 
@@ -5707,7 +5726,7 @@ class FirefliesFeedPropertiesInput(BaseModel):
     api_key: str = Field(alias="apiKey")
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
 
 
 class AttioMeetingPropertiesInput(BaseModel):
@@ -5721,14 +5740,14 @@ class AttioMeetingPropertiesInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
 
 
 class FathomPropertiesInput(BaseModel):
     api_key: str = Field(alias="apiKey")
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
 
 
 class ZoomPropertiesInput(BaseModel):
@@ -5741,7 +5760,7 @@ class ZoomPropertiesInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
 
 
 class HubSpotMeetingPropertiesInput(BaseModel):
@@ -5758,13 +5777,13 @@ class HubSpotMeetingPropertiesInput(BaseModel):
     )
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class KrispPropertiesInput(BaseModel):
     auth_token: Optional[str] = Field(alias="authToken", default=None)
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
 
 
 class JiraEpicsFeedPropertiesInput(BaseModel):
@@ -5842,7 +5861,7 @@ class IngestionContentFilterInput(BaseModel):
 
 
 class ObservationReferenceInput(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "NamedEntityReferenceInput"
 
 
@@ -5851,7 +5870,7 @@ class IndexingWorkflowJobInput(BaseModel):
 
 
 class SummarizationStrategyInput(BaseModel):
-    type: SummarizationTypes
+    type_: SummarizationTypes = Field(alias="type")
     specification: Optional["EntityReferenceInput"] = None
     tokens: Optional[int] = None
     items: Optional[int] = None
@@ -5907,7 +5926,7 @@ class ClassificationWorkflowJobInput(BaseModel):
 
 
 class StoragePolicyInput(BaseModel):
-    type: Optional[StoragePolicyTypes] = None
+    type_: Optional[StoragePolicyTypes] = Field(alias="type", default=None)
     allow_duplicates: Optional[bool] = Field(alias="allowDuplicates", default=None)
     embedding_types: Optional[list[EmbeddingTypes]] = Field(
         alias="embeddingTypes", default=None
@@ -5917,7 +5936,7 @@ class StoragePolicyInput(BaseModel):
 
 
 class StorageGateInput(BaseModel):
-    type: StorageGateTypes
+    type_: StorageGateTypes = Field(alias="type")
     specification: Optional["EntityReferenceInput"] = None
     rules: Optional[list["StorageGateRuleInput"]] = None
     uri: Optional[Any] = None
@@ -6051,7 +6070,7 @@ class BoxFeedPropertiesUpdateInput(BaseModel):
 
 
 class GoogleCalendarFeedPropertiesUpdateInput(BaseModel):
-    type: Optional[CalendarListingTypes] = None
+    type_: Optional[CalendarListingTypes] = Field(alias="type", default=None)
     calendar_id: Optional[str] = Field(alias="calendarId", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
@@ -6065,7 +6084,7 @@ class GoogleCalendarFeedPropertiesUpdateInput(BaseModel):
 
 
 class MicrosoftCalendarFeedPropertiesUpdateInput(BaseModel):
-    type: Optional[CalendarListingTypes] = None
+    type_: Optional[CalendarListingTypes] = Field(alias="type", default=None)
     calendar_id: Optional[str] = Field(alias="calendarId", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
@@ -6079,8 +6098,8 @@ class MicrosoftCalendarFeedPropertiesUpdateInput(BaseModel):
 
 
 class GoogleEmailFeedPropertiesUpdateInput(BaseModel):
-    type: Optional[EmailListingTypes] = None
-    filter: Optional[str] = None
+    type_: Optional[EmailListingTypes] = Field(alias="type", default=None)
+    filter_: Optional[str] = Field(alias="filter", default=None)
     inbox_only: Optional[bool] = Field(alias="inboxOnly", default=None)
     include_deleted_items: Optional[bool] = Field(
         alias="includeDeletedItems", default=None
@@ -6099,8 +6118,8 @@ class GoogleEmailFeedPropertiesUpdateInput(BaseModel):
 
 
 class MicrosoftEmailFeedPropertiesUpdateInput(BaseModel):
-    type: Optional[EmailListingTypes] = None
-    filter: Optional[str] = None
+    type_: Optional[EmailListingTypes] = Field(alias="type", default=None)
+    filter_: Optional[str] = Field(alias="filter", default=None)
     inbox_only: Optional[bool] = Field(alias="inboxOnly", default=None)
     include_deleted_items: Optional[bool] = Field(
         alias="includeDeletedItems", default=None
@@ -6127,7 +6146,7 @@ class AttioCRMFeedPropertiesUpdateInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
 
 
 class GoogleContactsCRMFeedPropertiesUpdateInput(BaseModel):
@@ -6138,7 +6157,7 @@ class GoogleContactsCRMFeedPropertiesUpdateInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
 
 
 class MicrosoftContactsCRMFeedPropertiesUpdateInput(BaseModel):
@@ -6150,7 +6169,7 @@ class MicrosoftContactsCRMFeedPropertiesUpdateInput(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     tenant_id: Optional[str] = Field(alias="tenantId", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
 
 
 class SalesforceCRMFeedPropertiesUpdateInput(BaseModel):
@@ -6163,7 +6182,7 @@ class SalesforceCRMFeedPropertiesUpdateInput(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret", default=None)
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
 
 
 class HubSpotCRMFeedPropertiesUpdateInput(BaseModel):
@@ -6175,12 +6194,12 @@ class HubSpotCRMFeedPropertiesUpdateInput(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken", default=None)
     access_token: Optional[str] = Field(alias="accessToken", default=None)
     connector: Optional["EntityReferenceInput"] = None
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
 
 
 class ProductlaneCRMFeedPropertiesUpdateInput(BaseModel):
     api_key: Optional[str] = Field(alias="apiKey", default=None)
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
 
 
 class BambooHRHRISFeedPropertiesUpdateInput(BaseModel):
@@ -6278,7 +6297,7 @@ class ZendeskTicketsFeedPropertiesUpdateInput(BaseModel):
 class TrelloFeedPropertiesUpdateInput(BaseModel):
     key: Optional[str] = None
     token: Optional[str] = None
-    type: Optional[TrelloTypes] = None
+    type_: Optional[TrelloTypes] = Field(alias="type", default=None)
     identifiers: Optional[list[str]] = None
 
 
@@ -6469,7 +6488,7 @@ class FirefliesFeedPropertiesUpdateInput(BaseModel):
     api_key: Optional[str] = Field(alias="apiKey", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
 
 
 class AttioMeetingPropertiesUpdateInput(BaseModel):
@@ -6483,14 +6502,14 @@ class AttioMeetingPropertiesUpdateInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
 
 
 class FathomPropertiesUpdateInput(BaseModel):
     api_key: Optional[str] = Field(alias="apiKey", default=None)
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
 
 
 class ZoomPropertiesUpdateInput(BaseModel):
@@ -6503,7 +6522,7 @@ class ZoomPropertiesUpdateInput(BaseModel):
     connector: Optional["EntityReferenceInput"] = None
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
 
 
 class HubSpotMeetingPropertiesUpdateInput(BaseModel):
@@ -6520,13 +6539,13 @@ class HubSpotMeetingPropertiesUpdateInput(BaseModel):
     )
     after_date: Optional[Any] = Field(alias="afterDate", default=None)
     before_date: Optional[Any] = Field(alias="beforeDate", default=None)
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
     read_limit: Optional[int] = Field(alias="readLimit", default=None)
 
 
 class KrispPropertiesUpdateInput(BaseModel):
     auth_token: Optional[str] = Field(alias="authToken", default=None)
-    type: Optional[FeedListingTypes] = None
+    type_: Optional[FeedListingTypes] = Field(alias="type", default=None)
 
 
 class JiraEpicsFeedPropertiesUpdateInput(BaseModel):
@@ -6725,7 +6744,7 @@ class ZendeskDistributionPropertiesInput(BaseModel):
     subject: Optional[str] = None
     priority: Optional[str] = None
     status: Optional[str] = None
-    type: Optional[str] = None
+    type_: Optional[str] = Field(alias="type", default=None)
     assignee: Optional[str] = None
     group_id: Optional[str] = Field(alias="groupId", default=None)
     tags: Optional[list[str]] = None
@@ -6880,13 +6899,13 @@ class CrustdataCompanyDiscoveryFilterInput(BaseModel):
 
 
 class ContentIndexingConnectorInput(BaseModel):
-    type: Optional[ContentIndexingServiceTypes] = None
+    type_: Optional[ContentIndexingServiceTypes] = Field(alias="type", default=None)
     content_type: Optional[ContentTypes] = Field(alias="contentType", default=None)
     file_type: Optional[FileTypes] = Field(alias="fileType", default=None)
 
 
 class FilePreparationConnectorInput(BaseModel):
-    type: FilePreparationServiceTypes
+    type_: FilePreparationServiceTypes = Field(alias="type")
     file_types: Optional[list[FileTypes]] = Field(alias="fileTypes", default=None)
     page: Optional["PagePreparationPropertiesInput"] = None
     document: Optional["DocumentPreparationPropertiesInput"] = None
@@ -6909,7 +6928,7 @@ class FilePreparationConnectorInput(BaseModel):
 
 
 class EntityExtractionConnectorInput(BaseModel):
-    type: EntityExtractionServiceTypes
+    type_: EntityExtractionServiceTypes = Field(alias="type")
     content_types: Optional[list[ContentTypes]] = Field(
         alias="contentTypes", default=None
     )
@@ -6934,7 +6953,7 @@ class EntityExtractionConnectorInput(BaseModel):
 
 
 class EntityEnrichmentConnectorInput(BaseModel):
-    type: EntityEnrichmentServiceTypes
+    type_: EntityEnrichmentServiceTypes = Field(alias="type")
     enriched_types: Optional[list[ObservableTypes]] = Field(
         alias="enrichedTypes", default=None
     )
@@ -6946,7 +6965,9 @@ class EntityEnrichmentConnectorInput(BaseModel):
 
 
 class ContentClassificationConnectorInput(BaseModel):
-    type: Optional[ContentClassificationServiceTypes] = None
+    type_: Optional[ContentClassificationServiceTypes] = Field(
+        alias="type", default=None
+    )
     content_types: Optional[list[ContentTypes]] = Field(
         alias="contentTypes", default=None
     )
@@ -7102,7 +7123,7 @@ class RegexContentClassificationPropertiesInput(BaseModel):
 
 class RegexClassificationRuleInput(BaseModel):
     state: Optional[ClassificationRuleState] = None
-    type: Optional[RegexSourceTypes] = None
+    type_: Optional[RegexSourceTypes] = Field(alias="type", default=None)
     path: Optional[str] = None
     matches: Optional[str] = None
     then: Optional[str] = None
@@ -7671,7 +7692,7 @@ class ConversationToolResponseInput(BaseModel):
 
 class FeedPreviewInput(BaseModel):
     name: Optional[str] = None
-    type: FeedTypes
+    type_: FeedTypes = Field(alias="type")
     site: Optional["SiteFeedPropertiesInput"] = None
     skill: Optional["SkillFeedPropertiesInput"] = None
     calendar: Optional["CalendarFeedPropertiesInput"] = None
@@ -7720,13 +7741,13 @@ class FeedPreviewInput(BaseModel):
 
 class ObservableInput(BaseModel):
     name: str
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     metadata: Optional[str] = None
 
 
 class UserInput(BaseModel):
     name: str
-    type: Optional[UserTypes] = None
+    type_: Optional[UserTypes] = Field(alias="type", default=None)
     identifier: str
     description: Optional[str] = None
 
@@ -7874,7 +7895,7 @@ class IssueMetadataInput(BaseModel):
     team: Optional[str] = None
     status: Optional[str] = None
     priority: Optional[str] = None
-    type: Optional[str] = None
+    type_: Optional[str] = Field(alias="type", default=None)
     identifier: Optional[str] = None
     labels: Optional[list[Optional[str]]] = None
     links: Optional[list[Optional[Any]]] = None
@@ -7889,7 +7910,7 @@ class InitiativeMetadataInput(BaseModel):
     team: Optional[str] = None
     status: Optional[str] = None
     priority: Optional[str] = None
-    type: Optional[str] = None
+    type_: Optional[str] = Field(alias="type", default=None)
     identifier: Optional[str] = None
     due_date: Optional[Any] = Field(alias="dueDate", default=None)
     labels: Optional[list[Optional[str]]] = None

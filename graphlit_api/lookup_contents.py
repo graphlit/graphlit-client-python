@@ -67,7 +67,7 @@ class LookupContentsLookupContentsResults(BaseModel):
     path: Optional[str]
     features: Optional[str]
     c_4_id: Optional[str] = Field(alias="c4id")
-    type: Optional[ContentTypes]
+    type_: Optional[ContentTypes] = Field(alias="type")
     file_type: Optional[FileTypes] = Field(alias="fileType")
     mime_type: Optional[str] = Field(alias="mimeType")
     format: Optional[str]
@@ -357,7 +357,7 @@ class LookupContentsLookupContentsResultsIssue(BaseModel):
     team: Optional[str]
     status: Optional[str]
     priority: Optional[str]
-    type: Optional[str]
+    type_: Optional[str] = Field(alias="type")
     labels: Optional[list[Optional[str]]]
 
 
@@ -368,7 +368,7 @@ class LookupContentsLookupContentsResultsInitiative(BaseModel):
     team: Optional[str]
     status: Optional[str]
     priority: Optional[str]
-    type: Optional[str]
+    type_: Optional[str] = Field(alias="type")
     due_date: Optional[Any] = Field(alias="dueDate")
     labels: Optional[list[Optional[str]]]
 
@@ -417,7 +417,7 @@ class LookupContentsLookupContentsResultsPullRequest(BaseModel):
     project: Optional[str]
     team: Optional[str]
     status: Optional[str]
-    type: Optional[str]
+    type_: Optional[str] = Field(alias="type")
     base_branch: Optional[str] = Field(alias="baseBranch")
     head_branch: Optional[str] = Field(alias="headBranch")
     is_draft: Optional[bool] = Field(alias="isDraft")
@@ -573,7 +573,7 @@ class LookupContentsLookupContentsResultsLinks(BaseModel):
 
 class LookupContentsLookupContentsResultsObservations(BaseModel):
     id: str
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "LookupContentsLookupContentsResultsObservationsObservable"
     related: Optional["LookupContentsLookupContentsResultsObservationsRelated"]
     related_type: Optional[ObservableTypes] = Field(alias="relatedType")
@@ -595,7 +595,7 @@ class LookupContentsLookupContentsResultsObservationsRelated(BaseModel):
 
 
 class LookupContentsLookupContentsResultsObservationsOccurrences(BaseModel):
-    type: Optional[OccurrenceTypes]
+    type_: Optional[OccurrenceTypes] = Field(alias="type")
     confidence: Optional[float]
     start_time: Optional[Any] = Field(alias="startTime")
     end_time: Optional[Any] = Field(alias="endTime")
@@ -628,7 +628,7 @@ class LookupContentsLookupContentsResultsFacts(BaseModel):
 
 
 class LookupContentsLookupContentsResultsFactsEvidence(BaseModel):
-    type: Optional[FactEvidenceTypes]
+    type_: Optional[FactEvidenceTypes] = Field(alias="type")
     entity: Optional["LookupContentsLookupContentsResultsFactsEvidenceEntity"]
     text: Optional[str]
     confidence: Optional[float]

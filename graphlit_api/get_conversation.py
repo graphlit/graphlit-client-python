@@ -38,7 +38,7 @@ class GetConversationConversation(BaseModel):
     state: EntityState
     user: Optional["GetConversationConversationUser"]
     correlation_id: Optional[str] = Field(alias="correlationId")
-    type: Optional[ConversationTypes]
+    type_: Optional[ConversationTypes] = Field(alias="type")
     messages: Optional[list[Optional["GetConversationConversationMessages"]]]
     transcript_uri: Optional[Any] = Field(alias="transcriptUri")
     turns: Optional[list[Optional["GetConversationConversationTurns"]]]
@@ -48,7 +48,7 @@ class GetConversationConversation(BaseModel):
     persona: Optional["GetConversationConversationPersona"]
     specification: Optional["GetConversationConversationSpecification"]
     fallbacks: Optional[list[Optional["GetConversationConversationFallbacks"]]]
-    filter: Optional["GetConversationConversationFilter"]
+    filter_: Optional["GetConversationConversationFilter"] = Field(alias="filter")
     augmented_filter: Optional["GetConversationConversationAugmentedFilter"] = Field(
         alias="augmentedFilter"
     )
@@ -108,7 +108,7 @@ class GetConversationConversationMessagesCitationsContent(BaseModel):
     original_date: Optional[Any] = Field(alias="originalDate")
     identifier: Optional[str]
     uri: Optional[Any]
-    type: Optional[ContentTypes]
+    type_: Optional[ContentTypes] = Field(alias="type")
     file_type: Optional[FileTypes] = Field(alias="fileType")
     mime_type: Optional[str] = Field(alias="mimeType")
     format: Optional[str]
@@ -288,7 +288,7 @@ class GetConversationConversationTurnsMessagesCitationsContent(BaseModel):
     original_date: Optional[Any] = Field(alias="originalDate")
     identifier: Optional[str]
     uri: Optional[Any]
-    type: Optional[ContentTypes]
+    type_: Optional[ContentTypes] = Field(alias="type")
     file_type: Optional[FileTypes] = Field(alias="fileType")
     mime_type: Optional[str] = Field(alias="mimeType")
     format: Optional[str]
@@ -510,7 +510,7 @@ class GetConversationConversationFilterUsers(BaseModel):
 
 
 class GetConversationConversationFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetConversationConversationFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -544,7 +544,7 @@ class GetConversationConversationFilterOrUsers(BaseModel):
 
 
 class GetConversationConversationFilterOrObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetConversationConversationFilterOrObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -578,7 +578,7 @@ class GetConversationConversationFilterAndUsers(BaseModel):
 
 
 class GetConversationConversationFilterAndObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetConversationConversationFilterAndObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -669,7 +669,7 @@ class GetConversationConversationAugmentedFilterUsers(BaseModel):
 
 
 class GetConversationConversationAugmentedFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetConversationConversationAugmentedFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -707,7 +707,7 @@ class GetConversationConversationAugmentedFilterOrUsers(BaseModel):
 
 
 class GetConversationConversationAugmentedFilterOrObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetConversationConversationAugmentedFilterOrObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -745,7 +745,7 @@ class GetConversationConversationAugmentedFilterAndUsers(BaseModel):
 
 
 class GetConversationConversationAugmentedFilterAndObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetConversationConversationAugmentedFilterAndObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -756,7 +756,7 @@ class GetConversationConversationAugmentedFilterAndObservationsObservable(BaseMo
 
 class GetConversationConversationObservations(BaseModel):
     id: str
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetConversationConversationObservationsObservable"
     related: Optional["GetConversationConversationObservationsRelated"]
     related_type: Optional[ObservableTypes] = Field(alias="relatedType")
@@ -778,7 +778,7 @@ class GetConversationConversationObservationsRelated(BaseModel):
 
 
 class GetConversationConversationObservationsOccurrences(BaseModel):
-    type: Optional[OccurrenceTypes]
+    type_: Optional[OccurrenceTypes] = Field(alias="type")
     confidence: Optional[float]
     start_time: Optional[Any] = Field(alias="startTime")
     end_time: Optional[Any] = Field(alias="endTime")
@@ -809,7 +809,7 @@ class GetConversationConversationFacts(BaseModel):
 
 
 class GetConversationConversationFactsEvidence(BaseModel):
-    type: Optional[FactEvidenceTypes]
+    type_: Optional[FactEvidenceTypes] = Field(alias="type")
     entity: Optional["GetConversationConversationFactsEvidenceEntity"]
     text: Optional[str]
     confidence: Optional[float]

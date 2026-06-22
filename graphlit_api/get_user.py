@@ -32,7 +32,7 @@ class GetUserUser(BaseModel):
     relevance: Optional[float]
     owner: "GetUserUserOwner"
     state: EntityState
-    type: Optional[UserTypes]
+    type_: Optional[UserTypes] = Field(alias="type")
     identifier: str
     description: Optional[str]
     connectors: Optional[list[Optional["GetUserUserConnectors"]]]
@@ -51,14 +51,14 @@ class GetUserUserConnectors(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[ConnectorTypes]
+    type_: Optional[ConnectorTypes] = Field(alias="type")
     authentication: Optional["GetUserUserConnectorsAuthentication"]
     integration: Optional["GetUserUserConnectorsIntegration"]
     channel: Optional["GetUserUserConnectorsChannel"]
 
 
 class GetUserUserConnectorsAuthentication(BaseModel):
-    type: AuthenticationServiceTypes
+    type_: AuthenticationServiceTypes = Field(alias="type")
     token: Optional[str]
     api_key: Optional[str] = Field(alias="apiKey")
     microsoft: Optional["GetUserUserConnectorsAuthenticationMicrosoft"]
@@ -95,7 +95,7 @@ class GetUserUserConnectorsAuthenticationArcade(BaseModel):
 
 
 class GetUserUserConnectorsIntegration(BaseModel):
-    type: IntegrationServiceTypes
+    type_: IntegrationServiceTypes = Field(alias="type")
     uri: Optional[str]
     slack: Optional["GetUserUserConnectorsIntegrationSlack"]
     email: Optional["GetUserUserConnectorsIntegrationEmail"]
@@ -123,11 +123,11 @@ class GetUserUserConnectorsIntegrationTwitter(BaseModel):
 
 class GetUserUserConnectorsIntegrationMcp(BaseModel):
     token: Optional[str]
-    type: MCPServerTypes
+    type_: MCPServerTypes = Field(alias="type")
 
 
 class GetUserUserConnectorsChannel(BaseModel):
-    type: ChannelServiceTypes
+    type_: ChannelServiceTypes = Field(alias="type")
     slack: Optional["GetUserUserConnectorsChannelSlack"]
     teams: Optional["GetUserUserConnectorsChannelTeams"]
     discord: Optional["GetUserUserConnectorsChannelDiscord"]
@@ -180,7 +180,7 @@ class GetUserUserPersonas(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[PersonaTypes]
+    type_: Optional[PersonaTypes] = Field(alias="type")
     identifier: Optional[str]
     platform: Optional[str]
     display_name: Optional[str] = Field(alias="displayName")

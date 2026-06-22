@@ -19,7 +19,7 @@ class CreateConversationCreateConversation(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[ConversationTypes]
+    type_: Optional[ConversationTypes] = Field(alias="type")
 
 
 CreateConversation.model_rebuild()

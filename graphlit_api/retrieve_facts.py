@@ -61,7 +61,7 @@ class RetrieveFactsRetrieveFactsResultsFactOwner(BaseModel):
 
 
 class RetrieveFactsRetrieveFactsResultsFactMentions(BaseModel):
-    type: Optional[ObservableTypes]
+    type_: Optional[ObservableTypes] = Field(alias="type")
     observable: Optional["RetrieveFactsRetrieveFactsResultsFactMentionsObservable"]
     start: Optional[int]
     end: Optional[int]
@@ -80,7 +80,7 @@ class RetrieveFactsRetrieveFactsResultsFactAssertions(BaseModel):
 
 
 class RetrieveFactsRetrieveFactsResultsFactAssertionsMentions(BaseModel):
-    type: Optional[ObservableTypes]
+    type_: Optional[ObservableTypes] = Field(alias="type")
     observable: Optional[
         "RetrieveFactsRetrieveFactsResultsFactAssertionsMentionsObservable"
     ]
@@ -114,7 +114,7 @@ class RetrieveFactsRetrieveFactsResultsFactPersona(BaseModel):
 
 
 class RetrieveFactsRetrieveFactsResultsFactEvidence(BaseModel):
-    type: Optional[FactEvidenceTypes]
+    type_: Optional[FactEvidenceTypes] = Field(alias="type")
     entity: Optional["RetrieveFactsRetrieveFactsResultsFactEvidenceEntity"]
     text: Optional[str]
     confidence: Optional[float]

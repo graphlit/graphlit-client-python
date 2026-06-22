@@ -19,7 +19,7 @@ class CreateCollectionCreateCollection(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[CollectionTypes]
+    type_: Optional[CollectionTypes] = Field(alias="type")
 
 
 CreateCollection.model_rebuild()

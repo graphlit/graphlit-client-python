@@ -81,6 +81,7 @@ query GetSpecification($id: ID!, $correlationId: String) {
       chunkTokenLimit
       detailLevel
       reasoningEffort
+      serviceTier
     }
     azureOpenAI {
       tokenLimit
@@ -114,6 +115,7 @@ query GetSpecification($id: ID!, $correlationId: String) {
       enableThinking
       thinkingTokenLimit
       effort
+      serviceTier
     }
     google {
       tokenLimit
@@ -127,6 +129,7 @@ query GetSpecification($id: ID!, $correlationId: String) {
       enableThinking
       thinkingTokenLimit
       thinkingLevel
+      serviceTier
     }
     replicate {
       tokenLimit

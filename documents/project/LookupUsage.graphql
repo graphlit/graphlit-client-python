@@ -18,6 +18,8 @@ query LookupUsage($correlationId: String!, $startDate: DateTime, $duration: Time
     fileType
     modelService
     modelName
+    requestedServiceTier
+    actualServiceTier
     processorName
     promptTokens
     completionTokens

@@ -32,7 +32,7 @@ class UpdateReplicaUpdateReplica(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[EntityTypes]
+    type_: Optional[EntityTypes] = Field(alias="type")
     content: Optional["UpdateReplicaUpdateReplicaContent"]
     conversation: Optional["UpdateReplicaUpdateReplicaConversation"]
     skill: Optional["UpdateReplicaUpdateReplicaSkill"]
@@ -61,7 +61,7 @@ class UpdateReplicaUpdateReplica(BaseModel):
 
 
 class UpdateReplicaUpdateReplicaContent(BaseModel):
-    filter: Optional["UpdateReplicaUpdateReplicaContentFilter"]
+    filter_: Optional["UpdateReplicaUpdateReplicaContentFilter"] = Field(alias="filter")
 
 
 class UpdateReplicaUpdateReplicaContentFilter(BaseModel):
@@ -142,7 +142,7 @@ class UpdateReplicaUpdateReplicaContentFilterUsers(BaseModel):
 
 
 class UpdateReplicaUpdateReplicaContentFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "UpdateReplicaUpdateReplicaContentFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -178,7 +178,7 @@ class UpdateReplicaUpdateReplicaContentFilterOrUsers(BaseModel):
 
 
 class UpdateReplicaUpdateReplicaContentFilterOrObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "UpdateReplicaUpdateReplicaContentFilterOrObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -214,7 +214,7 @@ class UpdateReplicaUpdateReplicaContentFilterAndUsers(BaseModel):
 
 
 class UpdateReplicaUpdateReplicaContentFilterAndObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "UpdateReplicaUpdateReplicaContentFilterAndObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -224,7 +224,9 @@ class UpdateReplicaUpdateReplicaContentFilterAndObservationsObservable(BaseModel
 
 
 class UpdateReplicaUpdateReplicaConversation(BaseModel):
-    filter: Optional["UpdateReplicaUpdateReplicaConversationFilter"]
+    filter_: Optional["UpdateReplicaUpdateReplicaConversationFilter"] = Field(
+        alias="filter"
+    )
 
 
 class UpdateReplicaUpdateReplicaConversationFilter(BaseModel):
@@ -265,7 +267,7 @@ class UpdateReplicaUpdateReplicaConversationFilterCollections(BaseModel):
 
 
 class UpdateReplicaUpdateReplicaConversationFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "UpdateReplicaUpdateReplicaConversationFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -275,7 +277,7 @@ class UpdateReplicaUpdateReplicaConversationFilterObservationsObservable(BaseMod
 
 
 class UpdateReplicaUpdateReplicaSkill(BaseModel):
-    filter: Optional["UpdateReplicaUpdateReplicaSkillFilter"]
+    filter_: Optional["UpdateReplicaUpdateReplicaSkillFilter"] = Field(alias="filter")
 
 
 class UpdateReplicaUpdateReplicaSkillFilter(BaseModel):
@@ -320,7 +322,7 @@ class UpdateReplicaUpdateReplicaConnector(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[ConnectorTypes]
+    type_: Optional[ConnectorTypes] = Field(alias="type")
 
 
 class UpdateReplicaUpdateReplicaSchedulePolicy(BaseModel):

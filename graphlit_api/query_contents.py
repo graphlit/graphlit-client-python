@@ -50,7 +50,7 @@ class QueryContentsContentsResults(BaseModel):
     address: Optional["QueryContentsContentsResultsAddress"]
     location: Optional["QueryContentsContentsResultsLocation"]
     features: Optional[str]
-    type: Optional[ContentTypes]
+    type_: Optional[ContentTypes] = Field(alias="type")
     file_type: Optional[FileTypes] = Field(alias="fileType")
     mime_type: Optional[str] = Field(alias="mimeType")
     format: Optional[str]
@@ -298,7 +298,7 @@ class QueryContentsContentsResultsIssue(BaseModel):
     team: Optional[str]
     status: Optional[str]
     priority: Optional[str]
-    type: Optional[str]
+    type_: Optional[str] = Field(alias="type")
     labels: Optional[list[Optional[str]]]
 
 
@@ -309,7 +309,7 @@ class QueryContentsContentsResultsInitiative(BaseModel):
     team: Optional[str]
     status: Optional[str]
     priority: Optional[str]
-    type: Optional[str]
+    type_: Optional[str] = Field(alias="type")
     due_date: Optional[Any] = Field(alias="dueDate")
     labels: Optional[list[Optional[str]]]
 
@@ -354,7 +354,7 @@ class QueryContentsContentsResultsPullRequest(BaseModel):
     project: Optional[str]
     team: Optional[str]
     status: Optional[str]
-    type: Optional[str]
+    type_: Optional[str] = Field(alias="type")
     base_branch: Optional[str] = Field(alias="baseBranch")
     head_branch: Optional[str] = Field(alias="headBranch")
     is_draft: Optional[bool] = Field(alias="isDraft")

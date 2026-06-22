@@ -19,7 +19,7 @@ class UpdateConnectorUpdateConnector(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[ConnectorTypes]
+    type_: Optional[ConnectorTypes] = Field(alias="type")
 
 
 UpdateConnector.model_rebuild()

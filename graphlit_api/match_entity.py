@@ -20,7 +20,7 @@ class MatchEntityMatchEntity(BaseModel):
 
 
 class MatchEntityMatchEntityReference(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "MatchEntityMatchEntityReferenceObservable"
 
 

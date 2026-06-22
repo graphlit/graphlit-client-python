@@ -25,7 +25,7 @@ class QueryCollectionsCollectionsResults(BaseModel):
     relevance: Optional[float]
     owner: "QueryCollectionsCollectionsResultsOwner"
     state: EntityState
-    type: Optional[CollectionTypes]
+    type_: Optional[CollectionTypes] = Field(alias="type")
 
 
 class QueryCollectionsCollectionsResultsOwner(BaseModel):

@@ -17,7 +17,7 @@ class UpsertAlertUpsertAlert(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: AlertTypes
+    type_: AlertTypes = Field(alias="type")
 
 
 UpsertAlert.model_rebuild()

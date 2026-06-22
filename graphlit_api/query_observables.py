@@ -3,6 +3,8 @@
 
 from typing import Optional
 
+from pydantic import Field
+
 from .base_model import BaseModel
 from .enums import ObservableTypes
 
@@ -16,7 +18,7 @@ class QueryObservablesObservables(BaseModel):
 
 
 class QueryObservablesObservablesResults(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "QueryObservablesObservablesResultsObservable"
 
 

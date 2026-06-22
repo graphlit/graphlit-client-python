@@ -19,7 +19,7 @@ class UpdateCollectionUpdateCollection(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[CollectionTypes]
+    type_: Optional[CollectionTypes] = Field(alias="type")
 
 
 UpdateCollection.model_rebuild()

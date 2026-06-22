@@ -89,7 +89,7 @@ class UpsertWorkflowUpsertWorkflowIngestionCollections(BaseModel):
 
 
 class UpsertWorkflowUpsertWorkflowIngestionObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "UpsertWorkflowUpsertWorkflowIngestionObservationsObservable"
 
 
@@ -107,7 +107,7 @@ class UpsertWorkflowUpsertWorkflowIndexingJobs(BaseModel):
 
 
 class UpsertWorkflowUpsertWorkflowIndexingJobsConnector(BaseModel):
-    type: Optional[ContentIndexingServiceTypes]
+    type_: Optional[ContentIndexingServiceTypes] = Field(alias="type")
     content_type: Optional[ContentTypes] = Field(alias="contentType")
     file_type: Optional[FileTypes] = Field(alias="fileType")
 
@@ -122,7 +122,7 @@ class UpsertWorkflowUpsertWorkflowPreparation(BaseModel):
 
 
 class UpsertWorkflowUpsertWorkflowPreparationSummarizations(BaseModel):
-    type: SummarizationTypes
+    type_: SummarizationTypes = Field(alias="type")
     specification: Optional[
         "UpsertWorkflowUpsertWorkflowPreparationSummarizationsSpecification"
     ]
@@ -140,7 +140,7 @@ class UpsertWorkflowUpsertWorkflowPreparationJobs(BaseModel):
 
 
 class UpsertWorkflowUpsertWorkflowPreparationJobsConnector(BaseModel):
-    type: FilePreparationServiceTypes
+    type_: FilePreparationServiceTypes = Field(alias="type")
     file_types: Optional[list[FileTypes]] = Field(alias="fileTypes")
     azure_document: Optional[
         "UpsertWorkflowUpsertWorkflowPreparationJobsConnectorAzureDocument"
@@ -242,7 +242,7 @@ class UpsertWorkflowUpsertWorkflowExtractionJobs(BaseModel):
 
 
 class UpsertWorkflowUpsertWorkflowExtractionJobsConnector(BaseModel):
-    type: EntityExtractionServiceTypes
+    type_: EntityExtractionServiceTypes = Field(alias="type")
     content_types: Optional[list[ContentTypes]] = Field(alias="contentTypes")
     file_types: Optional[list[FileTypes]] = Field(alias="fileTypes")
     extracted_types: Optional[list[ObservableTypes]] = Field(alias="extractedTypes")
@@ -314,7 +314,7 @@ class UpsertWorkflowUpsertWorkflowClassificationJobs(BaseModel):
 
 
 class UpsertWorkflowUpsertWorkflowClassificationJobsConnector(BaseModel):
-    type: ContentClassificationServiceTypes
+    type_: ContentClassificationServiceTypes = Field(alias="type")
     content_types: Optional[list[ContentTypes]] = Field(alias="contentTypes")
     file_types: Optional[list[FileTypes]] = Field(alias="fileTypes")
     model: Optional["UpsertWorkflowUpsertWorkflowClassificationJobsConnectorModel"]
@@ -359,7 +359,7 @@ class UpsertWorkflowUpsertWorkflowClassificationJobsConnectorRegex(BaseModel):
 class UpsertWorkflowUpsertWorkflowClassificationJobsConnectorRegexRules(BaseModel):
     state: Optional[ClassificationRuleState]
     then: Optional[str]
-    type: Optional[RegexSourceTypes]
+    type_: Optional[RegexSourceTypes] = Field(alias="type")
     path: Optional[str]
     matches: Optional[str]
 
@@ -397,7 +397,7 @@ class UpsertWorkflowUpsertWorkflowEnrichmentJobs(BaseModel):
 
 
 class UpsertWorkflowUpsertWorkflowEnrichmentJobsConnector(BaseModel):
-    type: Optional[EntityEnrichmentServiceTypes]
+    type_: Optional[EntityEnrichmentServiceTypes] = Field(alias="type")
     enriched_types: Optional[list[ObservableTypes]] = Field(alias="enrichedTypes")
     fhir: Optional["UpsertWorkflowUpsertWorkflowEnrichmentJobsConnectorFhir"]
     diffbot: Optional["UpsertWorkflowUpsertWorkflowEnrichmentJobsConnectorDiffbot"]
@@ -445,7 +445,7 @@ class UpsertWorkflowUpsertWorkflowStorage(BaseModel):
 
 
 class UpsertWorkflowUpsertWorkflowStoragePolicy(BaseModel):
-    type: Optional[StoragePolicyTypes]
+    type_: Optional[StoragePolicyTypes] = Field(alias="type")
     allow_duplicates: Optional[bool] = Field(alias="allowDuplicates")
     embedding_types: Optional[list[EmbeddingTypes]] = Field(alias="embeddingTypes")
     enable_snapshots: Optional[bool] = Field(alias="enableSnapshots")
@@ -453,7 +453,7 @@ class UpsertWorkflowUpsertWorkflowStoragePolicy(BaseModel):
 
 
 class UpsertWorkflowUpsertWorkflowStorageGate(BaseModel):
-    type: StorageGateTypes
+    type_: StorageGateTypes = Field(alias="type")
     specification: Optional["UpsertWorkflowUpsertWorkflowStorageGateSpecification"]
     rules: Optional[list["UpsertWorkflowUpsertWorkflowStorageGateRules"]]
     uri: Optional[Any]
@@ -474,7 +474,7 @@ class UpsertWorkflowUpsertWorkflowActions(BaseModel):
 
 
 class UpsertWorkflowUpsertWorkflowActionsConnector(BaseModel):
-    type: IntegrationServiceTypes
+    type_: IntegrationServiceTypes = Field(alias="type")
     uri: Optional[str]
     slack: Optional["UpsertWorkflowUpsertWorkflowActionsConnectorSlack"]
     email: Optional["UpsertWorkflowUpsertWorkflowActionsConnectorEmail"]
@@ -502,7 +502,7 @@ class UpsertWorkflowUpsertWorkflowActionsConnectorTwitter(BaseModel):
 
 class UpsertWorkflowUpsertWorkflowActionsConnectorMcp(BaseModel):
     token: Optional[str]
-    type: MCPServerTypes
+    type_: MCPServerTypes = Field(alias="type")
 
 
 UpsertWorkflow.model_rebuild()

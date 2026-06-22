@@ -39,13 +39,13 @@ class GetAgentAgent(BaseModel):
     state: EntityState
     user: Optional["GetAgentAgentUser"]
     correlation_id: Optional[str] = Field(alias="correlationId")
-    type: AgentTypes
+    type_: AgentTypes = Field(alias="type")
     mode: AgentModes
     description: Optional[str]
     specification: Optional["GetAgentAgentSpecification"]
     persona: Optional["GetAgentAgentPersona"]
     trigger: Optional["GetAgentAgentTrigger"]
-    filter: Optional["GetAgentAgentFilter"]
+    filter_: Optional["GetAgentAgentFilter"] = Field(alias="filter")
     augmented_filter: Optional["GetAgentAgentAugmentedFilter"] = Field(
         alias="augmentedFilter"
     )
@@ -167,7 +167,7 @@ class GetAgentAgentFilterUsers(BaseModel):
 
 
 class GetAgentAgentFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetAgentAgentFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -201,7 +201,7 @@ class GetAgentAgentFilterOrUsers(BaseModel):
 
 
 class GetAgentAgentFilterOrObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetAgentAgentFilterOrObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -235,7 +235,7 @@ class GetAgentAgentFilterAndUsers(BaseModel):
 
 
 class GetAgentAgentFilterAndObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetAgentAgentFilterAndObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -320,7 +320,7 @@ class GetAgentAgentAugmentedFilterUsers(BaseModel):
 
 
 class GetAgentAgentAugmentedFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetAgentAgentAugmentedFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -354,7 +354,7 @@ class GetAgentAgentAugmentedFilterOrUsers(BaseModel):
 
 
 class GetAgentAgentAugmentedFilterOrObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetAgentAgentAugmentedFilterOrObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -388,7 +388,7 @@ class GetAgentAgentAugmentedFilterAndUsers(BaseModel):
 
 
 class GetAgentAgentAugmentedFilterAndObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetAgentAgentAugmentedFilterAndObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -425,7 +425,7 @@ class GetAgentAgentHeartbeatProbeThresholds(BaseModel):
 
 
 class GetAgentAgentChannels(BaseModel):
-    type: AgentChannelTypes
+    type_: AgentChannelTypes = Field(alias="type")
     identifier: str
     instructions: Optional[str]
     label: Optional[str]
@@ -441,7 +441,7 @@ class GetAgentAgentCommands(BaseModel):
     keyword: str
     name: str
     description: Optional[str]
-    type: AgentCommandActionTypes
+    type_: AgentCommandActionTypes = Field(alias="type")
     template: str
     enabled: bool
 
@@ -452,7 +452,7 @@ class GetAgentAgentTargets(BaseModel):
 
 
 class GetAgentAgentTargetsConnector(BaseModel):
-    type: DistributionServiceTypes
+    type_: DistributionServiceTypes = Field(alias="type")
     operation: Optional[DistributionTargetOperationTypes]
     kind: Optional[DistributionTargetKindTypes]
     notion: Optional["GetAgentAgentTargetsConnectorNotion"]
@@ -635,7 +635,7 @@ class GetAgentAgentTargetsConnectorZendesk(BaseModel):
     subject: Optional[str]
     priority: Optional[str]
     status: Optional[str]
-    type: Optional[str]
+    type_: Optional[str] = Field(alias="type")
     assignee: Optional[str]
     group_id: Optional[str] = Field(alias="groupId")
     tags: Optional[list[str]]

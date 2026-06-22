@@ -38,7 +38,7 @@ class QueryReplicasReplicasResults(BaseModel):
     relevance: Optional[float]
     owner: "QueryReplicasReplicasResultsOwner"
     state: EntityState
-    type: Optional[EntityTypes]
+    type_: Optional[EntityTypes] = Field(alias="type")
     content: Optional["QueryReplicasReplicasResultsContent"]
     conversation: Optional["QueryReplicasReplicasResultsConversation"]
     skill: Optional["QueryReplicasReplicasResultsSkill"]
@@ -71,7 +71,9 @@ class QueryReplicasReplicasResultsOwner(BaseModel):
 
 
 class QueryReplicasReplicasResultsContent(BaseModel):
-    filter: Optional["QueryReplicasReplicasResultsContentFilter"]
+    filter_: Optional["QueryReplicasReplicasResultsContentFilter"] = Field(
+        alias="filter"
+    )
 
 
 class QueryReplicasReplicasResultsContentFilter(BaseModel):
@@ -156,7 +158,7 @@ class QueryReplicasReplicasResultsContentFilterUsers(BaseModel):
 
 
 class QueryReplicasReplicasResultsContentFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "QueryReplicasReplicasResultsContentFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -194,7 +196,7 @@ class QueryReplicasReplicasResultsContentFilterOrUsers(BaseModel):
 
 
 class QueryReplicasReplicasResultsContentFilterOrObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "QueryReplicasReplicasResultsContentFilterOrObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -232,7 +234,7 @@ class QueryReplicasReplicasResultsContentFilterAndUsers(BaseModel):
 
 
 class QueryReplicasReplicasResultsContentFilterAndObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "QueryReplicasReplicasResultsContentFilterAndObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -242,7 +244,9 @@ class QueryReplicasReplicasResultsContentFilterAndObservationsObservable(BaseMod
 
 
 class QueryReplicasReplicasResultsConversation(BaseModel):
-    filter: Optional["QueryReplicasReplicasResultsConversationFilter"]
+    filter_: Optional["QueryReplicasReplicasResultsConversationFilter"] = Field(
+        alias="filter"
+    )
 
 
 class QueryReplicasReplicasResultsConversationFilter(BaseModel):
@@ -283,7 +287,7 @@ class QueryReplicasReplicasResultsConversationFilterCollections(BaseModel):
 
 
 class QueryReplicasReplicasResultsConversationFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "QueryReplicasReplicasResultsConversationFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -293,7 +297,7 @@ class QueryReplicasReplicasResultsConversationFilterObservationsObservable(BaseM
 
 
 class QueryReplicasReplicasResultsSkill(BaseModel):
-    filter: Optional["QueryReplicasReplicasResultsSkillFilter"]
+    filter_: Optional["QueryReplicasReplicasResultsSkillFilter"] = Field(alias="filter")
 
 
 class QueryReplicasReplicasResultsSkillFilter(BaseModel):
@@ -338,7 +342,7 @@ class QueryReplicasReplicasResultsConnector(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[ConnectorTypes]
+    type_: Optional[ConnectorTypes] = Field(alias="type")
 
 
 class QueryReplicasReplicasResultsSchedulePolicy(BaseModel):

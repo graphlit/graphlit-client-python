@@ -18,6 +18,8 @@ query QueryUsage($startDate: DateTime!, $duration: TimeSpan!, $names: [String!],
     fileType
     modelService
     modelName
+    requestedServiceTier
+    actualServiceTier
     processorName
     promptTokens
     completionTokens

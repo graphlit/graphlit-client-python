@@ -19,7 +19,7 @@ class UpsertConnectorUpsertConnector(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[ConnectorTypes]
+    type_: Optional[ConnectorTypes] = Field(alias="type")
 
 
 UpsertConnector.model_rebuild()

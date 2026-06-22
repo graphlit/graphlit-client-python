@@ -18,7 +18,7 @@ class SummarizeContents(BaseModel):
 class SummarizeContentsSummarizeContents(BaseModel):
     specification: Optional["SummarizeContentsSummarizeContentsSpecification"]
     content: Optional["SummarizeContentsSummarizeContentsContent"]
-    type: SummarizationTypes
+    type_: SummarizationTypes = Field(alias="type")
     items: Optional[list["SummarizeContentsSummarizeContentsItems"]]
     error: Optional[str]
 

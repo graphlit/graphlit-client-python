@@ -96,7 +96,7 @@ class QueryFeedsFeedsResults(BaseModel):
     identifier: Optional[str]
     description: Optional[str]
     correlation_id: Optional[str] = Field(alias="correlationId")
-    type: FeedTypes
+    type_: FeedTypes = Field(alias="type")
     sync_mode: Optional[FeedSyncMode] = Field(alias="syncMode")
     site: Optional["QueryFeedsFeedsResultsSite"]
     skill: Optional["QueryFeedsFeedsResultsSkill"]
@@ -155,7 +155,7 @@ class QueryFeedsFeedsResultsOwner(BaseModel):
 
 class QueryFeedsFeedsResultsSite(BaseModel):
     site_type: SiteTypes = Field(alias="siteType")
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     is_recursive: Optional[bool] = Field(alias="isRecursive")
     allowed_paths: Optional[list[str]] = Field(alias="allowedPaths")
     excluded_paths: Optional[list[str]] = Field(alias="excludedPaths")
@@ -330,7 +330,7 @@ class QueryFeedsFeedsResultsSiteGitlabConnector(BaseModel):
 
 
 class QueryFeedsFeedsResultsSkill(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     is_recursive: Optional[bool] = Field(alias="isRecursive")
     allowed_paths: Optional[list[str]] = Field(alias="allowedPaths")
     excluded_paths: Optional[list[str]] = Field(alias="excludedPaths")
@@ -375,7 +375,7 @@ class QueryFeedsFeedsResultsSkillGitlabConnector(BaseModel):
 
 
 class QueryFeedsFeedsResultsEmail(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
     google: Optional["QueryFeedsFeedsResultsEmailGoogle"]
     microsoft: Optional["QueryFeedsFeedsResultsEmailMicrosoft"]
@@ -383,8 +383,8 @@ class QueryFeedsFeedsResultsEmail(BaseModel):
 
 
 class QueryFeedsFeedsResultsEmailGoogle(BaseModel):
-    type: Optional[EmailListingTypes]
-    filter: Optional[str]
+    type_: Optional[EmailListingTypes] = Field(alias="type")
+    filter_: Optional[str] = Field(alias="filter")
     include_spam: Optional[bool] = Field(alias="includeSpam")
     exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems")
     include_deleted_items: Optional[bool] = Field(alias="includeDeletedItems")
@@ -405,8 +405,8 @@ class QueryFeedsFeedsResultsEmailGoogleConnector(BaseModel):
 
 
 class QueryFeedsFeedsResultsEmailMicrosoft(BaseModel):
-    type: Optional[EmailListingTypes]
-    filter: Optional[str]
+    type_: Optional[EmailListingTypes] = Field(alias="type")
+    filter_: Optional[str] = Field(alias="filter")
     include_spam: Optional[bool] = Field(alias="includeSpam")
     exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems")
     include_deleted_items: Optional[bool] = Field(alias="includeDeletedItems")
@@ -427,7 +427,7 @@ class QueryFeedsFeedsResultsEmailMicrosoftConnector(BaseModel):
 
 
 class QueryFeedsFeedsResultsIssue(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
     jira: Optional["QueryFeedsFeedsResultsIssueJira"]
     linear: Optional["QueryFeedsFeedsResultsIssueLinear"]
@@ -552,7 +552,7 @@ class QueryFeedsFeedsResultsIssueTrello(BaseModel):
     key: str
     token: str
     identifiers: list[str]
-    type: TrelloTypes
+    type_: TrelloTypes = Field(alias="type")
 
 
 class QueryFeedsFeedsResultsIssueAttio(BaseModel):
@@ -621,7 +621,7 @@ class QueryFeedsFeedsResultsIssueProductlane(BaseModel):
 
 
 class QueryFeedsFeedsResultsInitiative(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     jira: Optional["QueryFeedsFeedsResultsInitiativeJira"]
     github: Optional["QueryFeedsFeedsResultsInitiativeGithub"]
     gitlab: Optional["QueryFeedsFeedsResultsInitiativeGitlab"]
@@ -704,7 +704,7 @@ class QueryFeedsFeedsResultsInitiativeLinearConnector(BaseModel):
 
 
 class QueryFeedsFeedsResultsCommit(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     github: Optional["QueryFeedsFeedsResultsCommitGithub"]
     gitlab: Optional["QueryFeedsFeedsResultsCommitGitlab"]
     before_date: Optional[Any] = Field(alias="beforeDate")
@@ -749,7 +749,7 @@ class QueryFeedsFeedsResultsCommitGitlabConnector(BaseModel):
 
 
 class QueryFeedsFeedsResultsPullRequest(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     github: Optional["QueryFeedsFeedsResultsPullRequestGithub"]
     gitlab: Optional["QueryFeedsFeedsResultsPullRequestGitlab"]
     before_date: Optional[Any] = Field(alias="beforeDate")
@@ -793,7 +793,7 @@ class QueryFeedsFeedsResultsPullRequestGitlabConnector(BaseModel):
 
 
 class QueryFeedsFeedsResultsCrm(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     attio: Optional["QueryFeedsFeedsResultsCrmAttio"]
     google_contacts: Optional["QueryFeedsFeedsResultsCrmGoogleContacts"] = Field(
         alias="googleContacts"
@@ -816,7 +816,7 @@ class QueryFeedsFeedsResultsCrmAttio(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     connector: Optional["QueryFeedsFeedsResultsCrmAttioConnector"]
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
 
 
 class QueryFeedsFeedsResultsCrmAttioConnector(BaseModel):
@@ -831,7 +831,7 @@ class QueryFeedsFeedsResultsCrmGoogleContacts(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     connector: Optional["QueryFeedsFeedsResultsCrmGoogleContactsConnector"]
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
 
 
 class QueryFeedsFeedsResultsCrmGoogleContactsConnector(BaseModel):
@@ -847,7 +847,7 @@ class QueryFeedsFeedsResultsCrmMicrosoftContacts(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
     tenant_id: Optional[str] = Field(alias="tenantId")
     connector: Optional["QueryFeedsFeedsResultsCrmMicrosoftContactsConnector"]
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
 
 
 class QueryFeedsFeedsResultsCrmMicrosoftContactsConnector(BaseModel):
@@ -864,7 +864,7 @@ class QueryFeedsFeedsResultsCrmSalesforce(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     connector: Optional["QueryFeedsFeedsResultsCrmSalesforceConnector"]
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
 
 
 class QueryFeedsFeedsResultsCrmSalesforceConnector(BaseModel):
@@ -880,7 +880,7 @@ class QueryFeedsFeedsResultsCrmHubSpot(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
     access_token: Optional[str] = Field(alias="accessToken")
     connector: Optional["QueryFeedsFeedsResultsCrmHubSpotConnector"]
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
 
 
 class QueryFeedsFeedsResultsCrmHubSpotConnector(BaseModel):
@@ -889,11 +889,11 @@ class QueryFeedsFeedsResultsCrmHubSpotConnector(BaseModel):
 
 class QueryFeedsFeedsResultsCrmProductlane(BaseModel):
     api_key: Optional[str] = Field(alias="apiKey")
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
 
 
 class QueryFeedsFeedsResultsHris(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     bamboo_hr: Optional["QueryFeedsFeedsResultsHrisBambooHr"] = Field(alias="bambooHR")
     gusto: Optional["QueryFeedsFeedsResultsHrisGusto"]
     read_limit: Optional[int] = Field(alias="readLimit")
@@ -918,7 +918,7 @@ class QueryFeedsFeedsResultsHrisGusto(BaseModel):
 
 
 class QueryFeedsFeedsResultsCalendar(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
     enable_meeting_recording: Optional[bool] = Field(alias="enableMeetingRecording")
     meeting_bot_name: Optional[str] = Field(alias="meetingBotName")
@@ -928,7 +928,7 @@ class QueryFeedsFeedsResultsCalendar(BaseModel):
 
 
 class QueryFeedsFeedsResultsCalendarGoogle(BaseModel):
-    type: Optional[CalendarListingTypes]
+    type_: Optional[CalendarListingTypes] = Field(alias="type")
     calendar_id: Optional[str] = Field(alias="calendarId")
     before_date: Optional[Any] = Field(alias="beforeDate")
     after_date: Optional[Any] = Field(alias="afterDate")
@@ -946,7 +946,7 @@ class QueryFeedsFeedsResultsCalendarGoogleConnector(BaseModel):
 
 
 class QueryFeedsFeedsResultsCalendarMicrosoft(BaseModel):
-    type: Optional[CalendarListingTypes]
+    type_: Optional[CalendarListingTypes] = Field(alias="type")
     calendar_id: Optional[str] = Field(alias="calendarId")
     before_date: Optional[Any] = Field(alias="beforeDate")
     after_date: Optional[Any] = Field(alias="afterDate")
@@ -964,7 +964,7 @@ class QueryFeedsFeedsResultsCalendarMicrosoftConnector(BaseModel):
 
 
 class QueryFeedsFeedsResultsMeeting(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     content_type: Optional[MeetingContentTypes] = Field(alias="contentType")
     read_limit: Optional[int] = Field(alias="readLimit")
     fireflies: Optional["QueryFeedsFeedsResultsMeetingFireflies"]
@@ -979,7 +979,7 @@ class QueryFeedsFeedsResultsMeetingFireflies(BaseModel):
     api_key: Optional[str] = Field(alias="apiKey")
     before_date: Optional[Any] = Field(alias="beforeDate")
     after_date: Optional[Any] = Field(alias="afterDate")
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
 
 
 class QueryFeedsFeedsResultsMeetingAttio(BaseModel):
@@ -993,7 +993,7 @@ class QueryFeedsFeedsResultsMeetingAttio(BaseModel):
     connector: Optional["QueryFeedsFeedsResultsMeetingAttioConnector"]
     after_date: Optional[Any] = Field(alias="afterDate")
     before_date: Optional[Any] = Field(alias="beforeDate")
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
 
 
 class QueryFeedsFeedsResultsMeetingAttioConnector(BaseModel):
@@ -1004,7 +1004,7 @@ class QueryFeedsFeedsResultsMeetingFathom(BaseModel):
     api_key: Optional[str] = Field(alias="apiKey")
     after_date: Optional[Any] = Field(alias="afterDate")
     before_date: Optional[Any] = Field(alias="beforeDate")
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
 
 
 class QueryFeedsFeedsResultsMeetingZoom(BaseModel):
@@ -1017,7 +1017,7 @@ class QueryFeedsFeedsResultsMeetingZoom(BaseModel):
     connector: Optional["QueryFeedsFeedsResultsMeetingZoomConnector"]
     after_date: Optional[Any] = Field(alias="afterDate")
     before_date: Optional[Any] = Field(alias="beforeDate")
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
 
 
 class QueryFeedsFeedsResultsMeetingZoomConnector(BaseModel):
@@ -1035,7 +1035,7 @@ class QueryFeedsFeedsResultsMeetingHubSpot(BaseModel):
     before_date: Optional[Any] = Field(alias="beforeDate")
     read_limit: Optional[int] = Field(alias="readLimit")
     connector: Optional["QueryFeedsFeedsResultsMeetingHubSpotConnector"]
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
 
 
 class QueryFeedsFeedsResultsMeetingHubSpotConnector(BaseModel):
@@ -1044,7 +1044,7 @@ class QueryFeedsFeedsResultsMeetingHubSpotConnector(BaseModel):
 
 class QueryFeedsFeedsResultsMeetingKrisp(BaseModel):
     auth_token: Optional[str] = Field(alias="authToken")
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
 
 
 class QueryFeedsFeedsResultsRss(BaseModel):
@@ -1062,7 +1062,7 @@ class QueryFeedsFeedsResultsWeb(BaseModel):
 
 class QueryFeedsFeedsResultsSearch(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
-    type: Optional[SearchServiceTypes]
+    type_: Optional[SearchServiceTypes] = Field(alias="type")
     text: Optional[str]
     exa: Optional["QueryFeedsFeedsResultsSearchExa"]
     crustdata: Optional["QueryFeedsFeedsResultsSearchCrustdata"]
@@ -1142,7 +1142,7 @@ class QueryFeedsFeedsResultsNotion(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
     connector: Optional["QueryFeedsFeedsResultsNotionConnector"]
     identifiers: list[str]
-    type: NotionTypes
+    type_: NotionTypes = Field(alias="type")
 
 
 class QueryFeedsFeedsResultsNotionConnector(BaseModel):
@@ -1151,7 +1151,7 @@ class QueryFeedsFeedsResultsNotionConnector(BaseModel):
 
 class QueryFeedsFeedsResultsEvernote(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
     connector: Optional["QueryFeedsFeedsResultsEvernoteConnector"]
     query: Optional[str]
     tag_guids: Optional[list[str]] = Field(alias="tagGuids")
@@ -1178,7 +1178,7 @@ class QueryFeedsFeedsResultsConfluence(BaseModel):
     cloud_id: Optional[str] = Field(alias="cloudId")
     space_keys: Optional[list[str]] = Field(alias="spaceKeys")
     identifiers: Optional[list[str]]
-    type: ConfluenceTypes
+    type_: ConfluenceTypes = Field(alias="type")
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
 
 
@@ -1221,7 +1221,7 @@ class QueryFeedsFeedsResultsZendeskConnector(BaseModel):
 
 class QueryFeedsFeedsResultsYoutube(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
-    type: YouTubeTypes
+    type_: YouTubeTypes = Field(alias="type")
     video_name: Optional[str] = Field(alias="videoName")
     video_identifiers: Optional[list[str]] = Field(alias="videoIdentifiers")
     channel_identifier: Optional[str] = Field(alias="channelIdentifier")
@@ -1238,7 +1238,7 @@ class QueryFeedsFeedsResultsTwitter(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     connector: Optional["QueryFeedsFeedsResultsTwitterConnector"]
-    type: Optional[TwitterListingTypes]
+    type_: Optional[TwitterListingTypes] = Field(alias="type")
     user_name: Optional[str] = Field(alias="userName")
     query: Optional[str]
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
@@ -1250,7 +1250,7 @@ class QueryFeedsFeedsResultsTwitterConnector(BaseModel):
 
 class QueryFeedsFeedsResultsSlack(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
     authentication_type: Optional[SlackAuthenticationTypes] = Field(
         alias="authenticationType"
     )
@@ -1271,7 +1271,7 @@ class QueryFeedsFeedsResultsSlackConnector(BaseModel):
 
 class QueryFeedsFeedsResultsMicrosoftTeams(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
     authentication_type: Optional[MicrosoftTeamsAuthenticationTypes] = Field(
         alias="authenticationType"
     )
@@ -1292,7 +1292,7 @@ class QueryFeedsFeedsResultsMicrosoftTeamsConnector(BaseModel):
 
 class QueryFeedsFeedsResultsDiscord(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
     token: str
     channel: str
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
@@ -1368,14 +1368,14 @@ class QueryFeedsFeedsResultsIntercomConversationsConnector(BaseModel):
 
 class QueryFeedsFeedsResultsProductlane(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     api_key: Optional[str] = Field(alias="apiKey")
     workspace_id: Optional[str] = Field(alias="workspaceId")
 
 
 class QueryFeedsFeedsResultsResearch(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
-    type: Optional[FeedServiceTypes]
+    type_: Optional[FeedServiceTypes] = Field(alias="type")
     query: str
     parallel: Optional["QueryFeedsFeedsResultsResearchParallel"]
 
@@ -1385,7 +1385,7 @@ class QueryFeedsFeedsResultsResearchParallel(BaseModel):
 
 
 class QueryFeedsFeedsResultsEntity(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     query: Optional[str]
     read_limit: Optional[int] = Field(alias="readLimit")
     parallel: Optional["QueryFeedsFeedsResultsEntityParallel"]

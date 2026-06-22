@@ -20,7 +20,7 @@ class RetrieveSourcesRetrieveSources(BaseModel):
 
 
 class RetrieveSourcesRetrieveSourcesResults(BaseModel):
-    type: Optional[ContentSourceTypes]
+    type_: Optional[ContentSourceTypes] = Field(alias="type")
     content: "RetrieveSourcesRetrieveSourcesResultsContent"
     text: Optional[str]
     metadata: Optional[str]

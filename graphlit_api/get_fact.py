@@ -52,7 +52,7 @@ class GetFactFactOwner(BaseModel):
 
 
 class GetFactFactMentions(BaseModel):
-    type: Optional[ObservableTypes]
+    type_: Optional[ObservableTypes] = Field(alias="type")
     observable: Optional["GetFactFactMentionsObservable"]
     start: Optional[int]
     end: Optional[int]
@@ -69,7 +69,7 @@ class GetFactFactAssertions(BaseModel):
 
 
 class GetFactFactAssertionsMentions(BaseModel):
-    type: Optional[ObservableTypes]
+    type_: Optional[ObservableTypes] = Field(alias="type")
     observable: Optional["GetFactFactAssertionsMentionsObservable"]
     start: Optional[int]
     end: Optional[int]
@@ -101,7 +101,7 @@ class GetFactFactPersona(BaseModel):
 
 
 class GetFactFactEvidence(BaseModel):
-    type: Optional[FactEvidenceTypes]
+    type_: Optional[FactEvidenceTypes] = Field(alias="type")
     entity: Optional["GetFactFactEvidenceEntity"]
     text: Optional[str]
     confidence: Optional[float]

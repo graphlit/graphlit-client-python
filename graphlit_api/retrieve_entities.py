@@ -22,7 +22,7 @@ class RetrieveEntitiesRetrieveEntities(BaseModel):
 class RetrieveEntitiesRetrieveEntitiesResults(BaseModel):
     id: str
     name: Optional[str]
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     relevance: Optional[float]
     metadata: Optional[str]
 

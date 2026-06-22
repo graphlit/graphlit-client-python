@@ -34,7 +34,7 @@ class GetReplicaReplica(BaseModel):
     owner: "GetReplicaReplicaOwner"
     state: EntityState
     user: Optional["GetReplicaReplicaUser"]
-    type: Optional[EntityTypes]
+    type_: Optional[EntityTypes] = Field(alias="type")
     content: Optional["GetReplicaReplicaContent"]
     conversation: Optional["GetReplicaReplicaConversation"]
     skill: Optional["GetReplicaReplicaSkill"]
@@ -71,7 +71,7 @@ class GetReplicaReplicaUser(BaseModel):
 
 
 class GetReplicaReplicaContent(BaseModel):
-    filter: Optional["GetReplicaReplicaContentFilter"]
+    filter_: Optional["GetReplicaReplicaContentFilter"] = Field(alias="filter")
 
 
 class GetReplicaReplicaContentFilter(BaseModel):
@@ -150,7 +150,7 @@ class GetReplicaReplicaContentFilterUsers(BaseModel):
 
 
 class GetReplicaReplicaContentFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetReplicaReplicaContentFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -184,7 +184,7 @@ class GetReplicaReplicaContentFilterOrUsers(BaseModel):
 
 
 class GetReplicaReplicaContentFilterOrObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetReplicaReplicaContentFilterOrObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -218,7 +218,7 @@ class GetReplicaReplicaContentFilterAndUsers(BaseModel):
 
 
 class GetReplicaReplicaContentFilterAndObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetReplicaReplicaContentFilterAndObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -228,7 +228,7 @@ class GetReplicaReplicaContentFilterAndObservationsObservable(BaseModel):
 
 
 class GetReplicaReplicaConversation(BaseModel):
-    filter: Optional["GetReplicaReplicaConversationFilter"]
+    filter_: Optional["GetReplicaReplicaConversationFilter"] = Field(alias="filter")
 
 
 class GetReplicaReplicaConversationFilter(BaseModel):
@@ -263,7 +263,7 @@ class GetReplicaReplicaConversationFilterCollections(BaseModel):
 
 
 class GetReplicaReplicaConversationFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetReplicaReplicaConversationFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -273,7 +273,7 @@ class GetReplicaReplicaConversationFilterObservationsObservable(BaseModel):
 
 
 class GetReplicaReplicaSkill(BaseModel):
-    filter: Optional["GetReplicaReplicaSkillFilter"]
+    filter_: Optional["GetReplicaReplicaSkillFilter"] = Field(alias="filter")
 
 
 class GetReplicaReplicaSkillFilter(BaseModel):
@@ -318,7 +318,7 @@ class GetReplicaReplicaConnector(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[ConnectorTypes]
+    type_: Optional[ConnectorTypes] = Field(alias="type")
 
 
 class GetReplicaReplicaSchedulePolicy(BaseModel):

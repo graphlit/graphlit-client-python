@@ -52,11 +52,11 @@ class QueryAlertsAlertsResults(BaseModel):
     owner: "QueryAlertsAlertsResultsOwner"
     state: EntityState
     correlation_id: Optional[str] = Field(alias="correlationId")
-    type: AlertTypes
+    type_: AlertTypes = Field(alias="type")
     summary_prompt: Optional[str] = Field(alias="summaryPrompt")
     publish_prompt: str = Field(alias="publishPrompt")
     view: Optional["QueryAlertsAlertsResultsView"]
-    filter: Optional["QueryAlertsAlertsResultsFilter"]
+    filter_: Optional["QueryAlertsAlertsResultsFilter"] = Field(alias="filter")
     integration: "QueryAlertsAlertsResultsIntegration"
     publishing: "QueryAlertsAlertsResultsPublishing"
     summary_specification: Optional["QueryAlertsAlertsResultsSummarySpecification"] = (
@@ -155,7 +155,7 @@ class QueryAlertsAlertsResultsFilterUsers(BaseModel):
 
 
 class QueryAlertsAlertsResultsFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "QueryAlertsAlertsResultsFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -189,7 +189,7 @@ class QueryAlertsAlertsResultsFilterOrUsers(BaseModel):
 
 
 class QueryAlertsAlertsResultsFilterOrObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "QueryAlertsAlertsResultsFilterOrObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -223,7 +223,7 @@ class QueryAlertsAlertsResultsFilterAndUsers(BaseModel):
 
 
 class QueryAlertsAlertsResultsFilterAndObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "QueryAlertsAlertsResultsFilterAndObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -233,7 +233,7 @@ class QueryAlertsAlertsResultsFilterAndObservationsObservable(BaseModel):
 
 
 class QueryAlertsAlertsResultsIntegration(BaseModel):
-    type: IntegrationServiceTypes
+    type_: IntegrationServiceTypes = Field(alias="type")
     uri: Optional[str]
     slack: Optional["QueryAlertsAlertsResultsIntegrationSlack"]
     email: Optional["QueryAlertsAlertsResultsIntegrationEmail"]
@@ -261,11 +261,11 @@ class QueryAlertsAlertsResultsIntegrationTwitter(BaseModel):
 
 class QueryAlertsAlertsResultsIntegrationMcp(BaseModel):
     token: Optional[str]
-    type: MCPServerTypes
+    type_: MCPServerTypes = Field(alias="type")
 
 
 class QueryAlertsAlertsResultsPublishing(BaseModel):
-    type: ContentPublishingServiceTypes
+    type_: ContentPublishingServiceTypes = Field(alias="type")
     eleven_labs: Optional["QueryAlertsAlertsResultsPublishingElevenLabs"] = Field(
         alias="elevenLabs"
     )

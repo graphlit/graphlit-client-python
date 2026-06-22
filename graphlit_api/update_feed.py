@@ -18,7 +18,7 @@ class UpdateFeedUpdateFeed(BaseModel):
     name: str
     state: EntityState
     identifier: Optional[str]
-    type: FeedTypes
+    type_: FeedTypes = Field(alias="type")
 
 
 UpdateFeed.model_rebuild()

@@ -32,7 +32,7 @@ class UpsertReplicaUpsertReplica(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[EntityTypes]
+    type_: Optional[EntityTypes] = Field(alias="type")
     content: Optional["UpsertReplicaUpsertReplicaContent"]
     conversation: Optional["UpsertReplicaUpsertReplicaConversation"]
     skill: Optional["UpsertReplicaUpsertReplicaSkill"]
@@ -61,7 +61,7 @@ class UpsertReplicaUpsertReplica(BaseModel):
 
 
 class UpsertReplicaUpsertReplicaContent(BaseModel):
-    filter: Optional["UpsertReplicaUpsertReplicaContentFilter"]
+    filter_: Optional["UpsertReplicaUpsertReplicaContentFilter"] = Field(alias="filter")
 
 
 class UpsertReplicaUpsertReplicaContentFilter(BaseModel):
@@ -142,7 +142,7 @@ class UpsertReplicaUpsertReplicaContentFilterUsers(BaseModel):
 
 
 class UpsertReplicaUpsertReplicaContentFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "UpsertReplicaUpsertReplicaContentFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -178,7 +178,7 @@ class UpsertReplicaUpsertReplicaContentFilterOrUsers(BaseModel):
 
 
 class UpsertReplicaUpsertReplicaContentFilterOrObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "UpsertReplicaUpsertReplicaContentFilterOrObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -214,7 +214,7 @@ class UpsertReplicaUpsertReplicaContentFilterAndUsers(BaseModel):
 
 
 class UpsertReplicaUpsertReplicaContentFilterAndObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "UpsertReplicaUpsertReplicaContentFilterAndObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -224,7 +224,9 @@ class UpsertReplicaUpsertReplicaContentFilterAndObservationsObservable(BaseModel
 
 
 class UpsertReplicaUpsertReplicaConversation(BaseModel):
-    filter: Optional["UpsertReplicaUpsertReplicaConversationFilter"]
+    filter_: Optional["UpsertReplicaUpsertReplicaConversationFilter"] = Field(
+        alias="filter"
+    )
 
 
 class UpsertReplicaUpsertReplicaConversationFilter(BaseModel):
@@ -265,7 +267,7 @@ class UpsertReplicaUpsertReplicaConversationFilterCollections(BaseModel):
 
 
 class UpsertReplicaUpsertReplicaConversationFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "UpsertReplicaUpsertReplicaConversationFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -275,7 +277,7 @@ class UpsertReplicaUpsertReplicaConversationFilterObservationsObservable(BaseMod
 
 
 class UpsertReplicaUpsertReplicaSkill(BaseModel):
-    filter: Optional["UpsertReplicaUpsertReplicaSkillFilter"]
+    filter_: Optional["UpsertReplicaUpsertReplicaSkillFilter"] = Field(alias="filter")
 
 
 class UpsertReplicaUpsertReplicaSkillFilter(BaseModel):
@@ -320,7 +322,7 @@ class UpsertReplicaUpsertReplicaConnector(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[ConnectorTypes]
+    type_: Optional[ConnectorTypes] = Field(alias="type")
 
 
 class UpsertReplicaUpsertReplicaSchedulePolicy(BaseModel):

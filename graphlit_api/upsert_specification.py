@@ -19,7 +19,7 @@ class UpsertSpecificationUpsertSpecification(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[SpecificationTypes]
+    type_: Optional[SpecificationTypes] = Field(alias="type")
     service_type: Optional[ModelServiceTypes] = Field(alias="serviceType")
 
 

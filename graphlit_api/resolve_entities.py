@@ -16,7 +16,7 @@ class ResolveEntities(BaseModel):
 
 
 class ResolveEntitiesResolveEntities(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     primary: Optional["ResolveEntitiesResolveEntitiesPrimary"]
     resolved: Optional[list["ResolveEntitiesResolveEntitiesResolved"]]
     relevance: float

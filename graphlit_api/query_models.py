@@ -20,7 +20,7 @@ class QueryModelsModels(BaseModel):
 class QueryModelsModelsResults(BaseModel):
     uri: Optional[Any]
     name: str
-    type: Optional[ModelTypes]
+    type_: Optional[ModelTypes] = Field(alias="type")
     service_type: Optional[ModelServiceTypes] = Field(alias="serviceType")
     model: Optional[str]
     model_type: Optional[str] = Field(alias="modelType")

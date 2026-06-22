@@ -32,6 +32,8 @@ class QueryUsageUsage(BaseModel):
     file_type: Optional[FileTypes] = Field(alias="fileType")
     model_service: Optional[str] = Field(alias="modelService")
     model_name: Optional[str] = Field(alias="modelName")
+    requested_service_tier: Optional[str] = Field(alias="requestedServiceTier")
+    actual_service_tier: Optional[str] = Field(alias="actualServiceTier")
     processor_name: Optional[str] = Field(alias="processorName")
     prompt_tokens: Optional[int] = Field(alias="promptTokens")
     completion_tokens: Optional[int] = Field(alias="completionTokens")

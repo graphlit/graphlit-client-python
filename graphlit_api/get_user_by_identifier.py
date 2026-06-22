@@ -34,7 +34,7 @@ class GetUserByIdentifierUserByIdentifier(BaseModel):
     relevance: Optional[float]
     owner: "GetUserByIdentifierUserByIdentifierOwner"
     state: EntityState
-    type: Optional[UserTypes]
+    type_: Optional[UserTypes] = Field(alias="type")
     identifier: str
     description: Optional[str]
     connectors: Optional[
@@ -55,7 +55,7 @@ class GetUserByIdentifierUserByIdentifierConnectors(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[ConnectorTypes]
+    type_: Optional[ConnectorTypes] = Field(alias="type")
     authentication: Optional[
         "GetUserByIdentifierUserByIdentifierConnectorsAuthentication"
     ]
@@ -64,7 +64,7 @@ class GetUserByIdentifierUserByIdentifierConnectors(BaseModel):
 
 
 class GetUserByIdentifierUserByIdentifierConnectorsAuthentication(BaseModel):
-    type: AuthenticationServiceTypes
+    type_: AuthenticationServiceTypes = Field(alias="type")
     token: Optional[str]
     api_key: Optional[str] = Field(alias="apiKey")
     microsoft: Optional[
@@ -107,7 +107,7 @@ class GetUserByIdentifierUserByIdentifierConnectorsAuthenticationArcade(BaseMode
 
 
 class GetUserByIdentifierUserByIdentifierConnectorsIntegration(BaseModel):
-    type: IntegrationServiceTypes
+    type_: IntegrationServiceTypes = Field(alias="type")
     uri: Optional[str]
     slack: Optional["GetUserByIdentifierUserByIdentifierConnectorsIntegrationSlack"]
     email: Optional["GetUserByIdentifierUserByIdentifierConnectorsIntegrationEmail"]
@@ -135,11 +135,11 @@ class GetUserByIdentifierUserByIdentifierConnectorsIntegrationTwitter(BaseModel)
 
 class GetUserByIdentifierUserByIdentifierConnectorsIntegrationMcp(BaseModel):
     token: Optional[str]
-    type: MCPServerTypes
+    type_: MCPServerTypes = Field(alias="type")
 
 
 class GetUserByIdentifierUserByIdentifierConnectorsChannel(BaseModel):
-    type: ChannelServiceTypes
+    type_: ChannelServiceTypes = Field(alias="type")
     slack: Optional["GetUserByIdentifierUserByIdentifierConnectorsChannelSlack"]
     teams: Optional["GetUserByIdentifierUserByIdentifierConnectorsChannelTeams"]
     discord: Optional["GetUserByIdentifierUserByIdentifierConnectorsChannelDiscord"]
@@ -192,7 +192,7 @@ class GetUserByIdentifierUserByIdentifierPersonas(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[PersonaTypes]
+    type_: Optional[PersonaTypes] = Field(alias="type")
     identifier: Optional[str]
     platform: Optional[str]
     display_name: Optional[str] = Field(alias="displayName")

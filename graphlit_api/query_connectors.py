@@ -34,7 +34,7 @@ class QueryConnectorsConnectorsResults(BaseModel):
     relevance: Optional[float]
     owner: "QueryConnectorsConnectorsResultsOwner"
     state: EntityState
-    type: Optional[ConnectorTypes]
+    type_: Optional[ConnectorTypes] = Field(alias="type")
     authentication: Optional["QueryConnectorsConnectorsResultsAuthentication"]
     integration: Optional["QueryConnectorsConnectorsResultsIntegration"]
     channel: Optional["QueryConnectorsConnectorsResultsChannel"]
@@ -45,7 +45,7 @@ class QueryConnectorsConnectorsResultsOwner(BaseModel):
 
 
 class QueryConnectorsConnectorsResultsAuthentication(BaseModel):
-    type: AuthenticationServiceTypes
+    type_: AuthenticationServiceTypes = Field(alias="type")
     token: Optional[str]
     api_key: Optional[str] = Field(alias="apiKey")
     microsoft: Optional["QueryConnectorsConnectorsResultsAuthenticationMicrosoft"]
@@ -82,7 +82,7 @@ class QueryConnectorsConnectorsResultsAuthenticationArcade(BaseModel):
 
 
 class QueryConnectorsConnectorsResultsIntegration(BaseModel):
-    type: IntegrationServiceTypes
+    type_: IntegrationServiceTypes = Field(alias="type")
     uri: Optional[str]
     slack: Optional["QueryConnectorsConnectorsResultsIntegrationSlack"]
     email: Optional["QueryConnectorsConnectorsResultsIntegrationEmail"]
@@ -110,11 +110,11 @@ class QueryConnectorsConnectorsResultsIntegrationTwitter(BaseModel):
 
 class QueryConnectorsConnectorsResultsIntegrationMcp(BaseModel):
     token: Optional[str]
-    type: MCPServerTypes
+    type_: MCPServerTypes = Field(alias="type")
 
 
 class QueryConnectorsConnectorsResultsChannel(BaseModel):
-    type: ChannelServiceTypes
+    type_: ChannelServiceTypes = Field(alias="type")
     slack: Optional["QueryConnectorsConnectorsResultsChannelSlack"]
     teams: Optional["QueryConnectorsConnectorsResultsChannelTeams"]
     discord: Optional["QueryConnectorsConnectorsResultsChannelDiscord"]

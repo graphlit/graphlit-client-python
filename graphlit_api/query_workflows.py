@@ -99,7 +99,7 @@ class QueryWorkflowsWorkflowsResultsIngestionCollections(BaseModel):
 
 
 class QueryWorkflowsWorkflowsResultsIngestionObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "QueryWorkflowsWorkflowsResultsIngestionObservationsObservable"
 
 
@@ -117,7 +117,7 @@ class QueryWorkflowsWorkflowsResultsIndexingJobs(BaseModel):
 
 
 class QueryWorkflowsWorkflowsResultsIndexingJobsConnector(BaseModel):
-    type: Optional[ContentIndexingServiceTypes]
+    type_: Optional[ContentIndexingServiceTypes] = Field(alias="type")
     content_type: Optional[ContentTypes] = Field(alias="contentType")
     file_type: Optional[FileTypes] = Field(alias="fileType")
 
@@ -132,7 +132,7 @@ class QueryWorkflowsWorkflowsResultsPreparation(BaseModel):
 
 
 class QueryWorkflowsWorkflowsResultsPreparationSummarizations(BaseModel):
-    type: SummarizationTypes
+    type_: SummarizationTypes = Field(alias="type")
     specification: Optional[
         "QueryWorkflowsWorkflowsResultsPreparationSummarizationsSpecification"
     ]
@@ -150,7 +150,7 @@ class QueryWorkflowsWorkflowsResultsPreparationJobs(BaseModel):
 
 
 class QueryWorkflowsWorkflowsResultsPreparationJobsConnector(BaseModel):
-    type: FilePreparationServiceTypes
+    type_: FilePreparationServiceTypes = Field(alias="type")
     file_types: Optional[list[FileTypes]] = Field(alias="fileTypes")
     azure_document: Optional[
         "QueryWorkflowsWorkflowsResultsPreparationJobsConnectorAzureDocument"
@@ -252,7 +252,7 @@ class QueryWorkflowsWorkflowsResultsExtractionJobs(BaseModel):
 
 
 class QueryWorkflowsWorkflowsResultsExtractionJobsConnector(BaseModel):
-    type: EntityExtractionServiceTypes
+    type_: EntityExtractionServiceTypes = Field(alias="type")
     content_types: Optional[list[ContentTypes]] = Field(alias="contentTypes")
     file_types: Optional[list[FileTypes]] = Field(alias="fileTypes")
     extracted_types: Optional[list[ObservableTypes]] = Field(alias="extractedTypes")
@@ -324,7 +324,7 @@ class QueryWorkflowsWorkflowsResultsClassificationJobs(BaseModel):
 
 
 class QueryWorkflowsWorkflowsResultsClassificationJobsConnector(BaseModel):
-    type: ContentClassificationServiceTypes
+    type_: ContentClassificationServiceTypes = Field(alias="type")
     content_types: Optional[list[ContentTypes]] = Field(alias="contentTypes")
     file_types: Optional[list[FileTypes]] = Field(alias="fileTypes")
     model: Optional["QueryWorkflowsWorkflowsResultsClassificationJobsConnectorModel"]
@@ -369,7 +369,7 @@ class QueryWorkflowsWorkflowsResultsClassificationJobsConnectorRegex(BaseModel):
 class QueryWorkflowsWorkflowsResultsClassificationJobsConnectorRegexRules(BaseModel):
     state: Optional[ClassificationRuleState]
     then: Optional[str]
-    type: Optional[RegexSourceTypes]
+    type_: Optional[RegexSourceTypes] = Field(alias="type")
     path: Optional[str]
     matches: Optional[str]
 
@@ -407,7 +407,7 @@ class QueryWorkflowsWorkflowsResultsEnrichmentJobs(BaseModel):
 
 
 class QueryWorkflowsWorkflowsResultsEnrichmentJobsConnector(BaseModel):
-    type: Optional[EntityEnrichmentServiceTypes]
+    type_: Optional[EntityEnrichmentServiceTypes] = Field(alias="type")
     enriched_types: Optional[list[ObservableTypes]] = Field(alias="enrichedTypes")
     fhir: Optional["QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorFhir"]
     diffbot: Optional["QueryWorkflowsWorkflowsResultsEnrichmentJobsConnectorDiffbot"]
@@ -459,7 +459,7 @@ class QueryWorkflowsWorkflowsResultsStorage(BaseModel):
 
 
 class QueryWorkflowsWorkflowsResultsStoragePolicy(BaseModel):
-    type: Optional[StoragePolicyTypes]
+    type_: Optional[StoragePolicyTypes] = Field(alias="type")
     allow_duplicates: Optional[bool] = Field(alias="allowDuplicates")
     embedding_types: Optional[list[EmbeddingTypes]] = Field(alias="embeddingTypes")
     enable_snapshots: Optional[bool] = Field(alias="enableSnapshots")
@@ -467,7 +467,7 @@ class QueryWorkflowsWorkflowsResultsStoragePolicy(BaseModel):
 
 
 class QueryWorkflowsWorkflowsResultsStorageGate(BaseModel):
-    type: StorageGateTypes
+    type_: StorageGateTypes = Field(alias="type")
     specification: Optional["QueryWorkflowsWorkflowsResultsStorageGateSpecification"]
     rules: Optional[list["QueryWorkflowsWorkflowsResultsStorageGateRules"]]
     uri: Optional[Any]
@@ -488,7 +488,7 @@ class QueryWorkflowsWorkflowsResultsActions(BaseModel):
 
 
 class QueryWorkflowsWorkflowsResultsActionsConnector(BaseModel):
-    type: IntegrationServiceTypes
+    type_: IntegrationServiceTypes = Field(alias="type")
     uri: Optional[str]
     slack: Optional["QueryWorkflowsWorkflowsResultsActionsConnectorSlack"]
     email: Optional["QueryWorkflowsWorkflowsResultsActionsConnectorEmail"]
@@ -516,7 +516,7 @@ class QueryWorkflowsWorkflowsResultsActionsConnectorTwitter(BaseModel):
 
 class QueryWorkflowsWorkflowsResultsActionsConnectorMcp(BaseModel):
     token: Optional[str]
-    type: MCPServerTypes
+    type_: MCPServerTypes = Field(alias="type")
 
 
 QueryWorkflows.model_rebuild()

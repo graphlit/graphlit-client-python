@@ -32,8 +32,8 @@ class QueryViewsViewsResults(BaseModel):
     relevance: Optional[float]
     owner: "QueryViewsViewsResultsOwner"
     state: EntityState
-    type: Optional[ViewTypes]
-    filter: Optional["QueryViewsViewsResultsFilter"]
+    type_: Optional[ViewTypes] = Field(alias="type")
+    filter_: Optional["QueryViewsViewsResultsFilter"] = Field(alias="filter")
     augmented_filter: Optional["QueryViewsViewsResultsAugmentedFilter"] = Field(
         alias="augmentedFilter"
     )
@@ -119,7 +119,7 @@ class QueryViewsViewsResultsFilterUsers(BaseModel):
 
 
 class QueryViewsViewsResultsFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "QueryViewsViewsResultsFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -153,7 +153,7 @@ class QueryViewsViewsResultsFilterOrUsers(BaseModel):
 
 
 class QueryViewsViewsResultsFilterOrObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "QueryViewsViewsResultsFilterOrObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -187,7 +187,7 @@ class QueryViewsViewsResultsFilterAndUsers(BaseModel):
 
 
 class QueryViewsViewsResultsFilterAndObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "QueryViewsViewsResultsFilterAndObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -274,7 +274,7 @@ class QueryViewsViewsResultsAugmentedFilterUsers(BaseModel):
 
 
 class QueryViewsViewsResultsAugmentedFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "QueryViewsViewsResultsAugmentedFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -308,7 +308,7 @@ class QueryViewsViewsResultsAugmentedFilterOrUsers(BaseModel):
 
 
 class QueryViewsViewsResultsAugmentedFilterOrObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "QueryViewsViewsResultsAugmentedFilterOrObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -342,7 +342,7 @@ class QueryViewsViewsResultsAugmentedFilterAndUsers(BaseModel):
 
 
 class QueryViewsViewsResultsAugmentedFilterAndObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "QueryViewsViewsResultsAugmentedFilterAndObservationsObservable"
     states: Optional[list[EntityState]]
 

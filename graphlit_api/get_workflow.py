@@ -95,7 +95,7 @@ class GetWorkflowWorkflowIngestionCollections(BaseModel):
 
 
 class GetWorkflowWorkflowIngestionObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "GetWorkflowWorkflowIngestionObservationsObservable"
 
 
@@ -113,7 +113,7 @@ class GetWorkflowWorkflowIndexingJobs(BaseModel):
 
 
 class GetWorkflowWorkflowIndexingJobsConnector(BaseModel):
-    type: Optional[ContentIndexingServiceTypes]
+    type_: Optional[ContentIndexingServiceTypes] = Field(alias="type")
     content_type: Optional[ContentTypes] = Field(alias="contentType")
     file_type: Optional[FileTypes] = Field(alias="fileType")
 
@@ -128,7 +128,7 @@ class GetWorkflowWorkflowPreparation(BaseModel):
 
 
 class GetWorkflowWorkflowPreparationSummarizations(BaseModel):
-    type: SummarizationTypes
+    type_: SummarizationTypes = Field(alias="type")
     specification: Optional["GetWorkflowWorkflowPreparationSummarizationsSpecification"]
     tokens: Optional[int]
     items: Optional[int]
@@ -144,7 +144,7 @@ class GetWorkflowWorkflowPreparationJobs(BaseModel):
 
 
 class GetWorkflowWorkflowPreparationJobsConnector(BaseModel):
-    type: FilePreparationServiceTypes
+    type_: FilePreparationServiceTypes = Field(alias="type")
     file_types: Optional[list[FileTypes]] = Field(alias="fileTypes")
     azure_document: Optional[
         "GetWorkflowWorkflowPreparationJobsConnectorAzureDocument"
@@ -244,7 +244,7 @@ class GetWorkflowWorkflowExtractionJobs(BaseModel):
 
 
 class GetWorkflowWorkflowExtractionJobsConnector(BaseModel):
-    type: EntityExtractionServiceTypes
+    type_: EntityExtractionServiceTypes = Field(alias="type")
     content_types: Optional[list[ContentTypes]] = Field(alias="contentTypes")
     file_types: Optional[list[FileTypes]] = Field(alias="fileTypes")
     extracted_types: Optional[list[ObservableTypes]] = Field(alias="extractedTypes")
@@ -312,7 +312,7 @@ class GetWorkflowWorkflowClassificationJobs(BaseModel):
 
 
 class GetWorkflowWorkflowClassificationJobsConnector(BaseModel):
-    type: ContentClassificationServiceTypes
+    type_: ContentClassificationServiceTypes = Field(alias="type")
     content_types: Optional[list[ContentTypes]] = Field(alias="contentTypes")
     file_types: Optional[list[FileTypes]] = Field(alias="fileTypes")
     model: Optional["GetWorkflowWorkflowClassificationJobsConnectorModel"]
@@ -347,7 +347,7 @@ class GetWorkflowWorkflowClassificationJobsConnectorRegex(BaseModel):
 class GetWorkflowWorkflowClassificationJobsConnectorRegexRules(BaseModel):
     state: Optional[ClassificationRuleState]
     then: Optional[str]
-    type: Optional[RegexSourceTypes]
+    type_: Optional[RegexSourceTypes] = Field(alias="type")
     path: Optional[str]
     matches: Optional[str]
 
@@ -385,7 +385,7 @@ class GetWorkflowWorkflowEnrichmentJobs(BaseModel):
 
 
 class GetWorkflowWorkflowEnrichmentJobsConnector(BaseModel):
-    type: Optional[EntityEnrichmentServiceTypes]
+    type_: Optional[EntityEnrichmentServiceTypes] = Field(alias="type")
     enriched_types: Optional[list[ObservableTypes]] = Field(alias="enrichedTypes")
     fhir: Optional["GetWorkflowWorkflowEnrichmentJobsConnectorFhir"]
     diffbot: Optional["GetWorkflowWorkflowEnrichmentJobsConnectorDiffbot"]
@@ -433,7 +433,7 @@ class GetWorkflowWorkflowStorage(BaseModel):
 
 
 class GetWorkflowWorkflowStoragePolicy(BaseModel):
-    type: Optional[StoragePolicyTypes]
+    type_: Optional[StoragePolicyTypes] = Field(alias="type")
     allow_duplicates: Optional[bool] = Field(alias="allowDuplicates")
     embedding_types: Optional[list[EmbeddingTypes]] = Field(alias="embeddingTypes")
     enable_snapshots: Optional[bool] = Field(alias="enableSnapshots")
@@ -441,7 +441,7 @@ class GetWorkflowWorkflowStoragePolicy(BaseModel):
 
 
 class GetWorkflowWorkflowStorageGate(BaseModel):
-    type: StorageGateTypes
+    type_: StorageGateTypes = Field(alias="type")
     specification: Optional["GetWorkflowWorkflowStorageGateSpecification"]
     rules: Optional[list["GetWorkflowWorkflowStorageGateRules"]]
     uri: Optional[Any]
@@ -462,7 +462,7 @@ class GetWorkflowWorkflowActions(BaseModel):
 
 
 class GetWorkflowWorkflowActionsConnector(BaseModel):
-    type: IntegrationServiceTypes
+    type_: IntegrationServiceTypes = Field(alias="type")
     uri: Optional[str]
     slack: Optional["GetWorkflowWorkflowActionsConnectorSlack"]
     email: Optional["GetWorkflowWorkflowActionsConnectorEmail"]
@@ -490,7 +490,7 @@ class GetWorkflowWorkflowActionsConnectorTwitter(BaseModel):
 
 class GetWorkflowWorkflowActionsConnectorMcp(BaseModel):
     token: Optional[str]
-    type: MCPServerTypes
+    type_: MCPServerTypes = Field(alias="type")
 
 
 GetWorkflow.model_rebuild()

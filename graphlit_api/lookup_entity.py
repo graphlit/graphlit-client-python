@@ -22,7 +22,7 @@ class LookupEntityLookupEntity(BaseModel):
 class LookupEntityLookupEntityEntity(BaseModel):
     id: str
     name: str
-    type: EntityTypes
+    type_: EntityTypes = Field(alias="type")
     metadata: Optional[str]
 
 
@@ -35,7 +35,7 @@ class LookupEntityLookupEntityRelationships(BaseModel):
 class LookupEntityLookupEntityRelationshipsEntity(BaseModel):
     id: str
     name: str
-    type: EntityTypes
+    type_: EntityTypes = Field(alias="type")
     metadata: Optional[str]
 
 

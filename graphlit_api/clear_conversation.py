@@ -19,7 +19,7 @@ class ClearConversationClearConversation(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[ConversationTypes]
+    type_: Optional[ConversationTypes] = Field(alias="type")
 
 
 ClearConversation.model_rebuild()

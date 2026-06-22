@@ -33,7 +33,7 @@ class QueryConversationsConversationsResults(BaseModel):
     owner: "QueryConversationsConversationsResultsOwner"
     state: EntityState
     correlation_id: Optional[str] = Field(alias="correlationId")
-    type: Optional[ConversationTypes]
+    type_: Optional[ConversationTypes] = Field(alias="type")
     transcript_uri: Optional[Any] = Field(alias="transcriptUri")
     message_count: Optional[int] = Field(alias="messageCount")
     turn_count: Optional[int] = Field(alias="turnCount")
@@ -43,7 +43,9 @@ class QueryConversationsConversationsResults(BaseModel):
     fallbacks: Optional[
         list[Optional["QueryConversationsConversationsResultsFallbacks"]]
     ]
-    filter: Optional["QueryConversationsConversationsResultsFilter"]
+    filter_: Optional["QueryConversationsConversationsResultsFilter"] = Field(
+        alias="filter"
+    )
     augmented_filter: Optional[
         "QueryConversationsConversationsResultsAugmentedFilter"
     ] = Field(alias="augmentedFilter")
@@ -159,7 +161,7 @@ class QueryConversationsConversationsResultsFilterUsers(BaseModel):
 
 
 class QueryConversationsConversationsResultsFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "QueryConversationsConversationsResultsFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -197,7 +199,7 @@ class QueryConversationsConversationsResultsFilterOrUsers(BaseModel):
 
 
 class QueryConversationsConversationsResultsFilterOrObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "QueryConversationsConversationsResultsFilterOrObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -237,7 +239,7 @@ class QueryConversationsConversationsResultsFilterAndUsers(BaseModel):
 
 
 class QueryConversationsConversationsResultsFilterAndObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "QueryConversationsConversationsResultsFilterAndObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -334,7 +336,7 @@ class QueryConversationsConversationsResultsAugmentedFilterUsers(BaseModel):
 
 
 class QueryConversationsConversationsResultsAugmentedFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: (
         "QueryConversationsConversationsResultsAugmentedFilterObservationsObservable"
     )
@@ -382,7 +384,7 @@ class QueryConversationsConversationsResultsAugmentedFilterOrUsers(BaseModel):
 
 
 class QueryConversationsConversationsResultsAugmentedFilterOrObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: (
         "QueryConversationsConversationsResultsAugmentedFilterOrObservationsObservable"
     )
@@ -430,7 +432,7 @@ class QueryConversationsConversationsResultsAugmentedFilterAndUsers(BaseModel):
 
 
 class QueryConversationsConversationsResultsAugmentedFilterAndObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: (
         "QueryConversationsConversationsResultsAugmentedFilterAndObservationsObservable"
     )

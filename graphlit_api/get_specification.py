@@ -23,6 +23,7 @@ from .enums import (
     GroqModels,
     JinaModels,
     MistralModels,
+    ModelServiceTierTypes,
     ModelServiceTypes,
     OpenAIModels,
     OpenAIReasoningEffortLevels,
@@ -54,7 +55,7 @@ class GetSpecificationSpecification(BaseModel):
     owner: "GetSpecificationSpecificationOwner"
     state: EntityState
     user: Optional["GetSpecificationSpecificationUser"]
-    type: Optional[SpecificationTypes]
+    type_: Optional[SpecificationTypes] = Field(alias="type")
     service_type: Optional[ModelServiceTypes] = Field(alias="serviceType")
     system_prompt: Optional[str] = Field(alias="systemPrompt")
     custom_guidance: Optional[str] = Field(alias="customGuidance")
@@ -111,7 +112,7 @@ class GetSpecificationSpecificationUser(BaseModel):
 
 
 class GetSpecificationSpecificationStrategy(BaseModel):
-    type: Optional[ConversationStrategyTypes]
+    type_: Optional[ConversationStrategyTypes] = Field(alias="type")
     message_limit: Optional[int] = Field(alias="messageLimit")
     embed_citations: Optional[bool] = Field(alias="embedCitations")
     flatten_citations: Optional[bool] = Field(alias="flattenCitations")
@@ -129,11 +130,11 @@ class GetSpecificationSpecificationStrategy(BaseModel):
 
 
 class GetSpecificationSpecificationPromptStrategy(BaseModel):
-    type: PromptStrategyTypes
+    type_: PromptStrategyTypes = Field(alias="type")
 
 
 class GetSpecificationSpecificationRetrievalStrategy(BaseModel):
-    type: RetrievalStrategyTypes
+    type_: RetrievalStrategyTypes = Field(alias="type")
     content_limit: Optional[int] = Field(alias="contentLimit")
     disable_fallback: Optional[bool] = Field(alias="disableFallback")
 
@@ -144,7 +145,7 @@ class GetSpecificationSpecificationRerankingStrategy(BaseModel):
 
 
 class GetSpecificationSpecificationGraphStrategy(BaseModel):
-    type: GraphStrategyTypes
+    type_: GraphStrategyTypes = Field(alias="type")
     generate_graph: Optional[bool] = Field(alias="generateGraph")
     observable_limit: Optional[int] = Field(alias="observableLimit")
 
@@ -154,7 +155,7 @@ class GetSpecificationSpecificationFactStrategy(BaseModel):
 
 
 class GetSpecificationSpecificationRevisionStrategy(BaseModel):
-    type: RevisionStrategyTypes
+    type_: RevisionStrategyTypes = Field(alias="type")
     custom_revision: Optional[str] = Field(alias="customRevision")
     count: Optional[int]
 
@@ -183,6 +184,7 @@ class GetSpecificationSpecificationOpenAi(BaseModel):
     reasoning_effort: Optional[OpenAIReasoningEffortLevels] = Field(
         alias="reasoningEffort"
     )
+    service_tier: Optional[ModelServiceTierTypes] = Field(alias="serviceTier")
 
 
 class GetSpecificationSpecificationAzureOpenAi(BaseModel):
@@ -219,6 +221,7 @@ class GetSpecificationSpecificationAnthropic(BaseModel):
     enable_thinking: Optional[bool] = Field(alias="enableThinking")
     thinking_token_limit: Optional[int] = Field(alias="thinkingTokenLimit")
     effort: Optional[AnthropicEffortLevels]
+    service_tier: Optional[ModelServiceTierTypes] = Field(alias="serviceTier")
 
 
 class GetSpecificationSpecificationGoogle(BaseModel):
@@ -233,6 +236,7 @@ class GetSpecificationSpecificationGoogle(BaseModel):
     enable_thinking: Optional[bool] = Field(alias="enableThinking")
     thinking_token_limit: Optional[int] = Field(alias="thinkingTokenLimit")
     thinking_level: Optional[GoogleThinkingLevels] = Field(alias="thinkingLevel")
+    service_tier: Optional[ModelServiceTierTypes] = Field(alias="serviceTier")
 
 
 class GetSpecificationSpecificationReplicate(BaseModel):

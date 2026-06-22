@@ -1223,19 +1223,19 @@ def gql(q: str) -> str:
 class Client(AsyncBaseClient):
     async def count_agents(
         self,
-        filter: Union[Optional[AgentFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[AgentFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountAgents:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_AGENTS_GQL,
             operation_name="CountAgents",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountAgents.model_validate(data)
@@ -1244,14 +1244,14 @@ class Client(AsyncBaseClient):
         self,
         agent: AgentInput,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CreateAgent:
         variables: dict[str, object] = {"agent": agent, "correlationId": correlation_id}
         response = await self.execute(
             query=CREATE_AGENT_GQL,
             operation_name="CreateAgent",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateAgent.model_validate(data)
@@ -1262,7 +1262,7 @@ class Client(AsyncBaseClient):
             query=DELETE_AGENT_GQL,
             operation_name="DeleteAgent",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAgent.model_validate(data)
@@ -1271,27 +1271,27 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAgents:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_AGENTS_GQL,
             operation_name="DeleteAgents",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAgents.model_validate(data)
 
     async def delete_all_agents(
         self,
-        filter: Union[Optional[AgentFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[AgentFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllAgents:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -1299,7 +1299,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_AGENTS_GQL,
             operation_name="DeleteAllAgents",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllAgents.model_validate(data)
@@ -1310,7 +1310,7 @@ class Client(AsyncBaseClient):
             query=DISABLE_AGENT_GQL,
             operation_name="DisableAgent",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DisableAgent.model_validate(data)
@@ -1321,7 +1321,7 @@ class Client(AsyncBaseClient):
             query=ENABLE_AGENT_GQL,
             operation_name="EnableAgent",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return EnableAgent.model_validate(data)
@@ -1330,33 +1330,33 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetAgent:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_AGENT_GQL,
             operation_name="GetAgent",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetAgent.model_validate(data)
 
     async def query_agents(
         self,
-        filter: Union[Optional[AgentFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[AgentFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryAgents:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_AGENTS_GQL,
             operation_name="QueryAgents",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryAgents.model_validate(data)
@@ -1367,7 +1367,7 @@ class Client(AsyncBaseClient):
             query=UPDATE_AGENT_GQL,
             operation_name="UpdateAgent",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateAgent.model_validate(data)
@@ -1380,7 +1380,7 @@ class Client(AsyncBaseClient):
             query=UPDATE_AGENT_FOCUS_GQL,
             operation_name="UpdateAgentFocus",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateAgentFocus.model_validate(data)
@@ -1393,7 +1393,7 @@ class Client(AsyncBaseClient):
             query=UPDATE_AGENT_SCRATCHPAD_GQL,
             operation_name="UpdateAgentScratchpad",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateAgentScratchpad.model_validate(data)
@@ -1404,26 +1404,26 @@ class Client(AsyncBaseClient):
             query=UPSERT_AGENT_GQL,
             operation_name="UpsertAgent",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpsertAgent.model_validate(data)
 
     async def count_alerts(
         self,
-        filter: Union[Optional[AlertFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[AlertFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountAlerts:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_ALERTS_GQL,
             operation_name="CountAlerts",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountAlerts.model_validate(data)
@@ -1432,14 +1432,14 @@ class Client(AsyncBaseClient):
         self,
         alert: AlertInput,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CreateAlert:
         variables: dict[str, object] = {"alert": alert, "correlationId": correlation_id}
         response = await self.execute(
             query=CREATE_ALERT_GQL,
             operation_name="CreateAlert",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateAlert.model_validate(data)
@@ -1450,7 +1450,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALERT_GQL,
             operation_name="DeleteAlert",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAlert.model_validate(data)
@@ -1459,27 +1459,27 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAlerts:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_ALERTS_GQL,
             operation_name="DeleteAlerts",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAlerts.model_validate(data)
 
     async def delete_all_alerts(
         self,
-        filter: Union[Optional[AlertFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[AlertFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllAlerts:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -1487,7 +1487,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_ALERTS_GQL,
             operation_name="DeleteAllAlerts",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllAlerts.model_validate(data)
@@ -1498,7 +1498,7 @@ class Client(AsyncBaseClient):
             query=DISABLE_ALERT_GQL,
             operation_name="DisableAlert",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DisableAlert.model_validate(data)
@@ -1509,7 +1509,7 @@ class Client(AsyncBaseClient):
             query=ENABLE_ALERT_GQL,
             operation_name="EnableAlert",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return EnableAlert.model_validate(data)
@@ -1518,33 +1518,33 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetAlert:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_ALERT_GQL,
             operation_name="GetAlert",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetAlert.model_validate(data)
 
     async def query_alerts(
         self,
-        filter: Union[Optional[AlertFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[AlertFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryAlerts:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_ALERTS_GQL,
             operation_name="QueryAlerts",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryAlerts.model_validate(data)
@@ -1555,7 +1555,7 @@ class Client(AsyncBaseClient):
             query=UPDATE_ALERT_GQL,
             operation_name="UpdateAlert",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateAlert.model_validate(data)
@@ -1566,7 +1566,7 @@ class Client(AsyncBaseClient):
             query=UPSERT_ALERT_GQL,
             operation_name="UpsertAlert",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpsertAlert.model_validate(data)
@@ -1575,33 +1575,33 @@ class Client(AsyncBaseClient):
         self,
         desks: list[EntityReferenceInput],
         bureau: EntityReferenceInput,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> AddDesksToBureau:
         variables: dict[str, object] = {"desks": desks, "bureau": bureau}
         response = await self.execute(
             query=ADD_DESKS_TO_BUREAU_GQL,
             operation_name="AddDesksToBureau",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return AddDesksToBureau.model_validate(data)
 
     async def count_bureaus(
         self,
-        filter: Union[Optional[BureauFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[BureauFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountBureaus:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_BUREAUS_GQL,
             operation_name="CountBureaus",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountBureaus.model_validate(data)
@@ -1612,20 +1612,20 @@ class Client(AsyncBaseClient):
             query=CREATE_BUREAU_GQL,
             operation_name="CreateBureau",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateBureau.model_validate(data)
 
     async def delete_all_bureaus(
         self,
-        filter: Union[Optional[BureauFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[BureauFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllBureaus:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -1633,7 +1633,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_BUREAUS_GQL,
             operation_name="DeleteAllBureaus",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllBureaus.model_validate(data)
@@ -1644,7 +1644,7 @@ class Client(AsyncBaseClient):
             query=DELETE_BUREAU_GQL,
             operation_name="DeleteBureau",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteBureau.model_validate(data)
@@ -1653,14 +1653,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteBureaus:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_BUREAUS_GQL,
             operation_name="DeleteBureaus",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteBureaus.model_validate(data)
@@ -1669,33 +1669,33 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetBureau:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_BUREAU_GQL,
             operation_name="GetBureau",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetBureau.model_validate(data)
 
     async def query_bureaus(
         self,
-        filter: Union[Optional[BureauFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[BureauFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryBureaus:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_BUREAUS_GQL,
             operation_name="QueryBureaus",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryBureaus.model_validate(data)
@@ -1704,14 +1704,14 @@ class Client(AsyncBaseClient):
         self,
         desks: list[EntityReferenceInput],
         bureau: EntityReferenceInput,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> RemoveDesksFromBureau:
         variables: dict[str, object] = {"desks": desks, "bureau": bureau}
         response = await self.execute(
             query=REMOVE_DESKS_FROM_BUREAU_GQL,
             operation_name="RemoveDesksFromBureau",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return RemoveDesksFromBureau.model_validate(data)
@@ -1724,26 +1724,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_BUREAU_GQL,
             operation_name="UpdateBureau",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateBureau.model_validate(data)
 
     async def count_categories(
         self,
-        filter: Union[Optional[CategoryFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[CategoryFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountCategories:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_CATEGORIES_GQL,
             operation_name="CountCategories",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountCategories.model_validate(data)
@@ -1756,20 +1756,20 @@ class Client(AsyncBaseClient):
             query=CREATE_CATEGORY_GQL,
             operation_name="CreateCategory",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateCategory.model_validate(data)
 
     async def delete_all_categories(
         self,
-        filter: Union[Optional[CategoryFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[CategoryFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllCategories:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -1777,7 +1777,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_CATEGORIES_GQL,
             operation_name="DeleteAllCategories",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllCategories.model_validate(data)
@@ -1786,14 +1786,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteCategories:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_CATEGORIES_GQL,
             operation_name="DeleteCategories",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteCategories.model_validate(data)
@@ -1804,7 +1804,7 @@ class Client(AsyncBaseClient):
             query=DELETE_CATEGORY_GQL,
             operation_name="DeleteCategory",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteCategory.model_validate(data)
@@ -1813,33 +1813,33 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetCategory:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_CATEGORY_GQL,
             operation_name="GetCategory",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetCategory.model_validate(data)
 
     async def query_categories(
         self,
-        filter: Union[Optional[CategoryFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[CategoryFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryCategories:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_CATEGORIES_GQL,
             operation_name="QueryCategories",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryCategories.model_validate(data)
@@ -1852,7 +1852,7 @@ class Client(AsyncBaseClient):
             query=UPDATE_CATEGORY_GQL,
             operation_name="UpdateCategory",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateCategory.model_validate(data)
@@ -1865,7 +1865,7 @@ class Client(AsyncBaseClient):
             query=UPSERT_CATEGORY_GQL,
             operation_name="UpsertCategory",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpsertCategory.model_validate(data)
@@ -1874,7 +1874,7 @@ class Client(AsyncBaseClient):
         self,
         contents: list[EntityReferenceInput],
         collections: list[EntityReferenceInput],
-        **kwargs: Any
+        **kwargs: Any,
     ) -> AddContentsToCollections:
         variables: dict[str, object] = {
             "contents": contents,
@@ -1884,7 +1884,7 @@ class Client(AsyncBaseClient):
             query=ADD_CONTENTS_TO_COLLECTIONS_GQL,
             operation_name="AddContentsToCollections",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return AddContentsToCollections.model_validate(data)
@@ -1893,7 +1893,7 @@ class Client(AsyncBaseClient):
         self,
         conversations: list[EntityReferenceInput],
         collections: list[EntityReferenceInput],
-        **kwargs: Any
+        **kwargs: Any,
     ) -> AddConversationsToCollections:
         variables: dict[str, object] = {
             "conversations": conversations,
@@ -1903,7 +1903,7 @@ class Client(AsyncBaseClient):
             query=ADD_CONVERSATIONS_TO_COLLECTIONS_GQL,
             operation_name="AddConversationsToCollections",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return AddConversationsToCollections.model_validate(data)
@@ -1912,33 +1912,33 @@ class Client(AsyncBaseClient):
         self,
         skills: list[EntityReferenceInput],
         collections: list[EntityReferenceInput],
-        **kwargs: Any
+        **kwargs: Any,
     ) -> AddSkillsToCollections:
         variables: dict[str, object] = {"skills": skills, "collections": collections}
         response = await self.execute(
             query=ADD_SKILLS_TO_COLLECTIONS_GQL,
             operation_name="AddSkillsToCollections",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return AddSkillsToCollections.model_validate(data)
 
     async def count_collections(
         self,
-        filter: Union[Optional[CollectionFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[CollectionFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountCollections:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_COLLECTIONS_GQL,
             operation_name="CountCollections",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountCollections.model_validate(data)
@@ -1951,20 +1951,20 @@ class Client(AsyncBaseClient):
             query=CREATE_COLLECTION_GQL,
             operation_name="CreateCollection",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateCollection.model_validate(data)
 
     async def delete_all_collections(
         self,
-        filter: Union[Optional[CollectionFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[CollectionFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllCollections:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -1972,7 +1972,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_COLLECTIONS_GQL,
             operation_name="DeleteAllCollections",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllCollections.model_validate(data)
@@ -1983,7 +1983,7 @@ class Client(AsyncBaseClient):
             query=DELETE_COLLECTION_GQL,
             operation_name="DeleteCollection",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteCollection.model_validate(data)
@@ -1992,14 +1992,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteCollections:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_COLLECTIONS_GQL,
             operation_name="DeleteCollections",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteCollections.model_validate(data)
@@ -2008,33 +2008,33 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetCollection:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_COLLECTION_GQL,
             operation_name="GetCollection",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetCollection.model_validate(data)
 
     async def query_collections(
         self,
-        filter: Union[Optional[CollectionFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[CollectionFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryCollections:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_COLLECTIONS_GQL,
             operation_name="QueryCollections",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryCollections.model_validate(data)
@@ -2043,14 +2043,14 @@ class Client(AsyncBaseClient):
         self,
         contents: list[EntityReferenceInput],
         collection: EntityReferenceInput,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> RemoveContentsFromCollection:
         variables: dict[str, object] = {"contents": contents, "collection": collection}
         response = await self.execute(
             query=REMOVE_CONTENTS_FROM_COLLECTION_GQL,
             operation_name="RemoveContentsFromCollection",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return RemoveContentsFromCollection.model_validate(data)
@@ -2059,7 +2059,7 @@ class Client(AsyncBaseClient):
         self,
         conversations: list[EntityReferenceInput],
         collection: EntityReferenceInput,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> RemoveConversationsFromCollection:
         variables: dict[str, object] = {
             "conversations": conversations,
@@ -2069,7 +2069,7 @@ class Client(AsyncBaseClient):
             query=REMOVE_CONVERSATIONS_FROM_COLLECTION_GQL,
             operation_name="RemoveConversationsFromCollection",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return RemoveConversationsFromCollection.model_validate(data)
@@ -2078,14 +2078,14 @@ class Client(AsyncBaseClient):
         self,
         skills: list[EntityReferenceInput],
         collection: EntityReferenceInput,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> RemoveSkillsFromCollection:
         variables: dict[str, object] = {"skills": skills, "collection": collection}
         response = await self.execute(
             query=REMOVE_SKILLS_FROM_COLLECTION_GQL,
             operation_name="RemoveSkillsFromCollection",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return RemoveSkillsFromCollection.model_validate(data)
@@ -2098,26 +2098,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_COLLECTION_GQL,
             operation_name="UpdateCollection",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateCollection.model_validate(data)
 
     async def count_connectors(
         self,
-        filter: Union[Optional[ConnectorFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ConnectorFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountConnectors:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_CONNECTORS_GQL,
             operation_name="CountConnectors",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountConnectors.model_validate(data)
@@ -2130,7 +2130,7 @@ class Client(AsyncBaseClient):
             query=CREATE_CONNECTOR_GQL,
             operation_name="CreateConnector",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateConnector.model_validate(data)
@@ -2141,7 +2141,7 @@ class Client(AsyncBaseClient):
             query=DELETE_CONNECTOR_GQL,
             operation_name="DeleteConnector",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteConnector.model_validate(data)
@@ -2150,33 +2150,33 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetConnector:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_CONNECTOR_GQL,
             operation_name="GetConnector",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetConnector.model_validate(data)
 
     async def query_connectors(
         self,
-        filter: Union[Optional[ConnectorFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ConnectorFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryConnectors:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_CONNECTORS_GQL,
             operation_name="QueryConnectors",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryConnectors.model_validate(data)
@@ -2189,7 +2189,7 @@ class Client(AsyncBaseClient):
             query=UPDATE_CONNECTOR_GQL,
             operation_name="UpdateConnector",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateConnector.model_validate(data)
@@ -2202,7 +2202,7 @@ class Client(AsyncBaseClient):
             query=UPSERT_CONNECTOR_GQL,
             operation_name="UpsertConnector",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpsertConnector.model_validate(data)
@@ -2215,7 +2215,7 @@ class Client(AsyncBaseClient):
             query=ADD_CONTENT_LABEL_GQL,
             operation_name="AddContentLabel",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return AddContentLabel.model_validate(data)
@@ -2226,7 +2226,7 @@ class Client(AsyncBaseClient):
             query=APPROVE_CONTENT_GQL,
             operation_name="ApproveContent",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return ApproveContent.model_validate(data)
@@ -2234,20 +2234,20 @@ class Client(AsyncBaseClient):
     async def classify_contents(
         self,
         classification: ContentClassificationConnectorInput,
-        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ContentFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> ClassifyContents:
         variables: dict[str, object] = {
             "classification": classification,
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=CLASSIFY_CONTENTS_GQL,
             operation_name="ClassifyContents",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return ClassifyContents.model_validate(data)
@@ -2258,7 +2258,7 @@ class Client(AsyncBaseClient):
         classification: ContentClassificationConnectorInput,
         text_type: Union[Optional[TextTypes], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> ClassifyText:
         variables: dict[str, object] = {
             "text": text,
@@ -2270,39 +2270,39 @@ class Client(AsyncBaseClient):
             query=CLASSIFY_TEXT_GQL,
             operation_name="ClassifyText",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return ClassifyText.model_validate(data)
 
     async def count_contents(
         self,
-        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ContentFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountContents:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_CONTENTS_GQL,
             operation_name="CountContents",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountContents.model_validate(data)
 
     async def delete_all_contents(
         self,
-        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ContentFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllContents:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -2310,7 +2310,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_CONTENTS_GQL,
             operation_name="DeleteAllContents",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllContents.model_validate(data)
@@ -2321,7 +2321,7 @@ class Client(AsyncBaseClient):
             query=DELETE_CONTENT_GQL,
             operation_name="DeleteContent",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteContent.model_validate(data)
@@ -2330,14 +2330,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteContents:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_CONTENTS_GQL,
             operation_name="DeleteContents",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteContents.model_validate(data)
@@ -2349,7 +2349,7 @@ class Client(AsyncBaseClient):
         data: str,
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DescribeEncodedImage:
         variables: dict[str, object] = {
             "prompt": prompt,
@@ -2362,7 +2362,7 @@ class Client(AsyncBaseClient):
             query=DESCRIBE_ENCODED_IMAGE_GQL,
             operation_name="DescribeEncodedImage",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         _data = self.get_data(response)
         return DescribeEncodedImage.model_validate(_data)
@@ -2373,7 +2373,7 @@ class Client(AsyncBaseClient):
         uri: Any,
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DescribeImage:
         variables: dict[str, object] = {
             "prompt": prompt,
@@ -2385,7 +2385,7 @@ class Client(AsyncBaseClient):
             query=DESCRIBE_IMAGE_GQL,
             operation_name="DescribeImage",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DescribeImage.model_validate(data)
@@ -2397,9 +2397,9 @@ class Client(AsyncBaseClient):
         text: Union[Optional[str], UnsetType] = UNSET,
         text_type: Union[Optional[TextTypes], UnsetType] = UNSET,
         name: Union[Optional[str], UnsetType] = UNSET,
-        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ContentFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Distribute:
         variables: dict[str, object] = {
             "connector": connector,
@@ -2407,14 +2407,14 @@ class Client(AsyncBaseClient):
             "text": text,
             "textType": text_type,
             "name": name,
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=DISTRIBUTE_GQL,
             operation_name="Distribute",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return Distribute.model_validate(data)
@@ -2423,14 +2423,14 @@ class Client(AsyncBaseClient):
         self,
         prompt: str,
         tools: list[ToolDefinitionInput],
-        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ContentFilter], UnsetType] = UNSET,
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> ExtractContents:
         variables: dict[str, object] = {
             "prompt": prompt,
-            "filter": filter,
+            "filter": filter_,
             "specification": specification,
             "tools": tools,
             "correlationId": correlation_id,
@@ -2439,7 +2439,7 @@ class Client(AsyncBaseClient):
             query=EXTRACT_CONTENTS_GQL,
             operation_name="ExtractContents",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return ExtractContents.model_validate(data)
@@ -2451,7 +2451,7 @@ class Client(AsyncBaseClient):
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         observable_types: Union[Optional[list[ObservableTypes]], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> ExtractObservables:
         variables: dict[str, object] = {
             "text": text,
@@ -2464,7 +2464,7 @@ class Client(AsyncBaseClient):
             query=EXTRACT_OBSERVABLES_GQL,
             operation_name="ExtractObservables",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return ExtractObservables.model_validate(data)
@@ -2477,7 +2477,7 @@ class Client(AsyncBaseClient):
         text_type: Union[Optional[TextTypes], UnsetType] = UNSET,
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> ExtractText:
         variables: dict[str, object] = {
             "prompt": prompt,
@@ -2491,7 +2491,7 @@ class Client(AsyncBaseClient):
             query=EXTRACT_TEXT_GQL,
             operation_name="ExtractText",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return ExtractText.model_validate(data)
@@ -2500,14 +2500,14 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetContent:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_CONTENT_GQL,
             operation_name="GetContent",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetContent.model_validate(data)
@@ -2521,7 +2521,7 @@ class Client(AsyncBaseClient):
             Optional[list[ObservationReferenceInput]], UnsetType
         ] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> IngestBatch:
         variables: dict[str, object] = {
             "uris": uris,
@@ -2534,7 +2534,7 @@ class Client(AsyncBaseClient):
             query=INGEST_BATCH_GQL,
             operation_name="IngestBatch",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return IngestBatch.model_validate(data)
@@ -2555,7 +2555,7 @@ class Client(AsyncBaseClient):
         ] = UNSET,
         workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> IngestEncodedFile:
         variables: dict[str, object] = {
             "name": name,
@@ -2575,7 +2575,7 @@ class Client(AsyncBaseClient):
             query=INGEST_ENCODED_FILE_GQL,
             operation_name="IngestEncodedFile",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         _data = self.get_data(response)
         return IngestEncodedFile.model_validate(_data)
@@ -2590,7 +2590,7 @@ class Client(AsyncBaseClient):
         identifier: Union[Optional[str], UnsetType] = UNSET,
         collections: Union[Optional[list[EntityReferenceInput]], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> IngestEvent:
         variables: dict[str, object] = {
             "markdown": markdown,
@@ -2606,7 +2606,7 @@ class Client(AsyncBaseClient):
             query=INGEST_EVENT_GQL,
             operation_name="IngestEvent",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return IngestEvent.model_validate(data)
@@ -2621,7 +2621,7 @@ class Client(AsyncBaseClient):
         collections: Union[Optional[list[EntityReferenceInput]], UnsetType] = UNSET,
         agent: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> IngestMemory:
         variables: dict[str, object] = {
             "text": text,
@@ -2637,7 +2637,7 @@ class Client(AsyncBaseClient):
             query=INGEST_MEMORY_GQL,
             operation_name="IngestMemory",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return IngestMemory.model_validate(data)
@@ -2658,7 +2658,7 @@ class Client(AsyncBaseClient):
         ] = UNSET,
         agent: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> IngestText:
         variables: dict[str, object] = {
             "text": text,
@@ -2678,7 +2678,7 @@ class Client(AsyncBaseClient):
             query=INGEST_TEXT_GQL,
             operation_name="IngestText",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return IngestText.model_validate(data)
@@ -2693,7 +2693,7 @@ class Client(AsyncBaseClient):
             Optional[list[ObservationReferenceInput]], UnsetType
         ] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> IngestTextBatch:
         variables: dict[str, object] = {
             "batch": batch,
@@ -2707,7 +2707,7 @@ class Client(AsyncBaseClient):
             query=INGEST_TEXT_BATCH_GQL,
             operation_name="IngestTextBatch",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return IngestTextBatch.model_validate(data)
@@ -2727,7 +2727,7 @@ class Client(AsyncBaseClient):
         ] = UNSET,
         agent: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> IngestUri:
         variables: dict[str, object] = {
             "name": name,
@@ -2746,7 +2746,7 @@ class Client(AsyncBaseClient):
             query=INGEST_URI_GQL,
             operation_name="IngestUri",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return IngestUri.model_validate(data)
@@ -2755,14 +2755,14 @@ class Client(AsyncBaseClient):
         self,
         uri: Any,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> InspectPage:
         variables: dict[str, object] = {"uri": uri, "correlationId": correlation_id}
         response = await self.execute(
             query=INSPECT_PAGE_GQL,
             operation_name="InspectPage",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return InspectPage.model_validate(data)
@@ -2773,7 +2773,7 @@ class Client(AsyncBaseClient):
             query=IS_CONTENT_DONE_GQL,
             operation_name="IsContentDone",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return IsContentDone.model_validate(data)
@@ -2782,33 +2782,33 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> LookupContents:
         variables: dict[str, object] = {"ids": ids, "correlationId": correlation_id}
         response = await self.execute(
             query=LOOKUP_CONTENTS_GQL,
             operation_name="LookupContents",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return LookupContents.model_validate(data)
 
     async def lookup_entity(
         self,
-        filter: EntityRelationshipsFilter,
+        filter_: EntityRelationshipsFilter,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> LookupEntity:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=LOOKUP_ENTITY_GQL,
             operation_name="LookupEntity",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return LookupEntity.model_validate(data)
@@ -2818,7 +2818,7 @@ class Client(AsyncBaseClient):
         publish_prompt: str,
         connector: ContentPublishingConnectorInput,
         summary_prompt: Union[Optional[str], UnsetType] = UNSET,
-        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ContentFilter], UnsetType] = UNSET,
         include_details: Union[Optional[bool], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
@@ -2826,13 +2826,13 @@ class Client(AsyncBaseClient):
         summary_specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         publish_specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> PublishContents:
         variables: dict[str, object] = {
             "summaryPrompt": summary_prompt,
             "publishPrompt": publish_prompt,
             "connector": connector,
-            "filter": filter,
+            "filter": filter_,
             "includeDetails": include_details,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
@@ -2845,26 +2845,26 @@ class Client(AsyncBaseClient):
             query=PUBLISH_CONTENTS_GQL,
             operation_name="PublishContents",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return PublishContents.model_validate(data)
 
     async def publish_skills(
         self,
-        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ContentFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> PublishSkills:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=PUBLISH_SKILLS_GQL,
             operation_name="PublishSkills",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return PublishSkills.model_validate(data)
@@ -2878,7 +2878,7 @@ class Client(AsyncBaseClient):
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
         name: Union[Optional[str], UnsetType] = UNSET,
         workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> PublishText:
         variables: dict[str, object] = {
             "text": text,
@@ -2893,39 +2893,39 @@ class Client(AsyncBaseClient):
             query=PUBLISH_TEXT_GQL,
             operation_name="PublishText",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return PublishText.model_validate(data)
 
     async def query_contents(
         self,
-        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ContentFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryContents:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_CONTENTS_GQL,
             operation_name="QueryContents",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryContents.model_validate(data)
 
     async def query_contents_facets(
         self,
-        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ContentFilter], UnsetType] = UNSET,
         facets: Union[Optional[list[ContentFacetInput]], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryContentsFacets:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "facets": facets,
             "correlationId": correlation_id,
         }
@@ -2933,20 +2933,20 @@ class Client(AsyncBaseClient):
             query=QUERY_CONTENTS_FACETS_GQL,
             operation_name="QueryContentsFacets",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryContentsFacets.model_validate(data)
 
     async def query_contents_graph(
         self,
-        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ContentFilter], UnsetType] = UNSET,
         graph: Union[Optional[ContentGraphInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryContentsGraph:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "graph": graph,
             "correlationId": correlation_id,
         }
@@ -2954,39 +2954,39 @@ class Client(AsyncBaseClient):
             query=QUERY_CONTENTS_GRAPH_GQL,
             operation_name="QueryContentsGraph",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryContentsGraph.model_validate(data)
 
     async def query_contents_observations(
         self,
-        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ContentFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryContentsObservations:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_CONTENTS_OBSERVATIONS_GQL,
             operation_name="QueryContentsObservations",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryContentsObservations.model_validate(data)
 
     async def query_graph(
         self,
-        filter: Union[Optional[GraphFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[GraphFilter], UnsetType] = UNSET,
         graph: Union[Optional[GraphInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryGraph:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "graph": graph,
             "correlationId": correlation_id,
         }
@@ -2994,26 +2994,26 @@ class Client(AsyncBaseClient):
             query=QUERY_GRAPH_GQL,
             operation_name="QueryGraph",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryGraph.model_validate(data)
 
     async def query_observables(
         self,
-        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ContentFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryObservables:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_OBSERVABLES_GQL,
             operation_name="QueryObservables",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryObservables.model_validate(data)
@@ -3022,7 +3022,7 @@ class Client(AsyncBaseClient):
         self,
         connector: DistributionConnectorInput,
         authentication: EntityReferenceInput,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Read:
         variables: dict[str, object] = {
             "connector": connector,
@@ -3042,7 +3042,7 @@ class Client(AsyncBaseClient):
             query=REJECT_CONTENT_GQL,
             operation_name="RejectContent",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return RejectContent.model_validate(data)
@@ -3055,7 +3055,7 @@ class Client(AsyncBaseClient):
             query=REMOVE_CONTENT_LABEL_GQL,
             operation_name="RemoveContentLabel",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return RemoveContentLabel.model_validate(data)
@@ -3063,17 +3063,17 @@ class Client(AsyncBaseClient):
     async def research_contents(
         self,
         connector: ContentPublishingConnectorInput,
-        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ContentFilter], UnsetType] = UNSET,
         name: Union[Optional[str], UnsetType] = UNSET,
         summary_specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         publish_specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> ResearchContents:
         variables: dict[str, object] = {
             "connector": connector,
-            "filter": filter,
+            "filter": filter_,
             "name": name,
             "summarySpecification": summary_specification,
             "publishSpecification": publish_specification,
@@ -3084,23 +3084,23 @@ class Client(AsyncBaseClient):
             query=RESEARCH_CONTENTS_GQL,
             operation_name="ResearchContents",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return ResearchContents.model_validate(data)
 
     async def restart_all_contents(
         self,
-        filter: ContentFilter,
+        filter_: ContentFilter,
         workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> RestartAllContents:
-        variables: dict[str, object] = {"filter": filter, "workflow": workflow}
+        variables: dict[str, object] = {"filter": filter_, "workflow": workflow}
         response = await self.execute(
             query=RESTART_ALL_CONTENTS_GQL,
             operation_name="RestartAllContents",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return RestartAllContents.model_validate(data)
@@ -3109,14 +3109,14 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> RestartContent:
         variables: dict[str, object] = {"id": id, "workflow": workflow}
         response = await self.execute(
             query=RESTART_CONTENT_GQL,
             operation_name="RestartContent",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return RestartContent.model_validate(data)
@@ -3129,7 +3129,7 @@ class Client(AsyncBaseClient):
         workflow: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         collections: Union[Optional[list[EntityReferenceInput]], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> ScreenshotPage:
         variables: dict[str, object] = {
             "uri": uri,
@@ -3143,7 +3143,7 @@ class Client(AsyncBaseClient):
             query=SCREENSHOT_PAGE_GQL,
             operation_name="ScreenshotPage",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return ScreenshotPage.model_validate(data)
@@ -3151,20 +3151,20 @@ class Client(AsyncBaseClient):
     async def summarize_contents(
         self,
         summarizations: list[SummarizationStrategyInput],
-        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ContentFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> SummarizeContents:
         variables: dict[str, object] = {
             "summarizations": summarizations,
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=SUMMARIZE_CONTENTS_GQL,
             operation_name="SummarizeContents",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return SummarizeContents.model_validate(data)
@@ -3175,7 +3175,7 @@ class Client(AsyncBaseClient):
         text: str,
         text_type: Union[Optional[TextTypes], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> SummarizeText:
         variables: dict[str, object] = {
             "summarization": summarization,
@@ -3187,7 +3187,7 @@ class Client(AsyncBaseClient):
             query=SUMMARIZE_TEXT_GQL,
             operation_name="SummarizeText",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return SummarizeText.model_validate(data)
@@ -3200,7 +3200,7 @@ class Client(AsyncBaseClient):
             query=UPDATE_CONTENT_GQL,
             operation_name="UpdateContent",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateContent.model_validate(data)
@@ -3208,15 +3208,15 @@ class Client(AsyncBaseClient):
     async def ask_graphlit(
         self,
         prompt: str,
-        type: Union[Optional[SdkTypes], UnsetType] = UNSET,
+        type_: Union[Optional[SdkTypes], UnsetType] = UNSET,
         id: Union[Optional[str], UnsetType] = UNSET,
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> AskGraphlit:
         variables: dict[str, object] = {
             "prompt": prompt,
-            "type": type,
+            "type": type_,
             "id": id,
             "specification": specification,
             "correlationId": correlation_id,
@@ -3225,7 +3225,7 @@ class Client(AsyncBaseClient):
             query=ASK_GRAPHLIT_GQL,
             operation_name="AskGraphlit",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return AskGraphlit.model_validate(data)
@@ -3236,7 +3236,7 @@ class Client(AsyncBaseClient):
             query=BRANCH_CONVERSATION_GQL,
             operation_name="BranchConversation",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return BranchConversation.model_validate(data)
@@ -3247,7 +3247,7 @@ class Client(AsyncBaseClient):
             query=CLEAR_CONVERSATION_GQL,
             operation_name="ClearConversation",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return ClearConversation.model_validate(data)
@@ -3258,7 +3258,7 @@ class Client(AsyncBaseClient):
             query=CLOSE_CONVERSATION_GQL,
             operation_name="CloseConversation",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CloseConversation.model_validate(data)
@@ -3273,7 +3273,7 @@ class Client(AsyncBaseClient):
         artifacts: Union[Optional[list[EntityReferenceInput]], UnsetType] = UNSET,
         messages: Union[Optional[list[ConversationMessageInput]], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CompleteConversation:
         variables: dict[str, object] = {
             "completion": completion,
@@ -3289,7 +3289,7 @@ class Client(AsyncBaseClient):
             query=COMPLETE_CONVERSATION_GQL,
             operation_name="CompleteConversation",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CompleteConversation.model_validate(data)
@@ -3299,7 +3299,7 @@ class Client(AsyncBaseClient):
         id: str,
         responses: list[ConversationToolResponseInput],
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> ContinueConversation:
         variables: dict[str, object] = {
             "id": id,
@@ -3310,26 +3310,26 @@ class Client(AsyncBaseClient):
             query=CONTINUE_CONVERSATION_GQL,
             operation_name="ContinueConversation",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return ContinueConversation.model_validate(data)
 
     async def count_conversations(
         self,
-        filter: Union[Optional[ConversationFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ConversationFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountConversations:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_CONVERSATIONS_GQL,
             operation_name="CountConversations",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountConversations.model_validate(data)
@@ -3338,7 +3338,7 @@ class Client(AsyncBaseClient):
         self,
         conversation: ConversationInput,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CreateConversation:
         variables: dict[str, object] = {
             "conversation": conversation,
@@ -3348,20 +3348,20 @@ class Client(AsyncBaseClient):
             query=CREATE_CONVERSATION_GQL,
             operation_name="CreateConversation",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateConversation.model_validate(data)
 
     async def delete_all_conversations(
         self,
-        filter: Union[Optional[ConversationFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ConversationFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllConversations:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -3369,7 +3369,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_CONVERSATIONS_GQL,
             operation_name="DeleteAllConversations",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllConversations.model_validate(data)
@@ -3380,7 +3380,7 @@ class Client(AsyncBaseClient):
             query=DELETE_CONVERSATION_GQL,
             operation_name="DeleteConversation",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteConversation.model_validate(data)
@@ -3389,14 +3389,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteConversations:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_CONVERSATIONS_GQL,
             operation_name="DeleteConversations",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteConversations.model_validate(data)
@@ -3415,7 +3415,7 @@ class Client(AsyncBaseClient):
         instructions: Union[Optional[str], UnsetType] = UNSET,
         scratchpad: Union[Optional[str], UnsetType] = UNSET,
         skills: Union[Optional[list[EntityReferenceInput]], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> FormatConversation:
         variables: dict[str, object] = {
             "prompt": prompt,
@@ -3435,7 +3435,7 @@ class Client(AsyncBaseClient):
             query=FORMAT_CONVERSATION_GQL,
             operation_name="FormatConversation",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return FormatConversation.model_validate(data)
@@ -3444,14 +3444,14 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetConversation:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_CONVERSATION_GQL,
             operation_name="GetConversation",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetConversation.model_validate(data)
@@ -3466,7 +3466,7 @@ class Client(AsyncBaseClient):
         tools: Union[Optional[list[ToolDefinitionInput]], UnsetType] = UNSET,
         require_tool: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Prompt:
         variables: dict[str, object] = {
             "prompt": prompt,
@@ -3500,7 +3500,7 @@ class Client(AsyncBaseClient):
         instructions: Union[Optional[str], UnsetType] = UNSET,
         scratchpad: Union[Optional[str], UnsetType] = UNSET,
         skills: Union[Optional[list[EntityReferenceInput]], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> PromptConversation:
         variables: dict[str, object] = {
             "prompt": prompt,
@@ -3522,7 +3522,7 @@ class Client(AsyncBaseClient):
             query=PROMPT_CONVERSATION_GQL,
             operation_name="PromptConversation",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         _data = self.get_data(response)
         return PromptConversation.model_validate(_data)
@@ -3539,7 +3539,7 @@ class Client(AsyncBaseClient):
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         collections: Union[Optional[list[EntityReferenceInput]], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> PublishConversation:
         variables: dict[str, object] = {
             "id": id,
@@ -3557,39 +3557,39 @@ class Client(AsyncBaseClient):
             query=PUBLISH_CONVERSATION_GQL,
             operation_name="PublishConversation",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return PublishConversation.model_validate(data)
 
     async def query_conversations(
         self,
-        filter: Union[Optional[ConversationFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ConversationFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryConversations:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_CONVERSATIONS_GQL,
             operation_name="QueryConversations",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryConversations.model_validate(data)
 
     async def query_conversations_clusters(
         self,
-        filter: Union[Optional[ConversationFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ConversationFilter], UnsetType] = UNSET,
         clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryConversationsClusters:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "clusters": clusters,
             "correlationId": correlation_id,
         }
@@ -3597,20 +3597,20 @@ class Client(AsyncBaseClient):
             query=QUERY_CONVERSATIONS_CLUSTERS_GQL,
             operation_name="QueryConversationsClusters",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryConversationsClusters.model_validate(data)
 
     async def query_conversations_graph(
         self,
-        filter: Union[Optional[ConversationFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ConversationFilter], UnsetType] = UNSET,
         graph: Union[Optional[ConversationGraphInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryConversationsGraph:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "graph": graph,
             "correlationId": correlation_id,
         }
@@ -3618,7 +3618,7 @@ class Client(AsyncBaseClient):
             query=QUERY_CONVERSATIONS_GRAPH_GQL,
             operation_name="QueryConversationsGraph",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryConversationsGraph.model_validate(data)
@@ -3630,7 +3630,7 @@ class Client(AsyncBaseClient):
         search_type: Union[Optional[SearchTypes], UnsetType] = UNSET,
         limit: Union[Optional[int], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> RetrieveEntities:
         variables: dict[str, object] = {
             "prompt": prompt,
@@ -3643,7 +3643,7 @@ class Client(AsyncBaseClient):
             query=RETRIEVE_ENTITIES_GQL,
             operation_name="RetrieveEntities",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return RetrieveEntities.model_validate(data)
@@ -3651,20 +3651,20 @@ class Client(AsyncBaseClient):
     async def retrieve_facts(
         self,
         prompt: str,
-        filter: Union[Optional[FactFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[FactFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> RetrieveFacts:
         variables: dict[str, object] = {
             "prompt": prompt,
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=RETRIEVE_FACTS_GQL,
             operation_name="RetrieveFacts",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return RetrieveFacts.model_validate(data)
@@ -3672,16 +3672,16 @@ class Client(AsyncBaseClient):
     async def retrieve_sources(
         self,
         prompt: str,
-        filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ContentFilter], UnsetType] = UNSET,
         augmented_filter: Union[Optional[ContentFilter], UnsetType] = UNSET,
         retrieval_strategy: Union[Optional[RetrievalStrategyInput], UnsetType] = UNSET,
         reranking_strategy: Union[Optional[RerankingStrategyInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> RetrieveSources:
         variables: dict[str, object] = {
             "prompt": prompt,
-            "filter": filter,
+            "filter": filter_,
             "augmentedFilter": augmented_filter,
             "retrievalStrategy": retrieval_strategy,
             "rerankingStrategy": reranking_strategy,
@@ -3691,7 +3691,7 @@ class Client(AsyncBaseClient):
             query=RETRIEVE_SOURCES_GQL,
             operation_name="RetrieveSources",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return RetrieveSources.model_validate(data)
@@ -3703,7 +3703,7 @@ class Client(AsyncBaseClient):
         retrieval_strategy: Union[Optional[RetrievalStrategyInput], UnsetType] = UNSET,
         reranking_strategy: Union[Optional[RerankingStrategyInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> RetrieveView:
         variables: dict[str, object] = {
             "prompt": prompt,
@@ -3716,7 +3716,7 @@ class Client(AsyncBaseClient):
             query=RETRIEVE_VIEW_GQL,
             operation_name="RetrieveView",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return RetrieveView.model_validate(data)
@@ -3728,7 +3728,7 @@ class Client(AsyncBaseClient):
         id: Union[Optional[str], UnsetType] = UNSET,
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> ReviseContent:
         variables: dict[str, object] = {
             "prompt": prompt,
@@ -3741,7 +3741,7 @@ class Client(AsyncBaseClient):
             query=REVISE_CONTENT_GQL,
             operation_name="ReviseContent",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return ReviseContent.model_validate(data)
@@ -3754,7 +3754,7 @@ class Client(AsyncBaseClient):
         id: Union[Optional[str], UnsetType] = UNSET,
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> ReviseEncodedImage:
         variables: dict[str, object] = {
             "prompt": prompt,
@@ -3768,7 +3768,7 @@ class Client(AsyncBaseClient):
             query=REVISE_ENCODED_IMAGE_GQL,
             operation_name="ReviseEncodedImage",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         _data = self.get_data(response)
         return ReviseEncodedImage.model_validate(_data)
@@ -3780,7 +3780,7 @@ class Client(AsyncBaseClient):
         id: Union[Optional[str], UnsetType] = UNSET,
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> ReviseImage:
         variables: dict[str, object] = {
             "prompt": prompt,
@@ -3793,7 +3793,7 @@ class Client(AsyncBaseClient):
             query=REVISE_IMAGE_GQL,
             operation_name="ReviseImage",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return ReviseImage.model_validate(data)
@@ -3805,7 +3805,7 @@ class Client(AsyncBaseClient):
         id: Union[Optional[str], UnsetType] = UNSET,
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> ReviseText:
         variables: dict[str, object] = {
             "prompt": prompt,
@@ -3818,7 +3818,7 @@ class Client(AsyncBaseClient):
             query=REVISE_TEXT_GQL,
             operation_name="ReviseText",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return ReviseText.model_validate(data)
@@ -3829,7 +3829,7 @@ class Client(AsyncBaseClient):
         count: Union[Optional[int], UnsetType] = UNSET,
         prompt: Union[Optional[str], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> SuggestConversation:
         variables: dict[str, object] = {
             "id": id,
@@ -3841,7 +3841,7 @@ class Client(AsyncBaseClient):
             query=SUGGEST_CONVERSATION_GQL,
             operation_name="SuggestConversation",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return SuggestConversation.model_validate(data)
@@ -3854,7 +3854,7 @@ class Client(AsyncBaseClient):
             query=UPDATE_CONVERSATION_GQL,
             operation_name="UpdateConversation",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateConversation.model_validate(data)
@@ -3863,33 +3863,33 @@ class Client(AsyncBaseClient):
         self,
         agents: list[EntityReferenceInput],
         desk: EntityReferenceInput,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> AddAgentsToDesk:
         variables: dict[str, object] = {"agents": agents, "desk": desk}
         response = await self.execute(
             query=ADD_AGENTS_TO_DESK_GQL,
             operation_name="AddAgentsToDesk",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return AddAgentsToDesk.model_validate(data)
 
     async def count_desks(
         self,
-        filter: Union[Optional[DeskFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[DeskFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountDesks:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_DESKS_GQL,
             operation_name="CountDesks",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountDesks.model_validate(data)
@@ -3900,20 +3900,20 @@ class Client(AsyncBaseClient):
             query=CREATE_DESK_GQL,
             operation_name="CreateDesk",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateDesk.model_validate(data)
 
     async def delete_all_desks(
         self,
-        filter: Union[Optional[DeskFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[DeskFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllDesks:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -3921,7 +3921,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_DESKS_GQL,
             operation_name="DeleteAllDesks",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllDesks.model_validate(data)
@@ -3932,7 +3932,7 @@ class Client(AsyncBaseClient):
             query=DELETE_DESK_GQL,
             operation_name="DeleteDesk",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteDesk.model_validate(data)
@@ -3941,14 +3941,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteDesks:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_DESKS_GQL,
             operation_name="DeleteDesks",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteDesks.model_validate(data)
@@ -3957,7 +3957,7 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetDesk:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
@@ -3968,19 +3968,19 @@ class Client(AsyncBaseClient):
 
     async def query_desks(
         self,
-        filter: Union[Optional[DeskFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[DeskFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryDesks:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_DESKS_GQL,
             operation_name="QueryDesks",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryDesks.model_validate(data)
@@ -3989,14 +3989,14 @@ class Client(AsyncBaseClient):
         self,
         agents: list[EntityReferenceInput],
         desk: EntityReferenceInput,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> RemoveAgentsFromDesk:
         variables: dict[str, object] = {"agents": agents, "desk": desk}
         response = await self.execute(
             query=REMOVE_AGENTS_FROM_DESK_GQL,
             operation_name="RemoveAgentsFromDesk",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return RemoveAgentsFromDesk.model_validate(data)
@@ -4007,26 +4007,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_DESK_GQL,
             operation_name="UpdateDesk",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateDesk.model_validate(data)
 
     async def count_emotions(
         self,
-        filter: Union[Optional[EmotionFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[EmotionFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountEmotions:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_EMOTIONS_GQL,
             operation_name="CountEmotions",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountEmotions.model_validate(data)
@@ -4039,20 +4039,20 @@ class Client(AsyncBaseClient):
             query=CREATE_EMOTION_GQL,
             operation_name="CreateEmotion",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateEmotion.model_validate(data)
 
     async def delete_all_emotions(
         self,
-        filter: Union[Optional[EmotionFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[EmotionFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllEmotions:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -4060,7 +4060,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_EMOTIONS_GQL,
             operation_name="DeleteAllEmotions",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllEmotions.model_validate(data)
@@ -4071,7 +4071,7 @@ class Client(AsyncBaseClient):
             query=DELETE_EMOTION_GQL,
             operation_name="DeleteEmotion",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteEmotion.model_validate(data)
@@ -4080,14 +4080,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteEmotions:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_EMOTIONS_GQL,
             operation_name="DeleteEmotions",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteEmotions.model_validate(data)
@@ -4096,33 +4096,33 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetEmotion:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_EMOTION_GQL,
             operation_name="GetEmotion",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetEmotion.model_validate(data)
 
     async def query_emotions(
         self,
-        filter: Union[Optional[EmotionFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[EmotionFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryEmotions:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_EMOTIONS_GQL,
             operation_name="QueryEmotions",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryEmotions.model_validate(data)
@@ -4135,26 +4135,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_EMOTION_GQL,
             operation_name="UpdateEmotion",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateEmotion.model_validate(data)
 
     async def count_events(
         self,
-        filter: Union[Optional[EventFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[EventFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountEvents:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_EVENTS_GQL,
             operation_name="CountEvents",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountEvents.model_validate(data)
@@ -4165,20 +4165,20 @@ class Client(AsyncBaseClient):
             query=CREATE_EVENT_GQL,
             operation_name="CreateEvent",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateEvent.model_validate(data)
 
     async def delete_all_events(
         self,
-        filter: Union[Optional[EventFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[EventFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllEvents:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -4186,7 +4186,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_EVENTS_GQL,
             operation_name="DeleteAllEvents",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllEvents.model_validate(data)
@@ -4197,7 +4197,7 @@ class Client(AsyncBaseClient):
             query=DELETE_EVENT_GQL,
             operation_name="DeleteEvent",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteEvent.model_validate(data)
@@ -4206,14 +4206,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteEvents:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_EVENTS_GQL,
             operation_name="DeleteEvents",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteEvents.model_validate(data)
@@ -4222,46 +4222,46 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetEvent:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_EVENT_GQL,
             operation_name="GetEvent",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetEvent.model_validate(data)
 
     async def query_events(
         self,
-        filter: Union[Optional[EventFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[EventFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryEvents:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_EVENTS_GQL,
             operation_name="QueryEvents",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryEvents.model_validate(data)
 
     async def query_events_clusters(
         self,
-        filter: Union[Optional[EventFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[EventFilter], UnsetType] = UNSET,
         clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryEventsClusters:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "clusters": clusters,
             "correlationId": correlation_id,
         }
@@ -4269,7 +4269,7 @@ class Client(AsyncBaseClient):
             query=QUERY_EVENTS_CLUSTERS_GQL,
             operation_name="QueryEventsClusters",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryEventsClusters.model_validate(data)
@@ -4280,26 +4280,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_EVENT_GQL,
             operation_name="UpdateEvent",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateEvent.model_validate(data)
 
     async def count_facts(
         self,
-        filter: Union[Optional[FactFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[FactFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountFacts:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_FACTS_GQL,
             operation_name="CountFacts",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountFacts.model_validate(data)
@@ -4310,20 +4310,20 @@ class Client(AsyncBaseClient):
             query=CREATE_FACT_GQL,
             operation_name="CreateFact",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateFact.model_validate(data)
 
     async def delete_all_facts(
         self,
-        filter: Union[Optional[FactFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[FactFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllFacts:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -4331,7 +4331,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_FACTS_GQL,
             operation_name="DeleteAllFacts",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllFacts.model_validate(data)
@@ -4342,7 +4342,7 @@ class Client(AsyncBaseClient):
             query=DELETE_FACT_GQL,
             operation_name="DeleteFact",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteFact.model_validate(data)
@@ -4351,14 +4351,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteFacts:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_FACTS_GQL,
             operation_name="DeleteFacts",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteFacts.model_validate(data)
@@ -4367,7 +4367,7 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetFact:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
@@ -4378,32 +4378,32 @@ class Client(AsyncBaseClient):
 
     async def query_facts(
         self,
-        filter: Union[Optional[FactFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[FactFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryFacts:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_FACTS_GQL,
             operation_name="QueryFacts",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryFacts.model_validate(data)
 
     async def query_facts_clusters(
         self,
-        filter: Union[Optional[FactFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[FactFilter], UnsetType] = UNSET,
         clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryFactsClusters:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "clusters": clusters,
             "correlationId": correlation_id,
         }
@@ -4411,20 +4411,20 @@ class Client(AsyncBaseClient):
             query=QUERY_FACTS_CLUSTERS_GQL,
             operation_name="QueryFactsClusters",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryFactsClusters.model_validate(data)
 
     async def query_facts_graph(
         self,
-        filter: Union[Optional[FactFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[FactFilter], UnsetType] = UNSET,
         graph: Union[Optional[FactGraphInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryFactsGraph:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "graph": graph,
             "correlationId": correlation_id,
         }
@@ -4432,7 +4432,7 @@ class Client(AsyncBaseClient):
             query=QUERY_FACTS_GRAPH_GQL,
             operation_name="QueryFactsGraph",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryFactsGraph.model_validate(data)
@@ -4443,26 +4443,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_FACT_GQL,
             operation_name="UpdateFact",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateFact.model_validate(data)
 
     async def count_feeds(
         self,
-        filter: Union[Optional[FeedFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[FeedFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountFeeds:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_FEEDS_GQL,
             operation_name="CountFeeds",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountFeeds.model_validate(data)
@@ -4471,27 +4471,27 @@ class Client(AsyncBaseClient):
         self,
         feed: FeedInput,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CreateFeed:
         variables: dict[str, object] = {"feed": feed, "correlationId": correlation_id}
         response = await self.execute(
             query=CREATE_FEED_GQL,
             operation_name="CreateFeed",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateFeed.model_validate(data)
 
     async def delete_all_feeds(
         self,
-        filter: Union[Optional[FeedFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[FeedFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllFeeds:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -4499,7 +4499,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_FEEDS_GQL,
             operation_name="DeleteAllFeeds",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllFeeds.model_validate(data)
@@ -4510,7 +4510,7 @@ class Client(AsyncBaseClient):
             query=DELETE_FEED_GQL,
             operation_name="DeleteFeed",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteFeed.model_validate(data)
@@ -4519,14 +4519,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteFeeds:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_FEEDS_GQL,
             operation_name="DeleteFeeds",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteFeeds.model_validate(data)
@@ -4537,7 +4537,7 @@ class Client(AsyncBaseClient):
             query=DISABLE_FEED_GQL,
             operation_name="DisableFeed",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DisableFeed.model_validate(data)
@@ -4548,26 +4548,26 @@ class Client(AsyncBaseClient):
             query=ENABLE_FEED_GQL,
             operation_name="EnableFeed",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return EnableFeed.model_validate(data)
 
     async def feed_exists(
         self,
-        filter: Union[Optional[FeedFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[FeedFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> FeedExists:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=FEED_EXISTS_GQL,
             operation_name="FeedExists",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return FeedExists.model_validate(data)
@@ -4576,7 +4576,7 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetFeed:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
@@ -4593,7 +4593,7 @@ class Client(AsyncBaseClient):
             query=GET_SHARE_POINT_CONSENT_URI_GQL,
             operation_name="GetSharePointConsentUri",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetSharePointConsentUri.model_validate(data)
@@ -4604,7 +4604,7 @@ class Client(AsyncBaseClient):
             query=IS_FEED_DONE_GQL,
             operation_name="IsFeedDone",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return IsFeedDone.model_validate(data)
@@ -4614,7 +4614,7 @@ class Client(AsyncBaseClient):
         name: Union[Optional[str], UnsetType] = UNSET,
         domain: Union[Optional[str], UnsetType] = UNSET,
         linked_in_url: Union[Optional[Any], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> LookupCompanies:
         variables: dict[str, object] = {
             "name": name,
@@ -4625,7 +4625,7 @@ class Client(AsyncBaseClient):
             query=LOOKUP_COMPANIES_GQL,
             operation_name="LookupCompanies",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return LookupCompanies.model_validate(data)
@@ -4634,14 +4634,14 @@ class Client(AsyncBaseClient):
         self,
         linked_in_url: Union[Optional[Any], UnsetType] = UNSET,
         email: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> LookupPersons:
         variables: dict[str, object] = {"linkedInUrl": linked_in_url, "email": email}
         response = await self.execute(
             query=LOOKUP_PERSONS_GQL,
             operation_name="LookupPersons",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return LookupPersons.model_validate(data)
@@ -4652,7 +4652,7 @@ class Client(AsyncBaseClient):
             query=PREVIEW_FEED_GQL,
             operation_name="PreviewFeed",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return PreviewFeed.model_validate(data)
@@ -4665,7 +4665,7 @@ class Client(AsyncBaseClient):
             query=QUERY_ASANA_PROJECTS_GQL,
             operation_name="QueryAsanaProjects",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryAsanaProjects.model_validate(data)
@@ -4678,7 +4678,7 @@ class Client(AsyncBaseClient):
             query=QUERY_ASANA_WORKSPACES_GQL,
             operation_name="QueryAsanaWorkspaces",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryAsanaWorkspaces.model_validate(data)
@@ -4691,7 +4691,7 @@ class Client(AsyncBaseClient):
             query=QUERY_ATLASSIAN_SITES_GQL,
             operation_name="QueryAtlassianSites",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryAtlassianSites.model_validate(data)
@@ -4704,7 +4704,7 @@ class Client(AsyncBaseClient):
             query=QUERY_BAMBOO_HR_DEPARTMENTS_GQL,
             operation_name="QueryBambooHRDepartments",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryBambooHRDepartments.model_validate(data)
@@ -4717,7 +4717,7 @@ class Client(AsyncBaseClient):
             query=QUERY_BAMBOO_HR_DIVISIONS_GQL,
             operation_name="QueryBambooHRDivisions",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryBambooHRDivisions.model_validate(data)
@@ -4730,7 +4730,7 @@ class Client(AsyncBaseClient):
             query=QUERY_BAMBOO_HR_EMPLOYMENT_STATUSES_GQL,
             operation_name="QueryBambooHREmploymentStatuses",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryBambooHREmploymentStatuses.model_validate(data)
@@ -4743,7 +4743,7 @@ class Client(AsyncBaseClient):
             query=QUERY_BAMBOO_HR_LOCATIONS_GQL,
             operation_name="QueryBambooHRLocations",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryBambooHRLocations.model_validate(data)
@@ -4752,14 +4752,14 @@ class Client(AsyncBaseClient):
         self,
         properties: BoxFoldersInput,
         folder_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryBoxFolders:
         variables: dict[str, object] = {"properties": properties, "folderId": folder_id}
         response = await self.execute(
             query=QUERY_BOX_FOLDERS_GQL,
             operation_name="QueryBoxFolders",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryBoxFolders.model_validate(data)
@@ -4772,7 +4772,7 @@ class Client(AsyncBaseClient):
             query=QUERY_CONFLUENCE_SPACES_GQL,
             operation_name="QueryConfluenceSpaces",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryConfluenceSpaces.model_validate(data)
@@ -4785,7 +4785,7 @@ class Client(AsyncBaseClient):
             query=QUERY_DISCORD_CHANNELS_GQL,
             operation_name="QueryDiscordChannels",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryDiscordChannels.model_validate(data)
@@ -4798,7 +4798,7 @@ class Client(AsyncBaseClient):
             query=QUERY_DISCORD_GUILDS_GQL,
             operation_name="QueryDiscordGuilds",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryDiscordGuilds.model_validate(data)
@@ -4807,7 +4807,7 @@ class Client(AsyncBaseClient):
         self,
         properties: DropboxFoldersInput,
         folder_path: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryDropboxFolders:
         variables: dict[str, object] = {
             "properties": properties,
@@ -4817,26 +4817,26 @@ class Client(AsyncBaseClient):
             query=QUERY_DROPBOX_FOLDERS_GQL,
             operation_name="QueryDropboxFolders",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryDropboxFolders.model_validate(data)
 
     async def query_feeds(
         self,
-        filter: Union[Optional[FeedFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[FeedFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryFeeds:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_FEEDS_GQL,
             operation_name="QueryFeeds",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryFeeds.model_validate(data)
@@ -4845,14 +4845,14 @@ class Client(AsyncBaseClient):
         self,
         properties: GitHubRepositoriesInput,
         sort_by: Union[Optional[GitHubRepositorySortTypes], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryGitHubRepositories:
         variables: dict[str, object] = {"properties": properties, "sortBy": sort_by}
         response = await self.execute(
             query=QUERY_GIT_HUB_REPOSITORIES_GQL,
             operation_name="QueryGitHubRepositories",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryGitHubRepositories.model_validate(data)
@@ -4865,7 +4865,7 @@ class Client(AsyncBaseClient):
             query=QUERY_GIT_LAB_PROJECTS_GQL,
             operation_name="QueryGitLabProjects",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryGitLabProjects.model_validate(data)
@@ -4878,7 +4878,7 @@ class Client(AsyncBaseClient):
             query=QUERY_GOOGLE_CALENDARS_GQL,
             operation_name="QueryGoogleCalendars",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryGoogleCalendars.model_validate(data)
@@ -4891,7 +4891,7 @@ class Client(AsyncBaseClient):
             query=QUERY_GOOGLE_DRIVE_DRIVES_GQL,
             operation_name="QueryGoogleDriveDrives",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryGoogleDriveDrives.model_validate(data)
@@ -4901,7 +4901,7 @@ class Client(AsyncBaseClient):
         properties: GoogleDriveFoldersInput,
         folder_id: Union[Optional[str], UnsetType] = UNSET,
         drive_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryGoogleDriveFolders:
         variables: dict[str, object] = {
             "properties": properties,
@@ -4912,7 +4912,7 @@ class Client(AsyncBaseClient):
             query=QUERY_GOOGLE_DRIVE_FOLDERS_GQL,
             operation_name="QueryGoogleDriveFolders",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryGoogleDriveFolders.model_validate(data)
@@ -4925,7 +4925,7 @@ class Client(AsyncBaseClient):
             query=QUERY_GUSTO_COMPANIES_GQL,
             operation_name="QueryGustoCompanies",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryGustoCompanies.model_validate(data)
@@ -4938,7 +4938,7 @@ class Client(AsyncBaseClient):
             query=QUERY_GUSTO_DEPARTMENTS_GQL,
             operation_name="QueryGustoDepartments",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryGustoDepartments.model_validate(data)
@@ -4951,7 +4951,7 @@ class Client(AsyncBaseClient):
             query=QUERY_GUSTO_LOCATIONS_GQL,
             operation_name="QueryGustoLocations",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryGustoLocations.model_validate(data)
@@ -4960,14 +4960,14 @@ class Client(AsyncBaseClient):
         self,
         properties: IntercomTicketsFeedPropertiesInput,
         query: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryIntercomTeams:
         variables: dict[str, object] = {"properties": properties, "query": query}
         response = await self.execute(
             query=QUERY_INTERCOM_TEAMS_GQL,
             operation_name="QueryIntercomTeams",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryIntercomTeams.model_validate(data)
@@ -4980,7 +4980,7 @@ class Client(AsyncBaseClient):
             query=QUERY_JIRA_ISSUE_TYPES_GQL,
             operation_name="QueryJiraIssueTypes",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryJiraIssueTypes.model_validate(data)
@@ -4993,7 +4993,7 @@ class Client(AsyncBaseClient):
             query=QUERY_JIRA_PROJECTS_GQL,
             operation_name="QueryJiraProjects",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryJiraProjects.model_validate(data)
@@ -5006,7 +5006,7 @@ class Client(AsyncBaseClient):
             query=QUERY_LINEAR_PROJECTS_GQL,
             operation_name="QueryLinearProjects",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryLinearProjects.model_validate(data)
@@ -5019,7 +5019,7 @@ class Client(AsyncBaseClient):
             query=QUERY_LINEAR_TEAMS_GQL,
             operation_name="QueryLinearTeams",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryLinearTeams.model_validate(data)
@@ -5032,7 +5032,7 @@ class Client(AsyncBaseClient):
             query=QUERY_MICROSOFT_CALENDARS_GQL,
             operation_name="QueryMicrosoftCalendars",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMicrosoftCalendars.model_validate(data)
@@ -5045,7 +5045,7 @@ class Client(AsyncBaseClient):
             query=QUERY_MICROSOFT_TEAMS_CHANNELS_GQL,
             operation_name="QueryMicrosoftTeamsChannels",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMicrosoftTeamsChannels.model_validate(data)
@@ -5058,7 +5058,7 @@ class Client(AsyncBaseClient):
             query=QUERY_MICROSOFT_TEAMS_TEAMS_GQL,
             operation_name="QueryMicrosoftTeamsTeams",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMicrosoftTeamsTeams.model_validate(data)
@@ -5071,7 +5071,7 @@ class Client(AsyncBaseClient):
             query=QUERY_MONDAY_BOARDS_GQL,
             operation_name="QueryMondayBoards",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMondayBoards.model_validate(data)
@@ -5084,7 +5084,7 @@ class Client(AsyncBaseClient):
             query=QUERY_NOTION_DATABASES_GQL,
             operation_name="QueryNotionDatabases",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryNotionDatabases.model_validate(data)
@@ -5100,7 +5100,7 @@ class Client(AsyncBaseClient):
             query=QUERY_NOTION_PAGES_GQL,
             operation_name="QueryNotionPages",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryNotionPages.model_validate(data)
@@ -5109,14 +5109,14 @@ class Client(AsyncBaseClient):
         self,
         properties: OneDriveFoldersInput,
         folder_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryOneDriveFolders:
         variables: dict[str, object] = {"properties": properties, "folderId": folder_id}
         response = await self.execute(
             query=QUERY_ONE_DRIVE_FOLDERS_GQL,
             operation_name="QueryOneDriveFolders",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryOneDriveFolders.model_validate(data)
@@ -5126,7 +5126,7 @@ class Client(AsyncBaseClient):
         properties: SharePointFoldersInput,
         library_id: str,
         folder_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QuerySharePointFolders:
         variables: dict[str, object] = {
             "properties": properties,
@@ -5137,7 +5137,7 @@ class Client(AsyncBaseClient):
             query=QUERY_SHARE_POINT_FOLDERS_GQL,
             operation_name="QuerySharePointFolders",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QuerySharePointFolders.model_validate(data)
@@ -5150,7 +5150,7 @@ class Client(AsyncBaseClient):
             query=QUERY_SHARE_POINT_LIBRARIES_GQL,
             operation_name="QuerySharePointLibraries",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QuerySharePointLibraries.model_validate(data)
@@ -5163,7 +5163,7 @@ class Client(AsyncBaseClient):
             query=QUERY_SLACK_CHANNELS_GQL,
             operation_name="QuerySlackChannels",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QuerySlackChannels.model_validate(data)
@@ -5176,7 +5176,7 @@ class Client(AsyncBaseClient):
             query=QUERY_SLACK_USERS_GQL,
             operation_name="QuerySlackUsers",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QuerySlackUsers.model_validate(data)
@@ -5185,14 +5185,14 @@ class Client(AsyncBaseClient):
         self,
         properties: ZendeskDiscoveryInput,
         query: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryZendeskGroups:
         variables: dict[str, object] = {"properties": properties, "query": query}
         response = await self.execute(
             query=QUERY_ZENDESK_GROUPS_GQL,
             operation_name="QueryZendeskGroups",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryZendeskGroups.model_validate(data)
@@ -5201,14 +5201,14 @@ class Client(AsyncBaseClient):
         self,
         properties: ZendeskDiscoveryInput,
         query: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryZendeskUsers:
         variables: dict[str, object] = {"properties": properties, "query": query}
         response = await self.execute(
             query=QUERY_ZENDESK_USERS_GQL,
             operation_name="QueryZendeskUsers",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryZendeskUsers.model_validate(data)
@@ -5219,7 +5219,7 @@ class Client(AsyncBaseClient):
             query=TRIGGER_FEED_GQL,
             operation_name="TriggerFeed",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return TriggerFeed.model_validate(data)
@@ -5230,26 +5230,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_FEED_GQL,
             operation_name="UpdateFeed",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateFeed.model_validate(data)
 
     async def count_investments(
         self,
-        filter: Union[Optional[InvestmentFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[InvestmentFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountInvestments:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_INVESTMENTS_GQL,
             operation_name="CountInvestments",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountInvestments.model_validate(data)
@@ -5262,20 +5262,20 @@ class Client(AsyncBaseClient):
             query=CREATE_INVESTMENT_GQL,
             operation_name="CreateInvestment",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateInvestment.model_validate(data)
 
     async def delete_all_investments(
         self,
-        filter: Union[Optional[InvestmentFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[InvestmentFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllInvestments:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -5283,7 +5283,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_INVESTMENTS_GQL,
             operation_name="DeleteAllInvestments",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllInvestments.model_validate(data)
@@ -5294,7 +5294,7 @@ class Client(AsyncBaseClient):
             query=DELETE_INVESTMENT_GQL,
             operation_name="DeleteInvestment",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteInvestment.model_validate(data)
@@ -5303,14 +5303,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteInvestments:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_INVESTMENTS_GQL,
             operation_name="DeleteInvestments",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteInvestments.model_validate(data)
@@ -5319,46 +5319,46 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetInvestment:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_INVESTMENT_GQL,
             operation_name="GetInvestment",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetInvestment.model_validate(data)
 
     async def query_investments(
         self,
-        filter: Union[Optional[InvestmentFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[InvestmentFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryInvestments:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_INVESTMENTS_GQL,
             operation_name="QueryInvestments",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryInvestments.model_validate(data)
 
     async def query_investments_clusters(
         self,
-        filter: Union[Optional[InvestmentFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[InvestmentFilter], UnsetType] = UNSET,
         clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryInvestmentsClusters:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "clusters": clusters,
             "correlationId": correlation_id,
         }
@@ -5366,26 +5366,26 @@ class Client(AsyncBaseClient):
             query=QUERY_INVESTMENTS_CLUSTERS_GQL,
             operation_name="QueryInvestmentsClusters",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryInvestmentsClusters.model_validate(data)
 
     async def query_investments_expanded(
         self,
-        filter: Union[Optional[InvestmentFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[InvestmentFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryInvestmentsExpanded:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_INVESTMENTS_EXPANDED_GQL,
             operation_name="QueryInvestmentsExpanded",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryInvestmentsExpanded.model_validate(data)
@@ -5398,26 +5398,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_INVESTMENT_GQL,
             operation_name="UpdateInvestment",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateInvestment.model_validate(data)
 
     async def count_investment_funds(
         self,
-        filter: Union[Optional[InvestmentFundFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[InvestmentFundFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountInvestmentFunds:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_INVESTMENT_FUNDS_GQL,
             operation_name="CountInvestmentFunds",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountInvestmentFunds.model_validate(data)
@@ -5430,20 +5430,20 @@ class Client(AsyncBaseClient):
             query=CREATE_INVESTMENT_FUND_GQL,
             operation_name="CreateInvestmentFund",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateInvestmentFund.model_validate(data)
 
     async def delete_all_investment_funds(
         self,
-        filter: Union[Optional[InvestmentFundFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[InvestmentFundFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllInvestmentFunds:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -5451,7 +5451,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_INVESTMENT_FUNDS_GQL,
             operation_name="DeleteAllInvestmentFunds",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllInvestmentFunds.model_validate(data)
@@ -5464,7 +5464,7 @@ class Client(AsyncBaseClient):
             query=DELETE_INVESTMENT_FUND_GQL,
             operation_name="DeleteInvestmentFund",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteInvestmentFund.model_validate(data)
@@ -5473,14 +5473,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteInvestmentFunds:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_INVESTMENT_FUNDS_GQL,
             operation_name="DeleteInvestmentFunds",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteInvestmentFunds.model_validate(data)
@@ -5489,46 +5489,46 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetInvestmentFund:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_INVESTMENT_FUND_GQL,
             operation_name="GetInvestmentFund",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetInvestmentFund.model_validate(data)
 
     async def query_investment_funds(
         self,
-        filter: Union[Optional[InvestmentFundFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[InvestmentFundFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryInvestmentFunds:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_INVESTMENT_FUNDS_GQL,
             operation_name="QueryInvestmentFunds",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryInvestmentFunds.model_validate(data)
 
     async def query_investment_funds_clusters(
         self,
-        filter: Union[Optional[InvestmentFundFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[InvestmentFundFilter], UnsetType] = UNSET,
         clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryInvestmentFundsClusters:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "clusters": clusters,
             "correlationId": correlation_id,
         }
@@ -5536,26 +5536,26 @@ class Client(AsyncBaseClient):
             query=QUERY_INVESTMENT_FUNDS_CLUSTERS_GQL,
             operation_name="QueryInvestmentFundsClusters",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryInvestmentFundsClusters.model_validate(data)
 
     async def query_investment_funds_expanded(
         self,
-        filter: Union[Optional[InvestmentFundFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[InvestmentFundFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryInvestmentFundsExpanded:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_INVESTMENT_FUNDS_EXPANDED_GQL,
             operation_name="QueryInvestmentFundsExpanded",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryInvestmentFundsExpanded.model_validate(data)
@@ -5568,26 +5568,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_INVESTMENT_FUND_GQL,
             operation_name="UpdateInvestmentFund",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateInvestmentFund.model_validate(data)
 
     async def count_labels(
         self,
-        filter: Union[Optional[LabelFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[LabelFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountLabels:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_LABELS_GQL,
             operation_name="CountLabels",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountLabels.model_validate(data)
@@ -5598,20 +5598,20 @@ class Client(AsyncBaseClient):
             query=CREATE_LABEL_GQL,
             operation_name="CreateLabel",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateLabel.model_validate(data)
 
     async def delete_all_labels(
         self,
-        filter: Union[Optional[LabelFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[LabelFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllLabels:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -5619,7 +5619,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_LABELS_GQL,
             operation_name="DeleteAllLabels",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllLabels.model_validate(data)
@@ -5630,7 +5630,7 @@ class Client(AsyncBaseClient):
             query=DELETE_LABEL_GQL,
             operation_name="DeleteLabel",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteLabel.model_validate(data)
@@ -5639,14 +5639,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteLabels:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_LABELS_GQL,
             operation_name="DeleteLabels",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteLabels.model_validate(data)
@@ -5655,33 +5655,33 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetLabel:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_LABEL_GQL,
             operation_name="GetLabel",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetLabel.model_validate(data)
 
     async def query_labels(
         self,
-        filter: Union[Optional[LabelFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[LabelFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryLabels:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_LABELS_GQL,
             operation_name="QueryLabels",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryLabels.model_validate(data)
@@ -5692,7 +5692,7 @@ class Client(AsyncBaseClient):
             query=UPDATE_LABEL_GQL,
             operation_name="UpdateLabel",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateLabel.model_validate(data)
@@ -5703,26 +5703,26 @@ class Client(AsyncBaseClient):
             query=UPSERT_LABEL_GQL,
             operation_name="UpsertLabel",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpsertLabel.model_validate(data)
 
     async def count_medical_conditions(
         self,
-        filter: Union[Optional[MedicalConditionFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalConditionFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountMedicalConditions:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_MEDICAL_CONDITIONS_GQL,
             operation_name="CountMedicalConditions",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountMedicalConditions.model_validate(data)
@@ -5735,20 +5735,20 @@ class Client(AsyncBaseClient):
             query=CREATE_MEDICAL_CONDITION_GQL,
             operation_name="CreateMedicalCondition",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateMedicalCondition.model_validate(data)
 
     async def delete_all_medical_conditions(
         self,
-        filter: Union[Optional[MedicalConditionFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalConditionFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllMedicalConditions:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -5756,7 +5756,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_MEDICAL_CONDITIONS_GQL,
             operation_name="DeleteAllMedicalConditions",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllMedicalConditions.model_validate(data)
@@ -5769,7 +5769,7 @@ class Client(AsyncBaseClient):
             query=DELETE_MEDICAL_CONDITION_GQL,
             operation_name="DeleteMedicalCondition",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteMedicalCondition.model_validate(data)
@@ -5778,14 +5778,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteMedicalConditions:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_MEDICAL_CONDITIONS_GQL,
             operation_name="DeleteMedicalConditions",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteMedicalConditions.model_validate(data)
@@ -5794,46 +5794,46 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetMedicalCondition:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_MEDICAL_CONDITION_GQL,
             operation_name="GetMedicalCondition",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetMedicalCondition.model_validate(data)
 
     async def query_medical_conditions(
         self,
-        filter: Union[Optional[MedicalConditionFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalConditionFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryMedicalConditions:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_MEDICAL_CONDITIONS_GQL,
             operation_name="QueryMedicalConditions",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMedicalConditions.model_validate(data)
 
     async def query_medical_conditions_clusters(
         self,
-        filter: Union[Optional[MedicalConditionFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalConditionFilter], UnsetType] = UNSET,
         clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryMedicalConditionsClusters:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "clusters": clusters,
             "correlationId": correlation_id,
         }
@@ -5841,7 +5841,7 @@ class Client(AsyncBaseClient):
             query=QUERY_MEDICAL_CONDITIONS_CLUSTERS_GQL,
             operation_name="QueryMedicalConditionsClusters",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMedicalConditionsClusters.model_validate(data)
@@ -5854,26 +5854,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_MEDICAL_CONDITION_GQL,
             operation_name="UpdateMedicalCondition",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateMedicalCondition.model_validate(data)
 
     async def count_medical_contraindications(
         self,
-        filter: Union[Optional[MedicalContraindicationFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalContraindicationFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountMedicalContraindications:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_MEDICAL_CONTRAINDICATIONS_GQL,
             operation_name="CountMedicalContraindications",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountMedicalContraindications.model_validate(data)
@@ -5888,20 +5888,20 @@ class Client(AsyncBaseClient):
             query=CREATE_MEDICAL_CONTRAINDICATION_GQL,
             operation_name="CreateMedicalContraindication",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateMedicalContraindication.model_validate(data)
 
     async def delete_all_medical_contraindications(
         self,
-        filter: Union[Optional[MedicalContraindicationFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalContraindicationFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllMedicalContraindications:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -5909,7 +5909,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_MEDICAL_CONTRAINDICATIONS_GQL,
             operation_name="DeleteAllMedicalContraindications",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllMedicalContraindications.model_validate(data)
@@ -5922,7 +5922,7 @@ class Client(AsyncBaseClient):
             query=DELETE_MEDICAL_CONTRAINDICATION_GQL,
             operation_name="DeleteMedicalContraindication",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteMedicalContraindication.model_validate(data)
@@ -5931,14 +5931,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteMedicalContraindications:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_MEDICAL_CONTRAINDICATIONS_GQL,
             operation_name="DeleteMedicalContraindications",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteMedicalContraindications.model_validate(data)
@@ -5947,46 +5947,46 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetMedicalContraindication:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_MEDICAL_CONTRAINDICATION_GQL,
             operation_name="GetMedicalContraindication",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetMedicalContraindication.model_validate(data)
 
     async def query_medical_contraindications(
         self,
-        filter: Union[Optional[MedicalContraindicationFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalContraindicationFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryMedicalContraindications:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_MEDICAL_CONTRAINDICATIONS_GQL,
             operation_name="QueryMedicalContraindications",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMedicalContraindications.model_validate(data)
 
     async def query_medical_contraindications_clusters(
         self,
-        filter: Union[Optional[MedicalContraindicationFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalContraindicationFilter], UnsetType] = UNSET,
         clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryMedicalContraindicationsClusters:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "clusters": clusters,
             "correlationId": correlation_id,
         }
@@ -5994,7 +5994,7 @@ class Client(AsyncBaseClient):
             query=QUERY_MEDICAL_CONTRAINDICATIONS_CLUSTERS_GQL,
             operation_name="QueryMedicalContraindicationsClusters",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMedicalContraindicationsClusters.model_validate(data)
@@ -6002,7 +6002,7 @@ class Client(AsyncBaseClient):
     async def update_medical_contraindication(
         self,
         medical_contraindication: MedicalContraindicationUpdateInput,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> UpdateMedicalContraindication:
         variables: dict[str, object] = {
             "medicalContraindication": medical_contraindication
@@ -6011,26 +6011,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_MEDICAL_CONTRAINDICATION_GQL,
             operation_name="UpdateMedicalContraindication",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateMedicalContraindication.model_validate(data)
 
     async def count_medical_devices(
         self,
-        filter: Union[Optional[MedicalDeviceFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalDeviceFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountMedicalDevices:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_MEDICAL_DEVICES_GQL,
             operation_name="CountMedicalDevices",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountMedicalDevices.model_validate(data)
@@ -6043,20 +6043,20 @@ class Client(AsyncBaseClient):
             query=CREATE_MEDICAL_DEVICE_GQL,
             operation_name="CreateMedicalDevice",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateMedicalDevice.model_validate(data)
 
     async def delete_all_medical_devices(
         self,
-        filter: Union[Optional[MedicalDeviceFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalDeviceFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllMedicalDevices:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -6064,7 +6064,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_MEDICAL_DEVICES_GQL,
             operation_name="DeleteAllMedicalDevices",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllMedicalDevices.model_validate(data)
@@ -6077,7 +6077,7 @@ class Client(AsyncBaseClient):
             query=DELETE_MEDICAL_DEVICE_GQL,
             operation_name="DeleteMedicalDevice",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteMedicalDevice.model_validate(data)
@@ -6086,14 +6086,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteMedicalDevices:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_MEDICAL_DEVICES_GQL,
             operation_name="DeleteMedicalDevices",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteMedicalDevices.model_validate(data)
@@ -6102,46 +6102,46 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetMedicalDevice:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_MEDICAL_DEVICE_GQL,
             operation_name="GetMedicalDevice",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetMedicalDevice.model_validate(data)
 
     async def query_medical_devices(
         self,
-        filter: Union[Optional[MedicalDeviceFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalDeviceFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryMedicalDevices:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_MEDICAL_DEVICES_GQL,
             operation_name="QueryMedicalDevices",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMedicalDevices.model_validate(data)
 
     async def query_medical_devices_clusters(
         self,
-        filter: Union[Optional[MedicalDeviceFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalDeviceFilter], UnsetType] = UNSET,
         clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryMedicalDevicesClusters:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "clusters": clusters,
             "correlationId": correlation_id,
         }
@@ -6149,7 +6149,7 @@ class Client(AsyncBaseClient):
             query=QUERY_MEDICAL_DEVICES_CLUSTERS_GQL,
             operation_name="QueryMedicalDevicesClusters",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMedicalDevicesClusters.model_validate(data)
@@ -6162,26 +6162,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_MEDICAL_DEVICE_GQL,
             operation_name="UpdateMedicalDevice",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateMedicalDevice.model_validate(data)
 
     async def count_medical_drugs(
         self,
-        filter: Union[Optional[MedicalDrugFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalDrugFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountMedicalDrugs:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_MEDICAL_DRUGS_GQL,
             operation_name="CountMedicalDrugs",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountMedicalDrugs.model_validate(data)
@@ -6194,20 +6194,20 @@ class Client(AsyncBaseClient):
             query=CREATE_MEDICAL_DRUG_GQL,
             operation_name="CreateMedicalDrug",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateMedicalDrug.model_validate(data)
 
     async def delete_all_medical_drugs(
         self,
-        filter: Union[Optional[MedicalDrugFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalDrugFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllMedicalDrugs:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -6215,7 +6215,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_MEDICAL_DRUGS_GQL,
             operation_name="DeleteAllMedicalDrugs",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllMedicalDrugs.model_validate(data)
@@ -6226,7 +6226,7 @@ class Client(AsyncBaseClient):
             query=DELETE_MEDICAL_DRUG_GQL,
             operation_name="DeleteMedicalDrug",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteMedicalDrug.model_validate(data)
@@ -6235,14 +6235,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteMedicalDrugs:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_MEDICAL_DRUGS_GQL,
             operation_name="DeleteMedicalDrugs",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteMedicalDrugs.model_validate(data)
@@ -6251,46 +6251,46 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetMedicalDrug:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_MEDICAL_DRUG_GQL,
             operation_name="GetMedicalDrug",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetMedicalDrug.model_validate(data)
 
     async def query_medical_drugs(
         self,
-        filter: Union[Optional[MedicalDrugFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalDrugFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryMedicalDrugs:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_MEDICAL_DRUGS_GQL,
             operation_name="QueryMedicalDrugs",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMedicalDrugs.model_validate(data)
 
     async def query_medical_drugs_clusters(
         self,
-        filter: Union[Optional[MedicalDrugFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalDrugFilter], UnsetType] = UNSET,
         clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryMedicalDrugsClusters:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "clusters": clusters,
             "correlationId": correlation_id,
         }
@@ -6298,7 +6298,7 @@ class Client(AsyncBaseClient):
             query=QUERY_MEDICAL_DRUGS_CLUSTERS_GQL,
             operation_name="QueryMedicalDrugsClusters",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMedicalDrugsClusters.model_validate(data)
@@ -6311,26 +6311,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_MEDICAL_DRUG_GQL,
             operation_name="UpdateMedicalDrug",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateMedicalDrug.model_validate(data)
 
     async def count_medical_drug_classes(
         self,
-        filter: Union[Optional[MedicalDrugClassFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalDrugClassFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountMedicalDrugClasses:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_MEDICAL_DRUG_CLASSES_GQL,
             operation_name="CountMedicalDrugClasses",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountMedicalDrugClasses.model_validate(data)
@@ -6343,20 +6343,20 @@ class Client(AsyncBaseClient):
             query=CREATE_MEDICAL_DRUG_CLASS_GQL,
             operation_name="CreateMedicalDrugClass",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateMedicalDrugClass.model_validate(data)
 
     async def delete_all_medical_drug_classes(
         self,
-        filter: Union[Optional[MedicalDrugClassFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalDrugClassFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllMedicalDrugClasses:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -6364,7 +6364,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_MEDICAL_DRUG_CLASSES_GQL,
             operation_name="DeleteAllMedicalDrugClasses",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllMedicalDrugClasses.model_validate(data)
@@ -6377,7 +6377,7 @@ class Client(AsyncBaseClient):
             query=DELETE_MEDICAL_DRUG_CLASS_GQL,
             operation_name="DeleteMedicalDrugClass",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteMedicalDrugClass.model_validate(data)
@@ -6386,14 +6386,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteMedicalDrugClasses:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_MEDICAL_DRUG_CLASSES_GQL,
             operation_name="DeleteMedicalDrugClasses",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteMedicalDrugClasses.model_validate(data)
@@ -6402,46 +6402,46 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetMedicalDrugClass:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_MEDICAL_DRUG_CLASS_GQL,
             operation_name="GetMedicalDrugClass",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetMedicalDrugClass.model_validate(data)
 
     async def query_medical_drug_classes(
         self,
-        filter: Union[Optional[MedicalDrugClassFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalDrugClassFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryMedicalDrugClasses:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_MEDICAL_DRUG_CLASSES_GQL,
             operation_name="QueryMedicalDrugClasses",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMedicalDrugClasses.model_validate(data)
 
     async def query_medical_drug_classes_clusters(
         self,
-        filter: Union[Optional[MedicalDrugClassFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalDrugClassFilter], UnsetType] = UNSET,
         clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryMedicalDrugClassesClusters:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "clusters": clusters,
             "correlationId": correlation_id,
         }
@@ -6449,7 +6449,7 @@ class Client(AsyncBaseClient):
             query=QUERY_MEDICAL_DRUG_CLASSES_CLUSTERS_GQL,
             operation_name="QueryMedicalDrugClassesClusters",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMedicalDrugClassesClusters.model_validate(data)
@@ -6462,26 +6462,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_MEDICAL_DRUG_CLASS_GQL,
             operation_name="UpdateMedicalDrugClass",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateMedicalDrugClass.model_validate(data)
 
     async def count_medical_guidelines(
         self,
-        filter: Union[Optional[MedicalGuidelineFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalGuidelineFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountMedicalGuidelines:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_MEDICAL_GUIDELINES_GQL,
             operation_name="CountMedicalGuidelines",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountMedicalGuidelines.model_validate(data)
@@ -6494,20 +6494,20 @@ class Client(AsyncBaseClient):
             query=CREATE_MEDICAL_GUIDELINE_GQL,
             operation_name="CreateMedicalGuideline",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateMedicalGuideline.model_validate(data)
 
     async def delete_all_medical_guidelines(
         self,
-        filter: Union[Optional[MedicalGuidelineFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalGuidelineFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllMedicalGuidelines:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -6515,7 +6515,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_MEDICAL_GUIDELINES_GQL,
             operation_name="DeleteAllMedicalGuidelines",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllMedicalGuidelines.model_validate(data)
@@ -6528,7 +6528,7 @@ class Client(AsyncBaseClient):
             query=DELETE_MEDICAL_GUIDELINE_GQL,
             operation_name="DeleteMedicalGuideline",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteMedicalGuideline.model_validate(data)
@@ -6537,14 +6537,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteMedicalGuidelines:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_MEDICAL_GUIDELINES_GQL,
             operation_name="DeleteMedicalGuidelines",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteMedicalGuidelines.model_validate(data)
@@ -6553,46 +6553,46 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetMedicalGuideline:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_MEDICAL_GUIDELINE_GQL,
             operation_name="GetMedicalGuideline",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetMedicalGuideline.model_validate(data)
 
     async def query_medical_guidelines(
         self,
-        filter: Union[Optional[MedicalGuidelineFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalGuidelineFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryMedicalGuidelines:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_MEDICAL_GUIDELINES_GQL,
             operation_name="QueryMedicalGuidelines",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMedicalGuidelines.model_validate(data)
 
     async def query_medical_guidelines_clusters(
         self,
-        filter: Union[Optional[MedicalGuidelineFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalGuidelineFilter], UnsetType] = UNSET,
         clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryMedicalGuidelinesClusters:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "clusters": clusters,
             "correlationId": correlation_id,
         }
@@ -6600,7 +6600,7 @@ class Client(AsyncBaseClient):
             query=QUERY_MEDICAL_GUIDELINES_CLUSTERS_GQL,
             operation_name="QueryMedicalGuidelinesClusters",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMedicalGuidelinesClusters.model_validate(data)
@@ -6613,26 +6613,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_MEDICAL_GUIDELINE_GQL,
             operation_name="UpdateMedicalGuideline",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateMedicalGuideline.model_validate(data)
 
     async def count_medical_indications(
         self,
-        filter: Union[Optional[MedicalIndicationFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalIndicationFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountMedicalIndications:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_MEDICAL_INDICATIONS_GQL,
             operation_name="CountMedicalIndications",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountMedicalIndications.model_validate(data)
@@ -6645,20 +6645,20 @@ class Client(AsyncBaseClient):
             query=CREATE_MEDICAL_INDICATION_GQL,
             operation_name="CreateMedicalIndication",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateMedicalIndication.model_validate(data)
 
     async def delete_all_medical_indications(
         self,
-        filter: Union[Optional[MedicalIndicationFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalIndicationFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllMedicalIndications:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -6666,7 +6666,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_MEDICAL_INDICATIONS_GQL,
             operation_name="DeleteAllMedicalIndications",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllMedicalIndications.model_validate(data)
@@ -6679,7 +6679,7 @@ class Client(AsyncBaseClient):
             query=DELETE_MEDICAL_INDICATION_GQL,
             operation_name="DeleteMedicalIndication",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteMedicalIndication.model_validate(data)
@@ -6688,14 +6688,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteMedicalIndications:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_MEDICAL_INDICATIONS_GQL,
             operation_name="DeleteMedicalIndications",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteMedicalIndications.model_validate(data)
@@ -6704,46 +6704,46 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetMedicalIndication:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_MEDICAL_INDICATION_GQL,
             operation_name="GetMedicalIndication",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetMedicalIndication.model_validate(data)
 
     async def query_medical_indications(
         self,
-        filter: Union[Optional[MedicalIndicationFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalIndicationFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryMedicalIndications:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_MEDICAL_INDICATIONS_GQL,
             operation_name="QueryMedicalIndications",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMedicalIndications.model_validate(data)
 
     async def query_medical_indications_clusters(
         self,
-        filter: Union[Optional[MedicalIndicationFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalIndicationFilter], UnsetType] = UNSET,
         clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryMedicalIndicationsClusters:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "clusters": clusters,
             "correlationId": correlation_id,
         }
@@ -6751,7 +6751,7 @@ class Client(AsyncBaseClient):
             query=QUERY_MEDICAL_INDICATIONS_CLUSTERS_GQL,
             operation_name="QueryMedicalIndicationsClusters",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMedicalIndicationsClusters.model_validate(data)
@@ -6764,26 +6764,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_MEDICAL_INDICATION_GQL,
             operation_name="UpdateMedicalIndication",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateMedicalIndication.model_validate(data)
 
     async def count_medical_procedures(
         self,
-        filter: Union[Optional[MedicalProcedureFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalProcedureFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountMedicalProcedures:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_MEDICAL_PROCEDURES_GQL,
             operation_name="CountMedicalProcedures",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountMedicalProcedures.model_validate(data)
@@ -6796,20 +6796,20 @@ class Client(AsyncBaseClient):
             query=CREATE_MEDICAL_PROCEDURE_GQL,
             operation_name="CreateMedicalProcedure",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateMedicalProcedure.model_validate(data)
 
     async def delete_all_medical_procedures(
         self,
-        filter: Union[Optional[MedicalProcedureFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalProcedureFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllMedicalProcedures:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -6817,7 +6817,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_MEDICAL_PROCEDURES_GQL,
             operation_name="DeleteAllMedicalProcedures",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllMedicalProcedures.model_validate(data)
@@ -6830,7 +6830,7 @@ class Client(AsyncBaseClient):
             query=DELETE_MEDICAL_PROCEDURE_GQL,
             operation_name="DeleteMedicalProcedure",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteMedicalProcedure.model_validate(data)
@@ -6839,14 +6839,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteMedicalProcedures:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_MEDICAL_PROCEDURES_GQL,
             operation_name="DeleteMedicalProcedures",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteMedicalProcedures.model_validate(data)
@@ -6855,46 +6855,46 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetMedicalProcedure:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_MEDICAL_PROCEDURE_GQL,
             operation_name="GetMedicalProcedure",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetMedicalProcedure.model_validate(data)
 
     async def query_medical_procedures(
         self,
-        filter: Union[Optional[MedicalProcedureFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalProcedureFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryMedicalProcedures:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_MEDICAL_PROCEDURES_GQL,
             operation_name="QueryMedicalProcedures",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMedicalProcedures.model_validate(data)
 
     async def query_medical_procedures_clusters(
         self,
-        filter: Union[Optional[MedicalProcedureFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalProcedureFilter], UnsetType] = UNSET,
         clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryMedicalProceduresClusters:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "clusters": clusters,
             "correlationId": correlation_id,
         }
@@ -6902,7 +6902,7 @@ class Client(AsyncBaseClient):
             query=QUERY_MEDICAL_PROCEDURES_CLUSTERS_GQL,
             operation_name="QueryMedicalProceduresClusters",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMedicalProceduresClusters.model_validate(data)
@@ -6915,26 +6915,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_MEDICAL_PROCEDURE_GQL,
             operation_name="UpdateMedicalProcedure",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateMedicalProcedure.model_validate(data)
 
     async def count_medical_studies(
         self,
-        filter: Union[Optional[MedicalStudyFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalStudyFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountMedicalStudies:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_MEDICAL_STUDIES_GQL,
             operation_name="CountMedicalStudies",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountMedicalStudies.model_validate(data)
@@ -6947,20 +6947,20 @@ class Client(AsyncBaseClient):
             query=CREATE_MEDICAL_STUDY_GQL,
             operation_name="CreateMedicalStudy",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateMedicalStudy.model_validate(data)
 
     async def delete_all_medical_studies(
         self,
-        filter: Union[Optional[MedicalStudyFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalStudyFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllMedicalStudies:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -6968,7 +6968,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_MEDICAL_STUDIES_GQL,
             operation_name="DeleteAllMedicalStudies",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllMedicalStudies.model_validate(data)
@@ -6977,14 +6977,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteMedicalStudies:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_MEDICAL_STUDIES_GQL,
             operation_name="DeleteMedicalStudies",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteMedicalStudies.model_validate(data)
@@ -6995,7 +6995,7 @@ class Client(AsyncBaseClient):
             query=DELETE_MEDICAL_STUDY_GQL,
             operation_name="DeleteMedicalStudy",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteMedicalStudy.model_validate(data)
@@ -7004,46 +7004,46 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetMedicalStudy:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_MEDICAL_STUDY_GQL,
             operation_name="GetMedicalStudy",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetMedicalStudy.model_validate(data)
 
     async def query_medical_studies(
         self,
-        filter: Union[Optional[MedicalStudyFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalStudyFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryMedicalStudies:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_MEDICAL_STUDIES_GQL,
             operation_name="QueryMedicalStudies",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMedicalStudies.model_validate(data)
 
     async def query_medical_studies_clusters(
         self,
-        filter: Union[Optional[MedicalStudyFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalStudyFilter], UnsetType] = UNSET,
         clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryMedicalStudiesClusters:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "clusters": clusters,
             "correlationId": correlation_id,
         }
@@ -7051,7 +7051,7 @@ class Client(AsyncBaseClient):
             query=QUERY_MEDICAL_STUDIES_CLUSTERS_GQL,
             operation_name="QueryMedicalStudiesClusters",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMedicalStudiesClusters.model_validate(data)
@@ -7064,26 +7064,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_MEDICAL_STUDY_GQL,
             operation_name="UpdateMedicalStudy",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateMedicalStudy.model_validate(data)
 
     async def count_medical_tests(
         self,
-        filter: Union[Optional[MedicalTestFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalTestFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountMedicalTests:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_MEDICAL_TESTS_GQL,
             operation_name="CountMedicalTests",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountMedicalTests.model_validate(data)
@@ -7096,20 +7096,20 @@ class Client(AsyncBaseClient):
             query=CREATE_MEDICAL_TEST_GQL,
             operation_name="CreateMedicalTest",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateMedicalTest.model_validate(data)
 
     async def delete_all_medical_tests(
         self,
-        filter: Union[Optional[MedicalTestFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalTestFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllMedicalTests:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -7117,7 +7117,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_MEDICAL_TESTS_GQL,
             operation_name="DeleteAllMedicalTests",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllMedicalTests.model_validate(data)
@@ -7128,7 +7128,7 @@ class Client(AsyncBaseClient):
             query=DELETE_MEDICAL_TEST_GQL,
             operation_name="DeleteMedicalTest",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteMedicalTest.model_validate(data)
@@ -7137,14 +7137,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteMedicalTests:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_MEDICAL_TESTS_GQL,
             operation_name="DeleteMedicalTests",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteMedicalTests.model_validate(data)
@@ -7153,46 +7153,46 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetMedicalTest:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_MEDICAL_TEST_GQL,
             operation_name="GetMedicalTest",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetMedicalTest.model_validate(data)
 
     async def query_medical_tests(
         self,
-        filter: Union[Optional[MedicalTestFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalTestFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryMedicalTests:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_MEDICAL_TESTS_GQL,
             operation_name="QueryMedicalTests",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMedicalTests.model_validate(data)
 
     async def query_medical_tests_clusters(
         self,
-        filter: Union[Optional[MedicalTestFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalTestFilter], UnsetType] = UNSET,
         clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryMedicalTestsClusters:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "clusters": clusters,
             "correlationId": correlation_id,
         }
@@ -7200,7 +7200,7 @@ class Client(AsyncBaseClient):
             query=QUERY_MEDICAL_TESTS_CLUSTERS_GQL,
             operation_name="QueryMedicalTestsClusters",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMedicalTestsClusters.model_validate(data)
@@ -7213,26 +7213,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_MEDICAL_TEST_GQL,
             operation_name="UpdateMedicalTest",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateMedicalTest.model_validate(data)
 
     async def count_medical_therapies(
         self,
-        filter: Union[Optional[MedicalTherapyFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalTherapyFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountMedicalTherapies:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_MEDICAL_THERAPIES_GQL,
             operation_name="CountMedicalTherapies",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountMedicalTherapies.model_validate(data)
@@ -7245,20 +7245,20 @@ class Client(AsyncBaseClient):
             query=CREATE_MEDICAL_THERAPY_GQL,
             operation_name="CreateMedicalTherapy",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateMedicalTherapy.model_validate(data)
 
     async def delete_all_medical_therapies(
         self,
-        filter: Union[Optional[MedicalTherapyFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalTherapyFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllMedicalTherapies:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -7266,7 +7266,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_MEDICAL_THERAPIES_GQL,
             operation_name="DeleteAllMedicalTherapies",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllMedicalTherapies.model_validate(data)
@@ -7275,14 +7275,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteMedicalTherapies:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_MEDICAL_THERAPIES_GQL,
             operation_name="DeleteMedicalTherapies",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteMedicalTherapies.model_validate(data)
@@ -7295,7 +7295,7 @@ class Client(AsyncBaseClient):
             query=DELETE_MEDICAL_THERAPY_GQL,
             operation_name="DeleteMedicalTherapy",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteMedicalTherapy.model_validate(data)
@@ -7304,46 +7304,46 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetMedicalTherapy:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_MEDICAL_THERAPY_GQL,
             operation_name="GetMedicalTherapy",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetMedicalTherapy.model_validate(data)
 
     async def query_medical_therapies(
         self,
-        filter: Union[Optional[MedicalTherapyFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalTherapyFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryMedicalTherapies:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_MEDICAL_THERAPIES_GQL,
             operation_name="QueryMedicalTherapies",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMedicalTherapies.model_validate(data)
 
     async def query_medical_therapies_clusters(
         self,
-        filter: Union[Optional[MedicalTherapyFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[MedicalTherapyFilter], UnsetType] = UNSET,
         clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryMedicalTherapiesClusters:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "clusters": clusters,
             "correlationId": correlation_id,
         }
@@ -7351,7 +7351,7 @@ class Client(AsyncBaseClient):
             query=QUERY_MEDICAL_THERAPIES_CLUSTERS_GQL,
             operation_name="QueryMedicalTherapiesClusters",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryMedicalTherapiesClusters.model_validate(data)
@@ -7364,7 +7364,7 @@ class Client(AsyncBaseClient):
             query=UPDATE_MEDICAL_THERAPY_GQL,
             operation_name="UpdateMedicalTherapy",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateMedicalTherapy.model_validate(data)
@@ -7374,7 +7374,7 @@ class Client(AsyncBaseClient):
         connector: IntegrationConnectorInput,
         text: str,
         text_type: Union[Optional[TextTypes], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> SendNotification:
         variables: dict[str, object] = {
             "connector": connector,
@@ -7385,7 +7385,7 @@ class Client(AsyncBaseClient):
             query=SEND_NOTIFICATION_GQL,
             operation_name="SendNotification",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return SendNotification.model_validate(data)
@@ -7398,7 +7398,7 @@ class Client(AsyncBaseClient):
             query=CREATE_OBSERVATION_GQL,
             operation_name="CreateObservation",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateObservation.model_validate(data)
@@ -7409,7 +7409,7 @@ class Client(AsyncBaseClient):
             query=DELETE_OBSERVATION_GQL,
             operation_name="DeleteObservation",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteObservation.model_validate(data)
@@ -7420,7 +7420,7 @@ class Client(AsyncBaseClient):
         candidates: list[EntityReferenceInput],
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> MatchEntity:
         variables: dict[str, object] = {
             "observable": observable,
@@ -7432,22 +7432,22 @@ class Client(AsyncBaseClient):
             query=MATCH_ENTITY_GQL,
             operation_name="MatchEntity",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return MatchEntity.model_validate(data)
 
     async def resolve_entities(
         self,
-        type: ObservableTypes,
+        type_: ObservableTypes,
         entities: list[EntityReferenceInput],
         threshold: Union[Optional[float], UnsetType] = UNSET,
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> ResolveEntities:
         variables: dict[str, object] = {
-            "type": type,
+            "type": type_,
             "entities": entities,
             "threshold": threshold,
             "specification": specification,
@@ -7457,22 +7457,22 @@ class Client(AsyncBaseClient):
             query=RESOLVE_ENTITIES_GQL,
             operation_name="ResolveEntities",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return ResolveEntities.model_validate(data)
 
     async def resolve_entity(
         self,
-        type: ObservableTypes,
+        type_: ObservableTypes,
         source: EntityReferenceInput,
         target: EntityReferenceInput,
         specification: Union[Optional[EntityReferenceInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> ResolveEntity:
         variables: dict[str, object] = {
-            "type": type,
+            "type": type_,
             "source": source,
             "target": target,
             "specification": specification,
@@ -7482,7 +7482,7 @@ class Client(AsyncBaseClient):
             query=RESOLVE_ENTITY_GQL,
             operation_name="ResolveEntity",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return ResolveEntity.model_validate(data)
@@ -7495,26 +7495,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_OBSERVATION_GQL,
             operation_name="UpdateObservation",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateObservation.model_validate(data)
 
     async def count_organizations(
         self,
-        filter: Union[Optional[OrganizationFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[OrganizationFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountOrganizations:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_ORGANIZATIONS_GQL,
             operation_name="CountOrganizations",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountOrganizations.model_validate(data)
@@ -7527,20 +7527,20 @@ class Client(AsyncBaseClient):
             query=CREATE_ORGANIZATION_GQL,
             operation_name="CreateOrganization",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateOrganization.model_validate(data)
 
     async def delete_all_organizations(
         self,
-        filter: Union[Optional[OrganizationFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[OrganizationFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllOrganizations:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -7548,7 +7548,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_ORGANIZATIONS_GQL,
             operation_name="DeleteAllOrganizations",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllOrganizations.model_validate(data)
@@ -7559,7 +7559,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ORGANIZATION_GQL,
             operation_name="DeleteOrganization",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteOrganization.model_validate(data)
@@ -7568,14 +7568,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteOrganizations:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_ORGANIZATIONS_GQL,
             operation_name="DeleteOrganizations",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteOrganizations.model_validate(data)
@@ -7583,12 +7583,12 @@ class Client(AsyncBaseClient):
     async def enrich_organizations(
         self,
         connector: EntityEnrichmentConnectorInput,
-        filter: Union[Optional[OrganizationFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[OrganizationFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> EnrichOrganizations:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "connector": connector,
             "correlationId": correlation_id,
         }
@@ -7596,7 +7596,7 @@ class Client(AsyncBaseClient):
             query=ENRICH_ORGANIZATIONS_GQL,
             operation_name="EnrichOrganizations",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return EnrichOrganizations.model_validate(data)
@@ -7605,46 +7605,46 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetOrganization:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_ORGANIZATION_GQL,
             operation_name="GetOrganization",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetOrganization.model_validate(data)
 
     async def query_organizations(
         self,
-        filter: Union[Optional[OrganizationFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[OrganizationFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryOrganizations:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_ORGANIZATIONS_GQL,
             operation_name="QueryOrganizations",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryOrganizations.model_validate(data)
 
     async def query_organizations_clusters(
         self,
-        filter: Union[Optional[OrganizationFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[OrganizationFilter], UnsetType] = UNSET,
         clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryOrganizationsClusters:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "clusters": clusters,
             "correlationId": correlation_id,
         }
@@ -7652,26 +7652,26 @@ class Client(AsyncBaseClient):
             query=QUERY_ORGANIZATIONS_CLUSTERS_GQL,
             operation_name="QueryOrganizationsClusters",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryOrganizationsClusters.model_validate(data)
 
     async def query_organizations_expanded(
         self,
-        filter: Union[Optional[OrganizationFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[OrganizationFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryOrganizationsExpanded:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_ORGANIZATIONS_EXPANDED_GQL,
             operation_name="QueryOrganizationsExpanded",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryOrganizationsExpanded.model_validate(data)
@@ -7684,26 +7684,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_ORGANIZATION_GQL,
             operation_name="UpdateOrganization",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateOrganization.model_validate(data)
 
     async def count_persons(
         self,
-        filter: Union[Optional[PersonFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[PersonFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountPersons:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_PERSONS_GQL,
             operation_name="CountPersons",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountPersons.model_validate(data)
@@ -7714,20 +7714,20 @@ class Client(AsyncBaseClient):
             query=CREATE_PERSON_GQL,
             operation_name="CreatePerson",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreatePerson.model_validate(data)
 
     async def delete_all_persons(
         self,
-        filter: Union[Optional[PersonFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[PersonFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllPersons:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -7735,7 +7735,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_PERSONS_GQL,
             operation_name="DeleteAllPersons",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllPersons.model_validate(data)
@@ -7746,7 +7746,7 @@ class Client(AsyncBaseClient):
             query=DELETE_PERSON_GQL,
             operation_name="DeletePerson",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeletePerson.model_validate(data)
@@ -7755,14 +7755,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeletePersons:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_PERSONS_GQL,
             operation_name="DeletePersons",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeletePersons.model_validate(data)
@@ -7770,12 +7770,12 @@ class Client(AsyncBaseClient):
     async def enrich_persons(
         self,
         connector: EntityEnrichmentConnectorInput,
-        filter: Union[Optional[PersonFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[PersonFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> EnrichPersons:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "connector": connector,
             "correlationId": correlation_id,
         }
@@ -7783,7 +7783,7 @@ class Client(AsyncBaseClient):
             query=ENRICH_PERSONS_GQL,
             operation_name="EnrichPersons",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return EnrichPersons.model_validate(data)
@@ -7792,46 +7792,46 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetPerson:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_PERSON_GQL,
             operation_name="GetPerson",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetPerson.model_validate(data)
 
     async def query_persons(
         self,
-        filter: Union[Optional[PersonFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[PersonFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryPersons:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_PERSONS_GQL,
             operation_name="QueryPersons",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryPersons.model_validate(data)
 
     async def query_persons_clusters(
         self,
-        filter: Union[Optional[PersonFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[PersonFilter], UnsetType] = UNSET,
         clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryPersonsClusters:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "clusters": clusters,
             "correlationId": correlation_id,
         }
@@ -7839,26 +7839,26 @@ class Client(AsyncBaseClient):
             query=QUERY_PERSONS_CLUSTERS_GQL,
             operation_name="QueryPersonsClusters",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryPersonsClusters.model_validate(data)
 
     async def query_persons_expanded(
         self,
-        filter: Union[Optional[PersonFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[PersonFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryPersonsExpanded:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_PERSONS_EXPANDED_GQL,
             operation_name="QueryPersonsExpanded",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryPersonsExpanded.model_validate(data)
@@ -7871,26 +7871,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_PERSON_GQL,
             operation_name="UpdatePerson",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdatePerson.model_validate(data)
 
     async def count_personas(
         self,
-        filter: Union[Optional[PersonaFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[PersonaFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountPersonas:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_PERSONAS_GQL,
             operation_name="CountPersonas",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountPersonas.model_validate(data)
@@ -7903,20 +7903,20 @@ class Client(AsyncBaseClient):
             query=CREATE_PERSONA_GQL,
             operation_name="CreatePersona",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreatePersona.model_validate(data)
 
     async def delete_all_personas(
         self,
-        filter: Union[Optional[PersonaFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[PersonaFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllPersonas:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -7924,7 +7924,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_PERSONAS_GQL,
             operation_name="DeleteAllPersonas",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllPersonas.model_validate(data)
@@ -7935,7 +7935,7 @@ class Client(AsyncBaseClient):
             query=DELETE_PERSONA_GQL,
             operation_name="DeletePersona",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeletePersona.model_validate(data)
@@ -7944,14 +7944,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeletePersonas:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_PERSONAS_GQL,
             operation_name="DeletePersonas",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeletePersonas.model_validate(data)
@@ -7960,33 +7960,33 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetPersona:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_PERSONA_GQL,
             operation_name="GetPersona",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetPersona.model_validate(data)
 
     async def query_personas(
         self,
-        filter: Union[Optional[PersonaFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[PersonaFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryPersonas:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_PERSONAS_GQL,
             operation_name="QueryPersonas",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryPersonas.model_validate(data)
@@ -7999,26 +7999,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_PERSONA_GQL,
             operation_name="UpdatePersona",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdatePersona.model_validate(data)
 
     async def count_places(
         self,
-        filter: Union[Optional[PlaceFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[PlaceFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountPlaces:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_PLACES_GQL,
             operation_name="CountPlaces",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountPlaces.model_validate(data)
@@ -8029,20 +8029,20 @@ class Client(AsyncBaseClient):
             query=CREATE_PLACE_GQL,
             operation_name="CreatePlace",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreatePlace.model_validate(data)
 
     async def delete_all_places(
         self,
-        filter: Union[Optional[PlaceFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[PlaceFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllPlaces:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -8050,7 +8050,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_PLACES_GQL,
             operation_name="DeleteAllPlaces",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllPlaces.model_validate(data)
@@ -8061,7 +8061,7 @@ class Client(AsyncBaseClient):
             query=DELETE_PLACE_GQL,
             operation_name="DeletePlace",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeletePlace.model_validate(data)
@@ -8070,14 +8070,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeletePlaces:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_PLACES_GQL,
             operation_name="DeletePlaces",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeletePlaces.model_validate(data)
@@ -8085,12 +8085,12 @@ class Client(AsyncBaseClient):
     async def enrich_places(
         self,
         connector: EntityEnrichmentConnectorInput,
-        filter: Union[Optional[PlaceFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[PlaceFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> EnrichPlaces:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "connector": connector,
             "correlationId": correlation_id,
         }
@@ -8098,7 +8098,7 @@ class Client(AsyncBaseClient):
             query=ENRICH_PLACES_GQL,
             operation_name="EnrichPlaces",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return EnrichPlaces.model_validate(data)
@@ -8107,46 +8107,46 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetPlace:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_PLACE_GQL,
             operation_name="GetPlace",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetPlace.model_validate(data)
 
     async def query_places(
         self,
-        filter: Union[Optional[PlaceFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[PlaceFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryPlaces:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_PLACES_GQL,
             operation_name="QueryPlaces",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryPlaces.model_validate(data)
 
     async def query_places_clusters(
         self,
-        filter: Union[Optional[PlaceFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[PlaceFilter], UnsetType] = UNSET,
         clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryPlacesClusters:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "clusters": clusters,
             "correlationId": correlation_id,
         }
@@ -8154,7 +8154,7 @@ class Client(AsyncBaseClient):
             query=QUERY_PLACES_CLUSTERS_GQL,
             operation_name="QueryPlacesClusters",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryPlacesClusters.model_validate(data)
@@ -8165,26 +8165,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_PLACE_GQL,
             operation_name="UpdatePlace",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdatePlace.model_validate(data)
 
     async def count_products(
         self,
-        filter: Union[Optional[ProductFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ProductFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountProducts:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_PRODUCTS_GQL,
             operation_name="CountProducts",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountProducts.model_validate(data)
@@ -8197,20 +8197,20 @@ class Client(AsyncBaseClient):
             query=CREATE_PRODUCT_GQL,
             operation_name="CreateProduct",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateProduct.model_validate(data)
 
     async def delete_all_products(
         self,
-        filter: Union[Optional[ProductFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ProductFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllProducts:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -8218,7 +8218,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_PRODUCTS_GQL,
             operation_name="DeleteAllProducts",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllProducts.model_validate(data)
@@ -8229,7 +8229,7 @@ class Client(AsyncBaseClient):
             query=DELETE_PRODUCT_GQL,
             operation_name="DeleteProduct",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteProduct.model_validate(data)
@@ -8238,14 +8238,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteProducts:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_PRODUCTS_GQL,
             operation_name="DeleteProducts",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteProducts.model_validate(data)
@@ -8253,12 +8253,12 @@ class Client(AsyncBaseClient):
     async def enrich_products(
         self,
         connector: EntityEnrichmentConnectorInput,
-        filter: Union[Optional[ProductFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ProductFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> EnrichProducts:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "connector": connector,
             "correlationId": correlation_id,
         }
@@ -8266,7 +8266,7 @@ class Client(AsyncBaseClient):
             query=ENRICH_PRODUCTS_GQL,
             operation_name="EnrichProducts",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return EnrichProducts.model_validate(data)
@@ -8275,46 +8275,46 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetProduct:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_PRODUCT_GQL,
             operation_name="GetProduct",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetProduct.model_validate(data)
 
     async def query_products(
         self,
-        filter: Union[Optional[ProductFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ProductFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryProducts:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_PRODUCTS_GQL,
             operation_name="QueryProducts",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryProducts.model_validate(data)
 
     async def query_products_clusters(
         self,
-        filter: Union[Optional[ProductFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ProductFilter], UnsetType] = UNSET,
         clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryProductsClusters:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "clusters": clusters,
             "correlationId": correlation_id,
         }
@@ -8322,7 +8322,7 @@ class Client(AsyncBaseClient):
             query=QUERY_PRODUCTS_CLUSTERS_GQL,
             operation_name="QueryProductsClusters",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryProductsClusters.model_validate(data)
@@ -8335,7 +8335,7 @@ class Client(AsyncBaseClient):
             query=UPDATE_PRODUCT_GQL,
             operation_name="UpdateProduct",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateProduct.model_validate(data)
@@ -8346,7 +8346,7 @@ class Client(AsyncBaseClient):
             query=GET_PROJECT_GQL,
             operation_name="GetProject",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetProject.model_validate(data)
@@ -8356,7 +8356,7 @@ class Client(AsyncBaseClient):
         correlation_id: str,
         start_date: Union[Optional[Any], UnsetType] = UNSET,
         duration: Union[Optional[Any], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> LookupCredits:
         variables: dict[str, object] = {
             "correlationId": correlation_id,
@@ -8367,7 +8367,7 @@ class Client(AsyncBaseClient):
             query=LOOKUP_CREDITS_GQL,
             operation_name="LookupCredits",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return LookupCredits.model_validate(data)
@@ -8377,7 +8377,7 @@ class Client(AsyncBaseClient):
         correlation_id: str,
         start_date: Union[Optional[Any], UnsetType] = UNSET,
         duration: Union[Optional[Any], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> LookupUsage:
         variables: dict[str, object] = {
             "correlationId": correlation_id,
@@ -8388,7 +8388,7 @@ class Client(AsyncBaseClient):
             query=LOOKUP_USAGE_GQL,
             operation_name="LookupUsage",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return LookupUsage.model_validate(data)
@@ -8401,7 +8401,7 @@ class Client(AsyncBaseClient):
             query=QUERY_CREDITS_GQL,
             operation_name="QueryCredits",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryCredits.model_validate(data)
@@ -8414,7 +8414,7 @@ class Client(AsyncBaseClient):
             query=QUERY_TOKENS_GQL,
             operation_name="QueryTokens",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryTokens.model_validate(data)
@@ -8427,7 +8427,7 @@ class Client(AsyncBaseClient):
         excluded_names: Union[Optional[list[str]], UnsetType] = UNSET,
         offset: Union[Optional[int], UnsetType] = UNSET,
         limit: Union[Optional[int], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryUsage:
         variables: dict[str, object] = {
             "startDate": start_date,
@@ -8441,7 +8441,7 @@ class Client(AsyncBaseClient):
             query=QUERY_USAGE_GQL,
             operation_name="QueryUsage",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryUsage.model_validate(data)
@@ -8454,7 +8454,7 @@ class Client(AsyncBaseClient):
             query=UPDATE_PROJECT_GQL,
             operation_name="UpdateProject",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateProject.model_validate(data)
@@ -8465,26 +8465,26 @@ class Client(AsyncBaseClient):
             query=CLEAR_REPLICA_GQL,
             operation_name="ClearReplica",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return ClearReplica.model_validate(data)
 
     async def count_replicas(
         self,
-        filter: Union[Optional[ReplicaFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ReplicaFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountReplicas:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_REPLICAS_GQL,
             operation_name="CountReplicas",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountReplicas.model_validate(data)
@@ -8497,20 +8497,20 @@ class Client(AsyncBaseClient):
             query=CREATE_REPLICA_GQL,
             operation_name="CreateReplica",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateReplica.model_validate(data)
 
     async def delete_all_replicas(
         self,
-        filter: Union[Optional[ReplicaFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ReplicaFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllReplicas:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -8518,7 +8518,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_REPLICAS_GQL,
             operation_name="DeleteAllReplicas",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllReplicas.model_validate(data)
@@ -8529,7 +8529,7 @@ class Client(AsyncBaseClient):
             query=DELETE_REPLICA_GQL,
             operation_name="DeleteReplica",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteReplica.model_validate(data)
@@ -8538,14 +8538,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteReplicas:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_REPLICAS_GQL,
             operation_name="DeleteReplicas",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteReplicas.model_validate(data)
@@ -8556,7 +8556,7 @@ class Client(AsyncBaseClient):
             query=DISABLE_REPLICA_GQL,
             operation_name="DisableReplica",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DisableReplica.model_validate(data)
@@ -8567,7 +8567,7 @@ class Client(AsyncBaseClient):
             query=ENABLE_REPLICA_GQL,
             operation_name="EnableReplica",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return EnableReplica.model_validate(data)
@@ -8576,52 +8576,52 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetReplica:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_REPLICA_GQL,
             operation_name="GetReplica",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetReplica.model_validate(data)
 
     async def query_replicas(
         self,
-        filter: Union[Optional[ReplicaFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ReplicaFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryReplicas:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_REPLICAS_GQL,
             operation_name="QueryReplicas",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryReplicas.model_validate(data)
 
     async def replica_exists(
         self,
-        filter: Union[Optional[ReplicaFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ReplicaFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> ReplicaExists:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=REPLICA_EXISTS_GQL,
             operation_name="ReplicaExists",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return ReplicaExists.model_validate(data)
@@ -8632,7 +8632,7 @@ class Client(AsyncBaseClient):
             query=TRIGGER_REPLICA_GQL,
             operation_name="TriggerReplica",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return TriggerReplica.model_validate(data)
@@ -8645,7 +8645,7 @@ class Client(AsyncBaseClient):
             query=UPDATE_REPLICA_GQL,
             operation_name="UpdateReplica",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateReplica.model_validate(data)
@@ -8658,26 +8658,26 @@ class Client(AsyncBaseClient):
             query=UPSERT_REPLICA_GQL,
             operation_name="UpsertReplica",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpsertReplica.model_validate(data)
 
     async def count_repos(
         self,
-        filter: Union[Optional[RepoFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[RepoFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountRepos:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_REPOS_GQL,
             operation_name="CountRepos",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountRepos.model_validate(data)
@@ -8688,20 +8688,20 @@ class Client(AsyncBaseClient):
             query=CREATE_REPO_GQL,
             operation_name="CreateRepo",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateRepo.model_validate(data)
 
     async def delete_all_repos(
         self,
-        filter: Union[Optional[RepoFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[RepoFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllRepos:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -8709,7 +8709,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_REPOS_GQL,
             operation_name="DeleteAllRepos",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllRepos.model_validate(data)
@@ -8720,7 +8720,7 @@ class Client(AsyncBaseClient):
             query=DELETE_REPO_GQL,
             operation_name="DeleteRepo",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteRepo.model_validate(data)
@@ -8729,14 +8729,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteRepos:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_REPOS_GQL,
             operation_name="DeleteRepos",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteRepos.model_validate(data)
@@ -8745,7 +8745,7 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetRepo:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
@@ -8756,32 +8756,32 @@ class Client(AsyncBaseClient):
 
     async def query_repos(
         self,
-        filter: Union[Optional[RepoFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[RepoFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryRepos:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_REPOS_GQL,
             operation_name="QueryRepos",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryRepos.model_validate(data)
 
     async def query_repos_clusters(
         self,
-        filter: Union[Optional[RepoFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[RepoFilter], UnsetType] = UNSET,
         clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryReposClusters:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "clusters": clusters,
             "correlationId": correlation_id,
         }
@@ -8789,7 +8789,7 @@ class Client(AsyncBaseClient):
             query=QUERY_REPOS_CLUSTERS_GQL,
             operation_name="QueryReposClusters",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryReposClusters.model_validate(data)
@@ -8800,7 +8800,7 @@ class Client(AsyncBaseClient):
             query=UPDATE_REPO_GQL,
             operation_name="UpdateRepo",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateRepo.model_validate(data)
@@ -8811,7 +8811,7 @@ class Client(AsyncBaseClient):
         allowed_paths: Union[Optional[list[str]], UnsetType] = UNSET,
         excluded_paths: Union[Optional[list[str]], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> MapWeb:
         variables: dict[str, object] = {
             "uri": uri,
@@ -8831,7 +8831,7 @@ class Client(AsyncBaseClient):
         service: Union[Optional[SearchServiceTypes], UnsetType] = UNSET,
         limit: Union[Optional[int], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> SearchWeb:
         variables: dict[str, object] = {
             "text": text,
@@ -8843,26 +8843,26 @@ class Client(AsyncBaseClient):
             query=SEARCH_WEB_GQL,
             operation_name="SearchWeb",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return SearchWeb.model_validate(data)
 
     async def count_skills(
         self,
-        filter: Union[Optional[SkillFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[SkillFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountSkills:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_SKILLS_GQL,
             operation_name="CountSkills",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountSkills.model_validate(data)
@@ -8871,27 +8871,27 @@ class Client(AsyncBaseClient):
         self,
         skill: SkillInput,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CreateSkill:
         variables: dict[str, object] = {"skill": skill, "correlationId": correlation_id}
         response = await self.execute(
             query=CREATE_SKILL_GQL,
             operation_name="CreateSkill",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateSkill.model_validate(data)
 
     async def delete_all_skills(
         self,
-        filter: Union[Optional[SkillFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[SkillFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllSkills:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -8899,7 +8899,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_SKILLS_GQL,
             operation_name="DeleteAllSkills",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllSkills.model_validate(data)
@@ -8910,7 +8910,7 @@ class Client(AsyncBaseClient):
             query=DELETE_SKILL_GQL,
             operation_name="DeleteSkill",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteSkill.model_validate(data)
@@ -8919,14 +8919,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteSkills:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_SKILLS_GQL,
             operation_name="DeleteSkills",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteSkills.model_validate(data)
@@ -8937,7 +8937,7 @@ class Client(AsyncBaseClient):
             query=DISABLE_SKILL_GQL,
             operation_name="DisableSkill",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DisableSkill.model_validate(data)
@@ -8948,7 +8948,7 @@ class Client(AsyncBaseClient):
             query=ENABLE_SKILL_GQL,
             operation_name="EnableSkill",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return EnableSkill.model_validate(data)
@@ -8957,33 +8957,33 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetSkill:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_SKILL_GQL,
             operation_name="GetSkill",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetSkill.model_validate(data)
 
     async def query_skills(
         self,
-        filter: Union[Optional[SkillFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[SkillFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QuerySkills:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_SKILLS_GQL,
             operation_name="QuerySkills",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QuerySkills.model_validate(data)
@@ -8994,7 +8994,7 @@ class Client(AsyncBaseClient):
             query=UPDATE_SKILL_GQL,
             operation_name="UpdateSkill",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateSkill.model_validate(data)
@@ -9005,26 +9005,26 @@ class Client(AsyncBaseClient):
             query=UPSERT_SKILL_GQL,
             operation_name="UpsertSkill",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpsertSkill.model_validate(data)
 
     async def count_softwares(
         self,
-        filter: Union[Optional[SoftwareFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[SoftwareFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountSoftwares:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_SOFTWARES_GQL,
             operation_name="CountSoftwares",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountSoftwares.model_validate(data)
@@ -9037,20 +9037,20 @@ class Client(AsyncBaseClient):
             query=CREATE_SOFTWARE_GQL,
             operation_name="CreateSoftware",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateSoftware.model_validate(data)
 
     async def delete_all_softwares(
         self,
-        filter: Union[Optional[SoftwareFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[SoftwareFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllSoftwares:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -9058,7 +9058,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_SOFTWARES_GQL,
             operation_name="DeleteAllSoftwares",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllSoftwares.model_validate(data)
@@ -9069,7 +9069,7 @@ class Client(AsyncBaseClient):
             query=DELETE_SOFTWARE_GQL,
             operation_name="DeleteSoftware",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteSoftware.model_validate(data)
@@ -9078,14 +9078,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteSoftwares:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_SOFTWARES_GQL,
             operation_name="DeleteSoftwares",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteSoftwares.model_validate(data)
@@ -9094,46 +9094,46 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetSoftware:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_SOFTWARE_GQL,
             operation_name="GetSoftware",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetSoftware.model_validate(data)
 
     async def query_softwares(
         self,
-        filter: Union[Optional[SoftwareFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[SoftwareFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QuerySoftwares:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_SOFTWARES_GQL,
             operation_name="QuerySoftwares",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QuerySoftwares.model_validate(data)
 
     async def query_softwares_clusters(
         self,
-        filter: Union[Optional[SoftwareFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[SoftwareFilter], UnsetType] = UNSET,
         clusters: Union[Optional[EntityClustersInput], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QuerySoftwaresClusters:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "clusters": clusters,
             "correlationId": correlation_id,
         }
@@ -9141,7 +9141,7 @@ class Client(AsyncBaseClient):
             query=QUERY_SOFTWARES_CLUSTERS_GQL,
             operation_name="QuerySoftwaresClusters",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QuerySoftwaresClusters.model_validate(data)
@@ -9154,26 +9154,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_SOFTWARE_GQL,
             operation_name="UpdateSoftware",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateSoftware.model_validate(data)
 
     async def count_specifications(
         self,
-        filter: Union[Optional[SpecificationFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[SpecificationFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountSpecifications:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_SPECIFICATIONS_GQL,
             operation_name="CountSpecifications",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountSpecifications.model_validate(data)
@@ -9186,20 +9186,20 @@ class Client(AsyncBaseClient):
             query=CREATE_SPECIFICATION_GQL,
             operation_name="CreateSpecification",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateSpecification.model_validate(data)
 
     async def delete_all_specifications(
         self,
-        filter: Union[Optional[SpecificationFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[SpecificationFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllSpecifications:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -9207,7 +9207,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_SPECIFICATIONS_GQL,
             operation_name="DeleteAllSpecifications",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllSpecifications.model_validate(data)
@@ -9218,7 +9218,7 @@ class Client(AsyncBaseClient):
             query=DELETE_SPECIFICATION_GQL,
             operation_name="DeleteSpecification",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteSpecification.model_validate(data)
@@ -9227,14 +9227,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteSpecifications:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_SPECIFICATIONS_GQL,
             operation_name="DeleteSpecifications",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteSpecifications.model_validate(data)
@@ -9243,14 +9243,14 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetSpecification:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_SPECIFICATION_GQL,
             operation_name="GetSpecification",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetSpecification.model_validate(data)
@@ -9263,58 +9263,58 @@ class Client(AsyncBaseClient):
             query=PROMPT_SPECIFICATIONS_GQL,
             operation_name="PromptSpecifications",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return PromptSpecifications.model_validate(data)
 
     async def query_models(
-        self, filter: Union[Optional[ModelFilter], UnsetType] = UNSET, **kwargs: Any
+        self, filter_: Union[Optional[ModelFilter], UnsetType] = UNSET, **kwargs: Any
     ) -> QueryModels:
-        variables: dict[str, object] = {"filter": filter}
+        variables: dict[str, object] = {"filter": filter_}
         response = await self.execute(
             query=QUERY_MODELS_GQL,
             operation_name="QueryModels",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryModels.model_validate(data)
 
     async def query_specifications(
         self,
-        filter: Union[Optional[SpecificationFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[SpecificationFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QuerySpecifications:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_SPECIFICATIONS_GQL,
             operation_name="QuerySpecifications",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QuerySpecifications.model_validate(data)
 
     async def specification_exists(
         self,
-        filter: Union[Optional[SpecificationFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[SpecificationFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> SpecificationExists:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=SPECIFICATION_EXISTS_GQL,
             operation_name="SpecificationExists",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return SpecificationExists.model_validate(data)
@@ -9327,7 +9327,7 @@ class Client(AsyncBaseClient):
             query=UPDATE_SPECIFICATION_GQL,
             operation_name="UpdateSpecification",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateSpecification.model_validate(data)
@@ -9340,26 +9340,26 @@ class Client(AsyncBaseClient):
             query=UPSERT_SPECIFICATION_GQL,
             operation_name="UpsertSpecification",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpsertSpecification.model_validate(data)
 
     async def count_users(
         self,
-        filter: Union[Optional[UserFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[UserFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountUsers:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_USERS_GQL,
             operation_name="CountUsers",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountUsers.model_validate(data)
@@ -9370,7 +9370,7 @@ class Client(AsyncBaseClient):
             query=CREATE_USER_GQL,
             operation_name="CreateUser",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateUser.model_validate(data)
@@ -9381,7 +9381,7 @@ class Client(AsyncBaseClient):
             query=DELETE_USER_GQL,
             operation_name="DeleteUser",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteUser.model_validate(data)
@@ -9392,7 +9392,7 @@ class Client(AsyncBaseClient):
             query=DISABLE_USER_GQL,
             operation_name="DisableUser",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DisableUser.model_validate(data)
@@ -9403,7 +9403,7 @@ class Client(AsyncBaseClient):
             query=ENABLE_USER_GQL,
             operation_name="EnableUser",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return EnableUser.model_validate(data)
@@ -9424,26 +9424,26 @@ class Client(AsyncBaseClient):
             query=GET_USER_BY_IDENTIFIER_GQL,
             operation_name="GetUserByIdentifier",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetUserByIdentifier.model_validate(data)
 
     async def query_users(
         self,
-        filter: Union[Optional[UserFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[UserFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryUsers:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_USERS_GQL,
             operation_name="QueryUsers",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryUsers.model_validate(data)
@@ -9454,26 +9454,26 @@ class Client(AsyncBaseClient):
             query=UPDATE_USER_GQL,
             operation_name="UpdateUser",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateUser.model_validate(data)
 
     async def count_views(
         self,
-        filter: Union[Optional[ViewFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ViewFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountViews:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_VIEWS_GQL,
             operation_name="CountViews",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountViews.model_validate(data)
@@ -9484,20 +9484,20 @@ class Client(AsyncBaseClient):
             query=CREATE_VIEW_GQL,
             operation_name="CreateView",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateView.model_validate(data)
 
     async def delete_all_views(
         self,
-        filter: Union[Optional[ViewFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ViewFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllViews:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -9505,7 +9505,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_VIEWS_GQL,
             operation_name="DeleteAllViews",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllViews.model_validate(data)
@@ -9516,7 +9516,7 @@ class Client(AsyncBaseClient):
             query=DELETE_VIEW_GQL,
             operation_name="DeleteView",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteView.model_validate(data)
@@ -9525,14 +9525,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteViews:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_VIEWS_GQL,
             operation_name="DeleteViews",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteViews.model_validate(data)
@@ -9541,7 +9541,7 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetView:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
@@ -9552,19 +9552,19 @@ class Client(AsyncBaseClient):
 
     async def query_views(
         self,
-        filter: Union[Optional[ViewFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ViewFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryViews:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_VIEWS_GQL,
             operation_name="QueryViews",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryViews.model_validate(data)
@@ -9575,7 +9575,7 @@ class Client(AsyncBaseClient):
             query=UPDATE_VIEW_GQL,
             operation_name="UpdateView",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateView.model_validate(data)
@@ -9586,45 +9586,45 @@ class Client(AsyncBaseClient):
             query=UPSERT_VIEW_GQL,
             operation_name="UpsertView",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpsertView.model_validate(data)
 
     async def view_exists(
         self,
-        filter: Union[Optional[ViewFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[ViewFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> ViewExists:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=VIEW_EXISTS_GQL,
             operation_name="ViewExists",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return ViewExists.model_validate(data)
 
     async def count_workflows(
         self,
-        filter: Union[Optional[WorkflowFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[WorkflowFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> CountWorkflows:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=COUNT_WORKFLOWS_GQL,
             operation_name="CountWorkflows",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CountWorkflows.model_validate(data)
@@ -9637,20 +9637,20 @@ class Client(AsyncBaseClient):
             query=CREATE_WORKFLOW_GQL,
             operation_name="CreateWorkflow",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return CreateWorkflow.model_validate(data)
 
     async def delete_all_workflows(
         self,
-        filter: Union[Optional[WorkflowFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[WorkflowFilter], UnsetType] = UNSET,
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteAllWorkflows:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "isSynchronous": is_synchronous,
             "correlationId": correlation_id,
         }
@@ -9658,7 +9658,7 @@ class Client(AsyncBaseClient):
             query=DELETE_ALL_WORKFLOWS_GQL,
             operation_name="DeleteAllWorkflows",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteAllWorkflows.model_validate(data)
@@ -9669,7 +9669,7 @@ class Client(AsyncBaseClient):
             query=DELETE_WORKFLOW_GQL,
             operation_name="DeleteWorkflow",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteWorkflow.model_validate(data)
@@ -9678,14 +9678,14 @@ class Client(AsyncBaseClient):
         self,
         ids: list[str],
         is_synchronous: Union[Optional[bool], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> DeleteWorkflows:
         variables: dict[str, object] = {"ids": ids, "isSynchronous": is_synchronous}
         response = await self.execute(
             query=DELETE_WORKFLOWS_GQL,
             operation_name="DeleteWorkflows",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return DeleteWorkflows.model_validate(data)
@@ -9694,33 +9694,33 @@ class Client(AsyncBaseClient):
         self,
         id: str,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> GetWorkflow:
         variables: dict[str, object] = {"id": id, "correlationId": correlation_id}
         response = await self.execute(
             query=GET_WORKFLOW_GQL,
             operation_name="GetWorkflow",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return GetWorkflow.model_validate(data)
 
     async def query_workflows(
         self,
-        filter: Union[Optional[WorkflowFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[WorkflowFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> QueryWorkflows:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=QUERY_WORKFLOWS_GQL,
             operation_name="QueryWorkflows",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return QueryWorkflows.model_validate(data)
@@ -9733,7 +9733,7 @@ class Client(AsyncBaseClient):
             query=UPDATE_WORKFLOW_GQL,
             operation_name="UpdateWorkflow",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpdateWorkflow.model_validate(data)
@@ -9746,26 +9746,26 @@ class Client(AsyncBaseClient):
             query=UPSERT_WORKFLOW_GQL,
             operation_name="UpsertWorkflow",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return UpsertWorkflow.model_validate(data)
 
     async def workflow_exists(
         self,
-        filter: Union[Optional[WorkflowFilter], UnsetType] = UNSET,
+        filter_: Union[Optional[WorkflowFilter], UnsetType] = UNSET,
         correlation_id: Union[Optional[str], UnsetType] = UNSET,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> WorkflowExists:
         variables: dict[str, object] = {
-            "filter": filter,
+            "filter": filter_,
             "correlationId": correlation_id,
         }
         response = await self.execute(
             query=WORKFLOW_EXISTS_GQL,
             operation_name="WorkflowExists",
             variables=variables,
-            **kwargs
+            **kwargs,
         )
         data = self.get_data(response)
         return WorkflowExists.model_validate(data)

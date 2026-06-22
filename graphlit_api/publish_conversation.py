@@ -35,7 +35,7 @@ class PublishConversationPublishConversationContents(BaseModel):
     identifier: Optional[str]
     markdown: Optional[str]
     uri: Optional[Any]
-    type: Optional[ContentTypes]
+    type_: Optional[ContentTypes] = Field(alias="type")
     file_type: Optional[FileTypes] = Field(alias="fileType")
     mime_type: Optional[str] = Field(alias="mimeType")
     format: Optional[str]

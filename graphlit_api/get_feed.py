@@ -92,7 +92,7 @@ class GetFeedFeed(BaseModel):
     identifier: Optional[str]
     description: Optional[str]
     correlation_id: Optional[str] = Field(alias="correlationId")
-    type: FeedTypes
+    type_: FeedTypes = Field(alias="type")
     sync_mode: Optional[FeedSyncMode] = Field(alias="syncMode")
     site: Optional["GetFeedFeedSite"]
     skill: Optional["GetFeedFeedSkill"]
@@ -153,7 +153,7 @@ class GetFeedFeedUser(BaseModel):
 
 class GetFeedFeedSite(BaseModel):
     site_type: SiteTypes = Field(alias="siteType")
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     is_recursive: Optional[bool] = Field(alias="isRecursive")
     allowed_paths: Optional[list[str]] = Field(alias="allowedPaths")
     excluded_paths: Optional[list[str]] = Field(alias="excludedPaths")
@@ -320,7 +320,7 @@ class GetFeedFeedSiteGitlabConnector(BaseModel):
 
 
 class GetFeedFeedSkill(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     is_recursive: Optional[bool] = Field(alias="isRecursive")
     allowed_paths: Optional[list[str]] = Field(alias="allowedPaths")
     excluded_paths: Optional[list[str]] = Field(alias="excludedPaths")
@@ -365,7 +365,7 @@ class GetFeedFeedSkillGitlabConnector(BaseModel):
 
 
 class GetFeedFeedEmail(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
     google: Optional["GetFeedFeedEmailGoogle"]
     microsoft: Optional["GetFeedFeedEmailMicrosoft"]
@@ -373,8 +373,8 @@ class GetFeedFeedEmail(BaseModel):
 
 
 class GetFeedFeedEmailGoogle(BaseModel):
-    type: Optional[EmailListingTypes]
-    filter: Optional[str]
+    type_: Optional[EmailListingTypes] = Field(alias="type")
+    filter_: Optional[str] = Field(alias="filter")
     include_spam: Optional[bool] = Field(alias="includeSpam")
     exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems")
     include_deleted_items: Optional[bool] = Field(alias="includeDeletedItems")
@@ -395,8 +395,8 @@ class GetFeedFeedEmailGoogleConnector(BaseModel):
 
 
 class GetFeedFeedEmailMicrosoft(BaseModel):
-    type: Optional[EmailListingTypes]
-    filter: Optional[str]
+    type_: Optional[EmailListingTypes] = Field(alias="type")
+    filter_: Optional[str] = Field(alias="filter")
     include_spam: Optional[bool] = Field(alias="includeSpam")
     exclude_sent_items: Optional[bool] = Field(alias="excludeSentItems")
     include_deleted_items: Optional[bool] = Field(alias="includeDeletedItems")
@@ -417,7 +417,7 @@ class GetFeedFeedEmailMicrosoftConnector(BaseModel):
 
 
 class GetFeedFeedIssue(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
     jira: Optional["GetFeedFeedIssueJira"]
     linear: Optional["GetFeedFeedIssueLinear"]
@@ -542,7 +542,7 @@ class GetFeedFeedIssueTrello(BaseModel):
     key: str
     token: str
     identifiers: list[str]
-    type: TrelloTypes
+    type_: TrelloTypes = Field(alias="type")
 
 
 class GetFeedFeedIssueAttio(BaseModel):
@@ -611,7 +611,7 @@ class GetFeedFeedIssueProductlane(BaseModel):
 
 
 class GetFeedFeedInitiative(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     jira: Optional["GetFeedFeedInitiativeJira"]
     github: Optional["GetFeedFeedInitiativeGithub"]
     gitlab: Optional["GetFeedFeedInitiativeGitlab"]
@@ -694,7 +694,7 @@ class GetFeedFeedInitiativeLinearConnector(BaseModel):
 
 
 class GetFeedFeedCommit(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     github: Optional["GetFeedFeedCommitGithub"]
     gitlab: Optional["GetFeedFeedCommitGitlab"]
     before_date: Optional[Any] = Field(alias="beforeDate")
@@ -739,7 +739,7 @@ class GetFeedFeedCommitGitlabConnector(BaseModel):
 
 
 class GetFeedFeedPullRequest(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     github: Optional["GetFeedFeedPullRequestGithub"]
     gitlab: Optional["GetFeedFeedPullRequestGitlab"]
     before_date: Optional[Any] = Field(alias="beforeDate")
@@ -783,7 +783,7 @@ class GetFeedFeedPullRequestGitlabConnector(BaseModel):
 
 
 class GetFeedFeedCrm(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     attio: Optional["GetFeedFeedCrmAttio"]
     google_contacts: Optional["GetFeedFeedCrmGoogleContacts"] = Field(
         alias="googleContacts"
@@ -806,7 +806,7 @@ class GetFeedFeedCrmAttio(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     connector: Optional["GetFeedFeedCrmAttioConnector"]
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
 
 
 class GetFeedFeedCrmAttioConnector(BaseModel):
@@ -821,7 +821,7 @@ class GetFeedFeedCrmGoogleContacts(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     connector: Optional["GetFeedFeedCrmGoogleContactsConnector"]
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
 
 
 class GetFeedFeedCrmGoogleContactsConnector(BaseModel):
@@ -837,7 +837,7 @@ class GetFeedFeedCrmMicrosoftContacts(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
     tenant_id: Optional[str] = Field(alias="tenantId")
     connector: Optional["GetFeedFeedCrmMicrosoftContactsConnector"]
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
 
 
 class GetFeedFeedCrmMicrosoftContactsConnector(BaseModel):
@@ -854,7 +854,7 @@ class GetFeedFeedCrmSalesforce(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     connector: Optional["GetFeedFeedCrmSalesforceConnector"]
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
 
 
 class GetFeedFeedCrmSalesforceConnector(BaseModel):
@@ -870,7 +870,7 @@ class GetFeedFeedCrmHubSpot(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
     access_token: Optional[str] = Field(alias="accessToken")
     connector: Optional["GetFeedFeedCrmHubSpotConnector"]
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
 
 
 class GetFeedFeedCrmHubSpotConnector(BaseModel):
@@ -879,11 +879,11 @@ class GetFeedFeedCrmHubSpotConnector(BaseModel):
 
 class GetFeedFeedCrmProductlane(BaseModel):
     api_key: Optional[str] = Field(alias="apiKey")
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
 
 
 class GetFeedFeedHris(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     bamboo_hr: Optional["GetFeedFeedHrisBambooHr"] = Field(alias="bambooHR")
     gusto: Optional["GetFeedFeedHrisGusto"]
     read_limit: Optional[int] = Field(alias="readLimit")
@@ -908,7 +908,7 @@ class GetFeedFeedHrisGusto(BaseModel):
 
 
 class GetFeedFeedCalendar(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
     enable_meeting_recording: Optional[bool] = Field(alias="enableMeetingRecording")
     meeting_bot_name: Optional[str] = Field(alias="meetingBotName")
@@ -918,7 +918,7 @@ class GetFeedFeedCalendar(BaseModel):
 
 
 class GetFeedFeedCalendarGoogle(BaseModel):
-    type: Optional[CalendarListingTypes]
+    type_: Optional[CalendarListingTypes] = Field(alias="type")
     calendar_id: Optional[str] = Field(alias="calendarId")
     before_date: Optional[Any] = Field(alias="beforeDate")
     after_date: Optional[Any] = Field(alias="afterDate")
@@ -936,7 +936,7 @@ class GetFeedFeedCalendarGoogleConnector(BaseModel):
 
 
 class GetFeedFeedCalendarMicrosoft(BaseModel):
-    type: Optional[CalendarListingTypes]
+    type_: Optional[CalendarListingTypes] = Field(alias="type")
     calendar_id: Optional[str] = Field(alias="calendarId")
     before_date: Optional[Any] = Field(alias="beforeDate")
     after_date: Optional[Any] = Field(alias="afterDate")
@@ -954,7 +954,7 @@ class GetFeedFeedCalendarMicrosoftConnector(BaseModel):
 
 
 class GetFeedFeedMeeting(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     content_type: Optional[MeetingContentTypes] = Field(alias="contentType")
     read_limit: Optional[int] = Field(alias="readLimit")
     fireflies: Optional["GetFeedFeedMeetingFireflies"]
@@ -969,7 +969,7 @@ class GetFeedFeedMeetingFireflies(BaseModel):
     api_key: Optional[str] = Field(alias="apiKey")
     before_date: Optional[Any] = Field(alias="beforeDate")
     after_date: Optional[Any] = Field(alias="afterDate")
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
 
 
 class GetFeedFeedMeetingAttio(BaseModel):
@@ -983,7 +983,7 @@ class GetFeedFeedMeetingAttio(BaseModel):
     connector: Optional["GetFeedFeedMeetingAttioConnector"]
     after_date: Optional[Any] = Field(alias="afterDate")
     before_date: Optional[Any] = Field(alias="beforeDate")
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
 
 
 class GetFeedFeedMeetingAttioConnector(BaseModel):
@@ -994,7 +994,7 @@ class GetFeedFeedMeetingFathom(BaseModel):
     api_key: Optional[str] = Field(alias="apiKey")
     after_date: Optional[Any] = Field(alias="afterDate")
     before_date: Optional[Any] = Field(alias="beforeDate")
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
 
 
 class GetFeedFeedMeetingZoom(BaseModel):
@@ -1007,7 +1007,7 @@ class GetFeedFeedMeetingZoom(BaseModel):
     connector: Optional["GetFeedFeedMeetingZoomConnector"]
     after_date: Optional[Any] = Field(alias="afterDate")
     before_date: Optional[Any] = Field(alias="beforeDate")
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
 
 
 class GetFeedFeedMeetingZoomConnector(BaseModel):
@@ -1025,7 +1025,7 @@ class GetFeedFeedMeetingHubSpot(BaseModel):
     before_date: Optional[Any] = Field(alias="beforeDate")
     read_limit: Optional[int] = Field(alias="readLimit")
     connector: Optional["GetFeedFeedMeetingHubSpotConnector"]
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
 
 
 class GetFeedFeedMeetingHubSpotConnector(BaseModel):
@@ -1034,7 +1034,7 @@ class GetFeedFeedMeetingHubSpotConnector(BaseModel):
 
 class GetFeedFeedMeetingKrisp(BaseModel):
     auth_token: Optional[str] = Field(alias="authToken")
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
 
 
 class GetFeedFeedRss(BaseModel):
@@ -1052,7 +1052,7 @@ class GetFeedFeedWeb(BaseModel):
 
 class GetFeedFeedSearch(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
-    type: Optional[SearchServiceTypes]
+    type_: Optional[SearchServiceTypes] = Field(alias="type")
     text: Optional[str]
     exa: Optional["GetFeedFeedSearchExa"]
     crustdata: Optional["GetFeedFeedSearchCrustdata"]
@@ -1132,7 +1132,7 @@ class GetFeedFeedNotion(BaseModel):
     refresh_token: Optional[str] = Field(alias="refreshToken")
     connector: Optional["GetFeedFeedNotionConnector"]
     identifiers: list[str]
-    type: NotionTypes
+    type_: NotionTypes = Field(alias="type")
 
 
 class GetFeedFeedNotionConnector(BaseModel):
@@ -1141,7 +1141,7 @@ class GetFeedFeedNotionConnector(BaseModel):
 
 class GetFeedFeedEvernote(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
     connector: Optional["GetFeedFeedEvernoteConnector"]
     query: Optional[str]
     tag_guids: Optional[list[str]] = Field(alias="tagGuids")
@@ -1168,7 +1168,7 @@ class GetFeedFeedConfluence(BaseModel):
     cloud_id: Optional[str] = Field(alias="cloudId")
     space_keys: Optional[list[str]] = Field(alias="spaceKeys")
     identifiers: Optional[list[str]]
-    type: ConfluenceTypes
+    type_: ConfluenceTypes = Field(alias="type")
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
 
 
@@ -1211,7 +1211,7 @@ class GetFeedFeedZendeskConnector(BaseModel):
 
 class GetFeedFeedYoutube(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
-    type: YouTubeTypes
+    type_: YouTubeTypes = Field(alias="type")
     video_name: Optional[str] = Field(alias="videoName")
     video_identifiers: Optional[list[str]] = Field(alias="videoIdentifiers")
     channel_identifier: Optional[str] = Field(alias="channelIdentifier")
@@ -1228,7 +1228,7 @@ class GetFeedFeedTwitter(BaseModel):
     client_secret: Optional[str] = Field(alias="clientSecret")
     refresh_token: Optional[str] = Field(alias="refreshToken")
     connector: Optional["GetFeedFeedTwitterConnector"]
-    type: Optional[TwitterListingTypes]
+    type_: Optional[TwitterListingTypes] = Field(alias="type")
     user_name: Optional[str] = Field(alias="userName")
     query: Optional[str]
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
@@ -1240,7 +1240,7 @@ class GetFeedFeedTwitterConnector(BaseModel):
 
 class GetFeedFeedSlack(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
     authentication_type: Optional[SlackAuthenticationTypes] = Field(
         alias="authenticationType"
     )
@@ -1261,7 +1261,7 @@ class GetFeedFeedSlackConnector(BaseModel):
 
 class GetFeedFeedMicrosoftTeams(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
     authentication_type: Optional[MicrosoftTeamsAuthenticationTypes] = Field(
         alias="authenticationType"
     )
@@ -1282,7 +1282,7 @@ class GetFeedFeedMicrosoftTeamsConnector(BaseModel):
 
 class GetFeedFeedDiscord(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
-    type: Optional[FeedListingTypes]
+    type_: Optional[FeedListingTypes] = Field(alias="type")
     token: str
     channel: str
     include_attachments: Optional[bool] = Field(alias="includeAttachments")
@@ -1358,14 +1358,14 @@ class GetFeedFeedIntercomConversationsConnector(BaseModel):
 
 class GetFeedFeedProductlane(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     api_key: Optional[str] = Field(alias="apiKey")
     workspace_id: Optional[str] = Field(alias="workspaceId")
 
 
 class GetFeedFeedResearch(BaseModel):
     read_limit: Optional[int] = Field(alias="readLimit")
-    type: Optional[FeedServiceTypes]
+    type_: Optional[FeedServiceTypes] = Field(alias="type")
     query: str
     parallel: Optional["GetFeedFeedResearchParallel"]
 
@@ -1375,7 +1375,7 @@ class GetFeedFeedResearchParallel(BaseModel):
 
 
 class GetFeedFeedEntity(BaseModel):
-    type: FeedServiceTypes
+    type_: FeedServiceTypes = Field(alias="type")
     query: Optional[str]
     read_limit: Optional[int] = Field(alias="readLimit")
     parallel: Optional["GetFeedFeedEntityParallel"]

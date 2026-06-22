@@ -86,7 +86,7 @@ class PromptConversationPromptConversationMessageCitationsContent(BaseModel):
     original_date: Optional[Any] = Field(alias="originalDate")
     identifier: Optional[str]
     uri: Optional[Any]
-    type: Optional[ContentTypes]
+    type_: Optional[ContentTypes] = Field(alias="type")
     file_type: Optional[FileTypes] = Field(alias="fileType")
     mime_type: Optional[str] = Field(alias="mimeType")
     format: Optional[str]
@@ -214,9 +214,11 @@ class PromptConversationPromptConversationMessageArtifacts(BaseModel):
 
 
 class PromptConversationPromptConversationFacets(BaseModel):
-    type: Optional[FacetValueTypes]
+    type_: Optional[FacetValueTypes] = Field(alias="type")
     value: Optional[str]
-    range: Optional["PromptConversationPromptConversationFacetsRange"]
+    range_: Optional["PromptConversationPromptConversationFacetsRange"] = Field(
+        alias="range"
+    )
     count: Optional[Any]
     facet: Optional[ContentFacetTypes]
     observable: Optional["PromptConversationPromptConversationFacetsObservable"]
@@ -228,7 +230,7 @@ class PromptConversationPromptConversationFacetsRange(BaseModel):
 
 
 class PromptConversationPromptConversationFacetsObservable(BaseModel):
-    type: Optional[ObservableTypes]
+    type_: Optional[ObservableTypes] = Field(alias="type")
     observable: Optional[
         "PromptConversationPromptConversationFacetsObservableObservable"
     ]
@@ -247,7 +249,7 @@ class PromptConversationPromptConversationGraph(BaseModel):
 class PromptConversationPromptConversationGraphNodes(BaseModel):
     id: str
     name: str
-    type: EntityTypes
+    type_: EntityTypes = Field(alias="type")
     metadata: Optional[str]
 
 
@@ -332,7 +334,7 @@ class PromptConversationPromptConversationDetailsMessagesCitationsContent(BaseMo
     original_date: Optional[Any] = Field(alias="originalDate")
     identifier: Optional[str]
     uri: Optional[Any]
-    type: Optional[ContentTypes]
+    type_: Optional[ContentTypes] = Field(alias="type")
     file_type: Optional[FileTypes] = Field(alias="fileType")
     mime_type: Optional[str] = Field(alias="mimeType")
     format: Optional[str]

@@ -18,7 +18,7 @@ class RetrieveViewRetrieveView(BaseModel):
 
 
 class RetrieveViewRetrieveViewResults(BaseModel):
-    type: Optional[ContentSourceTypes]
+    type_: Optional[ContentSourceTypes] = Field(alias="type")
     content: "RetrieveViewRetrieveViewResultsContent"
     text: Optional[str]
     metadata: Optional[str]

@@ -24,8 +24,8 @@ class UpdateViewUpdateView(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[ViewTypes]
-    filter: Optional["UpdateViewUpdateViewFilter"]
+    type_: Optional[ViewTypes] = Field(alias="type")
+    filter_: Optional["UpdateViewUpdateViewFilter"] = Field(alias="filter")
     augmented_filter: Optional["UpdateViewUpdateViewAugmentedFilter"] = Field(
         alias="augmentedFilter"
     )
@@ -107,7 +107,7 @@ class UpdateViewUpdateViewFilterUsers(BaseModel):
 
 
 class UpdateViewUpdateViewFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "UpdateViewUpdateViewFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -141,7 +141,7 @@ class UpdateViewUpdateViewFilterOrUsers(BaseModel):
 
 
 class UpdateViewUpdateViewFilterOrObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "UpdateViewUpdateViewFilterOrObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -175,7 +175,7 @@ class UpdateViewUpdateViewFilterAndUsers(BaseModel):
 
 
 class UpdateViewUpdateViewFilterAndObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "UpdateViewUpdateViewFilterAndObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -260,7 +260,7 @@ class UpdateViewUpdateViewAugmentedFilterUsers(BaseModel):
 
 
 class UpdateViewUpdateViewAugmentedFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "UpdateViewUpdateViewAugmentedFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -294,7 +294,7 @@ class UpdateViewUpdateViewAugmentedFilterOrUsers(BaseModel):
 
 
 class UpdateViewUpdateViewAugmentedFilterOrObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "UpdateViewUpdateViewAugmentedFilterOrObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -328,7 +328,7 @@ class UpdateViewUpdateViewAugmentedFilterAndUsers(BaseModel):
 
 
 class UpdateViewUpdateViewAugmentedFilterAndObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "UpdateViewUpdateViewAugmentedFilterAndObservationsObservable"
     states: Optional[list[EntityState]]
 

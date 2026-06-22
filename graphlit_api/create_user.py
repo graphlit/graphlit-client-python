@@ -17,7 +17,7 @@ class CreateUserCreateUser(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[UserTypes]
+    type_: Optional[UserTypes] = Field(alias="type")
     description: Optional[str]
     identifier: str
 

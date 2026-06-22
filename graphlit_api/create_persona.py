@@ -19,7 +19,7 @@ class CreatePersonaCreatePersona(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[PersonaTypes]
+    type_: Optional[PersonaTypes] = Field(alias="type")
     identifier: Optional[str]
     platform: Optional[str]
     display_name: Optional[str] = Field(alias="displayName")

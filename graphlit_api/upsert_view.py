@@ -24,8 +24,8 @@ class UpsertViewUpsertView(BaseModel):
     id: str
     name: str
     state: EntityState
-    type: Optional[ViewTypes]
-    filter: Optional["UpsertViewUpsertViewFilter"]
+    type_: Optional[ViewTypes] = Field(alias="type")
+    filter_: Optional["UpsertViewUpsertViewFilter"] = Field(alias="filter")
     augmented_filter: Optional["UpsertViewUpsertViewAugmentedFilter"] = Field(
         alias="augmentedFilter"
     )
@@ -107,7 +107,7 @@ class UpsertViewUpsertViewFilterUsers(BaseModel):
 
 
 class UpsertViewUpsertViewFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "UpsertViewUpsertViewFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -141,7 +141,7 @@ class UpsertViewUpsertViewFilterOrUsers(BaseModel):
 
 
 class UpsertViewUpsertViewFilterOrObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "UpsertViewUpsertViewFilterOrObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -175,7 +175,7 @@ class UpsertViewUpsertViewFilterAndUsers(BaseModel):
 
 
 class UpsertViewUpsertViewFilterAndObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "UpsertViewUpsertViewFilterAndObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -260,7 +260,7 @@ class UpsertViewUpsertViewAugmentedFilterUsers(BaseModel):
 
 
 class UpsertViewUpsertViewAugmentedFilterObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "UpsertViewUpsertViewAugmentedFilterObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -294,7 +294,7 @@ class UpsertViewUpsertViewAugmentedFilterOrUsers(BaseModel):
 
 
 class UpsertViewUpsertViewAugmentedFilterOrObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "UpsertViewUpsertViewAugmentedFilterOrObservationsObservable"
     states: Optional[list[EntityState]]
 
@@ -328,7 +328,7 @@ class UpsertViewUpsertViewAugmentedFilterAndUsers(BaseModel):
 
 
 class UpsertViewUpsertViewAugmentedFilterAndObservations(BaseModel):
-    type: ObservableTypes
+    type_: ObservableTypes = Field(alias="type")
     observable: "UpsertViewUpsertViewAugmentedFilterAndObservationsObservable"
     states: Optional[list[EntityState]]
 
