@@ -224,6 +224,7 @@ from .enums import (
     WaterfallDepths,
     XAIModels,
     YouTubeTypes,
+    ZAIModels,
     ZendeskAuthenticationTypes,
     ZendeskIssueAuthenticationTypes,
     ZoomAuthenticationTypes,
@@ -2320,6 +2321,7 @@ class SpecificationInput(BaseModel):
     mistral: Optional["MistralModelPropertiesInput"] = None
     bedrock: Optional["BedrockModelPropertiesInput"] = None
     xai: Optional["XAIModelPropertiesInput"] = None
+    zai: Optional["ZAIModelPropertiesInput"] = None
     groq: Optional["GroqModelPropertiesInput"] = None
     cerebras: Optional["CerebrasModelPropertiesInput"] = None
     deepseek: Optional["DeepseekModelPropertiesInput"] = None
@@ -2943,6 +2945,7 @@ class SpecificationUpdateInput(BaseModel):
     mistral: Optional["MistralModelPropertiesUpdateInput"] = None
     bedrock: Optional["BedrockModelPropertiesUpdateInput"] = None
     xai: Optional["XAIModelPropertiesUpdateInput"] = None
+    zai: Optional["ZAIModelPropertiesUpdateInput"] = None
     groq: Optional["GroqModelPropertiesUpdateInput"] = None
     cerebras: Optional["CerebrasModelPropertiesUpdateInput"] = None
     deepseek: Optional["DeepseekModelPropertiesUpdateInput"] = None
@@ -3994,6 +3997,19 @@ class XAIModelPropertiesInput(BaseModel):
     )
 
 
+class ZAIModelPropertiesInput(BaseModel):
+    model: ZAIModels
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    endpoint: Optional[Any] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+
+
 class GroqModelPropertiesInput(BaseModel):
     model: GroqModels
     model_name: Optional[str] = Field(alias="modelName", default=None)
@@ -4822,6 +4838,19 @@ class BedrockModelPropertiesUpdateInput(BaseModel):
 
 class XAIModelPropertiesUpdateInput(BaseModel):
     model: Optional[XAIModels] = None
+    model_name: Optional[str] = Field(alias="modelName", default=None)
+    key: Optional[str] = None
+    endpoint: Optional[Any] = None
+    temperature: Optional[float] = None
+    probability: Optional[float] = None
+    token_limit: Optional[int] = Field(alias="tokenLimit", default=None)
+    completion_token_limit: Optional[int] = Field(
+        alias="completionTokenLimit", default=None
+    )
+
+
+class ZAIModelPropertiesUpdateInput(BaseModel):
+    model: Optional[ZAIModels] = None
     model_name: Optional[str] = Field(alias="modelName", default=None)
     key: Optional[str] = None
     endpoint: Optional[Any] = None
